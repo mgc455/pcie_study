@@ -1,0 +1,5262 @@
+[
+  {
+    "name": "EP / RP / Switch USP/DSP",
+    "group": "链路与物理层",
+    "intro": "Endpoint提供设备功能，Root Port连接主机，Switch端口负责拓扑转发。",
+    "usage": "先明确自己是哪种角色；ACS、DPC、热插拔等能力随端口类型变化。",
+    "mechanism": "RP位于主机一侧，EP提供业务功能；Switch的上游端口朝主机，下游端口朝设备。请求按地址或ID穿过拓扑，各角色暴露的能力与配置头不同。",
+    "example": "做FPGA采集卡通常实现EP；如果FPGA要枚举和控制另一张PCIe卡，则需要RP及主机侧软件。",
+    "checks": "先画出主机、桥、设备连接图，再确认device_type及Type0/Type1配置头，不能只看顶层模块名。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 1,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "1.3",
+        "title": "PCI Express Fabric Topology",
+        "page": 102,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 102,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Lane与x1/x2/x4/x8/x16宽度",
+    "group": "链路与物理层",
+    "intro": "每条lane包含双向串行传输通路，多lane并行组成链路。",
+    "usage": "查实际协商宽度而非只看最大lane数量。",
+    "mechanism": "初始化时双方协商能使用的lane集合，收发数据被分配到这些lane并在接收端重新对齐。单条lane自身支持两个方向同时传输。",
+    "example": "标称x8卡插入电气x4插槽，最终可能只以x4工作；软件正常枚举不代表已经跑满设计宽度。",
+    "checks": "同时记录最大宽度与协商宽度；降宽时检查连接、lane训练、时钟和信号质量。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 2,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "1",
+        "title": "Introduction",
+        "page": 99,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 99,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "4",
+        "title": "Physical Layer Logical Block",
+        "page": 307,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 307,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Gen1～Gen6速率协商",
+    "group": "链路与物理层",
+    "intro": "链路协商双方可支持的速率；Gen1～6为2.5/5/8/16/32/64GT/s。",
+    "usage": "GT/s不是应用有效GB/s；",
+    "mechanism": "链路先按训练规则建立通信，再在双方与路径允许的条件下切换到更高速率。最大支持速率是能力，当前速率是运行结果。",
+    "example": "Gen6控制器连接Gen4对端，最终按双方支持的模式运行，不能强制单端配置让对端变成Gen6。",
+    "checks": "看Link Capability、目标速率、Current Link Speed及PHY状态；GT/s还要扣除协议与编码开销才得到有效带宽。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 3,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4",
+        "title": "Physical Layer Logical Block",
+        "page": 307,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 307,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "LTSSM与Link Training",
+    "group": "链路与物理层",
+    "intro": "状态机执行检测、轮询、配置、恢复、低功耗等链路流程。",
+    "usage": "建链失败时结合LTSSM、PHY状态、复位与时钟检查。",
+    "mechanism": "LTSSM按Detect、Polling、Configuration、L0、Recovery等状态完成检测和协商；电源/测试/复位流程还会进入其他分支。",
+    "example": "长期停在Detect先检查物理连接与接收检测；反复进入Recovery则要关注训练、信号质量或速率切换。",
+    "checks": "抓状态随时间的变化而不只读一个瞬时值；区分尚未训练、训练重试和已经建链后掉线。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 4,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4.2.6",
+        "title": "Link Training and Status State Machine (LTSSM) Descriptions",
+        "page": 444,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 444,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "速率切换与Retrain",
+    "group": "链路与物理层",
+    "intro": "链路进入Recovery等流程重新协商或调整速率。",
+    "usage": "通常由支持的下游端口控制，EP不能照抄RP寄存器操作。",
+    "mechanism": "软件或硬件请求调整后，链路按照协议进入恢复训练并协商新状态；切换期间业务可能暂时停止。",
+    "example": "先以低速调通，再逐级提速定位在哪一代发生训练失败，比一开始只盯最大带宽更容易定位。",
+    "checks": "发起控制的端口必须有相应职责和能力；记录切换前后速率、训练状态和错误计数。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 5,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.11",
+        "title": "Link Speed Management",
+        "page": 750,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 750,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "宽度调整与Upconfigure",
+    "group": "链路与物理层",
+    "intro": "训练/恢复过程中改变使用的lane数量。",
+    "usage": "排查降宽，或设计允许链路从窄宽度升宽。",
+    "mechanism": "链路训练可选择较窄的可用lane组合，某些配置允许之后重新训练到更宽的链路。普通宽度调整与L0p动态省电采用不同流程。",
+    "example": "板上8条lane中一部分未正确连接，链路可能降为x4而不是完全无法枚举。",
+    "checks": "先判断这是训练降宽、主动重训练还是L0p；不要把所有宽度变化都当成物理故障。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 6,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4",
+        "title": "Physical Layer Logical Block",
+        "page": 307,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 307,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Lane Reversal / Flip",
+    "group": "链路与物理层",
+    "intro": "允许lane顺序反向连接，缓解PCB布线约束。",
+    "usage": "不等于任意lane置换；自动/手动规则依IP与PHY。",
+    "mechanism": "lane编号在允许的反向排列下可以被识别和重排，让控制器逻辑lane顺序与PCB连接对应。支持范围不包括任意乱序交换。",
+    "example": "PCB为减少交叉走线，将lane0接到对端最高编号lane，只有双方/实现支持的反向规则才能正常使用。",
+    "checks": "核对支持的反转组合、Lane0检测要求以及自动/手动控制，不能只确认差分线有通断。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 7,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4",
+        "title": "Physical Layer Logical Block",
+        "page": 307,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 307,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "极性反转与Deskew",
+    "group": "链路与物理层",
+    "intro": "接收端处理允许的差分极性反转，并对齐各lane到达时间。",
+    "usage": "PHY/链路集成和布线验证；不是软件地址翻译。",
+    "mechanism": "接收端在训练中处理允许的P/N极性反转；Deskew通过缓冲把不同lane的到达偏差重新对齐。两者分别解决差分方向和多lane时间偏差。",
+    "example": "单lane可通信但多lane训练异常时，除lane顺序外，还应检查偏斜和Deskew相关约束。",
+    "checks": "确认偏差在PHY/控制器可接受范围内；极性处理不是修复任意错接或超限布线的通用办法。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 8,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4",
+        "title": "Physical Layer Logical Block",
+        "page": 307,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 307,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Equalization / Preset / Coefficient",
+    "group": "链路与物理层",
+    "intro": "高速链路训练调整发射与接收均衡参数。",
+    "usage": "高速眼图/误码/降速问题，需要PHY和对端参与。",
+    "mechanism": "训练中发射端和接收端按规则交换均衡需求，选择Preset或调整系数，以补偿通道损耗、反射等影响。",
+    "example": "低速稳定、高速频繁Recovery或降速时，均衡、参考时钟和通道质量是重点排查对象。",
+    "checks": "记录均衡阶段、对端和retimer状态；随意强制Preset可能掩盖根因，需按PHY指导验证。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 9,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4.2.4",
+        "title": "Link Equalization Procedure for 8.0 GT/s and Higher Data Rates",
+        "page": 392,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 392,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "4.2.7.4.2",
+        "title": "Recovery.Equalization",
+        "page": 489,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 489,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Common Clock / SRNS / SRIS",
+    "group": "链路与物理层",
+    "intro": "共同参考时钟、独立参考时钟及独立扩频时钟是不同运行条件。",
+    "usage": "板级时钟设计先选模式，再核对PHY及训练支持。",
+    "mechanism": "共同参考时钟可使两端时钟漂移相关；独立参考时钟及独立扩频需要系统容纳相应频差和训练条件。时钟模式影响多个组件。",
+    "example": "两块板各自供时钟，不能因为频率标称相同就按Common Clock配置；带独立SSC时还需确认SRIS支持。",
+    "checks": "核对板级时钟来源、SSC、Common Clock相关字段及PHY支持，不能靠一个寄存器产生缺失的参考时钟。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 10,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4",
+        "title": "Physical Layer Logical Block",
+        "page": 307,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 307,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Retimer与Repeater",
+    "group": "链路与物理层",
+    "intro": "长链路中恢复信号或调理信号，retimer对训练/延迟等有影响。",
+    "usage": "背板/长线设计，需核对支持的速率与数量。",
+    "mechanism": "retimer恢复时钟/数据并参与相应链路流程，redriver主要调理模拟信号。增加器件会改变通道、延迟和训练条件。",
+    "example": "长背板或线缆路径需要中继时，先确定器件类别与代际支持，再验证整条路径。",
+    "checks": "不能把retimer当成有独立BAR的普通交换机；核对数量、位置、均衡和复位/供电要求。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 11,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4",
+        "title": "Physical Layer Logical Block",
+        "page": 307,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 307,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "编码：8b/10b、128b/130b与PAM4",
+    "group": "链路与物理层",
+    "intro": "各代编码/调制不同，决定开销和信号要求。",
+    "usage": "Gen6 64GT/s引入PAM4与Flit相关机制；不是所有低速模式都使用PAM4。",
+    "mechanism": "Gen1/2使用8b/10b，Gen3～5采用128b/130b相关传输方式；64GT/s Gen6使用PAM4并结合Flit与纠错机制。传输方式改变有效开销。",
+    "example": "计算x8带宽时，先明确速率、方向、编码和当前模式，再估算Payload吞吐。",
+    "checks": "不要简单用GT/s乘lane数就宣称应用带宽；PAM4是调制方式，不是PCIe事务类型。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 12,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4",
+        "title": "Physical Layer Logical Block",
+        "page": 307,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 307,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Flit Mode / Non-Flit Mode",
+    "group": "链路与物理层",
+    "intro": "Flit模式将传输内容组织为固定大小Flit，旧模式按传统包链路机制处理。",
+    "usage": "Gen6学习重点；降速后也不能只根据速率断言当前模式。",
+    "mechanism": "Flit模式把事务内容装入固定传输单元，并配套不同的头、校验与重放机制；Non-Flit沿用相应传统链路机制。",
+    "example": "分析Gen6波形时，先确认处于哪种模式，再选用正确的包头和错误日志解释方法。",
+    "checks": "Flit模式与速率并非一一对应；不能仅看到链路降到32GT/s便认定一定是传统Non-Flit。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 13,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4",
+        "title": "Physical Layer Logical Block",
+        "page": 307,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 307,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Gen6 FEC / Flit CRC",
+    "group": "链路与物理层",
+    "intro": "前向纠错与校验共同处理高速传输错误。",
+    "usage": "区分FEC纠正、CRC检测与重放；不是端到端应用校验。",
+    "mechanism": "FEC尝试纠正特定传输错误，CRC检测剩余错误，重放负责重传相关内容。三者共同提高可靠性，但不能保证任意损坏都可自动修复。",
+    "example": "应用数据偶尔异常时，要区分PHY误码、纠错后残留错误、协议错误和本地RAM错误，避免只看FEC计数。",
+    "checks": "分别检查纠错、CRC、重放和AER/Flit日志；不要把线上纠错当成端到端数据一致性证明。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 14,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4",
+        "title": "Physical Layer Logical Block",
+        "page": 307,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 307,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "L0p动态宽度省电",
+    "group": "链路与物理层",
+    "intro": "在保持活动传输的情况下动态减少/增加活动lane。",
+    "usage": "Gen6功耗优化，区别于L1休眠和普通重训练降宽。",
+    "mechanism": "L0p允许活动链路按照协议减少或恢复参与传输的lane，在负载变化时降低部分物理通路功耗。无需把它等同于整链路进入L1。",
+    "example": "业务长期低负载时保持部分lane活动，突发流量来临再恢复宽度，是带宽与功耗间的动态取舍。",
+    "checks": "检查双方能力、请求/确认和退出延迟；吞吐波动时结合活动宽度观察，不只看最大x8配置。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 15,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4.2.6.7",
+        "title": "L0p Overview",
+        "page": 445,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 445,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "5.4.1.2",
+        "title": "ASPM L0p State",
+        "page": 626,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 626,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Crosslink",
+    "group": "链路与物理层",
+    "intro": "支持特定对等连接中的角色判定/建链流程。",
+    "usage": "两端连接形式需要此能力时才考虑。",
+    "mechanism": "Crosslink用于特定端到端连接中的角色判定与建链规则，解决连接双方初始角色关系问题。实际可用性受控制器和拓扑约束。",
+    "example": "两颗支持相应模式的芯片直接连接时，应先核对角色选择机制，而不是默认两端都作为普通EP。",
+    "checks": "先验证该拓扑受产品支持；Crosslink不会自动补齐枚举软件、地址映射和业务协议。",
+    "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
+    "id": 16,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4",
+        "title": "Physical Layer Logical Block",
+        "page": 307,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 307,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Memory Read / Write（MRd / MWr）",
+    "group": "事务与数据传输",
+    "intro": "读发请求并等Completion，写通常是Posted且不返回逐笔完成包。",
+    "usage": "BAR访问与DMA的基础；写发出不等于远端软件已消费。",
+    "mechanism": "MWr把地址和数据发给目标，通常没有逐笔返回的Completion；MRd发出请求后，目标用CplD返回数据。发起者要管理读请求状态。",
+    "example": "EP上传数据到主机通常发MWr；EP从主机拉取缓冲通常发MRd并接收CplD。",
+    "checks": "把源/目的地址与请求发起方向分清；写已发出不代表主机应用已读走，需另外设计消费确认。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 17,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2",
+        "title": "Transaction Layer Protocol - Packet Definition",
+        "page": 119,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 119,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Configuration Read / Write，Type0/Type1",
+    "group": "事务与数据传输",
+    "intro": "访问设备/桥配置空间，用于枚举和能力设置。",
+    "usage": "CFG访问不是普通BAR内存读写；路径中Type1可被桥转换。",
+    "mechanism": "配置请求按BDF路由到功能，途中可能经过Type1到Type0的处理；功能返回配置数据或完成状态。它用于发现和管理设备。",
+    "example": "主机读取Vendor ID走配置访问，而读取设备BAR中的版本号通常走Memory Read，两者目标空间不同。",
+    "checks": "检查BDF、配置偏移、完成状态和桥Bus范围；不要拿BAR基址去计算Capability的配置地址。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 18,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2",
+        "title": "Transaction Layer Protocol - Packet Definition",
+        "page": 119,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 119,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "I/O Read / Write",
+    "group": "事务与数据传输",
+    "intro": "兼容I/O地址空间访问，属于需要Completion的请求。",
+    "usage": "只有设备/平台使用I/O BAR时需要，许多现代设备只用Memory。",
+    "mechanism": "I/O请求使用I/O地址空间和对应TLP类型，并需要目标返回Completion；与普通Posted Memory Write的完成语义不同。",
+    "example": "兼容设备通过I/O BAR暴露寄存器时，平台和驱动需要使用对应访问机制，不能随意改成MMIO。",
+    "checks": "先确认BAR类型、Command.IO Enable和路径支持；没有I/O需求的现代EP无需为了完整而强行采用它。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 19,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2",
+        "title": "Transaction Layer Protocol - Packet Definition",
+        "page": 119,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 119,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Completion / CplD / Split Completion",
+    "group": "事务与数据传输",
+    "intro": "返回请求结果或数据，大读请求可被拆成多个完成包。",
+    "usage": "理解MRRS、RCB、Tag匹配、字节计数和超时。",
+    "mechanism": "一个读请求可产生多个CplD，发起者按身份、Tag、状态、字节计数和地址等信息归集数据，直到完成该请求。",
+    "example": "一次1KB MRd可能收到数个CplD，而不是一个1KB响应；DMA需要正确管理这些分段。",
+    "checks": "不能把收到第一包当整个请求完成；还应检查UR/CA、Poison、重复/异常完成和超时。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 20,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2",
+        "title": "Transaction Layer Protocol - Packet Definition",
+        "page": 119,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 119,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Posted / Non-Posted / Completion三类流量",
+    "group": "事务与数据传输",
+    "intro": "三类事务有各自资源与排序要求。",
+    "usage": "反压/死锁/信用不足分析时不能把所有TLP当一条FIFO。",
+    "mechanism": "Posted、Non-Posted和Completion使用不同的信用与队列，并有不同排序要求。某类资源满不应被简单解释为整个PCIe物理链路停止。",
+    "example": "写流量持续发送时，读请求或完成流量仍需有足够资源，否则可能出现吞吐下降甚至设计死锁。",
+    "checks": "分别观察P/NP/Cpl的Header/Data credit、队列占用和下游反压，排查资源之间的等待环。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 21,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.4",
+        "title": "Transaction Ordering",
+        "page": 222,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 222,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Tag与Extended / 10-bit / 14-bit Tags",
+    "group": "事务与数据传输",
+    "intro": "Tag区分并发请求；可用位数依版本、模式与能力。",
+    "usage": "吞吐调优时同时检查发起端与完成端支持，不只增加软件并发。",
+    "mechanism": "每个未完成读等请求占用可匹配的Tag，完成后才能安全复用。扩展Tag位宽提高可区分请求数量，但发起端、完成端与模式都有约束。",
+    "example": "远端读延迟很大时，增加在途请求可以填满链路；若Tag已耗尽，单纯加大软件队列也无效。",
+    "checks": "检查实际启用的Tag模式、可用Tag池、Completion资源和超时后回收规则，不能只看最大位宽。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 22,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.17.2",
+        "title": "Steering Tags",
+        "page": 779,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 779,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.27.2.1",
+        "title": "VPD Large and Small Resource Data Tags",
+        "page": 833,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 833,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Byte Enable / 对齐 / 4KB边界",
+    "group": "事务与数据传输",
+    "intro": "描述有效字节、地址对齐和单请求不能跨越的边界。",
+    "usage": "小读写、非对齐搬运及AXI转PCIe时重点检查。",
+    "mechanism": "Byte Enable表示首尾DWORD中的有效字节，协议还限制单笔请求的长度与4KB边界。桥需要把较大本地操作拆成合法请求。",
+    "example": "从0x1FF0搬64字节会跨过0x2000页边界，必须由正确层级进行拆分，不能发一笔违规TLP。",
+    "checks": "区分应用总搬运范围、单个AXI burst和单个TLP约束；不要因iATU窗口很大就忽略4KB规则。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 23,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2",
+        "title": "Transaction Layer Protocol - Packet Definition",
+        "page": 119,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 119,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "MPS：Max Payload Size",
+    "group": "事务与数据传输",
+    "intro": "限制单个TLP的数据有效载荷上限。",
+    "usage": "由拓扑能力与系统软件配置，不是应用总任务长度。",
+    "mechanism": "MPS限制单个数据TLP的Payload长度，发送端须按系统配置生成合法包。大任务会被拆分，不要求任务长度小于MPS。",
+    "example": "MPS=256字节时仍可传1MB，只是分成许多请求/完成包；包数与效率会受影响。",
+    "checks": "核对设备能力、路径限制和当前Device Control值；不能擅自提高到链路中其他组件不支持的大小。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 24,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2",
+        "title": "Transaction Layer Protocol - Packet Definition",
+        "page": 119,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 119,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "MRRS：Max Read Request Size",
+    "group": "事务与数据传输",
+    "intro": "限制一次Memory Read请求大小。",
+    "usage": "大DMA任务拆成多个MRd；不能直接等同AXI burst长度。",
+    "mechanism": "MRRS限制发起Memory Read的请求长度；返回数据还可能按完成端限制分段。它与MPS共同影响请求/响应粒度。",
+    "example": "MRRS=512、MPS=256时，一次512字节读请求可能由多个完成包返回，不能只按请求数估算接收包数。",
+    "checks": "同时记录请求大小、完成大小与并发数；更大的MRRS未必解决本地内存或信用瓶颈。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 25,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2",
+        "title": "Transaction Layer Protocol - Packet Definition",
+        "page": 119,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 119,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "RCB：Read Completion Boundary",
+    "group": "事务与数据传输",
+    "intro": "规定读完成拆分中的边界约束。",
+    "usage": "理解64/128字节边界与完成包分段，适用性依角色。",
+    "mechanism": "RCB规定读完成分段必须遵守的边界规则，完成端据此组织返回数据。它不是应用缓冲区必须只有64或128字节。",
+    "example": "观察到完成包在相应边界拆分时，应检查RCB和MPS，而不是先认定目标返回错误长度。",
+    "checks": "依据端口角色与协商配置解释；不要把RCB、缓存行大小、AXI beat宽度混成一个参数。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 26,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.3",
+        "title": "Handling of Received TLPs",
+        "page": 204,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 204,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Transaction Ordering",
+    "group": "事务与数据传输",
+    "intro": "PCIe按事务类别和属性定义哪些访问必须保持先后关系。",
+    "usage": "doorbell、数据发布、读后写等业务需要正确排序和屏障。",
+    "mechanism": "协议为不同类别和属性定义相互可越过或不得越过的关系，端到端应用还需要配合CPU/总线的内存排序规则。",
+    "example": "先写描述符内容，再写doorbell发布任务；如果内容尚未对DMA可见，设备可能读到旧地址或长度。",
+    "checks": "分别处理编译/CPU屏障、缓存维护、总线排序和PCIe属性；软件函数调用顺序本身不保证硬件可见顺序。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 27,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.4",
+        "title": "Transaction Ordering",
+        "page": 222,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 222,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Relaxed Ordering（RO）",
+    "group": "事务与数据传输",
+    "intro": "满足规则时允许部分事务放宽排序。",
+    "usage": "吞吐优化；必须确认应用不依赖被放宽的顺序。",
+    "mechanism": "RO允许符合条件的事务放宽部分原有排序约束，让阻塞较少的流量先推进。接收者必须能接受这种重排。",
+    "example": "多个互不依赖的数据缓冲可适合优化，但生产数据后通知消费者的关键顺序不能随意放宽。",
+    "checks": "先写清数据依赖，再决定哪些请求允许RO；测试数据正确性与通知顺序，不能只测峰值带宽。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 28,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.6.4",
+        "title": "Relaxed Ordering and ID-Based Ordering Attributes",
+        "page": 160,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 160,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ID-Based Ordering（IDO）",
+    "group": "事务与数据传输",
+    "intro": "基于请求者/完成者身份放宽部分跨身份排序约束。",
+    "usage": "多功能并发优化，不能视作完全无序。",
+    "mechanism": "IDO利用请求者/完成者身份区分部分排序域，允许原本不必相互依赖的流量减少阻塞。其适用条件仍受规范约束。",
+    "example": "两个独立功能同时发请求时，可研究是否因身份间不必要排序造成队头阻塞。",
+    "checks": "同一业务内部仍可能需要严格顺序；开启控制器能力不代表应用已按IDO规则组织事务。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 29,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.6.4",
+        "title": "Relaxed Ordering and ID-Based Ordering Attributes",
+        "page": 160,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 160,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "No Snoop",
+    "group": "事务与数据传输",
+    "intro": "请求对缓存一致性的特定处理属性。",
+    "usage": "仅在系统策略允许时使用；不能替代驱动DMA同步。",
+    "mechanism": "No Snoop是PCIe事务中的属性，表达特定缓存一致性处理要求；真正如何映射到CPU/片内互连，取决于平台。",
+    "example": "非一致性DMA缓冲仍要做适当同步；把No Snoop置1不能自动让旧缓存行失效。",
+    "checks": "确认No Snoop Enable、请求属性和主机策略；特别注意HDMA的SRC_SNOOP/DST_SNOOP字段实际表达No Snoop。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 30,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.6.5",
+        "title": "No Snoop Attribute",
+        "page": 161,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 161,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "AtomicOps：FetchAdd / Swap / CAS",
+    "group": "事务与数据传输",
+    "intro": "通过PCIe执行原子读改写事务。",
+    "usage": "共享计数/同步用途，沿途路由和目标必须支持；",
+    "mechanism": "FetchAdd返回旧值并加上操作数，Swap交换值，CAS只在比较匹配时更新。原子性由正确的目标执行与系统支持保证。",
+    "example": "多个设备竞争共享计数或锁时，Atomic比软件分开的读写有不同语义；普通MRd再MWr不自动等价。",
+    "checks": "核对请求发起、沿途路由、目标执行与Completion；具体控制器开启报文能力也不代表内部RAM自动变成Atomic目标。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 31,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.15",
+        "title": "Atomic Operations (AtomicOps)",
+        "page": 772,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 772,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Deferrable Memory Write（DMWr）",
+    "group": "事务与数据传输",
+    "intro": "提供可延后处理的写事务及其协议语义。",
+    "usage": "特定资源/队列交互；不要把它当普通Posted MWr。",
+    "mechanism": "DMWr按专门非Posted写请求管理，可用相应完成状态表示暂时不能接受并触发重试处理。它与普通MWr的无逐笔完成语义不同。",
+    "example": "目标队列暂时没有接收空间时，可在双方支持的协议中使用可延后写机制，避免应用误判已接受。",
+    "checks": "核对Requester/Completer/Router能力及Device3控制，处理RRS等结果；不能仅修改TLP类型就忽略重试语义。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 32,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.32",
+        "title": "Deferrable Memory Write",
+        "page": 857,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 857,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Unordered IO（UIO）",
+    "group": "事务与数据传输",
+    "intro": "新型无序I/O事务机制，另有专门能力及协议限制。",
+    "usage": "只有双方和软件支持时考虑；",
+    "mechanism": "UIO定义专门的无序I/O事务与完成管理要求，目的是在允许的系统中减少传统顺序限制带来的成本。",
+    "example": "专用计算互连若双方支持，可评估其延迟/吞吐价值；普通MWr带RO属性不自动变成UIO。",
+    "checks": "先确认事务格式、完成资源、应用责任和双方能力；",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 33,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.4",
+        "title": "Transaction Ordering",
+        "page": 222,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 222,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "TLP Prefix / PASID Prefix",
+    "group": "事务与数据传输",
+    "intro": "在TLP前携带附加信息，部分为端到端前缀。",
+    "usage": "虚拟地址/进程隔离、安全等功能；不等于数据Payload。",
+    "mechanism": "前缀为请求携带额外身份/属性，PASID前缀可表明所属进程地址空间。接收端必须按该前缀语义解释并校验。",
+    "example": "同一设备处理两个进程任务时，仅BDF无法区分进程，可以在受支持的请求中加PASID。",
+    "checks": "检查前缀支持、丢弃/转发策略与应用处理；控制器支持Prefix不代表HDMA支持PASID Prefix。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 34,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.10",
+        "title": "TLP Prefix Rules",
+        "page": 199,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 199,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "2.2.10.1",
+        "title": "TLP Prefix General Rules - Non-Flit Mode",
+        "page": 199,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 199,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Gen6 OHC（Orthogonal Header Content）",
+    "group": "事务与数据传输",
+    "intro": "Flit模式使用可组合的附加头内容承载相关信息。",
+    "usage": "解析Gen6 TLP头时使用，不能沿用所有旧固定头位置。",
+    "mechanism": "OHC让Flit模式的头信息按需要组合，附加不同请求所需的内容。解码位置取决于实际头格式而非固定套用旧TLP结构。",
+    "example": "逻辑分析仪或自写检查器分析Gen6报文时，需先识别相关头内容，再读取地址、身份和属性。",
+    "checks": "核对模式、头长度与字段有效性；旧版抓包脚本可能把OHC错误解释成Payload。",
+    "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
+    "id": 35,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2",
+        "title": "Transaction Layer Protocol - Packet Definition",
+        "page": 119,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 119,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Enumeration与BDF / Segment",
+    "group": "枚举、寻址与资源",
+    "intro": "主机发现总线、设备、功能，并分配标识与资源。",
+    "usage": "驱动绑定、配置访问与IOMMU请求者身份的基础。",
+    "mechanism": "系统先发现桥和功能，分配总线号，再探测资源和配置能力；Segment区分不同PCIe域中的相同BDF。",
+    "example": "0000:01:00.0与另一个域内相同Bus/Device/Function不是同一个功能，应带域号定位设备。",
+    "checks": "Link Up只说明链路层面可用；Vendor ID可读、资源分配和驱动绑定还需分别确认。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 36,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.3",
+        "title": "Configuration Transaction Rules",
+        "page": 911,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 911,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Vendor / Device / Class / Subsystem ID",
+    "group": "枚举、寻址与资源",
+    "intro": "标识厂商、型号、设备类别与子系统。",
+    "usage": "操作系统识别与匹配驱动；不是链路协议地址。",
+    "mechanism": "配置头中的身份与类别字段用于系统识别和驱动匹配，Subsystem字段区分板级产品变体。它们与数据搬运地址无关。",
+    "example": "同一控制器IP装入不同板卡，可通过产品身份让系统加载正确的应用驱动。",
+    "checks": "不能只更改ID就声称兼容某设备；驱动期待的BAR、队列、中断和命令语义必须实际实现。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 37,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.5",
+        "title": "PCI and PCIe Capabilities Required by the Base Spec for all Ports",
+        "page": 915,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 915,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "256B兼容配置空间与4KB扩展配置空间",
+    "group": "枚举、寻址与资源",
+    "intro": "保留传统配置头，并扩展能力链到4KB。",
+    "usage": "寄存器访问要区分标准能力链与扩展能力链。",
+    "mechanism": "前部保留兼容配置结构，PCIe使用扩展空间承载更多能力。能力访问仍属于配置事务，并非设备所有业务寄存器都放在4KB内。",
+    "example": "MSI等标准能力通常位于兼容区域，ACS/AER等扩展能力通过另一条链发现；业务寄存器可能在BAR。",
+    "checks": "分清配置偏移、能力相对偏移和BAR偏移，避免把不同空间的0x100误认为同一地址。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 38,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.2",
+        "title": "PCI Express Configuration Mechanisms",
+        "page": 905,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 905,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Capability / Extended Capability链",
+    "group": "枚举、寻址与资源",
+    "intro": "能力用ID、版本和Next指针组成可遍历链表。",
+    "usage": "发现ACS、ATS、AER等，不能假定所有设备的能力基址固定。",
+    "mechanism": "每个能力节点包含标识和Next指针，软件依次查找目标能力并使用其实际位置。扩展能力还包含版本信息。",
+    "example": "两张设备都支持ACS，但ACS基址可以不同；驱动应按能力ID查找而非照抄第一张卡的地址。",
+    "checks": "遍历要有边界/循环防护，并分别处理两种能力链；读取不到还要排除权限或访问机制限制。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 39,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.7.1",
+        "title": "MSI Capability Structures",
+        "page": 1010,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1010,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Type0 / Type1 Header",
+    "group": "枚举、寻址与资源",
+    "intro": "Endpoint配置头与桥配置头的资源和字段布局不同。",
+    "usage": "分析EP与RP/Switch寄存器时先选正确头类型。",
+    "mechanism": "Type0主要描述普通功能资源，Type1包含桥下游Bus范围和转发窗口。相同偏移在两种头里可能表示不同内容。",
+    "example": "把桥的总线号字段当作EP BAR写入，会错误改变拓扑配置；先读Header Type再解释寄存器。",
+    "checks": "角色、头类型与实际device_type要一致；不能让一套固定寄存器表覆盖所有端口。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 40,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.5",
+        "title": "PCI and PCIe Capabilities Required by the Base Spec for all Ports",
+        "page": 915,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 915,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "32-bit / 64-bit Memory BAR",
+    "group": "枚举、寻址与资源",
+    "intro": "向主机暴露内存映射窗口；64位BAR占两个DWORD槽位。",
+    "usage": "设备RAM/寄存器映射，地址由主机分配。",
+    "mechanism": "BAR存放主机分配的PCIe资源基址，目标按基址和容量判断请求是否命中；64位BAR使用相邻两个DWORD。",
+    "example": "主机BAR0=0x80000000，本地RAM=0x20000000时，可以通过inbound翻译连接它们，无须强行让两端地址相同。",
+    "checks": "确认类型、容量、对齐、MSE和inbound路由；64位BAR高部不能误当另一块独立BAR使用。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 41,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.5",
+        "title": "PCI and PCIe Capabilities Required by the Base Spec for all Ports",
+        "page": 915,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 915,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Prefetchable / Non-prefetchable BAR",
+    "group": "枚举、寻址与资源",
+    "intro": "描述是否允许相关预取/合并优化。",
+    "usage": "有读副作用的寄存器不能随意设为可预取。",
+    "mechanism": "Prefetchable表示相关内存资源允许特定预取/合并优化；寄存器存在读副作用时，读操作可能改变设备状态。",
+    "example": "读一次就弹出FIFO数据的寄存器不适合按普通可预取RAM使用，否则额外读取可能消耗数据。",
+    "checks": "先定义每个区域的副作用和访问语义，再选BAR属性；Non-prefetchable不意味着性能必然无法满足需求。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 42,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.5",
+        "title": "PCI and PCIe Capabilities Required by the Base Spec for all Ports",
+        "page": 915,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 915,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "BAR Size / Aperture / DBI2 Mask",
+    "group": "枚举、寻址与资源",
+    "intro": "BAR容量决定地址对齐与可解码范围。",
+    "usage": "IP生成/本地初始化与主机资源分配；普通BAR地址不决定容量。",
+    "mechanism": "容量掩码决定BAR可解码范围和对齐；主机探测后分配基址，生成时或允许的DBI2机制决定容量能力。",
+    "example": "64KB BAR要求相应地址对齐；只把普通BAR写成更低的地址不会把它扩成1MB。",
+    "checks": "避免在驱动使用资源时自行改变容量/掩码；核对软件资源长度与硬件实际译码范围。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 43,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.5",
+        "title": "PCI and PCIe Capabilities Required by the Base Spec for all Ports",
+        "page": 915,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 915,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Resizable BAR / Expanded RBAR",
+    "group": "枚举、寻址与资源",
+    "intro": "软件在能力允许的大小集合中选择BAR窗口大小。",
+    "usage": "GPU/大缓冲等资源分配；不是任意扩充片上存储。",
+    "mechanism": "RBAR列出支持的容量集合，系统在资源允许时选择其中一种并重新安排映射。Expanded RBAR是相关扩展而不是任意大小编辑器。",
+    "example": "设备希望把更大显存/缓冲暴露给CPU时，可减少窗口切换，但还需主机地址空间分配支持。",
+    "checks": "容量切换前停业务、处理映射和驱动资源；不要在旧映射仍被访问时在线随意改变窗口。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 44,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.8.6",
+        "title": "Resizable BAR Extended Capability",
+        "page": 1134,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1134,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.8.6.1",
+        "title": "Resizable BAR Extended Capability Header (Offset 00h)",
+        "page": 1137,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1137,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "VF Resizable BAR",
+    "group": "枚举、寻址与资源",
+    "intro": "对SR-IOV VF资源窗口提供相应可调整大小能力。",
+    "usage": "虚拟化资源规划，需要PF/VF与平台支持。",
+    "mechanism": "VF窗口大小调整需要与PF管理、VF数量及整组资源布局一致。改变VF容量会影响系统要为虚拟功能保留的地址资源。",
+    "example": "计划创建大量VF时，每VF窗口过大会耗尽可分配地址空间，即使设备内部数据量不大。",
+    "checks": "同时评估VF总数、各BAR容量、资源对齐和上游桥窗口，不单看一个VF能否枚举。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 45,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.8.7",
+        "title": "VF Resizable BAR Extended Capability",
+        "page": 1142,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1142,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Expansion ROM与ROM Validation",
+    "group": "枚举、寻址与资源",
+    "intro": "提供启动固件映射及相关验证能力。",
+    "usage": "设备启动/固件场景，普通DMA不需要。",
+    "mechanism": "Expansion ROM是可映射的启动固件资源，Validation检查机制服务于相应启动信任/有效性流程。具体固件格式另有要求。",
+    "example": "网卡或存储控制器提供预启动功能时会涉及ROM；纯数据采集EP不必为了能DMA而提供ROM。",
+    "checks": "ROM BAR、使能、内容与平台启动支持分别验证；不能把ROM存在等同固件已通过可信认证。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 46,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.5",
+        "title": "PCI and PCIe Capabilities Required by the Base Spec for all Ports",
+        "page": 915,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 915,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "桥Bus号与Memory / I/O窗口",
+    "group": "枚举、寻址与资源",
+    "intro": "桥根据下游总线和地址范围转发事务。",
+    "usage": "Switch/RP拓扑枚举；EP没有同样的桥窗口职责。",
+    "mechanism": "桥按Secondary/Subordinate Bus范围转发配置请求，并按Memory/I/O窗口转发地址请求。枚举会逐级建立这些资源范围。",
+    "example": "EP BAR正确但上游桥窗口未覆盖，主机访问仍可能无法到达设备，问题不一定在EP iATU。",
+    "checks": "沿拓扑检查Bus号、窗口与实际资源；不能只验证最末端设备的BAR数值。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 47,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.5",
+        "title": "PCI and PCIe Capabilities Required by the Base Spec for all Ports",
+        "page": 915,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 915,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ECAM",
+    "group": "枚举、寻址与资源",
+    "intro": "用内存映射方式访问BDF配置空间的主机侧机制。",
+    "usage": "固件/操作系统配置访问；不同于EP BAR与本地DBI。",
+    "mechanism": "ECAM将Segment/Bus/Device/Function/寄存器号编码到主机配置访问的映射中，由平台规定基址与范围。",
+    "example": "固件或内核读取设备能力时使用平台配置机制，而不是拿设备BAR地址直接加配置偏移。",
+    "checks": "区分ECAM主机窗口、EP配置空间和本地DBI；本地CPU物理地址与PCIe地址不能直接混用。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 48,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.2.2",
+        "title": "PCI Express Enhanced Configuration Access Mechanism (ECAM)",
+        "page": 906,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 906,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "VPD / Device Serial Number",
+    "group": "枚举、寻址与资源",
+    "intro": "提供产品资料与设备序列标识。",
+    "usage": "资产管理、设备识别、制造信息查询。",
+    "mechanism": "VPD存储产品资料，DSN提供设备序列身份；读取可能需要对应Capability流程，而不是把它们当任意RAM连续访问。",
+    "example": "设备管理软件记录板卡序列、制造信息，便于追踪哪一块硬件发生故障。",
+    "checks": "确认信息来源、访问完成条件和写保护；相同Device ID不代表同一物理实例。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 49,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.9.3",
+        "title": "Device Serial Number Extended Capability",
+        "page": 1205,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1205,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.9.3.1",
+        "title": "Device Serial Number Extended Capability Header (Offset 00h)",
+        "page": 1206,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1206,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "VSEC / DVSEC",
+    "group": "枚举、寻址与资源",
+    "intro": "厂商特定扩展能力与指定厂商格式扩展能力。",
+    "usage": "查IP内部功能或CXL等协议能力；厂商语义需要对应文档。",
+    "mechanism": "VSEC/DVSEC提供扩展节点容纳厂商或指定协议的寄存器定义，节点自身只说明如何发现，具体内容由相应规范解释。",
+    "example": "CXL发现或厂商RAS诊断会遇到DVSEC/VSEC；必须结合Vendor ID和具体结构版本解码。",
+    "checks": "不能把未知VSEC中的Control直接当通用PCIe控制位；按长度、版本、厂商文档识别。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 50,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.9",
+        "title": "Additional PCI and PCIe Capabilities",
+        "page": 1181,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1181,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Enhanced Allocation（EA）",
+    "group": "枚举、寻址与资源",
+    "intro": "对资源描述/分配提供不同于传统BAR的扩展机制。",
+    "usage": "平台相关选项，本地手册未确认当前实现；不等于iATU。",
+    "mechanism": "EA用相应能力结构描述资源属性与分配，是与传统BAR资源描述相关的另一种机制。软件必须知道该结构才可正确使用。",
+    "example": "看到设备配置中出现EA时，应查平台/设备规范，不要因为传统BAR看起来空就判断设备没有资源。",
+    "checks": "理解EA不等于现在应修改IP采用它，先检查实际能力链。",
+    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "id": 51,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7",
+        "title": "Software Initialization and Configuration",
+        "page": 903,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 903,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "INTx虚拟线中断",
+    "group": "中断与消息",
+    "intro": "PCIe通过消息模拟传统INTA～INTD电平式中断。",
+    "usage": "兼容驱动，不是物理PCI共享中断线。",
+    "mechanism": "设备用Assert/Deassert消息模拟传统INTx电平状态，软件读取设备原因并清除后才能解除持续中断条件。",
+    "example": "若中断服务没有清掉设备状态，INTx可反复触发；只在CPU中断控制器应答可能不够。",
+    "checks": "区分PCIe消息与物理中断引脚；检查Interrupt Disable、设备事件状态和Deassert路径。",
+    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "id": 52,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.8.1",
+        "title": "INTx Interrupt Signaling - Rules",
+        "page": 172,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 172,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.1.2",
+        "title": "PCI-compatible INTx Emulation",
+        "page": 660,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 660,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "MSI",
+    "group": "中断与消息",
+    "intro": "向主机给出的地址写消息数据触发中断。",
+    "usage": "设备事件通知，地址/数据由系统软件分配。",
+    "mechanism": "系统为设备分配消息地址/数据，设备按要求发出中断写事务，主机把它转成CPU事件；业务仍需有可读取的完成状态。",
+    "example": "DMA完成后通知主机，主机中断服务程序再收割队列；一次中断可对应多项完成。",
+    "checks": "确认MSI Enable、地址/数据、Function和事件来源；收到中断不能替代对实际完成条目的核对。",
+    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "id": 53,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.7.1",
+        "title": "MSI Capability Structures",
+        "page": 1010,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1010,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.1.1",
+        "title": "MSI Capability Header (Offset 00h)",
+        "page": 1012,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1012,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "MSI Per-Vector Masking / Pending",
+    "group": "中断与消息",
+    "intro": "对MSI向量屏蔽和待处理事件提供控制。",
+    "usage": "避免事件处理期间丢失通知，须确认能力支持。",
+    "mechanism": "支持PVM的MSI可屏蔽某向量，并保留相应待处理信息，以协调事件到达与软件处理。它不是无限容量的事件队列。",
+    "example": "驱动临时屏蔽通知批量处理完成项，再恢复中断，减少频繁进入中断的开销。",
+    "checks": "设备事件计数/队列仍要自己维护；屏蔽位不代表业务停止，Pending位也不等于精确事件数量。",
+    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "id": 54,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.7.1",
+        "title": "MSI Capability Structures",
+        "page": 1010,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1010,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.1.1",
+        "title": "MSI Capability Header (Offset 00h)",
+        "page": 1012,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1012,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "MSI-X Table / PBA / Vector Mask",
+    "group": "中断与消息",
+    "intro": "MSI-X用表项配置多个独立向量，并用PBA记录待处理事件。",
+    "usage": "多队列网卡/NVMe/多通道DMA；表和PBA位于指定BAR资源。",
+    "mechanism": "每个MSI-X表项提供消息地址、数据与向量控制，PBA记录被屏蔽情况下的待处理条件。表/PBA位置由BAR指示信息描述。",
+    "example": "每个收发队列使用不同向量，可分别绑定CPU处理，降低单中断瓶颈。",
+    "checks": "先建立正确表/PBA资源和访问，再配事件；MSI和MSI-X不能简单同时开启来重复发送同一事件。",
+    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "id": 55,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.1.4",
+        "title": "MSI and MSI-X Operation",
+        "page": 660,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 660,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.1.4.2",
+        "title": "MSI-X Configuration",
+        "page": 662,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 662,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "MSI-X生成硬件与应用事件",
+    "group": "中断与消息",
+    "intro": "IP可以协助根据表项生成消息，但应用仍要提交事件。",
+    "usage": "不能把MSI-X capability存在等同所有业务中断已接好。",
+    "mechanism": "应用先产生某向量事件，生成模块查询或使用相应配置，处理Mask/Pending后发送消息。Capability只是配置界面，事件必须实际接入。",
+    "example": "队列有完成项但未向MSI-X生成模块发出事件时，表配置再正确也不会自动出现中断。",
+    "checks": "检查应用事件、向量号、table/PBA更新、握手与报文发送；不要只看Enable已为1。",
+    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "id": 56,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.1.4",
+        "title": "MSI and MSI-X Operation",
+        "page": 660,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 660,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.1.4.2",
+        "title": "MSI-X Configuration",
+        "page": 662,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 662,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Message / Message with Data / Routing",
+    "group": "中断与消息",
+    "intro": "消息承载中断、电源、错误及厂商协议，具有不同路由方式。",
+    "usage": "理解按地址、ID、广播或隐式路由的区别。",
+    "mechanism": "消息TLP可带或不带数据，其路由由具体类型决定；并非所有消息都按Memory地址命中BAR。",
+    "example": "PME、错误报告与VDM可能使用不同路由，接收过滤也可能把它们送到专门接口。",
+    "checks": "先解码消息类型/路由，再追踪目标；不能只凭第三/第四DWORD看起来像地址就进行普通iATU解释。",
+    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "id": 57,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.8",
+        "title": "Message Request Rules",
+        "page": 170,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 170,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Vendor Defined Message（VDM）",
+    "group": "中断与消息",
+    "intro": "在标准消息框架内承载厂商定义内容。",
+    "usage": "管理/私有协议；双方必须约定数据格式。",
+    "mechanism": "VDM使用标准消息承载框架，Payload/头字段中的厂商协议由通信双方约定。控制器传递报文不等于理解业务命令。",
+    "example": "用VDM管理板卡状态时，需要定义消息版本、命令、长度、响应和错误处理。",
+    "checks": "确认Vendor ID、路由、接收接口与长度检查；不要把私有VDM接口自动暴露给不可信发送方。",
+    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "id": 58,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.8",
+        "title": "Message Request Rules",
+        "page": 170,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 170,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "PME / PME_Turn_Off",
+    "group": "中断与消息",
+    "intro": "电源管理事件和关机握手相关消息。",
+    "usage": "唤醒、进入关断状态；不等于DMA完成中断。",
+    "mechanism": "PME报告设备电源管理事件，Turn_Off流程协调链路/设备进入关闭相关状态。对方确认与在途事务处理属于序列的一部分。",
+    "example": "系统休眠时先停止业务并完成相关握手，再处理时钟/电源，不能见到低负载便直接断电。",
+    "checks": "结合PM状态机、消息与应用ack观察；PME不是用于表示普通DMA缓冲已上传完成。",
+    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "id": 59,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "5",
+        "title": "Power Management",
+        "page": 599,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 599,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ERR_COR / ERR_NONFATAL / ERR_FATAL",
+    "group": "中断与消息",
+    "intro": "向Root报告错误严重程度的消息。",
+    "usage": "与AER状态、掩码和系统恢复策略配套。",
+    "mechanism": "设备按错误类别和使能策略向Root发错误消息，Root再关联日志并触发系统处理。错误状态记录与通知路径彼此相关但不相同。",
+    "example": "AER有错误记录但主机没收到通知时，要检查Mask、Reporting Enable、路由和主机处理，而非直接认为日志是假。",
+    "checks": "同时保存源端状态和Root报告；严重程度配置不是把物理故障修好。",
+    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "id": 60,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.2",
+        "title": "Error Signaling and Logging",
+        "page": 669,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 669,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Readiness Notifications：FRS / DRS / RTR",
+    "group": "中断与消息",
+    "intro": "通知功能/设备就绪及恢复到可工作的预计时间。",
+    "usage": "复位、低功耗恢复和热插场景，按端口/功能能力使用。",
+    "mechanism": "Immediate Readiness、RTR、FRS和DRS帮助系统确定何时可以成功访问配置空间，减少不必要等待。它们不证明业务引擎已经处理完任务。",
+    "example": "FLR后功能初始化较快，可在满足协议时发FRS通知；应用尚未准备好时应延迟相应Ready。",
+    "checks": "区分Function-ready、Device-ready与应用队列ready；避免提前发通知后又对合法配置访问返回未就绪。",
+    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "id": 61,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.8.6.2",
+        "title": "Device Readiness Status (DRS) Message",
+        "page": 182,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 182,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "2.2.8.6.3",
+        "title": "Function Readiness Status Message (FRS Message)",
+        "page": 183,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 183,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Multi-function / PF",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "一个设备暴露多个独立功能/物理功能。",
+    "usage": "区分寄存器、BAR、中断、请求者身份与应用资源归属。",
+    "mechanism": "一个设备可有多个PF，每个功能有自己的配置资源和请求者身份，但可能共享链路、RAM或应用引擎。共享部分仍需仲裁与隔离。",
+    "example": "PF0做管理，PF1做数据业务时，驱动应分别绑定资源，同时处理共享复位/带宽关系。",
+    "checks": "不能根据功能号不同就假设物理资源完全独立；明确每个PF能访问和复位的范围。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 62,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.5",
+        "title": "PCI and PCIe Capabilities Required by the Base Spec for all Ports",
+        "page": 915,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 915,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ARI",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "重新解释Routing ID中的设备/功能编号，扩展可寻址功能数量。",
+    "usage": "SR-IOV层级常用；设备和上游ARI Forwarding都要核对。",
+    "mechanism": "ARI在允许的层级中扩展Function编号解释，使同一设备可寻址更多功能；上游Forwarding参与正确路由。",
+    "example": "大量VF启用时，没有正确ARI层级配置可能使部分功能无法被预期识别或路由。",
+    "checks": "同时查Endpoint ARI能力与上游ARI Forwarding；它不负责给VF分配队列或保证DMA权限。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 63,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.13",
+        "title": "Alternative Routing-ID Interpretation (ARI)",
+        "page": 762,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 762,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "SR-IOV：PF / VF",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "PF管理资源，VF提供可独立分配给虚拟机的轻量功能接口。",
+    "usage": "还需真实队列/隔离/驱动支持；创建VF不自动生成业务引擎。",
+    "mechanism": "PF暴露SR-IOV能力，系统设置VF数量/资源并启用VF，应用按VF身份提供相应业务与隔离。VF是接口与资源组织，不是复制整套硬件。",
+    "example": "网卡让多台VM各用一个VF，需要每VF队列、中断、DMA身份以及宿主机资源管理配合。",
+    "checks": "核对Total/Num VFs、VF BAR、Offset/Stride、FLR及隔离；宏里有64VF不等于已经有64套可工作业务。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 64,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "9",
+        "title": "Single Root I/O Virtualization and Sharing",
+        "page": 1433,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1433,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "VF BAR / MSI-X / FLR / Requester ID",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "VF有独立的资源、事件和身份，并与PF管理策略协作。",
+    "usage": "做VF驱动或通道归属时逐项检查，不只看VF数量。",
+    "mechanism": "VF在共享物理资源上具有自身可分配的窗口、事件和Requester ID，复位应尽量只影响其归属状态。PF承担控制和资源管理责任。",
+    "example": "VM-A释放VF后重新分配给VM-B前，要清队列/地址/事件，避免旧请求访问新主人内存。",
+    "checks": "通道所属PF/VF、MSI-X归属和复位范围必须一致，不能只把PCIe头Function字段改对。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 65,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "9",
+        "title": "Single Root I/O Virtualization and Sharing",
+        "page": 1433,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1433,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Extensible IOV",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "IP提供扩展VF配置/管理机制，与普通SR-IOV能力有联系但不相同。",
+    "usage": "大量VF资源集成，依IP具体参数和应用接口。",
+    "mechanism": "具体控制器可通过外部VF接口扩展部分虚拟功能资源组织，把某些配置/业务责任交给应用。它与内部VF生成方式存在组合限制。",
+    "example": "需要超过内置VF资源规模时，应先核对Extensible IOV接口和应用实现成本，而非只扩大VF数量常量。",
+    "checks": "按具体版本检查内/外VF能否混用、配置完成与FLR处理；不等于支持VF迁移。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 66,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "9",
+        "title": "Single Root I/O Virtualization and Sharing",
+        "page": 1433,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1433,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Scalable IOV（SIOV）",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "采用不同于传统逐VF模式的可扩展虚拟化组织方式。",
+    "usage": "需要平台/驱动/应用实现，不等于SR-IOV改个名字。",
+    "mechanism": "SIOV通过更细粒度可分配接口/工作资源组织共享设备，平台和驱动参与身份、地址空间、队列及中断管理。",
+    "example": "大量轻量工作负载共享加速器时可研究该方案，但现有SR-IOV驱动通常不能直接不改就复用。",
+    "checks": "核对完整应用/软件架构，不把PASID开启或队列很多当作SIOV已经实现。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 67,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "ATS：Address Translation Services",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "设备向主机翻译代理请求地址翻译，并处理失效协议。",
+    "usage": "减少DMA翻译开销；部分控制器不内置ATS cache，应用必须补齐。",
+    "mechanism": "设备发翻译请求得到主机允许的地址/权限信息，应用保存并在后续请求中正确使用；映射变化时还要响应失效。",
+    "example": "加速器频繁访问进程内存时，可避免每次都走同样翻译成本，但必须解决缓存失效和撤销映射。",
+    "checks": "部分控制器不内置ATS cache；发报文接口具备并不意味着ATC、权限检查、失效应答都已完成。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 68,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "10.1.1",
+        "title": "Address Translation Services (ATS) Overview",
+        "page": 1470,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1470,
+        "verification": "目录与该PDF章节首页已核对；完整章节继续核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ATS Translation / Invalidation",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "翻译请求获取地址结果，Invalidate让设备丢弃过期翻译。",
+    "usage": "页表更新/地址撤销时必须正确响应，不能永久缓存旧翻译。",
+    "mechanism": "Translation与Invalidate是一套闭环：获取翻译、使用翻译、主机撤销时停止使用旧结果并按协议确认。仅实现请求/响应前半段不够。",
+    "example": "主机释放页面并重新分给其他进程后，设备若继续使用旧缓存翻译，可能访问错误对象的内存。",
+    "checks": "测试映射更新与失效完成，不只测首次翻译成功；区分地址的AT状态与是否真正获授权。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 69,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "10",
+        "title": "Address Translation Services (ATS)",
+        "page": 1469,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1469,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "PRI / PRS：Page Request",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "设备遇到未就绪/缺失的页时发出页请求，由系统处理并回应。",
+    "usage": "共享虚拟内存/按需映射；capability接口不等于完整缺页处理器。",
+    "mechanism": "设备发现目标页尚不可用时，通过页请求服务让系统处理，等待对应响应再决定继续、失败或重试。请求需要与地址空间身份关联。",
+    "example": "共享进程地址时遇到尚未驻留页面，PRI/PRS可参与缺页路径，但不等于设备自己执行操作系统页换入。",
+    "checks": "处理超时、失败、进程退出和停止请求；具体控制器需要应用实现相关协议行为与状态反馈。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 70,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "10.4",
+        "title": "Page Request Services",
+        "page": 1505,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1505,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "PASID",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "给请求附加进程地址空间身份，区分同一设备下的多个进程。",
+    "usage": "SVA和多进程DMA；PASID本身不执行翻译或授权。",
+    "mechanism": "PASID与BDF等身份共同标识进程地址空间，请求带上它后由系统按对应上下文处理。值的分配、权限和生存期由软件协作管理。",
+    "example": "同一PF同时处理进程A/B任务，分别使用不同PASID，避免只凭PF号无法区分。",
+    "checks": "不把PASID当物理地址高位；检查宽度、Enable、权限与前缀处理，DMA引擎是否支持PASID Prefix还需单独核对。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 71,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "10.1.3",
+        "title": "Process Address Space ID (PASID)",
+        "page": 1477,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1477,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "IOMMU / Translation Agent",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "主机侧执行DMA地址翻译与权限检查。",
+    "usage": "系统组件，不是Endpoint BAR或片内iATU；和ACS共同决定隔离。",
+    "mechanism": "IOMMU将设备可见地址翻译为系统内存地址并检查权限，软件建立/撤销映射。ATS可与翻译代理协作，但不能取代主机安全策略。",
+    "example": "驱动把缓冲映射得到IOVA，设备应使用此DMA地址，而不是CPU虚拟指针或自行猜测物理地址。",
+    "checks": "检查IOMMU fault、Requester ID/PASID与缓冲生命周期；iATU目标正确不代表主机一定允许这次DMA。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 72,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "10.1",
+        "title": "ATS Architectural Overview",
+        "page": 1469,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1469,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "SVA / SVM",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "设备共享进程虚拟地址的系统方案，组合PASID/ATS/PRI与OS。",
+    "usage": "并非一个单独PCIe capability开关；主机、驱动、设备缺一不可。",
+    "mechanism": "SVA/SVM把设备任务与进程地址空间联系，结合绑定、翻译、失效、缺页和进程销毁流程，减少单独管理地址的负担。",
+    "example": "加速器直接处理用户进程缓冲时，应用希望使用同一虚拟地址；平台必须提供完整的地址空间协作。",
+    "checks": "它是系统方案，不是一个Capability；不同平台流程可不同，须处理解绑、地址撤销和故障。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 73,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "10.1",
+        "title": "ATS Architectural Overview",
+        "page": 1469,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1469,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ACS：Access Control Services",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "定义请求验证、阻断、重定向和P2P出口控制点。",
+    "usage": "VM直通与多功能隔离重点；",
+    "mechanism": "ACS在拓扑控制点决定请求的验证、阻断或路由，防止某些P2P路径绕过应有检查。支持能力与当前Control使能需要分别读取。",
+    "example": "Switch下两个设备属于不同VM时，系统可能要求请求上行接受检查，而不允许Switch内部直接互访。",
+    "checks": "即使生成ACS，部分控制器的P2P执行仍需应用补齐，不能把Cap位当隔离证明。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 74,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.12",
+        "title": "Access Control Services (ACS)",
+        "page": 751,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 751,
+        "verification": "目录与该PDF章节首页已核对；完整章节继续核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ACS Source Validation",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "验证下游请求的Requester ID是否来自允许范围。",
+    "usage": "防止设备伪造来源身份；主要是支持的下游端口功能。",
+    "mechanism": "下游端口根据允许的身份范围验证来自其下游的Requester ID，发现违规时按协议报告/处理，减少冒用身份的机会。",
+    "example": "恶意设备伪造另一路设备的Requester ID时，来源验证是可能的防线之一，而非仅依目标地址过滤。",
+    "checks": "必须在适用端口检查有效来源范围；普通EP没有下游拓扑，不能套用所有DSP规则。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 75,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.12",
+        "title": "Access Control Services (ACS)",
+        "page": 751,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 751,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ACS Translation Blocking",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "阻断不允许从下游进入的已翻译地址请求。",
+    "usage": "维护翻译信任边界，结合AT字段与平台ATS策略。",
+    "mechanism": "端口可以阻止不应从该信任边界进入的Translated请求，避免设备通过自行设置AT属性跳过应有翻译检查。",
+    "example": "系统未授权设备使用已翻译地址时，不能因为请求带Translated标记就将其视为主机认证过。",
+    "checks": "与ATS使能和可信翻译路径协调；",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 76,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.12",
+        "title": "Access Control Services (ACS)",
+        "page": 751,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 751,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ACS P2P Request Redirect",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "要求对等请求上行，避免绕过主机的检查路径。",
+    "usage": "虚拟机隔离与P2P性能的取舍；具体控制器某些控制需应用实现。",
+    "mechanism": "P2P Request Redirect要求相应对等请求走上游路径，使请求不在局部交换域中直接绕行。之后仍需上游系统正确路由和检查。",
+    "example": "网卡向同一Switch下GPU发起访问时，隔离策略可能要求上行，而高性能直连策略可能不同。",
+    "checks": "沿整个路径检查Redirect与平台P2P支持；具体控制器参数不会自动替应用完成全部流量门控。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 77,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.12",
+        "title": "Access Control Services (ACS)",
+        "page": 751,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 751,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ACS P2P Completion Redirect",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "控制对等完成包的重定向路径。",
+    "usage": "确保请求/响应路径与隔离策略一致，不单独只开Request项。",
+    "mechanism": "对等Completion也有相应重定向控制，用于维持请求和响应路径的隔离策略。仅检查请求方向可能遗漏返回路径要求。",
+    "example": "一个设备读取另一设备资源后，返回CplD的路径也应符合系统对这两个设备的隔离设计。",
+    "checks": "同时验证请求/完成路由、身份与错误处理；不能只开ReqRedir后假设所有回包自动满足策略。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 78,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.12",
+        "title": "Access Control Services (ACS)",
+        "page": 751,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 751,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ACS Upstream Forwarding",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "控制特定请求是否向上游转发。",
+    "usage": "下游端口路由规则，不能直接套到普通EP。",
+    "mechanism": "上游转发控制定义特定下游端口情况下的转发行为，与端口窗口及其他匹配条件共同决定结果。并非给普通EP增加一条任意上行通道。",
+    "example": "Root Port或Switch下游端口遇到相关请求时，需要按其Upstream Forwarding能力和控制解释，而非当普通BAR命中。",
+    "checks": "先核对DSP/USP适用范围及手册规则；",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 79,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.12",
+        "title": "Access Control Services (ACS)",
+        "page": 751,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 751,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ACS P2P Egress Control",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "通过出口控制向量限制可到达的对等目标。",
+    "usage": "多端口/多功能细粒度策略，具体控制器应用需承担相应执行责任。",
+    "mechanism": "Egress Control用目标相关向量表达哪些对等出口/功能允许访问，应用/硬件按策略阻止越权的P2P流量。",
+    "example": "多功能加速器希望管理PF可访问多个功能，而数据VF只能访问自己的资源，可采用相应出口策略。",
+    "checks": "核对向量大小、只读掩码、PF/VF继承和实际执行点；软件读回向量正确仍需事务级验证。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 80,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.12",
+        "title": "Access Control Services (ACS)",
+        "page": 751,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 751,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ACS Direct Translated P2P",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "允许符合条件的已翻译请求直接走对等路径。",
+    "usage": "在翻译验证和直连性能间协作，不能解释成忽略所有安全规则。",
+    "mechanism": "对满足条件的Translated P2P请求，可以允许直接转发，减少重定向带来的绕行；前提是翻译与信任模型成立。",
+    "example": "经过系统授权的设备对等访问希望保留低延迟时，可评估此机制与其他ACS控制之间的关系。",
+    "checks": "不可把它当成所有P2P请求的无条件放行；核对AT属性来源、设备信任和上游策略。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 81,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.12",
+        "title": "Access Control Services (ACS)",
+        "page": 751,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 751,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ACS Function Groups / Enhanced ACS",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "对函数组/更新的控制服务扩展访问策略。",
+    "usage": "规范版本与ECN扩展，不能把传统7bit表当成未来全部ACS内容。",
+    "mechanism": "功能组让若干功能共享相应出口控制组织，新版ACS扩展还增加服务定义。向量和能力解释必须依具体版本，而非永久固定七项。",
+    "example": "同属一个信任域的多个VF可能需要按组规划策略，但不同租户不应因实现方便被随意归到同组。",
+    "checks": "先核对规范/ECN、组配置和向量限制；",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 82,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.12",
+        "title": "Access Control Services (ACS)",
+        "page": 751,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 751,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Peer-to-Peer（P2P）",
+    "group": "虚拟化、翻译与隔离",
+    "intro": "设备直接访问另一设备的资源，可能避免主机内存中转。",
+    "usage": "GPU/NIC/存储直连；路由、ACS、IOMMU与平台支持需共同检查。",
+    "mechanism": "P2P由一个设备对另一设备的资源发起访问，地址必须可路由、目标可接收，并满足ACS/IOMMU等平台约束。路径未必经过主机RAM。",
+    "example": "GPU与NIC交换数据可减少主机内存中转，但并非任何两块能枚举的卡就能相互DMA。",
+    "checks": "分别验证目标BAR、桥窗口、路由、权限、缓存/同步和生命周期；iATU映射不等于完整P2P方案。",
+    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "id": 83,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.12",
+        "title": "Access Control Services (ACS)",
+        "page": 751,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 751,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "D0 / D1 / D2 / D3hot / D3cold",
+    "group": "功耗与复位",
+    "intro": "设备功能的电源状态，D1/D2等支持依能力。",
+    "usage": "挂起/恢复、驱动电源管理；与链路L状态不一一等同。",
+    "mechanism": "设备功能D状态描述功能供电/活动状态；进入较深状态前，软件与应用要停新工作并按平台规则恢复。D3cold还涉及实际供电条件。",
+    "example": "驱动挂起时先停DMA和中断，再协调设备进入低功耗；恢复后可能要重新初始化丢失的业务上下文。",
+    "checks": "D1/D2并非所有设备支持；D0不保证链路已训练或队列已初始化，不能只改一个状态bit就恢复业务。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 84,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "5.3.1.1",
+        "title": "D0 State",
+        "page": 605,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 605,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "L0 / L0s / L1 / L2 / L3",
+    "group": "功耗与复位",
+    "intro": "链路活动、节能和关闭相关状态。",
+    "usage": "看清进入/退出条件及在途事务要求，不直接拉时钟就算省电。",
+    "mechanism": "链路L状态与设备D状态、PHY电源状态分别描述不同对象。进入低功耗涉及双方握手、空闲条件和时钟管理。",
+    "example": "一个功能仍在D0时，链路可因空闲进入ASPM节能状态，说明D0与始终L0并不等价。",
+    "checks": "一起观察设备、链路、PHY三个状态域；不要把关时钟、断电、进入L1当成同一操作。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 85,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "5",
+        "title": "Power Management",
+        "page": 599,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 599,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ASPM",
+    "group": "功耗与复位",
+    "intro": "在满足条件时主动进入链路低功耗状态。",
+    "usage": "系统电源策略控制，链路两端和板级条件都要满足。",
+    "mechanism": "ASPM在系统策略允许且链路满足条件时自动进入L0s/L1等状态，来流量后按规则退出。两端能力与延迟要求共同约束选择。",
+    "example": "业务间歇很长的采集设备可省电，但高频小包场景可能更在意退出延迟和状态切换成本。",
+    "checks": "核对双方Capability/Control及平台策略；当前显示未启用不一定是设备不支持，也可能是固件/OS选择。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 86,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "5.4.1",
+        "title": "Active State Power Management (ASPM)",
+        "page": 621,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 621,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "L1 Substates：L1.1 / L1.2",
+    "group": "功耗与复位",
+    "intro": "进一步降低L1功耗，可能涉及参考时钟/PLL/电源管理。",
+    "usage": "更深省电与更大退出延迟之间权衡。",
+    "mechanism": "L1.1/L1.2进一步降低L1功耗，入口与出口需满足时序和硬件条件，某些实现涉及参考时钟、PLL及电源域处理。",
+    "example": "低功耗终端长时间空闲时有价值；恢复延迟敏感的实时任务则要评估能否接受。",
+    "checks": "确认CLKREQ#、退出时序和状态保持；缺少板级连接或clk_rst支持时只写使能不能可靠工作。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 87,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4.3.10",
+        "title": "L1 PM Substates Support",
+        "page": 594,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 594,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "5.5",
+        "title": "L1 PM Substates",
+        "page": 640,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 640,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "CLKREQ# / Clock PM / Refclk Removal",
+    "group": "功耗与复位",
+    "intro": "协调参考时钟停启及链路低功耗恢复。",
+    "usage": "需要板级引脚、PHY和clk_rst握手，不能只改软件bit。",
+    "mechanism": "时钟管理通过请求/确认与状态条件协调停启，避免逻辑仍工作时直接移除参考时钟。PHY重新稳定后才允许相应操作推进。",
+    "example": "深度休眠后首次访问失败时，应检查时钟恢复、复位释放和链路退出序列，而不只重写BAR。",
+    "checks": "区分参考时钟、PIPE/core/aux时钟；不能用门控前信号的假设去读取已经停掉的时钟域。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 88,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "5",
+        "title": "Power Management",
+        "page": 599,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 599,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "LTR：Latency Tolerance Reporting",
+    "group": "功耗与复位",
+    "intro": "设备报告可容忍的服务延迟，帮助平台选择功耗状态。",
+    "usage": "与ASPM/平台策略协作，不是实际测得的链路延迟。",
+    "mechanism": "LTR报告设备能容忍的服务延迟，平台结合这些约束选择相应电源策略。它描述容忍度，不直接测量真实往返延迟。",
+    "example": "缓冲快满的设备可比空闲设备需要更及时的服务；延迟需求有变化时相关报告应与实际业务一致。",
+    "checks": "核对报告值的单位/编码、有效位与主机支持；不要把LTR值设大只为省电而忽略缓冲会溢出。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 89,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.8.8",
+        "title": "Latency Tolerance Reporting (LTR) Message",
+        "page": 187,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 187,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.18",
+        "title": "Latency Tolerance Reporting (LTR) Mechanism",
+        "page": 781,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 781,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "OBFF",
+    "group": "功耗与复位",
+    "intro": "平台提示设备何时适合进行缓冲填充/冲刷以优化功耗。",
+    "usage": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "mechanism": "OBFF由平台提供适合进行缓冲填充/冲刷的时机信息，设备把可合并的工作集中处理，减少频繁打断平台低功耗状态。",
+    "example": "非紧急后台数据可批量发送，而必须立即响应的业务不应因等待节能时机无限延期。",
+    "checks": "平台与应用都要支持并正确解释提示；",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 90,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.8.9",
+        "title": "Optimized Buffer Flush/Fill (OBFF) Message",
+        "page": 188,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 188,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.19",
+        "title": "Optimized Buffer Flush/Fill (OBFF) Mechanism",
+        "page": 787,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 787,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "DPA / Power Budgeting",
+    "group": "功耗与复位",
+    "intro": "动态功率分配与功率需求描述辅助平台管理供电。",
+    "usage": "实际支持情况需要核对具体设备的能力、控制状态以及平台配合。",
+    "mechanism": "Power Budgeting描述功率需求，DPA等机制参与不同功率档位/分配管理，实际限功率动作由设备/平台执行。",
+    "example": "服务器按插槽预算约束高功率设备时，软件可需要了解支持档位，但控制器本身不会替业务逻辑降频。",
+    "checks": "检查支持能力、控制策略和实际功率响应；报告某个瓦数不等于电源系统能安全供给该功率。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 91,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.8",
+        "title": "Power Budgeting Mechanism",
+        "page": 742,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 742,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Emergency Power Reduction（EPR）",
+    "group": "功耗与复位",
+    "intro": "紧急条件下快速降低功率需求。",
+    "usage": "属于平台与设备协作机制，不是普通ASPM开关。",
+    "mechanism": "EPR使支持的功能在紧急请求下快速降低功耗；可涉及配置请求、板级信号与同设备多个功能的协同行为。",
+    "example": "平台供电出现紧张条件时，比正常空闲ASPM更强调迅速削减负载，而不是等业务自然结束。",
+    "checks": "应用必须有真实降功耗动作；核对报告档位、入口/出口与PF/VF协同，不能只实现状态寄存器。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 92,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.24",
+        "title": "Emergency Power Reduction State",
+        "page": 812,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 812,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Fundamental Reset：Cold / Warm / PERST#",
+    "group": "功耗与复位",
+    "intro": "平台级基本复位，冷/热条件与供电关系不同。",
+    "usage": "上电、平台复位；实际复位覆盖范围需按集成设计。",
+    "mechanism": "基本复位由平台相关信号/供电条件触发，影响协议与应用状态的范围由规范和集成决定；PERST#通常参与该流程。",
+    "example": "上电时先保证电源和参考时钟条件，再按要求释放复位，之后才能期待训练与枚举。",
+    "checks": "区分复位来源与同步释放时钟；不要只延迟几个固定周期就假设所有PHY/业务资源已稳定。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 93,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.6",
+        "title": "PCI Express Reset - Rules",
+        "page": 721,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 721,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Hot Reset / Secondary Bus Reset",
+    "group": "功耗与复位",
+    "intro": "在链路/桥层级发起复位，而非直接重新上电。",
+    "usage": "下游恢复，影响范围通常大于单个功能。",
+    "mechanism": "Hot Reset通过链路协议触发，桥的Secondary Bus Reset可影响下游子树。它通常比单Function复位具有更大影响范围。",
+    "example": "一个Switch下面多块设备都受影响时，需排查是否上游触发了总线/热复位，而非每块设备同时软件异常。",
+    "checks": "复位前停止相关业务并处理在途事务；恢复后重新确认链路、资源、驱动和应用上下文。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 94,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.6",
+        "title": "PCI Express Reset - Rules",
+        "page": 721,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 721,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Function Level Reset（FLR）",
+    "group": "功耗与复位",
+    "intro": "复位指定功能而尽量不扰动其他功能与链路。",
+    "usage": "VF移交和驱动恢复；应用/DMA需协调，非自动清所有在途事务。",
+    "mechanism": "软件触发某功能FLR，控制器通知应用按该功能清理状态并完成流程，链路及其他功能应按规则保持服务。",
+    "example": "VF从一个VM移交另一个VM时，用FLR配合业务资源清理，防止旧地址、队列或中断泄露给新使用者。",
+    "checks": "不要认为FLR会自动安全停止所有DMA；检查所属通道、未完成请求、旧Completion和Tag复用处理。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 95,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.6.2",
+        "title": "Function Level Reset (FLR)",
+        "page": 724,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 724,
+        "verification": "目录与该PDF章节首页已核对；完整章节继续核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Power Gating / Retention / UPF",
+    "group": "功耗与复位",
+    "intro": "IP实现上的电源域关闭和状态保持机制。",
+    "usage": "SoC低功耗集成，区别于协议规定的D/L状态。",
+    "mechanism": "电源域关闭需要隔离输出、保存必要状态、停止时钟，再按规定上电恢复；Retention与UPF描述实现相关电源行为。",
+    "example": "SoC把PCIe业务域关掉而保留唤醒域时，必须让跨域信号与保存寄存器保持可解释状态。",
+    "checks": "协议进入低功耗和物理断电是两层事情；验证入口、出口和异常中断，不能只检查静态功耗数字。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 96,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "LCRC / ACK / NAK / Replay",
+    "group": "错误处理与可靠性",
+    "intro": "传统链路层校验和重放纠正链路传输错误。",
+    "usage": "分析坏包、重放超时；链路校验不等于端到端ECRC。",
+    "mechanism": "Non-Flit链路用校验、序号与ACK/NAK确认可靠接收，需要重发时从重放缓冲取出相关TLP。链路确认不代表应用已处理。",
+    "example": "链路ACK正常而主机软件仍未消费数据，可能完全符合协议；反复NAK则应调查通道/协议错误。",
+    "checks": "分别检查重放计数、定时器与日志，不能用“没有DMA完成中断”直接推断链路没有ACK。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 97,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "3",
+        "title": "Data Link Layer Specification",
+        "page": 263,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 263,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Flit Retry / Selective Replay",
+    "group": "错误处理与可靠性",
+    "intro": "Flit模式有对应重放流程，IP可支持选择性重放缓冲。",
+    "usage": "Gen6可靠性与缓存规划，不能照搬所有Non-Flit重放规则。",
+    "mechanism": "Flit模式按相应序号/确认和重放规则恢复错误，选择性重放等能力还涉及专用接收/重试缓冲组织。",
+    "example": "分析Gen6短时停顿时，可能需要看Flit重试，而非仅查看传统Non-Flit TLP Replay寄存器。",
+    "checks": "依据当前模式选日志与检查器；不能从参数名含NFM就反推Flit功能是否完整存在。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 98,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "3",
+        "title": "Data Link Layer Specification",
+        "page": 263,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 263,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ECRC Generation / Checking",
+    "group": "错误处理与可靠性",
+    "intro": "TLP端到端校验，有能力、控制和模式适用限制。",
+    "usage": "跨交换路径检测错误；不提供加密，也不等于Flit CRC。",
+    "mechanism": "ECRC在适用的事务模式下对TLP提供端到端检测，生成端、转发路径和检查端承担不同职责。Gen6模式还有相应限制。",
+    "example": "跨多个交换节点希望发现非单条链路局部问题时，可研究ECRC，但必须确认该路径/模式的实际支持。",
+    "checks": "区分LCRC、Flit CRC、ECRC和本地ECC；CRC不是加密/认证，也不能证明业务数据语义正确。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 99,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.7",
+        "title": "End-to-End Data Integrity",
+        "page": 252,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 252,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Poisoned TLP / Data Poisoning",
+    "group": "错误处理与可靠性",
+    "intro": "将已知不可靠的数据标记为带毒，并通知消费方处理。",
+    "usage": "存储/内存错误传播，不能当“忽略错误继续使用数据”。",
+    "mechanism": "Poison用标记传播已知不可信数据的情况，使后续消费者能按策略处理，而不是默默使用损坏结果。不同接口需保持标记一致。",
+    "example": "内存错误导致某段数据不可信，接收DMA/应用应根据Poison决定丢弃、报错或停止。",
+    "checks": "核对PCIe标记到AXI/应用的映射与中断；只记录AER却继续消费结果可能仍破坏业务正确性。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 100,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.7",
+        "title": "End-to-End Data Integrity",
+        "page": 252,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 252,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "UR / CA / CRS Completion Status",
+    "group": "错误处理与可靠性",
+    "intro": "不支持请求、完成者中止、配置重试等不同完成状态。",
+    "usage": "地址错误、目标未就绪与硬故障应区别处理。",
+    "mechanism": "UR表示目标不支持请求，CA表示目标中止完成，CRS/RRS等表示相应请求暂时需要重试。每种状态有不同软件含义。",
+    "example": "读错BAR地址和功能复位后暂时未就绪，不应使用完全相同的无限重试处理。",
+    "checks": "保存完成状态、请求类型、地址/BDF；按具体事务和版本解释重试状态，避免把真实错误掩盖成繁忙。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 101,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.3",
+        "title": "Handling of Received TLPs",
+        "page": 204,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 204,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Completion Timeout Ranges",
+    "group": "错误处理与可靠性",
+    "intro": "提供完成等待超时能力及选择范围。",
+    "usage": "读请求无响应诊断；避免任意加大超时掩盖问题。",
+    "mechanism": "发起者为需要Completion的事务设置超时，超时后报告错误并进入恢复/资源处理。计时范围与是否可禁用依能力。",
+    "example": "设备发MRd后一直收不到CplD，先查地址授权、目标、路由和链路，而不是直接把超时调到最大。",
+    "checks": "超时后还可能有迟到Completion；Tag回收与重用必须遵守相应规则，避免旧包匹配到新请求。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 102,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.8",
+        "title": "Completion Timeout Mechanism",
+        "page": 259,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 259,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.2.3.2.4.4",
+        "title": "Requester with Completion Timeout",
+        "page": 676,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 676,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "AER：Advanced Error Reporting",
+    "group": "错误处理与可靠性",
+    "intro": "细化错误状态、掩码、严重程度、头日志和Root报告。",
+    "usage": "系统错误处理和驱动恢复；清状态不等于故障修复。",
+    "mechanism": "AER把错误分为可纠正/不可纠正等，结合Mask、Severity、报告使能和Header Log形成诊断链；Root再决定系统恢复。",
+    "example": "同样是读失败，Completion Timeout、UR和Malformed TLP需要不同排查路径，AER提供更具体证据。",
+    "checks": "先读日志和状态再W1C；写Mask只能改变报告策略，不能修复原始错误或保证数据没有损坏。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 103,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.2",
+        "title": "Error Signaling and Logging",
+        "page": 669,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 669,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.8.4",
+        "title": "Advanced Error Reporting Extended Capability",
+        "page": 1109,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1109,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Multiple Header Logging / First Error Pointer",
+    "group": "错误处理与可靠性",
+    "intro": "记录导致错误的包头与首错误等证据。",
+    "usage": "故障复现前先保留日志，避免W1C丢证据。",
+    "mechanism": "首错误指针与头日志帮助关联哪类错误、哪一个请求首先触发事件；多日志能力用于保留不止一项信息。",
+    "example": "持续报错时后续信息可能覆盖/挤满日志，只有最终Status很难还原第一起错误的来源。",
+    "checks": "先快照Status、First Error Pointer和Header Log，再清除；检查日志溢出及不同模式的头解释。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 104,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.2.4",
+        "title": "Error Logging",
+        "page": 677,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 677,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "DPC：Downstream Port Containment",
+    "group": "错误处理与可靠性",
+    "intro": "严重错误时隔离下游端口，限制错误传播。",
+    "usage": "RP/Switch下游恢复；EP设置中存在宏不等于可执行下游隔离。",
+    "mechanism": "下游端口检测满足触发条件的错误后，隔离其下游流量以限制损坏传播，再由应用/系统按流程恢复。不是只多记录一条日志。",
+    "example": "一块下游卡严重故障时，DPC可让故障范围受限，但驱动仍需处理设备失联与未完成任务。",
+    "checks": "区分AER报告与DPC隔离；在具体控制器中触发后LTSSM可进Disabled，恢复涉及状态清理和重新Detect。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 105,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.2.11",
+        "title": "Downstream Port Containment (DPC)",
+        "page": 694,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 694,
+        "verification": "目录与该PDF章节首页已核对；完整章节继续核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "eDPC / RP PIO Error Controls",
+    "group": "错误处理与可靠性",
+    "intro": "扩展Root Port对PIO错误的捕获/处理能力。",
+    "usage": "主机侧访问下游设备异常场景，适用角色受限。",
+    "mechanism": "eDPC扩展Root Port对PIO等错误的控制和日志，帮助系统解释主机访问下游时发生的故障。其角色与普通Endpoint不同。",
+    "example": "主机读坏地址触发端口错误时，可结合RP PIO日志定位请求，而非只在EP里寻找DMA错误。",
+    "checks": "检查RP扩展使能和Flit模式日志布局；具体控制器手册提示部分Header Log DWORD顺序有模式差异。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 106,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.2.11.3",
+        "title": "Root Port Programmed I/O (RP PIO) Error Controls",
+        "page": 698,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 698,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Surprise Down / Link Down恢复",
+    "group": "错误处理与可靠性",
+    "intro": "区分意外断链并协调未完成请求与应用恢复。",
+    "usage": "热拔、失电、线缆故障；需考虑DMA缓冲生命周期。",
+    "mechanism": "意外掉链打断正在进行的事务，软件与应用需要停止新工作、处置未完成请求，再决定复位/重建链路和重新提交。",
+    "example": "热拔设备后继续复用DMA缓冲或等待永不会来的完成会造成错误，因此需要明确失败和资源回收路径。",
+    "checks": "记录掉链前首错误、LTSSM和在途数；恢复前确认旧请求/旧Completion不会污染新任务。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 107,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.2",
+        "title": "Error Signaling and Logging",
+        "page": 669,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 669,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "ACS Violation / Atomic Egress Block",
+    "group": "错误处理与可靠性",
+    "intro": "访问隔离或原子路由违反策略产生特定错误。",
+    "usage": "不要把这些都当普通Unsupported Request；保存对应AER证据。",
+    "mechanism": "策略违反会产生专门的错误语义：ACS限制访问路径，Atomic Egress Block阻止不允许的原子请求继续转发。",
+    "example": "某地址普通MRd成功而Atomic被阻断时，可能是功能/路由权限问题，并非地址本身不可达。",
+    "checks": "查看具体AER位、控制策略、事务类型和角色，不能所有失败都按BAR错误处理。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 108,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.12",
+        "title": "Access Control Services (ACS)",
+        "page": 751,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 751,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.15",
+        "title": "Atomic Operations (AtomicOps)",
+        "page": 772,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 772,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Internal ECC / Parity / RAS DP",
+    "group": "错误处理与可靠性",
+    "intro": "保护IP RAM和内部数据通路，并报告内部损坏。",
+    "usage": "芯片可靠性；不是PCIe线上必有的端到端功能。",
+    "mechanism": "ECC或Parity保护内部RAM/数据/控制路径，检查失败后按可纠正/不可纠正等策略处理。其覆盖率和动作由IP配置决定。",
+    "example": "线上PCIe包校验通过但内部缓存翻转，仍可能由本地保护捕获，说明链路CRC不是全部可靠性。",
+    "checks": "确认生成与检查链完整连接，区分纠正、报告和丢弃；保护码信号未接对可能产生伪错误或漏报。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 109,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "CDM Register Check",
+    "group": "错误处理与可靠性",
+    "intro": "检查控制/配置寄存器相关错误。",
+    "usage": "安全/可靠性诊断，与普通软件读回配置不同。",
+    "mechanism": "CDM配置寄存器检查用于检测某些内部配置状态错误，属于实现相关诊断机制，需按手册触发与解释结果。",
+    "example": "控制参数意外改变时，相关检查可提供线索，但不能替代软件保存配置快照和复位原因。",
+    "checks": "确认检查覆盖、完成/错误状态及应用响应；普通读回相同数值不证明所有配置保护机制正常。",
+    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "id": 110,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "Credit-Based Flow Control",
+    "group": "性能、QoS与时间",
+    "intro": "接收端通告Header/Data信用，发送端据此限制发送。",
+    "usage": "带宽/反压/死锁定位，不是软件队列里空槽数量的简单别名。",
+    "mechanism": "接收端公布可接受的Header/Data资源，发送端有足够对应credit才能发送；接收端释放资源后更新可用量。",
+    "example": "本地AXI长期反压使接收缓存难以释放，上游最终会因credit不足停发，即使串行链路仍为Link Up。",
+    "checks": "按P/NP/Cpl和VC看资源，不只看总缓存；滞留的一个完成路径可能间接影响其他流量。",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 111,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.6",
+        "title": "Ordering and Receive Buffer Flow Control",
+        "page": 235,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 235,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Scaled Flow Control / Shared Credits",
+    "group": "性能、QoS与时间",
+    "intro": "扩大信用编码或在Flit模式采用共享信用机制。",
+    "usage": "高带宽/大缓冲配置，具体规则依模式。",
+    "mechanism": "Scaled FC改变信用量表示能力，Flit共享信用等机制则按相应规则共享/管理资源。它们不直接等于增加物理RAM。",
+    "example": "更高带宽延迟乘积需要更多在途资源，信用编码和缓冲规划要同时匹配，才能避免空转。",
+    "checks": "核对协商、信用更新与实际缓冲容量；将编码值按旧公式换算可能得出错误剩余字节数。",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 112,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.6",
+        "title": "Ordering and Receive Buffer Flow Control",
+        "page": 235,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 235,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Traffic Class（TC）",
+    "group": "性能、QoS与时间",
+    "intro": "请求头中的流量等级标识。",
+    "usage": "QoS策略基础；TC不是PCIe功能号或DMA通道号。",
+    "mechanism": "TC标注流量类别，系统根据映射和调度处理。多个TC可能映到同一VC，因此不同TC不必然获得独立缓冲或带宽保证。",
+    "example": "数据流与管理流使用不同TC后，还需检查交换路径和端点如何实际区分它们。",
+    "checks": "观察实际资源映射与仲裁。",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 113,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.5",
+        "title": "Virtual Channel (VC) Mechanism",
+        "page": 229,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 229,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Virtual Channel（VC）",
+    "group": "性能、QoS与时间",
+    "intro": "独立资源/仲裁通道把流量隔离，TC映射到VC。",
+    "usage": "实际支持的VC数量受IP接口配置限制；",
+    "mechanism": "VC把特定流量映入独立协议资源/仲裁域，减少资源争用；实现成本和支持范围依控制器与接口配置。",
+    "example": "大批量数据不希望完全压住某类管理流时，可研究多个VC，但双方与沿途都需支持正确映射。",
+    "checks": "检查实际VC数、TC映射和独立信用；",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 114,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.3",
+        "title": "Virtual Channel Support",
+        "page": 702,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 702,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Multifunction VC / MFVC",
+    "group": "性能、QoS与时间",
+    "intro": "对多功能流量提供相关虚拟通道能力。",
+    "usage": "条件扩展，能力链出现与真正业务QoS须分别核对。",
+    "mechanism": "MFVC涉及多功能设备的虚拟通道资源组织，让功能与流量间的关系通过对应能力描述和控制。它与普通多PF或多个DMA通道不同。",
+    "example": "多个功能需要明确的协议流量组织时，先研究此能力，而非把每个PF自动当成独立VC。",
+    "checks": "能力出现、功能划分和真实缓冲/仲裁必须一致；",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 115,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.3.3.4",
+        "title": "Multi-Function Devices and Function Arbitration",
+        "page": 711,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 711,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Arbitration / WRR / Fairness",
+    "group": "性能、QoS与时间",
+    "intro": "在客户端、通道和流量之间选择下一笔事务。",
+    "usage": "避免饥饿并分配吞吐，是具体IP实现策略的一部分。",
+    "mechanism": "轮询/加权轮询等仲裁算法从可运行请求中选择下一项；权重通常描述服务份额或请求额度，而不是固定时间比例。",
+    "example": "写通道0大任务、通道1小任务并发时，加权策略可影响延迟和公平性，但瓶颈还取决于后端。",
+    "checks": "在持续负载和资源受限两种条件下测试饥饿/延迟；不要把权重2直接解释为精确两倍GB/s。",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 116,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.3.3",
+        "title": "VC Arbitration",
+        "page": 705,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 705,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "TPH：TLP Processing Hints",
+    "group": "性能、QoS与时间",
+    "intro": "附加处理提示/Steering Tag帮助平台优化数据处理位置。",
+    "usage": "与主机CPU/缓存等策略配合，不保证必定降低延迟。",
+    "mechanism": "应用按软件配置选择Steering Tag/处理提示，并在合规请求中带上，主机按其实现利用提示优化处理位置。提示不强制远端行为。",
+    "example": "网络队列希望数据靠近对应处理CPU，可研究TPH与中断/队列亲和关系，减少跨核搬运成本。",
+    "checks": "具体控制器要求应用选择有效ST并遵守Enable状态；不要随机填写ST后仅凭Capability开启认定有效。",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 117,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.17",
+        "title": "TLP Processing Hints (TPH)",
+        "page": 778,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 778,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Extended TPH",
+    "group": "性能、QoS与时间",
+    "intro": "扩展处理提示相关能力。",
+    "usage": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "mechanism": "Extended TPH扩展相关提示承载能力，支持要求与基础TPH分开报告和使能。启用基础功能不隐含扩展格式也可发送。",
+    "example": "驱动从系统获得的提示格式超出基础能力时，需要确认设备及路径是否支持扩展方式。",
+    "checks": "实际支持情况需要核对具体设备的能力、控制状态以及平台配合。",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 118,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.17",
+        "title": "TLP Processing Hints (TPH)",
+        "page": 778,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 778,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "PTM：Precision Time Measurement",
+    "group": "性能、QoS与时间",
+    "intro": "交换测量消息协调时间，降低跨PCIe设备时间偏差。",
+    "usage": "时间敏感设备、测量同步；Requester/Responder/Root角色不同。",
+    "mechanism": "PTM Requester和上游Responder交换时间相关消息，控制器维护时间上下文，软件/应用用它关联不同本地时间基准。",
+    "example": "采样设备与主机需要对齐时间戳，可使用PTM测量信息，但应用采样时钟仍需正确转换。",
+    "checks": "确认Requester/Responder/Root角色、上下文有效性与延迟校准；PTM并不自动让所有业务时间戳成为同一时钟。",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 119,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.21",
+        "title": "Precision Time Measurement (PTM) Mechanism",
+        "page": 795,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 795,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "PTM Clock Scaling / Local Granularity",
+    "group": "性能、QoS与时间",
+    "intro": "时间粒度与本地时钟换算影响测量精度。",
+    "usage": "不把“PTM开启”直接解释成系统纳秒级精度已达到。",
+    "mechanism": "本地计数器粒度、时钟比例和收发路径延迟影响PTM结果换算。记录的计数值必须用正确单位和尺度转换。",
+    "example": "两端计数器频率不同，即使交换成功，也不能直接把两个原始计数相减得到纳秒偏差。",
+    "checks": "检查时钟来源、粒度、比例与模式切换后的更新，验证实际误差而非只看PTM Enable。",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 120,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.21",
+        "title": "Precision Time Measurement (PTM) Mechanism",
+        "page": 795,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 795,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Flit Performance Measurement",
+    "group": "性能、QoS与时间",
+    "intro": "标准扩展能力记录Flit性能测量信息。",
+    "usage": "Gen6性能分析，需要理解计数/采样定义。",
+    "mechanism": "Flit性能测量通过对应寄存器定义采样/统计内容，使软件观察传输行为；计数代表什么必须按字段定义。",
+    "example": "有效Payload不高时，结合Flit统计和应用吞吐区分协议空转、重放、资源等待与业务数据不足。",
+    "checks": "明确采样窗口、清零、锁存、溢出与单位；不能把所有Flit数都当成成功业务Payload包数。",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 121,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7",
+        "title": "Software Initialization and Configuration",
+        "page": 903,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 903,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Buffering：Store-and-forward / Cut-through / Bypass",
+    "group": "性能、QoS与时间",
+    "intro": "IP按队列模式决定何时把收到的事务送给应用。",
+    "usage": "延迟、缓存成本和协议检查之间权衡。",
+    "mechanism": "Store-and-forward先收齐再转发，Cut-through在允许条件下更早推进，Bypass按对应接口规则传递；检查/反压责任随模式变化。",
+    "example": "低延迟业务可关注早转发路径，但资源不足或后续发现错误时仍需正确处置，不能只追求少几拍。",
+    "checks": "核对队列支持的模式、完整性检查位置和握手；旁路不代表无缓冲/无协议约束。",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 122,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "Outstanding / Read Pipeline / Backpressure",
+    "group": "性能、QoS与时间",
+    "intro": "并发数与下游反压决定能否填满链路。",
+    "usage": "实际吞吐看Tag、信用、队列、AXI与内存共同瓶颈。",
+    "mechanism": "多个在途请求覆盖往返延迟，队列和Tag维持流水；某一级不能接受数据时通过反压停止相应推进。瓶颈会从一层传到另一层。",
+    "example": "高带宽但高读延迟时，只有一个在途MRd会大量空等；增加并发可改善，直到其他资源成为瓶颈。",
+    "checks": "同步看请求发出率、在途数、Completion返回率与本地AXI ready，不能只看链路额定GB/s。",
+    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "id": 123,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.6",
+        "title": "Ordering and Receive Buffer Flow Control",
+        "page": 235,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 235,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "IDE：Integrity and Data Encryption",
+    "group": "安全与可信计算",
+    "intro": "保护PCIe传输的机密性和完整性。",
+    "usage": "需要对应安全模块/密钥管理，当前IDE总开关关闭。",
+    "mechanism": "IDE为选定传输提供加密和完整性保护，需要两端安全模块、流配置和密钥协作。控制器接口与安全模块各有责任。",
+    "example": "担心链路中间节点窃听/篡改时，可研究IDE；但它不会决定某个设备能访问哪一页主机内存。",
+    "checks": "核对安全模块、认证/密钥流程和错误处理，不要把CRC或ACS当成IDE的替代物。",
+    "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
+    "id": 124,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.8.11",
+        "title": "Integrity and Data Encryption (IDE) Messages",
+        "page": 192,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 192,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Link IDE / Selective IDE Streams",
+    "group": "安全与可信计算",
+    "intro": "按链路或选择流保护不同范围的传输。",
+    "usage": "安全域与路由规划；流配置、密钥和对端须匹配。",
+    "mechanism": "Link IDE与Selective IDE按不同范围组织保护，流的关联条件决定哪些事务进入哪条安全流。选错范围会遗漏或错误处理流量。",
+    "example": "多信任域共享拓扑时，可需要只保护符合条件的事务，而不把所有链路流量作为单一安全域。",
+    "checks": "结合地址/身份关联、拓扑和对端配置验证；保护流存在不证明所有业务事务都被正确纳入。",
+    "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
+    "id": 125,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.8.11",
+        "title": "Integrity and Data Encryption (IDE) Messages",
+        "page": 192,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 192,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "IDE Key Management / Rekey",
+    "group": "安全与可信计算",
+    "intro": "配置密钥、建立流并更新密钥所需的系统流程。",
+    "usage": "不是只置一个IDE Enable bit就完成安全建链。",
+    "mechanism": "安全流需正确装载、切换和更新密钥，双方对密钥状态及同步规则必须一致；异常/复位时要避免继续使用失配状态。",
+    "example": "运行中的密钥更新不能通过任意先写一端再写另一端实现，否则可能丢弃报文或破坏会话。",
+    "checks": "按照选定安全模块与协议流程执行，验证重置、失败和撤销，不在报告中提供虚构的通用写寄存器顺序。",
+    "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
+    "id": 126,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "2.2.8.11",
+        "title": "Integrity and Data Encryption (IDE) Messages",
+        "page": 192,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 192,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "DOE：Data Object Exchange",
+    "group": "安全与可信计算",
+    "intro": "配置空间上的数据对象交换机制，可承载发现/安全等协议。",
+    "usage": "DOE是传输机制，不自动等于SPDM或完整身份认证。",
+    "mechanism": "DOE通过配置能力交换数据对象，Requester提交对象、检查状态并读取响应；承载的发现/安全协议另有自身语义。",
+    "example": "SPDM可以使用相应DOE传输绑定，但存在DOE并不意味着设备已实现所有SPDM消息。",
+    "checks": "检查对象协议发现、长度、Busy/Error和超时，不能把DOE当作无限长可靠业务数据通道。",
+    "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
+    "id": 127,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.30",
+        "title": "Data Object Exchange (DOE)",
+        "page": 843,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 843,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "SPDM / Device Authentication",
+    "group": "安全与可信计算",
+    "intro": "认证设备、测量和会话相关的安全协议体系。",
+    "usage": "是相关安全协议，不是PCIe普通TLP能力本身；需相应实现。",
+    "mechanism": "SPDM围绕设备身份、测量与安全会话等交互建立信任，传输绑定和证书/密钥体系需要设备与平台配套。",
+    "example": "主机在把敏感工作交给加速器前，可需要认证和检查测量结果，而不只读Vendor ID。",
+    "checks": "它是独立安全协议；不能把PCIe链路正常、IDE启用或产品ID匹配当成设备认证已经完成。",
+    "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
+    "id": 128,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "TDISP",
+    "group": "安全与可信计算",
+    "intro": "管理设备接口向可信执行环境分配时的安全状态与约束。",
+    "usage": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "mechanism": "TDISP用设备接口安全状态和相关协议管理可信分配，平台、设备接口与可信环境之间必须协调锁定、运行和撤销。",
+    "example": "把某个设备接口分配给机密VM时，还需确保相关资源与配置不会被不可信管理路径随意修改。",
+    "checks": "IDE、IOMMU、接口隔离和协议状态都需配合，不能只有一个可信T位就宣称完整支持。",
+    "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
+    "id": 129,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "Trusted / Untrusted DMA隔离",
+    "group": "安全与可信计算",
+    "intro": "DMA权限、路由隔离、加密和设备可信身份承担不同职责。",
+    "usage": "ACS不加密；IDE不替代IOMMU；PASID不自动授权。",
+    "mechanism": "来源/路径控制、内存权限、传输保护和设备可信身份分别构成不同防线，任何一层缺失都可能破坏整体隔离目标。",
+    "example": "即使IDE让数据在线上不可读，恶意设备若仍能合法DMA到别人的缓冲，内存隔离问题并未消失。",
+    "checks": "按威胁模型分别检查ACS、IOMMU、PASID、IDE和认证，不用单一Enable位代替系统安全论证。",
+    "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
+    "id": 130,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.12",
+        "title": "Access Control Services (ACS)",
+        "page": 751,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 751,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "10",
+        "title": "Address Translation Services (ATS)",
+        "page": 1469,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1469,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Access Filtering / TDISP Register Filters",
+    "group": "安全与可信计算",
+    "intro": "IP根据接口状态/安全规则限制配置与寄存器访问。",
+    "usage": "应用安全集成，不能简单把所有BAR配置公开给不可信软件。",
+    "mechanism": "寄存器过滤根据接口状态和访问来源限制可访问范围，防止安全配置、地址或队列在运行中被不合适主体修改。",
+    "example": "可信工作运行期间，管理PF或普通BAR访问路径可能需要受限，避免把DMA目的地址偷偷改到别处。",
+    "checks": "列出每种入口的权限与复位/异常状态行为；只保护DBI而遗漏Wire/BAR旁路仍可能形成缺口。",
+    "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
+    "id": 131,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "Flit Logging",
+    "group": "诊断、测试与管理",
+    "intro": "记录Flit相关错误/事件日志。",
+    "usage": "Gen6链路诊断，与传统TLP Header Log并存但不同。",
+    "mechanism": "Flit日志保存相应错误/事件信息，帮助还原模式、序号或传输相关问题；具体可记录内容以能力与字段为准。",
+    "example": "Gen6出现偶发重试或错误时，Flit日志可能提供传统TLP头日志之外的证据。",
+    "checks": "先保存日志和关联状态，再清除/复位；注意溢出、有效位与读取顺序，避免混读多次事件。",
+    "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
+    "id": 132,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.7.8",
+        "title": "Flit Logging Extended Capability",
+        "page": 1060,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1060,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.8.1",
+        "title": "Flit Logging Extended Capability Header (Offset 00h)",
+        "page": 1061,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1061,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Flit Error Injection",
+    "group": "诊断、测试与管理",
+    "intro": "主动制造Flit错误验证纠错/重放/报告行为。",
+    "usage": "只在专项测试使用，普通初始化不应随意开启。",
+    "mechanism": "注错功能主动按配置制造某类Flit错误，用来验证检测、纠正、重放和报告链条。它属于验证工具而非普通运行优化。",
+    "example": "构造一次可预期错误，检查FEC/重放/日志与业务结果是否符合预期，再解除注错恢复正常流量。",
+    "checks": "隔离测试、明确预期错误类型和计数变化；结束后清理控制，不能让测试配置残留到正常业务。",
+    "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
+    "id": 133,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.8.13",
+        "title": "Flit Error Injection Extended Capability",
+        "page": 1171,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1171,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.8.13.1",
+        "title": "Flit Error Injection Extended Capability Header (Offset 00h)",
+        "page": 1172,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1172,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "RAS DES：Debug / Error Injection / Statistics",
+    "group": "诊断、测试与管理",
+    "intro": "厂商调试、注错与统计能力集合。",
+    "usage": "读取日志/计数定位问题，主动注错需有验证目标。",
+    "mechanism": "RAS DES组合统计、调试观察和主动错误注入等实现功能，不同子功能有独立使能、计数和事件语义。",
+    "example": "先用统计/Trace缩小问题范围，再用可控注错验证故障处理路径，而不必每次等待随机硬件故障。",
+    "checks": "区分只读诊断与有副作用的测试控制；某模块支持RAS DP不代表同时支持全部RAS DES。",
+    "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
+    "id": 134,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "LTSSM / Event / Error Counters / Trace",
+    "group": "诊断、测试与管理",
+    "intro": "观察状态变化、事件发生频率和数据路径。",
+    "usage": "分析长期掉链或吞吐波动，不只看一次状态快照。",
+    "mechanism": "状态Trace记录时间上的变化，计数器反映一段时间内事件数量，两者互补。单次采样可能刚好错过短暂Recovery或错误。",
+    "example": "每秒掉链一次的设备可通过时间序列找到掉链前发生的速率变化、错误或反压。",
+    "checks": "统一采样时间基准和计数窗口，注意清零/溢出；不能把历史累计值当作当前仍在持续发生。",
+    "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
+    "id": 135,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "Lane Margining at Receiver",
+    "group": "诊断、测试与管理",
+    "intro": "测量接收端时间/电压裕度相关能力。",
+    "usage": "高速链路质量评估，不代替完整物理一致性测试。",
+    "mechanism": "接收端Margining在支持条件下测量时间/电压裕度相关信息，结果用于评估链路余量而非证明任何环境下绝对无误码。",
+    "example": "高速链路在室温稳定但高温异常时，可结合Margining、PHY日志和通道测试调查余量变化。",
+    "checks": "核对支持lane、速率、测量能力与测试条件；不同器件的读数不能脱离方法直接比较。",
+    "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
+    "id": 136,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4.2.18",
+        "title": "Lane Margining at Receiver",
+        "page": 550,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 550,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.10",
+        "title": "Lane Margining at the Receiver Extended Capability",
+        "page": 1077,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1077,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Compliance / Loopback / PRBS测试",
+    "group": "诊断、测试与管理",
+    "intro": "用测试状态和模式验证PHY/链路行为。",
+    "usage": "需要PHY/对端/测试设备支持；普通业务链路不使用这些状态。",
+    "mechanism": "Compliance、Loopback和PRBS等在适用层级生成/回送测试流量，以分离模拟通道、接收端与协议逻辑问题。",
+    "example": "环回测试正常而业务失败时，可进一步查事务/路由；但环回正常也不覆盖完整系统路径。",
+    "checks": "确认控制器/PHY/对端进入了同一测试方案；测试状态下不能期待普通枚举和DMA继续正常工作。",
+    "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
+    "id": 137,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "4",
+        "title": "Physical Layer Logical Block",
+        "page": 307,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 307,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Native Hot-plug / Slot能力",
+    "group": "诊断、测试与管理",
+    "intro": "报告插拔、存在、电源和插槽事件，并协调系统资源。",
+    "usage": "属于RP/下游端口及平台方案，EP存在不代表板上可安全热插拔。",
+    "mechanism": "原生热插拔由下游端口、插槽事件、供电/指示/存在检测和系统软件协同，管理插入、移除和资源生命周期。",
+    "example": "把卡拔掉后系统不崩溃，需要比“PCIe支持串行连接”更多的板级电气和驱动恢复设计。",
+    "checks": "核对Slot能力、实际信号与平台支持；",
+    "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
+    "id": 138,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.7",
+        "title": "PCI Express Native Hot-Plug",
+        "page": 727,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 727,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "NPEM：Native PCIe Enclosure Management",
+    "group": "诊断、测试与管理",
+    "intro": "通过PCIe表达定位、故障、重建等机箱/盘位管理状态。",
+    "usage": "服务器存储维护，还需要应用连接真实灯/管理执行逻辑。",
+    "mechanism": "NPEM用标准管理语义表达定位、故障、重建等机箱相关状态，控制器可提供接口，最终执行需要板级管理逻辑。",
+    "example": "运维要求点亮某块盘的定位灯时，软件发送对应状态，设备再控制实际灯或管理系统。",
+    "checks": "寄存器读回Locate不证明灯已接好；核对应用映射、反馈和不同状态组合的优先级。",
+    "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
+    "id": 139,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "6.28",
+        "title": "Native PCIe Enclosure Management",
+        "page": 836,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 836,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.9.19",
+        "title": "Native PCIe Enclosure Management Extended Capability (NPEM Extended Capability)",
+        "page": 1276,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1276,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "MCTP over PCIe VDM",
+    "group": "诊断、测试与管理",
+    "intro": "以PCIe VDM承载管理消息。",
+    "usage": "管理平面协议，需MCTP端点与路由实现。",
+    "mechanism": "MCTP使用管理消息与端点/路由组织，PCIe VDM只是其中一个传输绑定。接收方还需真正实现管理协议栈。",
+    "example": "BMC与设备交换管理信息时，管理流和高吞吐DMA数据通路可能完全不同。",
+    "checks": "核对MCTP端点身份、分包/重组和VDM路由；普通VDM收发成功不等于MCTP协议全部正确。",
+    "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
+    "id": 140,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "Data Link Feature Exchange",
+    "group": "诊断、测试与管理",
+    "intro": "链路双方交换相应数据链路层特性信息。",
+    "usage": "检查模式/扩展机制协商，依规范版本与能力。",
+    "mechanism": "链路双方交换相应数据链路特性信息，按能力决定是否使用某些扩展机制。未协商功能不能只靠单端强制开启。",
+    "example": "分析某项链路优化没有生效时，应检查双方特性交换结果，而不仅是本地生成参数。",
+    "checks": "区分产品支持、能力通告和协商生效；日志解码需要与当前模式/版本匹配。",
+    "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
+    "id": 141,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "3.3",
+        "title": "Data Link Feature Exchange",
+        "page": 268,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 268,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.4",
+        "title": "Data Link Feature Extended Capability",
+        "page": 1033,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1033,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "Secondary PCIe / Physical Layer速率能力",
+    "group": "诊断、测试与管理",
+    "intro": "扩展能力承载lane错误、均衡与不同代际物理层控制/状态。",
+    "usage": "查PL16G/32G/64G等寄存器块，存在块不保证以该速率工作。",
+    "mechanism": "不同速率的物理层扩展能力提供相应控制/状态与训练信息，帮助软件观察均衡、lane错误和其他代际特性。",
+    "example": "一个Gen6控制器也可能保留较低代际能力结构，但当前链路实际在Gen4运行。",
+    "checks": "先按能力链识别结构和版本，再解释字段；",
+    "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
+    "id": 142,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [
+      {
+        "section": "7.7.3",
+        "title": "Secondary PCI Express Extended Capability",
+        "page": 1027,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1027,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.3.1",
+        "title": "Secondary PCI Express Extended Capability Header (Offset 00h)",
+        "page": 1029,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1029,
+        "verification": "已核对该版本目录；正文待逐项核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已定位规范目录"
+  },
+  {
+    "name": "AXI Subordinate / AXI Manager桥",
+    "group": "IP集成与片内接口",
+    "intro": "将本地请求转PCIe，或将收到的PCIe请求转本地AXI访问。",
+    "usage": "当前使用AXI4 512位数据；方向看谁发起请求。",
+    "mechanism": "slv入口把本地AXI发起的访问转成PCIe请求，mstr出口把PCIe/内部引擎的请求送向本地AXI目标。名称方向相对于控制器。",
+    "example": "主机读EP RAM会让控制器作为AXI发起者；本地CPU读主机RAM则把请求送入控制器slv入口。",
+    "checks": "先确定谁发起、目标在哪，再追AW/W/B或AR/R握手；不要按数据向外流就一律选择mstr。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 143,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "AXI3 / AXI4 / AXI5 / ACE-Lite选项",
+    "group": "IP集成与片内接口",
+    "intro": "IP可生成不同片内总线/一致性接口，不是PCIe协议版本。",
+    "usage": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "mechanism": "AXI版本和ACE-Lite规定片内事务/一致性接口，桥再把它们映射到PCIe。生成某一版本并不自动拥有其他版本的全部可选行为。",
+    "example": "设计文档写IP支持AXI5，但当前RTL只生成AXI4时，应用不能直接驱动AXI5专属事务。",
+    "checks": "核对端口、生成宏、burst/size/边带约束；总线宽度相同并不意味着协议和一致性完全等价。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 144,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "DBI / LBC / ELBI",
+    "group": "IP集成与片内接口",
+    "intro": "本地寄存器访问、控制器寄存器管理与应用外部寄存器访问。",
+    "usage": "控制平面，包括iATU/HDMA等窗口选择；DBI不是PCIe标准能力名。",
+    "mechanism": "DBI是本地访问控制器配置/控制寄存器的入口，LBC管理相关访问，ELBI把应用负责的外部寄存器请求交给应用处理。",
+    "example": "本地CPU配置iATU走DBI，某些主机访问的自定义配置寄存器可能需要ELBI响应。",
+    "checks": "区分窗口选择、CS2、PF/VF编码和完成握手；未使用ELBI也需按集成规则处理请求，避免永久等待。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 145,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "iATU Outbound / Inbound",
+    "group": "IP集成与片内接口",
+    "intro": "IP内部地址窗口匹配与翻译。",
+    "usage": "映射本地→远端和BAR→本地资源；不等于ATS/IOMMU。",
+    "mechanism": "iATU按region匹配原地址/类型/身份等，命中后换算目标地址并路由；Outbound与Inbound作用方向不同。",
+    "example": "把本地0x40000000窗口映到主机某DMA缓冲，或把BAR0偏移映到本地RAM，都可涉及相应region。",
+    "checks": "先说明地址所属空间；region开关、优先级、对齐和运行中修改限制都要检查，iATU不替代IOMMU权限。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 146,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "HDMA Direct / Linked List / Multi-channel",
+    "group": "IP集成与片内接口",
+    "intro": "IP搬运引擎通过寄存器或本地描述符提交任务。",
+    "usage": "适合由硬件持续搬运数据；通道数、描述符格式与协议功能组合依具体DMA实现。",
+    "mechanism": "直接模式从寄存器取源/目的/长度，LL模式从本地描述符取任务，再由通道生成PCIe及本地访问。读写通道的源/目的方向不同。",
+    "example": "上传采集数据用写通道，本地SAR到主机DAR；拉取主机数据用读通道，主机SAR到本地DAR。",
+    "checks": "确认源/目的地址空间、权限、描述符所有权、通道状态和通知语义；独立核对DMA支持的事务属性，不由控制器的通用能力推导。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 147,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "HDMA Doorbell / Stop / Interrupt",
+    "group": "IP集成与片内接口",
+    "intro": "软件启动/停止通道，接收本地或远端通知。",
+    "usage": "DMA能力不等于普通MSI配置自动为它填好消息地址。",
+    "mechanism": "软件先准备任务和通知策略，再写EN/doorbell；停止请求后等待真正停机，处理事件和在途事务再释放资源。",
+    "example": "卸载驱动前不能只屏蔽中断就释放DMA缓冲，因为通道仍可能继续向旧地址写数据。",
+    "checks": "保存STATUS/ERROR再清事件，区分本地edma_int和远端IMWr；STOPPED还可能表示LL为空而非整个业务结束。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 148,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "Native XALI / TRGT1 / RBYP",
+    "group": "IP集成与片内接口",
+    "intro": "原生事务接口连接应用请求、响应与接收旁路路径。",
+    "usage": "AXI桥配置下某些原生接口成为内部连接。",
+    "mechanism": "Native接口直接表达PCIe事务与握手，应用自行承担相应包级处理；AXI桥配置可将这些接口内接为总线转换路径。",
+    "example": "需要特殊TLP/低层路由控制的应用可研究Native，但不能直接把AXI信号线接成同名包接口。",
+    "checks": "核对当前可见端口、报文长度/对齐、反压与Completion责任；模板中列出的端口未必当前同时外露。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 149,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "MultiStream / Dual-port选项",
+    "group": "IP集成与片内接口",
+    "intro": "IP内部并行架构及端口组织提升处理吞吐。",
+    "usage": "并行架构与端口组织属于具体IP实现，不能与VC、SR-IOV或DMA通道混淆。",
+    "mechanism": "MultiStream组织IP内部并行处理，Dual-port定义接口组织方式；二者与标准VC、PF/VF、DMA通道属于不同维度。",
+    "example": "单个AXI端口仍可在内部MultiStream架构下工作，不能看到Multi就以为有两个可连接AXI端口。",
+    "checks": "对照实际顶层端口与参数；并行硬件不保证应用内存和总线能提供同样吞吐。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 150,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "Configuration Intercept（CIC）",
+    "group": "IP集成与片内接口",
+    "intro": "应用截获/修改某些配置访问行为。",
+    "usage": "实现应用相关能力或外部寄存器，注意正确响应与权限。",
+    "mechanism": "CIC可让应用截获部分配置访问并给出相关行为，实现内置寄存器之外的应用需求。截获后仍必须符合访问完成与权限规则。",
+    "example": "自定义只读能力或外部状态需要反映到配置访问时，可研究拦截，但不能让请求被应用永远挂起。",
+    "checks": "检查哪些访问被截获、完成数据/状态和复位时行为；不要误覆盖标准能力导致枚举失败。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 151,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "Filtering / Routing / Target Lookup",
+    "group": "IP集成与片内接口",
+    "intro": "IP按BAR、地址、类型、身份等匹配和分发事务。",
+    "usage": "无响应时先排查路由是否到正确应用/AXI目标。",
+    "mechanism": "接收事务经过类型、BAR、地址、身份等过滤后被分配到内置寄存器或应用/AXI目标，Target Lookup等还管理相应完成关系。",
+    "example": "主机访问地址看似正确但AXI没有请求时，可能在前级过滤或路由被截住，而不是RAM不响应。",
+    "checks": "沿接收TLP、BAR命中、iATU、目标路由、AXI逐级观测；不要只在最后一层反复重试。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 152,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "PIPE / FlexiPIPE / PHY Integration",
+    "group": "IP集成与片内接口",
+    "intro": "控制器与PHY之间的实现接口与适配方式。",
+    "usage": "确认PHY、PIPE版本、时钟和lane宽度匹配；PCIe串行口不等于PIPE。",
+    "mechanism": "PIPE连接控制器MAC与PHY并承载数据、状态及控制；FlexiPIPE等是实现适配方式。串行电气、时钟与训练依赖真实PHY。",
+    "example": "只实例化PCIe控制器和RAM的例子不能自动在txp/rxp上产生完整可用链路，还需PHY及板级连接。",
+    "checks": "核对PHY类型、PIPE版本、每lane宽度、速率、时钟模式和板级连接；示例顶层声明串行端口不代表PHY集成已完成。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 153,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "Clock / Reset / CDC / Retention",
+    "group": "IP集成与片内接口",
+    "intro": "为多个时钟/复位域同步状态，配合功耗和链路管理。",
+    "usage": "当前example并非完整已验证串行系统，需补齐PHY集成。",
+    "mechanism": "跨时钟/复位域需同步或握手，停钟/复位又会改变同步链是否可工作；Retention保存哪些状态也必须明确。",
+    "example": "Link Down、低功耗退出和热复位可能走不同复位域，应用若假定所有寄存器一起清零就会误用旧状态。",
+    "checks": "验证异步断言/同步释放及停钟前后握手；查已有clk_rst报告，不用单一延迟计数代替所有条件。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 154,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "RAM配置与ECC / Parity Glue",
+    "group": "IP集成与片内接口",
+    "intro": "缓存、重放、描述符等结构需要匹配的RAM和保护逻辑。",
+    "usage": "filelist中RAM模块不是用户数据RAM的简单替代。",
+    "mechanism": "重放、接收、描述符等内部RAM有各自端口/时序/深度需求，ECC/Parity glue负责对应保护码生成和检查。",
+    "example": "替换厂商RAM模型为实际SRAM时，读延迟或写掩码不匹配可造成难以解释的协议错误。",
+    "checks": "核对每种RAM参数、时钟、延迟和保护路径；内部协议缓存不能随意当用户共享数据RAM复用。",
+    "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
+    "id": 155,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "CXL.io / CXL.cache / CXL.mem",
+    "group": "相关协议与平台扩展",
+    "intro": "CXL.io沿用PCIe I/O基础，cache/mem是额外一致性/内存协议。",
+    "usage": "不能把CXL全部解释成普通PCIe DMA或BAR功能。",
+    "mechanism": "CXL.io使用PCIe I/O基础，CXL.cache与CXL.mem增加各自一致性/内存语义和交互流程，需要专门设备/主机实现。",
+    "example": "CXL内存扩展设备不是把普通DMA目标改成主机地址即可完成；设备模型与内存语义不同。",
+    "checks": "区分PCIe链路训练、CXL模式协商与各子协议工作；宏存在不证明cache/mem应用已实现。",
+    "prerequisites": "先确认具体规范版本、设备类型和平台方案；这些概念并非每个PCIe Endpoint都必须实现，也不只靠基础控制器完成。",
+    "id": 156,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "CXL DVSEC / Register Locator / HDM Decoder",
+    "group": "相关协议与平台扩展",
+    "intro": "CXL发现寄存器位置和内存窗口解码等机制。",
+    "usage": "这里的HDM decoder不同于PCIe HDMA搬运引擎。",
+    "mechanism": "DVSEC和Register Locator帮助发现CXL寄存器，HDM Decoder按CXL内存地址规则解码窗口/目标，涉及具体设备与平台配置。",
+    "example": "主机规划CXL内存范围时使用相应decoder；它不负责像HDMA那样读取描述符搬一段数据。",
+    "checks": "先分清HDM与HDMA缩写，再查对应CXL文档；不要把普通iATU的region寄存器表直接套用。",
+    "prerequisites": "先确认具体规范版本、设备类型和平台方案；这些概念并非每个PCIe Endpoint都必须实现，也不只靠基础控制器完成。",
+    "id": 157,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "CCIX / CXS",
+    "group": "相关协议与平台扩展",
+    "intro": "相关一致性互连协议/接口选项。",
+    "usage": "并非所有PCIe设备应有，依平台与IP生成选项。",
+    "mechanism": "CCIX等有自己的事务和一致性规则，CXS等是相关实现接口选项；共享部分基础并不让它们成为任意PCIe设备的必备功能。",
+    "example": "阅读IP目录发现CCIX模块时，先确认生成条件和外部系统，不必为了调通普通EP DMA先实现全部相关协议。",
+    "checks": "区分产品源代码包含、配置选择与实际端口连接，避免按文件存在推断协议已启用。",
+    "prerequisites": "先确认具体规范版本、设备类型和平台方案；这些概念并非每个PCIe Endpoint都必须实现，也不只靠基础控制器完成。",
+    "id": 158,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "PCIe for USB4 / Tunneling",
+    "group": "相关协议与平台扩展",
+    "intro": "通过USB4相关机制承载PCIe事务，并处理对应限制。",
+    "usage": "外部协议/拓扑参与，普通PCIe直连和隧道不能完全等同。",
+    "mechanism": "PCIe隧道在USB4相关路径上承载PCIe事务，外层路由、带宽和连接管理带来额外约束；上层仍需要PCIe设备语义。",
+    "example": "外接扩展设备的延迟/带宽可受共享隧道影响，即使Endpoint的PCIe链路能力标称很高。",
+    "checks": "把PCIe端点、隧道管理和实际USB4链路分层检查，不能按直连槽位的性能假设评价所有情况。",
+    "prerequisites": "先确认具体规范版本、设备类型和平台方案；这些概念并非每个PCIe Endpoint都必须实现，也不只靠基础控制器完成。",
+    "id": 159,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "CEM / M.2 / U.2 / OCuLink等形态",
+    "group": "相关协议与平台扩展",
+    "intro": "连接器、电气与平台形态定义。",
+    "usage": "同为PCIe不表示插槽引脚、功率、热插拔要求完全相同。",
+    "mechanism": "形态规范定义连接器、供电、引脚和平台要求，PCIe协议只是其中一部分。物理接口相似也不保证协议和功率兼容。",
+    "example": "M.2插槽可能服务不同设备/协议组合，应确认Key、布线和平台支持，而不是只看能否插入。",
+    "checks": "核对具体形态版本与板卡手册；不能从支持PCIe推导出热插拔、最大功率或所有lane都已连接。",
+    "prerequisites": "先确认具体规范版本、设备类型和平台方案；这些概念并非每个PCIe Endpoint都必须实现，也不只靠基础控制器完成。",
+    "id": 160,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "NVMe / NIC / GPU应用协议",
+    "group": "相关协议与平台扩展",
+    "intro": "在PCIe之上定义设备命令队列、寄存器和业务行为。",
+    "usage": "NVMe不是每个PCIe控制器自带的标准功能；应用要自己实现。",
+    "mechanism": "NVMe、网卡、GPU等在PCIe资源之上定义业务寄存器、队列、命令和完成协议；PCIe仅提供访问与传输基础。",
+    "example": "主机写队列doorbell能否真正启动业务，取决于应用引擎是否实现相应协议，而不只取决于BAR可读写。",
+    "checks": "自定义FPGA设备不能仅更改Class/ID就让NVMe或网卡驱动正常工作，需满足其完整编程接口。",
+    "prerequisites": "先确认具体规范版本、设备类型和平台方案；这些概念并非每个PCIe Endpoint都必须实现，也不只靠基础控制器完成。",
+    "id": 161,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "name": "PCI / PCI-X / HyperTransport等历史能力",
+    "group": "相关协议与平台扩展",
+    "intro": "兼容配置结构中仍可遇到历史能力ID。",
+    "usage": "作为识别知识保留，不把它们当当前PCIe EP必须实现的功能。",
+    "mechanism": "配置能力历史上覆盖多种总线/机制，软件可能仍列出相关名称。识别它们有助于读工具输出，但不代表当前PCIe控制器应逐项实现。",
+    "example": "看到历史能力ID时先追查设备年代、桥结构与文档，不因目录里没有同名PCIe模块就断定文件缺失。",
+    "checks": "将历史兼容知识与当前需求分开，避免为了清单上的每个名字引入无关逻辑。",
+    "prerequisites": "先确认具体规范版本、设备类型和平台方案；这些概念并非每个PCIe Endpoint都必须实现，也不只靠基础控制器完成。",
+    "id": 162,
+    "status": "已整理 · 待持续深化",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-18",
+    "protocolReferences": [],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  }
+]
