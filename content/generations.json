@@ -1,0 +1,176 @@
+{
+  "reviewed": "2026-10-19",
+  "status": "速率与主要架构变化导读；不是各版全部新增功能清单。精确章节、ECN 合入时间和逐项差异仍待核读。",
+  "items": [
+    {
+      "gen": 1,
+      "rate": 2.5,
+      "signaling": "NRZ",
+      "encoding": "8b/10b",
+      "efficiency": 0.8,
+      "change": "起点：2.5 GT/s 串行链路。理解分层、TLP/DLLP、配置空间与链路训练，是后续各代的共同基础。",
+      "focus": "先分清设备功能、链路宽度和链路速率；x16 表示 lane 数，不代表代际。",
+      "sourceIds": [
+        "faq3"
+      ],
+      "featureIds": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "gen": 2,
+      "rate": 5,
+      "signaling": "NRZ",
+      "encoding": "8b/10b",
+      "efficiency": 0.8,
+      "change": "速率提升至 5 GT/s，编码仍为 8b/10b；扣除编码后的带宽相对 Gen1 翻倍。",
+      "focus": "学习速率协商与兼容：设备支持的最高代际和当前链路速率是两个值。",
+      "sourceIds": [
+        "faq3"
+      ],
+      "featureIds": [
+        3,
+        5
+      ]
+    },
+    {
+      "gen": 3,
+      "rate": 8,
+      "signaling": "NRZ",
+      "encoding": "128b/130b",
+      "efficiency": 0.9846153846153847,
+      "change": "改用 128b/130b。虽然速率由 5 升到 8 GT/s，编码开销降低后，带宽仍接近翻倍。",
+      "focus": "区分编码效率与真实吞吐；同时学习均衡训练，不能只提高速率配置就假定链路稳定。",
+      "sourceIds": [
+        "faq3",
+        "eq"
+      ],
+      "featureIds": [
+        3,
+        4,
+        9
+      ]
+    },
+    {
+      "gen": 4,
+      "rate": 16,
+      "signaling": "NRZ",
+      "encoding": "128b/130b",
+      "efficiency": 0.9846153846153847,
+      "change": "速率提升至 16 GT/s，延续 NRZ 和 128b/130b；不能把速率变化误解为事务层完全重做。",
+      "focus": "在相同 lane 数下比较带宽，再核对对应版本的均衡、电气和一致性规则。",
+      "sourceIds": [
+        "faq5",
+        "eq"
+      ],
+      "featureIds": [
+        2,
+        5,
+        9
+      ]
+    },
+    {
+      "gen": 5,
+      "rate": 32,
+      "signaling": "NRZ",
+      "encoding": "128b/130b",
+      "efficiency": 0.9846153846153847,
+      "change": "速率提升至 32 GT/s，仍使用 NRZ 和 128b/130b。它是理解 Gen6 调制方式变化的重要比较基线。",
+      "focus": "同为 x16，Gen5 的编码后单向带宽约 63.015 GB/s；双向合计和应用有效吞吐不能混用。",
+      "sourceIds": [
+        "faq5",
+        "evolution6",
+        "eq"
+      ],
+      "featureIds": [
+        3,
+        9
+      ]
+    },
+    {
+      "gen": 6,
+      "rate": 64,
+      "signaling": "PAM4",
+      "encoding": "FLIT（64 GT/s）",
+      "efficiency": null,
+      "change": "64 GT/s 引入 PAM4、固定大小 FLIT 和轻量 FEC，结合 CRC 与链路重放处理错误。它改变了传输组织和错误处理方式。",
+      "focus": "FLIT 为 256 B：236 B TLP 区、6 B DLP、8 B CRC、6 B FEC。TLP 区还包含包头等开销，不等于应用数据。低速兼容模式需另查规范。",
+      "sourceIds": [
+        "evolution6"
+      ],
+      "featureIds": [
+        3,
+        4,
+        9
+      ]
+    },
+    {
+      "gen": 7,
+      "rate": 128,
+      "signaling": "PAM4",
+      "encoding": "FLIT",
+      "efficiency": null,
+      "change": "速率提升至 128 GT/s，继续使用 PAM4 和 FLIT。Base 7.0 已正式发布，官方规范目录日期为 2025-06-11。",
+      "focus": "x16 双向原始带宽合计 512 GB/s；规范发布不等于任意设备已支持。具体新增字段、训练和错误处理变化须核对 7.0 正文，不能照搬 6.0 章节号。",
+      "sourceIds": [
+        "faq7",
+        "base7"
+      ],
+      "featureIds": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "faq3",
+      "title": "PCI-SIG · PCI Express 3.0 FAQ（含 Gen1/2/3 对比）",
+      "url": "https://pcisig.com/faq?field_category_value%5B%5D=pci_express_3.0",
+      "kind": "官方公开 FAQ，非逐版规范差异表"
+    },
+    {
+      "id": "faq5",
+      "title": "PCI-SIG · PCIe 5.0 bit rates and prior generations",
+      "url": "https://pcisig.com/what-bit-rates-does-pcie-50-specification-support-and-how-does-it-compare-prior-pcie-generations",
+      "kind": "官方速率说明"
+    },
+    {
+      "id": "eq",
+      "title": "PCI-SIG · Equalization Implementation Note for PCIe 3.0/4.0/5.0/6.0",
+      "url": "https://pcisig.com/developer/education/equalization-implementation-note-pcie-30405060",
+      "kind": "官方资料入口；会员正文未核读"
+    },
+    {
+      "id": "evolution6",
+      "title": "PCI-SIG · The Evolution of the PCI Express Specification（2022-01-11）",
+      "url": "https://pcisig.com/blog/evolution-pci-express-specification-its-sixth-generation-third-decade-and-still-going-strong",
+      "kind": "正式发布后的官方技术解读"
+    },
+    {
+      "id": "faq7",
+      "title": "PCI-SIG · PCI Express 7.0 FAQ",
+      "url": "https://pcisig.com/faq?field_category_value%5B%5D=pci_express_7.0",
+      "kind": "官方公开 FAQ"
+    },
+    {
+      "id": "base7",
+      "title": "PCI Express Base Specification Revision 7.0",
+      "url": "https://pcisig.com/PCIExpress/Spec/Base/_7.0",
+      "kind": "正式规范发布入口；正文详细条款待核读"
+    }
+  ],
+  "learningPath": [
+    "拓扑和分层 → 配置空间、枚举、BAR → TLP 和 Completion → Credit、排序和重放",
+    "再学 LTSSM、速率和宽度协商、均衡 → 中断、复位、功耗和 AER",
+    "再按需要进入 DMA/地址翻译、ACS/IOMMU 隔离、虚拟化、安全和 Gen6/7 FLIT"
+  ],
+  "nextResearch": [
+    "核对 Gen1～Gen7 相邻版本差异，按物理层、数据链路层、事务层、配置空间分类",
+    "为功能记录首次引入版本、独立规范或 ECN、后续修订及角色限制；未核实的版本保持待核对",
+    "补齐各代训练与均衡差异、FLIT/非 FLIT 模式、低功耗、可靠性和安全演进"
+  ]
+}

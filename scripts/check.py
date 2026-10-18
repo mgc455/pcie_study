@@ -3,8 +3,9 @@ from pathlib import Path
 from html.parser import HTMLParser
 ROOT=Path(__file__).resolve().parents[1]
 features=json.loads((ROOT/'content/features.json').read_text(encoding='utf-8'))
-assert len(features)==162 and len({f['id'] for f in features})==162
-assert len({f['group'] for f in features})==12
+assert len(features)>=162 and len({f['id'] for f in features})==len(features)
+assert {f['id'] for f in features}==set(range(1,len(features)+1)), 'Preserve existing IDs and append new contiguous IDs'
+assert len({f['group'] for f in features})>=12
 for f in features:
     assert all(f.get(k) for k in ['name','intro','mechanism','example','checks','prerequisites'])
     for ref in f.get('protocolReferences',[]):
@@ -27,5 +28,15 @@ class Check(HTMLParser):
 p=Check();p.feed((ROOT/'docs/index.html').read_text(encoding='utf-8'));p.close()
 assert all((ROOT/'docs'/f).is_file() for f in p.files)
 assert {'content','search','groups','pdf-dialog','pdf-file'}<=p.ids
-for fn in ['changelog','maintenance','protocols','documents']:json.loads((ROOT/f'content/{fn}.json').read_text(encoding='utf-8'))
-print('PASS: 162 features, reference metadata, public-content boundary, local-only PDF reader, static assets, JSON and HTML structure.')
+for fn in ['changelog','maintenance','protocols','documents','generations','self-audit']:json.loads((ROOT/f'content/{fn}.json').read_text(encoding='utf-8'))
+g=json.loads((ROOT/'content/generations.json').read_text(encoding='utf-8'))
+assert [x['gen'] for x in g['items']]==list(range(1,8))
+assert [x['rate'] for x in g['items']]==[2.5,5,8,16,32,64,128]
+sources={s['id'] for s in g['sources']}
+for x in g['items']:
+    assert set(x['sourceIds'])<=sources and x['sourceIds']
+    assert set(x['featureIds'])<={f['id'] for f in features}
+    assert x['change'] and x['focus']
+assert all(x['efficiency'] is None for x in g['items'][-2:]), 'FLIT overhead is not 128/130'
+assert '#generations' in raw and '#audit' in raw
+print(f'PASS: {len(features)} features, Gen1–Gen7, source links, public-content boundary, local-only PDF reader, static assets, JSON and HTML structure.')

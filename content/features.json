@@ -77,23 +77,27 @@
     "referenceStatus": "已定位规范目录"
   },
   {
-    "name": "Gen1～Gen6速率协商",
+    "name": "Gen1～Gen7 速率协商",
     "group": "链路与物理层",
-    "intro": "链路协商双方可支持的速率；Gen1～6为2.5/5/8/16/32/64GT/s。",
+    "intro": "Gen1～Gen7 的标称速率为 2.5/5/8/16/32/64/128 GT/s；链路实际速率取决于双方及路径支持和训练结果。",
     "usage": "GT/s不是应用有效GB/s；",
-    "mechanism": "链路先按训练规则建立通信，再在双方与路径允许的条件下切换到更高速率。最大支持速率是能力，当前速率是运行结果。",
+    "mechanism": "代际描述链路速率，不能代替可选功能列表。Gen1/2 使用 8b/10b，Gen3～5 的最高速率使用 128b/130b；Gen6 的 64 GT/s 和 Gen7 的 128 GT/s 采用 PAM4 与 FLIT。PAM4 的每符号 2 bit 已计入标称 GT/s，不能重复乘 2。速率能力、期望目标和当前协商结果需要分别检查。",
     "example": "Gen6控制器连接Gen4对端，最终按双方支持的模式运行，不能强制单端配置让对端变成Gen6。",
-    "checks": "看Link Capability、目标速率、Current Link Speed及PHY状态；GT/s还要扣除协议与编码开销才得到有效带宽。",
+    "checks": "分别读取双方的 Link Capabilities/Supported Link Speeds、目标速率及 Link Status 中的当前速率和宽度，并检查训练与均衡失败原因。不能仅看设备宣传的 Gen7 就认为当前工作在 128 GT/s；同样不能仅凭最高代际断言支持 ACS、ATS 或 SR-IOV。带宽按单向/双向、lane 数、编码和协议开销分别计算。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 3,
     "status": "已整理 · 待持续深化",
     "sources": [
       {
-        "title": "PCI-SIG 规范目录",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "title": "PCI-SIG Gen1～3 速率与编码 FAQ",
+        "url": "https://pcisig.com/faq?field_category_value%5B%5D=pci_express_3.0"
+      },
+      {
+        "title": "PCI-SIG PCIe 7.0 FAQ",
+        "url": "https://pcisig.com/faq?field_category_value%5B%5D=pci_express_7.0"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "4",
@@ -107,7 +111,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "Base 6.0 章节为训练背景入口；Gen7 概览已核对官方 FAQ，7.0 正文训练规则与字段仍待核读。"
   },
   {
     "name": "LTSSM与Link Training",
