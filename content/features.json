@@ -9884,14 +9884,14 @@
     "checks": "检查IOMMU fault、Requester ID/PASID与缓冲生命周期；iATU目标正确不代表主机一定允许这次DMA。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 72,
-    "status": "已整理 · 待持续深化",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "10.1",
@@ -9903,9 +9903,115 @@
         "pdfPage": 1469,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.5",
+        "page": 759,
+        "pdfPage": 759,
+        "title": "ACS redirect与GPA/HPA路径说明",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.5",
+        "page": 874,
+        "pdfPage": 874,
+        "title": "ACS redirect与GPA/HPA路径说明",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.2",
+        "page": 757,
+        "pdfPage": 757,
+        "title": "上行路径互操作要求",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.2",
+        "page": 871,
+        "pdfPage": 871,
+        "title": "上行路径互操作要求",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.4",
+        "page": 1089,
+        "pdfPage": 1089,
+        "title": "ARI ACS组粒度",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.4",
+        "page": 1249,
+        "pdfPage": 1249,
+        "title": "ARI ACS组粒度",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.20",
+        "page": 791,
+        "pdfPage": 791,
+        "title": "PASID职责与地址空间",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
+    "details": [
+      {
+        "id": "iommu-acs-path-boundary",
+        "title": "IOMMU存在为什么还需要ACS：检查必须位于实际路径上",
+        "paragraphs": [
+          "TA/IOMMU可以检查到达它的访问，但不能自动纠正请求在较低层Switch按地址数值误路由到peer的事实。ACS重定向解决“先到检查点”的路径条件，TA处理地址翻译和访问授权。",
+          "反过来，ACS只决定路由/阻断，不能代替页表、ATC失效或软件地址空间生命周期。评估隔离要同时检查内部Function间、每一级Switch和RC路径。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "iommu-group-vs-acs-function-group",
+        "title": "IOMMU Group、ACS Function Group、PASID不是一个组",
+        "paragraphs": [
+          "ACS Function Group是ARI寄存器中0～7的目标粒度，映射到Egress Vector前8bit；PASID是请求中的进程地址空间身份。二者不互相替代，也不直接给出操作系统应如何分组。",
+          "操作系统IOMMU Group是平台软件对可隔离边界的组织方式，本轮没有用PCIe Base给它编造统一寄存器或映射算法。具体OS行为和绕过ACS的策略需单独核对实现，不能从网页计算器结果推断安全可直通。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7
+        ]
+      }
+    ]
   },
   {
     "name": "SVA / SVM",
@@ -10171,7 +10277,7 @@
     "checks": "核对端口角色、Secondary/Subordinate配置和Control[0]；有FPB时还需考虑其归属规则。枚举尚未分配Bus Number时，某些上行Message会使用Bus=00h，启用来源检查可能导致违规，规范在第753页有实现提示。诊断时检查发生错误的接收端口，不要只查发起设备。",
     "prerequisites": "规则位于Base 6.0 §6.12.1.1，适用实现ACS扩展能力的Root Port和Switch Downstream Port。Capability(+04h) bit0报告支持；Control(+06h) bit0为RW使能，默认0，不支持时硬连0。§6.12.1.2覆盖的非DSP多功能Function禁止实现此机制，不能把普通EP按DSP来配置。",
     "id": 75,
-    "status": "核心规则与字段已核读 · Base 6.0",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
@@ -10238,9 +10344,20 @@
         "version": "6.0",
         "verification": "已核读PDF第759～760页：NP的CA完成、ACS Violation记录及相关状态处理",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 867,
+        "pdfPage": 867,
+        "title": "ACS与FM Segment检查职责边界",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已核读本条相关Base 6.0正文及寄存器表；其他版本演进和相邻机制仍待补齐。另发现影响Base 7.0的2026年澄清ECN，已读公开说明，ECN正文待核读。",
+    "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
     "details": [
       {
         "title": "判定流程与作用边界",
@@ -10293,6 +10410,17 @@
           "本轮只核对该ECN的官方公开元数据和说明，未读取会员区ECN正文，也未确认其是否及如何合入后续修订。上面逐条规则仍明确绑定Base 6.0；针对7.0/7.1设计时须核对实际采用的规范和ECN，不能直接套用本条6.0规则，也不能仅凭网页概述当成完整规范要求。"
         ],
         "id": "block-3"
+      },
+      {
+        "id": "source-validation-segment-gen7",
+        "title": "Segment检查边界：ACS Source Validation不承担FM Segment校验",
+        "paragraphs": [
+          "Base7.0在Source Validation规则中明确，ACS机制没有架构化对FM TLP Segment Number的检查；相关独立Segment规则见该版§2.2.1.2。",
+          "因此“RID的Bus属于端口下方”不等于所有Segment身份检查已通过。这里仅核读ACS给出的职责边界，未把Segment规则全文标记为本轮已审计。"
+        ],
+        "referenceIndices": [
+          5
+        ]
       }
     ]
   },
@@ -10306,7 +10434,7 @@
     "checks": "同时检查Capability[1]、Control[1]、实际TLP的AT字段和方向；不要拿Completion或下行请求测试上行Memory Request规则。Control[1]=1时，Control[6]（Direct Translated P2P Enable）被忽略。控制关闭也不构成授权，ATS、地址映射、权限和其他控制仍须满足。",
     "prerequisites": "实现ACS的Root Port和Switch Downstream Port必须具备该机制；非DSP多功能Function不实现。Capability(+04h) bit1报告支持，Control(+06h) bit1为RW使能，默认0，不支持时硬连0。不能将“支持ACS”或“设备支持ATS”直接等同于允许Translated请求通过。",
     "id": 76,
-    "status": "核心规则与字段已核读 · Base 6.0",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
@@ -10369,9 +10497,31 @@
         "version": "6.0",
         "verification": "已核读PDF第759～760页：NP的CA完成、ACS Violation记录及相关状态处理",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.1",
+        "page": 753,
+        "pdfPage": 753,
+        "title": "Base6.0 Memory Request检查",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 867,
+        "pdfPage": 867,
+        "title": "Base7.0 FM Address Routed Message检查",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已核读本条相关Base 6.0正文及寄存器表；其他版本演进和相邻机制仍待补齐。",
+    "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
     "details": [
       {
         "title": "判定与优先级",
@@ -10434,6 +10584,18 @@
           "应由理解拓扑、设备分配和翻译策略的软件管理这些控制。若某ATS路径在启用后发生ACS Violation，应核对AT、端口和策略是否一致，不能把清除bit1当作通用修复方法。违规NP请求按§6.12.5返回CA，同时以ACS Violation记录；Posted请求没有对应完成包。"
         ],
         "id": "block-2"
+      },
+      {
+        "id": "translation-block-fm-message-gen7",
+        "title": "版本补充：Base7.0 Translation Blocking也检查FM地址路由消息",
+        "paragraphs": [
+          "原有Memory Request说明适用于所引6.0；7.0 §6.12.1.1还检查上行FM Address Routed Message的AT，AT≠00触发ACS Violation，优先于Upstream Forwarding和适用P2P控制。",
+          "Control字段表仍以Memory Request简述，应结合对应版本正文阅读；不要把Message差异只绑定到128 GT/s，Flit Mode和当前链路速率不是同一个维度。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
       }
     ]
   },
@@ -10442,19 +10604,19 @@
     "group": "虚拟化、翻译与隔离",
     "intro": "要求对等请求上行，避免绕过主机的检查路径。",
     "usage": "虚拟机隔离与P2P性能的取舍；具体控制器某些控制需应用实现。",
-    "mechanism": "P2P Request Redirect要求相应对等请求走上游路径，使请求不在局部交换域中直接绕行。之后仍需上游系统正确路由和检查。",
+    "mechanism": "在适用上行P2P请求处，先满足独立检查，再按Direct Translated例外和E/R/Vector决定直达、ACS Violation或送RC验证；RC是否反射由平台实现。",
     "example": "网卡向同一Switch下GPU发起访问时，隔离策略可能要求上行，而高性能直连策略可能不同。",
     "checks": "沿整个路径检查Redirect与平台P2P支持；具体控制器参数不会自动替应用完成全部流量门控。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 77,
-    "status": "已整理 · 待持续深化",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -10466,9 +10628,377 @@
         "pdfPage": 751,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.1",
+        "page": 753,
+        "pdfPage": 753,
+        "title": "dsp：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 867,
+        "pdfPage": 867,
+        "title": "dsp：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.2",
+        "page": 756,
+        "pdfPage": 756,
+        "title": "mfd：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.2",
+        "page": 870,
+        "pdfPage": 870,
+        "title": "mfd：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.3",
+        "page": 757,
+        "pdfPage": 757,
+        "title": "table：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.3",
+        "page": 872,
+        "pdfPage": 872,
+        "title": "table：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.3",
+        "page": 1087,
+        "pdfPage": 1087,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.3",
+        "page": 1247,
+        "pdfPage": 1247,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.2",
+        "page": 755,
+        "pdfPage": 755,
+        "title": "Base6.0多Function与RCiEP重定向",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.3",
+        "page": 758,
+        "pdfPage": 758,
+        "title": "Base6.0表6-11续行",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.5",
+        "page": 759,
+        "pdfPage": 759,
+        "title": "err：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.5",
+        "page": 874,
+        "pdfPage": 874,
+        "title": "err：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.2",
+        "page": 1085,
+        "pdfPage": 1085,
+        "title": "cap：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.2",
+        "page": 1245,
+        "pdfPage": 1245,
+        "title": "cap：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.1",
+        "page": 1084,
+        "pdfPage": 1084,
+        "title": "ACS扩展能力头",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.1",
+        "page": 1244,
+        "pdfPage": 1244,
+        "title": "ACS扩展能力头",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.1",
+        "page": 754,
+        "pdfPage": 754,
+        "title": "uf：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 868,
+        "pdfPage": 868,
+        "title": "uf：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.6.1",
+        "page": 760,
+        "pdfPage": 760,
+        "title": "order：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.6.1",
+        "page": 875,
+        "pdfPage": 875,
+        "title": "order：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
+    "details": [
+      {
+        "id": "request-redirect-scope",
+        "title": "Request Redirect的入口与目标：不是把所有DMA都绕一圈",
+        "paragraphs": [
+          "在Switch Downstream Port上，观察从下方进入的Upstream Request；非ACS正常路由会选另一个Downstream Port时，才进入这里讨论的P2P重定向。正常就去RC的主存请求不需要靠这个机制再改变方向。",
+          "向下行进的Request不会被Downstream Port的Request Redirect重新上推；目标为本端口自身BAR或同一出口时，应分别检查Enhanced目标控制与Upstream Forwarding，不能套用“不同端口”的条件。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "request-redirect-switch-rc",
+        "title": "Switch送上行，Root Port交验证逻辑，动作并不相同",
+        "paragraphs": [
+          "Switch使请求沿上行路径靠近RC。Root Port上的重定向则把请求交给RC的Redirected Request Validation，由它决定是否反射回原目标，或以ACS Violation拒绝。",
+          "PCIe没有在这里规定统一的验证表或软件寄存器算法；不能把“到达RC”写成“必定完成IOMMU翻译且获准”。Root Port宣告Redirect能力也不保证RC支持任意P2P访问。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "request-redirect-functions",
+        "title": "设备内部Function间的P2P也有重定向控制",
+        "paragraphs": [
+          "非RCiEP的多Function设备可把本来内部直达另一个Function的请求送出设备上行，而不是仅在外部Switch处做检查。支持内部P2P的Function包括VF，须满足对应实现要求。",
+          "RCiEP可实现这一能力；启用时，非系统内存目标的请求交RC内部实现专用的验证逻辑，不必存在一根外部上行链路。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          9
+        ]
+      },
+      {
+        "id": "request-redirect-truth-table",
+        "title": "E、R与Vector的完整组合：不是R=1就无条件上行",
+        "paragraphs": [
+          "先排除Source Validation、Translation Blocking等更早拒绝，并判断是否命中Direct Translated例外。下面E=Egress Control Enable，R=Request Redirect Enable，V=与目标对应的Vector bit；仅对适用的P2P请求。",
+          "E=1把Vector变成选择器：V=0仍直达，V=1才按R选择拒绝或重定向。Completions不使用本表。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          10
+        ],
+        "table": {
+          "columns": [
+            "E",
+            "R",
+            "V",
+            "请求处理"
+          ],
+          "rows": [
+            [
+              "0",
+              "0",
+              "任意",
+              "直达"
+            ],
+            [
+              "0",
+              "1",
+              "任意",
+              "重定向"
+            ],
+            [
+              "1",
+              "0",
+              "0",
+              "直达"
+            ],
+            [
+              "1",
+              "0",
+              "1",
+              "ACS Violation"
+            ],
+            [
+              "1",
+              "1",
+              "0",
+              "直达"
+            ],
+            [
+              "1",
+              "1",
+              "1",
+              "重定向"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "request-redirect-pasid-address-space",
+        "title": "GPA和HPA数值重叠：地址看似命中BAR，意图可能是主存DMA",
+        "paragraphs": [
+          "虚拟机给设备的DMA地址属于其地址空间；Switch却可能按主机MMIO窗口路由。同一数值可以被误认成另一设备BAR目标，导致请求未经过预期TA。",
+          "ACS重定向用于确保这类请求走向平台检查路径，TA负责翻译/权限。Enhanced还覆盖端口自身BAR和未认领窗口空洞，补上普通P2P重定向没有覆盖的目标区域。"
+        ],
+        "referenceIndices": [
+          11,
+          12
+        ]
+      },
+      {
+        "id": "request-redirect-controls",
+        "title": "发现与使能：ACS能力基址B、bit2和默认状态",
+        "paragraphs": [
+          "遍历扩展能力链找到ID=000Dh、版本1。B+04h为16位ACS Capability，bit2表示支持；B+06h为16位Control，bit2表示运行使能，默认0，未实现时硬连0。",
+          "使能前还要检查Egress/Direct/Translation Blocking与整条上行路径。这里没有给出适用于所有主机的寄存器写值；RC验证策略和驱动运行状态属于必要上下文。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          7,
+          8,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "acs-route-explorer",
+        "title": "逐步查询：同一请求为什么直达、阻断或上行",
+        "paragraphs": [
+          "选择Base版本、Memory Request或Completion、端口角色、方向和正常路由目标，再输入ACS Control及目标Vector bit。工具依次解释Translation Blocking、同出口Upstream Forwarding、Direct Translated与E/R/V。",
+          "范围仅含非Multicast的Memory Request和Completion；假定能力支持所选控制、地址/RID合法且Source Validation通过。MFD角色仅指非RCiEP的多Function设备；未模拟RCiEP内部验证、Enhanced BAR目标、UIO、Segment检查、RC内部验证算法或完整拓扑；“不由此控制改变”不表示访问最终成功。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6,
+          7,
+          8,
+          17,
+          18,
+          19,
+          20
+        ]
+      }
+    ]
   },
   {
     "name": "ACS P2P Completion Redirect",
@@ -10480,14 +11010,14 @@
     "checks": "同时验证请求/完成路由、身份与错误处理；不能只开ReqRedir后假设所有回包自动满足策略。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 78,
-    "status": "已整理 · 待持续深化",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -10499,9 +11029,275 @@
         "pdfPage": 751,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.1",
+        "page": 753,
+        "pdfPage": 753,
+        "title": "dsp：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 867,
+        "pdfPage": 867,
+        "title": "dsp：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.2",
+        "page": 756,
+        "pdfPage": 756,
+        "title": "mfd：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.2",
+        "page": 870,
+        "pdfPage": 870,
+        "title": "mfd：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.6.1",
+        "page": 760,
+        "pdfPage": 760,
+        "title": "order：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.6.1",
+        "page": 875,
+        "pdfPage": 875,
+        "title": "order：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.3",
+        "page": 1087,
+        "pdfPage": 1087,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.3",
+        "page": 1247,
+        "pdfPage": 1247,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 868,
+        "pdfPage": 868,
+        "title": "Base7.0 Completion与RO/方向",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 868,
+        "pdfPage": 868,
+        "title": "Base7.0 RP Completion最终转发",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.6.2",
+        "page": 761,
+        "pdfPage": 761,
+        "title": "mix：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.6.2",
+        "page": 876,
+        "pdfPage": 876,
+        "title": "mix：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.2",
+        "page": 1085,
+        "pdfPage": 1085,
+        "title": "cap：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.2",
+        "page": 1245,
+        "pdfPage": 1245,
+        "title": "cap：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
+    "details": [
+      {
+        "id": "completion-ordering-motivation",
+        "title": "为什么请求绕路后，Completion也可能需要绕路",
+        "paragraphs": [
+          "某设备先发Posted Request再发non-RO Completion；前者上行绕RC、后者局部直达，可能使完成有效越过先前Posted请求。链路自身可靠传输并不能消除这两条不同路径导致的顺序问题。",
+          "Completion Redirect把适用的non-RO完成也送相同上行路径，维护相关排序要求；它不执行对请求地址的权限验证，也不替代Request Redirect。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "completion-ro-direction-matrix",
+        "title": "Completion重定向：RO、方向、目标三个条件分开看",
+        "paragraphs": [
+          "该机制只作用适用的P2P Completion：Downstream Port观察上行输入、正常目标为其他端口。RO=1的完成不重定向；向下行进的完成也不由Downstream Port重定向。",
+          "Read Completion、有无Data的其他Completion和AtomicOp Completion都在类型范围内。请求侧E/R/V及Direct设置不决定Completion Redirect的选择。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          7,
+          8,
+          9
+        ],
+        "table": {
+          "columns": [
+            "条件",
+            "本机制处理"
+          ],
+          "rows": [
+            [
+              "Enable=0",
+              "不改变原有路由"
+            ],
+            [
+              "Enable=1，P2P、上行、RO=0",
+              "Switch送上行；RP按RC排序处理"
+            ],
+            [
+              "Enable=1，RO=1",
+              "不重定向"
+            ],
+            [
+              "Completion向下行",
+              "不重定向"
+            ],
+            [
+              "TLP是Request",
+              "本机制不适用"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "completion-rc-handling",
+        "title": "Root Port不能把反射回去的Completion再做ACS权限检查",
+        "paragraphs": [
+          "RP使重定向的non-RO完成不越过已交RC验证的请求；随后必须最终送回原P2P目标，并且不附加新的ACS访问检查。",
+          "这与Request可能被RC验证拒绝的处理不同。故障分析时，不能拿目标Vector bit解释为什么某个Completion应被Egress Control拦下。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          10
+        ]
+      },
+      {
+        "id": "completion-request-retarget",
+        "title": "RC Request Retargeting也可能产生同类顺序问题",
+        "paragraphs": [
+          "某些RC用专用P2P地址范围接收请求，验证后改成peer目标地址再送下行。如果Non-Posted Request保留Requester ID，其Completion可能按ID直接返回peer，绕过RC。",
+          "这样也可能使完成超过先前被retarget的Posted请求；Completion Redirect可用于避免这一问题。Retargeting算法不是ACS统一定义的地址转换寄存器。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "completion-performance-enable",
+        "title": "什么时候不建议为了“全开”而打开Completion Redirect",
+        "paragraphs": [
+          "没有Request Redirect也没有RC Request Retargeting时，所引正文认为没有预期收益，建议不启用。多绕RC会增加延迟和链路/RC拥塞。",
+          "确实需要重定向请求时，若软件已确认特定通信模型允许non-RO完成越过相关Posted流量，可按规范建议评估关闭完成重定向。不能仅凭跑分快就推断顺序正确，也不能任意给完成置RO。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "completion-control-register",
+        "title": "Capability与Control bit3：独立控制，不随bit2自动打开",
+        "paragraphs": [
+          "ACS B+04h[3]宣告能力；支持Request Redirect的Function须按相应要求实现Completion Redirect。B+06h[3]是默认0的RW使能，未实现时硬连0。",
+          "多Function非RCiEP也适用non-RO完成的上行处理；完成控制不自动继承Egress Vector或Translation Blocking的开关。软件需要成组审查顺序，而不是只读单个Enable。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          13,
+          14,
+          3,
+          4
+        ]
+      }
+    ]
   },
   {
     "name": "ACS Upstream Forwarding",
@@ -10513,14 +11309,14 @@
     "checks": "先核对DSP/USP适用范围及手册规则；",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 79,
-    "status": "已整理 · 待持续深化",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -10532,28 +11328,208 @@
         "pdfPage": 751,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.1",
+        "page": 754,
+        "pdfPage": 754,
+        "title": "uf：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 868,
+        "pdfPage": 868,
+        "title": "uf：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.2",
+        "page": 757,
+        "pdfPage": 757,
+        "title": "inter：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.2",
+        "page": 871,
+        "pdfPage": 871,
+        "title": "inter：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.3",
+        "page": 1087,
+        "pdfPage": 1087,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.3",
+        "page": 1247,
+        "pdfPage": 1247,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.2",
+        "page": 1085,
+        "pdfPage": 1085,
+        "title": "cap：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.2",
+        "page": 1245,
+        "pdfPage": 1245,
+        "title": "cap：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.2",
+        "page": 756,
+        "pdfPage": 756,
+        "title": "mfd：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.2",
+        "page": 870,
+        "pdfPage": 870,
+        "title": "mfd：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
+    "details": [
+      {
+        "id": "upstream-forwarding-same-port",
+        "title": "“同一个出口”是关键：避免被重定向的TLP又折返下去",
+        "paragraphs": [
+          "下层Switch已经把P2P请求上推；到上一级Downstream Port后，按目标地址/ID它可能仍属于该端口下方的整个子树。若立刻按普通路由回送，就到不了RC。",
+          "Upstream Forwarding针对上行输入、正常目标为本端口自身出口的Request或Completion，使其继续上行；不同出口的P2P选择仍由各自控制决定。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "upstream-forwarding-switch-rp",
+        "title": "Switch继续上推，RP衔接RC验证和排序语义",
+        "paragraphs": [
+          "Switch DSP命中条件则向Switch USP上推。RP命中时，请求按Request Redirect语义交RC，完成按Completion Redirect语义处理。",
+          "该机制有自己的适用条件，不能简单写成“只有Request Redirect Enable=1才可上推”，也不能把它看成所有端口TLP的万能转发位。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "upstream-forwarding-disabled",
+        "title": "同出口上行TLP遇到Forwarding关闭：规范写未定义",
+        "paragraphs": [
+          "所引6.0/7.0正文明确：当Downstream Port未启用该机制，而收到上行且目标是本出口的Request/Completion时，处理未定义。不能把它在查询中固定写成UR、ACS Violation或正常返回。",
+          "排查下层已开Redirect而通信异常，应逐级核对到RP的Upstream Forwarding支持与设置，不能只查发起重定向的那一层。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "upstream-forwarding-topology",
+        "title": "混合ACS与非ACS组件：不是所有情况下都能任意混用",
+        "paragraphs": [
+          "不使用请求/完成重定向时，ACS与非ACS可混合，局部启用其他ACS控制不破坏所述互操作。使用任一重定向时，从启用点到RP之间的中间Switch必须支持Upstream Forwarding，RP也必须支持，RC还需Redirected Request Validation。",
+          "多Function RCiEP内部重定向有正文脚注例外，不可强行要求不存在的外部RP。实际设置应沿完整路径审查，单一设备宣告ACS不能证明上行路径完整。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "upstream-forwarding-register-roles",
+        "title": "ACS bit4只适用于规定端口，MFD普通Function禁止实现",
+        "paragraphs": [
+          "ACS Capability B+04h[4]：Switch DSP必须实现；RP在RC支持Redirected Request Validation时必须实现。Control B+06h[4]默认0，未实现硬连0。",
+          "普通多Function设备的相关Function不得实现Upstream Forwarding；如果某Function本身是Downstream Port，应按端口规则审查。不能因其位于一颗多Function芯片内就抹掉其端口角色。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    ]
   },
   {
     "name": "ACS P2P Egress Control",
     "group": "虚拟化、翻译与隔离",
     "intro": "通过出口控制向量限制可到达的对等目标。",
     "usage": "多端口/多功能细粒度策略，具体控制器应用需承担相应执行责任。",
-    "mechanism": "Egress Control用目标相关向量表达哪些对等出口/功能允许访问，应用/硬件按策略阻止越权的P2P流量。",
+    "mechanism": "发送侧以目标Port、Function或Function Group选择Vector bit。E=1时bit1可按Redirect设置阻断或上行，bit0直达；不控制Completion。",
     "example": "多功能加速器希望管理PF可访问多个功能，而数据VF只能访问自己的资源，可采用相应出口策略。",
     "checks": "核对向量大小、只读掩码、PF/VF继承和实际执行点；软件读回向量正确仍需事务级验证。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 80,
-    "status": "已整理 · 待持续深化",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -10565,9 +11541,375 @@
         "pdfPage": 751,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.4",
+        "page": 1089,
+        "pdfPage": 1089,
+        "title": "vec：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.4",
+        "page": 1249,
+        "pdfPage": 1249,
+        "title": "vec：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.4",
+        "page": 1088,
+        "pdfPage": 1088,
+        "title": "vecaddr：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.4",
+        "page": 1248,
+        "pdfPage": 1248,
+        "title": "vecaddr：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.3",
+        "page": 757,
+        "pdfPage": 757,
+        "title": "table：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.3",
+        "page": 872,
+        "pdfPage": 872,
+        "title": "table：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.3",
+        "page": 1087,
+        "pdfPage": 1087,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.3",
+        "page": 1247,
+        "pdfPage": 1247,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.1",
+        "page": 754,
+        "pdfPage": 754,
+        "title": "uf：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 868,
+        "pdfPage": 868,
+        "title": "uf：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.2",
+        "page": 756,
+        "pdfPage": 756,
+        "title": "mfd：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.2",
+        "page": 870,
+        "pdfPage": 870,
+        "title": "mfd：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.2",
+        "page": 1086,
+        "pdfPage": 1086,
+        "title": "caphigh：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.2",
+        "page": 1246,
+        "pdfPage": 1246,
+        "title": "caphigh：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.2",
+        "page": 1086,
+        "pdfPage": 1086,
+        "title": "caphigh：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.2",
+        "page": 1246,
+        "pdfPage": 1246,
+        "title": "caphigh：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.1",
+        "page": 754,
+        "pdfPage": 754,
+        "title": "uf：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 868,
+        "pdfPage": 868,
+        "title": "uf：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12",
+        "page": 752,
+        "pdfPage": 752,
+        "title": "默认关闭与Multicast例外",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12",
+        "page": 866,
+        "pdfPage": 866,
+        "title": "默认关闭与Multicast例外",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
+    "details": [
+      {
+        "id": "egress-source-side-policy",
+        "title": "名字叫Egress Control，策略却放在发送侧",
+        "paragraphs": [
+          "Switch/RC中由请求进入的端口读取本端口Vector，目标端口号选择其中一bit；多Function设备则查发送Function自己的Vector。不是先到目标端口才读目标的白名单。",
+          "因此A→B与B→A是两条独立策略；错误由负责发送侧检查的组件处理。Gen7 SDI没有独立ACS Egress Control，使用关联PF的策略并由关联PF处理所述违例。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "egress-vector-polarity",
+        "title": "Vector=0与=1：表示目标选择，不是有效/无效标记",
+        "paragraphs": [
+          "Egress Enable=1时，V=0允许该目标直接路由，V=1在R=0时产生ACS Violation，在R=1时送上行。Enable=0时Vector不参与E/R/V判定。",
+          "Direct Translated的适用流量还可绕过这组选择；Translation Blocking等先行检查不被绕过。普通默认Vector各bit=0不代表系统已建好隔离。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          1,
+          2
+        ]
+      },
+      {
+        "id": "egress-vector-size",
+        "title": "Size=00h代表256bit，不是没有Vector",
+        "paragraphs": [
+          "ACS Capability B+04h[15:8]：01h～FFh直接表示有效bit数，00h表示256。只有Capability[5]=1时该Size有意义；未实现Egress Control时字段未定义，Vector寄存器可不存在。",
+          "向量按整DWORD存储，最后一DWORD超出有效数量的bit为RsvdP；不能因为物理读出32bit就把所有bit都当可配置目标。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          3,
+          4
+        ],
+        "table": {
+          "columns": [
+            "有效bit数N",
+            "占用DWORD数",
+            "相对地址范围"
+          ],
+          "rows": [
+            [
+              "8",
+              "1",
+              "B+08h"
+            ],
+            [
+              "33",
+              "2",
+              "B+08h、B+0Ch"
+            ],
+            [
+              "256（Size=00h）",
+              "8",
+              "B+08h～B+24h"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "egress-vector-dword-location",
+        "title": "目标bit K如何找到DWORD：偏移与位号分开计算",
+        "paragraphs": [
+          "DWORD相对偏移=08h+4×floor(K/32)，该DWORD内bit=K mod 32。K是按端口/Function/Group规则已解析出的向量索引，不是绝对BDF。",
+          "例如K=37，读B+0Ch中的bit5；K=255，读B+24h中的bit31。地址B由扩展能力链得来，不固定在100h或某个厂商偏移。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "egress-vector-port-number",
+        "title": "Port模式按Port Number索引，不能用Bus Number代替",
+        "paragraphs": [
+          "RP或Switch DSP的Vector bit始终对应Port Number。端口号的对象与Bus号、Device号、BAR aperture不是同一字段。普通Port自身对应bit硬连0；RC中指向内部Port的相关bit也必须硬连0。",
+          "规范示例的8端口Switch中，Port1的11111100b把除USP与自身外的peer都选中；是否拒绝还是重定向仍取决于R。不要把该示例拓扑的USP=0推成所有实现固定编号。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "egress-vector-ari-alias",
+        "title": "ARI未启用Group时：Function Number要对N取模",
+        "paragraphs": [
+          "ARI设备的Vector不要求覆盖所有已实现Function号。未启用ACS Function Groups时，索引K=Function Number mod N，N受规定的2次幂约束；多个Function可以共用一个bit。",
+          "例如N=8，Function 1、9、17都由bit1选择。若软件希望只阻止Function9而允许Function1，这个Vector粒度无法表达，不能通过多写一个不存在的bit解决。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "egress-vector-ari-self-exception",
+        "title": "自身bit硬连0的规则有ARI例外",
+        "paragraphs": [
+          "普通Port/Function号映射中，自身bit硬连0。ARI中多个Function可能映射同一bit；如果实现ACS Function Groups能力，N要求是8～256的2次幂，而且所有实现Vector bit都须RW。",
+          "因此不应在通用工具里把“发送Function的那个bit”一律强制清零。Group使能后，前8bit对应组，后续实现bit不使用；同组不等于天然放行。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "egress-vector-explorer",
+        "title": "Vector索引查询：Port、ARI Function、Function Group与DWORD",
+        "paragraphs": [
+          "选择映射方式、Size编码与目标编号，显示有效N、索引K、相对DWORD偏移和bit。ARI Function模式按取模计算，Group模式只取目标组号0～7。",
+          "查询不会猜Port Number或自动判定所有硬连位；需确认真实能力、Group支持/使能、关联PF与硬件实现。所有偏移都是相对ACS能力基址。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "egress-controls-request-only",
+        "title": "Egress Control不是Completion过滤器，也不是Multicast权限表",
+        "paragraphs": [
+          "Completions不受ACS P2P Egress Control影响；完成路径由Completion Redirect和适用的Upstream Forwarding决定。把读请求挡住可能产生CA完成，但不能据此说Egress也过滤了返回包。",
+          "ACS对Multicast的例外很强：除Source Validation外，ACS访问控制不影响Multicast TLP。Multicast自己的控制需要查独立条款，不能套本轮单播Vector计算器。"
+        ],
+        "referenceIndices": [
+          17,
+          18,
+          19,
+          20
+        ]
+      }
+    ]
   },
   {
     "name": "ACS Direct Translated P2P",
@@ -10579,14 +11921,14 @@
     "checks": "不可把它当成所有P2P请求的无条件放行；核对AT属性来源、设备信任和上游策略。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 81,
-    "status": "已整理 · 待持续深化",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -10598,28 +11940,374 @@
         "pdfPage": 751,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.1",
+        "page": 754,
+        "pdfPage": 754,
+        "title": "uf：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 868,
+        "pdfPage": 868,
+        "title": "uf：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.3",
+        "page": 757,
+        "pdfPage": 757,
+        "title": "table：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.3",
+        "page": 872,
+        "pdfPage": 872,
+        "title": "table：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.3",
+        "page": 1087,
+        "pdfPage": 1087,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.3",
+        "page": 1247,
+        "pdfPage": 1247,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.6.2",
+        "page": 761,
+        "pdfPage": 761,
+        "title": "mix：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.6.2",
+        "page": 876,
+        "pdfPage": 876,
+        "title": "mix：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.6.2",
+        "page": 762,
+        "pdfPage": 762,
+        "title": "Direct Translated P2P实施说明",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.6.2",
+        "page": 877,
+        "pdfPage": 877,
+        "title": "Direct Translated P2P实施说明",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.1",
+        "page": 753,
+        "pdfPage": 753,
+        "title": "Base6.0 Translation Blocking",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.1",
+        "page": 754,
+        "pdfPage": 754,
+        "title": "Base6.0 Direct适用范围",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 867,
+        "pdfPage": 867,
+        "title": "Base7.0 FM消息Translation Blocking",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 868,
+        "pdfPage": 868,
+        "title": "Base7.0 FM消息Direct范围",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 869,
+        "pdfPage": 869,
+        "title": "Base7.0 Direct续文",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.6.2",
+        "page": 762,
+        "pdfPage": 762,
+        "title": "Direct实施说明及使用模型",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.6.2",
+        "page": 877,
+        "pdfPage": 877,
+        "title": "Direct实施说明及使用模型",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.2",
+        "page": 1085,
+        "pdfPage": 1085,
+        "title": "cap：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.2",
+        "page": 1245,
+        "pdfPage": 1245,
+        "title": "cap：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.2",
+        "page": 756,
+        "pdfPage": 756,
+        "title": "mfd：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.2",
+        "page": 870,
+        "pdfPage": 870,
+        "title": "mfd：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.2",
+        "page": 871,
+        "pdfPage": 871,
+        "title": "Base7.0 SDI关联PF的Direct策略",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
+    "details": [
+      {
+        "id": "direct-translated-purpose",
+        "title": "Direct Translated P2P优化哪一段路径",
+        "paragraphs": [
+          "在ATS环境中，RC已对翻译授予地址/权限后，允许适用的Translated P2P请求直接到peer，避免每笔业务请求绕RC。它处理拓扑路由，不负责创建翻译或延长ATC条目有效期。",
+          "设备仍必须遵守ATS返回权限、属性和失效。把AT设为10不是凭空获得访问资格；Direct能力也不保证RC提供任意Root Port间P2P连接。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          9,
+          10
+        ]
+      },
+      {
+        "id": "direct-translated-precedence",
+        "title": "Direct覆盖E/R/V，但Translation Blocking优先",
+        "paragraphs": [
+          "适用的P2P Memory Request、AT=10且Direct使能时，忽略Request Redirect与Egress Control选择，按无重定向路径送peer。AT=00、Translation Request AT=01等不享受这条例外。",
+          "ACS Control[1]=1时Control[6]被忽略，非默认AT的上行Memory Request先成为ACS Violation；即便Vector允许、Direct已开也不能救回。其他独立检查仍可拒绝，直达不等于最终成功。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "direct-translated-gen7-messages",
+        "title": "7.0的FM Address Routed Message：正文范围比旧表述更广",
+        "paragraphs": [
+          "6.0所引端口规则只列Memory Request；7.0 §6.12.1.1明确把FM的Address Routed Message加入Translation Blocking与Direct Translated的AT处理范围。仅FM、仅规定的地址路由消息，不能外推所有Message。",
+          "7.0的§6.12.3和Control[6]字段文字仍以Memory Request概述；这里保留明确的逐版正文差异。本站交互判定器限定Memory/Completion，不假称已模拟所有消息和MFD路径。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "id": "direct-translated-ordering-hazard",
+        "title": "混合Translated直达和Untranslated绕行的顺序风险",
+        "paragraphs": [
+          "同一通信模型同时有局部直达请求和绕RC请求时，后发Non-Posted或non-RO Posted Request可能越过先前绕行的Posted Request。Completion Redirect只处理完成的路径，不能自动修复请求之间的超越。",
+          "6.0/7.0所引规则要求软件仅在确认不会产生相关违规、或违规不破坏正确操作时，才把Request Redirect与Direct同时启用。需要分析具体Requester、目标和依赖关系。"
+        ],
+        "referenceIndices": [
+          7,
+          8
+        ]
+      },
+      {
+        "id": "direct-translated-two-usage-models",
+        "title": "两种用法：未翻译一律拒绝，或混合未翻译业务",
+        "paragraphs": [
+          "规范实施说明给出一种用法：Direct与Request Redirect同时开，RC验证逻辑把重定向的Untranslated请求全部阻断，而Translated直达。因为未翻译访问不会继续执行业务，不存在这类成功请求相互越过的问题。",
+          "若两类Requester各自仅用一种地址类型且彼此不P2P，风险可能不影响运行；同一Requester混用则需详细分析。以上是有条件的用法说明，不是对任意虚拟化平台的推荐默认值。"
+        ],
+        "referenceIndices": [
+          16,
+          17
+        ]
+      },
+      {
+        "id": "direct-translated-capability-roles",
+        "title": "能力实现按角色判断，不按Gen或“支持ATS”一条判断",
+        "paragraphs": [
+          "Switch DSP按ACS端口要求必须实现Direct；RP要求ATS与其他RP的P2P均受支持时实现；MFD Function在支持ATS且内部peer通信时实现。Gen7 SDI相关策略在关联PF实现并执行。",
+          "ACS B+04h[6]是能力，B+06h[6]为默认0的RW使能；未实现硬连0。只知道最高链路速率或ATS Enable，无法得出Direct正在开放。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          18,
+          19,
+          20,
+          21,
+          5,
+          6,
+          22
+        ]
+      },
+      {
+        "id": "direct-translated-completions-independent",
+        "title": "Translated请求直达后，Completion仍独立判断",
+        "paragraphs": [
+          "Completion不携带本机制意义上的“Translated Request”通行条件，也不受Direct开关控制。某个AT=10请求直达，并不意味着它的non-RO Completion一定走同一路。",
+          "排查读带宽要同时看请求方向、Completion RO与Completion Redirect；还需考虑MPS/MRRS和资源等其他瓶颈，不能把性能差一概归于ACS。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
   },
   {
     "name": "ACS Function Groups / Enhanced ACS",
     "group": "虚拟化、翻译与隔离",
     "intro": "对函数组/更新的控制服务扩展访问策略。",
     "usage": "规范版本与ECN扩展，不能把传统7bit表当成未来全部ACS内容。",
-    "mechanism": "功能组让若干功能共享相应出口控制组织，新版ACS扩展还增加服务定义。向量和能力解释必须依具体版本，而非永久固定七项。",
+    "mechanism": "Enhanced在ACS能力内增加I/O和端口资源目标控制；Function Groups则由ARI独立宣告、使能和分组，改变Egress Vector的目标粒度。",
     "example": "同属一个信任域的多个VF可能需要按组规划策略，但不同租户不应因实现方便被随意归到同组。",
     "checks": "先核对规范/ECN、组配置和向量限制；",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 82,
-    "status": "已整理 · 待持续深化",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -10631,9 +12319,558 @@
         "pdfPage": 751,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.4",
+        "page": 758,
+        "pdfPage": 758,
+        "title": "enh：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.4",
+        "page": 873,
+        "pdfPage": 873,
+        "title": "enh：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.1",
+        "page": 755,
+        "pdfPage": 755,
+        "title": "target：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 869,
+        "pdfPage": 869,
+        "title": "target：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.3",
+        "page": 1088,
+        "pdfPage": 1088,
+        "title": "ctlhigh：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.3",
+        "page": 1248,
+        "pdfPage": 1248,
+        "title": "ctlhigh：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.4",
+        "page": 1089,
+        "pdfPage": 1089,
+        "title": "vec：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.4",
+        "page": 1249,
+        "pdfPage": 1249,
+        "title": "vec：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.8.3",
+        "page": 1148,
+        "pdfPage": 1148,
+        "title": "ari：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.8.3",
+        "page": 1317,
+        "pdfPage": 1317,
+        "title": "ari：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.2",
+        "page": 1086,
+        "pdfPage": 1086,
+        "title": "caphigh：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.2",
+        "page": 1246,
+        "pdfPage": 1246,
+        "title": "caphigh：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.1",
+        "page": 1084,
+        "pdfPage": 1084,
+        "title": "ACS头版本与布局",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.1",
+        "page": 1244,
+        "pdfPage": 1244,
+        "title": "ACS头版本与布局",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.3",
+        "page": 1087,
+        "pdfPage": 1087,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.3",
+        "page": 1247,
+        "pdfPage": 1247,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.3",
+        "page": 1087,
+        "pdfPage": 1087,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.3",
+        "page": 1247,
+        "pdfPage": 1247,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.8.2",
+        "page": 1147,
+        "pdfPage": 1147,
+        "title": "ARI Function Group能力与Function0作用域",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.8.2",
+        "page": 1316,
+        "pdfPage": 1316,
+        "title": "ARI Function Group能力与Function0作用域",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.8.2",
+        "page": 1147,
+        "pdfPage": 1147,
+        "title": "ARI能力与跨Bus的SR-IOV要求",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.8.2",
+        "page": 1316,
+        "pdfPage": 1316,
+        "title": "ARI能力与跨Bus的SR-IOV要求",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.2",
+        "page": 1085,
+        "pdfPage": 1085,
+        "title": "cap：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.2",
+        "page": 1245,
+        "pdfPage": 1245,
+        "title": "cap：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.2",
+        "page": 1086,
+        "pdfPage": 1086,
+        "title": "caphigh：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.2",
+        "page": 1246,
+        "pdfPage": 1246,
+        "title": "caphigh：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.3",
+        "page": 1087,
+        "pdfPage": 1087,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.3",
+        "page": 1247,
+        "pdfPage": 1247,
+        "title": "ctl：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
+    "details": [
+      {
+        "id": "enhanced-not-new-capability-id",
+        "title": "Enhanced ACS仍在000Dh能力结构内，不另找一个新ID",
+        "paragraphs": [
+          "ACS Capability B+04h[7]宣告Enhanced；它扩展适用端口的I/O阻断、DSP BAR目标、USP BAR目标和未认领窗口处理。所引6.0/7.0扩展能力头版本仍为1。",
+          "Function Group是ARI能力内的独立功能，不等于Enhanced的bit7，两者不能凭名称都带“增强/组”就混成同一个使能。Enhanced支持所有对该角色适用的新增机制，不要求RP实现只适用于Switch的功能。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "enhanced-io-block",
+        "title": "Control bit7：上行I/O Request阻断",
+        "paragraphs": [
+          "支持Enhanced的RP和Switch DSP必须实现I/O Request Blocking；Control B+06h[7]=1时，入口收到上行I/O Request按ACS Violation处理，默认0。",
+          "它针对I/O地址空间事务，不是把所有Memory-mapped I/O访问都拒绝。Memory BAR目标须看[9:8]/[11:10]，否则会把PIO的软件用语和TLP类型混淆。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "enhanced-dsp-target",
+        "title": "Control[9:8]：保护Downstream Port自己的Memory BAR",
+        "paragraphs": [
+          "普通P2P多关注端口下方的设备窗口；DSP Memory Target Access单独处理目标是适用Downstream Port自身Memory BAR的上行请求，包含接收端口本身。",
+          "Switch中所有DSP都在范围内；RC中适用RP集合由实现决定，但始终包括收到请求的RP。若无适用Memory BAR需保护，该字段为保留，而非宣告一个可随意写的控制。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "编码",
+            "处理"
+          ],
+          "rows": [
+            [
+              "00",
+              "允许直接请求访问"
+            ],
+            [
+              "01",
+              "阻断请求"
+            ],
+            [
+              "10",
+              "请求重定向"
+            ],
+            [
+              "11",
+              "保留，不能当“最严格”模式"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "enhanced-usp-target",
+        "title": "Control[11:10]：Switch USP自身BAR目标",
+        "paragraphs": [
+          "Switch DSP入口对目标为本Switch USP的Memory BAR请求使用该字段，编码00直达、01阻断、10重定向、11保留，默认00。RP不适用这个机制。",
+          "如果USP还关联其他Function，本字段不控制那些Function的BAR；相关访问需看USP所实现的MFD ACS等机制。保护“USP自身资源”和“USP上关联所有资源”不是同一范围。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "enhanced-memory-resource-scope",
+        "title": "Memory BAR Space还可能包含Expansion ROM与EA分配",
+        "paragraphs": [
+          "两版所引脚注把Expansion ROM BAR分配的Memory Space也纳入相应保护；还包括BEI为0、1、7或8的EA条目所分配的Memory Space。",
+          "这说明排查目标分类不能只枚举普通BAR0～BAR5。这里仅核对ACS引用的范围；EA每种BEI含义、完整解码优先级留给EA专题，未声称已通读。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "enhanced-unclaimed-window",
+        "title": "Control bit12：未认领窗口空洞默认UR，开启才上行",
+        "paragraphs": [
+          "Switch DSP收到目标在USP Memory aperture内、却不落任何DSP Memory aperture或Memory BAR Space的请求，命中Unclaimed规则。开启[12]则送出Switch上行；关闭则按UR处理。",
+          "它不是“所有无效地址都交RC”，也不是所有UR都能靠此位消除。该机制不适用于RP；默认0，在非Enhanced或不适用角色时按保留位处理。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "enhanced-target-vs-peer-table",
+        "title": "按目标区域选机制，先不要只盯E/R/V",
+        "paragraphs": [
+          "先识别命中的资源属于peer设备窗口、端口自身BAR，还是USP窗口里的空洞，再查相应控制。以下是检索分类，不宣称覆盖所有重叠窗口/解码优先级或异常TLP。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          17,
+          18,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "正常目标分类",
+            "应检查机制",
+            "主要位置"
+          ],
+          "rows": [
+            [
+              "另一DSP下设备窗口",
+              "P2P Request Redirect / Egress / Direct",
+              "ACS Control[2]/[5]/[6] + Vector"
+            ],
+            [
+              "适用DSP/RP自身Memory BAR",
+              "DSP Memory Target Access",
+              "Control[9:8]"
+            ],
+            [
+              "Switch USP自身Memory BAR",
+              "USP Memory Target Access",
+              "Control[11:10]"
+            ],
+            [
+              "USP窗口内且无DSP认领区域",
+              "Unclaimed Request Redirect",
+              "Control[12]"
+            ],
+            [
+              "上行I/O Request",
+              "I/O Request Blocking",
+              "Control[7]"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ari-group-enable-fields",
+        "title": "Function Groups配置在ARI +04h/+06h，不在ACS bit7",
+        "paragraphs": [
+          "ARI Capability +04h[1]是ACS Function Groups Capability，仅Function0有效，其他Function必须0；ARI Control +06h[1]是全设备Group使能，也仅Function0可用，默认0。",
+          "每个Function的ARI Control[6:4]分配组号0～7，默认000。ARI Control[0]是MFVC Function Groups Enable，管仲裁；它和[1]管访问控制的用途不同。若Function0两种Group能力均不支持，组号字段硬连000。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          19,
+          20
+        ],
+        "table": {
+          "columns": [
+            "ARI字段",
+            "职责",
+            "不可混淆"
+          ],
+          "rows": [
+            [
+              "Cap+04h[1]",
+              "ACS Group支持",
+              "ACS Capability[7] Enhanced"
+            ],
+            [
+              "Control+06h[1]",
+              "ACS Group使能",
+              "MFVC Group使能bit0"
+            ],
+            [
+              "Control+06h[6:4]",
+              "本Function组号",
+              "目标BDF或PASID"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ari-group-vector-semantics",
+        "title": "Group使能后：前8bit指目标组，后面的bit不使用",
+        "paragraphs": [
+          "ACS Group开后，每个Function自己的Vector前8bit对应目标Function Group；其余实现bit不使用。使能前则按ARI Function Number对Vector Size取模。",
+          "同组Function互访仍由与该组对应的bit选择处理，不能声称同组必定绕过控制。ACS Function Group也不是操作系统IOMMU Group的标准寄存器表示；后者还受拓扑和平台隔离能力影响。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "id": "ari-group-multibus-vf",
+        "title": "跨多个Bus Number的SR-IOV与Group能力要求",
+        "paragraphs": [
+          "所引两版ARI Capability定义：SR-IOV设备若实现ACS及可选Egress Vector且消耗多个Bus Number，其Function0必须置ACS Function Groups Capability。不能只按“最多256个Function”去解释所有VF拓扑。",
+          "Next Function Number用于非VF链表枚举；VF的该字段未定义，需要用SR-IOV First VF Offset和VF Stride。这里不把ARI链表当成遍历全部VF的流程。"
+        ],
+        "referenceIndices": [
+          21,
+          22
+        ]
+      },
+      {
+        "id": "enhanced-register-decoder",
+        "title": "ACS寄存器解码：能力、使能、Enhanced字段与Vector Size",
+        "paragraphs": [
+          "输入16位ACS Capability与Control，并选择RP、Switch DSP或普通MFD Function，分开显示支持与使能、两个2bit目标控制、保留编码和Vector有效大小。",
+          "这是离线学习解码，不能写设备配置；角色只检查明确的适用限制，BAR存在性、RC P2P/ATS及SR-IOV/SIOV完整实现条件需自行补上下文。能力未宣告时，不把高位值当有效功能。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          5,
+          6
+        ]
+      }
+    ]
   },
   {
     "name": "Peer-to-Peer（P2P）",
@@ -10645,14 +12882,14 @@
     "checks": "分别验证目标BAR、桥窗口、路由、权限、缓存/同步和生命周期；iATU映射不等于完整P2P方案。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 83,
-    "status": "已整理 · 待持续深化",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -10664,9 +12901,231 @@
         "pdfPage": 751,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.1",
+        "page": 753,
+        "pdfPage": 753,
+        "title": "dsp：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 867,
+        "pdfPage": 867,
+        "title": "dsp：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.2",
+        "page": 756,
+        "pdfPage": 756,
+        "title": "mfd：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.2",
+        "page": 870,
+        "pdfPage": 870,
+        "title": "mfd：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.6.1",
+        "page": 760,
+        "pdfPage": 760,
+        "title": "order：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.6.1",
+        "page": 875,
+        "pdfPage": 875,
+        "title": "order：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.5",
+        "page": 759,
+        "pdfPage": 759,
+        "title": "err：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.5",
+        "page": 874,
+        "pdfPage": 874,
+        "title": "err：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.5",
+        "page": 759,
+        "pdfPage": 759,
+        "title": "err：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.5",
+        "page": 874,
+        "pdfPage": 874,
+        "title": "err：ACS相关规则与字段",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.5",
+        "page": 760,
+        "pdfPage": 760,
+        "title": "ACS Abort状态位及Requester侧处理",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.5",
+        "page": 875,
+        "pdfPage": 875,
+        "title": "ACS Abort状态位及Requester侧处理",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.1.2",
+        "page": 756,
+        "pdfPage": 756,
+        "title": "Base6.0 MFD与VF规则",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.2",
+        "page": 870,
+        "pdfPage": 870,
+        "title": "Base7.0 SDI关联PF策略",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.2",
+        "page": 871,
+        "pdfPage": 871,
+        "title": "Base7.0 Direct SDI规则",
+        "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
+    "details": [
+      {
+        "id": "p2p-three-paths",
+        "title": "P2P三条常见路径：设备内部、Switch局部、经RC反射",
+        "paragraphs": [
+          "同设备Function间访问可在内部完成；同Switch不同DSP间可局部交换；重定向则先上行到RC，再由平台决定反射或拒绝。跨RP能否P2P取决于RC，不能由ACS支持位保证。",
+          "同一业务读的Request和Completion可能走不同路径。追踪时分别记录发起RID、请求目标、每一级Ingress/Egress、完成目标ID和RO，不用一个“双向箭头”隐藏条件差异。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "p2p-blocked-request-error",
+        "title": "被ACS挡住后：CA完成与ACS错误日志是不同层的结果",
+        "paragraphs": [
+          "6.0对Non-Posted请求要求产生CA Completion；7.0明确列Non-Posted和UIO请求。普通Posted Memory Write不因此产生一个本来不存在的正常Completion。",
+          "Completer记录的是ACS Violation，而不是因发送CA就改记Completer Abort；Severity为non-fatal且发送CA时按所引Advisory Non-Fatal规则处理。需要结合Mask/Severity和Header/Prefix Log查原始请求。"
+        ],
+        "referenceIndices": [
+          7,
+          8
+        ]
+      },
+      {
+        "id": "p2p-violation-completer-location",
+        "title": "谁返回CA：检测点与RC验证拒绝的例外",
+        "paragraphs": [
+          "通常检测ACS Violation的组件作为Completer。例外是RC Redirected Request Validation拒绝请求：从RP到来时由该RP作为Completer，从RCiEP到来时由关联RCEC作为Completer。",
+          "因此Requester看到的Completer并不总是原始peer目标。Completer还须置适用Status或Secondary Status的Signaled Target Abort；收到相应CA的Requester置Received Target Abort。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "p2p-sdi-policy-gen7",
+        "title": "Gen7 SIOV：SDI沿关联PF策略，不能凭SDI数量猜隔离粒度",
+        "paragraphs": [
+          "7.0将SIOV设备纳入相应多Function处理；支持SDI P2P的PF实现Request Redirect，设备确保SDI流量服从它。SDI没有自己的Egress Control，按关联PF策略执行并由PF处理所述违例。",
+          "对比6.0这里只记录SR-IOV/MFD范围，不能说SIOV在所有Gen7链路都必选，也不能倒推首次在7.0引入。具体设备SDI隔离还需看SIOV及平台资料。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          15
+        ]
+      }
+    ]
   },
   {
     "name": "D0 / D1 / D2 / D3hot / D3cold",

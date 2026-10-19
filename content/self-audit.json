@@ -1,6 +1,6 @@
 {
   "date": "2026-10-19",
-  "summary": "第五轮：展开ATS翻译/失效、PASID身份/配置/生命周期及PRI分组/额度/停止与错误；按6.0/7.0分别核对变化。",
+  "summary": "第六轮：串起ACS P2P请求/完成、上行转发、Egress、Direct和Enhanced目标，补ARI分组字段及6.0/7.0边界。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -116,12 +116,27 @@
       "name": "R5 interactive tools and regression",
       "status": "passed",
       "detail": "Validated 3 version-aware register decoders, all 32 STU values, 153 large-range reconstructions with BigInt, invalid inputs and 55 detail routes. Prior search/PDF selection, 167 compliance settings, 1280 byte/ECC placements and 4096 DLP combinations passed. No hardware/driver conformance claim."
+    },
+    {
+      "name": "R6 ACS正文与字段逐版核读",
+      "status": "已核读所引相关页",
+      "detail": "核读Base6.0 p751～763、1083～1090的ACS部分、1147～1148的ARI部分；Base7.0 p865～878、1243～1250的ACS部分、1316～1317的ARI部分。表6-11与Control编码视觉复核；未把整版规范或ECN标为已读。"
+    },
+    {
+      "name": "R6事实与术语纠偏",
+      "status": "新增明确边界",
+      "detail": "Vector bit1不是恒拒绝；Size0为256；ARI按模映射/Group；Enhanced不同于Function Group；7.0 FM消息、Segment边界、SDI和UIO按正文分开标注。"
+    },
+    {
+      "name": "R6查询与回归",
+      "status": "通过",
+      "detail": "验证表6-11组合、512个路由上下文的优先级/RO/同出口条件、32896个Vector定位、2304个ARI取模映射和48个组映射；53个新块链接、PDF页、搜索及R1～R5工具回归通过。未进行硬件、完整拓扑或OS驱动合规验证。"
     }
   ],
   "unresolved": [
     "现有功能详解普遍偏短，需要补充规则、字段、角色与异常处理。",
     "尚未建立全部功能的版本演进证据链，不能凭记忆标注首次引入版本。",
-    "ACS初始ECN与Enhanced机制的首次合入版本尚待核对；FPB归属细则、AT完整编码表及P2P交互留待后续专题。",
+    "ACS初始ECN与Enhanced机制首次合入版本、FPB归属细则和早期版本完整规则仍待核对；6.0/7.0主要P2P交互已在R6展开。",
     "2026年Source Validation澄清ECN正文、适用实现及其合入Base后续修订的情况待核读。",
     "本地产品手册与PIPE 7.1并非同一发布时间，差异按版本保留，不用新版规则假定旧交付已完全支持。",
     "CDL已完成结构统计，未做LVS、SPICE或晶体管级功能/性能证明；RTL也未进行完整宏展开、编译和全量仿真。",
@@ -136,8 +151,11 @@
     "FM DLP和重放主要阶段已展开，但完整黄金轨迹/合规测试、NOP扩展与各中间修订全部改动尚未验证；不声明整章完成。",
     "Base6.0 Replay Schedule Rule2比较N，而7.0比较N+1；7.0修订中的其他接收分支也有差异，首次合入和勘误链仍待追溯。",
     "后续Base7.1/6.5只核公开目录；Dynamic Shared Flow Control Usage Limits已找到本地ECN文件候选，状态和正文仍待核读，不是缺失资料。需逐条核对后更新6.0/7.0边界。",
-    "ATS AMA/TEE/CXL语义、完整Translation/Invalidate报文字节格式、ACS直接Translated P2P所有交互和ATS独立规范版本演进仍待继续核读。",
+    "ATS AMA/TEE/CXL语义、完整Translation/Invalidate报文字节格式、与ACS的全部扩展交互及ATS独立规范版本演进仍待继续核读；R6已补ACS主要P2P路径。",
     "PRI各软件栈真实启停/缺页队列实现与合规仿真未验证；Gen7许可溢出恢复只按所引标准解释，不推断任意IOMMU都支持。",
-    "Gen1～Gen5各版本ATS/PRI/PASID支持与具体首次合入需回到独立规范/ECN正文，不能由Base6.0/7.0存在反推。"
+    "Gen1～Gen5各版本ATS/PRI/PASID支持与具体首次合入需回到独立规范/ECN正文，不能由Base6.0/7.0存在反推。",
+    "ACS完整Segment/IOV/UIO交互、全部重叠窗口解码优先级和真实平台Redirected Request Validation实现仍待专题；当前查询器只模拟明示的Memory/Completion子集。",
+    "ACS Enhanced ECN公开目录列2019-05-07；未核ECN正文与首个正式Base合入链，不能用目录日期或Linux补丁说明代替。",
+    "7.0 ACS端口正文显式覆盖FM Address Routed Message，但交互表/Control部分仍以Memory Request概述；保留逐条来源，未外推所有Message或全部MFD路径。"
   ]
 }
