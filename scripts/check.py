@@ -11,8 +11,12 @@ assert {f['id'] for f in features}==set(range(1,len(features)+1)), 'Preserve exi
 assert len({f['group'] for f in features})>=12
 for f in features:
     assert all(f.get(k) for k in ['name','intro','mechanism','example','checks','prerequisites'])
+    detail_ids=[d['id'] for d in f.get('details',[]) if 'id' in d]
+    assert len(detail_ids)==len(set(detail_ids)), 'Duplicate stable detail ID'
+    assert all(re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',key) for key in detail_ids), 'Invalid detail URL key'
     for detail in f.get('details',[]):
         assert detail.get('title') and (detail.get('paragraphs') or detail.get('table'))
+        assert all(isinstance(i,int) and 0<=i<len(f.get('protocolReferences',[])) for i in detail.get('referenceIndices',[])), 'Invalid detail source index'
         if 'table' in detail:
             table=detail['table']
             assert table['columns'] and table['rows']

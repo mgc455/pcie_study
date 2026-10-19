@@ -116,11 +116,11 @@
   {
     "name": "LTSSM与Link Training",
     "group": "链路与物理层",
-    "intro": "状态机执行检测、轮询、配置、恢复、低功耗等链路流程。",
+    "intro": "LTSSM决定链路怎样发现对端、建立位锁定与Lane编号、升降速、均衡以及进出低功耗。这里按Base 6.0逐个列出子状态的动作、转移条件和超时，并另列已核读的跨代差异。",
     "usage": "建链失败时结合LTSSM、PHY状态、复位与时钟检查。",
-    "mechanism": "LTSSM按Detect、Polling、Configuration、L0、Recovery等状态完成检测和协商；电源/测试/复位流程还会进入其他分支。",
+    "mechanism": "先沿Detect → Polling → Configuration → L0建立2.5 GT/s链路，再通过Recovery执行速率切换或恢复。子状态并不全是单向流水线：Lane协商可能往返，均衡按DSP/USP分工，L0s的TX与RX各自运行。每条转移必须同时看端口角色、当前编码、Flit Mode、LinkUp以及连续Ordered Set的计数条件。",
     "example": "长期停在Detect先检查物理连接与接收检测；反复进入Recovery则要关注训练、信号质量或速率切换。",
-    "checks": "抓状态随时间的变化而不只读一个瞬时值；区分尚未训练、训练重试和已经建链后掉线。",
+    "checks": "先记录停住的完整子状态，再看哪个方向、哪些Lane未满足进入下一状态的条件。PhyStatus、RxValid、LinkUp、DL_Active表示不同层次。表中是Base 6.0主要普通端口规则；Crosslink、Retimer及一致性测试的组合分支另标范围，不声称已经成为所有版本全部条件的可执行模型。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 4,
     "status": "已整理 · 待持续深化",
@@ -130,7 +130,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "4.2.6",
@@ -142,9 +142,1935 @@
         "pdfPage": 444,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.1.1",
+        "title": "Detect.Quiet",
+        "page": 455,
+        "pdfPage": 455,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.1.2",
+        "title": "Detect.Active",
+        "page": 456,
+        "pdfPage": 456,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.1",
+        "title": "Polling.Active",
+        "page": 457,
+        "pdfPage": 457,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.2",
+        "title": "Polling.Compliance",
+        "page": 458,
+        "pdfPage": 458,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.2",
+        "title": "Polling.Compliance退出与测试档位",
+        "page": 461,
+        "pdfPage": 461,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.2",
+        "title": "Polling.Compliance退出与测试档位",
+        "page": 462,
+        "pdfPage": 462,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.2",
+        "title": "Polling.Compliance退出与测试档位",
+        "page": 463,
+        "pdfPage": 463,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.3",
+        "title": "Polling.Configuration",
+        "page": 463,
+        "pdfPage": 463,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.4",
+        "title": "Polling.Speed",
+        "page": 463,
+        "pdfPage": 463,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.1",
+        "title": "Configuration.Linkwidth.Start",
+        "page": 464,
+        "pdfPage": 464,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.1",
+        "title": "Linkwidth.Start端口分支与后续规则",
+        "page": 465,
+        "pdfPage": 465,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.1",
+        "title": "Linkwidth.Start端口分支与后续规则",
+        "page": 466,
+        "pdfPage": 466,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.1",
+        "title": "Linkwidth.Start端口分支与后续规则",
+        "page": 467,
+        "pdfPage": 467,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.1",
+        "title": "Linkwidth.Start端口分支与后续规则",
+        "page": 468,
+        "pdfPage": 468,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.2",
+        "title": "Configuration.Linkwidth.Accept",
+        "page": 468,
+        "pdfPage": 468,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.2.2",
+        "title": "Linkwidth.Accept USP规则",
+        "page": 469,
+        "pdfPage": 469,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.4",
+        "title": "Configuration.Lanenum.Wait",
+        "page": 474,
+        "pdfPage": 474,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.3",
+        "title": "Configuration.Lanenum.Accept",
+        "page": 471,
+        "pdfPage": 471,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.3.1",
+        "title": "Lanenum.Accept DSP规则",
+        "page": 472,
+        "pdfPage": 472,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.3.2",
+        "title": "Lanenum.Accept USP规则",
+        "page": 473,
+        "pdfPage": 473,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.5",
+        "title": "Configuration.Complete",
+        "page": 475,
+        "pdfPage": 475,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.5.2",
+        "title": "Configuration.Complete USP与完成条件",
+        "page": 477,
+        "pdfPage": 477,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.6",
+        "title": "Configuration.Idle",
+        "page": 479,
+        "pdfPage": 479,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.6",
+        "title": "Configuration.Idle FLIT完成与超时",
+        "page": 481,
+        "pdfPage": 481,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "title": "Recovery.RcvrLock",
+        "page": 482,
+        "pdfPage": 482,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "title": "RcvrLock正常与超时出口",
+        "page": 487,
+        "pdfPage": 487,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.2",
+        "title": "Recovery.Equalization",
+        "page": 489,
+        "pdfPage": 489,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "title": "Recovery.Speed",
+        "page": 502,
+        "pdfPage": 502,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "title": "Speed切速、回退和48 ms",
+        "page": 503,
+        "pdfPage": 503,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "title": "Recovery.RcvrCfg",
+        "page": 503,
+        "pdfPage": 503,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "title": "RcvrCfg到Idle",
+        "page": 508,
+        "pdfPage": 508,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "title": "RcvrCfg重配置",
+        "page": 509,
+        "pdfPage": 509,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "title": "RcvrCfg超时",
+        "page": 510,
+        "pdfPage": 510,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.5",
+        "title": "Recovery.Idle",
+        "page": 510,
+        "pdfPage": 510,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.5",
+        "title": "Recovery.Idle完成计数与重试",
+        "page": 512,
+        "pdfPage": 512,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.5",
+        "title": "L0",
+        "page": 513,
+        "pdfPage": 513,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.5",
+        "title": "L0 Recovery与L0s出口",
+        "page": 514,
+        "pdfPage": 514,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.5",
+        "title": "L0到L1/L2条件",
+        "page": 515,
+        "pdfPage": 515,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.6.1.1",
+        "title": "Rx_L0s.Entry",
+        "page": 516,
+        "pdfPage": 516,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.6.1.2",
+        "title": "Rx_L0s.Idle",
+        "page": 516,
+        "pdfPage": 516,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.6.1.3",
+        "title": "Rx_L0s.FTS",
+        "page": 516,
+        "pdfPage": 516,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.6.2.1",
+        "title": "Tx_L0s.Entry",
+        "page": 517,
+        "pdfPage": 517,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.6.2.2",
+        "title": "Tx_L0s.Idle",
+        "page": 517,
+        "pdfPage": 517,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.6.2.3",
+        "title": "Tx_L0s.FTS",
+        "page": 517,
+        "pdfPage": 517,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.6",
+        "title": "L0s适用限制",
+        "page": 445,
+        "pdfPage": 445,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.7.1",
+        "title": "L1.Entry",
+        "page": 519,
+        "pdfPage": 519,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.7.2",
+        "title": "L1.Idle",
+        "page": 519,
+        "pdfPage": 519,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.8.1",
+        "title": "L2.Idle",
+        "page": 520,
+        "pdfPage": 520,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.8.2",
+        "title": "L2.TransmitWake",
+        "page": 521,
+        "pdfPage": 521,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.9",
+        "title": "Disabled",
+        "page": 521,
+        "pdfPage": 521,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.10.1",
+        "title": "Loopback.Entry",
+        "page": 522,
+        "pdfPage": 522,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.10.2",
+        "title": "Loopback.Active",
+        "page": 527,
+        "pdfPage": 527,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.10.3",
+        "title": "Loopback.Exit",
+        "page": 528,
+        "pdfPage": 528,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.11",
+        "title": "Hot Reset",
+        "page": 529,
+        "pdfPage": 529,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.11",
+        "title": "Hot Reset接收方与Switch传播",
+        "page": 530,
+        "pdfPage": 530,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "title": "L0p范围",
+        "page": 445,
+        "pdfPage": 445,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "title": "L0p请求时间和优先级",
+        "page": 446,
+        "pdfPage": 446,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "title": "L0p缩扩宽训练",
+        "page": 447,
+        "pdfPage": 447,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.2.4",
+        "title": "1.0a Polling.Speed",
+        "page": 174,
+        "pdfPage": 174,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.2.4",
+        "title": "2.0 Polling.Speed不可达",
+        "page": 201,
+        "pdfPage": 201,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.3",
+        "title": "3.0初次8 GT/s均衡",
+        "page": 218,
+        "pdfPage": 218,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.3",
+        "title": "4.0高数据率均衡",
+        "page": 253,
+        "pdfPage": 253,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3",
+        "title": "5.0 32 GT/s均衡",
+        "page": 274,
+        "pdfPage": 274,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.2",
+        "title": "7.0 TS0/TS1及128 GT/s",
+        "page": 575,
+        "pdfPage": 575,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "title": "7.0 Recovery.Speed计时",
+        "page": 590,
+        "pdfPage": 590,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "title": "7.0增强训练编码96 ms",
+        "page": 591,
+        "pdfPage": 591,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
+    "details": [
+      {
+        "title": "阅读状态表之前：角色、计数、超时和覆盖范围",
+        "paragraphs": [
+          "DSP=Downstream Port，USP=Upstream Port；它们表示端口朝向，不表示数据只能向下或向上传输。all Lanes与any Lane不可互换；连续TS的Link/Lane编号、速度标识及控制位也须符合该状态要求。",
+          "Base 6.0的LTSSM超时默认容差是−0%/+50%，明确写出其他容差时按该条款执行。计时到期与收到正确TS是不同出口；下表不能把超时出口当成功。",
+          "本页覆盖Base 6.0普通端口的Detect、Polling、Configuration、Recovery、L0、TX/RX L0s、L1、L2、Disabled、Loopback、Hot Reset；Recovery.Equalization的7个角色/阶段组合在功能9单独展开。L0p和L1 PM Substates并非额外平铺的主LTSSM状态，另有条目说明。",
+          "每节的来源按钮可选择本地PDF到对应页。表格是作者按正文重组的规则摘要；Crosslink随机仲裁、全部Compliance Pattern档位、Retimer所有伪端口分支和逐版完整差异仍需继续展开，不能把当前覆盖范围等同规范全部约束。"
+        ],
+        "referenceIndices": [
+          0
+        ],
+        "id": "block-1"
+      },
+      {
+        "title": "Detect.Quiet",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "TX为Electrical Idle；选择2.5 GT/s；LinkUp=0；清均衡、FLIT/L0p协商相关变量。"
+            ],
+            [
+              "转移条件与目标",
+              "等待12 ms到期，或任一Lane检测到Electrical Idle Exit → Detect.Active。"
+            ],
+            [
+              "超时／其他出口",
+              "若进来时不是2.5 GT/s，至少停留1 ms并完成降至2.5 GT/s；RX必须在1 ms内满足该速率终端阻抗要求，未满足不能提前离开。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          1
+        ],
+        "id": "detect-quiet"
+      },
+      {
+        "title": "Detect.Active",
+        "paragraphs": [
+          "Receiver Detect检测电气终端，不等于收到TS、不等于CDR锁定，也不等于设备已可访问。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "对可组成链路的未配置Lane执行Receiver Detect。"
+            ],
+            [
+              "转移条件与目标",
+              "全部检测到终端 → Polling.Active；全部未检测到 → Detect.Quiet。"
+            ],
+            [
+              "超时／其他出口",
+              "只检测到部分Lane：等12 ms重测；两次检测到的Lane集合完全相同 → Polling，否则 → Detect.Quiet。未参与Lane按条款退出本LTSSM。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          2
+        ],
+        "id": "detect-active"
+      },
+      {
+        "title": "Polling.Active",
+        "paragraphs": [
+          "24 ms分支使用预定Lane集合，不能误写成所有物理Lane均成功。普通成功分支与超时后的容错分支要求不同。后续页458继续该条。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "在Detect检出终端的Lane发送Link/Lane=PAD的TS1，广告所有支持的速率；退出电气空闲前等待共模稳定。"
+            ],
+            [
+              "转移条件与目标",
+              "已发≥1024个TS1，且全部参与Lane收到连续8个合格TS1/TS2或其反相 → Polling.Configuration。TS1要求Compliance Receive=0或Loopback=1；TS2要求Link/Lane=PAD。"
+            ],
+            [
+              "超时／其他出口",
+              "Enter Compliance=1可立即进Polling.Compliance。24 ms到期：至少一Lane满足连续8个TS、收首个TS后又发≥1024个TS1且预定Lane集合均曾退出EI → Polling.Configuration；预定集合有Lane未退出EI，或合格的Compliance Receive=1/Loopback=0请求 → Polling.Compliance；否则Detect。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          3
+        ],
+        "id": "polling-active"
+      },
+      {
+        "title": "Polling.Compliance",
+        "paragraphs": [
+          "退出规则续见461～463页；85个测试档位、按Lane噪声模式及Modified Pattern计错细节尚未逐项建表。此状态用于一致性测试，卡在这里需检查测试负载和软件控制位。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "按进入方式、共同速率、Target Link Speed及De-emphasis/Preset发送Compliance或Modified Compliance Pattern。"
+            ],
+            [
+              "转移条件与目标",
+              "软件Enter Compliance从1清0，或USP按指定分支收到EIOS → Polling.Active；环境触发模式在规定Lane检测到EI Exit也可返回Polling.Active。"
+            ],
+            [
+              "超时／其他出口",
+              "返回前若规定需降速，发送8个EIOS并电气空闲>1 ms且≤2 ms，切回2.5 GT/s。Enter Compliance=0时也可被指令退出到Detect；不存在通用“等待24 ms便测试成功”规则。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          4
+        ],
+        "id": "polling-compliance"
+      },
+      {
+        "title": "Polling.Configuration",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "必要时修正RX极性；发送Link/Lane=PAD的TS2。"
+            ],
+            [
+              "转移条件与目标",
+              "任一检出终端的Lane收到连续8个PAD TS2，且收首个TS2后已发送16个TS2 → Configuration.Linkwidth.Start。"
+            ],
+            [
+              "超时／其他出口",
+              "48 ms未完成 → Detect。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          8
+        ],
+        "id": "polling-configuration"
+      },
+      {
+        "title": "Polling.Speed",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "Base 6.0保留名称，但规则明确为不可达。"
+            ],
+            [
+              "转移条件与目标",
+              "无正常转移：初次L0只在2.5 GT/s建立，之后通过Recovery升速。"
+            ],
+            [
+              "超时／其他出口",
+              "不能把旧Base 1.0a中描述的Polling.Speed流程照搬到Gen2及以后的训练。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          9
+        ],
+        "id": "polling-speed"
+      },
+      {
+        "title": "Configuration.Linkwidth.Start",
+        "paragraphs": [
+          "条款拆DSP与USP；DSP正常Link号回显条件见后续页465。这里不把多个可分叉的Lane组理解成单个LTSSM必然同时配置多条链路。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "DSP发选定non-PAD Link号、Lane=PAD的TS1；USP初始发Link/Lane=PAD。"
+            ],
+            [
+              "转移条件与目标",
+              "DSP：先前收到过PAD Link/Lane TS1（无Crosslink时视为已满足），同一Lane再收到连续2个与发出Link号匹配的non-PAD Link、PAD Lane TS1 → Linkwidth.Accept。USP任一Lane收到连续2个non-PAD Link/PAD Lane TS1，选一个Link号并在对应Lane回传 → Linkwidth.Accept。"
+            ],
+            [
+              "超时／其他出口",
+              "24 ms未完成 → Detect。受指令或TS1控制位影响可进Disabled/Loopback；Crosslink还存在角色交换和随机Tcrosslink分支。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          10
+        ],
+        "id": "configuration-linkwidth-start"
+      },
+      {
+        "title": "Configuration.Linkwidth.Accept",
+        "paragraphs": [
+          "FLIT与Modified TS支持在此按此前Polling收到的8个TS2和自身广告独立协商，两者不是同一个能力。USP细则在469～470页；分配Lane号须满足连续分组、合法宽度及Lane reversal规则。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "从TS1响应中选择可组成合法链路的Lane组，开始赋予连续Lane编号。"
+            ],
+            [
+              "转移条件与目标",
+              "DSP：组内收到连续2个匹配non-PAD Link号TS1，分配0…n−1后 → Lanenum.Wait。USP：收到匹配Link号及non-PAD Lane号的连续2个TS1，按可支持的Lane方向回传编号后 → Lanenum.Wait。"
+            ],
+            [
+              "超时／其他出口",
+              "2 ms、无法形成合法Link，或全部Lane收到连续2个Link/Lane=PAD TS1 → Detect。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          15
+        ],
+        "id": "configuration-linkwidth-accept"
+      },
+      {
+        "title": "Configuration.Lanenum.Wait",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "保持当前Link/Lane编号的TS1；等待对端确认或重新分配。"
+            ],
+            [
+              "转移条件与目标",
+              "DSP：任一Lane收到连续2个改变Lane号且Link不全PAD的TS1，或全部Lane收到连续2个与本端编号匹配的TS1 → Lanenum.Accept。USP：收到改变Lane号的连续2个TS1且Link不全PAD，或任一Lane连续2个TS2 → Lanenum.Accept。"
+            ],
+            [
+              "超时／其他出口",
+              "2 ms或所有Lane连续2个Link/Lane=PAD TS1 → Detect。USP为减少误缩宽可延迟最多1 ms再接受。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          17
+        ],
+        "id": "configuration-lanenum-wait"
+      },
+      {
+        "title": "Configuration.Lanenum.Accept",
+        "paragraphs": [
+          "DSP正文472页、USP正文473页。Modified TS下Alternate Protocol Negotiation还可要求DSP等待应答或最多10 μs；Retimer另有允许延迟。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "检查Link号和Lane号是否真正一致；必要时用可形成合法链路的子集重新编号。"
+            ],
+            [
+              "转移条件与目标",
+              "DSP全部编号匹配或可选反向匹配的连续2个TS1 → Complete；USP对应条件需收到连续2个TS2 → Complete。部分Lane可形成Link但编号仍需调整 → Lanenum.Wait。"
+            ],
+            [
+              "超时／其他出口",
+              "不能配置或全Lane回到连续2个PAD TS1 → Detect。不要给本节臆造通用2 ms计时器；2 ms明列在Lanenum.Wait等状态。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          18
+        ],
+        "id": "configuration-lanenum-accept"
+      },
+      {
+        "title": "Configuration.Complete",
+        "paragraphs": [
+          "DSP/USP的TS字段和Retimer Presence一致性要求见475～478页。L0p双方能力与PHY宽度支持需分别看；不要看到FLIT支持便认定L0p已启用。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "按最终编号发送TS2或已协商的Modified TS2；记录速率、N_FTS等。NFM协商Upconfigure；FM在LinkUp=0时协商L0p。"
+            ],
+            [
+              "转移条件与目标",
+              "全部发送TS2的Lane收到连续8个匹配non-PAD Link/Lane且速率标识一致的TS2，并在收首个TS2后发送连续16个TS2 → Configuration.Idle。"
+            ],
+            [
+              "超时／其他出口",
+              "2 ms到期：2.5/5 GT/s → Detect；≥8 GT/s且idle_to_rlock_transitioned<FFh → Configuration.Idle（超时进入不能直接按正常条件进L0）；其他 → Detect。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          21
+        ],
+        "id": "configuration-complete"
+      },
+      {
+        "title": "Configuration.Idle",
+        "paragraphs": [
+          "480～481页列出计数及Flit Mode差异；LinkUp=1并不等于VC0流控已初始化或DL_Active。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "启动规定Data Stream并发送Idle数据或IDLE Flit；LinkUp=1。128b/130b与1b/1b按规定发送SDS/Control SKP次序。"
+            ],
+            [
+              "转移条件与目标",
+              "NFM：所有Lane收连续8个Idle Symbol Time，且收首个Idle后已发16个Idle Symbol → L0。FM：收连续2个IDLE Flit，首个后发≥4个（8b/10b或128b/130b）或≥8个（1b/1b）IDLE Flit → L0；不得是Complete超时进入。"
+            ],
+            [
+              "超时／其他出口",
+              "最少2 ms未满足：重试计数<FFh → Recovery.RcvrLock，按速率更新计数；达到FFh → Detect。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          23
+        ],
+        "id": "configuration-idle"
+      },
+      {
+        "title": "Recovery.RcvrLock",
+        "paragraphs": [
+          "超时分支按487～488页逐项判别，并不是一律Detect。均衡入口条件与初始TX设置分布在482～486页，不可只看一个EQ done位。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "保留配置的Link/Lane号，用TS1重新建立位锁定、Symbol/Block对齐；视均衡入口变量进入EQ。"
+            ],
+            [
+              "转移条件与目标",
+              "所有配置Lane收到连续8个编号匹配、speed_change等于directed_speed_change的TS1/TS2，≥8 GT/s时TS1的EC=00 → RcvrCfg；Extended Synch还要求最少1024个连续TS1。需执行均衡时按DSP/USP入口进入Equalization。"
+            ],
+            [
+              "超时／其他出口",
+              "24 ms：部分Lane已完成共同速率协商可进RcvrCfg；未改速且当前>2.5 GT/s可进Speed降速（1b/1b回32 GT/s）；已改速则回原速；满足重新编号条件可进Configuration；否则Detect。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          25
+        ],
+        "id": "recovery-rcvrlock"
+      },
+      {
+        "title": "Recovery.Equalization",
+        "paragraphs": [
+          "这不是所有角色都统一经过0→1→2→3的单一计数器。TS0/TS1和定时器详见均衡专题。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "DSP从Phase 1起；USP从Phase 0起。Phase 2优化DSP TX→USP RX，Phase 3优化USP TX→DSP RX。"
+            ],
+            [
+              "转移条件与目标",
+              "按EC和各Lane的参数接受/拒绝、评估结果推进阶段；结束后回RcvrLock。完整角色/阶段表见功能9。"
+            ],
+            [
+              "超时／其他出口",
+              "各阶段计时不同，64 GT/s与8～32 GT/s也不同。超时可能进Recovery.Speed，Loopback测试时可能回Loopback.Entry。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          27
+        ],
+        "id": "recovery-equalization"
+      },
+      {
+        "title": "Recovery.Speed",
+        "paragraphs": [
+          "同一版6.0的RcvrLock/RcvrCfg已明列1b/1b失败回32 GT/s，而503页末通用回退句仍写2.5 GT/s；网页保留上下文并提示该表述差异，后续需核对6.x勘误。7.0正文已明确latest encoding=1b/1b时回32 GT/s。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "先发EIOSQ进入EI，等RX也进入EI才可切频；成功协商后额外保持≥800 ns，失败后≥6 μs，额外最长1 ms。"
+            ],
+            [
+              "转移条件与目标",
+              "切至协商的共同速率后 → RcvrLock；第二次失败回Recovery入口原速；其他回退路径须结合此前编码与RcvrLock规则。"
+            ],
+            [
+              "超时／其他出口",
+              "Base 6.0正文此处48 ms → Detect。Base 7.0按进入速率/增强FLIT训练编码分为48或96 ms，不能全代照抄48 ms。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          28
+        ],
+        "id": "recovery-speed"
+      },
+      {
+        "title": "Recovery.RcvrCfg",
+        "paragraphs": [
+          "精确speed_change、EQ TS2字段与优先条件跨503～510页；FM缩宽分支要求收到TS、等待1 ms、发送至少16个TS2及speed_change=0，不等同于L0p动态缩宽。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "发送带最终编号和速率控制的TS2，传播N_FTS、均衡请求及必要控制位。"
+            ],
+            [
+              "转移条件与目标",
+              "正常：所有Lane连续8个匹配TS2，speed_change=0（或2.5 GT/s且无共同更高速率），收首个TS2后发16个不被EIEOS打断的TS2 → Idle。共同升速条件满足 → Speed。编号不匹配且满足对应NFM/FM条件 → Configuration。"
+            ],
+            [
+              "超时／其他出口",
+              "改速后收不到TS2却检测/推断EI → Speed回退；48 ms时2.5/5 GT/s → Detect，≥8 GT/s且重试计数未到FFh → Idle，否则Detect。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          30
+        ],
+        "id": "recovery-rcvrcfg"
+      },
+      {
+        "title": "Recovery.Idle",
+        "paragraphs": [
+          "控制转移按端口角色及FM/NFM分别规定，详见510～512页；不能以“收到了Idle”略过全部Lane条件与重试限制。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "有Hot Reset/Disable/Loopback/重配置指令时按对应规则优先执行；否则发Idle或IDLE Flit。"
+            ],
+            [
+              "转移条件与目标",
+              "NFM：收连续8个Idle时间且首个后发16个Idle → L0；FM：收2个连续IDLE Flit且首个后发送4个或8个（依编码）→ L0。由RcvrCfg超时进入时不能走正常成功出口。"
+            ],
+            [
+              "超时／其他出口",
+              "2 ms未完成且计数<FFh → RcvrLock并更新计数；否则Detect。NFM的连续2个TS1控制位可进入Disabled/Hot Reset/Loopback，Lane=PAD可进入Configuration。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          34
+        ],
+        "id": "recovery-idle"
+      },
+      {
+        "title": "L0",
+        "paragraphs": [
+          "514～515页列完整出站条件。Retrain Link、Target Link Speed与对端广告速率的组合约束决定是否应发speed_change。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "正常传输，LinkUp=1；FM的L0p在L0内部调节活动宽度。"
+            ],
+            [
+              "转移条件与目标",
+              "收到任一配置Lane TS1/TS2，或128b/130b、1b/1b的EIEOS，或被指令训练/切速/改宽 → Recovery。双方协商低功耗且收发EIOS条件满足 → L1或L2；合适条件可分别进入TX/RX L0s。"
+            ],
+            [
+              "超时／其他出口",
+              "没有“L0停够一段时间必然低功耗”的规则；软件ASPM/PCI-PM及双方握手决定。收到EI但缺EIOS的处理也不能机械等同L1。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          36
+        ],
+        "id": "l0"
+      },
+      {
+        "title": "Rx_L0s.Entry",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "Base 6.0；仅允许L0s的NFM链路"
+            ],
+            [
+              "进入后做什么",
+              "L0收到EIOS后进入接收侧低功耗过渡。"
+            ],
+            [
+              "转移条件与目标",
+              "TTX-IDLE-MIN到期 → Rx_L0s.Idle。"
+            ],
+            [
+              "超时／其他出口",
+              "此处不是等任意固定1 ms；参数来自电气规范表。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          39
+        ],
+        "id": "rx-l0s-entry"
+      },
+      {
+        "title": "Rx_L0s.Idle",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "Base 6.0；仅允许L0s的NFM链路"
+            ],
+            [
+              "进入后做什么",
+              "RX保持低功耗并监听EI Exit。"
+            ],
+            [
+              "转移条件与目标",
+              "任一配置Lane检测EI Exit → Rx_L0s.FTS。"
+            ],
+            [
+              "超时／其他出口",
+              "≥8 GT/s且终端阻抗不满足2.5 GT/s要求时100 ms → FTS；满足阻抗的端口也允许实现该超时。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          40
+        ],
+        "id": "rx-l0s-idle"
+      },
+      {
+        "title": "Rx_L0s.FTS",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "Base 6.0；仅允许L0s的NFM链路"
+            ],
+            [
+              "进入后做什么",
+              "重获锁定、对齐并完成Lane间deskew。"
+            ],
+            [
+              "转移条件与目标",
+              "所有Lane收SKP（8b/10b）或SDS（128b/130b）→ L0，随即能接有效数据。"
+            ],
+            [
+              "超时／其他出口",
+              "N_FTS窗口过期 → Recovery，并要求TX也转Recovery。8b/10b下窗口40×(N_FTS+3)×UI至其2倍；128b/130b另有含EIEOS/SKP项公式。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          41
+        ],
+        "id": "rx-l0s-fts"
+      },
+      {
+        "title": "Tx_L0s.Entry",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "Base 6.0；仅允许L0s的NFM链路"
+            ],
+            [
+              "进入后做什么",
+              "发送EIOSQ进入Electrical Idle，共模按TTX-IDLE-SET-TO-IDLE约束收敛。"
+            ],
+            [
+              "转移条件与目标",
+              "TTX-IDLE-MIN到期 → Tx_L0s.Idle。"
+            ],
+            [
+              "超时／其他出口",
+              "TX和RX可处于不同状态；这不是双向同时关断。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          42
+        ],
+        "id": "tx-l0s-entry"
+      },
+      {
+        "title": "Tx_L0s.Idle",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "Base 6.0；仅允许L0s的NFM链路"
+            ],
+            [
+              "进入后做什么",
+              "TX保持低功耗。"
+            ],
+            [
+              "转移条件与目标",
+              "收到退出指令 → Tx_L0s.FTS。"
+            ],
+            [
+              "超时／其他出口",
+              "不因本端RX已回L0就自动判定本端TX也完成训练。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          43
+        ],
+        "id": "tx-l0s-idle"
+      },
+      {
+        "title": "Tx_L0s.FTS",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "Base 6.0；仅允许L0s的NFM链路"
+            ],
+            [
+              "进入后做什么",
+              "发送已约定数量N_FTS的FTS；Extended Synch时发送4096个，按速率加入规定EI退出序列。"
+            ],
+            [
+              "转移条件与目标",
+              "8b/10b最后发送SKP；128b/130b最后发送EIEOSQ及SDS；完成规定序列 → L0。"
+            ],
+            [
+              "超时／其他出口",
+              "不要把TX的发送N_FTS数与RX的N_FTS超时公式混成同一量。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          44
+        ],
+        "id": "tx-l0s-fts"
+      },
+      {
+        "title": "L0s适用限制与N_FTS公式",
+        "paragraphs": [
+          "Base 6.0 §4.2.6.6 p445：Flit Mode、含Retimer的链路、SRIS（独立SSC参考时钟）均不支持L0s且不得广告支持。不能用“Gen6设备”直接推导L0s有或没有，要看实际模式和路径。",
+          "Base 6.0 p516：128b/130b下8/16 GT/s的RX窗口下限=130×[N_FTS+5+12+floor(N_FTS/32)]×UI，32 GT/s及以上下限=130×[N_FTS+10+12+2×floor(N_FTS/32)]×UI，上限均为2倍；Extended Synch按N_FTS=4096。这些是该编码下的窗口，不可用于1b/1b FLIT。"
+        ],
+        "referenceIndices": [
+          45,
+          41
+        ],
+        "id": "block-26"
+      },
+      {
+        "title": "L1.Entry",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "配置Lane的TX已在EI；等待共模及最小电气空闲要求。"
+            ],
+            [
+              "转移条件与目标",
+              "TTX-IDLE-MIN到期 → L1.Idle。"
+            ],
+            [
+              "超时／其他出口",
+              "L0到这里先要上层L1协商和EIOS收发条件，不是单靠PowerDown=某编码。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          46
+        ],
+        "id": "l1-entry"
+      },
+      {
+        "title": "L1.Idle",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "TX维持EI；可按L1 PM Substates条件深入L1.1/L1.2，但进出L1.Idle须处于L1.0。"
+            ],
+            [
+              "转移条件与目标",
+              "任一配置Lane检测EI Exit或被指令唤醒 → Recovery；非2.5 GT/s须在此至少40 ns。"
+            ],
+            [
+              "超时／其他出口",
+              "≥8 GT/s且RX终端不满足2.5 GT/s规范，100 ms → Recovery；满足阻抗时允许但不鼓励该超时。它不被L1 PM Substates暂停。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          47
+        ],
+        "id": "l1-idle"
+      },
+      {
+        "title": "L2.Idle",
+        "paragraphs": [
+          "续页521区分USP与DSP。L2唤醒后是重新Detect，不是直接恢复旧链路为L0。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "TX电气空闲，RX满足终端要求；主电源可被移除的准备/低功耗状态。"
+            ],
+            [
+              "转移条件与目标",
+              "DSP至少Lane0收Beacon或上层指令且主电源恢复 → Detect。USP在预定Lane集合检测EI Exit → Detect；被要求发Beacon → L2.TransmitWake。"
+            ],
+            [
+              "超时／其他出口",
+              "USP预定集合必须包含所有可能形成Lane0的Lane，多Lane链路至少2条；Switch还需向上游传播唤醒。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          48
+        ],
+        "id": "l2-idle"
+      },
+      {
+        "title": "L2.TransmitWake",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "USP在至少Lane0朝Root Complex发Beacon。"
+            ],
+            [
+              "转移条件与目标",
+              "朝RC方向的USP RX检测到EI Exit → Detect。"
+            ],
+            [
+              "超时／其他出口",
+              "仅适用于USP；不能要求DSP在本子状态发Beacon。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          49
+        ],
+        "id": "l2-transmitwake"
+      },
+      {
+        "title": "Disabled",
+        "paragraphs": [
+          "522页继续端口和终端阻抗规则。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "建议一进入便清LinkUp；各Lane发16～32个Disable Link=1的TS1，再发EIOSQ进入EI。"
+            ],
+            [
+              "转移条件与目标",
+              "DSP在上层指令（例如软件清Link Disable）后 → Detect；USP已发EIOS且任一Lane收EIOS后，检测EI Exit → Detect。"
+            ],
+            [
+              "超时／其他出口",
+              "USP如果2 ms仍没收到EIOS → Detect；该2 ms不应套用DSP作为自动重启计时器。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          50
+        ],
+        "id": "disabled"
+      },
+      {
+        "title": "Loopback.Entry",
+        "paragraphs": [
+          "标明此状态仍属摘要覆盖，不把本节当作回环验证环境的完整状态激励模型。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "LinkUp=0，分Lead与Follower准备编码数据回环；忽略收到TS中的Link/Lane号；可能先协商测试速率/执行均衡。"
+            ],
+            [
+              "转移条件与目标",
+              "满足Lead/Follower的TS握手和输入边界条件 → Loopback.Active；需EQ则 → Recovery.Equalization，测试后再回Entry。"
+            ],
+            [
+              "超时／其他出口",
+              "此处只给职责与出口；522～527页包含64 GT/s单Lane EQ、非测试Lane噪声及各种编码边界，尚未把所有分支逐条展开。不能按统一固定延时跳Active。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          51
+        ],
+        "id": "loopback-entry"
+      },
+      {
+        "title": "Loopback.Active",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "Lead发送合法编码流；Follower按收到的编码信息回送，允许已确定的极性反转和时钟容差SKP调整，不可因为数据无效就擅自修正。"
+            ],
+            [
+              "转移条件与目标",
+              "Follower收到任一Lane连续4个EIOS或被指令 → Exit；2.5 GT/s还允许按EIOS/EI检测/推断的可选出口。Lead被指令 → Exit。"
+            ],
+            [
+              "超时／其他出口",
+              "单Lane EQ测试仅以测试Lane的活动决定状态；其他Lane可用于噪声，不能把任一噪声Lane当有效测试接收。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          52
+        ],
+        "id": "loopback-active"
+      },
+      {
+        "title": "Loopback.Exit",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "Lead按能力发1个或8个EIOS并EI保持2 ms；Follower先回完EI检测前收到的信息再EI保持2 ms。"
+            ],
+            [
+              "转移条件与目标",
+              "规定退出动作完成 → Detect（Lead与Follower均如此）。"
+            ],
+            [
+              "超时／其他出口",
+              "不直接返回L0；EI前的数据回送可用于Lead确定测试结束界线。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          53
+        ],
+        "id": "loopback-exit"
+      },
+      {
+        "title": "Hot Reset",
+        "paragraphs": [
+          "接收方细则见530页。Hot Reset是带内训练序列行为，与FLR、PERST#、PHY Reset#不是同一种复位。"
+        ],
+        "table": {
+          "columns": [
+            "查询项",
+            "规则"
+          ],
+          "rows": [
+            [
+              "适用范围",
+              "普通端口；Base 6.0"
+            ],
+            [
+              "进入后做什么",
+              "配置Lane发送Hot Reset=1、原Link/Lane号的TS1；接收方清LinkUp；Switch由上游传播给已配置下游端口。"
+            ],
+            [
+              "转移条件与目标",
+              "发起方收到任一Lane连续2个匹配Hot Reset TS1，且上层不再要求维持 → Detect；上层仍维持则继续。"
+            ],
+            [
+              "超时／其他出口",
+              "发起方2 ms未收到响应 → Detect。接收方每次收到连续2个有效Hot Reset TS1便重置2 ms计时，未再收到达到2 ms → Detect。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          54
+        ],
+        "id": "hot-reset"
+      },
+      {
+        "title": "L0p：在L0里调节活动Lane，不是Recovery改宽的别名",
+        "paragraphs": [
+          "Base 6.0 §4.2.6.7 p445～447：仅Flit Mode；Port支持可选、支持FM的Retimer伪端口必须支持。双方协商后，活动宽度可在合法范围内增减，但至少保留一个Lane且双向宽度对称。",
+          "对有效Flit中L0p请求，应在1 μs内回复Ack/Nak；请求发出2 μs未答复，要重发或放弃。收到Ack后缩宽，在下一计划SKP时被关闭Lane发送EIOSQ并入EI，其余Lane继续Flit。",
+          "扩宽时原活动Lane继续数据；待激活Lane走TS1→TS2→SDS/与全部Lane对齐的SKP，24 ms仍不能加入便进Recovery。Configuration曾排除的Lane不能用L0p擅自重新激活。",
+          "Hardware Autonomous Width Disable=1时不得请求缩宽，若未满配置宽度则须请求扩宽。并发请求按Priority、宽度和DSP角色仲裁；本节未替代完整优先级表。"
+        ],
+        "referenceIndices": [
+          56,
+          57,
+          58
+        ],
+        "id": "block-36"
+      },
+      {
+        "title": "Gen1～Gen7：本轮已对照正文的差异",
+        "paragraphs": [
+          "以下是已核读的具体差异，不能理解为七个版本的所有LTSSM边条件均已逐字比较。代际是速率能力；设备实际使用的模式、功能能力和协商结果需要另查。"
+        ],
+        "table": {
+          "columns": [
+            "版本／主题",
+            "已确认内容",
+            "正文依据"
+          ],
+          "rows": [
+            [
+              "Base 1.0a／Polling.Speed",
+              "1.0a仍写有Polling.Configuration到Polling.Speed及改速后返回Polling.Active的规则；它描述的更高速率预留不能当成Gen1已经支持5 GT/s。",
+              "§4.2.6.2.3～4，p174"
+            ],
+            [
+              "Base 2.0／Polling.Speed",
+              "正式版明确不可达：先2.5 GT/s到L0，再通过Recovery切速。",
+              "§4.2.6.2.4，p201"
+            ],
+            [
+              "Base 3.0／8 GT/s EQ",
+              "8 GT/s首次切速必须执行该版均衡流程，保留协商TX参数；RX允许不破坏可靠性的微调。",
+              "§4.2.3，p218～219"
+            ],
+            [
+              "Base 4.0／16 GT/s",
+              "均衡覆盖8 GT/s及更高速率，按每个需要的速率执行；16 GT/s支持者必须支持Scaled FC，支持与本次激活不同。",
+              "§4.2.3 p253～256；§3.4.2 p197～198"
+            ],
+            [
+              "Base 5.0／32 GT/s",
+              "增加到32 GT/s的均衡；不能广告高于正在执行均衡的目标速率；初次需要EQ的各速率分阶段推进。",
+              "§4.2.3，p274～276"
+            ],
+            [
+              "Base 6.0／64 GT/s与FM",
+              "TS0/TS1按角色阶段切换；FM用IDLE Flit完成配置；L0p取代FM的动态Upconfigure用法；L0s不用于FM。",
+              "§4.2.7.4.2 p489；§4.2.7.3.6 p481；§4.2.6.6～7 p445"
+            ],
+            [
+              "Base 7.0／128 GT/s",
+              "TS0/TS1表将PAM4流程扩展为64 GT/s及以上；加入128 GT/s EQ状态和1b/1b EQ TS2处理。",
+              "§4.2.7.4.2，表4-64 p575、p576"
+            ],
+            [
+              "Base 7.0／Recovery.Speed计时",
+              "<64 GT/s按48 ms；64 GT/s且TS_Enhanced_Flit_Encode=0时允许96或48 ms且强烈建议96 ms；≥64 GT/s且变量=1按96 ms。不能简单写“所有Gen7状态计时翻倍”。",
+              "§4.2.7.4.3，p590～591"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66
+        ],
+        "id": "block-37"
+      }
+    ]
   },
   {
     "name": "速率切换与Retrain",
@@ -283,7 +2209,7 @@
     "group": "链路与物理层",
     "intro": "高速链路训练调整发射与接收均衡参数。",
     "usage": "高速眼图/误码/降速问题，需要PHY和对端参与。",
-    "mechanism": "训练中发射端和接收端按规则交换均衡需求，选择Preset或调整系数，以补偿通道损耗、反射等影响。",
+    "mechanism": "均衡不是只在接收端开DFE。接收方评估信道后，通过训练序列要求远端TX改Preset或系数；远端反馈接受或拒绝，双方按EC和各Lane结果推进阶段。DSP与USP的请求方向在Phase 2和3互换，PHY内部调参再由PIPE边界或产品机制落实。",
     "example": "低速稳定、高速频繁Recovery或降速时，均衡、参考时钟和通道质量是重点排查对象。",
     "checks": "记录均衡阶段、对端和retimer状态；随意强制Preset可能掩盖根因，需按PHY指导验证。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
@@ -295,7 +2221,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "4.2.4",
@@ -318,9 +2244,386 @@
         "pdfPage": 489,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.2.1.1",
+        "title": "DSP Phase1",
+        "page": 490,
+        "pdfPage": 490,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.2.1.2",
+        "title": "DSP Phase2",
+        "page": 492,
+        "pdfPage": 492,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.2.1.3",
+        "title": "DSP Phase3",
+        "page": 493,
+        "pdfPage": 493,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.2.1.3",
+        "title": "DSP Phase3计时",
+        "page": 495,
+        "pdfPage": 495,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.2.2.1",
+        "title": "USP Phase0",
+        "page": 496,
+        "pdfPage": 496,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.2.2.2",
+        "title": "USP Phase1",
+        "page": 498,
+        "pdfPage": 498,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.2.2.3",
+        "title": "USP Phase2",
+        "page": 499,
+        "pdfPage": 499,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.2.2.3",
+        "title": "USP Phase2评估",
+        "page": 500,
+        "pdfPage": 500,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.2.2.4",
+        "title": "USP Phase3",
+        "page": 501,
+        "pdfPage": 501,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.2",
+        "title": "表4-64",
+        "page": 575,
+        "pdfPage": 575,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.2.1.1",
+        "title": "失败出口也置Complete",
+        "page": 492,
+        "pdfPage": 492,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.4",
+        "title": "7.0均衡绕过条件",
+        "page": 465,
+        "pdfPage": 465,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.4",
+        "title": "7.0最高NRZ与NoEQ",
+        "page": 466,
+        "pdfPage": 466,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.3",
+        "title": "3.0软件发起EQ",
+        "page": 219,
+        "pdfPage": 219,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
+    "details": [
+      {
+        "title": "均衡阶段职责：到底在调整谁的TX",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "角色／阶段",
+            "本端发送与工作",
+            "推进条件",
+            "Base6.0超时"
+          ],
+          "rows": [
+            [
+              "USP Phase 0",
+              "EC=00，使用此前EQ TS2指定的TX起始设置，接收远端初始设置",
+              "所有配置Lane连续2个TS1 EC=01；TS0还需Retimer EQ Extend=0 → Phase1",
+              "12 ms；正常链路失败到Recovery.Speed"
+            ],
+            [
+              "DSP Phase 1",
+              "EC=01；64 GT/s TS0起初EC=00，待2个Retimer Extend=0的TS0后置01",
+              "所有Lane连续2个EC=01：可进Phase2；若允许不执行Phase2/3则回RcvrLock",
+              "24 ms；正常失败到Speed"
+            ],
+            [
+              "USP Phase 1",
+              "维持Phase0确定的TX设置，发EC=01",
+              "所有Lane连续2个EC=10 → Phase2；普通模式所有Lane连续8个EC=00可回RcvrLock",
+              "12 ms；失败到Speed"
+            ],
+            [
+              "DSP Phase 2",
+              "响应USP对DSP TX的Preset/系数请求，发EC=10及结果",
+              "所有配置Lane连续2个EC=11 → Phase3",
+              "8～32 GT/s：32 ms（+4 ms）；64 GT/s：64 ms（+4 ms）"
+            ],
+            [
+              "USP Phase 2",
+              "评估USP RX收到的DSP TX，发EC=10提出请求",
+              "全部Lane达到选择的设置，8 GT/s可前进；其他速率还需Retimer Extend清除条件 → Phase3",
+              "8～32 GT/s：24 ms（+2 ms）；64 GT/s：48 ms（+2 ms）"
+            ],
+            [
+              "DSP Phase 3",
+              "评估DSP RX收到的USP TX，发EC=11提出请求",
+              "全部Lane完成设置并满足Retimer条件 → RcvrLock",
+              "8～32 GT/s：24 ms（+2 ms）；64 GT/s：48 ms（+2 ms）"
+            ],
+            [
+              "USP Phase 3",
+              "响应DSP对USP TX的请求，发EC=11及结果",
+              "所有配置Lane连续2个TS1 EC=00 → RcvrLock",
+              "8～32 GT/s：32 ms（+4 ms）；64 GT/s：64 ms（+4 ms）"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "id": "block-1"
+      },
+      {
+        "title": "Preset／Coefficient请求与应答表",
+        "paragraphs": [
+          "以Base 6.0 USP Phase2请求DSP TX为例，DSP Phase3反向优化相对应。每Lane独立评估，但新请求设置须在所有配置Lane上同时呈现；不需变更的Lane可继续请求当前值。"
+        ],
+        "table": {
+          "columns": [
+            "字段／动作",
+            "规则",
+            "判定意义"
+          ],
+          "rows": [
+            [
+              "Use Preset=1",
+              "请求Preset编号",
+              "不是直接读取当前模拟滤波tap的完整值"
+            ],
+            [
+              "Use Preset=0",
+              "请求Pre-cursor/Cursor/Post-cursor系数",
+              "合法范围由该速率电气和系数规则限定"
+            ],
+            [
+              "请求保持",
+              "至少1 μs，或直到本次评估结束，取更晚者",
+              "避免每个TS都换参数而对端来不及应用"
+            ],
+            [
+              "对端接受",
+              "收到连续2个合格请求后，在第二个请求尾位抵达RX引脚起500 ns内使设置在TX引脚生效",
+              "PHY内部延迟与PIPE接口命令延迟都要预算，不可只等本地一个周期"
+            ],
+            [
+              "对端拒绝",
+              "非法/不支持时不更改实际TX；反映请求值并置Reject Coefficient Values",
+              "收到字段回显不等于接受"
+            ],
+            [
+              "本端判定接受",
+              "连续2个TS1回显Preset/系数等于请求且Reject=0，结合RX评估可选为候选",
+              "不能用收到的Use Preset位判定接受/拒绝"
+            ],
+            [
+              "开始评估",
+              "等待500 ns + 往返与逻辑延迟，再取得Block Alignment并评估",
+              "参数变化中可能暂时出现不合法比特流"
+            ],
+            [
+              "单次搜索时长",
+              "≤32 GT/s通常每请求<2 ms；允许最终优化最多2次超此限制，但不得超阶段时限。64 GT/s可按需分配每次评估时间，仍受阶段总时限约束",
+              "不是所有速率统一2 ms封顶"
+            ],
+            [
+              "最终保存",
+              "保留协商后的TX设置，后续该速率运行使用",
+              "RX可做不破坏可靠性的微调；本地适配算法不等同再次跑协议EQ"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          8,
+          9,
+          3,
+          0
+        ],
+        "id": "block-2"
+      },
+      {
+        "title": "Gen6与Gen7：TS0／TS1使用矩阵",
+        "paragraphs": [
+          "Base6.0表4-51 p489限定64 GT/s；Base7.0表4-64 p575写为64 GT/s及以上。TS0训练序列帮助在PAM4高速率下先建立所需接收条件，不能说整条64/128 GT/s链路永远只发送TS0。"
+        ],
+        "table": {
+          "columns": [
+            "当前速率／端口",
+            "Phase0/1",
+            "Phase2",
+            "Phase3"
+          ],
+          "rows": [
+            [
+              "8/16/32 GT/s，DSP与USP",
+              "TS1",
+              "TS1",
+              "TS1"
+            ],
+            [
+              "64 GT/s（6.0），≥64 GT/s（7.0）DSP",
+              "TS0",
+              "TS0后切TS1",
+              "TS1"
+            ],
+            [
+              "64 GT/s（6.0），≥64 GT/s（7.0）USP",
+              "TS0",
+              "TS0",
+              "TS0后切TS1"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          1,
+          11
+        ],
+        "id": "block-3"
+      },
+      {
+        "title": "状态位、绕过与软件发起：不要只看EQ Complete",
+        "paragraphs": [
+          "Complete表示该均衡过程已走到规定的结束处理，不单独保证成功。Base6.0的失败计时出口也设置Complete，同时successful_speed_negotiation=0；调试应结合Phase Successful、当前速率、回退路径及Link Equalization Request。"
+        ],
+        "table": {
+          "columns": [
+            "操作或能力",
+            "适用规则",
+            "应检查"
+          ],
+          "rows": [
+            [
+              "常规逐速率EQ",
+              "依目标版本对需要的速率执行；Gen3的8 GT/s规则不能直接套成Gen7全流程",
+              "进入路径、目标速率、各阶段成功位"
+            ],
+            [
+              "Equalization Bypass to Highest NRZ Rate",
+              "需链路各组件共同广告并协商；跳过8/16 GT/s EQ而从32 GT/s起，随后可做64/128 GT/s",
+              "Retimer同样在协商范围；失败回低速须按规则关闭跳过"
+            ],
+            [
+              "No Equalization Needed",
+              "有可靠保存设置或不需该过程时，共同支持且广告可跳过整个EQ流程",
+              "不能由“我存过一次参数”单方决定"
+            ],
+            [
+              "软件重做EQ",
+              "通用入口涉及DSP Perform Equalization、Target Link Speed及Retrain Link；先保证在途事务不会因重训出现副作用",
+              "该目标速率前置训练、宽度、当前模式、字段适用版本"
+            ],
+            [
+              "PHY落实参数",
+              "通过对应PIPE架构的TX控制/Message Bus和产品实现作用到PMA",
+              "协议500 ns引脚预算不等于PIPE的TxDeemph 128/256 ns参数要求"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "id": "block-4"
+      }
+    ]
   },
   {
     "name": "Common Clock / SRNS / SRIS",
@@ -2675,7 +4978,8 @@
               "按需要存在，可跨多个DWORD；本轮未核读全部向量语义"
             ]
           ]
-        }
+        },
+        "id": "block-1"
       },
       {
         "title": "Control位速查（Base 6.0表7-118）",
@@ -2750,14 +5054,16 @@
               "保留，不作为功能使能"
             ]
           ]
-        }
+        },
+        "id": "block-2"
       },
       {
         "title": "违规后的报错和尚未核实的演进信息",
         "paragraphs": [
           "按§6.12.5，承担Completer职责的ACS组件对Non-Posted违规请求返回CA Completion，并按ACS Violation记录与报告，而不是将本地错误记录成Completer Abort。Posted请求不应期待一个对应Completion。非致命违规且返回CA时还涉及Advisory Non-Fatal规则；状态寄存器的Target Abort处理见该节。",
           "本轮核读的是Base 6.0中的这些规则和字段。ACS最初引入的ECN、Enhanced机制首次合入哪个修订，以及Gen7是否修改了细则仍待建立版本证据链；不能因为在6.0读到就说ACS从Gen6才开始存在。"
-        ]
+        ],
+        "id": "block-3"
       }
     ]
   },
@@ -2847,7 +5153,8 @@
         "paragraphs": [
           "第一步：确认该端口实现ACS及Source Validation，并确认Control bit0=1。第二步：只对本端口收到的上行Request提取Requester ID的Bus Number。第三步：按桥总线窗口和适用的FPB机制判定下游归属。第四步：失败则转ACS Violation处理，成功仅表示该项检查通过，仍需其他适用的路由和权限检查。",
           "本轮修正了原说明“验证Requester ID来自允许范围”过于宽泛的问题：这里的架构检查核心是Bus Number归属，不是比对完整BDF白名单。Completion不参与这项检查。"
-        ]
+        ],
+        "id": "block-1"
       },
       {
         "title": "相关字段与故障处理",
@@ -2882,14 +5189,16 @@
         },
         "paragraphs": [
           "保持桥资源配置与枚举阶段一致。不能为了让错误消失就简单清除隔离控制；先核对发包身份、桥窗口与软件启用时机。FPB的完整编程细则和后续版本修订尚未在本轮核读。"
-        ]
+        ],
+        "id": "block-2"
       },
       {
         "title": "后续版本提示：2026年的Source Validation澄清ECN",
         "paragraphs": [
           "PCI-SIG公开目录列出2026-04-15的“Access Control Services (ACS) - Source Validation Clarification”，受影响文档标为PCIe Base 7.0。其公开说明指出，Link-Local Message的Bus窗口检查可能导致训练、热插拔及链路维护时误报，并描述对Routing Code为100b、110b、111b的这类消息增加豁免的修订意图。",
           "本轮只核对该ECN的官方公开元数据和说明，未读取会员区ECN正文，也未确认其是否及如何合入后续修订。上面逐条规则仍明确绑定Base 6.0；针对7.0/7.1设计时须核对实际采用的规范和ECN，不能直接套用本条6.0规则，也不能仅凭网页概述当成完整规范要求。"
-        ]
+        ],
+        "id": "block-3"
       }
     ]
   },
@@ -2998,7 +5307,8 @@
         },
         "paragraphs": [
           "原说明仅写“阻止Translated请求”，会漏掉规范使用“AT非默认值”的判定口径。本轮按§6.12.1.1和表7-118修正，不擅自将条件缩窄为某一个AT编码。AT各编码及与ATS流程的完整对应关系留待ATS专题核读。"
-        ]
+        ],
+        "id": "block-1"
       },
       {
         "title": "字段、运行配置与异常",
@@ -3028,7 +5338,8 @@
         },
         "paragraphs": [
           "应由理解拓扑、设备分配和翻译策略的软件管理这些控制。若某ATS路径在启用后发生ACS Violation，应核对AT、端口和策略是否一致，不能把清除bit1当作通用修复方法。违规NP请求按§6.12.5返回CA，同时以ACS Violation记录；Posted请求没有对应完成包。"
-        ]
+        ],
+        "id": "block-2"
       }
     ]
   },
@@ -4187,9 +6498,9 @@
   {
     "name": "Credit-Based Flow Control",
     "group": "性能、QoS与时间",
-    "intro": "接收端通告Header/Data信用，发送端据此限制发送。",
+    "intro": "PCIe链路用接收方广告的Credit约束TLP发送，防止接收缓冲区溢出。查询时先分P/NP/Cpl，再分Header/Data，再看VC、传输方向与Flit Mode。",
     "usage": "带宽/反压/死锁定位，不是软件队列里空槽数量的简单别名。",
-    "mechanism": "接收端公布可接受的Header/Data资源，发送端有足够对应credit才能发送；接收端释放资源后更新可用量。",
+    "mechanism": "A向B发送TLP时使用B广告的缓冲Credit；B向A发InitFC/UpdateFC返还或增加可用空间。它是逐跳、逐方向机制。六类基本信用、初始化状态机和发送门控互相配合；DLLP自身、重传副本以及应用事务是否完成不能混进同一套账。",
     "example": "本地AXI长期反压使接收缓存难以释放，上游最终会因credit不足停发，即使串行链路仍为Link Up。",
     "checks": "按P/NP/Cpl和VC看资源，不只看总缓存；滞留的一个完成路径可能间接影响其他流量。",
     "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
@@ -4201,7 +6512,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "2.6",
@@ -4213,16 +6524,481 @@
         "pdfPage": 235,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "title": "流控单位与适用层",
+        "page": 236,
+        "pdfPage": 236,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "title": "表2-44／2-45 Credit类别和TLP消耗",
+        "page": 237,
+        "pdfPage": 237,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "title": "FC初始化状态规则",
+        "page": 270,
+        "pdfPage": 270,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "title": "FC_INIT2退出条件",
+        "page": 273,
+        "pdfPage": 273,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "title": "InitFC序列与选项",
+        "page": 271,
+        "pdfPage": 271,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "title": "VC启停与初始广告",
+        "page": 238,
+        "pdfPage": 238,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1.1",
+        "title": "发送计数",
+        "page": 242,
+        "pdfPage": 242,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1.1",
+        "title": "共享与专用门控",
+        "page": 245,
+        "pdfPage": 245,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1.1",
+        "title": "专用门控与完成语义",
+        "page": 246,
+        "pdfPage": 246,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "title": "Completion无限与FM编码",
+        "page": 239,
+        "pdfPage": 239,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "title": "Credit上限及FCPE",
+        "page": 240,
+        "pdfPage": 240,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "title": "表3-2零/无限/Merged",
+        "page": 272,
+        "pdfPage": 272,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
+    "details": [
+      {
+        "title": "流控到底有哪些：先分清不同维度",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "维度",
+            "可选值／含义",
+            "为什么要分"
+          ],
+          "rows": [
+            [
+              "事务类别",
+              "Posted、Non-Posted、Completion",
+              "满足排序与前进要求；MemWr和MemRd不是用同一池"
+            ],
+            [
+              "资源类别",
+              "Header、Data",
+              "头部空间和Payload空间分别限制，存在PH但PD不足仍不能发MemWr"
+            ],
+            [
+              "隔离范围",
+              "NFM逐VC独立；FM含每VC Dedicated及Shared池",
+              "TC映射VC，但TC不等同独立Credit池"
+            ],
+            [
+              "方向与链路",
+              "每条Link、每个方向单独广告和记账",
+              "A→B的可用量不由A自身接收缓冲决定"
+            ],
+            [
+              "数值表示",
+              "未缩放、Scaled（×1/×4/×16）",
+              "扩大可表示窗口，不能凭Scale值推断芯片真实分配内存"
+            ],
+            [
+              "FM池组织",
+              "Dedicated、Shared、可选P/Cpl合并",
+              "Shared不是Scaled；合并只允许特定类别，不是六池全混用"
+            ],
+            [
+              "不同层面的背压",
+              "AXI READY、DMA队列满、Tag耗尽、PCIe FC不足",
+              "可能同时造成停顿，但不是同一个PCIe协议流控类型"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          1
+        ],
+        "id": "block-1"
+      },
+      {
+        "title": "六类Credit速查：PH／PD／NPH／NPD／CplH／CplD",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "Credit",
+            "管理对象",
+            "常见使用者"
+          ],
+          "rows": [
+            [
+              "PH",
+              "Posted Request头部",
+              "Memory Write、Message"
+            ],
+            [
+              "PD",
+              "Posted Payload；单位4 DW=16 B",
+              "MemWr数据、有数据Message"
+            ],
+            [
+              "NPH",
+              "Non-Posted头部",
+              "Memory Read、I/O与Configuration请求、AtomicOp、DMWr"
+            ],
+            [
+              "NPD",
+              "Non-Posted Payload；单位16 B",
+              "CfgWr/IOWr、AtomicOp、DMWr；MemRd本身无Payload不用它"
+            ],
+            [
+              "CplH",
+              "Completion头部",
+              "Cpl和CplD都占头部"
+            ],
+            [
+              "CplD",
+              "Completion Payload；单位16 B",
+              "读返回数据、AtomicOp返回值"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          2
+        ],
+        "id": "block-2"
+      },
+      {
+        "title": "TLP消耗对照表：按实际Payload向上取整",
+        "paragraphs": [
+          "n=ceil(本TLP的Payload字节数/16)，不是请求期望返回的总字节数。Header Credit是接收一种完整头部/相关开销的资源单位，不能简单称为16字节；NFM/FM头部定义不同。下表给基本消耗，FM Shared的分组记账还需叠加功能112的规则。"
+        ],
+        "table": {
+          "columns": [
+            "TLP类型",
+            "基本消耗",
+            "容易混淆的地方"
+          ],
+          "rows": [
+            [
+              "Memory / I/O / Configuration Read Request",
+              "1 NPH",
+              "MemRd Length描述期望读取量，不是本请求带的数据"
+            ],
+            [
+              "Memory Write",
+              "1 PH + n PD",
+              "没有通常的Completion不代表不占Credit"
+            ],
+            [
+              "I/O / Configuration Write",
+              "1 NPH + 1 NPD",
+              "此处写数据最多1个对齐DW，仍占1个Data Credit"
+            ],
+            [
+              "AtomicOp / DMWr Request",
+              "1 NPH + n NPD",
+              "不是所有写都属于Posted"
+            ],
+            [
+              "无数据Message",
+              "1 PH",
+              "MSI/MSI-X通常是MemWr，不应因名称有Message就当Message TLP"
+            ],
+            [
+              "有数据Message",
+              "1 PH + n PD",
+              "按该包实际Payload长度"
+            ],
+            [
+              "成功的Memory Read Completion with Data",
+              "1 CplH + n CplD",
+              "一次读可能拆成多个CplD，每包有独立CplH开销"
+            ],
+            [
+              "I/O / Configuration Read Completion with Data",
+              "1 CplH + 1 CplD",
+              "返回最多1 DW仍要1个Data Credit"
+            ],
+            [
+              "I/O / Configuration Write / DMWr Completion",
+              "1 CplH",
+              "无Payload不消耗CplD"
+            ],
+            [
+              "AtomicOp成功Completion",
+              "1 CplH + 1 CplD",
+              "返回值最多4 DW"
+            ],
+            [
+              "错误完成且不带数据的Completion",
+              "1 CplH",
+              "不应机械套用成功读完成的数据项"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          2
+        ],
+        "id": "block-3"
+      },
+      {
+        "title": "InitFC1 → InitFC2 → 正常运行：不是软件逐包加Credit",
+        "paragraphs": [
+          "VC0在DL_Init由硬件初始化；其他VC由软件在链路两端使能后各自走FC初始化。PHY已经L0但流控未完成时，还不能发该VC的TLP。"
+        ],
+        "table": {
+          "columns": [
+            "阶段",
+            "本端发送／接收",
+            "何时转移与注意"
+          ],
+          "rows": [
+            [
+              "FC_INIT1",
+              "阻止该VC TLP；NFM反复按P→NP→Cpl发3个InitFC1；FM再按P→NP→Cpl追加Shared共6个",
+              "收齐该VC所需类别，记录初值/Scale并置FI1 → FC_INIT2。可接收InitFC1或InitFC2取得这些值。"
+            ],
+            [
+              "FC_INIT2",
+              "继续阻止该VC TLP；发送对应3/6个InitFC2",
+              "收到该VC任意InitFC2，或该VC TLP/UpdateFC；FM还有Optimized_Update_FC条件，置FI2退出。此阶段不重新采纳InitFC中的数值。"
+            ],
+            [
+              "发送频度",
+              "InitFC一组至少每34 μs出现一次；Recovery/Configuration时间不计入",
+              "34 μs不是初始化总时限；尽量更频繁，不能无故挡住已完成初始化的其他VC或必要物理层序列。"
+            ],
+            [
+              "正常运行",
+              "接收端空间释放后推进累计Credit广告，按规则发UpdateFC；FM可用Optimized_Update_FC",
+              "UpdateFC不是“这次加N个”的裸增量；重复广告不能重复加账。"
+            ],
+            [
+              "禁用VC",
+              "软件在两端清VC Enable；该VC流控跟踪重置",
+              "FM禁用一个VC只重置其Dedicated跟踪，不把整个Shared跟踪清空。"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          3,
+          5,
+          4,
+          6
+        ],
+        "id": "block-4"
+      },
+      {
+        "title": "发送门控与回卷：Credit Limit不是瞬时空闲数",
+        "paragraphs": [
+          "以普通/专用池为例：CREDITS_CONSUMED统计自初始化以来已通过FC门控的累计消耗；CREDIT_LIMIT是对端最近一次合法广告的累计可用额度。它们都按字段位宽回卷，不是不断增长的无限整数。"
+        ],
+        "table": {
+          "columns": [
+            "量／检查",
+            "定义或做法",
+            "误用后果"
+          ],
+          "rows": [
+            [
+              "待发累计需求",
+              "REQUIRED=(CONSUMED+本包需求) mod 2^w",
+              "Header和Data分别算，所需类型都必须通过"
+            ],
+            [
+              "规范门控式",
+              "(LIMIT−REQUIRED) mod 2^w ≤ 2^(w−1)，使用无符号算术",
+              "不能在计数回卷处用普通有符号LIMIT>=REQUIRED比较"
+            ],
+            [
+              "更新",
+              "UpdateFC给累计LIMIT；同值重复接收不增加Credit",
+              "把值当增量会凭空制造缓冲空间"
+            ],
+            [
+              "简化例子",
+              "无回卷窗口，PH余1、PD余16，256 B MemWr需求1 PH+16 PD，可发；512 B需求32 PD，不能发",
+              "例子是NFM/基本记账；FM Shared按分组和限制另算"
+            ],
+            [
+              "重传",
+              "Data Link重传不会再次经过事务层FC门控",
+              "Replay Buffer属于可靠性机制，不是多消费一次Credit"
+            ],
+            [
+              "缓冲释放≠事务完成",
+              "Credit返回只说明接收缓冲管理允许继续接收",
+              "不表示写已到DRAM、不代替Completion或内存屏障"
+            ],
+            [
+              "不足时的调度",
+              "按Ordering和死锁避免规则允许某些类别绕过阻塞包",
+              "不是一个队首MemRd阻塞便允许锁死所有Completion及其他VC"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          7,
+          8,
+          9
+        ],
+        "id": "block-5"
+      },
+      {
+        "title": "初始Credit与无限Credit：0不能一概理解为没空间",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "情况",
+            "Base 6.0规则",
+            "查询提示"
+          ],
+          "rows": [
+            [
+              "普通PH/NPH最小广告",
+              "无缩放/×1至少1；×4至少4；×16至少16个实际单位（字段可为01h）",
+              "初始最小值与后续UpdateFC值意义不同"
+            ],
+            [
+              "PD最小广告",
+              "×1至少Rx_MPS_Limit/16；×4至少ceil(Rx_MPS_Limit/(16×4))+1；×16至少ceil(Rx_MPS_Limit/(16×16))+1",
+              "Rx_MPS_Limit是接收能力，不要直接拿当前MPS配置值替代"
+            ],
+            [
+              "1024 B接收Payload例",
+              "×1字段040h，×4字段011h，×16字段005h",
+              "比例缩放不只是除法，还需考虑最小广告规则"
+            ],
+            [
+              "Completion无限",
+              "Endpoint和不支持Root Port间P2P的RC按本表广告无限Completion；Switch及支持P2P的RC有不同要求",
+              "无限是一种发送方解释，不是物理SRAM无穷大；请求方仍需约束未完成读和接收空间"
+            ],
+            [
+              "NFM零值",
+              "InitFC某类Header/Data的零编码表示无限",
+              "后续回卷到0的UpdateFC不能据此改成无限"
+            ],
+            [
+              "FM零值",
+              "必须结合Scale和Shared/Dedicated：00b/0可表示无限，01b/0可表示零，Shared Cpl的10b/0可表示Merged",
+              "须按表3-2组合解释，不能只读HdrFC/DataFC"
+            ],
+            [
+              "协议错误",
+              "超量未用Credit广告、非法缩放变化等有FCPE检查规则",
+              "有些检查允许实现可选；发现后按对应错误处理，不是简单吞包"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          6,
+          10,
+          11,
+          12
+        ],
+        "id": "block-6"
+      }
+    ]
   },
   {
     "name": "Scaled Flow Control / Shared Credits",
     "group": "性能、QoS与时间",
     "intro": "扩大信用编码或在Flit模式采用共享信用机制。",
     "usage": "高带宽/大缓冲配置，具体规则依模式。",
-    "mechanism": "Scaled FC改变信用量表示能力，Flit共享信用等机制则按相应规则共享/管理资源。它们不直接等于增加物理RAM。",
+    "mechanism": "Scaled FC扩大计数器和广告数值的范围；Shared FC允许多个VC使用共享接收资源；Merged在FM中允许Shared Posted与Shared Completion共用池。它们是三个不同维度，应分别查询能力、激活结果与广告编码。",
     "example": "更高带宽延迟乘积需要更多在途资源，信用编码和缓冲规划要同时匹配，才能避免空转。",
     "checks": "核对协商、信用更新与实际缓冲容量；将编码值按旧公式换算可能得出错误剩余字节数。",
     "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
@@ -4234,7 +7010,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "2.6",
@@ -4246,9 +7022,298 @@
         "pdfPage": 235,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.2",
+        "title": "表3-3缩放因子与窗口",
+        "page": 277,
+        "pdfPage": 277,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "3.4.2",
+        "title": "Base4.0的Scaled FC",
+        "page": 197,
+        "pdfPage": 197,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "title": "共享与专用池",
+        "page": 236,
+        "pdfPage": 236,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1.1",
+        "title": "Merged限制",
+        "page": 242,
+        "pdfPage": 242,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1.1",
+        "title": "Shared Usage Limit",
+        "page": 245,
+        "pdfPage": 245,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "title": "表3-2组合编码",
+        "page": 271,
+        "pdfPage": 271,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "title": "Shared分组消费",
+        "page": 241,
+        "pdfPage": 241,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "title": "分组释放与Merged限制",
+        "page": 242,
+        "pdfPage": 242,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1.1",
+        "title": "门控与排序",
+        "page": 244,
+        "pdfPage": 244,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
+    "details": [
+      {
+        "title": "Scaled Flow Control：缩放编码与窗口上限",
+        "paragraphs": [
+          "下表是有限Credit情况下允许的最大尚未使用额度，不能当成字段最大值或SRAM大小。支持16 GT/s及以上的Port必须支持Scaled FC，但“支持”不等于本次链路激活。HdrScale和DataScale独立于彼此，按对应FC类型选用。"
+        ],
+        "table": {
+          "columns": [
+            "Scale字段",
+            "实际比例",
+            "Header计数宽度／最大未用Credit",
+            "Data计数宽度／最大未用Credit",
+            "DLLP数值与计数器"
+          ],
+          "rows": [
+            [
+              "00b（未激活）",
+              "×1",
+              "8 bit／127",
+              "12 bit／2047",
+              "传完整计数值；FM无限等特殊编码另看表3-2"
+            ],
+            [
+              "01b（已激活）",
+              "×1",
+              "8 bit／127",
+              "12 bit／2047",
+              "不移位"
+            ],
+            [
+              "10b",
+              "×4",
+              "10 bit／508",
+              "14 bit／8188",
+              "发送右移2；接收左移2"
+            ],
+            [
+              "11b",
+              "×16",
+              "12 bit／2032",
+              "16 bit／32752",
+              "发送右移4；接收左移4"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          1,
+          2
+        ],
+        "id": "block-1"
+      },
+      {
+        "title": "Shared／Dedicated／Merged：只在适当模式使用",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "机制",
+            "能做什么",
+            "不能怎么理解"
+          ],
+          "rows": [
+            [
+              "NFM",
+              "每个VC独立跟踪六类Credit",
+              "没有FM Shared池，不能把Scaled FC称共享"
+            ],
+            [
+              "FM Dedicated",
+              "每VC保留独立Credit；TLP使用时通过FM Local TLP Prefix明确标记",
+              "Dedicated Header/Data不能被Merged"
+            ],
+            [
+              "FM Shared",
+              "跨VC使用共享额度；允许选择Dedicated，即使Shared有足够额度",
+              "Shared和Dedicated有分别的门控与记账；不能两者随意拼一个包的需求"
+            ],
+            [
+              "Merged",
+              "同方向Shared CplH→PH、CplD→PD，Header/Data必须同时合并；用表3-2广告",
+              "不允许NP与P随意合并；链路两个方向独立选择"
+            ],
+            [
+              "Shared公平限制",
+              "Usage Limit使能后，要同时满足总共享额度和该VC的共享使用上限",
+              "不是只看共享池总剩余空间就能任一VC全部占满"
+            ],
+            [
+              "单VC情况",
+              "未Merged时Dedicated可按规则为零，全部额度放Shared；Merged时NP Dedicated为零，其他按组合规则",
+              "零Dedicated不意味着整个Link不能传；先解释广告组合"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "id": "block-2"
+      },
+      {
+        "title": "FM Shared分组记账表：为何不是每个TLP都恰好扣1个可见额度",
+        "paragraphs": [
+          "基本TLP需求见功能111；Shared分组是另一层规则。相邻同FC/VC且同Shared池的TLP使用前一组剩余份额，不是每个小包都永久浪费整组。释放也按对应组粒度进行；不同VC/类型不能随意混装一个Credit。"
+        ],
+        "table": {
+          "columns": [
+            "Shared类别",
+            "Header组粒度",
+            "有数据时Data组粒度",
+            "限制"
+          ],
+          "rows": [
+            [
+              "P与Cpl已Merged",
+              "8",
+              "8",
+              "适用于合并的Shared P/Cpl池"
+            ],
+            [
+              "P与Cpl未Merged",
+              "4",
+              "4",
+              "P池与有限Cpl池分别记账"
+            ],
+            [
+              "NP",
+              "4",
+              "4",
+              "独立Shared NP池"
+            ],
+            [
+              "Dedicated",
+              "按其独立门控规则",
+              "按TLP Payload需求",
+              "不把Shared组粒度不加区分套在Dedicated上"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          7,
+          8
+        ],
+        "id": "block-3"
+      },
+      {
+        "title": "按现象排查：到底是哪一种背压",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "看到的现象",
+            "先看什么",
+            "不能凭什么下结论"
+          ],
+          "rows": [
+            [
+              "MemWr发不出去",
+              "PH和PD两个额度、MPS拆包、VC映射、是否尚未完成FC初始化",
+              "CplD很多不帮助Posted池"
+            ],
+            [
+              "MemRd发不出去",
+              "NPH、Tag资源、Outstanding限制、Requester完成缓冲预算",
+              "MemRd请求本身通常不需要NPD"
+            ],
+            [
+              "读请求能发但回包卡住",
+              "反向链路CplH/CplD、Completer队列、路由/Ordering与错误",
+              "正向NPH充足不代表反向能送CplD"
+            ],
+            [
+              "FM偶发小包成组停顿",
+              "Shared池分组、Usage Limit、Update频度和Dedicated可用量",
+              "不要把每个观测到的Credit变化都解释成一TLP"
+            ],
+            [
+              "高带宽长链路掉吞吐",
+              "缓冲窗口是否覆盖带宽×往返延迟、缩放是否实际激活",
+              "Scaled只扩表示范围，不能自动增加硬件缓冲"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          9,
+          1
+        ],
+        "id": "block-4"
+      }
+    ]
   },
   {
     "name": "Traffic Class（TC）",
@@ -5744,7 +8809,8 @@
               "理想连线"
             ]
           ]
-        }
+        },
+        "id": "block-1"
       }
     ]
   },
@@ -5821,9 +8887,308 @@
         "title": "Gen6 PCS的PIPE架构",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "4.1",
+        "title": "Original PIPE边界",
+        "page": 36,
+        "pdfPage": 36,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "4.2",
+        "title": "SerDes PIPE边界",
+        "page": 39,
+        "pdfPage": 39,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "title": "RxValid两种架构语义",
+        "page": 64,
+        "pdfPage": 64,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.1",
+        "title": "RxCLK至少8周期",
+        "page": 69,
+        "pdfPage": 69,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "title": "RxStatus适用性",
+        "page": 65,
+        "pdfPage": 65,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "title": "SerDesArch配置",
+        "page": 49,
+        "pdfPage": 49,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "title": "TxDetectRx/Loopback",
+        "page": 50,
+        "pdfPage": 50,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.4",
+        "title": "Message Bus地址空间",
+        "page": 66,
+        "pdfPage": 66,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.2",
+        "title": "RxWidth",
+        "page": 70,
+        "pdfPage": 70,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.4.1",
+        "page": 67,
+        "pdfPage": 67,
+        "title": "表6-10 Message Bus命令及原子提交",
+        "verification": "核读PIPE7.1本地副本67～68页的命令、应答及帧布局；重组为查询表。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
+    "details": [
+      {
+        "title": "Original PIPE与SerDes PIPE：信号同名不等于语义相同",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "项目",
+            "Original PIPE",
+            "SerDes PIPE"
+          ],
+          "rows": [
+            [
+              "数字边界",
+              "PHY承担相应编码/解码、Block处理、弹性缓冲等功能",
+              "更多PCS功能移至MAC侧，PHY提供更靠近串并转换的接口"
+            ],
+            [
+              "RX时钟",
+              "在该架构定义的PIPE接口时钟域交付数据",
+              "RxData用恢复时钟RxCLK；需要MAC完成相应CDC/弹性缓冲"
+            ],
+            [
+              "RxValid",
+              "符号锁定及数据有效；8～32 GT/s还受BlockAlignControl状态语义限制",
+              "指示恢复时钟稳定；为1后MAC才开始Symbol/Block Lock，不表示已经锁定"
+            ],
+            [
+              "RxCLK失稳",
+              "按相应PHY接口规则处理",
+              "RxValid拉低后RxCLK至少继续8个周期，使MAC采到失效；PHY需给最大RxCLK频率保证"
+            ],
+            [
+              "RxStatus",
+              "按模式报告接收成功、SKP调整、译码/弹性缓冲错误等",
+              "只有Receiver detected=011b这项适用，不能照搬Original错误码作为MAC译码状态"
+            ],
+            [
+              "TxDetectRx/Loopback",
+              "按PHY状态用于Receiver Detect或回环",
+              "Receiver Detect保留，Loopback在MAC实现，不能误用为PHY回环使能"
+            ],
+            [
+              "架构选择",
+              "取决于硬件交付能力",
+              "SerDesArch只能在Reset#有效期间修改，不是L0中可任意切换的开关"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "id": "block-1"
+      },
+      {
+        "title": "PIPE信号按用途查询",
+        "paragraphs": [
+          "本节依据PIPE 7.1，不把PIPE修订号等同PCIe代际。所有信号仍需同时看Relevant Protocols列、当前PHY模式与架构。"
+        ],
+        "table": {
+          "columns": [
+            "信号",
+            "方向／用途",
+            "容易出错的条件"
+          ],
+          "rows": [
+            [
+              "TxData / RxData",
+              "MAC→PHY / PHY→MAC的并行数据",
+              "宽度是PIPE数据位宽，不是PCIe x1/x4/x16链路宽度"
+            ],
+            [
+              "TxDataValid / RxDataValid",
+              "节拍有效限定",
+              "不是AXI READY握手，不能假设可任意暂停串行数据流"
+            ],
+            [
+              "TxElecIdle",
+              "MAC要求TX进入电气空闲",
+              "TxElecIdle变化采样受TxDataValid限定；SerDes下位数随接口symbols及速率改变"
+            ],
+            [
+              "RxElecIdle",
+              "PHY检测接收端电气空闲",
+              "与CDR锁定/RxValid/对端Receiver Detect分开"
+            ],
+            [
+              "Rate / Width / PCLK_Rate",
+              "控制串行速率、并行宽度和接口时钟选择",
+              "修改需满足状态、EI和完成握手，不是三个无约束寄存器"
+            ],
+            [
+              "PhyStatus",
+              "PHY返回规定操作完成状态",
+              "需结合当前操作解释；复位完成不能通用套成一个高脉冲"
+            ],
+            [
+              "PowerDown",
+              "PHY内部功耗状态",
+              "P0/P0s/P1/P2与PCIe L0/L0s/L1/L2不是一对一硬编码"
+            ],
+            [
+              "M2P_MessageBus / P2M_MessageBus",
+              "两个方向的8 bit复用命令/地址/数据总线",
+              "访问两侧12 bit地址空间的8 bit控制状态寄存器，需要PCLK运行；不是PCIe Configuration TLP"
+            ],
+            [
+              "RxWidth",
+              "SerDes接收数据位宽控制",
+              "PIPE7.1编码0/1/2/3/4对应10/20/40/80/160 bit（PCIe）；不支持选项不能使用"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          11,
+          12,
+          13
+        ],
+        "id": "block-2"
+      },
+      {
+        "id": "message-bus",
+        "title": "PIPE Message Bus命令、周期与提交语义",
+        "paragraphs": [
+          "M2P和P2M各为8 bit，PCLK同步。地址12 bit、寄存器数据8 bit。IDLE驱动全零；一个命令的各周期必须连续，结束后可以不插空闲便发送下一条。写/读首周期为Cmd[3:0]与Addr[11:8]，其次Addr[7:0]；写第三周期为Data[7:0]。",
+          "write_uncommitted把值先放缓冲，最后一个write_committed让这批更新在同一PCLK周期生效。最小写缓冲深度为5。write_ack表示缓冲已提交、可接受下一次写并保证操作确定地开始，不表示所触发的PIPE操作已经完成。"
+        ],
+        "table": {
+          "columns": [
+            "编码",
+            "命令",
+            "传输周期",
+            "约束"
+          ],
+          "rows": [
+            [
+              "0000",
+              "NOP",
+              "1",
+              "总线空闲"
+            ],
+            [
+              "0001",
+              "write_uncommitted",
+              "3",
+              "暂存更新，不立即生效"
+            ],
+            [
+              "0010",
+              "write_committed",
+              "3",
+              "同时提交本次和先前未提交写；等待write_ack之前不能再发任何写"
+            ],
+            [
+              "0011",
+              "read",
+              "2",
+              "每个方向最多1个未完成读"
+            ],
+            [
+              "0100",
+              "read completion",
+              "2",
+              "返回8 bit数据"
+            ],
+            [
+              "0101",
+              "write_ack",
+              "1",
+              "只确认写提交与可再写，不是操作完成"
+            ],
+            [
+              "其他",
+              "Reserved",
+              "—",
+              "不能自定义成PCIe协议命令"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          14
+        ]
+      }
+    ]
   },
   {
     "id": 165,
@@ -6158,14 +9523,16 @@
               "CDC、复位保留、启动可访问性"
             ]
           ]
-        }
+        },
+        "id": "block-1"
       },
       {
         "title": "跨域与复位释放",
         "paragraphs": [
           "异步信号进入目标域需要合适的同步策略；数据总线不能简单逐bit同步后假定一致。若RX时钟可能停，管理动作不能依赖该时钟永远活动；事件与应答应按实际协议跨域。",
           "切换时钟和解除复位之前，确认无毛刺选择、时钟门控时序、派生时钟定义与RDC/CDC约束。复位释放需满足目标域时钟和产品握手条件。"
-        ]
+        ],
+        "id": "block-2"
       }
     ]
   },
@@ -6430,13 +9797,15 @@
               "PHY Ready就是Link Up"
             ]
           ]
-        }
+        },
+        "id": "block-1"
       },
       {
         "title": "产品版本的具体延时另查",
         "paragraphs": [
           "上电与warm reset的最小脉宽、SRAM要求、ack极性和复位后需要重载的补丁均属于产品时序，不在这里给出一套“通用固定数值”。使用对应版本本地手册按页定位，先看图和正文中的条件再配置。"
-        ]
+        ],
+        "id": "block-2"
       }
     ]
   },
@@ -6480,9 +9849,198 @@
         "title": "Ready后状态转换的依赖",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.4.1",
+        "title": "PCIe Rate/PCLK/Width改变",
+        "page": 126,
+        "pdfPage": 126,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1",
+        "title": "时钟与拓扑",
+        "page": 110,
+        "pdfPage": 110,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.2",
+        "title": "复位完成和默认值",
+        "page": 116,
+        "pdfPage": 116,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.1",
+        "title": "SerDes RxCLK",
+        "page": 69,
+        "pdfPage": 69,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
+    "details": [
+      {
+        "title": "PCIe模式Rate／Width／PCLK变化：按时序操作",
+        "paragraphs": [
+          "以下为PIPE 7.1 §8.4.1 p126的PCIe模式；USB/SATA的条件不同，不混用。PIPE接口位宽与链路Lane宽度是不同概念。"
+        ],
+        "table": {
+          "columns": [
+            "步骤",
+            "MAC动作",
+            "PHY响应／通过条件"
+          ],
+          "rows": [
+            [
+              "1 准备",
+              "只在P0或P1操作；TxElecIdle有效；P0时还须RxStandby有效",
+              "保持输出电气空闲与规定RX状态"
+            ],
+            [
+              "2 请求",
+              "更新Rate、必要的Width和/或PCLK_Rate",
+              "PHY开始操作；MAC不能在未完成时又发新切速/功耗操作或撤销EI/Standby"
+            ],
+            [
+              "3 PCLK为PHY输出",
+              "等待相应PhyStatus完成指示",
+              "操作完成用一个PCLK周期PhyStatus有效表示"
+            ],
+            [
+              "3 PCLK为PHY输入",
+              "等待PclkChangeOk=1才安全更改输入PCLK，然后置PclkChangeAck",
+              "输入PCLK稳定后PHY以一个输入PCLK周期PhyStatus应答，并在尾沿撤销PclkChangeOk"
+            ],
+            [
+              "4 收尾",
+              "采到PclkChangeOk=0后清Ack；采到PhyStatus有效后才可撤EI/Standby",
+              "按后续训练序列继续，不是直接放TLP"
+            ],
+            [
+              "功耗同时变更",
+              "常规先速率/位宽/PCLK，再改PowerDown；PHY明确支持合并才允许同一沿变更",
+              "不要凭接口有这些信号就自行合并"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          2
+        ],
+        "id": "block-1"
+      },
+      {
+        "title": "PclkChangeOk／Ack何时需要：表8-3重组",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "Rate",
+            "Width",
+            "PCLK Rate",
+            "是否要求额外Ok/Ack"
+          ],
+          "rows": [
+            [
+              "不变",
+              "任意",
+              "任意",
+              "此表不适用；不能从“不适用”推断任意变更已获许可"
+            ],
+            [
+              "改变",
+              "不变",
+              "不变",
+              "PHY参数决定是否要求"
+            ],
+            [
+              "改变",
+              "不变",
+              "改变",
+              "要求"
+            ],
+            [
+              "改变",
+              "改变",
+              "不变",
+              "PHY参数决定是否要求"
+            ],
+            [
+              "改变",
+              "改变",
+              "改变",
+              "要求"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          2
+        ],
+        "id": "block-2"
+      },
+      {
+        "title": "PCLK与Reset#：完成语义必须按场景区分",
+        "paragraphs": [
+          "PIPE7.1 §8.1.1说明PCLK为PHY输出是legacy拓扑，不用于该规范所述PCIe Gen5设计；不能因为产品图上叫PCLK就断言方向。"
+        ],
+        "table": {
+          "columns": [
+            "场景",
+            "要求",
+            "错误用法"
+          ],
+          "rows": [
+            [
+              "复位保持",
+              "电源和CLK稳定前持续保持PHY Reset#",
+              "仅固定延时若电源/参考时钟未稳定仍不够"
+            ],
+            [
+              "复位默认控制",
+              "PCIe初始化Rate=2.5 GT/s，TxElecIdle有效、TxDetectRx/Loopback无效，配置PHY mode/SerDesArch等",
+              "将Reset#释放立即视为可发TS/TLP"
+            ],
+            [
+              "PCLK为PHY输出的复位完成",
+              "Reset#释放后PHY通过PhyStatus撤销报告时钟有效及规定功耗状态；MAC须等返回",
+              "把所有场合的PhyStatus都写成“一拍高=完成”"
+            ],
+            [
+              "常规运行的功耗改变",
+              "P0/P0s/P1且PCLK运行的转换按一个PhyStatus周期应答",
+              "P2/停钟的异步握手另查，不拿PCLK采样脉冲硬套"
+            ],
+            [
+              "SerDes RX恢复钟",
+              "RxValid=0后RxCLK继续至少8周期；RxValid=1只表示时钟稳定",
+              "RX复位/CDC设计忽略时钟可停止，或把RxValid当LTSSM已完成"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          3,
+          4,
+          5
+        ],
+        "id": "block-3"
+      }
+    ]
   },
   {
     "id": 176,
@@ -6634,9 +10192,78 @@
         "title": "RX检测和恢复条件",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.7",
+        "title": "Receiver Detect操作",
+        "page": 130,
+        "pdfPage": 130,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.7",
+        "title": "Receiver Detect状态码图8-19",
+        "page": 131,
+        "pdfPage": 131,
+        "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
+    "details": [
+      {
+        "title": "Receiver Detect握手与RxStatus解释",
+        "paragraphs": [
+          "PIPE 7.1 §8.7的PCIe模式适用于P1，P2支持是可选。PCLK会停的模式不能强行用一拍脉冲完成假设。"
+        ],
+        "table": {
+          "columns": [
+            "阶段",
+            "要求",
+            "结果含义"
+          ],
+          "rows": [
+            [
+              "发起",
+              "MAC置TxDetectRx/Loopback，保持直到PHY报告完成",
+              "发起的是远端终端检测，不是要求远端回复TS"
+            ],
+            [
+              "P1完成",
+              "PhyStatus一个时钟有效并提供RxStatus",
+              "011b=Receiver present，000b=not present；必须在该操作上下文判读"
+            ],
+            [
+              "P2可选完成",
+              "可能没有运行PCLK；PHY保持PhyStatus和结果直到MAC撤请求",
+              "不是P1的一拍应答"
+            ],
+            [
+              "收尾",
+              "MAC撤TxDetectRx/Loopback后才能再检测、改功耗或速率",
+              "不得保持请求同时发新操作"
+            ],
+            [
+              "下一步",
+              "LTSSM根据Lane检测集合继续Polling，在TS中建立接收锁定与编号",
+              "Receiver Present≠CDR lock≠Block lock≠L0≠DL_Active"
+            ]
+          ]
+        },
+        "referenceIndices": [
+          3,
+          4
+        ],
+        "id": "block-1"
+      }
+    ]
   },
   {
     "id": 179,
