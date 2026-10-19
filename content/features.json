@@ -4005,9 +4005,97 @@
         "title": "跨Flit TLP可能被中断",
         "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2",
+        "page": 360,
+        "pdfPage": 360,
+        "title": "DLP0位域及Replay Command",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2",
+        "page": 416,
+        "pdfPage": 416,
+        "title": "DLP0位域及Replay Command",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2",
+        "page": 361,
+        "pdfPage": 361,
+        "title": "DLP序号字节顺序与Optimized Update FC",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2",
+        "page": 417,
+        "pdfPage": 417,
+        "title": "DLP序号字节顺序与Optimized Update FC",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2",
+        "page": 362,
+        "pdfPage": 362,
+        "title": "Flit Marker与错误检查",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2",
+        "page": 418,
+        "pdfPage": 418,
+        "title": "Flit Marker与错误检查",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1",
+        "page": 423,
+        "pdfPage": 423,
+        "title": "重放期间NOP的显式序号建议",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.3",
+        "page": 428,
+        "pdfPage": 428,
+        "title": "正常交换的NOP序号许可",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
+    "referenceStatus": "新展开块逐项绑定Base6.0/7.0正文；旧目录引用、后续修订与未展开分支不视为完整核读。",
     "details": [
       {
         "id": "mode-rate-encoding",
@@ -4181,6 +4269,294 @@
           2,
           3,
           4
+        ]
+      },
+      {
+        "id": "dlp-field-map",
+        "title": "DLP六字节逐字段：先按DLP0、DLP1…顺序读",
+        "paragraphs": [
+          "DLP位于Flit字节236～241，以下DLP0就是Flit字节236。注意32位DLLP负载按DLP2为最高字节、DLP5为最低字节组合；不要按CPU内存小端布局反过来解析。",
+          "这些字段由端口协议逻辑实时产生，通常不是软件能直接按某个BAR地址读写的一组控制寄存器。波形、Flit捕获日志或协议分析仪才是它们常见的观察位置。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13
+        ],
+        "table": {
+          "columns": [
+            "位置",
+            "字段",
+            "如何解释"
+          ],
+          "rows": [
+            [
+              "DLP0[7:6]",
+              "Flit Usage",
+              "00=IDLE/NOP；01=Payload；10/11保留"
+            ],
+            [
+              "DLP0[5]",
+              "Prior Flit was Payload",
+              "1=上一Flit为Payload；0=上一Flit为NOP/IDLE"
+            ],
+            [
+              "DLP0[4]",
+              "Type of DLLP Payload",
+              "0=普通DLLP负载；1=Optimized_Update_FC或Flit_Marker"
+            ],
+            [
+              "DLP0[3:2]",
+              "Replay Command",
+              "00显式本端发送序号；01 Ack；10 Standard Nak；11 Selective Nak"
+            ],
+            [
+              "DLP0[1:0] + DLP1[7:0]",
+              "10-bit Sequence Number",
+              "前者是高2位；后者是低8位"
+            ],
+            [
+              "DLP2～5",
+              "32-bit负载",
+              "DLP2→[31:24]，DLP3→[23:16]，DLP4→[15:8]，DLP5→[7:0]"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dlp-replay-command",
+        "title": "Replay Command四种编码：序号到底指哪个方向",
+        "paragraphs": [
+          "一条Flit沿A→B发送时，其TLP区承载A→B的事务；若DLP中是Ack/Nak，则是在确认A此前从B收到的反向Flit。一个物理传输单元同时携带正向数据和反向可靠性反馈。",
+          "因此DLP的Sequence Number不是永远等于这条Flit自身序号。Command非00时，本条正向Payload序号由接收机隐式跟踪，DLP字段让给反方向Ack/Nak使用。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13
+        ],
+        "table": {
+          "columns": [
+            "Command",
+            "序号N表示",
+            "接收方如何使用"
+          ],
+          "rows": [
+            [
+              "00",
+              "当前本端发送的显式序号",
+              "恢复/校准隐式序号；NOP不推进新序号"
+            ],
+            [
+              "01",
+              "反方向截至N的累计确认",
+              "释放发送重试缓冲中≤N的已确认内容"
+            ],
+            [
+              "10",
+              "确认至N，并请求重放剩余未确认内容",
+              "从N之后仍在缓冲的待重放Flit开始标准重放"
+            ],
+            [
+              "11",
+              "确认至N，并请求单独重放N的后继",
+              "后继1023→1，不能按10 bit自然回卷到0"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dlp-payload-discriminator",
+        "title": "DLP负载分流：Type位与bit31必须一起看",
+        "paragraphs": [
+          "DLP0[4]=0时，后4字节是普通DLLP Type及其24 bit信息，Flit CRC/FEC承担此处的完整性保护。DLP0[4]=1才用负载bit31继续区分优化流控和Marker。",
+          "不能看到32位数最高位为1就直接当Flit_Status，也不能把普通DLLP里的同位置bit套成VC或Credit。解码器必须先走类型分支。"
+        ],
+        "referenceIndices": [
+          12,
+          13
+        ],
+        "table": {
+          "columns": [
+            "DLP0[4]",
+            "负载[31]",
+            "格式"
+          ],
+          "rows": [
+            [
+              "0",
+              "按普通DLLP定义",
+              "普通DLLP Payload"
+            ],
+            [
+              "1",
+              "0",
+              "Optimized_Update_FC"
+            ],
+            [
+              "1",
+              "1",
+              "Flit_Marker"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "optimized-update-fc-fields",
+        "title": "Optimized_Update_FC：一份负载并报三类Shared额度",
+        "paragraphs": [
+          "这个格式压缩了性能关键的Shared NPH、PH、PD更新；它没有覆盖全部六类Credit，也不是Dedicated更新格式。更新的是当前VC对应的累计额度，仍须结合初始化得到的Scale与池组织解释。",
+          "缩放因子不在这32 bit里重新携带。没有初始化上下文时，分析仪不能只凭一个数字就断言实际可用缓冲为多少字节。"
+        ],
+        "referenceIndices": [
+          12,
+          13
+        ],
+        "table": {
+          "columns": [
+            "负载位",
+            "含义",
+            "用途"
+          ],
+          "rows": [
+            [
+              "31",
+              "固定0",
+              "本格式标识"
+            ],
+            [
+              "30:28",
+              "VC",
+              "本次更新所属VC"
+            ],
+            [
+              "27:20",
+              "Shared Non-Posted HdrFC",
+              "Shared NPH累计更新值"
+            ],
+            [
+              "19:12",
+              "Shared Posted HdrFC",
+              "Shared PH累计更新值"
+            ],
+            [
+              "11:0",
+              "Shared Posted DataFC",
+              "Shared PD累计更新值"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "optimized-update-observability",
+        "title": "优化更新不意味着普通UpdateFC从此消失",
+        "paragraphs": [
+          "Base6.0/7.0相关条款要求为调试可观察性，按每VC至少每10 μs提供带缩放Credit信息的UpdateFC DLLP；并强烈建议在有待归还额度时，轮转有限且非零Credit的VC使用Optimized_Update_FC。",
+          "10 μs是这里的可观察性规则，不能拿它替代所有正常流控更新调度/前进期限。优化更新和普通UpdateFC都表达累计值，重复接收同值不应重复增加空间。"
+        ],
+        "referenceIndices": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "flit-marker-fields",
+        "title": "Flit_Marker：Nullify、Poison与PTM标记",
+        "paragraphs": [
+          "Marker描述最后一个在本Flit结束的TLP；跨Flit的TLP仍要结合结束所在Flit解释。Nullify与Poison是不同语义，不能都翻成“丢包”。Poison还须结合事务层EP位规则。",
+          "PTM位表示本Flit含一个非nullify PTM Message的最后符号。FM按Flit层面测时间；nullify消息不置该位，poisoned PTM消息不允许。此处是标记含义，不替代PTM完整时间戳机制。"
+        ],
+        "referenceIndices": [
+          14,
+          15
+        ],
+        "table": {
+          "columns": [
+            "负载位",
+            "编码",
+            "含义"
+          ],
+          "rows": [
+            [
+              "31",
+              "1",
+              "Marker格式"
+            ],
+            [
+              "30:29",
+              "00",
+              "无特殊信息"
+            ],
+            [
+              "30:29",
+              "01",
+              "最后结束的TLP被Nullify"
+            ],
+            [
+              "30:29",
+              "10",
+              "最后结束的TLP被Poison"
+            ],
+            [
+              "30:29",
+              "11",
+              "保留，不可发送"
+            ],
+            [
+              "28",
+              "0/1",
+              "是否含非nullify PTM消息的最后符号"
+            ],
+            [
+              "27:0",
+              "保留",
+              "发送按保留位要求处理"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dlp-invalid-fields",
+        "title": "CRC通过后仍要检查哪些DLP/组包错误",
+        "paragraphs": [
+          "Reserved Usage、Reserved Flit_Status、非法序号，以及TLP packing违例都可能被接收端检查，并按对应规则报告Data Link Protocol Error。检查“许可”与特定分支中“必须检查/必须处理”的强度要分清。",
+          "仅解析6字节无法证明Flit有效：还缺CRC/FEC结果、236 B TLP区、初始化和序号历史。网站解码器只显示字段，不声称实现完整协议验证器。"
+        ],
+        "referenceIndices": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "nop-flit-gen7-context",
+        "title": "Gen7 NOP Flit扩展与重放中的NOP序号例外",
+        "paragraphs": [
+          "Base6.0表4-16把NOP Flit的236 B描述为NOP TLP；Base7.0将其指向专门的NOP Flit Payload格式，因此不能再笼统声称所有版本的NOP Flit内容全是零。IDLE的发送内容则仍有自己的零值规则。",
+          "Gen7还允许/建议在重放进行中，把显式NOP序号设为最近已发送Payload的序号，而非机械使用NEXT_TX−1。表述强度在一般规则、握手和正常交换小节中分别为强烈建议/许可，实际使用应结合所在阶段。NOP Flit扩展的全部子类型下轮继续。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          16,
+          17
+        ]
+      },
+      {
+        "id": "dlp-live-decoder",
+        "title": "六字节DLP查询：对照波形先确定字节序",
+        "paragraphs": [
+          "输入DLP0到DLP5六个十六进制字节，例如40 01 00 00 00 00。这个输入表示Payload、Command=00、显式序号1；并不证明该Flit CRC已通过。",
+          "输出会区分“本端显式序号”和“反方向Ack/Nak序号”，并显示优化Credit或Marker字段。它不尝试从单条DLP恢复隐式序号，也不会把Credit字段当成增量。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
         ]
       }
     ]
@@ -8651,14 +9027,14 @@
     "checks": "依据当前模式选日志与检查器；不能从参数名含NFM就反推Flit功能是否完整存在。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 98,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "3",
@@ -8670,9 +9046,1218 @@
         "pdfPage": 263,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1",
+        "page": 366,
+        "pdfPage": 366,
+        "title": "序号范围、未确认窗口与一般规则",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1",
+        "page": 422,
+        "pdfPage": 422,
+        "title": "序号范围、未确认窗口与一般规则",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1",
+        "page": 367,
+        "pdfPage": 367,
+        "title": "发送计数、缓冲与隐式序号",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1",
+        "page": 424,
+        "pdfPage": 424,
+        "title": "发送计数、缓冲与隐式序号",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1",
+        "page": 368,
+        "pdfPage": 368,
+        "title": "隐式接收序号修正与IDLE入口",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1",
+        "page": 425,
+        "pdfPage": 425,
+        "title": "隐式接收序号修正与IDLE入口",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.1",
+        "page": 369,
+        "pdfPage": 369,
+        "title": "IDLE出口与序号握手条件",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.1",
+        "page": 426,
+        "pdfPage": 426,
+        "title": "IDLE出口与序号握手条件",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.2",
+        "page": 369,
+        "pdfPage": 369,
+        "title": "Sequence Number Handshake",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.2",
+        "page": 426,
+        "pdfPage": 426,
+        "title": "Sequence Number Handshake",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.3",
+        "page": 370,
+        "pdfPage": 370,
+        "title": "Normal Flit Exchange发送组合",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.3",
+        "page": 427,
+        "pdfPage": 427,
+        "title": "Normal Flit Exchange发送组合",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.3",
+        "page": 371,
+        "pdfPage": 371,
+        "title": "正常交换Command优先级与序号",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.3",
+        "page": 428,
+        "pdfPage": 428,
+        "title": "正常交换Command优先级与序号",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.4",
+        "page": 372,
+        "pdfPage": 372,
+        "title": "接收Ack/Nak的合法窗口与释放",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.4",
+        "page": 429,
+        "pdfPage": 429,
+        "title": "接收Ack/Nak的合法窗口与释放",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 373,
+        "pdfPage": 373,
+        "title": "接收处理入口与NAK暂缓",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 430,
+        "pdfPage": 430,
+        "title": "接收处理入口与NAK暂缓",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 375,
+        "pdfPage": 375,
+        "title": "重复、坏序号及Standard/Selective处理",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 433,
+        "pdfPage": 433,
+        "title": "重复、坏序号及Standard/Selective处理",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 376,
+        "pdfPage": 376,
+        "title": "Nak Schedule 0～3动作",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 434,
+        "pdfPage": 434,
+        "title": "Nak Schedule 0～3动作",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 377,
+        "pdfPage": 377,
+        "title": "溢出、切换Standard与Ack动作",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 435,
+        "pdfPage": 435,
+        "title": "溢出、切换Standard与Ack动作",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 378,
+        "pdfPage": 378,
+        "title": "Ack/Discard后续动作",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 436,
+        "pdfPage": 436,
+        "title": "Ack/Discard后续动作",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.6",
+        "page": 378,
+        "pdfPage": 378,
+        "title": "Replay Timeout调度",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.6",
+        "page": 437,
+        "pdfPage": 437,
+        "title": "Replay Timeout调度",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.6",
+        "page": 379,
+        "pdfPage": 379,
+        "title": "Nak触发重放与类型升级",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.6",
+        "page": 438,
+        "pdfPage": 438,
+        "title": "Nak触发重放与类型升级",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.7",
+        "page": 380,
+        "pdfPage": 380,
+        "title": "Standard/Selective重放发送条件",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.7",
+        "page": 439,
+        "pdfPage": 439,
+        "title": "Standard/Selective重放发送条件",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1.7",
+        "page": 381,
+        "pdfPage": 381,
+        "title": "Replay计数回卷与Recovery",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.7",
+        "page": 440,
+        "pdfPage": 440,
+        "title": "Replay计数回卷与Recovery",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1",
+        "page": 366,
+        "pdfPage": 366,
+        "title": "Base6.0 Nak Ignore Window",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1",
+        "page": 423,
+        "pdfPage": 423,
+        "title": "Base7.0速率相关NAK窗口及Ack/Nak延迟",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1",
+        "page": 364,
+        "pdfPage": 364,
+        "title": "重放相关标志与计数",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1",
+        "page": 421,
+        "pdfPage": 421,
+        "title": "重放相关标志与计数",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2.1",
+        "page": 365,
+        "pdfPage": 365,
+        "title": "接收重试缓冲与序号状态",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1",
+        "page": 422,
+        "pdfPage": 422,
+        "title": "接收重试缓冲与序号状态",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 430,
+        "pdfPage": 430,
+        "title": "Gen7首个non-IDLE显式序号前的入口保护",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.4",
+        "page": 430,
+        "pdfPage": 430,
+        "title": "Gen7后续Nak处理与状态更新",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 431,
+        "pdfPage": 431,
+        "title": "Gen7 Prior Flit与NAK撤销分支",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2.1.5",
+        "page": 431,
+        "pdfPage": 431,
+        "title": "Gen7 Standard Nak期间的显式NOP分支",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新展开块逐项绑定Base6.0/7.0正文；旧目录引用、后续修订与未展开分支不视为完整核读。",
+    "details": [
+      {
+        "id": "retry-purpose-and-boundaries",
+        "title": "Flit Retry解决哪一段可靠性，为什么需要两个缓冲",
+        "paragraphs": [
+          "发送侧保存还没被对端确认的Payload内容；接收侧在等Selective Replay补洞时，保存洞后已正确收到的内容。它们分别服务“还能重发”和“保持交付顺序”，不是同一份FIFO。",
+          "Ack只证明这一条Link的接收进度，不是PCIe事务Completion，也不是DMA完成中断。TLP区可含多个或部分包，所以重放粒度是Flit内容，不等同重做某条AXI事务。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "retry-sequence-ring",
+        "title": "序号环是1～1023；0留给IDLE，NOP不消耗序号",
+        "paragraphs": [
+          "Payload有效序号为1～1023，后继1023回到1。算差值按模1023，不能把10 bit截断得到0。所有序号加减也要遵守此规则。",
+          "NOP不占新的Payload序号；显式NOP通常报告NEXT_TX−1，尚未发Payload时用1023。两个Flit之间插了SKP仍视为连续，不能用SKP把“三条连续”计数随意清掉。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          36
+        ]
+      },
+      {
+        "id": "retry-window-half-ring",
+        "title": "为什么最多511个未确认Flit，容量不够时如何背压",
+        "paragraphs": [
+          "MAX_UNACKNOWLEDGED_FLITS取TX Retry Buffer能保存的数量与511中的较小者。半环限制使新旧序号在回卷时可判别；10 bit可编码1024种值并不表示可同时挂1024条。",
+          "当(NEXT_TX−ACKD) mod1023超过该限额时，发送侧不能再接纳新TLP；没有已调度/进行中的重放时发NOP。这是可靠性窗口背压，和流控Credit、Tag不足分别观察。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "retry-state-observation",
+        "title": "排查重放时应同时记录的状态量",
+        "paragraphs": [
+          "下面是协议算法中的状态量，不声明它们一定有软件可读寄存器。RTL信号名、调试寄存器或日志是否暴露由IP决定。只看一个Replay计数很难判断卡在接收、反馈还是发送。"
+        ],
+        "referenceIndices": [
+          37,
+          38,
+          39,
+          40
+        ],
+        "table": {
+          "columns": [
+            "状态量",
+            "回答的问题"
+          ],
+          "rows": [
+            [
+              "NEXT_TX / ACKD",
+              "下一新Payload序号、对端已累计确认到哪"
+            ],
+            [
+              "NEXT_EXPECTED_RX / IMPLICIT_RX",
+              "想交付哪个序号、目前推断收到哪个序号"
+            ],
+            [
+              "NAK_SCHEDULED / TYPE / WITHDRAWAL",
+              "是否要发NAK、标准或选择、是否仍可取消"
+            ],
+            [
+              "REPLAY_SCHEDULED / IN_PROGRESS / TX_REPLAY",
+              "是否排队、是否在发、从哪条开始"
+            ],
+            [
+              "RX_RETRY_BUFFER_OVERFLOW / LAST",
+              "洞后的正确数据是否已存满、最后保住哪条"
+            ],
+            [
+              "FLIT_REPLAY_NUM / TIMEOUT_FLIT_COUNT",
+              "无前进的重放轮次、发送但无确认进展的Flit数"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "retry-phase-map",
+        "title": "三阶段：IDLE握手、序号握手、正常交换",
+        "paragraphs": [
+          "这三个阶段叠加在LTSSM和Data Link状态之上；不能把它们当成三个新的LTSSM子状态。到L0不意味着序号握手已经完成。Recovery回来也要重新建立接收对齐与序号同步。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "table": {
+          "columns": [
+            "阶段",
+            "关键入口/动作",
+            "出口或失败"
+          ],
+          "rows": [
+            [
+              "IDLE Flit Handshake",
+              "Configuration.Idle或Recovery.Idle；发送IDLE、丢弃接收内容",
+              "TX随LTSSM到L0；RX见2个连续有效IDLE"
+            ],
+            [
+              "Sequence Number Handshake",
+              "3条显式序号与1条Ack/Nak交替",
+              "满足累计9条显式和3条规定Ack条件→Normal；超过规定发送数量→Recovery"
+            ],
+            [
+              "Normal Flit Exchange",
+              "主要由隐式跟踪释放DLP序号位给Ack/Nak",
+              "按NAK/重放/错误规则处理，离开L0有例外"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "idle-handshake-tx-rx",
+        "title": "IDLE握手的收发出口不同，不是等一个共同LinkUp",
+        "paragraphs": [
+          "端口进入Configuration.Idle或Recovery.Idle时启动本阶段。发送端按LTSSM要求发IDLE，LTSSM进入L0后转序号握手；接收端要先看到两条连续有效IDLE才转下一阶段。",
+          "期间收到的Flit被丢弃，不能直接交付事务层。Gen7接收伪代码还先判断是否已收到首个non-IDLE显式序号，再应用后续Ack/Nak/Discard逻辑，避免尚无基准时误解释。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8,
+          41
+        ]
+      },
+      {
+        "id": "sequence-handshake-counts",
+        "title": "序号握手的9条、3条和512／256条边界",
+        "paragraphs": [
+          "正常出口有两个同时成立的条件：收到至少一条非零显式序号后，已发送至少3条非零序号Ack；并已发送至少9条非零显式序号Flit。不能把“3+9=12条过了就无条件完成”当判据。",
+          "停留本阶段并已发送512条1b/1b Flit，或256条8b/10b、128b/130b Flit后，必须进入Recovery。这里按Flit数量计，不是512 ns，也不是只数Payload。DL_Feature或DL_Init仍处相应状态时，可以同时做Feature Exchange/FC初始化。"
+        ],
+        "referenceIndices": [
+          9,
+          10
+        ]
+      },
+      {
+        "id": "normal-command-priority",
+        "title": "正常发送Command优先级：显式序号→Standard Nak→Selective Nak→Ack",
+        "paragraphs": [
+          "先满足显式序号组的条件，再考虑已调度Standard Nak，然后Selective Nak，最后Ack；不是NAK永远抢占每一个周期。显式组要求存在重放/已开始显式组/NAK ignore相关需求，连续显式数<3，且NAK组尚未开始或已至少3条。",
+          "正常阶段一旦开始显式序号组，通常恰好发3条；NAK组通常至少3条。Replay Timeout清计数或退出L0是例外；Gen7另外列出NAK_SCHEDULED被清除时可中断NAK组。不能把6.0例外清单当所有版本的完整清单。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "implicit-sequence-tracking",
+        "title": "隐式序号怎样维持：Payload推进，NOP通常不推进",
+        "paragraphs": [
+          "收到有效非零显式序号可校准IMPLICIT_RX；已经有显式基准后，普通非显式Payload推进推断序号，NOP通常保持。遇到损坏Flit可先假定它占了一条序号，再用下一条Prior Flit信息修正。",
+          "更新IMPLICIT_RX要先于Ack/Nak/Discard判定。NAK暂缓时若后续证明前一条是NOP，可能需要保持或递减，而不是每收到一个线上Flit就加1。下面的有限规则对照不模拟完整接收机。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          3,
+          4
+        ],
+        "table": {
+          "columns": [
+            "收到什么",
+            "典型变化",
+            "额外条件"
+          ],
+          "rows": [
+            [
+              "有效非零显式序号N",
+              "设为N",
+              "用于校准"
+            ],
+            [
+              "普通隐式Payload",
+              "加1",
+              "已有显式基准，且无待修正NOP情况"
+            ],
+            [
+              "隐式NOP",
+              "通常不变",
+              "若前一无效Flit被误计为Payload，还需修正"
+            ],
+            [
+              "无效Flit",
+              "可先加1",
+              "仅在已建立基准等规则下"
+            ],
+            [
+              "IDLE或尚无基准",
+              "不直接推进正常序号",
+              "使用握手与入口保护"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "received-ack-window",
+        "title": "收到Ack/Nak先验序号窗口；越界不能释放缓冲",
+        "paragraphs": [
+          "N=0的Ack/Nak忽略。对非零N，要同时满足：(lastSent−N) mod1023≤MAX，以及(N−ACKD) mod1023≤MAX，其中lastSent=NEXT_TX−1。不能用普通N≥ACKD判断回卷。",
+          "合法Flit携带的Ack/Nak若序号越界，忽略该反馈并记录Data Link Protocol Error。网站窗口工具只演示这两个算式，前提是该Flit本身已有效且处于适用阶段。"
+        ],
+        "referenceIndices": [
+          15,
+          16
+        ]
+      },
+      {
+        "id": "ack-nak-cumulative-purge",
+        "title": "Ack与Nak都含累计确认：释放到N，重放从N后考虑",
+        "paragraphs": [
+          "收到合法Ack或Nak后，都可清除TX Retry Buffer中旧于且包括N的已确认内容。只有确认向前推进时，才更新ACKD并清无前进重放轮次。NAK并不表示“此前全部都没收到”。",
+          "Gen7进一步明确反馈处理不能打断正在进行的重放，并在相应Ack覆盖已调度重放时清REPLAY_SCHEDULED。6.0条文没有相同完整措辞，不能用一套简化动作覆盖两版。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          42
+        ]
+      },
+      {
+        "id": "nak-withdrawal-next-flit",
+        "title": "第一条无效Flit可暂缓NAK：用下一条判断损坏了什么",
+        "paragraphs": [
+          "没有NAK在途、也未处于暂缓时，先丢弃无效Flit并置NAK_WITHDRAWAL_ALLOWED，NEXT_EXPECTED保持。下一条有效Flit若Prior Flit was Payload=0，可确认前一损坏内容只是NOP/IDLE，再结合序号检查取消不必要重放。",
+          "若下一条也损坏，已无法可靠判定上一条用途，需要调度NAK。Gen7 Nak Schedule 1明确选择Standard Nak；6.0相应动作文字允许Standard或Selective，但不能据此将连续两个未知损坏当作只丢了一条Payload。"
+        ],
+        "referenceIndices": [
+          17,
+          18,
+          21,
+          22,
+          43
+        ]
+      },
+      {
+        "id": "duplicate-bad-sequence",
+        "title": "重复序号、超前序号和NOP序号：不同判据不同动作",
+        "paragraphs": [
+          "Base6.0/7.0以模1023窗口判断bad_sequence_number：(NEXT_EXPECTED−IMPLICIT_RX) mod1023>511。重复判据使用(TX_ACKNAK−IMPLICIT_RX) mod1023<511；这两个式子对象不同，不是互相取反。",
+          "NOP不能表示一个新的待交付Payload，因此bad_nop还检查IMPLICIT_RX是否等于NEXT_EXPECTED。重复Payload的TLP字节丢弃，不能再次交付形成重复写；遇到坏序号则按Standard Nak等分支恢复。"
+        ],
+        "referenceIndices": [
+          19,
+          20
+        ]
+      },
+      {
+        "id": "standard-replay-receiver",
+        "title": "Standard Nak在途：丢弃洞后TLP，等显式重放重新接上",
+        "paragraphs": [
+          "Standard策略不依赖保留洞后的全部正确Payload；接收端会丢弃未能按规则接续的TLP字节，直到收到显式序号且恰为NEXT_EXPECTED的Payload，才可清NAK并恢复推进。",
+          "Gen7对Standard Nak在途时收到显式NOP且其序号等于NEXT_EXPECTED−1，另有清NAK并丢NOP字节的分支。理解“等重放”时不能漏掉这种不带新Payload的重同步路径。"
+        ],
+        "referenceIndices": [
+          19,
+          20,
+          44
+        ]
+      },
+      {
+        "id": "selective-replay-receiver",
+        "title": "Selective Replay：保存洞后数据，补洞后仍按序交付",
+        "paragraphs": [
+          "只缺一条且接收重试缓冲有空间时，可发Selective Nak，请求N+1，同时保存随后正确且连续的Payload。收到缺失条的显式重放后，再按序号依次处理后续缓存，不能先把洞后的写/读完成交付出去。",
+          "Gen7显式说明补洞后继续收到的Flit如何存取可由实现决定，但处理顺序必须保留；RX Retry Buffer容量应考虑NAK延迟。在高吞吐长路径下，Selective并不免费，需要接收缓存和顺序管理。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          19,
+          20,
+          23,
+          24
+        ]
+      },
+      {
+        "id": "selective-buffer-overflow",
+        "title": "选择性重放等到RX缓冲满：可以升级Standard",
+        "paragraphs": [
+          "空间满导致下一条无法保存时，该条TLP字节丢弃。接收端可继续Selective并置overflow，保留最后成功存储的序号；也可改为Standard、清已有RX缓存并从原洞处请求恢复。",
+          "若继续Selective，等缺失条补到后，需把确认推进到最后已保存处，再对后续未保存区发Standard Nak。若Selective在途又收到无效Flit，则切Standard并清缓存；不允许假装还只缺原来一条。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "nak-actions-index",
+        "title": "NAK动作索引：按原因找Schedule 0～7",
+        "paragraphs": [
+          "这些编号是所列版本规则中的动作标签，便于读spec时对应。触发顺序还取决于前面的接收分支；不能跳过上下文单独执行一行。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26
+        ],
+        "table": {
+          "columns": [
+            "标签",
+            "主要目的",
+            "接收进度"
+          ],
+          "rows": [
+            [
+              "0",
+              "首个无效Flit暂缓NAK，待下一条辨认",
+              "NEXT_EXPECTED保持"
+            ],
+            [
+              "1",
+              "连续不确定损坏，正式调度NAK",
+              "7.0为Standard；确认到expected前一条"
+            ],
+            [
+              "2",
+              "坏序号等情况下要求Standard恢复",
+              "丢TLP字节，不越洞推进"
+            ],
+            [
+              "3",
+              "保存Selective洞后的连续正确数据",
+              "更新lastStored，不交付越洞"
+            ],
+            [
+              "4",
+              "RX Retry Buffer已满",
+              "保留overflow方案或升级Standard"
+            ],
+            [
+              "5",
+              "补洞后发现之前已有缓存溢出",
+              "确认到lastStored，再追后续缺口"
+            ],
+            [
+              "6",
+              "Selective在途又遇无效Flit",
+              "转Standard、清RX缓存"
+            ],
+            [
+              "7",
+              "实现决定由Selective升级Standard",
+              "允许发生；需遵守后续状态动作"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ack-discard-actions",
+        "title": "Ack推进与Discard：丢字节不总等于整Flit都不处理",
+        "paragraphs": [
+          "正常前进Ack把确认设为本条expected并推进expected；重同步Ack以收到的显式序号为基准；Selective补洞Ack还要考虑RX缓存最后保住的序号。",
+          "Discard 0强调丢TLP字节；Discard 1丢收到的Flit；Discard 2还记录Data Link Protocol Error。一个Flit携带双向信息，接收数据的交付与其中反馈的处理不能用一个“drop整包”标志不加区分地混在一起。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "replay-timeout-count",
+        "title": "Replay Timeout按1500条计数，不是固定1500 ns",
+        "paragraphs": [
+          "TX Retry Buffer非空时，发送Payload或NOP使REPLAY_TIMEOUT_FLIT_COUNT增加，计数饱和于11 bit全1。达到1500且既无已调度也无进行中的重放，调度Standard Replay，从ACKD后继开始，并报告Replay Timer Timeout。",
+          "规则同时清相关连续发送计数及timeout计数，以便尽快开始恢复。Gen7的清零事件写为收到使缓冲条目被释放的Ack或Nak；6.0此处写Ack。不要把“任何反馈出现”都等价为取得前进。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          27,
+          28,
+          29,
+          30
+        ]
+      },
+      {
+        "id": "replay-scheduling-three-rules",
+        "title": "重放调度三类入口：超时、NAK、Selective升级",
+        "paragraphs": [
+          "有NAK并不等于立刻发重放：需确认N+1的Payload仍在TX缓冲、当前没有已调度/进行中的重放，并检查是否落在相同序号的Nak Ignore Window。满足后才记录重放起点和类型。",
+          "已排队Selective但尚未开始时，收到适用Standard Nak可升级为Standard。Base6.0 Rule2的文字比较N与TX_REPLAY；7.0改为N+1比较。两版不一致已独立标出，不能默默把旧文当已修正。"
+        ],
+        "referenceIndices": [
+          27,
+          28,
+          29,
+          30
+        ],
+        "table": {
+          "columns": [
+            "入口",
+            "需要的核心条件",
+            "结果"
+          ],
+          "rows": [
+            [
+              "Timeout",
+              "count≥1500，未排队/未进行",
+              "Standard，从ACKD后继开始"
+            ],
+            [
+              "Nak N",
+              "N后继在TX缓冲；无其他重放；忽略窗不阻止",
+              "按Command排Standard或Selective"
+            ],
+            [
+              "Standard覆盖已排Selective",
+              "尚未开始，且版本规定的序号比较匹配",
+              "升级Standard，保留既定起点"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "replay-transmit-conditions",
+        "title": "开始重放还要看阶段、NAK组与失败轮次",
+        "paragraphs": [
+          "已调度且未进行，类型匹配，且没有卡在未完成的NAK连续组时才启动。Gen7在Sequence Number Handshake阶段为此条件列了单独许可；重放从显式序号组的开始处发起，并使用缓冲保存的序号。",
+          "Standard发送从起点开始全部未确认内容；Selective仅发送目标一条。进行中阻止新TLP进入。Standard结束于全部该批未确认内容发完，Selective结束于目标条发完，不能混淆REPLAY_SCHEDULED与IN_PROGRESS。"
+        ],
+        "referenceIndices": [
+          31,
+          32,
+          3,
+          4,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "replay-rollover-by-rate",
+        "title": "无前进重放次数：低速FM与高速FM计数不同",
+        "paragraphs": [
+          "FLIT_REPLAY_NUM记录无前进的重放尝试，并非所有历史重放总数。高速达到7、低速达到6后若还需启动下一次重放，记录REPLAY_NUM Rollover并进入Recovery。有效累计确认向前推进会清它。",
+          "Gen7低速Selective每次+2，脚注明确旧版本+1仍许可但不是最佳；不能因此判所有旧实现违规。计数回卷和正常Payload序号1023→1完全不同。"
+        ],
+        "referenceIndices": [
+          31,
+          32,
+          33,
+          34,
+          15,
+          16
+        ],
+        "table": {
+          "columns": [
+            "条件",
+            "Base6.0",
+            "Base7.0"
+          ],
+          "rows": [
+            [
+              "高速FM",
+              "64 GT/s：Standard/Selective +1；阈值7",
+              "≥64 GT/s（含128）：+1；阈值7"
+            ],
+            [
+              "≤32 GT/s FM Standard",
+              "+2；阈值6",
+              "+2；阈值6"
+            ],
+            [
+              "≤32 GT/s FM Selective",
+              "+1；阈值6",
+              "+2；脚注允许旧+1行为"
+            ],
+            [
+              "达到阈值仍需重放",
+              "记录回卷错误并Recovery",
+              "记录回卷错误并Recovery"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "nak-ignore-window-version",
+        "title": "NAK忽略窗防重复调度：6.0与7.0的速率表不同",
+        "paragraphs": [
+          "忽略窗针对特定序号的重复NAK，不是忽略所有错误。窗口从发送对应起点的Payload显式序号时启动，建议长度结合实测Ack/Nak延迟、一个最大SKP和两条Flit。",
+          "6.0另一候选值为300 ns；7.0强烈推荐按速率取下表，再与前述延迟预算取较小者，也保留300 ns选择。7.0脚注指出此速率表在6.4加入；这里只据该脚注记录来源，未把6.4全章标为已核读。"
+        ],
+        "referenceIndices": [
+          35,
+          36
+        ],
+        "table": {
+          "columns": [
+            "速率GT/s",
+            "7.0候选窗口ns",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "2.5",
+              "2250",
+              "与实测延迟+最大SKP+2 Flit比较；不是无条件固定窗口"
+            ],
+            [
+              "5",
+              "1250",
+              "与实测延迟+最大SKP+2 Flit比较；不是无条件固定窗口"
+            ],
+            [
+              "8",
+              "750",
+              "与实测延迟+最大SKP+2 Flit比较；不是无条件固定窗口"
+            ],
+            [
+              "16",
+              "450",
+              "与实测延迟+最大SKP+2 Flit比较；不是无条件固定窗口"
+            ],
+            [
+              "32",
+              "350",
+              "与实测延迟+最大SKP+2 Flit比较；不是无条件固定窗口"
+            ],
+            [
+              "64",
+              "300",
+              "与实测延迟+最大SKP+2 Flit比较；不是无条件固定窗口"
+            ],
+            [
+              "128",
+              "250",
+              "与实测延迟+最大SKP+2 Flit比较；不是无条件固定窗口"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ack-nak-latency-matrix",
+        "title": "Ack/Nak延迟建议：随宽度和速率查询",
+        "paragraphs": [
+          "Base7.0强烈建议在下表时间内发对应反馈；测量从接收引脚上收到Flit首bit，到发送引脚上发出对应Ack/Nak首bit。发送Ordered Set时有例外。脚注解释为48 ns加一条Flit时间。",
+          "这不是往返时间、不是应用Completion Timeout，也不是所有复位/切速时刻的强制固定值。x1低速序列化时间明显较长，不能把x16高速的49 ns套过去。"
+        ],
+        "referenceIndices": [
+          36
+        ],
+        "table": {
+          "columns": [
+            "宽度",
+            "2.5",
+            "5",
+            "8",
+            "16",
+            "32",
+            "64",
+            "128 GT/s"
+          ],
+          "rows": [
+            [
+              "x16",
+              "112",
+              "80",
+              "64",
+              "56",
+              "52",
+              "50",
+              "49"
+            ],
+            [
+              "x8",
+              "176",
+              "112",
+              "80",
+              "64",
+              "56",
+              "52",
+              "50"
+            ],
+            [
+              "x4",
+              "304",
+              "176",
+              "112",
+              "80",
+              "64",
+              "56",
+              "52"
+            ],
+            [
+              "x2",
+              "560",
+              "304",
+              "176",
+              "112",
+              "80",
+              "64",
+              "56"
+            ],
+            [
+              "x1",
+              "1072",
+              "560",
+              "304",
+              "176",
+              "112",
+              "80",
+              "64"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "retry-example-small-hole",
+        "title": "一个小例子：丢12，只补12，还是12～14都重发",
+        "paragraphs": [
+          "假设接收方已确认到11，12损坏，13、14随后正确到达。若采用Selective且缓存足够，可保存13/14，反馈NAK序号11，要求只补12；补到后按12、13、14顺序交付。",
+          "若采用Standard，洞后的13/14不能当作已顺序接收的事务交付，发送侧从未确认12开始恢复。若最初损坏的其实是NOP11，下一条Prior=0及合法序号可能让NAK直接撤销。例子体现处理差别，未复刻规范示例的全部时序。"
+        ],
+        "referenceIndices": [
+          17,
+          18,
+          19,
+          20,
+          23,
+          24
+        ]
+      },
+      {
+        "id": "retry-version-change-index",
+        "title": "6.0→7.0重放细节差异索引：不能只把64替换为128",
+        "paragraphs": [
+          "本轮查到的是两个已发布版本的具体文字差异，不能由此断言每项首次在7.0引入。尤其6.4窗口表已有正文脚注证据；其余中间版本/ECN继续核对。"
+        ],
+        "referenceIndices": [
+          35,
+          36,
+          3,
+          4,
+          11,
+          12,
+          15,
+          16,
+          29,
+          30,
+          31,
+          32
+        ],
+        "table": {
+          "columns": [
+            "变化点",
+            "6.0位置",
+            "7.0位置与差别"
+          ],
+          "rows": [
+            [
+              "Nak窗口速率表",
+              "p366：300 ns候选",
+              "p423：7速率表，脚注指出6.4加入"
+            ],
+            [
+              "NOP显式序号",
+              "p366：NEXT_TX−1",
+              "p423/428：重放期间有最近Payload序号建议/许可"
+            ],
+            [
+              "NAK组中断",
+              "p370：超时清计数或退出L0",
+              "p427：加NAK_SCHEDULED清除"
+            ],
+            [
+              "Ack使排队重放失效",
+              "p372：清TX_REPLAY相关动作",
+              "p429：还清REPLAY_SCHEDULED且不打断在途重放"
+            ],
+            [
+              "Selective→Standard比较",
+              "p379：N比较TX_REPLAY",
+              "p438：N+1比较TX_REPLAY"
+            ],
+            [
+              "低速Selective轮次",
+              "p380：+1",
+              "p439：+2，脚注允许旧行为"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "sequence-window-explorer",
+        "title": "序号窗口查询：回卷时别用普通整数比较",
+        "paragraphs": [
+          "输入NEXT_TX、ACKD、收到反馈N及窗口MAX，工具计算两个模1023差。示例NEXT_TX=3、ACKD=1022、N=1在环上跨过1023→1，仍可在合法窗口内。",
+          "它只检查本块列出的Ack/Nak序号窗口；未模拟NAK忽略、buffer实际存在性、阶段、FEC或完整接收分支，不把“窗口内”输出为“协议完全合法”。"
+        ],
+        "referenceIndices": [
+          15,
+          16
+        ]
+      }
+    ]
   },
   {
     "name": "ECRC Generation / Checking",
@@ -9240,6 +10825,17 @@
         "pdfPage": 272,
         "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 300,
+        "pdfPage": 300,
+        "title": "Gen7 Shared严格半窗比较与版本限定",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
     "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
@@ -9467,7 +11063,8 @@
       {
         "title": "发送门控与回卷：Credit Limit不是瞬时空闲数",
         "paragraphs": [
-          "以普通/专用池为例：CREDITS_CONSUMED统计自初始化以来已通过FC门控的累计消耗；CREDIT_LIMIT是对端最近一次合法广告的累计可用额度。它们都按字段位宽回卷，不是不断增长的无限整数。"
+          "以普通/专用池为例：CREDITS_CONSUMED统计自初始化以来已通过FC门控的累计消耗；CREDIT_LIMIT是对端最近一次合法广告的累计可用额度。它们都按字段位宽回卷，不是不断增长的无限整数。",
+          "上述≤半窗口式对应普通/专用池及所引Base6.0规则；Base7.0 Shared门控改用严格<，Merged还需独立P/Cpl账，见功能112版本专节。"
         ],
         "table": {
           "columns": [
@@ -9516,7 +11113,8 @@
         "referenceIndices": [
           7,
           8,
-          9
+          9,
+          13
         ],
         "id": "block-5"
       },
@@ -9587,11 +11185,15 @@
     "checks": "核对协商、信用更新与实际缓冲容量；将编码值按旧公式换算可能得出错误剩余字节数。",
     "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
     "id": 112,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "title": "PCI-SIG · Dynamic Shared Flow Control Usage Limits ECN（仅公开概要）",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/DynamicSharedFlowControlUsageLimits"
       }
     ],
     "reviewed": "2026-10-19",
@@ -9705,9 +11307,196 @@
         "pdfPage": 244,
         "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.2",
+        "page": 277,
+        "pdfPage": 277,
+        "title": "Scaled FC的窗口、位宽与缩放",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.2",
+        "page": 336,
+        "pdfPage": 336,
+        "title": "Scaled FC的窗口、位宽与缩放",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "page": 272,
+        "pdfPage": 272,
+        "title": "Zero/Shared初始化的跨VC条件",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 331,
+        "pdfPage": 331,
+        "title": "Zero/Shared初始化的跨VC条件",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 294,
+        "pdfPage": 294,
+        "title": "Gen7 Merged容量与P/Cpl独立记账",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 295,
+        "pdfPage": 295,
+        "title": "Gen7固定4-credit blocks",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 300,
+        "pdfPage": 300,
+        "title": "Gen7非Merged Shared门控",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 301,
+        "pdfPage": 301,
+        "title": "Gen7 Merged门控和Usage Limit",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 297,
+        "pdfPage": 297,
+        "title": "Shared计数保留与P/Cpl分开",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 298,
+        "pdfPage": 298,
+        "title": "SCCC与共享容量",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 299,
+        "pdfPage": 299,
+        "title": "Shared累计Limit",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 330,
+        "pdfPage": 330,
+        "title": "Gen7 NFM/FM初始化选项表",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 302,
+        "pdfPage": 302,
+        "title": "Gen7 Dedicated仍用非严格比较",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1.1",
+        "page": 245,
+        "pdfPage": 245,
+        "title": "Base6.0 Shared门控",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 302,
+        "pdfPage": 302,
+        "title": "Dedicated回退与前缀标记",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 293,
+        "pdfPage": 293,
+        "title": "Gen7 VC禁用与重新启用限制",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 302,
+        "pdfPage": 302,
+        "title": "Credit返回与nullified模式差异",
+        "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
+    "referenceStatus": "新展开块逐项绑定Base6.0/7.0正文；旧目录引用、后续修订与未展开分支不视为完整核读。",
     "details": [
       {
         "title": "Scaled Flow Control：缩放编码与窗口上限",
@@ -9761,7 +11550,9 @@
       },
       {
         "title": "Shared／Dedicated／Merged：只在适当模式使用",
-        "paragraphs": [],
+        "paragraphs": [
+          "此表以Base6.0组织方式说明机制。Base7.0合并的是容量池，P/Cpl计数及归还仍独立，见下方版本专节。"
+        ],
         "table": {
           "columns": [
             "机制",
@@ -9810,8 +11601,9 @@
         "id": "block-2"
       },
       {
-        "title": "FM Shared分组记账表：为何不是每个TLP都恰好扣1个可见额度",
+        "title": "Base6.0 Shared分组：合并P/Cpl为8，其他为4",
         "paragraphs": [
+          "本表仅对应Base6.0已核读正文；Base7.0改用统一4-credit block并补充独立记账，不应外推。",
           "基本TLP需求见功能111；Shared分组是另一层规则。相邻同FC/VC且同Shared池的TLP使用前一组剩余份额，不是每个小包都永久浪费整组。释放也按对应组粒度进行；不同VC/类型不能随意混装一个Credit。"
         ],
         "table": {
@@ -9896,6 +11688,258 @@
           1
         ],
         "id": "block-4"
+      },
+      {
+        "id": "scaled-field-widths",
+        "title": "Scaled扩大计数窗口；线上的HdrFC/DataFC字段没有跟着变宽",
+        "paragraphs": [
+          "缩放通过传递计数器高位表示更大的累计额度，线上的HdrFC仍8 bit、DataFC仍12 bit。内部计数宽度与最大未用Credit随Scale变化，不能把“12 bit Header计数”误写成DLLP里多出4 bit。",
+          "Header与Data可各选Scale。初始广告最小值、无限/零/Merged编码另外受初始化规则约束；本表只描述有限窗口。"
+        ],
+        "referenceIndices": [
+          10,
+          11
+        ],
+        "table": {
+          "columns": [
+            "Scale",
+            "倍率",
+            "内部Header/Data位宽",
+            "最大未用H/D Credit",
+            "线路操作"
+          ],
+          "rows": [
+            [
+              "00未激活",
+              "1",
+              "8 / 12",
+              "127 / 2047",
+              "原计数"
+            ],
+            [
+              "01已激活",
+              "1",
+              "8 / 12",
+              "127 / 2047",
+              "原计数"
+            ],
+            [
+              "10",
+              "4",
+              "10 / 14",
+              "508 / 8188",
+              "TX右移2，RX左移2"
+            ],
+            [
+              "11",
+              "16",
+              "12 / 16",
+              "2032 / 32752",
+              "TX右移4，RX左移4"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "scaled-support-not-allocation",
+        "title": "支持Scaled、激活Scaled、分配更大缓冲是三件事",
+        "paragraphs": [
+          "支持16 GT/s及以上的Port必须支持Scaled FC，但本次链路是否激活要按协商上下文确认；激活本身也不自动增加物理缓冲。速率能力不是当前Credit窗口的直接读数。",
+          "长路径的带宽×往返延迟需求可能超出小窗口，缩放解决可表达范围，但吞吐仍受实际接收空间、返回延迟、TC/VC调度与包大小限制。不能把Scale=16写成吞吐必然乘16。"
+        ],
+        "referenceIndices": [
+          10,
+          11
+        ]
+      },
+      {
+        "id": "credit-zero-encoding-context",
+        "title": "同样Credit=0：无限、零和Merged必须结合Scale/Mode",
+        "paragraphs": [
+          "初始化的零值是编码，不是运行中计数回卷的同义词。NFM未激活Scaled时00/0表示无限；激活时零值与允许的非零Scale组合解释。FM的00/0表示无限，01/0表示零，10/0仅在允许的Shared Cpl位置表示Merged。",
+          "Gen7把NFM与FM选项拆成表3-2和3-3，并对跨VC一致性补充条件。不能照搬旧版本一个“表3-2”链接，或把FM某位置的10/0当成所有类别都可合并。"
+        ],
+        "referenceIndices": [
+          21,
+          12,
+          13
+        ]
+      },
+      {
+        "id": "zero-shared-vc-version",
+        "title": "Shared Zero的版本变化：0不总等于不能发",
+        "paragraphs": [
+          "Base6.0表3-2注7明确Zero Shared不允许在VC0。Base7.0的多VC规则允许某VC以Zero表示不再增加共享池容量，但它仍可使用其他VC分配的共享容量；甚至允许所有VC均为Zero、只用Dedicated，代价是每TLP带FM Local Prefix。",
+          "Shared Scale必须能表达所有VC合计的分配。例如两VC各120 Header，总240超出×1的127上限，需要更大的Scale。不能逐VC都小于127就认为整个共享池也合法。"
+        ],
+        "referenceIndices": [
+          12,
+          13
+        ]
+      },
+      {
+        "id": "merged-accounting-gen7",
+        "title": "Gen7 Merged：共享容量合并，P与Cpl的账仍分开",
+        "paragraphs": [
+          "接收方可选择Merged，发送方必须能支持该选择。初始共享Posted广告总合并容量；运行中归还Credit仍指明真正释放的VC和P/Cpl类型。Header/Data成对合并，Dedicated不能合并，两方向独立。",
+          "Gen7同时要求Requester的Completion处理速率与相关Request发起速率在不超过100 μs的滑动窗口内匹配，用于前进与占用约束。它不是每个Completion都必须100 μs内返回的超时定义。"
+        ],
+        "referenceIndices": [
+          14
+        ]
+      },
+      {
+        "id": "shared-credit-block-gen7",
+        "title": "Gen7统一4-credit block：block不随Scale再乘4或16",
+        "paragraphs": [
+          "一个Shared credit block由4个相应类型Credit组成。Header/Data各自按block预留和释放，Dedicated不适用。即使Merged，P和Cpl的block归属也要区分。",
+          "某TLP没用完一个block，余下部分留给同VC、同FC Type的后续TLP；别的VC/类别穿插不会改变其归属。block保持开放直到用完，或VC禁用/DL_Down等规定事件。不能让一个block里随意混装跨VC零头。"
+        ],
+        "referenceIndices": [
+          15
+        ]
+      },
+      {
+        "id": "credit-block-small-packets",
+        "title": "小包占用的推导：不要每个包都重新凑一整组",
+        "paragraphs": [
+          "在Gen7假设一个VC/FC尚无开放Header block：第一个只需1 Header的TLP会预留4个，留下3个供该VC/FC后续TLP使用。随后三个同类TLP可耗尽剩余；第五个才需要下一组。",
+          "Data单位仍是16 B，因此Data block为4×16 B=64 B的Credit资源单位，但不能说它必对应一块连续物理SRAM地址。Header Credit更不能直接叫16 B。这个例子是依据block规则的记账推导。"
+        ],
+        "referenceIndices": [
+          15
+        ]
+      },
+      {
+        "id": "shared-gate-gen7",
+        "title": "Gen7 Shared门控：严格小于半窗口，Merged合看两类账",
+        "paragraphs": [
+          "非Merged按(ΣLimit−ΣConsumed−待发需求) mod2^w < 2^(w−1)门控。Merged的P/Cpl分别保留计数，再把两类Limit之和减两类Required之和做同样判断。Header和Data所需项都要通过。",
+          "Base6.0所读Shared公式用≤；Base7.0 Shared公式用<，而其Dedicated公式仍为≤。不要用一次全局字符串替换把所有门控都改成同一个比较符。合法窗口还有最大未用额度约束，不能制造不可能的计数状态来解释性能。"
+        ],
+        "referenceIndices": [
+          16,
+          17,
+          22,
+          23
+        ]
+      },
+      {
+        "id": "shared-usage-limit",
+        "title": "Usage Limit是每VC占用上限，不能替代总池门控",
+        "paragraphs": [
+          "使能Usage Limit后，还需满足SCCC+待发需求≤TOTAL_SHARED×UsageLimit×0.125。Gen7 Merged的总容量项要结合P/Cpl两类，而不能把初始为0的Merged Cpl广告单独当整个Completion可用量。",
+          "Shared门控失败后仍可按Dedicated规则尝试；实际发Dedicated需TLP Uses Dedicated Credits前缀位。Usage Limit和VC Arbitration独立：前者限制占用，后者决定谁获发送机会。",
+          "后续修订提示：2025-10-07的Dynamic Shared Flow Control Usage Limits ECN影响Base7.0；官方公开概要列出动态限额更新、FCParameters DLLP及1/16粒度等内容。本轮只核对概要，已找到本地ECN候选但未核读正文，因此上面的1/8公式限定为所引Base7.0正文，不宣称覆盖该ECN或后续7.1实现。"
+        ],
+        "referenceIndices": [
+          16,
+          17,
+          24
+        ]
+      },
+      {
+        "id": "shared-current-occupancy",
+        "title": "SCCC不是累计Consumed：收到更新要扣真正释放的增量",
+        "paragraphs": [
+          "累计Consumed不因为Credit归还而减小；SCCC跟踪当前占用，需要在发送时增加、更新到来时扣除新旧Limit之间的模差。重复同值更新的释放增量为0，不能再次减占用。",
+          "Gen7明确SCCC用FieldSize+1位表示，P/Cpl即使Merged也独立。计算释放增量要先按原FieldSize做模差，再作用到更宽SCCC，不能先直接做有符号减法，或把回卷的更新误判成负数。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          20
+        ]
+      },
+      {
+        "id": "vc-disable-shared-preservation",
+        "title": "Gen7禁用VC：保留Shared账，重新启用不在保证范围内",
+        "paragraphs": [
+          "禁用VC1～7清Dedicated计数，但Shared消耗、当前占用及Limit等保留，先前接收的TLP释放后照常归还，容量继续服务剩余VC。若清Shared账，会把旧在途资源遗忘并造成超发风险。",
+          "Base7.0明确软件随后重新使能VC1～7的行为未定义。因此不能把“禁用→重新初始化→启用”宣称为FM下通用安全热重配置方法。VC0始终使能，另按链路复位规则处理。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          20,
+          25
+        ]
+      },
+      {
+        "id": "credit-return-not-completion",
+        "title": "Credit归还、Ack、Completion与应用完成，四种不同里程碑",
+        "paragraphs": [
+          "Credit归还是接收缓冲管理；Ack是这一条Link的可靠性进度；Completion回应对应Non-Posted事务；应用完成还依赖DMA/内存/软件语义。任何一个都不能无条件代替其他三个。",
+          "FM nullified TLP仍记Credit消耗并归还，NFM nullified TLP计数规则不同。重放不作为一笔新事务再次穿过流控门，因此不要把重放条数乘TLP Credit后又扣一次。"
+        ],
+        "referenceIndices": [
+          26
+        ]
+      },
+      {
+        "id": "fc-version-difference-index",
+        "title": "流控6.0→7.0差异表：按版本查，不按链路当前速率猜",
+        "paragraphs": [
+          "以下差异由两份正式版选定正文支持。当前运行32 GT/s但处于FM时，仍应按实现声明的相应规范修订解释，不能自动改用“Gen5=NFM”的旧假设。各项首次合入中间修订尚待追溯。"
+        ],
+        "referenceIndices": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "table": {
+          "columns": [
+            "比较点",
+            "Base6.0",
+            "Base7.0"
+          ],
+          "rows": [
+            [
+              "Shared block",
+              "Merged P/Cpl为8，其余相关类为4（p241）",
+              "统一4，并明确P/Cpl分块（p295）"
+            ],
+            [
+              "VC0 Shared Zero",
+              "表3-2注7不允许（p272）",
+              "多VC规则有Zero及仅Dedicated方案（p331）"
+            ],
+            [
+              "Merged累计账",
+              "Shared门控使用Posted类解释（p245）",
+              "P/Cpl独立计数，门控合计（p297～301）"
+            ],
+            [
+              "Shared半窗比较",
+              "≤（p245）",
+              "<（p300～301）；Dedicated仍≤"
+            ],
+            [
+              "VC禁用后重启",
+              "本轮不扩写旧版未读保证",
+              "再次启用行为未定义（p293）"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "fc-trace-checklist",
+        "title": "现场查FM停顿：把池、窗口、重放和反向更新一起抓",
+        "paragraphs": [
+          "建议日志同时标记当前规范修订/速率/模式、VC与FC类别、Shared/Dedicated、Scale、Limit与Consumed、开放block余量、SCCC与Usage Limit，以及TX重放窗口占用。数据不足时不要只凭一个fc_available信号猜原因。",
+          "若TX Retry Buffer满但Credit充足，查反馈/NAK/重放；若Shared Usage达到上限而总池仍有余量，查该VC占用及Dedicated回退；若只在VC禁用后异常，检查Shared账是否误清。每条判断都把硬件实现观测与标准算法变量分开。"
+        ],
+        "referenceIndices": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          15
+        ]
       }
     ]
   },
