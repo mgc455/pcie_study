@@ -2546,101 +2546,491 @@
   {
     "name": "ACS：Access Control Services",
     "group": "虚拟化、翻译与隔离",
-    "intro": "定义请求验证、阻断、重定向和P2P出口控制点。",
-    "usage": "VM直通与多功能隔离重点；",
-    "mechanism": "ACS在拓扑控制点决定请求的验证、阻断或路由，防止某些P2P路径绕过应有检查。支持能力与当前Control使能需要分别读取。",
-    "example": "Switch下两个设备属于不同VM时，系统可能要求请求上行接受检查，而不允许Switch内部直接互访。",
-    "checks": "即使生成ACS，部分控制器的P2P执行仍需应用补齐，不能把Cap位当隔离证明。",
-    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "intro": "ACS在拓扑控制点执行来源检查、地址类型阻断和路由控制；能力支持、软件使能与完整隔离策略必须分开判断。",
+    "usage": "设备直通、多租户与多功能设备的隔离设计中，用于防止某些设备请求绕过预期的上游检查路径。先明确需要控制的是请求来源、AT属性、P2P路由还是端口BAR访问，再选择对应控制。ACS本身不负责把DMA地址翻译成主机物理地址。",
+    "mechanism": "接收端口依据已实现且已使能的ACS机制判断TLP应正常路由、阻断或重定向。Base 6.0 §6.12规定ACS硬件控制默认关闭，由理解ACS的软件启用。寄存器通过扩展配置空间中的ACS Extended Capability暴露；不要把Capability里的支持位当成Control里的当前使能。",
+    "example": "两个设备位于同一Switch下，设备A使用的DMA地址如果恰好落入设备B的MMIO路由窗口，单靠“目标是主机内存”的软件意图不能决定真实路由。适用的ACS重定向机制可把这类请求送回上游验证/翻译路径；Translation Blocking和Source Validation分别解决其他检查问题，不能互相替代。",
+    "checks": "先画出设备到Root Complex的路径并标记端口类型；遍历扩展能力链找到ID 000Dh；分别读取ACS Capability与Control。再核对需要保护的每条路径与请求类型，而非只检查端点有无ACS。遇到违规检查检测端的ACS Violation状态、Mask/Severity和Header/Prefix Log；Non-Posted请求的返回状态为CA不代表记录的错误就叫Completer Abort。",
+    "prerequisites": "ACS按Function和端口角色定义，并非每个器件都必须暴露相同能力。实现ACS的Root Port和Switch Downstream Port必须具备Source Validation与Translation Blocking；非Downstream Port的多功能Function不实现这两项。Switch Upstream Port只有作为多功能设备中的Function时才适用ACS；PCIe-to-PCI Bridge与RCEC不适用。具体平台还需检查整条路径的能力、使能和地址翻译策略。",
     "id": 74,
-    "status": "已整理 · 待持续深化",
+    "status": "核心规则与字段已核读 · Base 6.0",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.12",
         "title": "Access Control Services (ACS)",
         "page": 751,
+        "pdfPage": 751,
         "documentId": "pcie-base-6.0",
         "document": "PCI Express Base Specification",
         "version": "6.0",
-        "pdfPage": 751,
-        "verification": "目录与该PDF章节首页已核对；完整章节继续核读",
+        "verification": "已核读第751～755页中相关概述和角色规则；未宣称整章全部核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.11",
+        "title": "ACS Extended Capability",
+        "page": 1083,
+        "pdfPage": 1083,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读第1083～1088页相关结构与字段；向量完整规则仍待核读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.11.1",
+        "title": "ACS Extended Capability Header (Offset 00h)",
+        "page": 1084,
+        "pdfPage": 1084,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读表7-116：ID、版本和Next指针；印刷页与PDF页一致",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.11.2",
+        "title": "ACS Capability Register (Offset 04h)",
+        "page": 1085,
+        "pdfPage": 1085,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读表7-117，跨PDF第1085～1086页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.11.3",
+        "title": "ACS Control Register (Offset 06h)",
+        "page": 1086,
+        "pdfPage": 1086,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读表7-118，跨PDF第1086～1088页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.12.5",
+        "title": "ACS Violation Error Handling",
+        "page": 759,
+        "pdfPage": 759,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读PDF第759～760页：NP的CA完成、ACS Violation记录及相关状态处理",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已核读本条相关Base 6.0正文及寄存器表；其他版本演进和相邻机制仍待补齐。",
+    "details": [
+      {
+        "title": "寄存器如何定位：偏移相对ACS能力块，不是固定配置地址",
+        "paragraphs": [
+          "ACS没有一个适用于全部设备的绝对配置地址。遍历PCIe扩展能力链，找到Extended Capability ID=000Dh后，记该块起点为B。Header位[15:0]为ID，[19:16]为Capability Version（此版要求1h），[31:20]为Next Capability Offset；Next=0表示链尾。",
+          "B+04h是16位只读ACS Capability；B+06h是16位ACS Control。+04h所在的同一DWORD里，高16位就是Control，不能对整个DWORD盲目写入；软件配置时应按寄存器宽度并保留无关位。这里给出的是解释方法，不是建议绕过操作系统去改隔离策略。"
+        ],
+        "table": {
+          "columns": [
+            "相对偏移/字段",
+            "用途",
+            "属性或注意点"
+          ],
+          "rows": [
+            [
+              "+00h Header",
+              "扩展能力ID、版本、Next",
+              "RO；ID=000Dh"
+            ],
+            [
+              "+04h Capability[6:0]",
+              "七项基础ACS机制的支持位",
+              "RO；支持不等于使能"
+            ],
+            [
+              "+04h Capability[7]",
+              "ACS Enhanced Capability支持",
+              "RO；不能与Control[7]含义混淆"
+            ],
+            [
+              "+04h Capability[15:8]",
+              "Egress Control Vector大小",
+              "01h～FFh按位数解释；00h表示256位；无Egress Control支持时此字段未定义"
+            ],
+            [
+              "+06h Control",
+              "运行时使能和访问策略",
+              "按适用性为RW或保留；不是错误状态寄存器"
+            ],
+            [
+              "+08h起 Egress Control Vector",
+              "按出口限制P2P请求",
+              "按需要存在，可跨多个DWORD；本轮未核读全部向量语义"
+            ]
+          ]
+        }
+      },
+      {
+        "title": "Control位速查（Base 6.0表7-118）",
+        "paragraphs": [
+          "以下均相对16位ACS Control。基础控制位[6:0]默认0，不支持相应功能时硬连为0。Enhanced相关字段仅在对应能力和角色适用时有效，不能无条件整字写1。"
+        ],
+        "table": {
+          "columns": [
+            "位",
+            "名称",
+            "理解与限制"
+          ],
+          "rows": [
+            [
+              "0",
+              "Source Validation Enable",
+              "检查来自下游的上行Request的来源Bus Number"
+            ],
+            [
+              "1",
+              "Translation Blocking Enable",
+              "阻断AT非默认值的上行Memory Request"
+            ],
+            [
+              "2",
+              "P2P Request Redirect Enable",
+              "与Egress Control、Direct Translated P2P共同决定是否上行重定向"
+            ],
+            [
+              "3",
+              "P2P Completion Redirect Enable",
+              "针对适用的非Relaxed Ordering P2P Completion，配合请求路径维持排序"
+            ],
+            [
+              "4",
+              "Upstream Forwarding Enable",
+              "处理从下层收到、正常路由又指向本端口出口的上行TLP"
+            ],
+            [
+              "5",
+              "P2P Egress Control Enable",
+              "结合出口向量及重定向控制决定允许、阻断或重定向"
+            ],
+            [
+              "6",
+              "Direct Translated P2P Enable",
+              "对符合条件的Translated Memory Request覆盖Request Redirect/Egress Control；Control[1]=1时忽略此位"
+            ],
+            [
+              "7",
+              "I/O Request Blocking Enable",
+              "Enhanced机制；阻断适用端口收到的上行I/O Request；不支持时为保留位"
+            ],
+            [
+              "9:8",
+              "DSP Memory Target Access Control",
+              "Enhanced机制；00直接访问、01阻断、10重定向、11保留"
+            ],
+            [
+              "11:10",
+              "USP Memory Target Access Control",
+              "Enhanced机制；编码同上，仅适用Switch DSP保护USP的相应Memory BAR空间"
+            ],
+            [
+              "12",
+              "Unclaimed Request Redirect Control",
+              "Enhanced机制；适用Switch DSP中，1使相应未认领Memory请求上行，0按UR处理"
+            ],
+            [
+              "15:13",
+              "Reserved",
+              "保留，不作为功能使能"
+            ]
+          ]
+        }
+      },
+      {
+        "title": "违规后的报错和尚未核实的演进信息",
+        "paragraphs": [
+          "按§6.12.5，承担Completer职责的ACS组件对Non-Posted违规请求返回CA Completion，并按ACS Violation记录与报告，而不是将本地错误记录成Completer Abort。Posted请求不应期待一个对应Completion。非致命违规且返回CA时还涉及Advisory Non-Fatal规则；状态寄存器的Target Abort处理见该节。",
+          "本轮核读的是Base 6.0中的这些规则和字段。ACS最初引入的ECN、Enhanced机制首次合入哪个修订，以及Gen7是否修改了细则仍待建立版本证据链；不能因为在6.0读到就说ACS从Gen6才开始存在。"
+        ]
+      }
+    ]
   },
   {
     "name": "ACS Source Validation",
     "group": "虚拟化、翻译与隔离",
-    "intro": "验证下游请求的Requester ID是否来自允许范围。",
-    "usage": "防止设备伪造来源身份；主要是支持的下游端口功能。",
-    "mechanism": "下游端口根据允许的身份范围验证来自其下游的Requester ID，发现违规时按协议报告/处理，减少冒用身份的机会。",
-    "example": "恶意设备伪造另一路设备的Requester ID时，来源验证是可能的防线之一，而非仅依目标地址过滤。",
-    "checks": "必须在适用端口检查有效来源范围；普通EP没有下游拓扑，不能套用所有DSP规则。",
-    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "intro": "在实现ACS的Root Port与Switch Downstream Port上，验证上行Request的Requester ID之Bus Number是否属于其下游。",
+    "usage": "需要拦截来自错误总线范围的请求来源时使用，例如检测某设备声称自己来自另一分支。它不是密码学身份认证，也不能识别同一个允许Bus范围内的所有Function冒用。",
+    "mechanism": "使能后，对接收的每个Upstream Request检查Requester ID里的Bus Number。常规桥通过Secondary Bus Number到Subordinate Bus Number的闭区间判定；实现且启用FPB时，也可使用FPB Routing ID机制判定下游归属。检查失败在接收端口产生ACS Violation。Completion不受此机制影响。",
+    "example": "某DSP的Secondary=20h、Subordinate=2Fh。收到Request的Requester ID Bus=30h时不在窗口内，应触发ACS Violation；Bus=24h则仅通过这一项范围检查。后者不表示Device/Function号、地址访问权限或完整DMA隔离已经验证。",
+    "checks": "核对端口角色、Secondary/Subordinate配置和Control[0]；有FPB时还需考虑其归属规则。枚举尚未分配Bus Number时，某些上行Message会使用Bus=00h，启用来源检查可能导致违规，规范在第753页有实现提示。诊断时检查发生错误的接收端口，不要只查发起设备。",
+    "prerequisites": "规则位于Base 6.0 §6.12.1.1，适用实现ACS扩展能力的Root Port和Switch Downstream Port。Capability(+04h) bit0报告支持；Control(+06h) bit0为RW使能，默认0，不支持时硬连0。§6.12.1.2覆盖的非DSP多功能Function禁止实现此机制，不能把普通EP按DSP来配置。",
     "id": 75,
-    "status": "已整理 · 待持续深化",
+    "status": "核心规则与字段已核读 · Base 6.0",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "title": "PCI-SIG · Source Validation Clarification ECN（2026-04-15，影响Base 7.0；公开说明）",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/AccessControlServicesACSSourceValidationClarification"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
-        "section": "6.12",
-        "title": "Access Control Services (ACS)",
-        "page": 751,
+        "section": "6.12.1.1",
+        "title": "ACS Downstream Ports — Source Validation",
+        "page": 752,
+        "pdfPage": 752,
         "documentId": "pcie-base-6.0",
         "document": "PCI Express Base Specification",
         "version": "6.0",
-        "pdfPage": 751,
-        "verification": "已核对该版本目录；正文待逐项核读",
+        "verification": "已核读第752页正文及第753页上行Message提示",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.12.1.2",
+        "title": "ACS Functions in SR-IOV Capable and Multi-Function Devices",
+        "page": 755,
+        "pdfPage": 755,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读第755页开头角色规则：非DSP Function不实现Source Validation/Translation Blocking",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.11.2",
+        "title": "ACS Capability Register (Offset 04h)",
+        "page": 1085,
+        "pdfPage": 1085,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读表7-117，跨PDF第1085～1086页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.11.3",
+        "title": "ACS Control Register (Offset 06h)",
+        "page": 1086,
+        "pdfPage": 1086,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读表7-118，跨PDF第1086～1088页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.12.5",
+        "title": "ACS Violation Error Handling",
+        "page": 759,
+        "pdfPage": 759,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读PDF第759～760页：NP的CA完成、ACS Violation记录及相关状态处理",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已核读本条相关Base 6.0正文及寄存器表；其他版本演进和相邻机制仍待补齐。另发现影响Base 7.0的2026年澄清ECN，已读公开说明，ECN正文待核读。",
+    "details": [
+      {
+        "title": "判定流程与作用边界",
+        "paragraphs": [
+          "第一步：确认该端口实现ACS及Source Validation，并确认Control bit0=1。第二步：只对本端口收到的上行Request提取Requester ID的Bus Number。第三步：按桥总线窗口和适用的FPB机制判定下游归属。第四步：失败则转ACS Violation处理，成功仅表示该项检查通过，仍需其他适用的路由和权限检查。",
+          "本轮修正了原说明“验证Requester ID来自允许范围”过于宽泛的问题：这里的架构检查核心是Bus Number归属，不是比对完整BDF白名单。Completion不参与这项检查。"
+        ]
+      },
+      {
+        "title": "相关字段与故障处理",
+        "table": {
+          "columns": [
+            "位置",
+            "字段",
+            "本轮核对结果"
+          ],
+          "rows": [
+            [
+              "ACS Capability +04h bit0",
+              "Source Validation",
+              "RO，指示该机制是否实现"
+            ],
+            [
+              "ACS Control +06h bit0",
+              "Source Validation Enable",
+              "RW；默认0；未实现时硬连0"
+            ],
+            [
+              "桥配置头",
+              "Secondary/Subordinate Bus Number",
+              "常规下游Bus范围，两端包含"
+            ],
+            [
+              "错误处理 §6.12.5",
+              "ACS Violation",
+              "NP返回CA；本地错误类别仍为ACS Violation"
+            ]
+          ]
+        },
+        "paragraphs": [
+          "保持桥资源配置与枚举阶段一致。不能为了让错误消失就简单清除隔离控制；先核对发包身份、桥窗口与软件启用时机。FPB的完整编程细则和后续版本修订尚未在本轮核读。"
+        ]
+      },
+      {
+        "title": "后续版本提示：2026年的Source Validation澄清ECN",
+        "paragraphs": [
+          "PCI-SIG公开目录列出2026-04-15的“Access Control Services (ACS) - Source Validation Clarification”，受影响文档标为PCIe Base 7.0。其公开说明指出，Link-Local Message的Bus窗口检查可能导致训练、热插拔及链路维护时误报，并描述对Routing Code为100b、110b、111b的这类消息增加豁免的修订意图。",
+          "本轮只核对该ECN的官方公开元数据和说明，未读取会员区ECN正文，也未确认其是否及如何合入后续修订。上面逐条规则仍明确绑定Base 6.0；针对7.0/7.1设计时须核对实际采用的规范和ECN，不能直接套用本条6.0规则，也不能仅凭网页概述当成完整规范要求。"
+        ]
+      }
+    ]
   },
   {
     "name": "ACS Translation Blocking",
     "group": "虚拟化、翻译与隔离",
-    "intro": "阻断不允许从下游进入的已翻译地址请求。",
-    "usage": "维护翻译信任边界，结合AT字段与平台ATS策略。",
-    "mechanism": "端口可以阻止不应从该信任边界进入的Translated请求，避免设备通过自行设置AT属性跳过应有翻译检查。",
-    "example": "系统未授权设备使用已翻译地址时，不能因为请求带Translated标记就将其视为主机认证过。",
-    "checks": "与ATS使能和可信翻译路径协调；",
-    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "intro": "在适用的Downstream Port上，阻断AT字段不是默认值的上行Memory Request；不只检查Translated标记。",
+    "usage": "用于限制设备从下游送入带非默认AT属性的Memory Request，维护地址翻译相关信任边界。ATS及直达Translated P2P策略启用前，需要与此控制共同规划。",
+    "mechanism": "当ACS Translation Blocking Enable=1时，端口检查收到的每个Upstream Memory Request的Address Type（AT）。AT非默认值就产生ACS Violation；这种错误处理优先于ACS Upstream Forwarding及适用的ACS P2P控制。Completion不受影响。该机制不执行地址翻译，也不查询页表。",
+    "example": "同一DSP上开启Translation Blocking后，AT为默认值的上行Memory Request不因这一项而被阻断；AT非默认值的请求应产生ACS Violation，即使还开启了Direct Translated P2P，也不能绕过该阻断。默认AT请求是否最终成功，仍取决于其他ACS、路由和地址权限检查。",
+    "checks": "同时检查Capability[1]、Control[1]、实际TLP的AT字段和方向；不要拿Completion或下行请求测试上行Memory Request规则。Control[1]=1时，Control[6]（Direct Translated P2P Enable）被忽略。控制关闭也不构成授权，ATS、地址映射、权限和其他控制仍须满足。",
+    "prerequisites": "实现ACS的Root Port和Switch Downstream Port必须具备该机制；非DSP多功能Function不实现。Capability(+04h) bit1报告支持，Control(+06h) bit1为RW使能，默认0，不支持时硬连0。不能将“支持ACS”或“设备支持ATS”直接等同于允许Translated请求通过。",
     "id": 76,
-    "status": "已整理 · 待持续深化",
+    "status": "核心规则与字段已核读 · Base 6.0",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
-        "section": "6.12",
-        "title": "Access Control Services (ACS)",
-        "page": 751,
+        "section": "6.12.1.1",
+        "title": "ACS Downstream Ports — Translation Blocking",
+        "page": 753,
+        "pdfPage": 753,
         "documentId": "pcie-base-6.0",
         "document": "PCI Express Base Specification",
         "version": "6.0",
-        "pdfPage": 751,
-        "verification": "已核对该版本目录；正文待逐项核读",
+        "verification": "已核读第753页AT非默认值、Completion例外及优先级规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.12.1.2",
+        "title": "ACS Functions in SR-IOV Capable and Multi-Function Devices",
+        "page": 755,
+        "pdfPage": 755,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读第755页相关角色禁止实现规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.11.2",
+        "title": "ACS Capability Register (Offset 04h)",
+        "page": 1085,
+        "pdfPage": 1085,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读表7-117，跨PDF第1085～1086页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.11.3",
+        "title": "ACS Control Register (Offset 06h)",
+        "page": 1086,
+        "pdfPage": 1086,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读表7-118，跨PDF第1086～1088页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "6.12.5",
+        "title": "ACS Violation Error Handling",
+        "page": 759,
+        "pdfPage": 759,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "verification": "已核读PDF第759～760页：NP的CA完成、ACS Violation记录及相关状态处理",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已核读本条相关Base 6.0正文及寄存器表；其他版本演进和相邻机制仍待补齐。",
+    "details": [
+      {
+        "title": "判定与优先级",
+        "table": {
+          "columns": [
+            "条件",
+            "该项检查的结果"
+          ],
+          "rows": [
+            [
+              "机制未实现或Enable=0",
+              "不会由此控制产生Translation Blocking；其他检查仍有效"
+            ],
+            [
+              "Enable=1，上行Memory Request，AT为默认值",
+              "不因本项触发违规；并非保证最终放行"
+            ],
+            [
+              "Enable=1，上行Memory Request，AT非默认值",
+              "ACS Violation，先于Upstream Forwarding和适用P2P控制处理"
+            ],
+            [
+              "Completion",
+              "不受Translation Blocking影响"
+            ]
+          ]
+        },
+        "paragraphs": [
+          "原说明仅写“阻止Translated请求”，会漏掉规范使用“AT非默认值”的判定口径。本轮按§6.12.1.1和表7-118修正，不擅自将条件缩窄为某一个AT编码。AT各编码及与ATS流程的完整对应关系留待ATS专题核读。"
+        ]
+      },
+      {
+        "title": "字段、运行配置与异常",
+        "table": {
+          "columns": [
+            "位置",
+            "含义",
+            "限制"
+          ],
+          "rows": [
+            [
+              "Capability +04h bit1",
+              "Translation Blocking支持",
+              "RO；适用角色实现要求见§6.12.1.1"
+            ],
+            [
+              "Control +06h bit1",
+              "Translation Blocking Enable",
+              "RW，默认0；未实现时硬连0"
+            ],
+            [
+              "Control +06h bit6",
+              "Direct Translated P2P Enable",
+              "bit1=1时忽略，不能覆盖Translation Blocking"
+            ]
+          ]
+        },
+        "paragraphs": [
+          "应由理解拓扑、设备分配和翻译策略的软件管理这些控制。若某ATS路径在启用后发生ACS Violation，应核对AT、端口和策略是否一致，不能把清除bit1当作通用修复方法。违规NP请求按§6.12.5返回CA，同时以ACS Violation记录；Posted请求没有对应完成包。"
+        ]
+      }
+    ]
   },
   {
     "name": "ACS P2P Request Redirect",

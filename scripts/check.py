@@ -8,6 +8,12 @@ assert {f['id'] for f in features}==set(range(1,len(features)+1)), 'Preserve exi
 assert len({f['group'] for f in features})>=12
 for f in features:
     assert all(f.get(k) for k in ['name','intro','mechanism','example','checks','prerequisites'])
+    for detail in f.get('details',[]):
+        assert detail.get('title') and (detail.get('paragraphs') or detail.get('table'))
+        if 'table' in detail:
+            table=detail['table']
+            assert table['columns'] and table['rows']
+            assert all(len(row)==len(table['columns']) for row in table['rows'])
     for ref in f.get('protocolReferences',[]):
         assert ref['documentId']=='pcie-base-6.0'
         assert ref['version']=='6.0' and 1<=ref['pdfPage']<=1924

@@ -20,12 +20,12 @@ Do not control the user's desktop, native Chrome, mouse or keyboard. Use connect
 1. Read `content/maintenance.json` and recent `content/changelog.json`.
 2. First perform a self-review: identify factual contradictions, unclear terminology, shallow explanations, missing or stale sources, and broken navigation. Update `content/self-audit.json` with the actual checks and unresolved findings. Do not label unread content as verified.
 3. Pick 2–3 related knowledge blocks, prioritizing factual corrections, missing primary sources and ambiguous normative references. Rotate across foundational protocol concepts, Gen1–Gen7 evolution, capabilities/registers and practical diagnostics; do not remain indefinitely within a single capability family.
-3. Inspect relevant local standard pages or official primary sources. Preserve exact version/revision, section, printed page and PDF physical page separately.
-4. Deepen mechanism, purpose, roles, requirements, negotiation/configuration, error handling and limitations. Keep examples small and directly connected to the function.
-5. Replace broad chapter-background references with directly relevant rules/fields where verified. Never invent exact sections or silently reuse another version's page number.
-6. Record what actually changed and unresolved questions; rotate the queue only after meaningful improvement.
-7. Run `python scripts/build.py`, `python scripts/check.py`, and JavaScript syntax checks. Inspect the diff before publishing.
-8. Publish through the GitHub connector to `mgc455/pcie_study` when authorized access remains available. Preserve remote changes and use a fast-forward update. Do not force-push, change repository visibility, or publish original documents. Report failure accurately while retaining useful local updates.
+4. Inspect relevant local standard pages or official primary sources. Preserve exact version/revision, section, printed page and PDF physical page separately.
+5. Deepen mechanism, purpose, roles, requirements, negotiation/configuration, error handling and limitations. Keep examples small and directly connected to the function.
+6. Replace broad chapter-background references with directly relevant rules/fields where verified. Never invent exact sections or silently reuse another version's page number.
+7. Record what actually changed and unresolved questions; rotate the queue only after meaningful improvement.
+8. Run `python scripts/build.py`, `python scripts/check.py`, and JavaScript syntax checks. Inspect the diff before publishing.
+9. Publish through the GitHub connector to `mgc455/pcie_study` when authorized access remains available. Preserve remote changes and use a fast-forward update. Do not force-push, change repository visibility, or publish original documents. Report failure accurately while retaining useful local updates.
 
 The scheduled AI task performs research and editing. GitHub Actions builds/checks content; it does not itself research or generate explanations.
 
