@@ -20751,19 +20751,19 @@
     "group": "错误处理与可靠性",
     "intro": "严重错误时隔离下游端口，限制错误传播。",
     "usage": "RP/Switch下游恢复；EP设置中存在宏不等于可执行下游隔离。",
-    "mechanism": "下游端口检测满足触发条件的错误后，隔离其下游流量以限制损坏传播，再由应用/系统按流程恢复。不是只多记录一条日志。",
+    "mechanism": "按本端未屏蔽不可纠正/收到错误消息/PIO或软件动作触发，锁存隔离并令LTSSM去Disabled；等DLL Active=0及适用RP Busy=0，再按平台条件解除、重训和恢复。",
     "example": "一块下游卡严重故障时，DPC可让故障范围受限，但驱动仍需处理设备失联与未完成任务。",
-    "checks": "区分AER报告与DPC隔离；在具体控制器中触发后LTSSM可进Disabled，恢复涉及状态清理和重新Detect。",
+    "checks": "先保存DPC/AER/PIO记录；区分检测错误与隔离事件，清IRQ不解除隔离，清Trigger不证明业务恢复。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 105,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.2.11",
@@ -20775,28 +20775,1046 @@
         "pdfPage": 694,
         "verification": "目录与该PDF章节首页已核对；完整章节继续核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.11",
+        "page": 694,
+        "pdfPage": 694,
+        "title": "DPC触发、状态与恢复",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11",
+        "page": 803,
+        "pdfPage": 803,
+        "title": "DPC触发、状态与恢复",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.2",
+        "page": 1249,
+        "pdfPage": 1249,
+        "title": "DPC能力字段",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.2",
+        "page": 1422,
+        "pdfPage": 1422,
+        "title": "DPC能力字段",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.3",
+        "page": 1250,
+        "pdfPage": 1250,
+        "title": "DPC控制低位",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.3",
+        "page": 1423,
+        "pdfPage": 1423,
+        "title": "DPC控制低位",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.3",
+        "page": 1251,
+        "pdfPage": 1251,
+        "title": "DPC可选控制/SFW",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.3",
+        "page": 1424,
+        "pdfPage": 1424,
+        "title": "DPC可选控制/SFW",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.4",
+        "page": 1252,
+        "pdfPage": 1252,
+        "title": "DPC状态低位",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.4",
+        "page": 1425,
+        "pdfPage": 1425,
+        "title": "DPC状态低位",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.4",
+        "page": 1253,
+        "pdfPage": 1253,
+        "title": "Busy/Reason/FEP/SFW",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.4",
+        "page": 1426,
+        "pdfPage": 1426,
+        "title": "Busy/Reason/FEP/SFW",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.11.1",
+        "page": 697,
+        "pdfPage": 697,
+        "title": "DPC中断",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11.1",
+        "page": 806,
+        "pdfPage": 806,
+        "title": "DPC中断",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.11.2",
+        "page": 698,
+        "pdfPage": 698,
+        "title": "DPC ERR_COR顺序",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11.2",
+        "page": 807,
+        "pdfPage": 807,
+        "title": "DPC ERR_COR顺序",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.11.4",
+        "page": 701,
+        "pdfPage": 701,
+        "title": "软件触发与控制协调",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11.4",
+        "page": 810,
+        "pdfPage": 810,
+        "title": "软件触发与控制协调",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.11.5",
+        "page": 702,
+        "pdfPage": 702,
+        "title": "DL_ACTIVE通知",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11.5",
+        "page": 811,
+        "pdfPage": 811,
+        "title": "DL_ACTIVE通知",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.9.3",
+        "page": 262,
+        "pdfPage": 262,
+        "title": "DPC事务层行为",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.9.3",
+        "page": 319,
+        "pdfPage": 319,
+        "title": "DPC事务层行为",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14",
+        "page": 1245,
+        "pdfPage": 1245,
+        "title": "DPC适用Port与扩展",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14",
+        "page": 1418,
+        "pdfPage": 1418,
+        "title": "DPC适用Port与扩展",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11",
+        "page": 805,
+        "pdfPage": 805,
+        "title": "7.0 Busy轮询实施说明",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.5",
+        "page": 1254,
+        "pdfPage": 1254,
+        "title": "DPC Source ID有效条件",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.5",
+        "page": 1427,
+        "pdfPage": 1427,
+        "title": "DPC Source ID有效条件",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.2.1",
+        "page": 267,
+        "pdfPage": 267,
+        "title": "Surprise Down排除条件",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.2.1",
+        "page": 325,
+        "pdfPage": 325,
+        "title": "Surprise Down排除条件",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "6.2.10",
+        "page": 526,
+        "pdfPage": 526,
+        "title": "4.0 DPC支持与触发",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.2.10",
+        "page": 526,
+        "pdfPage": 526,
+        "title": "5.0 DPC支持与触发",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新增块按对应版正文/字段定位；保留原有背景入口，不声明全代际、完整恢复栈或整章已完成。",
+    "details": [
+      {
+        "id": "dpc-port-scope",
+        "title": "DPC只属于Root Port或Switch DSP，不是Endpoint通用开关",
+        "paragraphs": [
+          "DPC是可选规范能力，属于Root Port或Switch Downstream Port，用于阻断该Port以下的PCIe流量，限制潜在数据损坏扩散。Endpoint、Switch USP和其他类型不能因此实现一套同义DPC能力。",
+          "支持DPC还须支持并广告Data Link Layer Link Active报告。存在DPC Capability不等于已经启用，默认Trigger Enable=00；软件恢复CER也不是能力块自动提供的完整驱动恢复栈。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          1,
+          2
+        ]
+      },
+      {
+        "id": "dpc-versus-aer-and-retry",
+        "title": "AER记录、Replay纠传输、DPC隔离：恢复层次不同",
+        "paragraphs": [
+          "链路Replay解决相应传输错误，AER提供错误分类/状态/日志与通知，DPC则停止一个下游分支的流量并让链路进入Disabled。清AER状态不能自动解除DPC，DPC触发也不代表坏业务已经重做。",
+          "DPC可在没有AER时支持其要求的ERR_COR事件通知。不能用“AER消息存在/不存在”单独判定当前是否仍处于DPC；以DPC Trigger Status和Link状态等为依据。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "dpc-trigger-enable-table",
+        "title": "Trigger Enable表：01与10的差别是接收NONFATAL消息",
+        "paragraphs": [
+          "两个启用编码都包括本端检测到的未屏蔽不可纠正错误，区别在于对收到的ERR_NONFATAL是否触发。因此01不能简化成“所有路径都只对Fatal触发”。RP PIO可按自己的Severity归入不可纠正触发。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "Control[1:0]",
+            "本端未屏蔽不可纠正",
+            "收到ERR_FATAL",
+            "收到ERR_NONFATAL"
+          ],
+          "rows": [
+            [
+              "00",
+              "DPC禁用",
+              "不触发",
+              "不触发"
+            ],
+            [
+              "01",
+              "触发",
+              "触发",
+              "不因该消息触发"
+            ],
+            [
+              "10",
+              "触发",
+              "触发",
+              "触发"
+            ],
+            [
+              "11",
+              "Reserved",
+              "不得按启用处理",
+              "不得按启用处理"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dpc-detection-versus-message",
+        "title": "本端检测与收到下游报告：Mask在哪一层作用",
+        "paragraphs": [
+          "本端错误需要按该错误的检测、屏蔽、角色及ANFE等流程判断是否属于未屏蔽不可纠正；不能仅凭UE Status某位=1就认定DPC一定触发。",
+          "收到已形成的ERR_FATAL/NONFATAL是另一触发来源，按Trigger Enable判断。该消息的Requester ID是报告代理，不必是原业务请求发起者；不要把本端某个AER Mask当成跨层统一屏蔽器。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "dpc-consumes-trigger-error-message",
+        "title": "隔离会截住触发消息，不能期待上游再看到同一条ERR_FATAL",
+        "paragraphs": [
+          "若由收到的不可纠正错误消息触发，该消息的Requester ID进入DPC Source ID，消息被丢弃、不再向上转发；若由本端错误触发，也不再为该触发事件发原本的不可纠正错误消息。",
+          "DPC转而可用独立DPC中断和/或ERR_COR告知平台。因此Root日志没出现原ERR_FATAL，不代表下游没发生不可纠正错误，应沿触发Port查看DPC Reason和原始检测证据。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "dpc-latch-and-ltssm",
+        "title": "Trigger Status是隔离锁存，不等于LTSSM已立刻到Disabled",
+        "paragraphs": [
+          "触发时立即置Status并记录Reason，同时指示LTSSM去Disabled；到达后只要Trigger Status保持1，就停在那里。软件看到Status=1时，链路可能仍在完成关闭过程。",
+          "不能立即写1清Status后就声称恢复完成。DPC是事件触发，Status保持期间再次软件触发不会替换原原因；应先保存本次记录。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          9,
+          10,
+          17,
+          18
+        ]
+      },
+      {
+        "id": "dpc-release-link-down-gate",
+        "title": "解除隔离前必须读到DLL Link Active=0",
+        "paragraphs": [
+          "规范要求保留DPC直到Link Status的Data Link Layer Link Active读为0，否则结果未定义。这个检查给LTSSM足够机会进入Disabled或至少把Link真正降下来。",
+          "延时若干CPU周期、只读LTSSM某个内部编码、或只清Interrupt Status，都不能替代这个协议可见前提。它是必要条件，仍不等于全部平台恢复条件已经满足。",
+          "所需保持条件满足后，规范允许清Trigger Status而不要求其他触发相关状态位都先清零。先保存/按策略消费日志仍很重要，但不能把“所有AER/PIO Status必须先变0”编造成DPC退出硬件前提。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          9,
+          10
+        ]
+      },
+      {
+        "id": "dpc-rp-busy-cleanup",
+        "title": "RP Busy必须等清：不能拿固定微秒等待代替",
+        "paragraphs": [
+          "支持RP Extensions的Root Port可能要清理DMA Read等内部活动；Trigger Status=1且RP Busy=1时，软件必须继续保持DPC，清Trigger Status行为未定义。",
+          "实现说明指出通常很短，但最坏可到秒级。驱动可按适合的软件上下文安排有界轮询/延后处理，不能用一个“通常几微秒”的经验值绕过硬件Busy；Switch DSP不适用这个位。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          11,
+          12,
+          25
+        ]
+      },
+      {
+        "id": "dpc-exit-detect-and-config-read",
+        "title": "清Trigger后回Detect重训；7.0显式保留其他禁链条件",
+        "paragraphs": [
+          "满足所需条件后清Trigger Status，端口退出DPC并回Detect尝试重新训练。7.0明确补充：若还有Link Disable等其他禁链条件，不能要求它立即重新训练；6.0所引概述只写回Detect。",
+          "Status字段还要求首次Configuration Read遵守Conventional Reset后的相应时序。不能把DLL Active刚恢复当成设备配置/驱动/DMA队列都已恢复，也不能一律跳过复位后等待。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          9,
+          10
+        ]
+      },
+      {
+        "id": "dpc-capability-register-map",
+        "title": "DPC能力001Dh的寄存器地图：先确认角色和基址",
+        "paragraphs": [
+          "B为扩展Capability链找到的DPC基址，Capability Version=1。低半部包含DPC通用字段；B+0Ch以后RP PIO控制只存在于支持RP Extensions的Root Port。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          3,
+          4,
+          9,
+          10
+        ],
+        "table": {
+          "columns": [
+            "相对偏移",
+            "寄存器",
+            "用途"
+          ],
+          "rows": [
+            [
+              "00h（DWORD）",
+              "Extended Capability Header",
+              "ID001Dh，Version1"
+            ],
+            [
+              "04h / 06h（WORD）",
+              "Capability / Control",
+              "能力与开关分开"
+            ],
+            [
+              "08h / 0Ah（WORD）",
+              "Status / Error Source ID",
+              "隔离、原因、Busy与消息源"
+            ],
+            [
+              "0Ch～1Ch（各DWORD）",
+              "RP PIO Status/Mask/Severity/SysError/Exception",
+              "仅RP Extensions"
+            ],
+            [
+              "20h起",
+              "RP PIO日志",
+              "按模式/Log Size解析，非固定MMIO空间"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dpc-capability-bit-table",
+        "title": "Capability+04h逐bit：RP扩展带来三项必需支持",
+        "paragraphs": [
+          "Root Port若RP Extensions=1，Poison Egress Blocking、Software Triggering和DL_Active ERR_COR支持也必须为1；Switch DSP的RP Extensions必须0。Log Size不是只读bit[11:8]，支持FM时还有bit13。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "字段",
+            "解释"
+          ],
+          "rows": [
+            [
+              "4:0",
+              "DPC Interrupt Message Number",
+              "MSI偏移或MSI-X项，限前32项"
+            ],
+            [
+              "5",
+              "RP Extensions for DPC",
+              "只适用Root Port"
+            ],
+            [
+              "6",
+              "Poisoned TLP Egress Blocking Supported",
+              "出口阻断能力"
+            ],
+            [
+              "7",
+              "DPC Software Triggering Supported",
+              "软件触发能力"
+            ],
+            [
+              "11:8",
+              "RP PIO Log Size低4位",
+              "总日志DWORD数量低位"
+            ],
+            [
+              "12",
+              "DL_Active ERR_COR Signaling Supported",
+              "可通知进入DL_Active"
+            ],
+            [
+              "13",
+              "RP PIO Log Size高1位",
+              "FM支持时有效；不支持FM则RsvdP"
+            ],
+            [
+              "15:14",
+              "RsvdP",
+              "不能当控制位"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dpc-control-bit-table",
+        "title": "Control+06h逐bit：完成状态、中断、通知和动作位",
+        "paragraphs": [
+          "DPC Control混合持续开关与动作语义：Software Trigger写1动作、读回总0，不能把它当保持为1的“已触发状态”。其他Enable默认0；未支持能力不得强行使能。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "名称",
+            "解释"
+          ],
+          "rows": [
+            [
+              "1:0",
+              "Trigger Enable",
+              "00禁用，01/10按触发来源表，11保留"
+            ],
+            [
+              "2",
+              "Completion Control",
+              "0返回CA；1返回UR，默认0"
+            ],
+            [
+              "3",
+              "Interrupt Enable",
+              "允许DPC触发通知中断"
+            ],
+            [
+              "4",
+              "ERR_COR Enable",
+              "DPC触发事件的ERR_COR通知使能"
+            ],
+            [
+              "5",
+              "Poisoned TLP Egress Blocking Enable",
+              "需对应支持位"
+            ],
+            [
+              "6",
+              "Software Trigger",
+              "写1尝试触发，读0；用更新后的Trigger Enable"
+            ],
+            [
+              "7",
+              "DL_Active ERR_COR Enable",
+              "Link进入DL_Active的通知"
+            ],
+            [
+              "8",
+              "DPC SIG_SFW Enable",
+              "额外ERR_COR门控路径，需ECS能力"
+            ],
+            [
+              "15:9",
+              "RsvdP",
+              "保留"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dpc-status-bit-table",
+        "title": "Status+08h逐bit：不是整个WORD都可写1清",
+        "paragraphs": [
+          "Trigger、Interrupt和适用SIG_SFW Status为写1清，Reason/Extension/FEP由硬件维护，RP Busy是只读。盲目回写原值可能提前解除隔离或丢失事件证据。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "字段",
+            "有效性/属性"
+          ],
+          "rows": [
+            [
+              "0",
+              "DPC Trigger Status",
+              "RW1CS；定义当前处于DPC"
+            ],
+            [
+              "2:1",
+              "DPC Trigger Reason",
+              "ROS；仅Trigger=1有效"
+            ],
+            [
+              "3",
+              "DPC Interrupt Status",
+              "RW1CS；触发时Interrupt Enable为1才置位"
+            ],
+            [
+              "4",
+              "DPC RP Busy",
+              "RO；仅RP扩展且Trigger=1有效"
+            ],
+            [
+              "6:5",
+              "Trigger Reason Extension",
+              "ROS；Trigger=1且Reason=11才有效"
+            ],
+            [
+              "7 / 15:14",
+              "RsvdZ",
+              "保留"
+            ],
+            [
+              "12:8",
+              "RP PIO First Error Pointer",
+              "RP扩展；指向PIO Status位"
+            ],
+            [
+              "13",
+              "DPC SIG_SFW Status",
+              "RW1CS；ECS SIG_SFW已发送，需能力支持"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dpc-trigger-reason-table",
+        "title": "Reason与Extension组合解码：0值也可能是有效原因",
+        "paragraphs": [
+          "必须先确认Trigger Status=1。Reason=11后才解释Extension；其余Reason不能再把Extension残值当第二个原因。未触发时Reason值未定义，读到00不说明刚发生本端错误。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12
+        ],
+        "table": {
+          "columns": [
+            "Reason",
+            "Extension",
+            "原因"
+          ],
+          "rows": [
+            [
+              "00",
+              "不解释",
+              "本端未屏蔽不可纠正错误"
+            ],
+            [
+              "01",
+              "不解释",
+              "收到ERR_NONFATAL"
+            ],
+            [
+              "10",
+              "不解释",
+              "收到ERR_FATAL"
+            ],
+            [
+              "11",
+              "00",
+              "RP PIO错误"
+            ],
+            [
+              "11",
+              "01",
+              "软件触发"
+            ],
+            [
+              "11",
+              "10 / 11",
+              "Reserved"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dpc-source-id-validity",
+        "title": "Source ID只对收到的ERR_NONFATAL/FATAL触发有效",
+        "paragraphs": [
+          "DPC Error Source ID=B+0Ah，仅Reason表明由收到的ERR_NONFATAL/FATAL触发时，才是消息Requester ID。软件触发、RP PIO或本端错误场景下该寄存器值未定义。",
+          "不要把未定义的0000h当成Root Port一定是根因，也不要把RID对应Function当成原业务数据损坏源；这与AER Root Source记录“报告代理”的边界相似。"
+        ],
+        "referenceIndices": [
+          26,
+          27
+        ]
+      },
+      {
+        "id": "dpc-software-trigger-semantics",
+        "title": "软件触发：支持、Enable、尚未隔离三个前提",
+        "paragraphs": [
+          "Software Triggering Supported=1、Trigger Enable是有效启用编码、Trigger Status=0时，写动作位1触发；已处于DPC则不改变现有Reason/Extension。禁用时写动作位也没有效果。",
+          "可同一次写更新其他Control字段，动作按更新后的Trigger Enable判断。控制器读回Software Trigger始终0，是否触发要读Status，不能轮询动作位等它保持1。"
+        ],
+        "referenceIndices": [
+          17,
+          18,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "dpc-poison-egress-is-independent",
+        "title": "Poison Egress Blocking是独立使能，不等于已经进入DPC",
+        "paragraphs": [
+          "Capability[6]和Control[5]分别报告/启用出口阻断Poison；DPC Trigger Enable另管隔离。阻断检测后的错误处理还需按Poison/AER及相关完成规则判断。",
+          "RP Extensions要求支持出口阻断，但这不自动把Enable置1，也不意味着EP产品有同样能力位。应同时保存Poison路径与DPC记录，而非从一个位反推所有恢复动作。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "dpc-interrupt-path",
+        "title": "DPC IRQ看Interrupt Status；MSI/MSI-X看边沿组合",
+        "paragraphs": [
+          "触发时若Interrupt Enable=1，Interrupt Status置位。INTx还需Command Interrupt Disable=0；MSI/MSI-X按向量未屏蔽、DPC Interrupt Enable和Interrupt Status的AND从假到真产生消息。",
+          "向量由DPC Interrupt Message Number指示，可与同Function其他中断相同或不同；MSI-X限前32项。清Interrupt Status不清Trigger Status，反过来解除隔离也不自动等于所有通知已消费。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          3,
+          4,
+          9,
+          10
+        ]
+      },
+      {
+        "id": "dpc-err-cor-is-event-not-correction",
+        "title": "DPC发ERR_COR不代表原错误被硬件修好",
+        "paragraphs": [
+          "DPC支持ERR_COR通知是独立于是否有AER的要求。DPC ERR_COR Enable=1且Device Control.Correctable Error Reporting Enable或DPC SIG_SFW Enable为1时，在Trigger Status 0→1发ERR_COR。",
+          "该隔离事件本身不当作错误，不因此设置Device Status的Correctable Error Detected。IRQ与ERR_COR可同时用；同一事件若两者都发，ERR_COR先于MSI/MSI-X，而INTx没有对应排序保证。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "dpc-sfw-subclass-gate",
+        "title": "SIG_SFW是另一条通知使能，不是所有ERR_COR总开关",
+        "paragraphs": [
+          "DPC SIG_SFW Enable需ERR_COR Subclass Capable支持；不支持却写1行为未定义。它是DPC相关固件通知额外/替代门控，不影响其他非SIG_SFW错误消息的整体许可。",
+          "支持ECS的Port发送该DPC事件ERR_COR时要标ECS SIG_SFW并置DPC SIG_SFW Status。6.0和7.0所引字段都已有此机制，不能因今天才看到就称其Gen7首次新增。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          15,
+          16,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "dpc-dl-active-notification",
+        "title": "DL_Active ERR_COR通知“恢复上线”，不通知每次离线",
+        "paragraphs": [
+          "支持并启用此能力，再满足Correctable或SIG_SFW门控后，每次进入DL_Active发ERR_COR，不因此标Device Status Correctable Error。它与Data Link Layer State Changed中断独立。",
+          "它只覆盖进入DL_Active，不覆盖退出；也不只限DPC恢复后的第一次上线。OS通常使用状态变化中断，ERR_COR更偏向固件服务；需避免把“Link恢复通知”误报成又一次纠错。"
+        ],
+        "referenceIndices": [
+          19,
+          20,
+          3,
+          4,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "dpc-firmware-os-ownership",
+        "title": "固件与OS要协调DPC/AER控制，不能两边同时清状态",
+        "paragraphs": [
+          "规范实施说明建议把DPC控制归属与AER控制归属关联，避免固件先处理并清掉日志、OS又按旧状态执行恢复。控制权不是仅从寄存器当前Enable值就能证明。",
+          "排查需保存固件/OS事件顺序、DPC状态和驱动恢复动作。本站解码只读取输入，不能替平台决定控制权或执行在线隔离。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          17,
+          18
+        ]
+      },
+      {
+        "id": "dpc-link-disable-caveat",
+        "title": "DPC启用但未触发时，不建议直接用Link Disable代替软件DPC",
+        "paragraphs": [
+          "Link Disable会使Link降到DL_Down，但缺少DPC的部分语义；后续Posted流量还可能引出DPC。建议有软件触发能力时用其隔离；无此能力时应按说明先禁用DPC再使用Link Disable，并协调控制权。",
+          "这不是要求用户随意在线操作生产设备，而是解释两种禁链机制为何不能当作同一寄存器位。清DPC Trigger后若Link Disable仍置位，7.0明确仍受该条件约束。"
+        ],
+        "referenceIndices": [
+          17,
+          18,
+          1,
+          2
+        ]
+      },
+      {
+        "id": "dpc-hotplug-surprise-interaction",
+        "title": "Hot-Plug Surprise可屏蔽Surprise Down，从而让DPC少一个重要入口",
+        "paragraphs": [
+          "所引实施说明不建议并行使用DPC与Hot-Plug Surprise机制，因为后者可阻止Surprise Down错误报告，使DPC无法因这项重要错误触发；不能笼统说“热插拔一定触发DPC”。",
+          "具备两类能力的槽位还需按热插拔章节规则分配策略。本轮只核这里的交互及Surprise Down排除条件，不替代完整Hot-plug/SFI流程。"
+        ],
+        "referenceIndices": [
+          17,
+          18,
+          28,
+          29
+        ]
+      },
+      {
+        "id": "dpc-recovery-sequence",
+        "title": "恢复检查链：先保留证据，再等硬件收束，最后重建业务",
+        "paragraphs": [
+          "可供实现评审的顺序是：保存Trigger/Reason/Source及PIO/AER日志；确认DLL Active=0；对RP扩展等Busy=0；协调驱动在途任务与错误处置；满足协议及平台条件后清Trigger；观察Detect/训练/DL_Active；再按复位、配置和驱动要求恢复业务。",
+          "清AER/PIO错误位与清Trigger是不同消费动作，不能简单写全1。工具只列必要前提，不把它变成通用、可自动执行的恢复脚本。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          9,
+          10,
+          11,
+          12,
+          21,
+          22
+        ]
+      },
+      {
+        "id": "dpc-generation-evidence",
+        "title": "4.0/5.0已有DPC，6.0/7.0不能按链路速率推断可选支持",
+        "paragraphs": [
+          "已核4.0/5.0 §6.2.10 p526的DPC可选性和Trigger Enable条件；6.0/7.0改在§6.2.11。4.0正文已经讨论RP PIO，不应把所有扩展笼统称为Gen6新增。",
+          "7.0在退出时显式补其他禁链条件，并在事务/RP PIO正文增加UIO范围；具体ECN、首次引入及所有Gen1～Gen3对应规则尚未在本轮核读。能力检查不能由当前运行Gen推断。"
+        ],
+        "referenceIndices": [
+          30,
+          31,
+          1,
+          2
+        ]
+      },
+      {
+        "id": "dpc-trigger-explorer",
+        "title": "查询：触发来源、Enable和已隔离状态",
+        "paragraphs": [
+          "选择最终分类后的本端不可纠正、收到的ERR消息、RP PIO类别或软件动作，比较Enable=00/01/10效果。已有DPC保持原原因，不把再次动作当新事件。",
+          "输入是已经完成相关错误分类的事件；工具不根据单个AER Status推导ANFE、Mask优先级或Root中断。它不会发真实软件Trigger写操作。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          17,
+          18
+        ]
+      },
+      {
+        "id": "dpc-register-explorer",
+        "title": "查询：DPC Capability／Control／Status与释放前提",
+        "paragraphs": [
+          "输入DPC寄存器快照及RP PIO Status，按Port角色、FM/ECS支持解释能力、Source有效性、FEP和Reason。DLL Active用独立选择项表示，避免误把LTSSM内部值当协议可见状态。",
+          "只检查必要硬件门槛，不认定设备已可恢复；Busy/Reason无效时明确忽略，动作位读1会提示可能混入写值，保留字段不赋予软件控制意义。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "dpc-containment-limits",
+        "title": "DPC限制传播，不回滚已完成写，也不保证所有未完成读都有补包",
+        "paragraphs": [
+          "隔离不能撤回已经到达目标的Posted Write，也不能证明某个超时请求未执行。尚未跟踪的在途Non-Posted可能仍等到Timeout，恢复策略需要接受部分操作命运不明。",
+          "因此DPC/CER的价值是缩小故障范围和提供恢复入口；驱动仍须处理队列、内存生命周期、设备状态和有副作用请求的重试安全，不能把重训成功当业务恢复成功。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          1,
+          2
+        ]
+      }
+    ]
   },
   {
     "name": "eDPC / RP PIO Error Controls",
     "group": "错误处理与可靠性",
     "intro": "扩展Root Port对PIO错误的捕获/处理能力。",
     "usage": "主机侧访问下游设备异常场景，适用角色受限。",
-    "mechanism": "eDPC扩展Root Port对PIO等错误的控制和日志，帮助系统解释主机访问下游时发生的故障。其角色与普通Endpoint不同。",
+    "mechanism": "RP以Requester身份跟踪相关PIO请求，按三空间九错误的Mask、Advisory/Uncorrectable、SysError和Exception策略处理；同步异常独立于Mask，Header记录原Request。",
     "example": "主机读坏地址触发端口错误时，可结合RP PIO日志定位请求，而非只在EP里寻找DMA错误。",
-    "checks": "检查RP扩展使能和Flit模式日志布局；具体控制器手册提示部分Header Log DWORD顺序有模式差异。",
+    "checks": "只适用于支持RP Extensions的Root Port；PIO Severity不等于AER Fatal位，FM日志须跳过ImpSpec空间，Type/OHC与Log Size共同解析。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 106,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.2.11.3",
@@ -20808,28 +21826,936 @@
         "pdfPage": 698,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.11.3",
+        "page": 698,
+        "pdfPage": 698,
+        "title": "RP PIO角色与跟踪范围",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11.3",
+        "page": 807,
+        "pdfPage": 807,
+        "title": "RP PIO角色与跟踪范围",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.11.3",
+        "page": 699,
+        "pdfPage": 699,
+        "title": "PIO Mask/Severity/FEP",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11.3",
+        "page": 808,
+        "pdfPage": 808,
+        "title": "PIO Mask/Severity/FEP",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.11.3",
+        "page": 700,
+        "pdfPage": 700,
+        "title": "SysError/Exception",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11.3",
+        "page": 809,
+        "pdfPage": 809,
+        "title": "SysError/Exception",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.11.3",
+        "page": 701,
+        "pdfPage": 701,
+        "title": "AER主导分支",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11.3",
+        "page": 810,
+        "pdfPage": 810,
+        "title": "AER主导分支",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.6",
+        "page": 1254,
+        "pdfPage": 1254,
+        "title": "RP PIO位定义",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.6",
+        "page": 1427,
+        "pdfPage": 1427,
+        "title": "RP PIO位定义",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.7",
+        "page": 1255,
+        "pdfPage": 1255,
+        "title": "RP PIO Mask",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.7",
+        "page": 1428,
+        "pdfPage": 1428,
+        "title": "RP PIO Mask",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.8",
+        "page": 1256,
+        "pdfPage": 1256,
+        "title": "RP PIO Severity",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.8",
+        "page": 1429,
+        "pdfPage": 1429,
+        "title": "RP PIO Severity",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.9",
+        "page": 1257,
+        "pdfPage": 1257,
+        "title": "RP PIO SysError",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.9",
+        "page": 1430,
+        "pdfPage": 1430,
+        "title": "RP PIO SysError",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.10",
+        "page": 1258,
+        "pdfPage": 1258,
+        "title": "RP PIO Exception",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.10",
+        "page": 1431,
+        "pdfPage": 1431,
+        "title": "RP PIO Exception",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.11",
+        "page": 1258,
+        "pdfPage": 1258,
+        "title": "RP PIO Header Log",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.11",
+        "page": 1431,
+        "pdfPage": 1431,
+        "title": "RP PIO Header Log",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.2",
+        "page": 1249,
+        "pdfPage": 1249,
+        "title": "RP PIO日志容量",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.2",
+        "page": 1422,
+        "pdfPage": 1422,
+        "title": "RP PIO日志容量",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.9.3",
+        "page": 262,
+        "pdfPage": 262,
+        "title": "请求跟踪与合成完成",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.9.3",
+        "page": 319,
+        "pdfPage": 319,
+        "title": "请求跟踪与合成完成",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11",
+        "page": 804,
+        "pdfPage": 804,
+        "title": "7.0全1返回实施说明",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.4",
+        "page": 1253,
+        "pdfPage": 1253,
+        "title": "RP PIO FEP消费",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.4",
+        "page": 1426,
+        "pdfPage": 1426,
+        "title": "RP PIO FEP消费",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.12",
+        "page": 1259,
+        "pdfPage": 1259,
+        "title": "ImpSpec分配",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.12",
+        "page": 1432,
+        "pdfPage": 1432,
+        "title": "ImpSpec分配",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.13",
+        "page": 1259,
+        "pdfPage": 1259,
+        "title": "FM Prefix空间复用",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.13",
+        "page": 1432,
+        "pdfPage": 1432,
+        "title": "FM Prefix空间复用",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.12",
+        "page": 1259,
+        "pdfPage": 1259,
+        "title": "ImpSpec可选语义",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.12",
+        "page": 1432,
+        "pdfPage": 1432,
+        "title": "ImpSpec可选语义",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.14.11",
+        "page": 1259,
+        "pdfPage": 1259,
+        "title": "PIO Header字节映射",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.11",
+        "page": 1432,
+        "pdfPage": 1432,
+        "title": "PIO Header字节映射",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.11.2",
+        "page": 698,
+        "pdfPage": 698,
+        "title": "DPC事件ERR_COR",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11.2",
+        "page": 807,
+        "pdfPage": 807,
+        "title": "DPC事件ERR_COR",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.9.3",
+        "page": 262,
+        "pdfPage": 262,
+        "title": "DPC期间跟踪范围",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.9.3",
+        "page": 319,
+        "pdfPage": 319,
+        "title": "DPC期间跟踪范围",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新增块按对应版正文/字段定位；保留原有背景入口，不声明全代际、完整恢复栈或整章已完成。",
+    "details": [
+      {
+        "id": "rp-pio-tracked-request-scope",
+        "title": "PIO指RP跟踪的请求，不是另一种DMA引擎",
+        "paragraphs": [
+          "RP PIO错误控制适用于支持RP Extensions的Root Port跟踪的请求，按Configuration/I/O/Memory三个空间区分UR Completion、CA Completion、CTO。跟踪集合由实现定义，强烈建议包含处理器指令生成的相应请求。",
+          "还可跟踪来自其他RP的P2P或RCiEP请求，但不能因此推定所有设备DMA都在RP PIO表中。7.0明确纳入相关UIO请求；6.0所引正文主要以Non-Posted表述。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          23,
+          24
+        ]
+      },
+      {
+        "id": "rp-pio-nine-bit-table",
+        "title": "九个错误bit：三种空间×UR／CA／CTO",
+        "paragraphs": [
+          "这九个位在Status、Mask、Severity、SysError、Exception中对齐；未列位保留，Status[31]永久保留，作为无效FEP默认指向。不能把AER的bit14 Timeout位置套过来。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "table": {
+          "columns": [
+            "空间",
+            "UR Cpl",
+            "CA Cpl",
+            "CTO"
+          ],
+          "rows": [
+            [
+              "Configuration",
+              "0",
+              "1",
+              "2"
+            ],
+            [
+              "I/O",
+              "8",
+              "9",
+              "10"
+            ],
+            [
+              "Memory",
+              "16",
+              "17",
+              "18"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "rp-pio-mask-status",
+        "title": "PIO Mask=1仍置Status，但不因此记录或触发DPC",
+        "paragraphs": [
+          "检测到RP PIO错误时，即使Mask=1，相应Status仍置位；但该错误不触发DPC，也不进入PIO日志。未屏蔽时有可用资源才记录，不是每一个Status必有独立Header。",
+          "Mask不能修复请求或把UR/CA变成功，也不阻止适用同步Exception。默认九项Mask均1，不能看到Status置位就声称日志一定可用。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "rp-pio-severity-not-fatal",
+        "title": "PIO Severity=1是Uncorrectable，=0是Advisory",
+        "paragraphs": [
+          "未屏蔽的PIO错误若Severity=1，按不可纠正处理，DPC启用时触发；Severity=0按Advisory处理，不因此触发DPC，可按使能发ERR_COR。",
+          "这与AER UE Severity的1Fatal/0Non-Fatal不是同一个二选一。尤其不能把PIO Severity=0写成“Non-Fatal所以还是一定隔离”。九个PIO Severity默认0。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "rp-pio-syserror-gates",
+        "title": "SysError取决于本项使能和未屏蔽，和DPC通知分开",
+        "paragraphs": [
+          "对应RP PIO SysError位=1且PIO错误未屏蔽时，产生System Error。其平台具体处理不由这里定义；不是DPC Interrupt Enable或Severity的同义开关。",
+          "Mask=1时不产生该PIO SysError，理由包括不应产生一个没有日志支撑的System Error。不要把这一门控推广到Exception，后者明确可以穿过Mask。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "rp-pio-exception-bypasses-mask",
+        "title": "同步Exception可以在Masked或Advisory情况下发生",
+        "paragraphs": [
+          "对处理器指令生成、RP已跟踪且支持Exception的请求，相应Exception位=1时，检测错误或合成失败完成应让对应指令走同步异常。即使AER/PIO设置成Masked或Advisory也适用。",
+          "异常机制由处理器/平台定义，至少要能在该指令完成前或紧随其后打断正常指令流；不能把它简单等同一个延迟到任意时刻的MSI。设备DMA错误不自动满足该CPU指令前提。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          17,
+          18
+        ]
+      },
+      {
+        "id": "rp-pio-all-ones-result",
+        "title": "读回全1可能是错误合成，也可能是合法数据",
+        "paragraphs": [
+          "处理器生成的Read/Atomic请求发生PIO错误而不产生适用Exception时，规范要求给指令返回全1。全1不是某种“成功Completion的数据内容”证明，也不单独证明设备被移除。",
+          "可结合已知非全1寄存器、PIO日志和DPC状态判断，避免正常数据恰好全1造成误判。配置探测的UR可不隔离，但Memory Read错误可有不同策略，不能全站统一无限重试。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          25
+        ]
+      },
+      {
+        "id": "rp-pio-aer-ur-ca-roles",
+        "title": "AER里的UR/CA与PIO里的UR Cpl/CA Cpl，RP角色相反",
+        "paragraphs": [
+          "AER UR/CA记录对应RP作为Completer处理收到的请求并返回失败完成；PIO UR Cpl/CA Cpl记录对应RP作为Requester收到自己的请求的失败完成。名字相似，数据方向和错误检测职责不同。",
+          "CTO两处都属于Requester，但PIO还按空间细分。不能要求“同一UR一定两套状态都置位”，也不能用EP AER无UR位否认主机PIO失败。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "rp-pio-cto-aer-overlap",
+        "title": "CTO双重入口：PIO解屏蔽后建议屏蔽AER CTO",
+        "paragraphs": [
+          "CTO可进入AER、PIO或两者。规范建议若在PIO中解屏蔽CTO，就在AER中屏蔽CTO，以避免两套控制意外交互；这不是所有错误一律双重记录的要求。",
+          "例如Switch DSP隔离后，下游Completion不再返回，RP的CTO可能是隔离副作用。PIO用Advisory处理可避免RP再扩大隔离到所有兄弟分支；实际策略仍由平台设计决定。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "rp-pio-bad-completion-mapping",
+        "title": "Completion自身Poison/Malformed等错误怎样选PIO控制位",
+        "paragraphs": [
+          "关联已跟踪PIO请求的Completion若本身有错，先按DPC Completion Control选择适用UR或CA，再按原Request空间选PIO控制位。例如Memory Read的Poison Completion、Control选CA，则用Mem CA Cpl bit17的相关策略。",
+          "这不表示所有坏Completion都只需检查PIO Severity；这些AER管理的错误还按AER Mask/Severity决定不可纠正、ANFE或Masked分支，SysError/Exception另按规则参与。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "rp-pio-log-request-not-completion",
+        "title": "PIO Header Log永远记关联Request，不记出错Completion",
+        "paragraphs": [
+          "PIO Header、ImpSpec和Prefix合称日志；Header必需，其他可选。日志始终保存与PIO错误关联的Request信息，而不是返回UR/CA的Completion头或那个损坏Completion的原始头。",
+          "因此想从日志直接读取“失败Completion的Tag/Status布局”会解错格式；应先按Request的Type/OHC解析，再结合PIO Status/Completion Control还原错误分类。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          19,
+          20
+        ]
+      },
+      {
+        "id": "rp-pio-first-error-pointer",
+        "title": "PIO FEP默认31；消费对应Status后回无效默认",
+        "paragraphs": [
+          "DPC Status[12:8]是RP PIO FEP；其指向的PIO Status位=1时有效。默认31指向永久保留且为0的Status位，避免把刚上电的日志当真。",
+          "有效时写1清它所指Status，FEP必须回默认31。这里不是AER Multiple Header Recording的队列接口，不能期待按同样消费动作自动取下一条PIO日志。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          26,
+          27
+        ]
+      },
+      {
+        "id": "rp-pio-nfm-layout",
+        "title": "NFM日志：四DW Header、可选ImpSpec、可选End-End Prefix",
+        "paragraphs": [
+          "NFM Header在B+20h～2Ch共16字节；B+30h留给ImpSpec；B+34h起是可选End-End Prefix。Log Size表示分配总DWORD数量，不是某次Request头实际长度。",
+          "若Log Size≥5则给ImpSpec分配位置，未实现该日志也须该空间读0。不能因为B+30h是0就把后面的Prefix整体前移一个DWORD。"
+        ],
+        "referenceIndices": [
+          19,
+          20,
+          28,
+          29,
+          21,
+          22
+        ]
+      },
+      {
+        "id": "rp-pio-fm-layout",
+        "title": "FM日志：Header拆两段，跳过B+30h的ImpSpec位置",
+        "paragraphs": [
+          "FM时前四DW Header仍在20h～2Ch，额外Header从34h延伸；原Prefix Log不存在。必须按Type、OHC、Port支持格式和Log Size解析，Trailer和Local Prefix不记入此Header日志。",
+          "不能把B+20h开始的一整段连续DWORD全部当Header，因为30h位置仍是ImpSpec分配。6.0/7.0字段段落有总字节范围与图示/正文最大头要求不易直接对齐的表述，本轮不据此给一个万能固定FM长度。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          19,
+          20,
+          30,
+          31
+        ]
+      },
+      {
+        "id": "rp-pio-log-size-split-field",
+        "title": "RP PIO Log Size由低4位和bit13拼成5bit",
+        "paragraphs": [
+          "DPC Capability[11:8]给低4位，FM支持时bit13给第4位；总值=(低4位)+(bit13×16)。不支持FM时bit13为RsvdP，不能把它当有效容量。",
+          "没有RP Extensions时Log Size必须0；支持扩展但不支持FM时至少4DW；支持FM时需满足最大已实现Header Base及OHC的日志要求。总分配大小与当前记录实际大小不同。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          1,
+          2
+        ]
+      },
+      {
+        "id": "rp-pio-implementation-log",
+        "title": "ImpSpec是产品诊断信息，0不表示没有错误",
+        "paragraphs": [
+          "可选ImpSpec记录实现相关信息，例如Request来源。它不拥有一个所有平台统一的位定义；要按对应Root Port文档解释，不能给这32bit套一个通用地址/Tag解析器。",
+          "Log Size给其分配空间但功能未实现时读0。PIO错误有效性仍看Status/FEP等，不靠ImpSpec非0判定。"
+        ],
+        "referenceIndices": [
+          32,
+          33
+        ]
+      },
+      {
+        "id": "rp-pio-header-byte-order",
+        "title": "DWORD数值转协议字节：每个DW高字节先展示",
+        "paragraphs": [
+          "PIO Header格式与AER Header Log相同：DWORD读值12345678h对应协议展示byte0=12h、byte1=34h、byte2=56h、byte3=78h，DW1/DW2顺序不倒置。",
+          "CPU按字节从内存读取的顺序可能不同，须区分寄存器数值和缓冲区字节。FM还要把分离的Header两段拼接，不能把ImpSpec插入协议头再算OHC位置。"
+        ],
+        "referenceIndices": [
+          34,
+          35
+        ]
+      },
+      {
+        "id": "rp-pio-exception-request-types",
+        "title": "Exception覆盖与请求类型相关，不是所有Write都保证支持",
+        "paragraphs": [
+          "6.0正文要求支持相应已跟踪Read的同步Exception，允许可选支持Configuration Write、I/O Write和AtomicOp。7.0把相关UIO纳入并调整文字范围，仍保留这些可选支持表述。",
+          "判断某次CPU访问会不会Trap，要同时确认指令来源、请求被跟踪、该类异常支持和对应Exception位，不能只读一个寄存器就承诺所有原子/写访问都可恢复。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "rp-pio-advisory-containment-scope",
+        "title": "Advisory可避免隔离扩大，但并未让失败访问变成功",
+        "paragraphs": [
+          "PIO Advisory仍可记录、通知和按Exception/SysError处理，只是不因这条PIO Severity路径触发DPC。应用必须知道访问失败或检查对应日志，不能继续消费合成全1当业务数据。",
+          "Switch某DSP已隔离后，其上RP若再因副作用CTO隔离，会影响更多兄弟Port；按空间设置PIO策略能缩小故障影响，这是控制粒度的用途，不是通用默认最优策略。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "rp-pio-aer-branch-table",
+        "title": "AER主导的Completion错误：DPC、SysError、Exception各自参与",
+        "paragraphs": [
+          "对Poison/Malformed等AER管理错误，下面按本版正文的最终分类整理；不能把“PIO Severity=0”覆盖掉已经形成的AER不可纠正分支。具体触发仍须DPC启用。"
+        ],
+        "referenceIndices": [
+          7,
+          8
+        ],
+        "table": {
+          "columns": [
+            "AER处理类别",
+            "DPC",
+            "PIO SysError",
+            "PIO Exception"
+          ],
+          "rows": [
+            [
+              "Uncorrectable",
+              "启用时触发",
+              "对应规则适用",
+              "对应规则适用"
+            ],
+            [
+              "Advisory Non-Fatal",
+              "不因此触发",
+              "对应规则适用",
+              "对应规则适用"
+            ],
+            [
+              "Masked",
+              "不因此触发",
+              "不适用",
+              "仍适用（满足指令/支持等前提）"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "rp-pio-advisory-err-cor",
+        "title": "Advisory ERR_COR不是DPC Trigger通知的同义词",
+        "paragraphs": [
+          "PIO Severity=0的未屏蔽错误可按使能发ERR_COR而没有DPC Trigger；PIO Severity=1触发DPC后，也可能通过DPC独立ERR_COR门控通知。只看收到ERR_COR不能判断是哪条路径。",
+          "应关联PIO Status/Severity、DPC Trigger/Reason、Device Control报告使能及固件ECS记录。本站PIO快照工具仅提示报告资格，不从五个DWORD预测实际消息/IRQ时序。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          36,
+          37
+        ]
+      },
+      {
+        "id": "rp-pio-policy-truth-table",
+        "title": "单个原生PIO错误的门控表：Mask不屏蔽同步Exception",
+        "paragraphs": [
+          "下面仅针对原生UR Cpl/CA Cpl/CTO的PIO策略，不覆盖AER主导的坏Completion合成分支。Log表示可记录且仍需资源；Exception始终还需CPU/跟踪/支持前提。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "Mask",
+            "Severity",
+            "Log / DPC",
+            "SysError位=1",
+            "Exception位=1"
+          ],
+          "rows": [
+            [
+              "1",
+              "任意",
+              "Status仍置位；不记Log/不触发",
+              "不产生",
+              "前提满足仍可产生"
+            ],
+            [
+              "0",
+              "0",
+              "可记Log；Advisory，不触发",
+              "产生",
+              "前提满足产生"
+            ],
+            [
+              "0",
+              "1",
+              "可记Log；DPC启用时触发",
+              "产生",
+              "前提满足产生"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "rp-pio-register-defaults",
+        "title": "五组PIO寄存器默认值与写属性",
+        "paragraphs": [
+          "仅支持RP Extensions的Root Port实现这些寄存器，九个有效位一致。Status写1清，其余为RWS；保留位各按表处理，不能全32bit都当有效策略位。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "table": {
+          "columns": [
+            "相对偏移",
+            "寄存器",
+            "九个定义位默认/属性"
+          ],
+          "rows": [
+            [
+              "0Ch",
+              "Status",
+              "0 / RW1CS"
+            ],
+            [
+              "10h",
+              "Mask",
+              "1 / RWS"
+            ],
+            [
+              "14h",
+              "Severity",
+              "0（Advisory）/ RWS"
+            ],
+            [
+              "18h",
+              "SysError",
+              "0 / RWS"
+            ],
+            [
+              "1Ch",
+              "Exception",
+              "0 / RWS"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "rp-pio-policy-explorer",
+        "title": "查询：PIO位图、记录/隔离资格与同步Exception",
+        "paragraphs": [
+          "输入五组PIO DWORD和DPC Enable，列出每个已置位错误的空间、Mask、Advisory/Uncorrectable、日志资格、DPC路径及SysError/Exception条件。",
+          "仅分析原生PIO错误的配置快照；不模拟AER并行入口，不假定Status记录时配置与现在相同，也不预测真实平台Trap/消息。CPU请求及Exception支持由用户明确选择，避免给DMA错误套CPU异常语义。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "rp-pio-uio-version-boundary",
+        "title": "6.0/7.0差异：UIO范围显式加入，不按Gen推所有请求都被跟踪",
+        "paragraphs": [
+          "6.0的RP PIO和事务层DPC段落主要以Non-Posted描述，7.0在这些位置明确列Non-Posted和UIO请求。两版均保留跟踪集合的实现选择。",
+          "这不等于某个Gen7 Root Port必定跟踪所有UIO或P2P流量，也不证明扩展能力首次在7.0引入。使用时先按正式版/能力/实际Requester来源匹配相应规则。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          38,
+          39
+        ]
+      }
+    ]
   },
   {
     "name": "Surprise Down / Link Down恢复",
     "group": "错误处理与可靠性",
     "intro": "区分意外断链并协调未完成请求与应用恢复。",
     "usage": "热拔、失电、线缆故障；需考虑DMA缓冲生命周期。",
-    "mechanism": "意外掉链打断正在进行的事务，软件与应用需要停止新工作、处置未完成请求，再决定复位/重建链路和重新提交。",
+    "mechanism": "从DL_Active→DL_Inactive及规定排除条件判断Surprise Down；DPC/复位/关链可导致预期掉链。恢复按在途请求、设备状态与驱动数据生命周期分别处理。",
     "example": "热拔设备后继续复用DMA缓冲或等待永不会来的完成会造成错误，因此需要明确失败和资源回收路径。",
     "checks": "记录掉链前首错误、LTSSM和在途数；恢复前确认旧请求/旧Completion不会污染新任务。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 107,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.2",
@@ -20841,9 +22767,268 @@
         "pdfPage": 669,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.2.1",
+        "page": 267,
+        "pdfPage": 267,
+        "title": "Surprise Down判定与排除",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.2.1",
+        "page": 325,
+        "pdfPage": 325,
+        "title": "Surprise Down判定与排除",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.2.1",
+        "page": 268,
+        "pdfPage": 268,
+        "title": "Surprise Down抑制窗口结束",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.2.1",
+        "page": 326,
+        "pdfPage": 326,
+        "title": "Surprise Down抑制窗口结束",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.9.3",
+        "page": 262,
+        "pdfPage": 262,
+        "title": "DPC事务层丢弃/合成完成",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.9.3",
+        "page": 319,
+        "pdfPage": 319,
+        "title": "DPC事务层丢弃/合成完成",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.7",
+        "page": 687,
+        "pdfPage": 687,
+        "title": "错误列表与默认处理",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.7",
+        "page": 796,
+        "pdfPage": 796,
+        "title": "错误列表与默认处理",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.9.3",
+        "page": 320,
+        "pdfPage": 320,
+        "title": "7.0未跟踪请求可能Timeout",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.11",
+        "page": 694,
+        "pdfPage": 694,
+        "title": "DPC退出与内部收束",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11",
+        "page": 803,
+        "pdfPage": 803,
+        "title": "DPC退出与内部收束",
+        "verification": "实际核读所引版次/页的相关正文或字段；与PDF物理页绑定，不把目录、整章或其他版本标为已读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新增块按对应版正文/字段定位；保留原有背景入口，不声明全代际、完整恢复栈或整章已完成。",
+    "details": [
+      {
+        "id": "surprise-down-specific-transition",
+        "title": "Surprise Down是特定DL转换错误，不是所有LTSSM抖动",
+        "paragraphs": [
+          "有Surprise Down Error Reporting能力的DSP，在物理LinkUp=0导致DL_Active→DL_Inactive时，除规定阻止检测的条件外按Surprise Down处理。Recovery、L0s/L1或训练未完成时的任意内部状态变化不能直接等同这项错误。",
+          "这是检测Port关联错误，默认严重度为Fatal的背景不能代替实际Severity/Mask/Enable策略。排查应保存DL状态、触发前控制动作及链路物理证据，而非只看最终Link Down。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "surprise-down-reset-disable-exceptions",
+        "title": "软件SBR、Link Disable或DPC导致的预期掉链不再算Surprise Down",
+        "paragraphs": [
+          "软件置Secondary Bus Reset后的后续DL_Inactive，以及软件Link Disable或DPC触发导致的后续DL_Inactive，不作为Surprise Down。否则隔离动作本身又会产生同类错误污染。",
+          "因此先有DPC再掉链，不能仅凭掉链就把Surprise Down判为原始触发原因；要看时间顺序和DPC Reason。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "surprise-down-upstream-event-exception",
+        "title": "Switch DSP因上游事件失链：不要把每个下游口当独立故障",
+        "paragraphs": [
+          "若Switch DSP因其上方事件进入DL_Inactive，不按该DSP的Surprise Down错误处理。例子包括USP传播Hot Reset、上行Link掉到DL_Down、USP的Secondary Bus Reset被置位。",
+          "多个DSP同时失联时应先检查共同上游原因、复位和供电，再判断是否各自信道问题。这里的排除不表示下游业务没有中断，只是错误检测归属不同。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "surprise-down-power-hotplug-exceptions",
+        "title": "PME_Turn_Off、Hot-Plug Surprise与槽位断电也影响判定",
+        "paragraphs": [
+          "已通过Port发送PME_Turn_Off后的预期转换有排除条件，握手失败时仍可能检测Surprise Down。Hot-Plug Capable且Hot-Plug Surprise置位的槽位，或满足规定Power-Off控制条件的槽位，其相关转换也被阻止检测。",
+          "热插拔能力、当前槽位状态和电源控制是条件组合，不是“可热拔所以永不报错”的一条泛化规则。DPC入口选择需要与这些机制协调。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "surprise-down-blocking-window",
+        "title": "阻止检测的窗口跨越离线再上线，不能只看当前开关",
+        "paragraphs": [
+          "某个规定条件发起的错误阻止检测，要一直持续到Port退出DL_Active，再在没有任何阻止条件时返回DL_Active。不能刚清某个开关就把同一预期掉链重新解释成Surprise Down。",
+          "这也是为什么仅靠故障后的寄存器快照不能完整重建原因：控制位过去的变化和DL状态轨迹都重要。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "dpc-transaction-fate-table",
+        "title": "DPC后各方向TLP的命运：不是全部无差别丢包",
+        "paragraphs": [
+          "以下归纳受§2.9.3条件限定的规则；若触发关联下行TLP，其更早下行TLP允许在关链前发送或静默丢弃，不能强行假定已排空。7.0明确扩展相关UIO请求。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "方向/类型",
+            "隔离期间行为",
+            "需要注意"
+          ],
+          "rows": [
+            [
+              "新上行TLP",
+              "不再从Data Link接受",
+              "若触发关联上行TLP，之后已接受者也静默丢弃"
+            ],
+            [
+              "下行Non-Posted（7.0还含UIO）",
+              "丢请求，并以本DSP Completer ID返回UR或CA",
+              "Control[2]=1 UR / 0 CA"
+            ],
+            [
+              "其他下行Posted和Completion",
+              "按规则静默丢弃",
+              "不能保证DMA写已全部到达或回滚"
+            ],
+            [
+              "PME_Turn_Off",
+              "按已确认方式终止相应握手",
+              "不是无限等不可达设备响应"
+            ],
+            [
+              "Vendor Defined Message",
+              "按相应VDM类型规则处理",
+              "不把全部VDM统一当Posted Write"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dpc-outstanding-requests-timeout",
+        "title": "隔离后迟到/缺失完成：RP可补失败完成，普通Requester可能超时",
+        "paragraphs": [
+          "支持RP扩展的Root Port可跟踪部分请求，在DPC让其Completion无法返回时合成UR/CA，避免相应Timeout；合成状态由DPC Completion Control选。跟踪范围是实现选择，不能推定覆盖全部DMA/P2P。",
+          "其他Requester可能等到Completion Timeout，这可能是DPC的副作用而非另一个独立坏器件。Tag/缓冲回收、旧任务失败和新任务重新提交必须按各自协议/驱动规则处理。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          9
+        ]
+      },
+      {
+        "id": "dpc-application-recovery-boundary",
+        "title": "应用恢复至少区分链路、设备、队列和数据四层",
+        "paragraphs": [
+          "Link重新DL_Active只是通信恢复；设备可能经历复位，配置/BAR和中断状态需按适用保持规则重建，驱动队列也要明确哪些命令失败、哪些结果未知。数据缓冲不能因“链路回来了”就立即复用。",
+          "这是基于隔离事务命运整理的恢复评审清单，不是Base为所有OS规定统一API。尤其对有副作用写/Atomic操作，未知执行结果不能靠无条件重试消除。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          10,
+          11
+        ]
+      }
+    ]
   },
   {
     "name": "ACS Violation / Atomic Egress Block",
