@@ -5,6 +5,7 @@ data={name:json.loads((ROOT/'content'/file).read_text(encoding='utf-8')) for nam
 data['generations']=json.loads((ROOT/'content/generations.json').read_text(encoding='utf-8'))
 data['audit']=json.loads((ROOT/'content/self-audit.json').read_text(encoding='utf-8'))
 data['phy']=json.loads((ROOT/'content/phy.json').read_text(encoding='utf-8'))
+data['coverage']=json.loads((ROOT/'content/coverage.json').read_text(encoding='utf-8'))
 data['builtDate']=max(c['date'] for c in data['changelog'])
 for name in ['index.html','style.css','app.js']:shutil.copyfile(ROOT/'web'/name,out/name)
 (out/'data.js').write_text('window.PCIE_STUDY = '+json.dumps(data,ensure_ascii=False,separators=(',',':'))+';\n',encoding='utf-8')

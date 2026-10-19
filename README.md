@@ -7,6 +7,8 @@
 ## 内容
 
 - 182 项功能与学习主题，13 类主题；可搜索、收藏和标记已读。
+- [按协议章序查](https://mgc455.github.io/pcie_study/#coverage)：Gen1～Gen7的117个主章/附录起始定位，分别显示目录定位和选定正文规则的整理情况；不将引用数量当成整章覆盖率。
+- [协议细节查询](https://mgc455.github.io/pcie_study/#lookup)：状态条件、Credit、PIPE、回环、Compliance逐档表、Retimer与接收/误码专题，支持稳定小节链接与版本明确的PDF定位。
 - [PHY／SerDes](https://mgc455.github.io/pcie_study/#phy)：20项分层、数据流、时钟复位、PLL/CDR、均衡、固件启动及验证边界主题。
 - [Gen1～Gen7 演进](https://mgc455.github.io/pcie_study/#generations)：各代速率、编码/调制、主要架构变化、带宽口径和学习路线；完整逐版差异持续核读。
 - [每日自查](https://mgc455.github.io/pcie_study/#audit)：记录实际检查、内容缺口和未解决问题。

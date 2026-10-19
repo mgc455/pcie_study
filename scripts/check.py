@@ -43,7 +43,7 @@ class Check(HTMLParser):
 p=Check();p.feed((ROOT/'docs/index.html').read_text(encoding='utf-8'));p.close()
 assert all((ROOT/'docs'/f).is_file() for f in p.files)
 assert {'content','search','groups','pdf-dialog','pdf-file'}<=p.ids
-for fn in ['changelog','maintenance','protocols','documents','generations','self-audit','phy']:json.loads((ROOT/f'content/{fn}.json').read_text(encoding='utf-8'))
+for fn in ['changelog','maintenance','protocols','documents','generations','self-audit','phy','coverage']:json.loads((ROOT/f'content/{fn}.json').read_text(encoding='utf-8'))
 g=json.loads((ROOT/'content/generations.json').read_text(encoding='utf-8'))
 assert [x['gen'] for x in g['items']]==list(range(1,8))
 assert [x['rate'] for x in g['items']]==[2.5,5,8,16,32,64,128]
@@ -60,16 +60,38 @@ assert len(phy_ids)==len(set(phy_ids))==20
 assert set(phy_ids)<={f['id'] for f in features}
 assert all(len(flow['stages'])>=4 for flow in phy['flows'])
 assert '#phy' in raw
+coverage=json.loads((ROOT/'content/coverage.json').read_text(encoding='utf-8'))
+assert [d['generation'] for d in coverage['documents']]==list(range(1,8))
+features_by_id={f['id']:f for f in features}
+for d in coverage['documents']:
+    doc=documents_by_id[d['documentId']]
+    assert d['version']==doc['version']
+    pages=[c['locator']['pdfPage'] for c in d['chapters']]
+    assert pages==sorted(set(pages)) and all(1<=p<=doc['pages'] for p in pages)
+    assert len({c['section'] for c in d['chapters']})==len(d['chapters'])
+    for chapter in d['chapters']:
+        assert chapter['status'] in {'indexed','selected-rules-reviewed'}, 'No whole-chapter completion claim without a clause audit'
+        locator=chapter['locator']
+        assert locator['documentId']==d['documentId'] and locator['version']==d['version'] and locator['url']==doc['url']
+        assert locator['section']==chapter['section'] and locator['page']>0
+        assert bool(chapter['reviewedBlocks'])==(chapter['status']=='selected-rules-reviewed')
+        assert set(chapter['candidateFeatureIds'])<=set(features_by_id)
+        for block in chapter['reviewedBlocks']:
+            f=features_by_id[block['featureId']]
+            detail=next(x for x in f['details'] if x['id']==block['detailId'])
+            assert block['referenceIndices'] and set(block['referenceIndices'])<=set(detail['referenceIndices'])
+            assert all(f['protocolReferences'][i]['documentId']==d['documentId'] and f['protocolReferences'][i]['section'].split('.')[0]==chapter['section'] for i in block['referenceIndices'])
+assert '#coverage' in raw
 # Audit the entire publication allowlist, including maintenance scripts and instructions.
 public_files=['.gitignore','site.config.json','AGENTS.md','README.md','.github/workflows/check.yml']
 public_files += ['scripts/'+n for n in ['build.py','check.py','import_content.py','index_protocol.py','map_references.py','prepare_public.py']]
 public_files += ['web/'+n for n in ['index.html','style.css','app.js']]
-public_files += ['content/'+n+'.json' for n in ['features','documents','protocols','changelog','maintenance','generations','self-audit','phy']]
+public_files += ['content/'+n+'.json' for n in ['features','documents','protocols','changelog','maintenance','generations','self-audit','phy','coverage']]
 public_files += ['docs/'+n for n in ['index.html','style.css','app.js','data.js','.nojekyll']]
 drive_path=re.compile(r'(?<![A-Za-z0-9])[A-Za-z]:[\\/]')
 for relative in public_files:
     text=(ROOT/relative).read_text(encoding='utf-8')
     assert not drive_path.search(text), f'Absolute drive path in publication file: {relative}'
     assert not re.search(r'/(?:Users|home)/[^\s\"\x27<>/]+/',text), f'Home directory in publication file: {relative}'
-assert len(public_files)==27
+assert len(public_files)==28
 print(f'PASS: {len(features)} features, Gen1–Gen7, source links, public-content boundary, local-only PDF reader, static assets, JSON and HTML structure.')

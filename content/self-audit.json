@@ -1,6 +1,6 @@
 {
   "date": "2026-10-19",
-  "summary": "协议查询深度升级：本轮核读并结构化LTSSM、均衡、Credit与PIPE接口；现有资料足够继续，待核读不等于缺文件。",
+  "summary": "手动第二轮：纠正Base6.0档位总数，细化Loopback/Crosslink/Compliance/Retimer及RX与BER；建立七代章序缺口导航。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -51,6 +51,16 @@
       "name": "状态、Credit和接口规则深度",
       "status": "所列正文核读与关键图表核对",
       "detail": "区分DSP/USP、NFM/FM、TX/RX L0s、Shared与Scaled、Complete与Successful；核读Base7.0的96 ms Speed分支，不沿用Base6.0统一48 ms。"
+    },
+    {
+      "name": "第二轮正文与档位核验",
+      "status": "实际核读并结构化",
+      "detail": "核读6.0 p458～468、522～528、586～592、1357和7.0 p539～550、610～617、697～702相应正文；纠正84档并展开7.0 167档。章序导航117个主章/附录只做定位及选定规则关联，不冒充全部正文覆盖。"
+    },
+    {
+      "name": "RX有效与BER推导",
+      "status": "限定接口及统计假设",
+      "detail": "核读PIPE7.1 p64/69、Base6.0 p320～321及产品RX相关页。区分CDR、两种PIPE RxValid、对齐、L0与DL初始化；BER时间表为独立同分布假设下的原创数学推导，不是PCIe合规时长规定。"
     }
   ],
   "unresolved": [
@@ -61,8 +71,11 @@
     "本地产品手册与PIPE 7.1并非同一发布时间，差异按版本保留，不用新版规则假定旧交付已完全支持。",
     "CDL已完成结构统计，未做LVS、SPICE或晶体管级功能/性能证明；RTL也未进行完整宏展开、编译和全量仿真。",
     "PHY寄存器地址、固件参数、PLL频率及模拟性能不直接推广成PCIe通用规则。",
-    "LTSSM已列普通端口全部子状态，但Loopback.Entry全部编码分支、Crosslink随机仲裁、全部Compliance测试档位及Retimer伪端口规则尚未逐项展开；Gen1～Gen7完整状态差异矩阵仍需继续核读。",
     "Base6.0 Recovery.Speed p503通用回退句与RcvrLock/RcvrCfg的1b/1b回32 GT/s上下文需继续对照6.x勘误；Base7.0 p590已明确按此前编码回退。",
-    "本轮不缺开展LTSSM/流控/PIPE工作的基础规范。确需缺失ECN/独立规范时按名称、版本列单，不把尚未阅读写成资料缺失。"
+    "本轮不缺开展LTSSM/流控/PIPE工作的基础规范。确需缺失ECN/独立规范时按名称、版本列单，不把尚未阅读写成资料缺失。",
+    "Loopback/Crosslink/Compliance已按所引6.0/7.0正文展开；Gen1～Gen5的全部对应条件、每个测试图样比特定义/电气限值与测试规范仍需逐版核读。",
+    "Retimer EQ/回环/CompLoadBoard已展开；完整Forwarding状态机、多Retimer发现、光感知Retimer全过程和中间修订的变更来源仍需核对。",
+    "七代主章与附录起始位置已校准，但细分到全部子条款/表图的覆盖清单尚未建完；原有引用不自动表示已读。",
+    "1b/1b接收对齐完整状态、产品实际PRBS路由与寄存器配置尚未全量核读；零误码公式不替代正式合规测试。"
   ]
 }
