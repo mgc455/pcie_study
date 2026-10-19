@@ -22935,19 +22935,19 @@
     "group": "诊断、测试与管理",
     "intro": "测量接收端时间/电压裕度相关能力。",
     "usage": "高速链路质量评估，不代替完整物理一致性测试。",
-    "mechanism": "接收端Margining在支持条件下测量时间/电压裕度相关信息，结果用于评估链路余量而非证明任何环境下绝对无误码。",
+    "mechanism": "软件通过0027h扩展能力控制每物理Lane及Receiver；DSP以Control SKP往返Retimer命令，按能力选择时间/电压Step，读取执行状态、适用错误数及采样量后恢复默认。",
     "example": "高速链路在室温稳定但高温异常时，可结合Margining、PHY日志和通道测试调查余量变化。",
     "checks": "核对支持lane、速率、测量能力与测试条件；不同器件的读数不能脱离方法直接比较。",
     "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
     "id": 136,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "4.2.18",
@@ -22970,9 +22970,1440 @@
         "pdfPage": 1077,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18",
+        "page": 550,
+        "pdfPage": 550,
+        "title": "LMR适用速率和生命周期",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18",
+        "page": 643,
+        "pdfPage": 643,
+        "title": "LMR适用速率和生命周期",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.1",
+        "page": 551,
+        "pdfPage": 551,
+        "title": "命令路径与Usage Model",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1",
+        "page": 643,
+        "pdfPage": 643,
+        "title": "命令路径与Usage Model",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.1",
+        "page": 552,
+        "pdfPage": 552,
+        "title": "接收器编号",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1",
+        "page": 645,
+        "pdfPage": 645,
+        "title": "接收器编号",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.1",
+        "page": 554,
+        "pdfPage": 554,
+        "title": "能力查询命令",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1",
+        "page": 648,
+        "pdfPage": 648,
+        "title": "能力查询命令",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.1",
+        "page": 555,
+        "pdfPage": 555,
+        "title": "控制/Step命令",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1",
+        "page": 649,
+        "pdfPage": 649,
+        "title": "控制/Step命令",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.1.1",
+        "page": 556,
+        "pdfPage": 556,
+        "title": "Step执行状态",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1.1",
+        "page": 650,
+        "pdfPage": 650,
+        "title": "Step执行状态",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.1.2",
+        "page": 556,
+        "pdfPage": 556,
+        "title": "时间方向/步数",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1.2",
+        "page": 650,
+        "pdfPage": 650,
+        "title": "时间方向/步数",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.1.2",
+        "page": 557,
+        "pdfPage": 557,
+        "title": "电压方向和采样器",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1.2",
+        "page": 651,
+        "pdfPage": 651,
+        "title": "电压方向和采样器",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.2",
+        "page": 558,
+        "pdfPage": 558,
+        "title": "命令生效与回读",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.2",
+        "page": 652,
+        "pdfPage": 652,
+        "title": "命令生效与回读",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.2",
+        "page": 559,
+        "pdfPage": 559,
+        "title": "错误计数/Recovery/门限",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.2",
+        "page": 653,
+        "pdfPage": 653,
+        "title": "错误计数/Recovery/门限",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.3",
+        "page": 560,
+        "pdfPage": 560,
+        "title": "6.0测试前提",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.4",
+        "page": 654,
+        "pdfPage": 654,
+        "title": "7.0测试前提",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.3",
+        "page": 561,
+        "pdfPage": 561,
+        "title": "6.0轮询与结束",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.4",
+        "page": 655,
+        "pdfPage": 655,
+        "title": "7.0轮询与结束",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.4",
+        "page": 656,
+        "pdfPage": 656,
+        "title": "7.0采样与恢复",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "8.4.4",
+        "page": 1395,
+        "pdfPage": 1395,
+        "title": "测量边界和能力",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.4",
+        "page": 1592,
+        "pdfPage": 1592,
+        "title": "测量边界和能力",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "8.4.4",
+        "page": 1397,
+        "pdfPage": 1397,
+        "title": "能力参数",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.4",
+        "page": 1595,
+        "pdfPage": 1595,
+        "title": "能力参数",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "8.4.4",
+        "page": 1398,
+        "pdfPage": 1398,
+        "title": "错误数/采样数",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.4",
+        "page": 1596,
+        "pdfPage": 1596,
+        "title": "错误数/采样数",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.10",
+        "page": 1077,
+        "pdfPage": 1077,
+        "title": "6.0能力分布",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.11",
+        "page": 1238,
+        "pdfPage": 1238,
+        "title": "7.0能力分布",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.10.4",
+        "page": 1082,
+        "pdfPage": 1082,
+        "title": "6.0 Lane Control",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.11.4",
+        "page": 1242,
+        "pdfPage": 1242,
+        "title": "7.0 Lane Control",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.10.5",
+        "page": 1083,
+        "pdfPage": 1083,
+        "title": "6.0 Lane Status",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.11.5",
+        "page": 1243,
+        "pdfPage": 1243,
+        "title": "7.0 Lane Status",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.13",
+        "page": 374,
+        "pdfPage": 374,
+        "title": "4.0时间/电压支持边界",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.13",
+        "page": 394,
+        "pdfPage": 394,
+        "title": "5.0新增速率下的电压要求",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.11.1",
+        "page": 1240,
+        "pdfPage": 1240,
+        "title": "7.0能力头和ID",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.10.3",
+        "page": 1081,
+        "pdfPage": 1081,
+        "title": "6.0 Ready条件",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.11.3",
+        "page": 1241,
+        "pdfPage": 1241,
+        "title": "7.0 Ready条件",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1",
+        "page": 645,
+        "pdfPage": 645,
+        "title": "7.0 Table4-76与窗口选择",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1",
+        "page": 649,
+        "pdfPage": 649,
+        "title": "7.0 Assign Receiver Number命令",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1",
+        "page": 644,
+        "pdfPage": 644,
+        "title": "7.0侧带Usage定义",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1",
+        "page": 645,
+        "pdfPage": 645,
+        "title": "7.0 FRA并行范围",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.4",
+        "page": 1594,
+        "pdfPage": 1594,
+        "title": "7.0时间/步数范围",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.4",
+        "page": 1595,
+        "pdfPage": 1595,
+        "title": "7.0电压尺度",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.4",
+        "page": 1594,
+        "pdfPage": 1594,
+        "title": "7.0单调步数与不披露偏移",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.1",
+        "page": 553,
+        "pdfPage": 553,
+        "title": "PAM4三眼同时Step",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1",
+        "page": 647,
+        "pdfPage": 647,
+        "title": "PAM4三眼同时Step",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.4",
+        "page": 1594,
+        "pdfPage": 1594,
+        "title": "7.0合并后条件",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.3",
+        "page": 654,
+        "pdfPage": 654,
+        "title": "7.0 FM8GT建议行为",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.2",
+        "page": 651,
+        "pdfPage": 651,
+        "title": "7.0不同编码校验与副本",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.2",
+        "page": 654,
+        "pdfPage": 654,
+        "title": "7.0保留编码及寄存器访问细则",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.2",
+        "page": 81,
+        "pdfPage": 81,
+        "title": "PIPE方向与Base相反",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.4",
+        "page": 1594,
+        "pdfPage": 1594,
+        "title": "7.0范围和步数",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.10",
+        "page": 1078,
+        "pdfPage": 1078,
+        "title": "6.0默认Lane编号不随Lane reversal/减宽变化",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
+    "details": [
+      {
+        "id": "margin-scope-support",
+        "title": "支持门槛：16 GT/s起测时间，32 GT/s起电压也必需",
+        "paragraphs": [
+          "6.0/7.0要求支持16 GT/s或更高速率的Port及Retimer Pseudo Port具备Lane Margining；实际测试当前Link必须在16 GT/s或以上及L0。时间裕量必需，电压裕量在16 GT/s可选、32 GT/s及以上必需。",
+          "4.0正文已要求16 GT/s Port的时间裕量，电压可选；5.0正文明确32 GT/s电压要求。这里给出已核版间对照，不把正文存在自动当成首次ECN引入证据。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          39,
+          40
+        ]
+      },
+      {
+        "id": "margin-start-stop-lifecycle",
+        "title": "启动、暂停和终止：Recovery不等于每次彻底结束",
+        "paragraphs": [
+          "有效命令、当前速率及L0条件满足后开始；Go to Normal Settings、切速或离开L0/Recovery允许的范围会结束，超过错误门限也可能触发终止。独立采样器可在Recovery期间暂停。",
+          "7.0还明确：改变被测Receiver集合的Broadcast会结束原测量。结果必须带当时速率/拓扑，不能把切速前后两段误当同一统计窗口。"
+        ],
+        "referenceIndices": [
+          2,
+          3
+        ]
+      },
+      {
+        "id": "margin-command-data-path",
+        "title": "软件→配置寄存器→Control SKP→目标RX→状态的路径",
+        "paragraphs": [
+          "软件写每Lane Control，DSP把字段送到下行Control SKP；目标Retimer处理后沿上行Control SKP回应，DSP再更新Lane Status。USP本地接收器则通过自己的配置接口控制。",
+          "这是物理层控制通道，不是软件向Retimer BAR发送Memory Write，也不是DMA搬运。软件读到Configuration Write完成，只说明配置访问完成，不能视为采样器已经开始测量。"
+        ],
+        "referenceIndices": [
+          4,
+          5,
+          18,
+          19
+        ]
+      },
+      {
+        "id": "margin-capability-location",
+        "title": "能力放在哪个Function：多Function USP仅Function0",
+        "paragraphs": [
+          "支持相关速率的DSP关联Function、单Function USP，以及多Function USP的Function0必须实现这项扩展能力；多Function设备不能为每个Function再假造一套独立物理Lane。",
+          "每Lane条目按Physical Lane Number编号，数量由Maximum Link Width确定；可实现至32条，超出最大宽度的条目值未定义。当前协商宽度则决定哪些Lane可以测。"
+        ],
+        "referenceIndices": [
+          33,
+          34,
+          59
+        ]
+      },
+      {
+        "id": "margin-register-map",
+        "title": "扩展能力0027h：Port寄存器与每Lane的4字节条目",
+        "paragraphs": [
+          "B为扩展Capability链找到的Lane Margining基址，能力版本为1。这里是配置空间相对偏移，不是PHY Message Bus寄存器地址。Lane n按物理编号。"
+        ],
+        "referenceIndices": [
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          41
+        ],
+        "table": {
+          "columns": [
+            "偏移",
+            "寄存器",
+            "解释"
+          ],
+          "rows": [
+            [
+              "B+00h",
+              "Extended Capability Header",
+              "ID=0027h，Version=1"
+            ],
+            [
+              "B+04h（16bit）",
+              "Port Capabilities",
+              "是否依赖Driver Software"
+            ],
+            [
+              "B+06h（16bit）",
+              "Port Status",
+              "Margining Ready / Software Ready"
+            ],
+            [
+              "B+08h+4n（16bit）",
+              "Lane n Control",
+              "原子写完整命令"
+            ],
+            [
+              "B+0Ah+4n（16bit）",
+              "Lane n Status",
+              "原子读回应；不是W1C错误寄存器"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "margin-ready-before-write",
+        "title": "Ready=0时写命令未定义，Software Ready也不是总有效",
+        "paragraphs": [
+          "Port Status[0] Margining Ready为0时，写任何Lane命令字段的行为未定义。Port Capabilities[0]=1才表示需要驱动初始化，此时Status[1] Software Ready有意义；不需要驱动时该位值未定义。",
+          "7.0需要驱动时，从Software Ready置位和训练到≥16 GT/s两者较晚时刻起，Ready应在100ms内置位；不依赖驱动则从相应训练完成起算。6.0所引字段文字写训练到16 GT/s，7.0明确为16 GT/s及以上；保留版本原有表述，不用PERST#释放时刻代替。"
+        ],
+        "referenceIndices": [
+          42,
+          43
+        ]
+      },
+      {
+        "id": "margin-lane-field-bits",
+        "title": "Lane Control／Status位表：回显字段加Payload含义",
+        "paragraphs": [
+          "Control默认为Receiver=0、Type=111、Usage=0、Payload=9Ch，即9C38h的No Command；Status默认不是同一个WORD。Status Payload只在对应有效类型下解释，不能总按Error Count读。",
+          "DL_Down触发字段复位有各自规定；不要拿掉链后的默认值当作旧命令已完成。"
+        ],
+        "referenceIndices": [
+          35,
+          36,
+          37,
+          38
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "Control",
+            "Status"
+          ],
+          "rows": [
+            [
+              "2:0",
+              "Receiver Number",
+              "Receiver Number Status"
+            ],
+            [
+              "5:3",
+              "Margin Type",
+              "Margin Type Status"
+            ],
+            [
+              "6",
+              "Usage Model；LMR必须0",
+              "回应Usage Model；检查为0"
+            ],
+            [
+              "7",
+              "RsvdP",
+              "RsvdP"
+            ],
+            [
+              "15:8",
+              "Margin Payload",
+              "Margin Payload Status，按回应类型解码"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "margin-receiver-legacy-map",
+        "title": "Receiver Number不是Lane编号：A～F是拓扑内接收点",
+        "paragraphs": [
+          "Lane n和Receiver Number是两个维度：同一Lane可沿Link路径有多个接收点。DSP命令面向本端或其下Retimer；USP侧本地Receiver用110b，不是001b。"
+        ],
+        "referenceIndices": [
+          6,
+          7
+        ],
+        "table": {
+          "columns": [
+            "编码",
+            "DSP侧：传统/前两Retimer窗口",
+            "USP侧"
+          ],
+          "rows": [
+            [
+              "000",
+              "Broadcast：DSP与Retimer接收点",
+              "Broadcast：本地USP"
+            ],
+            [
+              "001",
+              "Rx(A)，本地DSP",
+              "Reserved"
+            ],
+            [
+              "010",
+              "Rx(B)，首个Retimer的USP RX",
+              "Reserved"
+            ],
+            [
+              "011",
+              "Rx(C)，首个Retimer的DSP RX",
+              "Reserved"
+            ],
+            [
+              "100",
+              "Rx(D)，第二Retimer的USP RX",
+              "Reserved"
+            ],
+            [
+              "101",
+              "Rx(E)，第二Retimer的DSP RX",
+              "Reserved"
+            ],
+            [
+              "110",
+              "Reserved",
+              "Rx(F)，本地USP"
+            ],
+            [
+              "111",
+              "Reserved",
+              "Reserved"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "margin-four-retimer-window",
+        "title": "7.0四Retimer窗口：编码复用，不能把Receiver2永远叫第一颗",
+        "paragraphs": [
+          "7.0 Table4-76在Four Retimer Aware拓扑增加窗口选择：Mode1选择前两颗，Mode2选择第三/第四颗；010/011改指Rx(G/H)，100/101改指Rx(I/J)。超过两颗FRA Retimer时，同时被测Retimer仍不超过两颗。",
+          "Broadcast的Assign Receiver Number命令用Type=011、Receiver=000，Payload低2位10选择后两颗、00恢复默认集合；切窗口后强烈建议等待传播，等待时长由实现决定。必须先确认FRA拓扑，不能对6.0传统路径使用这项选择。"
+        ],
+        "referenceIndices": [
+          44,
+          45
+        ]
+      },
+      {
+        "id": "margin-usage-model-version",
+        "title": "Usage Model=1：6.0保留，7.0用于光Retimer侧带，不是LMR",
+        "paragraphs": [
+          "LMR命令及其回应必须Usage=0。6.0把1留作未来用途；7.0用于PCIe Optical Retimer Solution侧带，字段含义随之变为Sideband Type/Payload/CRC。",
+          "不理解Usage=1的Receiver应忽略指定相关字段；不能把任何Usage=1的Payload都解码成裕量步数。本站命令工具会标出这种模式边界，不解析完整光侧带协议。"
+        ],
+        "referenceIndices": [
+          4,
+          5,
+          46
+        ]
+      },
+      {
+        "id": "margin-report-command-table",
+        "title": "能力查询Type=001：88h～90h各问什么",
+        "paragraphs": [
+          "以下Payload为查询命令，回应Type仍为001。回应中的参数按当前速率解释；不能把8Ah回应值当作已经移动的步数。其余91h～9Fh保留，Access Retimer Register使用不同范围。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "table": {
+          "columns": [
+            "Payload",
+            "参数",
+            "回应有效位/读法"
+          ],
+          "rows": [
+            [
+              "88h",
+              "Margin Control Capabilities",
+              "[4:0]依次为独立采样器、采样报告法、独立左右、独立上下、电压支持"
+            ],
+            [
+              "89h",
+              "MNumVoltageSteps",
+              "[6:0]，电压最大步数"
+            ],
+            [
+              "8Ah",
+              "MNumTimingSteps",
+              "[5:0]，时间最大步数"
+            ],
+            [
+              "8Bh",
+              "MMaxTimingOffset",
+              "[6:0]，最大偏移百分比；0可不披露"
+            ],
+            [
+              "8Ch",
+              "MMaxVoltageOffset",
+              "[6:0]；NRZ与PAM4基准不同；0可不披露"
+            ],
+            [
+              "8Dh / 8Eh",
+              "MSamplingRateVoltage / Timing",
+              "[5:0]，采样比例=(值+1)/64"
+            ],
+            [
+              "8Fh",
+              "MSampleCount",
+              "[6:0]，3×log2(实测bit数)"
+            ],
+            [
+              "90h",
+              "MMaxLanes",
+              "[4:0]；并行Lane上限=值+1"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "margin-control-command-table",
+        "title": "控制命令：设置门限、回正常、清计数与Step",
+        "paragraphs": [
+          "Type相同不代表命令相同，必须组合Receiver与Payload判别。No Command也有规定Payload；不是把整个Control写0。Vendor Defined不是通用“无操作”备用编码。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "table": {
+          "columns": [
+            "命令",
+            "Type",
+            "Receiver / Payload"
+          ],
+          "rows": [
+            [
+              "No Command",
+              "111",
+              "Receiver000，Payload9Ch"
+            ],
+            [
+              "Set Error Count Limit",
+              "010",
+              "Receiver1～6，Payload[7:6]=11，低6位为门限"
+            ],
+            [
+              "Go to Normal Settings",
+              "010",
+              "Receiver0～6，Payload0Fh"
+            ],
+            [
+              "Clear Error Log",
+              "010",
+              "Receiver0～6，Payload55h"
+            ],
+            [
+              "Timing Step",
+              "011",
+              "Receiver1～6，按时间方向/步数字段"
+            ],
+            [
+              "Voltage Step",
+              "100",
+              "Receiver1～6，按电压方向/步数字段"
+            ],
+            [
+              "Vendor Defined",
+              "101",
+              "Receiver1～6，Payload由厂商定义"
+            ],
+            [
+              "Assign Receiver Number（7.0）",
+              "011",
+              "Receiver000；仅FRA选择语义，不是Timing Step"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "margin-step-payload-bits",
+        "title": "时间与电压Step位宽不同，独立方向能力决定方向位意义",
+        "paragraphs": [
+          "时间Payload[5:0]是步数，[6]仅在MIndLeftRightTiming=1时为方向：0右、1左，[7]保留。电压Payload[6:0]是步数，[7]仅在MIndUpDownVoltage=1时为方向：0上、1下。",
+          "未支持独立方向时，对应方向位保留，不能强行选择左右/上下。必须在目标广告范围内操作；时间/电压不能同时偏离默认位置。"
+        ],
+        "referenceIndices": [
+          14,
+          15,
+          16,
+          17,
+          24,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "margin-execution-status-table",
+        "title": "Step回应高2位是执行状态，低6位才是错误计数",
+        "paragraphs": [
+          "Step回应Payload不是命令步数的直接回显。Error Count可能超过设置门限、上限63；00和11一旦报告，在本次Step仍有效时必须保持，不得自行回到准备状态。"
+        ],
+        "referenceIndices": [
+          12,
+          13,
+          20,
+          21
+        ],
+        "table": {
+          "columns": [
+            "Payload[7:6]",
+            "含义",
+            "读取方式"
+          ],
+          "rows": [
+            [
+              "00",
+              "Too many errors，已自动回默认设置",
+              "低6位保留观察到的计数，不等于0错误"
+            ],
+            [
+              "01",
+              "Set up for margin in progress",
+              "尚未真正开始测；计数为0"
+            ],
+            [
+              "10",
+              "Margining in progress",
+              "测量中，低6位为适用错误数"
+            ],
+            [
+              "11",
+              "NAK，命令/偏移不被支持",
+              "计数为0；先检查命令是否在合法能力范围"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "margin-time-budget-table",
+        "title": "10μs、1ms、10ms、100ms、200ms分别计什么",
+        "paragraphs": [
+          "下面是不同边界的时限/建议，不能把最短一个当成整次眼图扫描的超时。命令配置完成、硬件回应、软件声明失败和实际采样是不同阶段。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          20,
+          21,
+          24,
+          25,
+          26
+        ],
+        "table": {
+          "columns": [
+            "时间",
+            "对象",
+            "规则强度/条件"
+          ],
+          "rows": [
+            [
+              "10μs",
+              "DSP发出的Control SKP反映已完成配置写的命令",
+              "该时刻之后发出的包必须反映新值"
+            ],
+            [
+              "1ms",
+              "目标应用并回应有效命令",
+              "仍为L0且≥16 GT/s时的要求"
+            ],
+            [
+              "1μs",
+              "DSP把合格上行Control SKP更新到Status",
+              "只对规定接收条件"
+            ],
+            [
+              "≥10μs",
+              "两次软件Status读取间隔",
+              "should，以跨越不同Control SKP"
+            ],
+            [
+              "10ms",
+              "新命令仍无匹配回应",
+              "软件可判目标不响应"
+            ],
+            [
+              "≤100ms",
+              "目标保持Setup执行状态",
+              "硬件不得更久"
+            ],
+            [
+              "200ms",
+              "软件仍看到Setup",
+              "可按目标测试失败处理；包含传播/读取视角"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "margin-no-command-interlock",
+        "title": "两条不同命令之间插No Command，避免旧回应串到新请求",
+        "paragraphs": [
+          "改变Type、Receiver或Payload前，先Broadcast No Command并检查完成。6.0要求等待完成；7.0明确允许等待10ms仍未见完成后继续进入其规定流程。不要悄悄把7.0的放宽套给6.0。",
+          "匹配回应要检查Usage、Receiver、Type及该命令所定义Payload，而非只看“有新值”。7.0强烈建议Receiver未匹配就继续读，避免把上一次/另一接收器回应当成功。"
+        ],
+        "referenceIndices": [
+          24,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "margin-cleanup-sequence",
+        "title": "每个方向结束：Normal→No Command→Clear→No Command",
+        "paragraphs": [
+          "完成一个时间/电压方向后，在DSP和USP按规定Broadcast Go to Normal Settings、No Command、Clear Error Log、No Command，逐项确认目标响应。只写Clear Error Log不会把采样位置搬回默认。",
+          "结束整个程序还须恢复之前保存的Hardware Autonomous Speed/Width Disable位。若中途切速，当前结果无效，应退出并留No Command，避免以后升速时残留命令自动开始。"
+        ],
+        "referenceIndices": [
+          24,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "margin-error-limit-and-clear",
+        "title": "门限默认4；Clear Error Log可以不停测，但不能随时改门限",
+        "paragraphs": [
+          "进入L0后未设置门限时默认Error Count Limit=4；新门限用于后续Step。在Step有效期间收到Set Error Count Limit的行为未定义，应先停止/完成相应过程。",
+          "Clear Error Log清累计错误，可在仍执行Step时继续测量；它不等于新采样位置或整个测试重新开始。定期清计数适合长时间观察，但必须保存各段窗口和饱和信息。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          24,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "margin-sampler-count-semantics",
+        "title": "独立采样器计bit错误，依赖采样器计逻辑事件",
+        "paragraphs": [
+          "MIndErrorSampler=1表示测试采样器不改变业务数据流，MErrorCount是实际bit错误；因此可能LMR有错而链路CRC/AER没有同量变化。",
+          "为0时测试可能影响业务，计数按Port进入Recovery/Data Parity mismatch或Pseudo Port进入训练集转发等逻辑事件定义，不能直接除以bit数叫BER。两个模式的同样计数不代表相同信号质量。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          31,
+          32
+        ]
+      },
+      {
+        "id": "margin-recovery-resume",
+        "title": "依赖采样器遇Recovery：回默认，返回后128μs内恢复测点",
+        "paragraphs": [
+          "非独立采样器的Port进入Recovery或Pseudo Port开始转发训练集，要回默认采样位置。若测试仍有效，回L0或重新转发非训练集后须在128μs内恢复偏移。",
+          "超过门限时非独立采样器必须回默认并报00；独立采样器可选择终止。不能把一次Recovery期间的默认位置误当扫描该Step一直稳定，更不能用这段时间充当有效偏移采样时长。"
+        ],
+        "referenceIndices": [
+          20,
+          21
+        ]
+      },
+      {
+        "id": "margin-parallel-receivers-lanes",
+        "title": "并行Receiver与并行Lane是两个上限",
+        "paragraphs": [
+          "独立采样器的Receiver可并行；非独立采样器同一时刻最多一个这样的Receiver。但选定Receiver内可测多Lane，只要不超过MMaxLanes+1。",
+          "MMaxLanes编码0表示能同时测1条，31表示32条；该能力可大于当前Link Lane数，实际仍受协商宽度约束。7.0 FRA还有最多两颗Retimer同时被测的窗口约束。"
+        ],
+        "referenceIndices": [
+          22,
+          23,
+          29,
+          30,
+          24,
+          25,
+          26,
+          47
+        ]
+      },
+      {
+        "id": "margin-software-preconditions",
+        "title": "测前保存并限制自动切速/减宽，关闭双端ASPM",
+        "paragraphs": [
+          "测试前确认当前速率≥16 GT/s、目标Lane包含在当前宽度内，USP各Function的D状态防止进入L1，双端ASPM Control=00。保存自动Speed/Width Disable原值，并在可写时置位以限制自动变化。",
+          "这仍不是保证所有错误都不会触发Recovery/掉链。软件应协调平台/驱动控制权，记录当前速率、模式和接收器能力；本站查询器不执行真实设备配置。"
+        ],
+        "referenceIndices": [
+          22,
+          23,
+          24,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "margin-maximum-parameter-table",
+        "title": "NRZ与PAM4可扫描范围：这是测量能力，不是通过门限",
+        "paragraphs": [
+          "下表归纳7.0 Table8-13；NRZ与PAM4采用不同范围和步数下限。最大偏移描述测试功能能覆盖的范围，不能把它当作“测出这么大才合规”的眼高/眼宽判定标准。"
+        ],
+        "referenceIndices": [
+          48,
+          49
+        ],
+        "table": {
+          "columns": [
+            "参数",
+            "NRZ",
+            "PAM4"
+          ],
+          "rows": [
+            [
+              "MNumTimingSteps",
+              "6～63",
+              "10～63"
+            ],
+            [
+              "MMaxTimingOffset",
+              "20%～50% UI，0可不披露",
+              "10%～35% UI，0可不披露"
+            ],
+            [
+              "MNumVoltageSteps（支持电压时）",
+              "32～127",
+              "64～127"
+            ],
+            [
+              "MMaxVoltageOffset",
+              "一伏的5%～50%",
+              "三分之一伏的5%～50%"
+            ],
+            [
+              "最小覆盖范围（方向各自）",
+              "时间±0.2UI；电压±50mV",
+              "时间±0.1UI；电压约±17mV"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "margin-count-and-sampling",
+        "title": "SampleCount是对数编码，SamplingRate是比例编码",
+        "paragraphs": [
+          "MSampleReportingMethod=0采用MSampleCount，其值=3×log2(实际测试bit数)，127饱和约5.54×10^12bit；倒推2^(值/3)是量化值的数学解释，不是假定无限精度的原始计数。MErrorCount在63饱和。",
+          "报告法=1时用采样率：编码0为1/64，63为64/64，实际测试量还取决于有效时长。切Step前should至少测10^8个bit（未提前超过门限时），要排除Setup时间，不能只等固定1ms。"
+        ],
+        "referenceIndices": [
+          31,
+          32,
+          29,
+          30,
+          24,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "margin-steps-not-uniform",
+        "title": "最大偏移÷步数只给平均跨度，规范不保证每步线性等长",
+        "paragraphs": [
+          "规范要求步数增加时偏移单调，左右/上下的步数匹配；并未据此保证每一相邻Step的物理间隔相同。最大偏移还允许以0表示厂商不披露。",
+          "因此只知Step=20和最大步数63，不能精确换算成多少ps或mV。若产品另有校准映射可按产品解码；本站工具只显示范围、UI及统计量，不编造中间Step物理坐标。"
+        ],
+        "referenceIndices": [
+          50,
+          29,
+          30
+        ]
+      },
+      {
+        "id": "margin-pam4-three-eyes",
+        "title": "PAM4 Step同时作用三个眼，单个计数不能重建三个完整眼图",
+        "paragraphs": [
+          "6.0/7.0都规定PAM4 Step作用三个眼。这里的上/下、左/右针对相应采样位置偏移，不是用一个通用Eye Select位逐眼扫描。",
+          "三眼同时参与的响应只提供该命令的适用计数/状态，不自动包含每眼二维热力图。产品内部eye monitor若提供更多信息，属于另一接口/算法，应注明其观察点。"
+        ],
+        "referenceIndices": [
+          51,
+          52
+        ]
+      },
+      {
+        "id": "margin-parameters-revision-difference",
+        "title": "6.0单列PAM4参数，7.0合并字段名并保留模式条件",
+        "paragraphs": [
+          "6.0 Table8-12分别列MNumTimingStepsPAM4、MMaxTimingOffsetPAM4等四项。7.0 Table8-13把它们并回通用参数，按NRZ/PAM4区分值，并在正文表中注明相关Errata B677背景。",
+          "不能据字段合并把PAM4的10步下限或1/3V尺度删掉。此轮核的是6.0与7.0这两份正式文本，未核该勘误完整发布/首次合入链，也不把表中留存编辑说明当成硬件寄存器新增位。"
+        ],
+        "referenceIndices": [
+          29,
+          30,
+          53
+        ]
+      },
+      {
+        "id": "margin-fm-eight-gt-boundary",
+        "title": "FM 8 GT/s也有Control SKP，但仍不支持LMR",
+        "paragraphs": [
+          "7.0单设§4.2.18.3：FM在8 GT/s可存在Control SKP，不代表支持该速率LMR。推荐端口发No Command而忽略Control寄存器命令、忽略收到的Margin命令，Status值不可预测。",
+          "如选择校验相关CRC/Parity则按对应错误规定处理。不能因为分析仪看到Margin字段就运行低速扫描；6.0的主入口也明确排除2.5/5/8 GT/s。"
+        ],
+        "referenceIndices": [
+          54,
+          2,
+          3
+        ]
+      },
+      {
+        "id": "margin-control-skp-integrity",
+        "title": "命令通道也校验：1b/1b与128b/130b不能混用单份规则",
+        "paragraphs": [
+          "128b/130b路径按Margin CRC和Parity检查，失败忽略相应字段。7.0对1b/1b明确按Margin PHY Payload两份副本CRC判别：坏副本内容忽略，DSP在两份都失败时记录相应Lane错误。",
+          "合法Responder改写回包字段并更新所需校验；这不是端到端TLP ECRC。校验失败导致命令未被接受时，软件要按回应匹配/超时处理，不能把随机Payload当成Setup或成功。"
+        ],
+        "referenceIndices": [
+          55,
+          18,
+          19
+        ]
+      },
+      {
+        "id": "margin-reserved-and-retimer-access",
+        "title": "保留编码忽略；Retimer寄存器访问也有保留区间",
+        "paragraphs": [
+          "端口对Payload保留位发0，Retimer原样转发，Receiver忽略；遇保留Type/Receiver/Payload编码，Receiver按“不是本命令目标”处理，而非统一NAK。",
+          "Access Retimer Register为Type001、Receiver010或100，Payload00h～87h或A0h～FFh；88h～9Fh留给标准查询/保留用途。7.0命令表允许未支持访问时不回应并建议回00，但后文又写必须回00，存在文本强度不一致；本站保留这一差异，软件按实际回应超时处理，不凭单段改写强度。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          56,
+          20,
+          21
+        ]
+      },
+      {
+        "id": "margin-one-step-workflow",
+        "title": "一次Step怎样形成可比较记录",
+        "paragraphs": [
+          "建议记录一组完整元数据：Base修订/速率/编码、物理Lane、Receiver窗口、能力、当前Type/方向/Step、Setup结束点、采样法、计数/饱和、门限、Recovery/切速。先清旧命令，发合法Step，确认Type/Receiver/Usage，再开始累计有效测量。",
+          "采样足够或门限终止后保存结果并按Normal/No Command/Clear收尾，再换下一点。不同速率、Receiver、采样器类型、温度或均衡设置的数据，不宜直接按“Step越大越好”排序。"
+        ],
+        "referenceIndices": [
+          24,
+          25,
+          26,
+          31,
+          32,
+          27,
+          28
+        ]
+      },
+      {
+        "id": "margin-register-explorer",
+        "title": "查询：Lane Control／Status与Base→PIPE方向映射",
+        "paragraphs": [
+          "输入16bit Control和Status快照，选择规范、Port、Retimer数量/FRA窗口和目标方向能力。工具区分命令Payload与Step回应、映射物理接收点，并解释PIPE方向转换。",
+          "它只读输入、不访问设备；不构造可执行写序列，不替代Ready、当前速率、校验和平台前提检查。Broadcast回应不能简单要求Receiver仍是000。"
+        ],
+        "referenceIndices": [
+          35,
+          36,
+          37,
+          38,
+          8,
+          9,
+          10,
+          11,
+          14,
+          15,
+          16,
+          17,
+          57
+        ]
+      },
+      {
+        "id": "margin-parameter-explorer",
+        "title": "查询：能力回应、采样编码与NRZ／PAM4范围",
+        "paragraphs": [
+          "工具接受88h、89h、8Ah、8Bh、8Ch、8Dh/8Eh、8Fh、90h的回应Payload值，解码能力bit、并行Lane数、最大偏移及采样量。选择当前NRZ/PAM4及速率后解释UI。",
+          "只作一致性提示；MaxOffset=0按未披露，未支持电压时忽略电压字段，采样法不同不交叉强用。不会用最大偏移除步数推定每个Step的精确ps/mV，也不把逻辑事件数输出成BER。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          10,
+          11,
+          29,
+          30,
+          31,
+          32,
+          58
+        ]
+      }
+    ]
   },
   {
     "name": "Compliance / Loopback / PRBS测试",
@@ -25551,11 +26982,11 @@
     "group": "PHY与SerDes",
     "intro": "SerDes PIPE把更多协议相关处理移到MAC；它不是换个数据总线名字。",
     "usage": "拼接MAC与PHY、比较Gen5/Gen6交付、排查同宽总线却不能互通时使用。",
-    "mechanism": "Original PIPE在PHY侧承担相应编码和弹性缓冲；SerDes架构使MAC承担更多协议逻辑，PHY侧更接近并行SerDes数据接口。低引脚数Message Bus属于控制接口选择，不能与数据通路架构混为一谈。",
+    "mechanism": "Original/SerDes分区及Message Bus各有职责；MAC需把Base命令转换为PIPE语义，特别是时间裕量方向反转、提交与完成应答分开。",
     "prerequisites": "PIPE 7.1 §2.6和表2-1按PHY配置能力规定接口组合；SerDes要求Low Pin Count。提供的Gen5 PCS手册还包含Original模式，Gen6 PCS手册只支持SerDes；旧手册能力描述不能替代新PIPE版本约束。",
     "example": "一个Gen6-capable PHY降速到Gen3，不意味着其内部就可以动态切回Original PIPE。应按配置能力、规范版本和允许的接口组合判定。",
     "checks": "检查时钟方向、RxClk、valid语义、编码归属及Message Bus；PIPE规范版本号不等于PCIe代际。",
-    "status": "体系条目已整理 · 按来源范围核读",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "reviewed": "2026-10-19",
     "sources": [
       {
@@ -25728,9 +27159,163 @@
         "title": "表6-10 Message Bus命令及原子提交",
         "verification": "核读PIPE7.1本地副本67～68页的命令、应答及帧布局；重组为查询表。",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.1",
+        "page": 81,
+        "pdfPage": 81,
+        "title": "Rx Margin Control0",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.2",
+        "page": 81,
+        "pdfPage": 81,
+        "title": "Rx Margin Control1",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.1",
+        "page": 97,
+        "pdfPage": 97,
+        "title": "Rx Margin Status",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.30",
+        "page": 160,
+        "pdfPage": 160,
+        "title": "Start/Offset/Clear序列",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.30",
+        "page": 159,
+        "pdfPage": 159,
+        "title": "MAC到PHY测量边界",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.1.2",
+        "page": 556,
+        "pdfPage": 556,
+        "title": "Base Timing Step方向",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1.2",
+        "page": 650,
+        "pdfPage": 650,
+        "title": "Base Timing Step方向",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.30",
+        "page": 161,
+        "pdfPage": 161,
+        "title": "Stop和Start NAK",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.30",
+        "page": 162,
+        "pdfPage": 162,
+        "title": "计数更新序列",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.30",
+        "page": 161,
+        "pdfPage": 161,
+        "title": "NAK与停止序列",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.30",
+        "page": 162,
+        "pdfPage": 162,
+        "title": "Offset NAK",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.32",
+        "page": 164,
+        "pdfPage": 164,
+        "title": "RxEqTraining流程",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.6",
+        "page": 99,
+        "pdfPage": 99,
+        "title": "RxEqTrainDone",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.21",
+        "page": 145,
+        "pdfPage": 145,
+        "title": "评估与Abort握手",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
       }
     ],
-    "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
+    "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
     "details": [
       {
         "title": "Original PIPE与SerDes PIPE：信号同名不等于语义相同",
@@ -25917,6 +27502,142 @@
         },
         "referenceIndices": [
           14
+        ]
+      },
+      {
+        "id": "pipe-margin-address-spaces",
+        "title": "配置空间LMR与PIPE Message Bus是两套寄存器空间",
+        "paragraphs": [
+          "Base的0027h扩展能力面向软件；PIPE Rx Margin Control/Status是MAC与PHY内部接口。MAC解析Base命令、核能力和方向后，再发PIPE Message Bus操作，不能把B+08h直接当PHY地址0。",
+          "此外还有产品APB/固件控制和内部eye monitor；同叫Margin或Error Count不证明地址、位宽、复位和计数语义相同。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          19
+        ]
+      },
+      {
+        "id": "pipe-margin-control-bit-table",
+        "title": "PIPE Control0／1位表：PCIe不使用USB4的Eye Select",
+        "paragraphs": [
+          "PIPE7.1用Control0[1]选择电压0/时间1，只能停止时改；Control1[7]方向也只能停止时改，Offset可在测量中按序列更改。可选能力由PHY文档宣告。"
+        ],
+        "referenceIndices": [
+          15,
+          16
+        ],
+        "table": {
+          "columns": [
+            "寄存器bit",
+            "含义",
+            "注意"
+          ],
+          "rows": [
+            [
+              "Control0[0]",
+              "Start Margin",
+              "0→1开始；1→0停止"
+            ],
+            [
+              "Control0[1]",
+              "Voltage=0 / Timing=1",
+              "与Base Type不是同一编码"
+            ],
+            [
+              "Control0[2] / [3]",
+              "Error / Sample Count Reset",
+              "可选单周期语义字段"
+            ],
+            [
+              "Control0[4]",
+              "USB4 PAM3 Voltage Margining Eye",
+              "不是PCIe PAM4选眼位"
+            ],
+            [
+              "Control1[7]",
+              "Margin Direction",
+              "时间0左/1右；电压0上/1下"
+            ],
+            [
+              "Control1[6:0]",
+              "Margin Offset",
+              "基于默认位置的Step数；时间仍受Base6bit/能力限制"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-base-timing-direction-inversion",
+        "title": "时间方向必须翻转：Base 0右，PIPE 0左",
+        "paragraphs": [
+          "Base Timing Step在支持独立方向时以Payload[6]=0表示右、1表示左；PIPE7.1 Control1[7]以0表示左、1表示右，表下注脚明确指出相反。MAC必须转换含义，不能整段搬运位。",
+          "电压两者均0上/1下，但位位置和控制方式仍不同。未支持独立方向时方向位不作为有效左右/上下选择，不能机械执行一次异或后就声称合法。"
+        ],
+        "referenceIndices": [
+          16,
+          20,
+          21
+        ]
+      },
+      {
+        "id": "pipe-margin-start-stop-commit",
+        "title": "Start/Stop是提交事务，Ack不等于Margin Status完成",
+        "paragraphs": [
+          "开始时按表8-10先准备方向/Offset，再用提交写启动，等待总线Ack及PHY MarginStatus回应；停止也要提交Start=0，并按采样器支持回送最终计数和完成状态。",
+          "独立采样器清自己的计数、上报Sample/Error；依赖采样器主要由MAC观察业务错误。只收到Message Bus写Ack说明接收该次提交，不能立刻给Base软件返回“已完成测量”。"
+        ],
+        "referenceIndices": [
+          18,
+          22
+        ]
+      },
+      {
+        "id": "pipe-margin-offset-clear",
+        "title": "Offset更新与Clear Error：不要把新样点和旧计数混在一起",
+        "paragraphs": [
+          "独立采样器变Offset时按表先准备清Error/Sample，再提交新Offset；MAC同时清自身快照，PHY回报复位后计数和完成。依赖采样器同样需要清MAC快照，但不强求不存在的独立硬件计数。",
+          "Clear Error会保持测量运行：独立路径回送当前Sample与清零Error，依赖路径清MAC快照。固件必须注明每个计数的窗口，不能把一次扫描后所有数值直接相加称总BER。"
+        ],
+        "referenceIndices": [
+          18,
+          23
+        ]
+      },
+      {
+        "id": "pipe-margin-nak-limits",
+        "title": "PIPE NAK不是任何非法输入都保证有的回应",
+        "paragraphs": [
+          "Status0的MarginNak用于规定的电压请求不支持情形，且请求仍在广告范围内；越出PHY广告范围被视为MAC错误，PHY行为未定义，不保证NAK。有效MarginStatus和NAK不能当同一次提交的双重成功信号。",
+          "表8-10给出NAK后回正常并走Stop序列。Base层的Step Execution Status=11由MAC整理；它和PIPE的一周期MarginNak、提交Ack不是同一个字段。"
+        ],
+        "referenceIndices": [
+          17,
+          24,
+          25
+        ]
+      },
+      {
+        "id": "pipe-rx-eq-training-completion",
+        "title": "RxEqTraining训练本地RX，完成看RxEqTrainDone",
+        "paragraphs": [
+          "PIPE7.1给PCIe的接收均衡训练入口，可用于远端TX系数变化、回环进入、切速及不执行TX均衡等场景。控制器请求后，PHY用RxEqTrainDone指示对应训练结束。",
+          "它不等于完整LTSSM所有Phase成功，也不表示此时DL初始化/应用流量已经准备好。USB同名训练按定时处理，不使用PCIe这一完成应答，不能跨协议套用。"
+        ],
+        "referenceIndices": [
+          26,
+          27
+        ]
+      },
+      {
+        "id": "pipe-rx-evaluation-abort",
+        "title": "RxEqEval是评估远端TX当前设置，退出与Abort要清场",
+        "paragraphs": [
+          "P0下MAC置RxEqEval，PHY用DirectionChange和/或FigureMerit反馈完成；完成前应保持请求，结束后先清RxEqEval再开始下一次。Figure of Merit是实现反馈，不自动等于标准眼高或BER。",
+          "高层超时/错误需要中止时，MAC提前清请求，PHY尽快给完成，MAC忽略该次返回评估值。不能把中止时迟到的反馈拿去评价下一组系数。"
+        ],
+        "referenceIndices": [
+          28
         ]
       }
     ]
@@ -27015,11 +28736,11 @@
     "group": "PHY与SerDes",
     "intro": "AFE先把衰减和失真的模拟输入变成适合采样的信号，后续数字均衡再继续处理。",
     "usage": "理解眼图、长短通道、PAM4多电平判决及模拟/数字排障边界时使用。",
-    "mechanism": "终端匹配减小反射；CTLE对频率响应进行整形；VGA调节幅度；ADC型接收机把采样结果交给数字处理。并非所有接收机都用同一种ADC或slicer架构。",
+    "mechanism": "以已读Gen6产品为例，终端/ATT/CTLE/VGA形成AFE，ADC之后由数字均衡与校准/CDR协同接收；产品实现不等于Base强制架构。",
     "prerequisites": "器件的阻抗、增益、带宽与最佳设置取决于工艺、通道和产品；不能从Gen编号得到通用寄存器值。",
     "example": "短通道下把增益和高频提升全部拉高可能反而恶化噪声/线性度；不是所有EQ参数越大越好。",
     "checks": "比较输入信号、增益/饱和、校准、时钟和误码结果；RTL仿真不验证真实模拟裕量。",
-    "status": "体系条目已整理 · 按来源范围核读",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "reviewed": "2026-10-19",
     "sources": [
       {
@@ -27049,9 +28770,148 @@
         "title": "AFE组成与作用",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.1",
+        "page": 42,
+        "pdfPage": 42,
+        "title": "产品AFE功能",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.4",
+        "page": 43,
+        "pdfPage": 43,
+        "title": "产品ADC与校准",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3",
+        "page": 41,
+        "pdfPage": 41,
+        "title": "产品RX结构边界",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.1.8",
+        "page": 1564,
+        "pdfPage": 1564,
+        "title": "7.0参考CTLE及实现边界",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.1",
+        "page": 43,
+        "pdfPage": 43,
+        "title": "产品耦合模式说明",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "8.4.5.2",
+        "page": 1398,
+        "pdfPage": 1398,
+        "title": "PCIe AC耦合规则",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.5.2",
+        "page": 1596,
+        "pdfPage": 1596,
+        "title": "PCIe AC耦合规则",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
+    "details": [
+      {
+        "id": "afe-receiver-chain",
+        "title": "AFE到数字接收：终端→幅度/频响处理→ADC→DSP",
+        "paragraphs": [
+          "这份Gen6 PHY产品手册把输入终端、ATT、CTLE、VGA归入AFE，再由ADC采样，后续数字FFE/DFE、CDR控制和校准共同形成接收器。它是一个实际架构例子，不是所有PCIe接收器必须照搬的模块划分。",
+          "定位问题先确认观察点：引脚电压、ADC输出、均衡后符号、解码后bit和PIPE数据各自反映不同阶段，不能把“ADC有活动”直接当协议接收有效。"
+        ],
+        "referenceIndices": [
+          2,
+          4
+        ]
+      },
+      {
+        "id": "afe-ctle-frequency-role",
+        "title": "CTLE调频率响应，VGA调幅度，不是两个同义增益",
+        "paragraphs": [
+          "CTLE用频率相关响应补偿部分通道高频损耗，VGA把整体信号调到后级ADC适合范围。工程上，提高高频增益也会改变所见噪声和余量，不能把Boost最大解释成眼一定最大。",
+          "规范的Behavioral CTLE用于参考接收器/合规计算；产品实际极点、增益步进和适配算法由产品定义。不能把参考模型的1dB参数直接写进未知PHY的CTLE寄存器。"
+        ],
+        "referenceIndices": [
+          2,
+          5
+        ]
+      },
+      {
+        "id": "afe-attenuator-vga",
+        "title": "短信道也可能需要衰减：ATT与VGA围绕线性和动态范围",
+        "paragraphs": [
+          "该产品ATT用于短距大输入时让后续CTLE保持可接受线性范围；VGA再调总幅度至ADC需要范围。不是所有接收问题都应“把增益加大”。",
+          "这是基于已读产品结构的排查解释：若改善增益后数字判决反而恶化，需要同时检查饱和、噪声、均衡、偏置和时钟，不能仅用输入峰峰值一个指标决定设置。"
+        ],
+        "referenceIndices": [
+          2
+        ]
+      },
+      {
+        "id": "afe-adc-calibration",
+        "title": "ADC不只分辨率：交织通道的增益、偏置与采样相位也要校准",
+        "paragraphs": [
+          "该交付采用交织ADC及数字处理，启动时校准AFE各级偏置，再校准子ADC增益/偏置/采样相位；mission mode还可持续校准，以降低器件差异及漂移影响。",
+          "校准解决电路误差，训练/适配寻找通道工作点，两者相关但不能互换名称。启动校准结束不证明当前链路的TX/RX参数已经最优，也不能证明LTSSM已到L0。"
+        ],
+        "referenceIndices": [
+          3
+        ]
+      },
+      {
+        "id": "afe-termination-protocol-boundary",
+        "title": "终端匹配和AC耦合：产品支持DC模式不表示PCIe板卡可省电容",
+        "paragraphs": [
+          "产品手册为终端/共模提供多种应用模式，这是PHY产品能力。Base6.0/7.0的PCIe Lane要求AC耦合；有可插拔适配器时，7.0明确电容在TX侧，6.0则把具体侧别交给形态规范。",
+          "不能从通用SerDes支持DC耦合，推断PCIe板级连接可任意使用DC。共模、Receiver Detect和板级电容位置须回到实际协议/形态/产品三层要求。"
+        ],
+        "referenceIndices": [
+          2,
+          6,
+          7,
+          8
+        ]
+      }
+    ]
   },
   {
     "id": 172,
@@ -27114,11 +28974,11 @@
     "group": "PHY与SerDes",
     "intro": "校准修正电路偏差，适应针对通道和工作条件调整；DFE不能与CTLE或TX FFE混称。",
     "usage": "区分启动校准失败、均衡未收敛、温漂问题和运行误码时使用。",
-    "mechanism": "RX FFE在线性组合采样值中补偿ISI；DFE利用先前判决对当前输入作反馈补偿，也可能有错误传播。校准处理偏置/失配等内部误差；适应可能持续更新参数，具体算法和收敛条件由实现决定。",
+    "mechanism": "校准抵消电路差异，启动/持续适配寻找通道工作点；远端TX协议训练、本地RX训练和内部eye monitor分别观察，不用一个Done位替代全部就绪。",
     "prerequisites": "本轮核对了Gen6 RX模块职责，没有核读全部私有算法或所有tap寄存器。",
     "example": "冷启动通过而温度变化后误码增加时，应检查持续适应、校准状态和时钟/电源条件，不能仅重新跑一次LTSSM掩盖问题。",
     "checks": "记录校准完成、适应阶段、失败原因和BER；更改EQ前确认固件是否会覆盖手工设置。",
-    "status": "体系条目已整理 · 按来源范围核读",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "reviewed": "2026-10-19",
     "sources": [
       {
@@ -27159,9 +29019,124 @@
         "title": "Raw PCS校准/适应管理",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.5",
+        "page": 44,
+        "pdfPage": 44,
+        "title": "产品RX均衡与适配",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.4",
+        "page": 43,
+        "pdfPage": 43,
+        "title": "产品启动与持续校准",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.1.7",
+        "page": 1564,
+        "pdfPage": 1564,
+        "title": "7.0真实接收器应应对环境变化",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.1.11",
+        "page": 1571,
+        "pdfPage": 1571,
+        "title": "7.0 DFE参考界限与错误突发",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.7",
+        "page": 44,
+        "pdfPage": 44,
+        "title": "产品Internal Eye Monitor",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
+    "details": [
+      {
+        "id": "rx-calibration-vs-adaptation",
+        "title": "Calibration、Adaptation与协议Equalization各解决什么",
+        "paragraphs": [
+          "Calibration校正AFE/ADC等电路差异；Adaptation根据接收信号统计调整CTLE/VGA/FFE/DFE等；协议Equalization则有DSP/USP角色和训练序列，用来协商/调整远端TX等条件。",
+          "它们可交错运行，却不能以一个Done位统称全部完成。产品自动适配可能在L0持续进行，不能看到参数变化就认为链路重新执行了完整Recovery.Equalization。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "rx-startup-adaptation",
+        "title": "产品启动适配：先校准，再建幅度和判决工作点",
+        "paragraphs": [
+          "这份3.02a产品说明先完成启动校准，再按接收幅度调整AFE/VGA，并根据统计同时调整CTLE、PAM4判决电平、FFE和DFE；可在协议支持时形成远端TX调整建议。",
+          "这说明为什么先把远端Preset固定住仍不代表RX内部已经稳定。具体调参先后、收敛阈值和时长是产品算法，不把该产品流程宣称为Base强制状态机。"
+        ],
+        "referenceIndices": [
+          3
+        ]
+      },
+      {
+        "id": "rx-continuous-adaptation",
+        "title": "L0持续适配与持续校准：变化不一定是异常",
+        "paragraphs": [
+          "产品mission mode持续调整均衡tap、VGA和CTLE，并与持续校准并行。温度/通道变化下工作点移动有其目的，不能要求“训练一次后所有模拟参数永远不变”。",
+          "比较两次Margin/eye scan时，应记录适配是否启用、是否冻结、何时截取；冻结也可能偏离真实运行环境。此处是测量条件建议，不提供未核对的产品冻结寄存器。"
+        ],
+        "referenceIndices": [
+          3,
+          5
+        ]
+      },
+      {
+        "id": "rx-ffe-dfe-model-boundary",
+        "title": "FFE、DFE与错误突发：参考tap界限不是实际安全证明",
+        "paragraphs": [
+          "作为概念解释，FFE对接收采样序列滤波，DFE使用历史判决反馈补偿后游影响；历史判错可能影响后续判决。它们可以与AFE均衡组合，具体tap数、训练算法由实现决定。",
+          "7.0在参考DFE讨论中特别提醒：h1/h0≤0.8仅为约束参考模型，不保证实际接收器在该范围就不会有错误突发/静默损坏；实现必须独立分析，32 GT/s还提供可选预编码来降低相应风险。"
+        ],
+        "referenceIndices": [
+          3,
+          6
+        ]
+      },
+      {
+        "id": "rx-internal-eye-monitor",
+        "title": "内部Eye Monitor与LMR不同：先说明DSP观察点",
+        "paragraphs": [
+          "该产品通过ADC及数字处理路径不同位置的样本作内部观测：可形成电平直方图的一维眼，也提供基于内部数字处理的非破坏二维扫描。它能给调试更多观察量，但不天然等同规范LMR命令输出。",
+          "同一芯片不同DSP位置会看到不同均衡效果。读图应保留观察点、处理路径、偏移轴和统计方法；不能把内部计算的眼与示波器引脚眼不加条件直接比较。"
+        ],
+        "referenceIndices": [
+          7
+        ]
+      }
+    ]
   },
   {
     "id": 174,
@@ -27857,11 +29832,11 @@
     "group": "PHY与SerDes",
     "intro": "64 GT/s的PAM4不能再乘2计算带宽；符号速率、比特率和并行接口宽度需要分别写清。",
     "usage": "比较两代串行器、时钟、误码机制及Gray/预编码处理位置时使用。",
-    "mechanism": "NRZ每符号承载1 bit，PAM4每符号承载2 bit。Gen6提高每符号信息量的同时收紧噪声裕量，并结合FLIT/FEC/CRC/重放提高可靠性。Gray与预编码解决的目标和一般块编码不同，映射及旁路边界须核对。",
+    "mechanism": "NRZ每UI一bit，PAM4每UI两bit；GT/s已经计入该编码bit率。64GT/s为32GBd、31.25ps符号UI；128GT/s为64GBd、15.625ps。",
     "prerequisites": "Gen6-capable PHY仍须考虑较低速率运行，不能把64 GT/s的调制方式推广到其所有工作速率；FLIT模式还应独立判断。",
     "example": "32 Gbaud PAM4承载64 Gbit/s标称比特流，而不是128 Gbit/s。并行总线承载的是bit、symbol还是处理后的码字，要看接口定义。",
     "checks": "检查调制模式、编码归属、位序、FEC/重放统计和状态机；PAM4误码不能只用是否进入L0判定。",
-    "status": "体系条目已整理 · 按来源范围核读",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "reviewed": "2026-10-19",
     "sources": [
       {
@@ -27891,9 +29866,188 @@
         "title": "图2-1：逻辑/电气及编码边界",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。PIPE 7.1仅用于该版本接口规则，不反推旧产品已实现全部新功能。",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "8.1",
+        "page": 1317,
+        "pdfPage": 1317,
+        "title": "GT/s、PAM4 UI和Nyquist定义",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.1",
+        "page": 1505,
+        "pdfPage": 1505,
+        "title": "GT/s、PAM4 UI和Nyquist定义",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "8.4.4",
+        "page": 1397,
+        "pdfPage": 1397,
+        "title": "PAM4电压尺度",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.4",
+        "page": 1595,
+        "pdfPage": 1595,
+        "title": "PAM4电压尺度",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.2.5",
+        "page": 41,
+        "pdfPage": 41,
+        "title": "产品PLL与符号率关系仅限交付",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
+    "details": [
+      {
+        "id": "signaling-rate-symbol-ui-table",
+        "title": "Gen1～Gen7：GT/s、GBd、UI与Nyquist对照",
+        "paragraphs": [
+          "Base的GT/s按每Lane每方向编码bit率计；NRZ每符号1bit，PAM4每符号2bit。因此64 GT/s PAM4为32 GBd，UI=31.25ps，而不是15.625ps。下表UI指符号间隔，Nyquist=符号率/2。"
+        ],
+        "referenceIndices": [
+          2,
+          3
+        ],
+        "table": {
+          "columns": [
+            "代际/速率",
+            "调制",
+            "符号率GBd",
+            "UI(ps)",
+            "Nyquist(GHz)"
+          ],
+          "rows": [
+            [
+              "Gen1 2.5",
+              "NRZ",
+              "2.5",
+              "400",
+              "1.25"
+            ],
+            [
+              "Gen2 5",
+              "NRZ",
+              "5",
+              "200",
+              "2.5"
+            ],
+            [
+              "Gen3 8",
+              "NRZ",
+              "8",
+              "125",
+              "4"
+            ],
+            [
+              "Gen4 16",
+              "NRZ",
+              "16",
+              "62.5",
+              "8"
+            ],
+            [
+              "Gen5 32",
+              "NRZ",
+              "32",
+              "31.25",
+              "16"
+            ],
+            [
+              "Gen6 64",
+              "PAM4",
+              "32",
+              "31.25",
+              "16"
+            ],
+            [
+              "Gen7 128",
+              "PAM4",
+              "64",
+              "15.625",
+              "32"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pam4-three-eyes-not-four",
+        "title": "PAM4四电平形成三个眼，电压余量更敏感",
+        "paragraphs": [
+          "四个符号电平带来相邻电平之间三个眼，不是四个眼。相同总摆幅下，相邻判决间隔缩小，使噪声、线性和突发错误更加重要；它不是在同样NRZ眼上再额外乘两倍带宽。",
+          "LMR在PAM4下对三个眼同时Step，电压最大偏移以1/3V为百分比基准，而NRZ以1V为基准。由此不能把两种调制的相同步数或同一百分数字直接并排比较。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "id": "pam4-rate-versus-payload",
+        "title": "64 GT/s已经计入每符号2bit；算带宽不再乘2",
+        "paragraphs": [
+          "原始编码bit率除8得到每Lane单向原始GB/s，再乘Lane数；64 GT/s×x16对应128 GB/s单向原始bit换算量，128 GT/s×x16为256 GB/s。双向合计另乘2，必须明确口径。",
+          "这还不是应用数据：Gen1/2的8b/10b、Gen3～5的128b/130b以及FM的Flit头/CRC/FEC/DLP、TLP头和流量限制都产生不同开销。不能把FM套上128/130效率，也不能把236B TLP区当236B应用payload。"
+        ],
+        "referenceIndices": [
+          2,
+          3
+        ]
+      },
+      {
+        "id": "pam4-fber-not-postfec-ber",
+        "title": "PAM4的FBER指标不能当作链路交付数据错误率",
+        "paragraphs": [
+          "6.0/7.0电气引言把64/128 GT/s相关FBER按不计突发的第一bit错误率讨论，数值10^-6；传统NRZ速率BER为10^-12的背景也不把所有突发类型算进去。必须结合对应测试条件和可靠性机制理解。",
+          "不能把10^-6直接乘应用带宽来估算用户每秒损坏多少数据；FEC、CRC、重放和突发分布还影响后续结果。用LMR依赖采样器逻辑计数去“验证FBER”同样不成立。"
+        ],
+        "referenceIndices": [
+          2,
+          3
+        ]
+      },
+      {
+        "id": "signaling-unit-explorer",
+        "title": "查询：速率／Lane数的符号UI与原始带宽",
+        "paragraphs": [
+          "选择标准速率和Lane数，显示调制、符号率、符号UI、Nyquist、单向原始GB/s及双向合计。可输入一个UI比例，换算所选比例的ps，仅表示数学单位转换。",
+          "这不是Step→ps校准，也不估算均衡后眼宽、有效payload吞吐或产品PLL频率。产品PLL可能采用半速/多相结构，不能把Nyquist数值当所有PHY必须输出的时钟频率。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          6
+        ]
+      }
+    ]
   },
   {
     "id": 178,
@@ -28512,11 +30666,11 @@
     "group": "PHY与SerDes",
     "intro": "SerDes性能由TX、封装/板级通道、RX和时钟共同决定。",
     "usage": "理解为什么RTL功能正常仍不能跑满速，以及均衡与布局/电源需要协同优化时使用。",
-    "mechanism": "插入损耗、反射、串扰、时钟抖动和供电噪声影响采样裕量。均衡只能在一定范围内补偿，不能替代阻抗控制、通道与电源设计。PAM4有多眼图，应按正确调制与测试条件评价。",
+    "mechanism": "用明确测点、封装/CDR/均衡模型和统计窗口分析眼图/裕量；参考接收器、产品Eye Scan及标准LMR相互补充，不能把测试模型tap数当真实芯片要求。",
     "prerequisites": "本轮提供概念和分析路径；未执行S参数、IBIS-AMI、晶体管级噪声或真实眼图仿真，不能给出该交付的通道通过结论。",
     "example": "长通道高频损耗可能需要EQ，短通道过度增益也可能导致性能下降；先看通道条件再选策略。",
     "checks": "记录速率、通道、参考时钟、温压角、测试点和误码口径，分清仿真眼图、仪器测量和协议合规测试。",
-    "status": "体系条目已整理 · 按来源范围核读",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "reviewed": "2026-10-19",
     "sources": [
       {
@@ -28535,9 +30689,236 @@
         "title": "接收AFE对通道损耗的处理",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.1.7",
+        "page": 1563,
+        "pdfPage": 1563,
+        "title": "7.0行为参考接收器",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.1.7",
+        "page": 1564,
+        "pdfPage": 1564,
+        "title": "7.0模型用途不约束实际实现",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.1.4",
+        "page": 1563,
+        "pdfPage": 1563,
+        "title": "7.0封装与CDR后处理",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "8.4.4",
+        "page": 1395,
+        "pdfPage": 1395,
+        "title": "LMR的测量对象",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.4",
+        "page": 1592,
+        "pdfPage": 1592,
+        "title": "LMR的测量对象",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.7",
+        "page": 44,
+        "pdfPage": 44,
+        "title": "产品内部Eye Monitor边界",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.21",
+        "page": 145,
+        "pdfPage": 145,
+        "title": "均衡评估上下文",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.2",
+        "page": 559,
+        "pdfPage": 559,
+        "title": "采样器/Recovery与计数",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.2",
+        "page": 653,
+        "pdfPage": 653,
+        "title": "采样器/Recovery与计数",
+        "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
+    "details": [
+      {
+        "id": "si-reference-receiver-models",
+        "title": "参考接收器tap表：用于测试建模，不能当芯片结构清单",
+        "paragraphs": [
+          "7.0的参考模型为受压眼/信道合规打开眼，规范明确不把这些算法作为真实接收器设计指南。实际产品可采用不同AFE、ADC和均衡组合，需在环境变化下达到相应目标。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ],
+        "table": {
+          "columns": [
+            "速率GT/s",
+            "7.0参考均衡模型",
+            "不是在要求什么"
+          ],
+          "rows": [
+            [
+              "2.5 / 5",
+              "无Behavioral RX EQ需求",
+              "不禁止真实接收器使用均衡"
+            ],
+            [
+              "8",
+              "CTLE + 1-tap DFE",
+              "不要求真实芯片只有1tap"
+            ],
+            [
+              "16",
+              "CTLE + 2-tap DFE",
+              "不要求产品CTLE完全等于参考曲线"
+            ],
+            [
+              "32",
+              "CTLE + 3-tap DFE",
+              "不证明实际h1/h0低于参考界就安全"
+            ],
+            [
+              "64",
+              "CTLE + 16-tap DFE",
+              "不要求所有Gen6 RX采用16tap实现"
+            ],
+            [
+              "128",
+              "CTLE + 29-tap FFE + 1-tap DFE",
+              "不是Gen7硬宏必需的统一内部框图"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "si-observation-point-and-conditions",
+        "title": "比较眼图前：TP点、封装、CDR和均衡条件都要一致",
+        "paragraphs": [
+          "7.0把行为封装模型、行为CDR、接收均衡列为后处理组成。TP2原始受压眼通常可能闭合，经过约定参考接收器后才有相应测量意义；不能只看一张“闭眼图”就断言设备必定不能工作。",
+          "实用记录包括速率/调制、测量点与de-embedding、参考/实际封装、CDR模式、均衡配置、激励图样、温度电压、统计窗口和轴单位。此处为依据模型边界整理的测量记录建议，不替代完整电气测试规范。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "id": "si-margin-not-compliance-threshold",
+        "title": "LMR、内部Eye Scan、示波器受压眼各回答不同问题",
+        "paragraphs": [
+          "LMR按标准命令给当前Link接收位置的相对裕量/计数，内部Eye Scan暴露产品内部DSP观察量，示波器及参考接收器测试按指定测点/模型评估电气波形。三者互补，数值不应互相代替。",
+          "LMR通过不等于所有TX/RX/信道/Refclk合规项通过；LMR范围20%UI或50mV也不是合规眼宽/眼高判据。避免“网页算出一个阈值就宣布板卡合格”。"
+        ],
+        "referenceIndices": [
+          4,
+          5,
+          1,
+          2,
+          6
+        ]
+      },
+      {
+        "id": "si-diagnostic-evidence-matrix",
+        "title": "低速正常、高速异常时，把证据按层连接",
+        "paragraphs": [
+          "下表是定位思路，不是故障与原因的一一映射。一次训练成功只说明当时那组条件成立，更多结论需可重复实验和相关层证据。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          7,
+          8,
+          9
+        ],
+        "table": {
+          "columns": [
+            "观察",
+            "先核对",
+            "不能直接推出"
+          ],
+          "rows": [
+            [
+              "LMR报错而AER/CRC安静",
+              "是否独立采样器、测试位置及计数法",
+              "链路错误日志丢失"
+            ],
+            [
+              "高Boost/高VGA反而变差",
+              "线性、动态范围、噪声与采样点",
+              "增益必须继续加"
+            ],
+            [
+              "只在某速率/温度失败",
+              "当前速率能力、均衡/适配、时钟与通道",
+              "一定由协议控制器错误导致"
+            ],
+            [
+              "EQ Complete=1仍回退",
+              "Phase成功位、超时出口、当前速率",
+              "远端/本地RX都已最优"
+            ],
+            [
+              "某段Retimer margin差",
+              "正确Receiver窗口/物理Lane/方向",
+              "整个路径只有该器件有问题"
+            ]
+          ]
+        }
+      }
+    ]
   },
   {
     "id": 181,

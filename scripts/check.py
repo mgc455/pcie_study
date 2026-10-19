@@ -58,6 +58,11 @@ assert '#generations' in raw and '#audit' in raw
 phy=json.loads((ROOT/'content/phy.json').read_text(encoding='utf-8'))
 phy_ids=[id for group in phy['groups'] for id in group['ids']]
 assert len(phy_ids)==len(set(phy_ids))==20
+if 'marginReferences' in phy:
+    assert phy['marginReferences']['title'] and phy['marginReferences']['ids']
+    assert len(phy['marginReferences']['ids'])==len(set(phy['marginReferences']['ids']))
+    assert set(phy['marginReferences']['ids'])<={f['id'] for f in features}
+    assert 'p.marginReferences' in raw
 assert set(phy_ids)<={f['id'] for f in features}
 if 'lowPowerReferences' in phy:
     assert phy['lowPowerReferences']['title'] and len(phy['lowPowerReferences']['ids'])==len(set(phy['lowPowerReferences']['ids']))
