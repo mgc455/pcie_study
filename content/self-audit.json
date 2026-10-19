@@ -1,6 +1,6 @@
 {
   "date": "2026-10-19",
-  "summary": "第四轮：补DLP逐字段、Flit握手/序号/NAK/重放与流控版本差异，修正旧Shared分组表和半窗公式缺少版本限定。",
+  "summary": "第五轮：展开ATS翻译/失效、PASID身份/配置/生命周期及PRI分组/额度/停止与错误；按6.0/7.0分别核对变化。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -91,6 +91,31 @@
       "name": "第四轮查询行为与回归检查",
       "status": "本地检查通过",
       "detail": "DLP四种Command与1024种序号共4096组合、无符号负载/类型分支/保留值/无效输入、模1023窗口边界、50个新深链接、搜索及旧167档/字节映射回归均通过；行为检查不是协议合规或浏览器视觉测试。"
+    },
+    {
+      "name": "第五轮ATS与失效语义",
+      "status": "选定正文及关键字段实际核读",
+      "detail": "核读6.0 p1469～1491及1497～1520相关规则；独立核读7.0 p1691～1705、1710～1734中引用的翻译、失效、PRI和能力规则。区分Translation Status/权限、在途Memory与Translation Completions、IQD与Credit、PASID与无PASID失效范围。未通读AMA/TEE全部条款。"
+    },
+    {
+      "name": "第五轮PASID字段与多Function边界",
+      "status": "所引正文/表核对",
+      "detail": "核读6.0 p791～795/1148～1151与7.0 p903～907/1317～1320的PASID相关部分；确认位宽0、MFD能力作用范围、OHC-A4、Execute/Priv规则。视觉复核ATS、PASID和PRI状态字段表。"
+    },
+    {
+      "name": "PASID历史来源",
+      "status": "公开元数据/概要",
+      "detail": "核对PCI-SIG 2011-03-31 PASID ECN与PASID Translation ECN公开页，分别关联Base3.0与ATS1.1；仅作历史入口，未据此声称ECN正文或全部首次合入证据已核读。"
+    },
+    {
+      "name": "MUST@FLIT适用强度",
+      "status": "核读两版术语表并加直接定位",
+      "detail": "核对Base6.0 p88、7.0 p123：强制性取决于组件是否支持FM，不是当前链路模式；NW规则已显式加边界。引用检查仅额外接受准确的Glossary标签，不编造数字章号。"
+    },
+    {
+      "name": "R5 interactive tools and regression",
+      "status": "passed",
+      "detail": "Validated 3 version-aware register decoders, all 32 STU values, 153 large-range reconstructions with BigInt, invalid inputs and 55 detail routes. Prior search/PDF selection, 167 compliance settings, 1280 byte/ECC placements and 4096 DLP combinations passed. No hardware/driver conformance claim."
     }
   ],
   "unresolved": [
@@ -110,6 +135,9 @@
     "Gen1～Gen5全部复位规则差异与FLR例外寄存器逐版完整字段表仍待核读；不把6.0/7.0结论自动外推。",
     "FM DLP和重放主要阶段已展开，但完整黄金轨迹/合规测试、NOP扩展与各中间修订全部改动尚未验证；不声明整章完成。",
     "Base6.0 Replay Schedule Rule2比较N，而7.0比较N+1；7.0修订中的其他接收分支也有差异，首次合入和勘误链仍待追溯。",
-    "后续Base7.1/6.5只核公开目录；Dynamic Shared Flow Control Usage Limits已找到本地ECN文件候选，状态和正文仍待核读，不是缺失资料。需逐条核对后更新6.0/7.0边界。"
+    "后续Base7.1/6.5只核公开目录；Dynamic Shared Flow Control Usage Limits已找到本地ECN文件候选，状态和正文仍待核读，不是缺失资料。需逐条核对后更新6.0/7.0边界。",
+    "ATS AMA/TEE/CXL语义、完整Translation/Invalidate报文字节格式、ACS直接Translated P2P所有交互和ATS独立规范版本演进仍待继续核读。",
+    "PRI各软件栈真实启停/缺页队列实现与合规仿真未验证；Gen7许可溢出恢复只按所引标准解释，不推断任意IOMMU都支持。",
+    "Gen1～Gen5各版本ATS/PRI/PASID支持与具体首次合入需回到独立规范/ECN正文，不能由Base6.0/7.0存在反推。"
   ]
 }

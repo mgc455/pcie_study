@@ -7091,19 +7091,19 @@
     "group": "虚拟化、翻译与隔离",
     "intro": "设备向主机翻译代理请求地址翻译，并处理失效协议。",
     "usage": "减少DMA翻译开销；部分控制器不内置ATS cache，应用必须补齐。",
-    "mechanism": "设备发翻译请求得到主机允许的地址/权限信息，应用保存并在后续请求中正确使用；映射变化时还要响应失效。",
+    "mechanism": "设备经Translation Request/Completion取得地址与权限，ATC只按ATS填充并维护失效；真实Memory Request另按AT/权限发出。TA实现、iATU窗口与ACS路由检查分属不同职责。",
     "example": "加速器频繁访问进程内存时，可避免每次都走同样翻译成本，但必须解决缓存失效和撤销映射。",
     "checks": "部分控制器不内置ATS cache；发报文接口具备并不意味着ATC、权限检查、失效应答都已完成。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 68,
-    "status": "已整理 · 待持续深化",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "10.1.1",
@@ -7115,9 +7115,973 @@
         "pdfPage": 1470,
         "verification": "目录与该PDF章节首页已核对；完整章节继续核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.1",
+        "page": 1469,
+        "pdfPage": 1469,
+        "title": "TA/ATC与平台实现边界",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.1.1",
+        "page": 1472,
+        "pdfPage": 1472,
+        "title": "翻译返回、资源和使能前提",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.2.1",
+        "page": 1480,
+        "pdfPage": 1480,
+        "title": "AT字段编码和适用TLP",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.1",
+        "page": 1694,
+        "pdfPage": 1694,
+        "title": "AT字段编码和适用TLP",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.2.2",
+        "page": 1480,
+        "pdfPage": 1480,
+        "title": "Translation Request与Completion Timeout",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.2",
+        "page": 1694,
+        "pdfPage": 1694,
+        "title": "Translation Request与Completion Timeout",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.2.2.2",
+        "page": 1482,
+        "pdfPage": 1482,
+        "title": "Length、Tag与Translation Request排序",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.2.2",
+        "page": 1696,
+        "pdfPage": 1696,
+        "title": "Length、Tag与Translation Request排序",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.2.2.5",
+        "page": 1483,
+        "pdfPage": 1483,
+        "title": "No Write与写权限",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.2.5",
+        "page": 1697,
+        "pdfPage": 1697,
+        "title": "No Write与写权限",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.2.3",
+        "page": 1484,
+        "pdfPage": 1484,
+        "title": "Translation Completion状态与版本差异",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.3",
+        "page": 1698,
+        "pdfPage": 1698,
+        "title": "Translation Completion状态与版本差异",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.2.3.5",
+        "page": 1489,
+        "pdfPage": 1489,
+        "title": "R/W、不可缓存空洞与权限变化",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.3.5",
+        "page": 1703,
+        "pdfPage": 1703,
+        "title": "R/W、不可缓存空洞与权限变化",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.2.3.1",
+        "page": 1487,
+        "pdfPage": 1487,
+        "title": "可缓存地址与不可修改约束",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.3.1",
+        "page": 1701,
+        "pdfPage": 1701,
+        "title": "可缓存地址与不可修改约束",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.2.3.2",
+        "page": 1487,
+        "pdfPage": 1487,
+        "title": "S与地址低位编码翻译范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.3.2",
+        "page": 1701,
+        "pdfPage": 1701,
+        "title": "S与地址低位编码翻译范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.2.3.2",
+        "page": 1488,
+        "pdfPage": 1488,
+        "title": "STU下限、全部失效与未定义编码",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.3.2",
+        "page": 1702,
+        "pdfPage": 1702,
+        "title": "STU下限、全部失效与未定义编码",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.1.2",
+        "page": 1515,
+        "pdfPage": 1515,
+        "title": "ATS Capability逐bit定义",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.1.2",
+        "page": 1729,
+        "pdfPage": 1729,
+        "title": "ATS Capability逐bit定义",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.1.3",
+        "page": 1515,
+        "pdfPage": 1515,
+        "title": "ATS Control逐bit定义",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.1.3",
+        "page": 1730,
+        "pdfPage": 1730,
+        "title": "ATS Control逐bit定义",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.1.3",
+        "page": 1516,
+        "pdfPage": 1516,
+        "title": "ATS Enable与PASID Control约束",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.1.1",
+        "page": 1471,
+        "pdfPage": 1471,
+        "title": "Translation Request/Completion基本路径",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.2.2.4",
+        "page": 1483,
+        "pdfPage": 1483,
+        "title": "请求地址、页对齐与范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.2.3.4",
+        "page": 1488,
+        "pdfPage": 1488,
+        "title": "U与No Snoop条件",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.3.4",
+        "page": 1702,
+        "pdfPage": 1702,
+        "title": "Gen7 U与No Snoop条件",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.1.1",
+        "page": 1474,
+        "pdfPage": 1474,
+        "title": "ATC只能由ATS填充与维护",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.1.1",
+        "page": 1514,
+        "pdfPage": 1514,
+        "title": "ATS扩展能力头",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.1.1",
+        "page": 1728,
+        "pdfPage": 1728,
+        "title": "ATS扩展能力头",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.1",
+        "page": 1513,
+        "pdfPage": 1513,
+        "title": "ATS在PF/VF和Gen7 SIOV中的作用范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.1",
+        "page": 1727,
+        "pdfPage": 1727,
+        "title": "ATS在PF/VF和Gen7 SIOV中的作用范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.4",
+        "page": 1502,
+        "pdfPage": 1502,
+        "title": "ATS关闭时仍接受失效",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.7",
+        "page": 1718,
+        "pdfPage": 1718,
+        "title": "隐式失效",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.4",
+        "page": 1710,
+        "pdfPage": 1710,
+        "title": "多结果数量、大小和CplD规则",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.4",
+        "page": 1711,
+        "pdfPage": 1711,
+        "title": "多结果分包与截短",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "Glossary",
+        "page": 88,
+        "pdfPage": 88,
+        "title": "MUST@FLIT：按FM支持能力区分强制与强烈推荐",
+        "verification": "本轮核读术语表该定义；只解释带此标记规则的适用强度，不代表整个术语表已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "Glossary",
+        "page": 123,
+        "pdfPage": 123,
+        "title": "MUST@FLIT：按FM支持能力区分强制与强烈推荐",
+        "verification": "本轮核读术语表该定义；只解释带此标记规则的适用强度，不代表整个术语表已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新知识块绑定明确版本、正文条款和PDF页；旧目录引用与未展开主题不算整章核读。",
+    "details": [
+      {
+        "id": "ats-roles-boundaries",
+        "title": "TA、ATC、IOMMU、iATU、ACS分别解决什么问题",
+        "paragraphs": [
+          "ATS让设备通过协议取得并缓存主机翻译代理TA返回的地址和权限。ATC是缓存翻译的逻辑角色；TA/地址保护表的具体结构在PCIe Base的实现范围之外，不能从PCIe能力块直接推断某家IOMMU的页表格式。",
+          "Endpoint内部iATU做窗口/地址转换，ACS在拓扑检查/引导流量；它们既不替代TA授予权限，也不能替代ATC失效。CPU指针、DMA地址、BAR地址与翻译结果可能不同，应先标注地址所属空间。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "位置/职责",
+            "不能据此推断"
+          ],
+          "rows": [
+            [
+              "TA / IOMMU实现",
+              "平台侧翻译、访问检查",
+              "PCIe规定了某种固定页表"
+            ],
+            [
+              "ATC",
+              "设备或RCiEP按Function缓存翻译",
+              "软件可任意写入“物理地址白名单”"
+            ],
+            [
+              "iATU / BAR",
+              "具体设备的窗口和目标映射",
+              "已获得主机DMA授权"
+            ],
+            [
+              "ACS",
+              "拓扑中的来源/AT/路由控制",
+              "已完成地址翻译或端到端隔离"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ats-request-to-dma-flow",
+        "title": "数据路径：翻译请求不是一次实际业务数据读取",
+        "paragraphs": [
+          "设备决定缓存翻译有价值后，发Translation Request到TA；TA检查Function是否获准、目标访问权限及映射，返回一条或多条翻译结果。设备据返回结果构建后续真正的Memory Request。",
+          "Translation Completion中的数据是翻译条目而非应用数据。可流水多个请求，按Tag关联；完成须使用对应请求TC。请求侧预留返回空间，不应让翻译回包因没有接收资源而死锁。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          26
+        ]
+      },
+      {
+        "id": "ats-at-codes",
+        "title": "AT两bit编码：Untranslated、Translation Request、Translated",
+        "paragraphs": [
+          "AT描述地址解释方式，不是权限证书。AT=00下TA可按平台将地址解释为虚拟或物理；AT=10仍须符合Function获准提交已翻译地址等条件，不能自己猜一个物理地址并置AT。",
+          "Base6.0仅定义Memory Requests的AT；Base7.0还定义FM Address Routed Messages的相关AT用途。Translation Request必须是MRd类型，7.0脚注明确不是UIOMRd。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ],
+        "table": {
+          "columns": [
+            "AT",
+            "含义",
+            "使用/异常"
+          ],
+          "rows": [
+            [
+              "00",
+              "Untranslated",
+              "不能仅凭此值判断CPU VA、IOVA还是物理地址"
+            ],
+            [
+              "01",
+              "Translation Request",
+              "用于显式MRd翻译；其他Memory Request用此编码，TA报告UR"
+            ],
+            [
+              "10",
+              "Translated",
+              "使用ATS取得且权限允许的地址；平台仍决定是否接收"
+            ],
+            [
+              "11",
+              "保留",
+              "Memory Request使用此值，TA报告UR"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ats-request-length-tag",
+        "title": "Length、Tag、地址和RO：先读规则再照普通MemRd套字段",
+        "paragraphs": [
+          "每条翻译结果8 B，所以Length是偶数DW，表示希望返回的翻译数量；返回字节上限受Root Port RCB限制。Tag沿用Memory Read关联语义。地址范围从首个STU区域开始，TA可少返回，不能多返回。",
+          "RO可用于翻译完成的排序属性，但Translation Request本身不能用作业务读写的flush/barrier。Base6.0把超范围/奇数Length描述为Malformed；7.0改为TA处理未定义，并提示可能不可恢复，不能依赖它产生统一错误回包。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          27
+        ]
+      },
+      {
+        "id": "ats-no-write",
+        "title": "NW表示愿意只读，最终还必须看返回W",
+        "paragraphs": [
+          "NW=1请求只读翻译；TA可以忽略这个提示，但设备必须服从最终R/W。若先取得只读条目、后来需要写，应重新请求翻译，不能在ATC里把W手动改1。",
+          "NW=0可能使TA把页面标脏。相关禁止无写许可请求的条文标为MUST@FLIT：对支持Flit Mode的组件强制，对其他组件强烈推荐；判断依据是能力支持，不是此刻链路是否正在FM。NFM的NW按该格式取位，FM放在OHC-A1。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          39,
+          40
+        ]
+      },
+      {
+        "id": "ats-completion-status-version",
+        "title": "Translation Completion：Success、UR、RRS、CA逐版解释",
+        "paragraphs": [
+          "返回CplD且Status=Success也可能包含R=W=0的条目，表示相应范围不可用于访问。页不映射与TA无法提供任何条目不是同一层的结果，不能把两者都机械转成同一种ATS故障。",
+          "下表展示已核读6.0/7.0的不同处理强度；并非断言每项首次在7.0改变。NFM无数据失败回包的Byte Count/Lower Address不应被当成固定零值依赖。"
+        ],
+        "referenceIndices": [
+          11,
+          12
+        ],
+        "table": {
+          "columns": [
+            "结果",
+            "Base6.0",
+            "Base7.0"
+          ],
+          "rows": [
+            [
+              "000 Success",
+              "成功有数据；无数据Cpl不应使用Success",
+              "明确含返回条目，也包括R=W=0条目"
+            ],
+            [
+              "001 UR",
+              "要求停用ATC，重启前不再发Translated",
+              "描述为可能由软件修正的问题；许可停用ATC"
+            ],
+            [
+              "010 RRS",
+              "翻译请求不允许；收到按Malformed处理",
+              "仍不允许；收到许可按Malformed处理"
+            ],
+            [
+              "100 CA",
+              "TA内部错误，按相关AER处理",
+              "比UR更严重的TA错误"
+            ],
+            [
+              "其他保留状态",
+              "按UR解释",
+              "按UR解释"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ats-rw-u-n",
+        "title": "R/W、U、N：地址能否使用与属性约束分开看",
+        "paragraphs": [
+          "只有R或W至少一个有效且U=0时，Translated Address才能用于AT=10。U=1允许按R/W用原未翻译地址访问，返回地址本身不能当成有效物理地址使用。",
+          "N=1要求后续请求清No Snoop；N=0也不自动授权设置No Snoop，还受Device Control使能约束。权限/属性可缓存不等于后续每笔访问一定成功。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          13,
+          14,
+          28,
+          29
+        ],
+        "table": {
+          "columns": [
+            "R/W",
+            "允许的基本访问",
+            "缓存/补充条件"
+          ],
+          "rows": [
+            [
+              "0/0",
+              "无权限",
+              "该无效翻译不得缓存；范围仍可表达空洞"
+            ],
+            [
+              "0/1",
+              "写；允许规定的零长度读例外",
+              "不能发普通非零长度读"
+            ],
+            [
+              "1/0",
+              "读",
+              "不能写"
+            ],
+            [
+              "1/1",
+              "读写",
+              "还要满足U、Priv、Exe等相关约束"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ats-cache-permission-lifetime",
+        "title": "ATC填充、不可修改与权限增减",
+        "paragraphs": [
+          "ATC只通过ATS协议填充；主机或设备固件不能绕过协议任意改条目内容。可缓存返回范围的子集，缓存R/W等属性时必须保留原值；失效覆盖缓存范围任一部分，就要删匹配条目。",
+          "R=W=0不得做负向缓存，因为映射由无效变有效时主机不必发失效。只读升级读写也不一定通知；设备需要更大权限时可重新查询。撤销权限则须失效，完成语义用于确保旧权限不再使用。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          13,
+          14,
+          30
+        ]
+      },
+      {
+        "id": "ats-size-encoding",
+        "title": "S和地址低位一起编码大小，不能把这些位当真实页基址",
+        "paragraphs": [
+          "S=0表示4 KiB。S=1时，从地址bit12向上数连续的1，遇到首个0后得到更大范围：bit12=0是8 KiB；bit12=1且bit13=0是16 KiB。被大小编码占用的低位需要从基址清除。",
+          "编码以4 KiB为基础，与STU设置不是两个相乘的大小字段。Translation Completion范围小于STU时按UR处理；Invalidate小于STU的处理另有允许扩大/UR的规则。"
+        ],
+        "referenceIndices": [
+          17,
+          18,
+          19,
+          20
+        ],
+        "table": {
+          "columns": [
+            "S / 首个0位置",
+            "普通范围大小",
+            "说明"
+          ],
+          "rows": [
+            [
+              "S=0",
+              "4 KiB",
+              "低12位为页内部分"
+            ],
+            [
+              "S=1，bit12=0",
+              "8 KiB",
+              "bit12参与范围编码"
+            ],
+            [
+              "S=1，bit13=0且bit12=1",
+              "16 KiB",
+              "清除范围内全部低位得到对齐基址"
+            ],
+            [
+              "S=1，首个0为bit20",
+              "2 MiB",
+              "依相同规则扩展"
+            ],
+            [
+              "S=1，bit63:12全1",
+              "未定义",
+              "不能解析成有效普通范围"
+            ],
+            [
+              "S=1，bit63=0且62:12全1",
+              "全部失效特殊编码",
+              "用于Invalidate，不能当普通翻译地址"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ats-range-explorer",
+        "title": "范围查询：用64位整数还原基址、大小与STU限制",
+        "paragraphs": [
+          "输入把地址字段放回[63:12]、低12位补零后的十六进制数，再选择S、STU与使用场景。它不是直接输入整个Translation Completion数据条目；权限等低位应先分离。",
+          "查询按64位整数计算，避免JavaScript普通数值在超过2^53时丢地址位。输出范围仅用于检查编码和对齐，不验证映射权限、ATC命中或真实IOMMU页表。"
+        ],
+        "referenceIndices": [
+          17,
+          18,
+          19,
+          20
+        ]
+      },
+      {
+        "id": "ats-capability-register",
+        "title": "ATS能力块与只读能力位：基址B不是固定配置地址",
+        "paragraphs": [
+          "遍历扩展能力链找到ID=000Fh、版本1；B+04h为16 bit Capability，B+06h为16 bit Control。一个DWORD可同时包含两者，读写宽度及保留位应按实际寄存器处理。",
+          "IQD=0在非VF表示可接受32条，而不是没有队列；VF硬连0要使用关联PF值。ATS是否启用不改变这个字段本身是只读能力的事实。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          31,
+          32
+        ],
+        "table": {
+          "columns": [
+            "相对位置/bit",
+            "含义",
+            "属性与版本边界"
+          ],
+          "rows": [
+            [
+              "+00h",
+              "Header：ID=000Fh，Version=1，Next",
+              "RO"
+            ],
+            [
+              "+04h[4:0]",
+              "Invalidate Queue Depth",
+              "RO；非VF 0→32；VF参考PF"
+            ],
+            [
+              "+04h[5]",
+              "Page Aligned Request",
+              "RO；请求地址4 KiB对齐约束"
+            ],
+            [
+              "+04h[6]",
+              "Global Invalidate Supported",
+              "RO；7.0有TEE相关互斥"
+            ],
+            [
+              "+04h[7]",
+              "Relaxed Ordering Supported",
+              "RO；实际置RO还需对应使能"
+            ],
+            [
+              "+04h[8]",
+              "ATS Memory Attributes Supported",
+              "RO"
+            ],
+            [
+              "+04h[9]",
+              "7.0：TEE Exclusive Memory Attribute Supported",
+              "6.0此位置保留；7.0须满足TEE/Global条件"
+            ],
+            [
+              "+04h其余位",
+              "保留",
+              "按对应版本处理"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ats-control-register",
+        "title": "ATS Control：STU、AMAD、AMAE和Enable逐bit",
+        "paragraphs": [
+          "这些是配置控制字段，不是每条DMA的地址寄存器。Enable允许缓存翻译，并不替代PASID/PRI使能及平台侧上下文配置。默认均为0，部分AMA字段在不支持时可硬连0。",
+          "ATS E已经为1时改PASID Control中的相关位属于未定义行为。应先协调业务、失效和功能状态，再进行受支持的重新配置，不提供绕过OS直接改使能的通用命令。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          25
+        ],
+        "table": {
+          "columns": [
+            "+06h位",
+            "字段",
+            "行为/属性"
+          ],
+          "rows": [
+            [
+              "4:0",
+              "Smallest Translation Unit",
+              "RW；最小范围4096×2^STU B；VF ROZ用PF值"
+            ],
+            [
+              "10:5",
+              "保留",
+              "不要当成额外STU位"
+            ],
+            [
+              "13:11",
+              "AMA Default",
+              "RW/RO，默认000"
+            ],
+            [
+              "14",
+              "AMA Enable",
+              "RW/RO，默认0；需相应能力"
+            ],
+            [
+              "15",
+              "ATS Enable E",
+              "RW，默认0；0→1触发隐式失效"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ats-stu-pf-vf",
+        "title": "STU不是页数原值；PF/VF有共享参数和独立使能",
+        "paragraphs": [
+          "STU值n表示4096×2^n B，不是n×4096；0仍是4 KiB。31对应2^43 B，即8 TiB。它是设备必须支持的最小翻译/失效尺度，不表示ATC容量或系统所有页都同样大。",
+          "VF实现ATS时关联PF也必须实现；PF/VF可独立启用ATS，但VF的STU和IQD使用关联PF的定义。不能只解码VF的零值就断言它只能4 KiB或拥有独立32条队列。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          25,
+          21,
+          22,
+          33,
+          34
+        ]
+      },
+      {
+        "id": "ats-enable-sequence",
+        "title": "使能与关闭的依赖顺序：先建上下文，再用缓存",
+        "paragraphs": [
+          "学习顺序可按能力发现→平台分配地址空间/权限→在ATS关闭时配置PASID相关位与STU→协调PRI资源→启用ATS后发翻译→缓存合法结果→真正Memory Request理解。这里只列依赖，不声称这是所有OS驱动的完整调用序列。",
+          "关闭或FLR前先停止业务及新的失效发起，处理已有失效/请求；ATS E从0变1会清旧条目。ATS未启用时禁止发Translation Request，普通DMA的AT按Untranslated；但实现ATS的Function仍有接受Invalidate并完成的义务。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          23,
+          24,
+          25,
+          35,
+          36
+        ]
+      },
+      {
+        "id": "ats-multiple-translations",
+        "title": "多条翻译结果：允许截短，成功不保证数量全满足",
+        "paragraphs": [
+          "Gen7明确请求总返回字节不超过RCB，TA可返回较少条目；同一个完成中的翻译大小相同，覆盖连续相邻虚拟范围。成功可分一或两个CplD，每个都含整数个8 B条目。",
+          "R=W=0的空洞仍要保留正确范围大小；但TA截短结果时不能拿无效条目补齐假装返回了全部。请求侧按Byte Count/Length等对应模式规则识别结果，不能简单等待一个固定条目数。"
+        ],
+        "referenceIndices": [
+          37,
+          38
+        ]
+      },
+      {
+        "id": "ats-version-differences",
+        "title": "6.0→7.0 ATS差异：字段名字一样也要核正文",
+        "paragraphs": [
+          "本轮比较的是6.0和7.0正式版选定页，不等于首次引入版本的完整证据。CXL、TEE和SIOV的完整系统机制仍按各自规范继续核读。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          7,
+          8,
+          11,
+          12,
+          21,
+          22
+        ],
+        "table": {
+          "columns": [
+            "比较点",
+            "Base6.0",
+            "Base7.0"
+          ],
+          "rows": [
+            [
+              "AT适用范围",
+              "Memory Requests",
+              "还定义FM Address Routed Messages"
+            ],
+            [
+              "非法Translation Length",
+              "Malformed描述（p1482）",
+              "TA处理未定义，可能不可恢复（p1696）"
+            ],
+            [
+              "UR后的ATC",
+              "要求停用（p1484）",
+              "允许停用，说明可能由软件修复（p1698）"
+            ],
+            [
+              "能力bit9",
+              "保留",
+              "TE属性支持，和Global等条件互斥"
+            ],
+            [
+              "Global能力",
+              "一般支持条件",
+              "强烈建议Clear；TEE-IO场景有硬连限制"
+            ],
+            [
+              "Translation Request",
+              "MRd规则",
+              "明确不用于UIOMRd，增加CXL Src相关定义"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ats-register-decoder",
+        "title": "ATS寄存器解码：Capability与Control分别输入",
+        "paragraphs": [
+          "输入B+04h和B+06h两个16位十六进制值，选择Base6.0或7.0。输出能力、运行使能、STU与版本相关提示；IQD对VF必须回到PF上下文解释。",
+          "工具只解码读到的值，不写配置空间，不验证平台授权、复位状态或实际协议行为。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          23,
+          24,
+          25
+        ]
+      }
+    ]
   },
   {
     "name": "ATS Translation / Invalidation",
@@ -7129,14 +8093,14 @@
     "checks": "测试映射更新与失效完成，不只测首次翻译成功；区分地址的AT状态与是否真正获授权。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 69,
-    "status": "已整理 · 待持续深化",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "10",
@@ -7148,28 +8112,468 @@
         "pdfPage": 1469,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.1",
+        "page": 1497,
+        "pdfPage": 1497,
+        "title": "Invalidate请求、ITag及自然对齐范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.1",
+        "page": 1712,
+        "pdfPage": 1712,
+        "title": "Invalidate请求、ITag及自然对齐范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.2",
+        "page": 1500,
+        "pdfPage": 1500,
+        "title": "Invalidate Completion的CC、ITag Vector与TC",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.2",
+        "page": 1714,
+        "pdfPage": 1714,
+        "title": "Invalidate Completion的CC、ITag Vector与TC",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.3",
+        "page": 1501,
+        "pdfPage": 1501,
+        "title": "失效完成前的在途事务条件",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.3",
+        "page": 1715,
+        "pdfPage": 1715,
+        "title": "失效完成前的在途事务条件",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.4",
+        "page": 1502,
+        "pdfPage": 1502,
+        "title": "无Posted依赖的请求接受规则",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.4",
+        "page": 1716,
+        "pdfPage": 1716,
+        "title": "无Posted依赖的请求接受规则",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.5",
+        "page": 1502,
+        "pdfPage": 1502,
+        "title": "失效队列与高层流控",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.5",
+        "page": 1717,
+        "pdfPage": 1717,
+        "title": "失效队列与高层流控",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.6",
+        "page": 1503,
+        "pdfPage": 1503,
+        "title": "失效超越翻译完成时的处理",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.6",
+        "page": 1717,
+        "pdfPage": 1717,
+        "title": "失效超越翻译完成时的处理",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.7",
+        "page": 1504,
+        "pdfPage": 1504,
+        "title": "隐式失效事件",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.7",
+        "page": 1718,
+        "pdfPage": 1718,
+        "title": "隐式失效事件",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.8",
+        "page": 1505,
+        "pdfPage": 1505,
+        "title": "PASID与Global失效匹配范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.8",
+        "page": 1719,
+        "pdfPage": 1719,
+        "title": "PASID与Global失效匹配范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.1.1",
+        "page": 1475,
+        "pdfPage": 1475,
+        "title": "Base6.0失效与排队事务概述",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.5",
+        "page": 1503,
+        "pdfPage": 1503,
+        "title": "PF/VF共享失效队列",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.2",
+        "page": 1499,
+        "pdfPage": 1499,
+        "title": "Base6.0 FLR/D-state协调说明",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.2",
+        "page": 1713,
+        "pdfPage": 1713,
+        "title": "Gen7 FLR/D-state协调说明",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新知识块绑定明确版本、正文条款和PDF页；旧目录引用与未展开主题不算整章核读。",
+    "details": [
+      {
+        "id": "invalidate-lifecycle",
+        "title": "失效链路：撤销旧翻译，要等设备证明旧使用已结束",
+        "paragraphs": [
+          "TA与软件更新映射/撤权限后，向ATC发带未翻译地址范围的Invalidate Request。ATC清除重叠条目，处理在途使用，再发一个或多个Invalidate Completion。TA收齐后才认为该请求完成。",
+          "这不是普通Memory Read的Cpl，而是一组Message协议。仅把cache_valid清零就立即回完成，会遗漏队列和线上仍引用旧地址的事务。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "invalidate-request-and-tags",
+        "title": "请求范围、ITag和Destination：不只按一个全局Tag关联",
+        "paragraphs": [
+          "Invalidate Request为带8 B负载的MsgD，范围自然对齐且是4 KiB的2次幂倍数。应不小于STU；小于时允许扩大到至少STU或报UR（不推荐）。ITag和普通MemRd Tag是不同协议资源。",
+          "6.0明确ITag=0～31，使用后要等对应完成释放或实现相关超时。7.0明确同Destination ID内不能提前复用，同一个ITag可同时给不同Destination；PF共享队列还需整体流控。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "invalidate-completion-vector",
+        "title": "CC=0是8份；ITag Vector可一次确认多个失效",
+        "paragraphs": [
+          "Invalidate Completion按ID路由，携带ATC Function的Requester ID和TA的目标ID。ITag Vector的bit i对应ITag i，不能把向量值直接看成单个Tag编号。",
+          "CC是本失效应收齐的消息份数，编码0代表8。允许多个ITag合并到一条消息，但必须同TC、同CC，各份相关消息的ID/CC/向量一致。收到没有在途请求的ITag按实现相关错误机制报告，不能无条件释放一个新Tag。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ],
+        "table": {
+          "columns": [
+            "字段",
+            "解码",
+            "注意"
+          ],
+          "rows": [
+            [
+              "ITag Vector[31:0]",
+              "每bit对应一个ITag",
+              "bit0→0；bit31→31"
+            ],
+            [
+              "CC[2:0]",
+              "1～7按数值；0→8",
+              "TA须收齐全部份数"
+            ],
+            [
+              "TC",
+              "用于推送相应TC的旧写",
+              "不必等于原Invalidate Request的TC"
+            ],
+            [
+              "单上行TC实现",
+              "发送1份对应TC的完成",
+              "7.0还明确至少发一份"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "invalidate-done-base6",
+        "title": "Base6.0完成条件：新请求、旧读和旧Posted Write分开排空",
+        "paragraphs": [
+          "新发请求不能继续用旧翻译；匹配旧地址的在途读须已完成或被标为丢弃；旧Posted Write须被推到TA。对于尚不能确认已推送的TC，发送对应Invalidate Completion副本，并保持同一CC。",
+          "因此完成延迟可能来自读Completion迟到、写队列背压或多TC推送。规范不要求收到失效的瞬间把所有排队请求立刻挖掉，但发完成前必须满足上述语义。"
+        ],
+        "referenceIndices": [
+          5,
+          17
+        ]
+      },
+      {
+        "id": "invalidate-done-gen7",
+        "title": "Gen7更细区分Memory Completion、Translation Completion与UIO",
+        "paragraphs": [
+          "7.0要求旧地址Translated Memory Request所预期的Completions已经收到；而旧Translation Request对应的Translation Completions允许已收到或已标记丢弃。不能把6.0“旧读可丢弃”的概述直接推广过来。",
+          "非UIO Posted Translated Memory Requests须保证先于相关失效完成发出，并按需要跨TC推送；不能把Posted Message发到UIO VC。若受影响流量全部为UIO，选择哪个非UIO TC发失效完成是实现相关的。TA也不能把请求前进依赖于收到失效完成。"
+        ],
+        "referenceIndices": [
+          6
+        ]
+      },
+      {
+        "id": "invalidate-stale-translation-race",
+        "title": "翻译还没回就先收到失效：必须查在途翻译队列",
+        "paragraphs": [
+          "失效和Translation Completion可走不同TC、互相超越。ATC不只查已填充条目，还须检查未完成Translation Request覆盖的未翻译范围；重叠请求标无效，迟到结果在失效完成前要丢弃。",
+          "允许在失效完成发送前短暂利用先到结果，但前提仍满足完整失效语义；不是允许失效完成后让旧结果重新填入ATC。检测范围按请求的STU区域及数量，而非只比较起始地址相等。"
+        ],
+        "referenceIndices": [
+          11,
+          12
+        ]
+      },
+      {
+        "id": "invalidate-no-deadlock",
+        "title": "ATS Enable=0或BME=0，不代表可以拒绝所有Invalidate",
+        "paragraphs": [
+          "有ATS能力的Function即使ATS未启用，也要能接收失效并发送完成；BME清除也不取消这项响应义务。另一方面，FLR或非D0过渡中有专门可丢弃说明，系统必须协调生命周期，不能混为一谈。",
+          "Invalidate Request和Completion都是Posted，接收前者不能依赖先发出后者。输入队列、输出完成队列或混合设计均可，目标是避免Posted对Posted循环依赖。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "invalidate-queue-flow-control",
+        "title": "IQD高层节流与链路Credit是两层流控",
+        "paragraphs": [
+          "IQD描述避免给上行施加背压之前能接受多少失效；0的非VF编码表示32/不需这种节流。不能因广告小于32就破坏对最大未完成失效的无死锁接受能力，可用输入或输出排队实现。",
+          "TA还应按高层队列资源节流，避免依赖链路Credit背压导致拥塞扩散。SR-IOV的PF/VF共用PF失效队列；Gen7把共享规则扩展到SIOV SDI，TA按共享队列总量控制，而不是每VF各自都用满PF额度。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          18
+        ]
+      },
+      {
+        "id": "invalidate-implicit-events",
+        "title": "隐式失效：Reset、FLR、ATS E的0→1与PASID停止",
+        "paragraphs": [
+          "Conventional Reset、FLR、ATS E由0变1使全部ATC条目失效；停止使用某PASID使该PASID相关非Global条目失效。隐式失效不发送显式Invalidate Completion。",
+          "不能把E保持1时改PASID Control当成一种合法“刷新缓存”方式。Global条目不等同当前一个PASID私有条目；停止某PASID不能随意删其他上下文或宣称所有Global都已被协议撤销。"
+        ],
+        "referenceIndices": [
+          13,
+          14
+        ]
+      },
+      {
+        "id": "invalidate-pasid-global-matrix",
+        "title": "PASID／Global匹配表：不带PASID反而可能清得更广",
+        "paragraphs": [
+          "下面按Base6.0/7.0 §10.3.8整理。无匹配条目仍要返回完成；PASID Enable为0也有返回完成义务。PASID越出宽度可按规则报告UR。",
+          "特别注意无PASID的Invalidate：指定范围匹配无PASID条目，但对所有带PASID条目，条文要求所有地址都失效。这不是“仅删PASID=0”的操作。"
+        ],
+        "referenceIndices": [
+          15,
+          16
+        ],
+        "table": {
+          "columns": [
+            "请求条件",
+            "应影响的条目",
+            "其他行为"
+          ],
+          "rows": [
+            [
+              "有PASID，支持Global且G=1",
+              "指定范围内所有PASID的Global及非Global",
+              "请求PASID值被忽略"
+            ],
+            [
+              "有PASID，支持Global且G=0",
+              "指定PASID、指定范围的非Global",
+              "可保留Global映射"
+            ],
+            [
+              "有PASID，不支持Global",
+              "指定PASID/范围的条目",
+              "Global标志按相应规则忽略"
+            ],
+            [
+              "没有PASID",
+              "范围内无PASID条目 + 所有地址带任意PASID条目",
+              "不能等同PASID数值0"
+            ],
+            [
+              "没有命中",
+              "不删条目",
+              "仍返回Invalidate Completion"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "invalidate-reset-coordination",
+        "title": "关闭、FLR与掉电：先协调失效，再切换Function状态",
+        "paragraphs": [
+          "规范实现说明允许FLR、非D0或过渡中的Function丢弃收到/待处理失效。软件可先停止新失效并等待已发失效完成或实现相关超时，关闭ATS，再发FLR/设备功耗转换。",
+          "“先清BME再等全部失效”仍可能有旧写堵在队列；这些已排队写要发完或丢弃，以免挡住Invalidate Completion。失效建议响应时限与TA超时是单独主题，不能把普通Completion Timeout直接移植成统一失效期限。"
+        ],
+        "referenceIndices": [
+          19,
+          20,
+          5
+        ]
+      },
+      {
+        "id": "invalidate-reuse-example",
+        "title": "一个撤销映射例子：页归还前为什么要等完成",
+        "paragraphs": [
+          "假设DMA用旧映射访问页P，主机要把P交给其他用途。先更新TA映射不够：设备ATC可能仍命中旧条目，设备写队列/互连里也可能有旧写。只有失效范围命中、旧读/写完成语义满足、TA收齐相关完成，才建立这个撤销阶段的边界。",
+          "这说明ATS失效不是可省略的性能优化。具体OS何时释放页面、IOMMU如何同步及设备如何停DMA仍由系统实现决定；网站不会把这个示意当作可直接执行的驱动回收代码。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6,
+          3,
+          4
+        ]
+      }
+    ]
   },
   {
     "name": "PRI / PRS：Page Request",
     "group": "虚拟化、翻译与隔离",
     "intro": "设备遇到未就绪/缺失的页时发出页请求，由系统处理并回应。",
     "usage": "共享虚拟内存/按需映射；capability接口不等于完整缺页处理器。",
-    "mechanism": "设备发现目标页尚不可用时，通过页请求服务让系统处理，等待对应响应再决定继续、失败或重试。请求需要与地址空间身份关联。",
+    "mechanism": "Page Request按PRG成组请求页面就绪，PRG Response返回组结果并归还资源；随后仍需ATS翻译。PRI自己的消息额度、Index、Enable/Stopped与链路Credit分别管理。",
     "example": "共享进程地址时遇到尚未驻留页面，PRI/PRS可参与缺页路径，但不等于设备自己执行操作系统页换入。",
     "checks": "处理超时、失败、进程退出和停止请求；具体控制器需要应用实现相关协议行为与状态反馈。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 70,
-    "status": "已整理 · 待持续深化",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "10.4",
@@ -7181,9 +8585,679 @@
         "pdfPage": 1505,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.4.1",
+        "page": 1506,
+        "pdfPage": 1506,
+        "title": "Page Request分组、TC与消息额度",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.4.1",
+        "page": 1720,
+        "pdfPage": 1720,
+        "title": "Page Request分组、TC与消息额度",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.4.1",
+        "page": 1508,
+        "pdfPage": 1508,
+        "title": "Page Request字段与PASID一致性",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.4.1",
+        "page": 1722,
+        "pdfPage": 1722,
+        "title": "Page Request字段与PASID一致性",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.4.2.1",
+        "page": 1512,
+        "pdfPage": 1512,
+        "title": "PRG Response编码",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.4.2.1",
+        "page": 1726,
+        "pdfPage": 1726,
+        "title": "PRG Response编码",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.4.2.1",
+        "page": 1513,
+        "pdfPage": 1513,
+        "title": "PRG Response错误码后续",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.4.2.1",
+        "page": 1727,
+        "pdfPage": 1727,
+        "title": "Gen7 PRG Response错误码后续",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.2.2",
+        "page": 1518,
+        "pdfPage": 1518,
+        "title": "PRI Control E/Reset",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.2.2",
+        "page": 1732,
+        "pdfPage": 1732,
+        "title": "PRI Control E/Reset",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.2.3",
+        "page": 1519,
+        "pdfPage": 1519,
+        "title": "PRI Status与Stopped语义",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.2.3",
+        "page": 1733,
+        "pdfPage": 1733,
+        "title": "PRI Status与Stopped语义",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.2.5",
+        "page": 1520,
+        "pdfPage": 1520,
+        "title": "Outstanding Page Request Allocation",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.2.5",
+        "page": 1734,
+        "pdfPage": 1734,
+        "title": "Outstanding Page Request Allocation",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.4.1.2",
+        "page": 1509,
+        "pdfPage": 1509,
+        "title": "有无Stop Marker的PASID停止",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.4.1.2",
+        "page": 1723,
+        "pdfPage": 1723,
+        "title": "有无Stop Marker的PASID停止",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.4.1.2.1",
+        "page": 1510,
+        "pdfPage": 1510,
+        "title": "Stop Marker格式与约束",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.4.1.2.1",
+        "page": 1724,
+        "pdfPage": 1724,
+        "title": "Stop Marker格式与约束",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.1.2",
+        "page": 1476,
+        "pdfPage": 1476,
+        "title": "PRI与分页动机",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.4.1",
+        "page": 1507,
+        "pdfPage": 1507,
+        "title": "R/W/L定义",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.4.1",
+        "page": 1721,
+        "pdfPage": 1721,
+        "title": "Gen7 R/W/L定义",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.2.1",
+        "page": 1517,
+        "pdfPage": 1517,
+        "title": "Page Request能力头",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.2.1",
+        "page": 1731,
+        "pdfPage": 1731,
+        "title": "Page Request能力头",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.2.3",
+        "page": 1734,
+        "pdfPage": 1734,
+        "title": "Gen7 PASID Required后续限制",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.4.2.2",
+        "page": 1513,
+        "pdfPage": 1513,
+        "title": "PRG Response PASID规则",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.4.2.2",
+        "page": 1727,
+        "pdfPage": 1727,
+        "title": "PRG Response PASID规则",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.2",
+        "page": 1516,
+        "pdfPage": 1516,
+        "title": "Base6.0 PRI共享范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.2",
+        "page": 1731,
+        "pdfPage": 1731,
+        "title": "Gen7 PRI的VF/SDI共享范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.4.2",
+        "page": 1725,
+        "pdfPage": 1725,
+        "title": "Gen7 PRG响应与溢出恢复开始",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.4.2",
+        "page": 1726,
+        "pdfPage": 1726,
+        "title": "Gen7溢出恢复后续",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新知识块绑定明确版本、正文条款和PDF页；旧目录引用与未展开主题不算整章核读。",
+    "details": [
+      {
+        "id": "pri-fault-to-translation",
+        "title": "PRI/PRS路径：请求页面就绪，之后仍要ATS翻译",
+        "paragraphs": [
+          "设备缺可用翻译时，可发Page Request到RC，平台处理页面可用性并发PRG Response；设备之后再用ATS请求翻译，按返回权限发真正Memory Request。PRG Success不是直接返回物理地址。",
+          "它支持更动态的页驻留，降低必须提前pin住所有可能访问页的压力；页面迁移、换入和软件缺页处理由平台实现。不是每次ATC miss都必发PRI，miss也可能只需正常ATS查询。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          19
+        ]
+      },
+      {
+        "id": "pri-page-group-fields",
+        "title": "Page Request：R/W/L、9位PRG Index与未翻译页地址",
+        "paragraphs": [
+          "一PRG可有多个Page Request，用相同Index关联，最后一条L=1；单条组直接L=1。组内请求Requester ID一致，有PASID时也必须一致。R/W表达需要的访问，不是TA返回权限。",
+          "R=W=0且L=1进入Stop Marker语义，不能按普通“请求一个无权限页”处理。Page Request的W包括写/零长度读请求含义，可能使主机标脏，须已有明确写许可。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          20,
+          21
+        ],
+        "table": {
+          "columns": [
+            "字段",
+            "作用",
+            "常见误用"
+          ],
+          "rows": [
+            [
+              "PRG Index[8:0]",
+              "Function分配的组标识，最多512种值",
+              "与MemRd Tag/ITag混用"
+            ],
+            [
+              "R",
+              "请求读；Execute Requested时需R=1",
+              "把它当最终返回R权限"
+            ],
+            [
+              "W",
+              "请求写及规定的零长度读",
+              "无许可时投机请求"
+            ],
+            [
+              "L",
+              "本PRG最后一条",
+              "忘发导致主机不能正常按组响应"
+            ],
+            [
+              "Page Address",
+              "未翻译页地址",
+              "把它当已经驻留的物理地址"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pri-route-and-order",
+        "title": "Page Request/PRG Response都走TC0；组间不保序",
+        "paragraphs": [
+          "请求Message Code=04h向RC路由；响应Code=05h按ID回请求Function。两者TC必须0，接收RC/Endpoint对非0 TC按Malformed处理，中间Switch不检测此项。",
+          "允许RO/IDO按条款使用，No Snoop保留。不同PRG独立、响应不保证请求顺序；有先后依赖就先等前一组完成再发下一组。多页组最后一条建议清RO，Stop Marker则必须清RO。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          17,
+          18
+        ]
+      },
+      {
+        "id": "pri-allocation-not-link-credit",
+        "title": "Page Request额度按每条消息消耗，不按每个PRG",
+        "paragraphs": [
+          "这是PRI自己的协议资源额度，与PCIe PH/PD等链路流控分开。多页PRG有几条Page Request就占几个额度；一次PRG Response归还对应组的资源，不是收到一个普通UpdateFC就归还PRI配额。",
+          "发组前须预留该组全部请求所需额度，避免发到一半等组响应才能再发L=1造成循环等待。额度跨PASID共享；每组一条时还会受512个Index限制，不能因Allocation=1000就认为能挂1000组。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "pri-response-status",
+        "title": "四类PRG结果：整组Success、Invalid、Unused与Response Failure",
+        "paragraphs": [
+          "一个PRG正常只得到一条组响应，不提供逐页部分成功的接口；有任一页无法满足，整个组可失败，设备不能推断其他页此刻驻留情况。",
+          "响应成功后重新请求ATS翻译，不跳过权限/失效检查。Gen7还加入队列溢出恢复中的Success响应路径，因此不能把Success单独当成永不失效的映射授权。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "table": {
+          "columns": [
+            "Response Code",
+            "意义",
+            "后续"
+          ],
+          "rows": [
+            [
+              "0000",
+              "Success",
+              "普通流程页面请求组已满足；再发ATS"
+            ],
+            [
+              "0001",
+              "Invalid Request",
+              "页面无效/权限不可授予；映射不变时重复请求不会成功"
+            ],
+            [
+              "0010～1110",
+              "Unused",
+              "按Response Failure处理"
+            ],
+            [
+              "1111",
+              "Response Failure",
+              "灾难性失败，停用PRI；重新使能前忽略后续响应"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pri-control-register",
+        "title": "PRI控制寄存器：Enable、Reset与只读零的复位位",
+        "paragraphs": [
+          "扩展能力ID=0013h，版本1。B+04h是16 bit Control，B+06h是16 bit Status；B+08h Capacity和B+0Ch Allocation为32 bit。地址均相对遍历扩展能力链得到的B。",
+          "Reset仅在Enable已经为0，或同次更新清Enable时写1才起作用；E仍为1时写Reset不启动动作，读Reset返回0。它清PRI计数/待请求状态，不是FLR或整个设备复位。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          22,
+          23
+        ],
+        "table": {
+          "columns": [
+            "位置/bit",
+            "字段",
+            "属性/默认"
+          ],
+          "rows": [
+            [
+              "+04h[0]",
+              "Enable",
+              "RW，默认0；允许发Page Request"
+            ],
+            [
+              "+04h[1]",
+              "Reset",
+              "RW，读0；满足E=0条件时写1清接口状态"
+            ],
+            [
+              "+04h[15:2]",
+              "保留",
+              "按规范处理"
+            ],
+            [
+              "+06h",
+              "Status",
+              "不可和Control整DWORD混写"
+            ],
+            [
+              "+08h[31:0]",
+              "Outstanding Capacity",
+              "RO物理支持上限"
+            ],
+            [
+              "+0Ch[31:0]",
+              "Outstanding Allocation",
+              "RW，默认0；不超过Capacity且仅停用时改"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pri-status-register",
+        "title": "PRI状态逐bit：RW1C错误、Stopped和PASID Required",
+        "paragraphs": [
+          "Response Failure和UPRGI是写1清错误位，Stopped为只读状态；不能用同一种写法“清零所有状态”。SR-IOV或Gen7 SIOV共享PRI时，PF汇总相关Function的错误/停止状态。",
+          "PRG Response PASID Required表达响应匹配格式要求，不是软件运行使能位。错误的有无PASID组合可导致未定义行为；无PASID与PASID=0也不能混淆。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          24
+        ],
+        "table": {
+          "columns": [
+            "+06h bit",
+            "字段",
+            "语义/属性"
+          ],
+          "rows": [
+            [
+              "0",
+              "Response Failure",
+              "RW1C，默认0；已收灾难失败，后续响应忽略"
+            ],
+            [
+              "1",
+              "Unexpected PRG Index",
+              "RW1C，默认0；收到无匹配在途Index"
+            ],
+            [
+              "8",
+              "Stopped",
+              "RO，默认1；仅E=0时有意义，E=1时未定义"
+            ],
+            [
+              "15",
+              "PRG Response PASID Required",
+              "RO；决定请求有PASID时响应是否也必须带"
+            ],
+            [
+              "其余",
+              "保留",
+              "按RsvdZ等定义解释"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pri-stopping-state",
+        "title": "清Enable后要等Stopped：E=0/S=0仍可能有在途请求",
+        "paragraphs": [
+          "清E禁止新页请求，但队列/已发请求可能还没完成，此时Stopped=0。等全部相关Function停止并处理在途后，Stopped置1；无在途可立即置1。E=1时读Stopped没有可依赖的含义。",
+          "未成功Stopped就再次Enable结果不确定。Reset可使接口立即进入disabled，stopping中收到Response Failure也进入disabled；这些路径不证明原业务DMA全部完成，还要协调ATS/PASID和驱动上下文。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "pri-capacity-allocation",
+        "title": "Capacity、Allocation和Index：三种上限分别核对",
+        "paragraphs": [
+          "Capacity是硬件能支持的Outstanding Page Request消息数，Allocation是软件允许使用的份额；Allocation不得超Capacity，且E=1时修改未定义。它不是每PASID单独一份。",
+          "例如Allocation=16，四个PRG各含4条请求就用完；只有一个多页PRG也可占全部16。停止某PASID不直接取消它占用的额度，后续响应仍需归还资源。Stop Marker虽占实际缓冲，却不计入Allocation，需另留空间。"
+        ],
+        "referenceIndices": [
+          13,
+          14
+        ]
+      },
+      {
+        "id": "pri-pasid-matching",
+        "title": "组内PASID一致，响应是否带PASID由Required位决定",
+        "paragraphs": [
+          "同组若一条Page Request带PASID，所有条目必须有相同PASID。若Required=0，PRG Response不带PASID，Index资源因此跨PASID共享；若Required=1，原请求带PASID时响应也须带，且Execute/Privileged请求位保留。",
+          "不能一边用PASID+Index关联，一边在返回路径丢PASID；也不能把旧PASID响应按新租户重新解释。PASID生命周期与Stop Marker规则需一起实现。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "pri-stop-marker-sequence",
+        "title": "停止PASID的两条路：等响应，或用Stop Marker隔开旧用法",
+        "paragraphs": [
+          "共同前提是停排该PASID新请求，并把已开启的多页组发到L=1。无Marker路线等全部PRG响应，再报告停止；有Marker路线把旧请求标stale，报告将发Marker并发送Marker，旧响应仍归还额度/Index但不再作为新业务结果。",
+          "Marker不需要响应、不占PRG Index或Page Request Allocation；它强排序地把旧Page Requests推向主机。复用PASID时要同时区分旧请求结果和新上下文，不能清空计数后把旧响应当Unexpected。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          17,
+          18
+        ]
+      },
+      {
+        "id": "pri-stop-marker-format",
+        "title": "Stop Marker不是普通PRG的最后一页",
+        "paragraphs": [
+          "格式用Page Request的Message Code，但R=0/W=0/L=1，Marker Type=0，并携带PASID；TC=0、RO必须清，地址与部分Index位置保留。NFM用PASID Prefix，FM用OHC-A1的规定字段。",
+          "无匹配停止请求、还有未结束多页组、缺必要PASID或Marker Type不对，都有未定义行为条件。不能为了尽快清队列随意发送一个全零页请求冒充Marker。"
+        ],
+        "referenceIndices": [
+          17,
+          18
+        ]
+      },
+      {
+        "id": "pri-shared-function-scope",
+        "title": "PF、VF与SDI：共享接口，报文仍标真实请求身份",
+        "paragraphs": [
+          "SR-IOV可由PF实现单一PRI能力并与其VF共享，VF不实现该PRI能力；报文Requester ID仍是请求PF/VF，响应Destination ID匹配它。共享能力不等于请求身份全部改成PF。",
+          "Gen7还定义PF与SIOV SDI的共享接口/设置，并允许设备专用方式在PF保持PRI开启时禁止个别SDI使用。只读PF寄存器不足以证明每个SDI都正在发PRI。"
+        ],
+        "referenceIndices": [
+          27,
+          28
+        ]
+      },
+      {
+        "id": "pri-overflow-gen7",
+        "title": "Gen7队列溢出恢复：Success可能用于账目重同步",
+        "paragraphs": [
+          "Gen7新增许可的恢复/重同步流程：TA检测溢出后停止接受该队列新Page Requests，对L=1请求给Success；软件处理队列并对相应L=1给Success，处理完后清溢出恢复接受。",
+          "这解释为何Success不能单独保证页面此刻可访问，后续ATS仍是关键。这里仅记录所读流程，不据此断言某家IOMMU一定采用此策略；6.0一般Response Failure路径也不能被无条件改成这个恢复方法。"
+        ],
+        "referenceIndices": [
+          29,
+          30
+        ]
+      },
+      {
+        "id": "pri-register-decoder",
+        "title": "PRI寄存器解码：状态只有结合Enable才有意义",
+        "paragraphs": [
+          "输入Status（B+06h）与Control（B+04h）两个16位值。工具会在E=1时把Stopped标为不可依赖，而不是显示“运行中已经安全停止”。",
+          "这是只读学习解码，不触发Reset或写1清错误；Capacity/Allocation、在途队列和PF/VF共享范围仍需另查。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12
+        ]
+      }
+    ]
   },
   {
     "name": "PASID",
@@ -7195,14 +9269,22 @@
     "checks": "不把PASID当物理地址高位；检查宽度、Enable、权限与前缀处理，DMA引擎是否支持PASID Prefix还需单独核对。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 71,
-    "status": "已整理 · 待持续深化",
+    "status": "选定正文与字段已展开 · 逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "title": "PCI-SIG · PASID ECN（2011-03-31，公开概要）",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/ProcessAddressSpaceID"
+      },
+      {
+        "title": "PCI-SIG · PASID Translation ECN（公开概要）",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/PASIDTranslation"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "10.1.3",
@@ -7214,9 +9296,583 @@
         "pdfPage": 1477,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.20.1",
+        "page": 791,
+        "pdfPage": 791,
+        "title": "PASID身份、使能与停止使用",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.20.1",
+        "page": 904,
+        "pdfPage": 904,
+        "title": "PASID身份、使能与停止使用",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.20.2.1",
+        "page": 792,
+        "pdfPage": 792,
+        "title": "NFM PASID Prefix字节布局",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.20.2.1",
+        "page": 905,
+        "pdfPage": 905,
+        "title": "NFM PASID Prefix字节布局",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.20.2.2",
+        "page": 793,
+        "pdfPage": 793,
+        "title": "PASID宽度和请求限制",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.20.2.2",
+        "page": 906,
+        "pdfPage": 906,
+        "title": "PASID宽度和请求限制",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.9.2",
+        "page": 1150,
+        "pdfPage": 1150,
+        "title": "PASID Capability字段",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.9.2",
+        "page": 1319,
+        "pdfPage": 1319,
+        "title": "PASID Capability字段",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.9.3",
+        "page": 1151,
+        "pdfPage": 1151,
+        "title": "PASID Control字段与ATS约束",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.9.3",
+        "page": 1320,
+        "pdfPage": 1320,
+        "title": "PASID Control字段与ATS约束",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.9",
+        "page": 1148,
+        "pdfPage": 1148,
+        "title": "多Function PASID能力作用范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.9",
+        "page": 1317,
+        "pdfPage": 1317,
+        "title": "多Function PASID能力作用范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.1.2",
+        "page": 1476,
+        "pdfPage": 1476,
+        "title": "PRI与ATS能力关系",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.9",
+        "page": 1318,
+        "pdfPage": 1318,
+        "title": "Gen7能力独立性与作用范围",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.20",
+        "page": 903,
+        "pdfPage": 903,
+        "title": "Gen7 PASID的OHC-A1/A4",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.1",
+        "page": 1712,
+        "pdfPage": 1712,
+        "title": "Gen7 Invalidate使用OHC-A4/PV",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.9.1",
+        "page": 1149,
+        "pdfPage": 1149,
+        "title": "PASID扩展能力头",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.9.1",
+        "page": 1318,
+        "pdfPage": 1318,
+        "title": "PASID扩展能力头",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.9",
+        "page": 1318,
+        "pdfPage": 1318,
+        "title": "Gen7多能力模型与关联VF",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.20.2.3",
+        "page": 794,
+        "pdfPage": 794,
+        "title": "Base6.0执行请求规则",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.20.2.4",
+        "page": 795,
+        "pdfPage": 795,
+        "title": "Base6.0特权请求规则",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.20.2.3",
+        "page": 907,
+        "pdfPage": 907,
+        "title": "Gen7 RC执行支持与默认关闭",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.1.3",
+        "page": 1478,
+        "pdfPage": 1478,
+        "title": "Base6.0翻译后PASID/Exe/Priv匹配",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.1.3",
+        "page": 1692,
+        "pdfPage": 1692,
+        "title": "Gen7翻译后PASID与权限延续",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.4.1.2",
+        "page": 1509,
+        "pdfPage": 1509,
+        "title": "PRI stop与旧资源归还",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.4.1.2",
+        "page": 1723,
+        "pdfPage": 1723,
+        "title": "Gen7 PRI stop步骤",
+        "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.20",
+        "page": 903,
+        "pdfPage": 903,
+        "title": "Gen7 Requester ID与PASID共同标识地址空间",
+        "verification": "本轮核读该页PASID相关正文。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新知识块绑定明确版本、正文条款和PDF页；旧目录引用与未展开主题不算整章核读。",
+    "details": [
+      {
+        "id": "pasid-identity-key",
+        "title": "PASID不是全局PID：Requester ID与PASID共同选择上下文",
+        "paragraphs": [
+          "同一个PASID数值在两个Function下可表示不同地址空间。平台软件可以主动让它们指向同一进程，但协议不能只凭数值相等就推断共享。PASID=0不是“没有PASID”，宽度0仍支持唯一数值0。",
+          "PASID只表达身份/请求属性，既不执行地址翻译也不自动授予读写。ATC和TA相关缓存键还要区分有无PASID、权限/特权上下文及Global规则。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6,
+          27
+        ]
+      },
+      {
+        "id": "pasid-ats-pri-independence",
+        "title": "PASID、ATS、PRI可以怎样组合",
+        "paragraphs": [
+          "PASID能力独立于ATS和PRI：可只对未翻译Memory Request携带PASID，由平台翻译；有ATS/PRI的设备也不必支持PASID。PRI可选，但依赖ATS能力去完成后续翻译，不能把PRI成功响应当成翻译结果。",
+          "是否启用组合还受平台、路径转发/缓冲及软件上下文支持约束。Capability存在、对应Enable置位、业务引擎实际生成报文是三个不同层次。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "pasid-prefix-vs-ohc",
+        "title": "NFM是4字节End-End Prefix，FM按TLP类型选择OHC",
+        "paragraphs": [
+          "Base6.0在FM使用OHC-A1；Base7.0一般PASID信息可在OHC-A1或OHC-A4。哪种TLP用哪一种必须查具体格式，例如7.0 Invalidate Request可在OHC-A4中携带PASID，不能统一说所有FM PASID都在A1。",
+          "NFM每TLP最多一个PASID Prefix，字节布局如下。它不属于Payload，别把Prefix长度加进应用数据Length。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          15,
+          16
+        ],
+        "table": {
+          "columns": [
+            "NFM Prefix位置",
+            "字段",
+            "含义"
+          ],
+          "rows": [
+            [
+              "Byte0[7:5]",
+              "100b",
+              "TLP Prefix"
+            ],
+            [
+              "Byte0[4]",
+              "1",
+              "End-End"
+            ],
+            [
+              "Byte0[3:0]",
+              "0001b",
+              "PASID类型"
+            ],
+            [
+              "Byte1[7]",
+              "Privileged Mode Requested",
+              "请求特权上下文"
+            ],
+            [
+              "Byte1[6]",
+              "Execute Requested",
+              "请求执行权限"
+            ],
+            [
+              "Byte1[5:4]",
+              "保留",
+              "不能当额外PASID位"
+            ],
+            [
+              "Byte1[3:0]、Byte2、Byte3",
+              "20-bit PASID",
+              "Byte1低4位为高4位"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pasid-capability-register",
+        "title": "PASID Capability：支持位与Max Width逐bit",
+        "paragraphs": [
+          "扩展能力ID=001Bh、版本1；相对B+04h为16 bit只读Capability，B+06h为16 bit Control。Width字段直接编码位数，没有“再加1”。",
+          "Translated Requests with PASID支持位只能在有ATS时置位。Gen7强烈建议Execute Permission Supported硬连0；这不等于所有历史版本均禁止执行权限。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          17,
+          18
+        ],
+        "table": {
+          "columns": [
+            "+04h bit",
+            "含义",
+            "属性"
+          ],
+          "rows": [
+            [
+              "0",
+              "保留",
+              "RsvdP"
+            ],
+            [
+              "1",
+              "Execute Permission Supported",
+              "RO；7.0强烈建议0"
+            ],
+            [
+              "2",
+              "Privileged Mode Supported",
+              "RO"
+            ],
+            [
+              "3",
+              "Translated Requests with PASID Supported",
+              "RO；需ATS"
+            ],
+            [
+              "7:4",
+              "保留",
+              "RsvdP"
+            ],
+            [
+              "12:8",
+              "Max PASID Width n",
+              "RO；0～20；数值范围0～2^n−1"
+            ],
+            [
+              "15:13",
+              "保留",
+              "RsvdP"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pasid-control-register",
+        "title": "PASID Control四个使能：不能在ATS开启时随意改",
+        "paragraphs": [
+          "所有使能默认0；可选特性未支持时相应使能位保留。支持ATS的适用Function，ATS E=1期间修改这些位属于未定义行为，而不是普通无副作用的在线切换。",
+          "仅PASID Enable=1还不能发带PASID的Translated Request：另需Translated Requests with PASID Enable，以及真实ATS翻译/权限上下文。"
+        ],
+        "referenceIndices": [
+          9,
+          10
+        ],
+        "table": {
+          "columns": [
+            "+06h bit",
+            "使能",
+            "前提/注意"
+          ],
+          "rows": [
+            [
+              "0",
+              "PASID Enable",
+              "允许适用收发TLP携带PASID"
+            ],
+            [
+              "1",
+              "Execute Permission Enable",
+              "需Capability[1]支持"
+            ],
+            [
+              "2",
+              "Privileged Mode Enable",
+              "需Capability[2]支持"
+            ],
+            [
+              "3",
+              "Translated Requests with PASID Enable",
+              "需Capability[3]及ATS；保持获取翻译时的PASID关联"
+            ],
+            [
+              "15:4",
+              "保留",
+              "不要当PASID值配置寄存器"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pasid-multifunction-version",
+        "title": "多功能设备作用范围：Gen7支持单能力或多能力两种模型",
+        "paragraphs": [
+          "6.0文字描述单个非VF Function的PASID配置供设备的VF使用。7.0专门指出早期多Function表述有歧义，并为兼容同时支持两种模型。VF仍不得自己实现PASID扩展能力。",
+          "7.0：SFD的能力作用于单Function；MFD只有一个能力时，作用于所有Endpoint Functions和所有VF，不限PF关联；MFD有多个能力时各能力仅作用于所在Function，但PF能力还作用于其关联VF。不能只按发现能力的BDF猜全部作用范围。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          19
+        ]
+      },
+      {
+        "id": "pasid-width-and-routing",
+        "title": "20 bit线上字段不等于设备总能用1048576个活跃上下文",
+        "paragraphs": [
+          "Max PASID Width=n允许数值0～2^n−1，可稀疏分配；不是最大同时活跃进程数或缓存条目数。n=0只允许0，n=20可使用全部20 bit值，上部不用的位必须0。",
+          "发起端不能发送超出宽度的PASID；接收侧对应越界检查是允许报告UR的规则，不能反推“不检查就可随意越界”。平台还可能为跨设备共享进程使用统一宽度，内部压缩表示不能改变软件可见语义。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "pasid-execute-privilege",
+        "title": "Execute与Privileged请求位不是权限授予位",
+        "paragraphs": [
+          "发起端置位前需相应Supported和Enable。完成端按effective值做权限检查；执行/特权的具体保护模型由系统定义，不能简单等同CPU某个ring编号。R/W/Exe在特权与非特权上下文独立，不能用一个上下文的成功推断另一个。",
+          "7.0加强了RC执行权限支持的建议与默认：强烈建议RC不支持；若支持，须有使能机制且默认关闭。它和Endpoint的能力位规则、Translation Completion返回Exe条件一起核对。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          22,
+          9,
+          10
+        ]
+      },
+      {
+        "id": "pasid-translated-association",
+        "title": "同一翻译的PASID与权限属性必须正确延续",
+        "paragraphs": [
+          "取得翻译时有PASID，后续带PASID的Translated Request要用同一PASID；取得时无PASID，后续也不能补一个PASID冒充同一翻译。另受Translated Requests with PASID使能控制。",
+          "6.0文字要求Execute Requested/Privileged Requested分别匹配返回Exe/Priv；7.0改为Priv仍匹配，Execute只允许在返回Exe=1时置位。不能把不同版本的“相等”与“只可在允许时置位”混成一个检查器。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          9,
+          10
+        ]
+      },
+      {
+        "id": "pasid-stop-before-reuse",
+        "title": "PASID重用前：停排新请求、排空旧事务、处理PRI旧响应",
+        "paragraphs": [
+          "PASID stop是设备相关机制，但完成时要保证停止排新请求、完成相关Non-Posted、推送各TC指向主机内存的Posted，并遵守ATS/PRI补充规则；7.0还明确列入UIO请求。不能直接复用数值并让旧任务继续访问新上下文。",
+          "stop只针对该Function的该PASID，不应阻塞其他Function/PASID/无PASID事务。若用PRI Stop Marker，旧PRG响应仍承担资源归还，不能把“停止”实现成清账后不再接收旧响应。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "pasid-register-decoder",
+        "title": "PASID寄存器解码：宽度0、能力和使能分别显示",
+        "paragraphs": [
+          "输入Capability和Control两个16位值。工具显示实际可用PASID数值上限，以及使能了未宣告支持的可选特性等需核对的组合；不会从Max Width猜ATC容量。",
+          "当前ATS是否已开、能力作用于哪些Function和平台策略仍需外部上下文，解码结果不是使能建议。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    ]
   },
   {
     "name": "IOMMU / Translation Agent",

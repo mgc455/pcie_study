@@ -26,7 +26,7 @@ for f in features:
         doc=documents_by_id[ref['documentId']]
         assert ref['version']==doc['version'] and 1<=ref['pdfPage']<=doc['pages']
         assert isinstance(ref['page'],int) and ref['page']>=1
-        assert re.fullmatch(r'\d+(?:\.\d+)*',ref['section'])
+        assert re.fullmatch(r'(?:\d+(?:\.\d+)*|Glossary)',ref['section'])
         assert ref['url']==doc['url']
 raw='\n'.join((ROOT/'docs'/n).read_text(encoding='utf-8') for n in ['index.html','style.css','app.js','data.js'])
 assert not re.search(r'file:///|[A-Z]:[\\/]|/Users/|pcie_test_ip|DWC_pcie_ctl|CX_[A-Z_]+|CC_[A-Z_]+',raw),'Found local-only/project-specific content in website'
