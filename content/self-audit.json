@@ -1,6 +1,6 @@
 {
   "date": "2026-10-19",
-  "summary": "第六轮：串起ACS P2P请求/完成、上行转发、Egress、Direct和Enhanced目标，补ARI分组字段及6.0/7.0边界。",
+  "summary": "第七轮：展开D/L状态、ASPM协商、L1SS子状态/计时/字段、CLKREQ#与PIPE电源握手，核对早期L0s要求。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -131,6 +131,21 @@
       "name": "R6查询与回归",
       "status": "通过",
       "detail": "验证表6-11组合、512个路由上下文的优先级/RO/同出口条件、32896个Vector定位、2304个ARI取模映射和48个组映射；53个新块链接、PDF页、搜索及R1～R5工具回归通过。未进行硬件、完整拓扑或OS驱动合规验证。"
+    },
+    {
+      "name": "R7功耗正文与字段",
+      "status": "核读所引选定条款",
+      "detail": "核读6.0/7.0所列D状态、ASPM相关段落、5.5与7.8.3，核对PMCSR/Clock PM字段；视觉复核表5-11的Min/Max，2μs为TPOWER_OFF最大值、4μs为TL1.2最小值。未把所有抽取页标成通读。"
+    },
+    {
+      "name": "R7接口与历史对照",
+      "status": "相关正文核读",
+      "detail": "核读本地PIPE7.1印刷/PDF p116～119的PCIe电源部分；与Base分开定位。独立核读1.0a p222～223的L0s要求，不据此猜首次可选化修订。"
+    },
+    {
+      "name": "R7交互与回归",
+      "status": "通过",
+      "detail": "验证32768组双端能力/使能上下文、LTR等于/低于门限及Requirement/零值、128种TPOWER_ON编码、无符号32bit与保留字段、56个详情链接和精确PDF页。R1～R6搜索/Compliance/ECC/DLP/ATS/ACS工具回归通过；未进行硬件/模拟/驱动合规或浏览器视觉验收。"
     }
   ],
   "unresolved": [
@@ -156,6 +171,9 @@
     "Gen1～Gen5各版本ATS/PRI/PASID支持与具体首次合入需回到独立规范/ECN正文，不能由Base6.0/7.0存在反推。",
     "ACS完整Segment/IOV/UIO交互、全部重叠窗口解码优先级和真实平台Redirected Request Validation实现仍待专题；当前查询器只模拟明示的Memory/Completion子集。",
     "ACS Enhanced ECN公开目录列2019-05-07；未核ECN正文与首个正式Base合入链，不能用目录日期或Linux补丁说明代替。",
-    "7.0 ACS端口正文显式覆盖FM Address Routed Message，但交互表/Control部分仍以Memory Request概述；保留逐条来源，未外推所有Message或全部MFD路径。"
+    "7.0 ACS端口正文显式覆盖FM Address Routed Message，但交互表/Control部分仍以Memory Request概述；保留逐条来源，未外推所有Message或全部MFD路径。",
+    "功耗本轮只核所引D/L/ASPM/L1SS/Clock PM与PIPE部分；完整PCI-PM/PME/WAKE#、所有形态规范的断电/撤钟和Retimer低功耗例外尚未完成。",
+    "LTR聚合/失效、版本2能力与FLR保持、后续ECN全链条仍待继续核读；工具不模拟真实消息、模拟电路和硬件退出时延。",
+    "L0s从必选变可选、L1SS与Link Activation首次正式合入需要逐版/ECN证据；不能把6.0/7.0正文存在当首次引入。"
   ]
 }

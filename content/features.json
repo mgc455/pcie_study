@@ -13132,19 +13132,19 @@
     "group": "功耗与复位",
     "intro": "设备功能的电源状态，D1/D2等支持依能力。",
     "usage": "挂起/恢复、驱动电源管理；与链路L状态不一一等同。",
-    "mechanism": "设备功能D状态描述功能供电/活动状态；进入较深状态前，软件与应用要停新工作并按平台规则恢复。D3cold还涉及实际供电条件。",
+    "mechanism": "D状态属于Function，PMCSR的PowerState只编码D0/D1/D2/D3Hot；D3Cold由主电源移除进入。上下文保留、恢复等待和PME按独立规则处理。",
     "example": "驱动挂起时先停DMA和中断，再协调设备进入低功耗；恢复后可能要重新初始化丢失的业务上下文。",
     "checks": "D1/D2并非所有设备支持；D0不保证链路已训练或队列已初始化，不能只改一个状态bit就恢复业务。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 84,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "5.3.1.1",
@@ -13156,9 +13156,431 @@
         "pdfPage": 605,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.3.1",
+        "page": 604,
+        "pdfPage": 604,
+        "title": "Function D状态与支持要求",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.1",
+        "page": 716,
+        "pdfPage": 716,
+        "title": "Function D状态与支持要求",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.3.1.1",
+        "page": 605,
+        "pdfPage": 605,
+        "title": "D0初始化与active",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.1.1",
+        "page": 717,
+        "pdfPage": 717,
+        "title": "D0初始化与active",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.3.1.3",
+        "page": 606,
+        "pdfPage": 606,
+        "title": "D2恢复时间",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.1.3",
+        "page": 718,
+        "pdfPage": 718,
+        "title": "D2恢复时间",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.3.1.4",
+        "page": 606,
+        "pdfPage": 606,
+        "title": "D3上下文与恢复",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.1.4",
+        "page": 718,
+        "pdfPage": 718,
+        "title": "D3上下文与恢复",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.3.1.4.1",
+        "page": 607,
+        "pdfPage": 607,
+        "title": "D3Hot配置与业务限制",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.1.4.1",
+        "page": 719,
+        "pdfPage": 719,
+        "title": "D3Hot配置与业务限制",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.3.1.4.2",
+        "page": 608,
+        "pdfPage": 608,
+        "title": "D3Cold供电与重新初始化",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.1.4.2",
+        "page": 720,
+        "pdfPage": 720,
+        "title": "D3Cold供电与重新初始化",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.2.2",
+        "page": 948,
+        "pdfPage": 948,
+        "title": "PMCSR各bit定义",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.2.2",
+        "page": 1098,
+        "pdfPage": 1098,
+        "title": "PMCSR各bit定义",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.1",
+        "page": 599,
+        "pdfPage": 599,
+        "title": "功耗状态对象与ASPM概念",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.1",
+        "page": 711,
+        "pdfPage": 711,
+        "title": "功耗状态对象与ASPM概念",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.3.1.2",
+        "page": 605,
+        "pdfPage": 605,
+        "title": "D1请求与驱动收束",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.1.2",
+        "page": 717,
+        "pdfPage": 717,
+        "title": "D1请求与驱动收束",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "Glossary",
+        "page": 88,
+        "pdfPage": 88,
+        "title": "MUST@FLIT适用强度",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "Glossary",
+        "page": 123,
+        "pdfPage": 123,
+        "title": "MUST@FLIT适用强度",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.2.2",
+        "page": 947,
+        "pdfPage": 947,
+        "title": "PMCSR布局与PowerState",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.2.2",
+        "page": 1097,
+        "pdfPage": 1097,
+        "title": "PMCSR布局与PowerState",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.3.1.2",
+        "page": 605,
+        "pdfPage": 605,
+        "title": "Base6.0桥行为实施说明",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.1",
+        "page": 716,
+        "pdfPage": 716,
+        "title": "Base7.0桥行为要求",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
+    "details": [
+      {
+        "id": "d-state-vs-link-state",
+        "title": "D是Function状态，L是Link状态，P是PIPE内部电源状态",
+        "paragraphs": [
+          "同一设备的多个Function可以有不同D状态，却共享一根物理Link；ASPM也可在Function保持D0时让Link进入L1。因此D0不等于Link一直L0，D3Hot也不等于主电源已移除。",
+          "PIPE的P0/P1/P2是MAC到PHY的接口电源约定，不能把D3、L1.2和P2当三个名字指同一状态。需要先注明观察对象和由谁控制。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "d0-active-uninitialized",
+        "title": "D0uninitialized与D0active：复位完成还不够",
+        "paragraphs": [
+          "Conventional Reset或FLR后进入D0uninitialized；配置后，Memory Space Enable、I/O Space Enable或Bus Master Enable中任意一个被置位，就进入D0active。之后再把这些位清掉，不会因此退回uninitialized。",
+          "这不表示三种业务授权都同时开启：例如仅Memory Space Enable置位，并未自动授权设备发起总线主事务。Function处于D0也不证明链路训练、驱动队列和应用工作均完成。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "d1-d2-quiesce",
+        "title": "D1/D2可选：驱动先收束在途事务，再交系统软件改状态",
+        "paragraphs": [
+          "两版均要求D0和D3Hot/D3Cold，D1/D2为可选。进入D1/D2前驱动准备/保存必要状态，并使需要后续Completion的在途事务结束；不能把PMCSR写入当成DMA自动安全排空。",
+          "D1/D2仅接受规定的Configuration与Message请求，其他请求按UR；收到Completion可选择按Unexpected Completion处理。设备也不得随意发业务Request，仅有规范规定Message例外。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          17,
+          18,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "d-state-return-delays",
+        "title": "D2→D0的200μs与D3Hot→D0的10ms不是同一个计时",
+        "paragraphs": [
+          "D2写回D0后，到下一笔针对Function的请求至少留200μs；窗口内请求行为未定义。D3Hot→D0通常至少等10ms，除非PCI-PM能力宣告Immediate Readiness on Return to D0。",
+          "10ms恢复窗口也包括配置访问；不要把L1退出的微秒级预算、FLR等待或PHY锁定时间替换成这里的等待。平台仍需按实际能力和初始化流程处理。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "d3hot-no-soft-reset",
+        "title": "No_Soft_Reset=0不保证状态已清干净，=1也不覆盖断电",
+        "paragraphs": [
+          "PMCSR No_Soft_Reset=1时，软件PowerState从D3Hot回D0保留功能上下文并回D0active；为0时内部状态不受保证，软件须重新初始化，不能依赖它恰好被清零。",
+          "Fundamental Reset或L2/L3 Ready相关重新初始化有独立要求。支持FM的Function必须置No_Soft_Reset；这里的强制性按支持FM判断，不能只看当前是否跑FM。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          13,
+          14,
+          19,
+          20
+        ]
+      },
+      {
+        "id": "d3cold-not-pmcsr-code",
+        "title": "D3Cold靠移除主电源进入，不是PowerState另一个编码",
+        "paragraphs": [
+          "PMCSR PowerState只有00/01/10/11，分别是D0/D1/D2/D3Hot，没有第五个“D3Cold编码”。主电源移除才进入D3Cold；重新上电与Cold Reset后回D0uninitialized并进行完整初始化。",
+          "支持且启用D3Cold唤醒的PME上下文需要按规则保留，其他业务上下文的保留是实现问题。设备此时不能按仍在线的普通配置空间去读取状态。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "pmcsr-bit-table",
+        "title": "PMCSR逐bit：PowerState、No_Soft_Reset与PME分开使用",
+        "paragraphs": [
+          "设PCI Power Management Capability基址为B，PMCSR低16位在B+04h。这是传统Capability链内的位置，不是PCIe Capability或L1SS扩展能力的同名偏移。",
+          "PowerState写不支持的可选状态时，写操作正常完成但数据被丢弃、状态不变。PME_Status写1清，盲目整字回写可能清掉待处理唤醒信息。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          13,
+          14
+        ],
+        "table": {
+          "columns": [
+            "相对bit",
+            "字段",
+            "属性/用途"
+          ],
+          "rows": [
+            [
+              "1:0",
+              "PowerState",
+              "RW，00 D0 / 01 D1 / 10 D2 / 11 D3Hot；默认00"
+            ],
+            [
+              "2、7:4",
+              "保留",
+              "按RsvdP处理"
+            ],
+            [
+              "3",
+              "No_Soft_Reset",
+              "RO，描述软件D3Hot→D0时上下文"
+            ],
+            [
+              "8",
+              "PME_En",
+              "RW/RWS；允许发PME，粘滞条件由能力/辅助供电决定"
+            ],
+            [
+              "12:9",
+              "Data_Select",
+              "RW；VF ROZ；选择可选功耗Data"
+            ],
+            [
+              "14:13",
+              "Data_Scale",
+              "RO；VF ROZ；Data的缩放，不是LTR Scale"
+            ],
+            [
+              "15",
+              "PME_Status",
+              "RW1CS；唤醒事件状态，不由PME_En值直接控制"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "non-d0-bridge-behavior",
+        "title": "端口虚拟桥在非D0时，不是所有TLP都一律丢弃",
+        "paragraphs": [
+          "所引7.0把相关桥规则明确列为要求：向下的Memory/I/O请求和Type1 Configuration请求终止为UR，Type0 Configuration处理不受其D状态影响。两方向跨桥Completion以及Message处理也不受其D状态影响。",
+          "6.0在实现说明中给出同一行为背景；两版表达位置与规范强度要区分。普通Endpoint Function的D1/D2/D3Hot接收规则不能机械套到桥转发流量。"
+        ],
+        "referenceIndices": [
+          23,
+          24
+        ]
+      }
+    ]
   },
   {
     "name": "L0 / L0s / L1 / L2 / L3",
@@ -13170,14 +13592,14 @@
     "checks": "一起观察设备、链路、PHY三个状态域；不要把关时钟、断电、进入L1当成同一操作。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 85,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "5",
@@ -13189,9 +13611,334 @@
         "pdfPage": 599,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.2",
+        "page": 600,
+        "pdfPage": 600,
+        "title": "Link状态与资源",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.2",
+        "page": 712,
+        "pdfPage": 712,
+        "title": "Link状态与资源",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.2",
+        "page": 601,
+        "pdfPage": 601,
+        "title": "L1与L2/L3 Ready",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.2",
+        "page": 713,
+        "pdfPage": 713,
+        "title": "L1与L2/L3 Ready",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.2",
+        "page": 603,
+        "pdfPage": 603,
+        "title": "L状态资源汇总",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.2",
+        "page": 715,
+        "pdfPage": 715,
+        "title": "L状态资源汇总",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.2",
+        "page": 602,
+        "pdfPage": 602,
+        "title": "功耗伪状态与LTSSM抽象",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.2",
+        "page": 714,
+        "pdfPage": 714,
+        "title": "功耗伪状态与LTSSM抽象",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.2",
+        "page": 603,
+        "pdfPage": 603,
+        "title": "进入L2/L3 Ready的示例序列",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.2",
+        "page": 714,
+        "pdfPage": 714,
+        "title": "进入L2/L3 Ready的示例序列",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.2",
+        "page": 715,
+        "pdfPage": 715,
+        "title": "Base7.0不先D3Hot的序列",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "5.1.1",
+        "page": 222,
+        "pdfPage": 222,
+        "title": "Base1.0a ASPM最低要求",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "5.2",
+        "page": 223,
+        "pdfPage": 223,
+        "title": "Base1.0a L0s要求",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.1",
+        "page": 623,
+        "pdfPage": 623,
+        "title": "新版L0s可选与FM/Retimer限制",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.1",
+        "page": 733,
+        "pdfPage": 733,
+        "title": "新版L0s可选与FM/Retimer限制",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.2",
+        "page": 602,
+        "pdfPage": 602,
+        "title": "L状态与LTSSM映射",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.2",
+        "page": 714,
+        "pdfPage": 714,
+        "title": "L状态与LTSSM映射",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.2",
+        "page": 603,
+        "pdfPage": 603,
+        "title": "协商中断与重启",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.2",
+        "page": 715,
+        "pdfPage": 715,
+        "title": "协商中断与重启",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
+    "details": [
+      {
+        "id": "link-power-resource-table",
+        "title": "Link状态表：电源、Refclk、PLL和TLP传输分别看",
+        "paragraphs": [
+          "下面按6.0/7.0的功耗抽象整理，不等于LTSSM每一小状态直接对应一行。Refclk是否可撤销，还要满足Clock PM、L1SS或相应板级协议。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "状态",
+            "主电源 / Refclk / PLL",
+            "业务与说明"
+          ],
+          "rows": [
+            [
+              "L0 / L0p",
+              "保持供电与活动时钟",
+              "L0p是L0减宽工作，不是全Link睡眠"
+            ],
+            [
+              "L0s",
+              "主电源、Refclk、PLL保持活动",
+              "按方向进入；该TX不发TLP/DLLP"
+            ],
+            [
+              "L1 / L1.0",
+              "主电源保留；PLL可停；Refclk按允许机制",
+              "Link不发TLP/DLLP，退出延迟增加"
+            ],
+            [
+              "L1.1",
+              "保留共模，可不检测EI退出",
+              "使用双向CLKREQ#协调"
+            ],
+            [
+              "L1.2",
+              "可不保留共模；PHY可断电",
+              "状态须保留或恢复，走Entry/Idle/Exit"
+            ],
+            [
+              "L2/L3 Ready",
+              "准备移除电源/时钟",
+              "是准备阶段，不能当成已经断电"
+            ],
+            [
+              "L2 / L3",
+              "主电源/Refclk关闭",
+              "L2有并使用Vaux；L3无供电"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "l2-ready-versus-l2",
+        "title": "L2/L3 Ready不是“主电源已关”，L2也不要求LTSSM仍工作",
+        "paragraphs": [
+          "Ready表示协议已经为电源移除做好准备；实际移除主电源后，按是否提供并使用Vaux区分L2/L3。LTSSM通常靠主电源，不能由L2标签推断整套训练逻辑仍在运行。",
+          "PM抽象中的L2与LTSSM的L2.Idle也不要直接画等号。Link重新可用需要按相应复位/训练路径返回，不是等待一个固定微秒计时就能发TLP。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "l2-entry-message-sequence",
+        "title": "D3Hot→L1之后为什么还会回L0，再到L2/L3 Ready",
+        "paragraphs": [
+          "一个常见序列是：各Function进入D3Hot，设备请求PCI-PM L1；平台随后发PME_Turn_Off，为传输该Message和PME_TO_Ack先回L0；回应后再启动L2/L3 Ready协议。",
+          "也存在没有先把全部Function放D3Hot就发PME_Turn_Off的路径。因此Ready不是直接由某个D3Hot位变化瞬间产生；完整关机握手与平台断电仍需协调。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "id": "l0s-era-evidence",
+        "title": "早期与新版的差异：1.0a要求L0s，6.0/7.0有可选和模式限制",
+        "paragraphs": [
+          "已核读1.0a §5.1.1/5.2：ASPM至少L0s是所有组件的要求。6.0/7.0正文则说明L0s可选，除非形态规范明确要求，且FM和Retimer不支持L0s。",
+          "这是一组有依据的跨版对照，不表示已找出从必选转可选的首次修订。Gen2～Gen5各版及ECN链仍需逐项核读，不能把旧驱动的“总有L0s”假设沿用到全部新设备。"
+        ],
+        "referenceIndices": [
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "id": "pm-negotiation-not-ltssm-one-to-one",
+        "title": "功耗协商与LTSSM不是一套同名状态机",
+        "paragraphs": [
+          "L1和L2/L3 Ready协商发生时，功耗抽象仍在L0，直到协商完成；功耗图的L0还可能包括LTSSM Recovery等阶段。不能看到PM DLLP就认为已经进入LTSSM L1。",
+          "若协商被Recovery等中断，两端协商状态机回idle，下游组件重新发起，上游组件等待入口DLLP。抓波形要同步观察协商、LTSSM、CLKREQ#和PHY握手。"
+        ],
+        "referenceIndices": [
+          16,
+          17,
+          18,
+          19
+        ]
+      }
+    ]
   },
   {
     "name": "ASPM",
@@ -13203,14 +13950,14 @@
     "checks": "核对双方Capability/Control及平台策略；当前显示未启用不一定是设备不支持，也可能是固件/OS选择。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 86,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "5.4.1",
@@ -13222,28 +13969,503 @@
         "pdfPage": 621,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1",
+        "page": 622,
+        "pdfPage": 622,
+        "title": "ASPM延迟与软件策略",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1",
+        "page": 732,
+        "pdfPage": 732,
+        "title": "ASPM延迟与软件策略",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1",
+        "page": 623,
+        "pdfPage": 623,
+        "title": "多Function ASPM聚合",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1",
+        "page": 733,
+        "pdfPage": 733,
+        "title": "多Function ASPM聚合",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.1.1",
+        "page": 625,
+        "pdfPage": 625,
+        "title": "L0s进入与idle",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.1.1",
+        "page": 735,
+        "pdfPage": 735,
+        "title": "L0s进入与idle",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.3.1",
+        "page": 628,
+        "pdfPage": 628,
+        "title": "ASPM L1协商前提",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.3.1",
+        "page": 738,
+        "pdfPage": 738,
+        "title": "ASPM L1协商前提",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.3.1",
+        "page": 631,
+        "pdfPage": 631,
+        "title": "L1接受、EI和计时",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.3.1",
+        "page": 741,
+        "pdfPage": 741,
+        "title": "L1接受、EI和计时",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.7",
+        "page": 971,
+        "pdfPage": 971,
+        "title": "ASPM Control字段",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1121,
+        "pdfPage": 1121,
+        "title": "ASPM Control字段",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.3.1",
+        "page": 627,
+        "pdfPage": 627,
+        "title": "ASPM L1发起策略",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.3.1",
+        "page": 737,
+        "pdfPage": 737,
+        "title": "ASPM L1发起策略",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.1.2",
+        "page": 625,
+        "pdfPage": 625,
+        "title": "L0s退出与Credit",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.1.2",
+        "page": 735,
+        "pdfPage": 735,
+        "title": "L0s退出与Credit",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.1",
+        "page": 624,
+        "pdfPage": 624,
+        "title": "L0s计时器",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.1",
+        "page": 734,
+        "pdfPage": 734,
+        "title": "L0s计时器",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.3.1",
+        "page": 629,
+        "pdfPage": 629,
+        "title": "ASPM拒绝与等待",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.3.1",
+        "page": 739,
+        "pdfPage": 739,
+        "title": "ASPM拒绝与等待",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.3.1",
+        "page": 630,
+        "pdfPage": 630,
+        "title": "接受前排空",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.3.1",
+        "page": 740,
+        "pdfPage": 740,
+        "title": "接受前排空",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.3.1",
+        "page": 629,
+        "pdfPage": 629,
+        "title": "拒绝后的下游重试等待",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.3.1",
+        "page": 739,
+        "pdfPage": 739,
+        "title": "拒绝后的下游重试等待",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.3.1",
+        "page": 630,
+        "pdfPage": 630,
+        "title": "拒绝轮次歧义实施说明",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.3.1",
+        "page": 740,
+        "pdfPage": 740,
+        "title": "拒绝轮次歧义实施说明",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
+    "details": [
+      {
+        "id": "aspm-d0-hardware-policy",
+        "title": "ASPM让D0的空闲链路省电，Enable不是“立即睡眠”命令",
+        "paragraphs": [
+          "软件按能力、延迟预算和策略允许ASPM；硬件随后在适当空闲与协议条件下进入。何时决定发起ASPM L1由实现选择，不存在Base规定所有设备共用的固定空闲门限。",
+          "链路退出延迟与Endpoint可容忍延迟是不同信息，软件应评估路径影响。固件可配置初始策略，OS也可能按控制权和实现覆盖，不能仅从BIOS菜单推断最终寄存器状态。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "aspm-control-bit-encodings",
+        "title": "PCIe Link Control[1:0]四种编码与FM的忽略规则",
+        "paragraphs": [
+          "设PCI Express Capability基址为C，Link Control在C+10h；[1:0]控制ASPM。它与传统PMCSR和扩展L1SS能力的基址/偏移独立。",
+          "FM不支持L0s，bit0被忽略：01与00等效，11与10等效。L0p的控制不是借用bit0；不要把FM下写01解释成启用了L0p。"
+        ],
+        "referenceIndices": [
+          11,
+          12
+        ],
+        "table": {
+          "columns": [
+            "编码",
+            "NFM含义",
+            "FM含义"
+          ],
+          "rows": [
+            [
+              "00",
+              "禁用ASPM入口",
+              "禁用ASPM L1"
+            ],
+            [
+              "01",
+              "允许TX进入L0s",
+              "与00相同"
+            ],
+            [
+              "10",
+              "允许ASPM L1",
+              "允许ASPM L1"
+            ],
+            [
+              "11",
+              "允许L0s与L1",
+              "与10相同"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "aspm-mfd-and-ari-policy",
+        "title": "非ARI按D0 Function交集，ARI只取Function0",
+        "paragraphs": [
+          "非ARI MFD的非D0 Function不参与ASPM运行策略；各D0 Function的允许项取共同部分。一个允许L0s、另一个仅允许L1，交集为空，因此整个组件不进入这两种ASPM状态。",
+          "ARI以Function0为准，不因Function0的D状态改变选择来源；其他Function可读回各自写值，但不决定策略。统一配置所有Function是建议，实际判读仍需区分ARI与非ARI。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "l0s-entry-direction-idle",
+        "title": "L0s按方向进入：TX休眠不要求反向TX也休眠",
+        "paragraphs": [
+          "两端都必须支持L0s，才可使能任一方向。关闭本端TX的L0s入口不表示本端RX可拒绝对端进入L0s；宣告支持的RX仍须正确承受并恢复。",
+          "通常无待发DLLP，且无可发TLP（可能因Credit不足）时才满足相应idle条件；Switch还要考虑其他端口的接收状态。所引规则建议idle后不超过7μs的入口策略，但进入L0s永远不是TX必须执行的动作。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "l0s-exit-credit-independent",
+        "title": "L0s退出不能等Credit，不然可能等不到Credit更新",
+        "paragraphs": [
+          "有TLP或DLLP要发就必须启动TX退出；即使暂时没有发送该TLP所需Credit，也要能返回L0并交换流控。不能让唤醒条件依赖一个睡眠期间无法接收的Credit。",
+          "L0s期间事务层/链路层计时器按各自规则工作，并非统一冻结。FM和存在Retimer时的限制需要先排除，再讨论这一NFM路径。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          17,
+          18
+        ]
+      },
+      {
+        "id": "aspm-l1-entry-credits",
+        "title": "ASPM L1入口前的Credit前提：NFM、Dedicated和Shared分开",
+        "paragraphs": [
+          "下游组件决定进入L1前，必须取得发送该FC类型最大可能包所需的最少Credit。FM下按初始化情况区分Dedicated与Shared，不能因当前没有业务就忽略流控资源。",
+          "接着阻止包括Completion在内的新TLP由事务层进入链路发送；等待此前最后TLP/Flit被确认、Retry Buffer排空，仍按重放规则处理NAK。"
+        ],
+        "referenceIndices": [
+          7,
+          8
+        ],
+        "table": {
+          "columns": [
+            "模式/初始化",
+            "入口资源条件"
+          ],
+          "rows": [
+            [
+              "NFM",
+              "各FC类型累计足够发送最大可能包的Credit"
+            ],
+            [
+              "FM非零且非无限Dedicated",
+              "对应FC/VC累计足够Dedicated"
+            ],
+            [
+              "FM零Dedicated",
+              "累计足够该FC类型最大包的Shared"
+            ],
+            [
+              "已发送包未确认",
+              "仍等待最后TLP/最后TLP的最后Flit被确认"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "aspm-l1-request-and-response",
+        "title": "L1入口握手：Request和Ack是DLLP，拒绝却是TLP Message",
+        "paragraphs": [
+          "下游组件重复发PM_Active_State_Request_L1 DLLP，上游组件按条件尽快接受或拒绝。接受用PM_Request_Ack DLLP，拒绝用PM_Active_State_Nak Message，不能把三者都写成DLLP。",
+          "Switch USP只有在其DSP链路全为L1或更深、没有待发TLP/DLLP且满足RX idle策略等前提时才可请求其上行Link进入ASPM L1。局部下行Link可睡，并不保证Switch上行也会睡。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          19,
+          20
+        ]
+      },
+      {
+        "id": "aspm-l1-accept-drain-ei",
+        "title": "接受后按确认→Ack→下游TX EI→上游TX EI收尾",
+        "paragraphs": [
+          "上游组件接受时先停止调度新TLP，等待已发TLP/Flit确认，再重复发PM_Request_Ack。下游收到Ack后停止入口请求、禁发TLP/DLLP并使TX进入EI；上游观察RX EI后停止Ack并使自身TX进入EI。",
+          "若正常协商期间又出现待发TLP，已承诺的入口先完成，再退出处理；协商被Recovery等中断则走重启规则。不能在Ack后直接插一笔业务数据穿过关门过程。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          21,
+          22
+        ]
+      },
+      {
+        "id": "aspm-l1-nak-separation",
+        "title": "拒绝后的10μs与9.5μs：分别是谁的条件",
+        "paragraphs": [
+          "下游下一轮入口请求前，要么TX完成一次L0s进出，要么从上一轮最后Request DLLP起等待至少10μs；只计LTSSM L0/L0s时间，在Recovery保持计时，Link Down/Up后按规则不再受原计时约束。",
+          "有歧义风险的上游组件需要识别RX进入L0s，或至少9.5μs的请求接收空隙作为轮次边界，避免把上一轮尾部DLLP误当新一轮并由拒绝改成接受。9.5不是下游可缩短10μs等待的理由。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "aspm-timers-and-enable-order",
+        "title": "L1中的计时器与两端使能顺序",
+        "paragraphs": [
+          "Completion Timeout在L1仍继续计时；FC Update计时器在L1冻结，以免更新计时到期无谓唤醒。不能把所有计时器都冻结或全部继续跑。",
+          "ASPM L1先使能靠RC的组件（其Downstream Port，RP或Switch DSP），再使能远RC的组件（设备/Switch USP）；关闭反向。L1SS使能同样按DSP先、USP后，但配置时另须禁ASPM L1或保持D0，详见L1SS配置块。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12
+        ]
+      }
+    ]
   },
   {
     "name": "L1 Substates：L1.1 / L1.2",
     "group": "功耗与复位",
     "intro": "进一步降低L1功耗，可能涉及参考时钟/PLL/电源管理。",
     "usage": "更深省电与更大退出延迟之间权衡。",
-    "mechanism": "L1.1/L1.2进一步降低L1功耗，入口与出口需满足时序和硬件条件，某些实现涉及参考时钟、PLL及电源域处理。",
+    "mechanism": "从ASPM或PCI-PM L1.0按对应Enable和CLKREQ#进入更深子状态；ASPM L1.2分别检查两类LTR。L1.2经Entry/Idle/Exit，退出需恢复电源、共模与协议状态。",
     "example": "低功耗终端长时间空闲时有价值；恢复延迟敏感的实时任务则要评估能否接受。",
     "checks": "确认CLKREQ#、退出时序和状态保持；缺少板级连接或clk_rst支持时只写使能不能可靠工作。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 87,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "4.3.10",
@@ -13266,28 +14488,971 @@
         "pdfPage": 640,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5",
+        "page": 640,
+        "pdfPage": 640,
+        "title": "L1.0/L1.1/L1.2职责",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5",
+        "page": 748,
+        "pdfPage": 748,
+        "title": "L1.0/L1.1/L1.2职责",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.1",
+        "page": 644,
+        "pdfPage": 644,
+        "title": "L1SS入口条件",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.1",
+        "page": 752,
+        "pdfPage": 752,
+        "title": "L1SS入口条件",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.2.1",
+        "page": 645,
+        "pdfPage": 645,
+        "title": "L1.1退出",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.2.1",
+        "page": 753,
+        "pdfPage": 753,
+        "title": "L1.1退出",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.3.1",
+        "page": 647,
+        "pdfPage": 647,
+        "title": "L1.2.Entry",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.3.1",
+        "page": 755,
+        "pdfPage": 755,
+        "title": "L1.2.Entry",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.3.2",
+        "page": 648,
+        "pdfPage": 648,
+        "title": "L1.2.Idle",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.3.2",
+        "page": 756,
+        "pdfPage": 756,
+        "title": "L1.2.Idle",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.3.3.1",
+        "page": 649,
+        "pdfPage": 649,
+        "title": "L1.2退出",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.3.3.1",
+        "page": 757,
+        "pdfPage": 757,
+        "title": "L1.2退出",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.4",
+        "page": 650,
+        "pdfPage": 650,
+        "title": "L1SS配置",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.4",
+        "page": 758,
+        "pdfPage": 758,
+        "title": "L1SS配置",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.5",
+        "page": 651,
+        "pdfPage": 651,
+        "title": "表5-11计时参数",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.5",
+        "page": 759,
+        "pdfPage": 759,
+        "title": "表5-11计时参数",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.2",
+        "page": 1105,
+        "pdfPage": 1105,
+        "title": "L1SS Capabilities",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.2",
+        "page": 1271,
+        "pdfPage": 1271,
+        "title": "L1SS Capabilities",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.3",
+        "page": 1107,
+        "pdfPage": 1107,
+        "title": "L1SS Control1",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.3",
+        "page": 1273,
+        "pdfPage": 1273,
+        "title": "L1SS Control1",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.4",
+        "page": 1108,
+        "pdfPage": 1108,
+        "title": "L1SS Control2",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.4",
+        "page": 1274,
+        "pdfPage": 1274,
+        "title": "L1SS Control2",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.3",
+        "page": 646,
+        "pdfPage": 646,
+        "title": "L1.2状态保留/恢复",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.3",
+        "page": 754,
+        "pdfPage": 754,
+        "title": "L1.2状态保留/恢复",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3",
+        "page": 1103,
+        "pdfPage": 1103,
+        "title": "L1SS能力与Function0",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3",
+        "page": 1269,
+        "pdfPage": 1269,
+        "title": "L1SS能力与Function0",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.1",
+        "page": 1104,
+        "pdfPage": 1104,
+        "title": "头部版本与寄存器布局",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.1",
+        "page": 1270,
+        "pdfPage": 1270,
+        "title": "头部版本与寄存器布局",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.2",
+        "page": 1106,
+        "pdfPage": 1106,
+        "title": "Port T_POWER_ON Value后续",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.2",
+        "page": 1272,
+        "pdfPage": 1272,
+        "title": "Port T_POWER_ON Value后续",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.3",
+        "page": 1106,
+        "pdfPage": 1106,
+        "title": "Control1低位",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.3",
+        "page": 1272,
+        "pdfPage": 1272,
+        "title": "Control1低位",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.3",
+        "page": 1108,
+        "pdfPage": 1108,
+        "title": "Threshold Scale后续",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.3",
+        "page": 1274,
+        "pdfPage": 1274,
+        "title": "Threshold Scale后续",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.4",
+        "page": 1109,
+        "pdfPage": 1109,
+        "title": "Control2默认值",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.4",
+        "page": 1274,
+        "pdfPage": 1274,
+        "title": "Control2默认值",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.5",
+        "page": 1109,
+        "pdfPage": 1109,
+        "title": "Status存在条件及RW1C",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.5",
+        "page": 1275,
+        "pdfPage": 1275,
+        "title": "Status存在条件及RW1C",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.3",
+        "page": 1108,
+        "pdfPage": 1108,
+        "title": "阈值Scale写入限制",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.3",
+        "page": 1274,
+        "pdfPage": 1274,
+        "title": "阈值Scale写入限制",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.5",
+        "page": 1109,
+        "pdfPage": 1109,
+        "title": "状态寄存器作用域",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.5",
+        "page": 1275,
+        "pdfPage": 1275,
+        "title": "状态寄存器作用域",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.6",
+        "page": 651,
+        "pdfPage": 651,
+        "title": "Link Activation作用与条件",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.6",
+        "page": 759,
+        "pdfPage": 759,
+        "title": "Link Activation作用与条件",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.6",
+        "page": 651,
+        "pdfPage": 651,
+        "title": "Activation MSI条件",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.6",
+        "page": 759,
+        "pdfPage": 759,
+        "title": "Activation MSI条件",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.6",
+        "page": 652,
+        "pdfPage": 652,
+        "title": "Activation Status与INTx",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.6",
+        "page": 760,
+        "pdfPage": 760,
+        "title": "Activation Status与INTx",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
+    "details": [
+      {
+        "id": "l1ss-state-resource-roles",
+        "title": "L1.0、L1.1、L1.2：资源要求与入口来源分开",
+        "paragraphs": [
+          "进入L1首先处于L1.0；L1.0仍需支持规定的EI退出检测。L1.1保持共模，允许停EI退出检测；L1.2不要求保持共模，进一步允许PHY掉电，但状态须保留或恢复。",
+          "PCI-PM L1.0和ASPM L1.0按LTSSM进入L1的来源区分；即使都显示L1.0，后续使用的Enable和LTR条件也不同。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          24,
+          25
+        ]
+      },
+      {
+        "id": "l1ss-pcipm-entry-priority",
+        "title": "PCI-PM路径：L1.2 Enable优先于L1.1",
+        "paragraphs": [
+          "已经处在PCI-PM L1.0且CLKREQ# deasserted时，PCI-PM L1.2 Enable置位就进入L1.2；只有L1.2 Enable清、L1.1 Enable置位才进L1.1。",
+          "这组条件没有额外要求拿snoop/non-snoop LTR与ASPM阈值比较；不能把ASPM L1.2门控原样套到PCI-PM。前提仍是双端能力/配置与CLKREQ#连接合法。"
+        ],
+        "referenceIndices": [
+          4,
+          5
+        ]
+      },
+      {
+        "id": "l1ss-aspm-entry-two-ltr",
+        "title": "ASPM路径：两个LTR都满足≥阈值，才进入L1.2",
+        "paragraphs": [
+          "处在ASPM L1.0，ASPM L1.2使能且CLKREQ#释放后，最近发送/接收的snoop和non-snoop LTR必须分别≥阈值，或该类明确没有服务延迟要求。一个足够、另一个不足不能取平均。",
+          "条件满足进入L1.2.Entry；不满足L1.2条件而L1.1已使能时进入L1.1。Requirement=0是无要求；Requirement=1且数值0则是对延迟最严格的要求，二者相反。"
+        ],
+        "referenceIndices": [
+          4,
+          5
+        ]
+      },
+      {
+        "id": "l1ss-entry-explorer",
+        "title": "入口条件查询：L1.0下一步是L1.1、L1.2.Entry还是保持",
+        "paragraphs": [
+          "输入双端Capability、共同Control1、入口来源、CLKREQ#逻辑状态以及两种16位LTR字段。工具检查共同支持、Enable、阈值与Requirement，显示判定步骤。",
+          "假定两端Control1相关Enable/阈值一致、已处L1.0且计时/板级前提正确；不模拟此前ASPM协商、真实LTR传播、后续模拟上电或LTSSM训练。输出L1.2.Entry不表示已经进入Idle。"
+        ],
+        "referenceIndices": [
+          4,
+          5,
+          14,
+          15,
+          20,
+          21
+        ]
+      },
+      {
+        "id": "l12-entry-actions-race",
+        "title": "L1.2.Entry：保持共模，处理CLKREQ#采样边界",
+        "paragraphs": [
+          "Entry用于等待Refclk关闭并确保双端观察到CLKREQ#释放；继续保持共模，可停EI检测，进入该状态的端口不得主动assert CLKREQ#。",
+          "若观察到CLKREQ# asserted则回L1.0；否则经过TPOWER_OFF到Idle。由于两端采样不同步，可能一端在看到释放前已经拉低，必须正确处理这个边界，不能把它简单判成非法“Entry中唤醒”。"
+        ],
+        "referenceIndices": [
+          8,
+          9
+        ]
+      },
+      {
+        "id": "l12-idle-actions-exit",
+        "title": "L1.2.Idle：可以关PHY，但必须保留唤醒与状态恢复路径",
+        "paragraphs": [
+          "Idle中可关闭包括共模维持电路在内的活动逻辑，也可移除PHY电源。两端仍要监控CLKREQ#逻辑；发起退出前须满足TL1.2保持inactive的时限。",
+          "任一端assert CLKREQ#后到L1.2.Exit。发起方与对方后续在Recovery中的保持义务有区别；不能发一个过窄脉冲就立即释放，更不能把低功耗控制逻辑一并关死。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          16,
+          17
+        ]
+      },
+      {
+        "id": "l12-exit-power-commonmode",
+        "title": "L1.2.Exit：先上电等待，不能直接开始TS1",
+        "paragraphs": [
+          "两端PHY必须上电，不能假设共模仍保持；恢复L1.0所需电路。Exit中不得改变各自CLKREQ#驱动状态，等待TPOWER_ON后到L1.0，避免向未供电的对端主动驱动。",
+          "共模可在L1.0被动建立、在Recovery主动恢复。DSP从开始发TS1且检测到配置Link任意lane退出EI的条件起，维持规定TCOMMONMODE计时并继续TS1，不能仅靠PLL锁定就宣布恢复完成。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13
+        ]
+      },
+      {
+        "id": "l1ss-l11-exit",
+        "title": "L1.1退出：CLKREQ#拉低，回L1.0再走恢复",
+        "paragraphs": [
+          "任一端需要退出L1.1，assert CLKREQ#，下一子状态为L1.0；发起方按规则保持到Link退出Recovery，USP进入Recovery时也必须assert并保持到下一次允许释放的状态。",
+          "L1.1保持共模，不需要照搬L1.2的断电/共模恢复动作；Refclk有效时刻仍受板级时钟恢复规则和LTR预算影响，不能把引脚拉低等同于时钟马上可用。"
+        ],
+        "referenceIndices": [
+          6,
+          7
+        ]
+      },
+      {
+        "id": "l1ss-timing-table",
+        "title": "表5-11重排：2μs是最大值，4μs是最小值",
+        "paragraphs": [
+          "两版所引计时表的Min/Max位置已视觉复核；这些值不是同一种“至少等待”。TPOWER_ON和TCOMMONMODE由配置/设计决定，不能把示例字段默认值当全部系统固定值。"
+        ],
+        "referenceIndices": [
+          16,
+          17
+        ],
+        "table": {
+          "columns": [
+            "参数",
+            "约束",
+            "意义"
+          ],
+          "rows": [
+            [
+              "TPOWER_OFF",
+              "最大2μs",
+              "CLKREQ#释放到进入L1.2.Idle"
+            ],
+            [
+              "TL1O_REFCLK_OFF",
+              "0～100ns",
+              "释放CLKREQ#到Refclk达到空闲电气状态"
+            ],
+            [
+              "TL1.2",
+              "最小4μs",
+              "L1.2中CLKREQ#须保持inactive的时间"
+            ],
+            [
+              "TPOWER_ON",
+              "配置0～3100μs",
+              "采样CLKREQ# asserted后主动驱动前的最低等待"
+            ],
+            [
+              "TCOMMONMODE",
+              "配置0～255μs",
+              "按退出条款建立共模的计时"
+            ],
+            [
+              "TL10_REFCLK_ON",
+              "最早TPOWER_ON，最迟由Endpoint LTR约束",
+              "CLKREQ# asserted到Refclk valid"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "l1ss-capability-header-scope",
+        "title": "L1SS能力001Eh：Function0作用域与版本1/2的区别",
+        "paragraphs": [
+          "实现L1SS的Port必须实现此扩展能力；MFD的USP只在Function0实现，代表该Link所有Function。设扩展能力基址为B，+04h Capabilities、+08h Control1、+0Ch Control2。",
+          "实现+10h Status时头部Capability Version为2，否则为1；不能把Version1设备的+10h当必有寄存器，也不能把扩展能力版本2误解为PCIe Gen2。"
+        ],
+        "referenceIndices": [
+          26,
+          27,
+          28,
+          29
+        ]
+      },
+      {
+        "id": "l1ss-capability-bits",
+        "title": "Capabilities逐bit：四种支持与Port恢复时间",
+        "paragraphs": [
+          "下表描述硬件能力（HwInit等），不是运行使能。所有实现L1SS的Port须宣告PCI-PM L1.1支持；ASPM L1.2还须支持LTR。",
+          "Port T_POWER_ON是本端要求对端在退出时等待的时间；Control2则是本端实际使用的等待配置。两者不能不看连接/设计就直接认定必定数值相同。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          30,
+          31,
+          2,
+          3
+        ],
+        "table": {
+          "columns": [
+            "+04h bit",
+            "含义",
+            "边界"
+          ],
+          "rows": [
+            [
+              "0 / 1",
+              "PCI-PM L1.2 / L1.1 Supported",
+              "分别宣告"
+            ],
+            [
+              "2 / 3",
+              "ASPM L1.2 / L1.1 Supported",
+              "分别宣告"
+            ],
+            [
+              "4",
+              "L1 PM Substates Supported",
+              "软件使能的必要前提"
+            ],
+            [
+              "5",
+              "Link Activation Supported",
+              "仅DSP；USP RsvdP"
+            ],
+            [
+              "15:8",
+              "Port Common_Mode_Restore_Time",
+              "μs；L1.2相关能力"
+            ],
+            [
+              "17:16",
+              "Port T_POWER_ON Scale",
+              "00=2μs，01=10μs，10=100μs，11保留"
+            ],
+            [
+              "23:19",
+              "Port T_POWER_ON Value",
+              "5bit×Scale；默认5，Scale默认00"
+            ],
+            [
+              "7:6 / 18 / 31:24",
+              "保留",
+              "不作有效能力解释"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "l1ss-control1-bits",
+        "title": "Control1逐bit：运行使能、Link Activation和LTR阈值",
+        "paragraphs": [
+          "四个L1SS Enable默认0，只有双端对应Supported都为1且L1SS Supported置位才能使能。Capability宣告与Enable配置都不直接表示当前子状态。",
+          "Common_Mode_Restore_Time仅DSP适用；Threshold用于ASPM L1.2，两个端口须相同。Link Activation中断/控制只在支持它的DSP有效，USP为保留。"
+        ],
+        "referenceIndices": [
+          32,
+          33,
+          20,
+          21,
+          34,
+          35
+        ],
+        "table": {
+          "columns": [
+            "+08h bit",
+            "字段",
+            "用途"
+          ],
+          "rows": [
+            [
+              "0 / 1",
+              "PCI-PM L1.2 / L1.1 Enable",
+              "RW，默认0"
+            ],
+            [
+              "2 / 3",
+              "ASPM L1.2 / L1.1 Enable",
+              "RW，默认0"
+            ],
+            [
+              "4 / 5",
+              "Activation Interrupt Enable / Control",
+              "DSP的可选机制"
+            ],
+            [
+              "15:8",
+              "Common_Mode_Restore_Time",
+              "DSP使用，μs"
+            ],
+            [
+              "25:16",
+              "LTR_L1.2_THRESHOLD_Value",
+              "10bit，默认0"
+            ],
+            [
+              "31:29",
+              "LTR_L1.2_THRESHOLD_Scale",
+              "与LTR Message相同编码；6/7不允许"
+            ],
+            [
+              "7:6 / 28:26",
+              "保留",
+              "RsvdP"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "l1ss-control2-and-status",
+        "title": "Control2与Status：5bit时间值，状态是RW1C不是实时L状态",
+        "paragraphs": [
+          "Control2的[1:0]为Scale（2/10/100μs，11保留），[7:3]为5bit Value，TPOWER_ON=Value×Scale；bit2和高位保留。默认Value5、Scale00即10μs，但配置应基于连接组件与耦合电容。",
+          "Version≥2才有Status +10h；bit0是Link Activation Status，DSP支持该机制时RW1C，USP为RsvdZ，其余位RsvdZ。它不是“当前在L1.2”的状态位，写1清也不触发一次Link退出。"
+        ],
+        "referenceIndices": [
+          22,
+          23,
+          36,
+          37,
+          38,
+          39
+        ]
+      },
+      {
+        "id": "l1ss-programming-sequence",
+        "title": "配置顺序：DSP先开、USP后开，关闭反向",
+        "paragraphs": [
+          "使能任何对应子状态前，双方必须支持。先在DSP置Enable，再在USP置对应Enable；关闭先清USP，再清DSP。配置ASPM子状态时要禁用ASPM L1；配置PCI-PM子状态时两端处于D0。",
+          "开L1.2前先编程TPOWER_ON与Common Mode时间；开ASPM L1.2还要编程双方一致的LTR阈值。不能仅计算两端时间最大值就声称完整配置完成，板级设计仍是决定条件。"
+        ],
+        "referenceIndices": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "l1ss-field-update-guards",
+        "title": "运行中哪些时间字段不能直接改",
+        "paragraphs": [
+          "Common_Mode_Restore_Time与Control2的TPOWER_ON Value/Scale只能在ASPM L1.2和PCI-PM L1.2 Enable均清时修改，否则行为未定义。LTR Threshold Value/Scale只能在ASPM L1.2 Enable清时改。",
+          "两种L1.2都关闭时，硬件不得依赖这些时间字段有某固定值。保留编码和字段修改时机都要检查，不能因为只写一个小字段就忽略运行状态。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          22,
+          23,
+          40,
+          41,
+          14,
+          15
+        ]
+      },
+      {
+        "id": "l1ss-register-decoder",
+        "title": "L1SS寄存器解码：时间、门限、角色和版本分开显示",
+        "paragraphs": [
+          "输入三个32bit DWORD（Capabilities、Control1、Control2）、可选Status及头部版本，选择DSP或USP。解码显示四类支持/使能、Port与实际等待时间、LTR门限和保留位。",
+          "它只读输入值，不写硬件；只凭本端寄存器不能证明双端匹配、接线或恢复模拟行为正确。支持时间字段和实际配置时间分别标注，避免混用。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          42,
+          43
+        ]
+      },
+      {
+        "id": "link-activation-purpose",
+        "title": "Link Activation不是ASPM总开关，仅对PCI-PM子状态有规定作用",
+        "paragraphs": [
+          "这是DSP可选机制，用于暂时阻止较深L1SS、减少例如D3Hot→D0配置访问的停顿。只有PCI-PM L1.1或L1.2 Enable至少一个置位时，Activation Control才可影响该行为。",
+          "Control置位后，DSP准备入L1以及停在L1时保持CLKREQ# asserted。若只开ASPM子状态，不能把Activation位解释成同样强制唤醒开关；清Control也不额外规定引脚状态。"
+        ],
+        "referenceIndices": [
+          44,
+          45
+        ]
+      },
+      {
+        "id": "link-activation-events-interrupt",
+        "title": "Activation Status与中断：看逻辑条件的变化，不是不断发消息",
+        "paragraphs": [
+          "当“PCI-PM子状态使能、Activation Control置位、Link不在L1 Substate”的逻辑与从假变真时置Status。Status可写1清，保持为1不意味着每时钟重新发生事件。",
+          "MSI/MSI-X在规定的未屏蔽、Interrupt Enable、Control与Status逻辑与由假变真时发消息，使用PCIe Capability中的Interrupt Message Number；INTx按Interrupt Disable等条件维持电平。"
+        ],
+        "referenceIndices": [
+          46,
+          47,
+          48,
+          49
+        ]
+      },
+      {
+        "id": "l1ss-version-comparison",
+        "title": "6.0与7.0所核条款一致，不凭页码变化制造功能变化",
+        "paragraphs": [
+          "本轮独立核读两版L1SS核心入口、Entry/Idle/Exit、配置、表5-11与7.8.3字段，所列关键条件/位定义一致；保留分别定位，便于逐页对照。",
+          "这不等于整代功耗完全相同，也不证明各机制首次在6.0出现。Retimer、独立ECN、后续6.5/7.1及所有板级规范的变化仍待各自正文证据。"
+        ],
+        "referenceIndices": [
+          4,
+          5,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ]
+      }
+    ]
   },
   {
     "name": "CLKREQ# / Clock PM / Refclk Removal",
     "group": "功耗与复位",
     "intro": "协调参考时钟停启及链路低功耗恢复。",
     "usage": "需要板级引脚、PHY和clk_rst握手，不能只改软件bit。",
-    "mechanism": "时钟管理通过请求/确认与状态条件协调停启，避免逻辑仍工作时直接移除参考时钟。PHY重新稳定后才允许相应操作推进。",
+    "mechanism": "CLKREQ#是板级时钟请求及L1SS协调信号；普通Clock PM与L1SS的使能独立，共享PLL/SRIS以及PIPE的PCLK握手须分层检查。",
     "example": "深度休眠后首次访问失败时，应检查时钟恢复、复位释放和链路退出序列，而不只重写BAR。",
     "checks": "区分参考时钟、PIPE/core/aux时钟；不能用门控前信号的假设去读取已经停掉的时钟域。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 88,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "5",
@@ -13299,9 +15464,231 @@
         "pdfPage": 599,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5",
+        "page": 641,
+        "pdfPage": 641,
+        "title": "CLKREQ双向开漏与允许释放",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5",
+        "page": 749,
+        "pdfPage": 749,
+        "title": "CLKREQ双向开漏与允许释放",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5",
+        "page": 643,
+        "pdfPage": 643,
+        "title": "共享PLL拓扑",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5",
+        "page": 751,
+        "pdfPage": 751,
+        "title": "共享PLL拓扑",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.6",
+        "page": 969,
+        "pdfPage": 969,
+        "title": "Clock PM支持",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.6",
+        "page": 1119,
+        "pdfPage": 1119,
+        "title": "Clock PM支持",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.7",
+        "page": 973,
+        "pdfPage": 973,
+        "title": "Clock PM控制",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1123,
+        "pdfPage": 1123,
+        "title": "Clock PM控制",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5",
+        "page": 640,
+        "pdfPage": 640,
+        "title": "SRIS与L1SS的本地时钟边界",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5",
+        "page": 748,
+        "pdfPage": 748,
+        "title": "SRIS与L1SS的本地时钟边界",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1123,
+        "pdfPage": 1123,
+        "title": "Common Clock配置与重训",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.4.1",
+        "page": 640,
+        "pdfPage": 640,
+        "title": "时钟配置与ASPM延迟评估",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.4.1",
+        "page": 748,
+        "pdfPage": 748,
+        "title": "时钟配置与ASPM延迟评估",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
+    "details": [
+      {
+        "id": "clkreq-open-drain",
+        "title": "CLKREQ#低为assert，高为双方释放后的deassert",
+        "paragraphs": [
+          "L1SS要求每条Link双端有连接的双向开漏CLKREQ#实例，任一端拉低都表示请求，不是两个推挽输出互相对打。只有双方都释放且电气连接正确时才可观察到高。",
+          "USP在PCI-PM/ASPM L1或L2/L3 Ready可释放，其他状态必须assert；不满足这些连接/协议条件的系统不得使能L1SS。普通连接器是否提供信号还要查具体形态规范。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "clock-pm-independent-l1ss",
+        "title": "Clock PM bit8关闭，不代表L1SS也必须保持CLKREQ#低",
+        "paragraphs": [
+          "PCIe Link Capabilities[18]宣告Clock PM支持，Link Control[8]运行使能。普通Clock PM关闭时设备保持CLKREQ#低，但L1SS对该信号另有控制语义，不受这个bit8设置影响。",
+          "因此调试时要同时读取Clock PM与L1SS；不能只看bit8=0，就断言CLKREQ#永远不会释放。Clock PM仅适用支持该机制形态的USP；DSP对应能力/使能硬连0。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "clock-pm-function-scope",
+        "title": "Clock PM的非ARI全Function条件与ARI Function0规则",
+        "paragraphs": [
+          "非ARI MFD需所有Function都宣告Clock PM支持，软件才可允许撤钟，并且所有Function的运行使能都置位，组件才可按该机制管理时钟。",
+          "ARI各Function能力值需一致，而运行使能只由Function0决定。L1SS能力的Function0作用域又是独立规则，不要把这些聚合规则混成“总是只读Function0”。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "clkreq-shared-pll",
+        "title": "一条Link睡了，不代表共享PLL可以关",
+        "paragraphs": [
+          "所引共享PLL示例中，每个DSP与对端各有CLKREQ#连接，另有共享参考时钟请求。只有相关DSP都处L1.1/L1.2，且内部其他消费者都不需时钟，才可关闭共享PLL并释放共享请求。",
+          "这说明“CLKREQ#高”是特定Link/拓扑的协商结果，不能拿一根信号决定全芯片时钟门控。需要逐一标注lane、Port、PLL和其他消费者的关联。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "sris-l1ss-clock-relation",
+        "title": "SRIS下CLKREQ#仍参与L1SS，但不定义本地时钟开关关系",
+        "paragraphs": [
+          "同时支持SRIS与L1SS的Port也必须在SRIS运行时支持L1SS协议。此时CLKREQ#按子状态协议使用，与双方各自本地时钟没有规定的直接关系；本地时钟管理是实现专用。",
+          "所以不能把共参考时钟板卡的“引脚高即关Refclk”波形照搬到SRIS。PCLK、Refclk、恢复时钟的名字和来源也要分别辨认。"
+        ],
+        "referenceIndices": [
+          9,
+          10
+        ]
+      },
+      {
+        "id": "clock-common-configuration",
+        "title": "Common Clock Configuration会影响报告延迟，改后需要重训",
+        "paragraphs": [
+          "PCIe Link Control[6]表示双方使用分配的共同参考时钟；组件据此报告正确L0s/L1退出延迟。不能靠名字把它看成实际切换晶振的控制位。",
+          "所引7.0字段要求双方改值后，由DSP写Retrain Link触发重训；非ARI各Function配置一致，ARI以Function0为准。板级时钟事实、双方配置和报告值必须相符。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13
+        ]
+      }
+    ]
   },
   {
     "name": "LTR：Latency Tolerance Reporting",
@@ -13313,14 +15700,14 @@
     "checks": "核对报告值的单位/编码、有效位与主机支持；不要把LTR值设大只为省电而忽略缓冲会溢出。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 89,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "2.2.8.8",
@@ -13343,9 +15730,119 @@
         "pdfPage": 781,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.18",
+        "page": 781,
+        "pdfPage": 781,
+        "title": "LTR字段格式与路径支持",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.18",
+        "page": 782,
+        "pdfPage": 782,
+        "title": "LTR Requirement与服务延迟",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.18",
+        "page": 783,
+        "pdfPage": 783,
+        "title": "MFD/Switch聚合规则",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
+    "details": [
+      {
+        "id": "ltr-scale-requirement-table",
+        "title": "LTR是容忍预算：Requirement=0和数值0含义相反",
+        "paragraphs": [
+          "16位snoop/no-snoop字段中，[15] Requirement=0表示该类没有延迟要求，Value/Scale被忽略；Requirement=1且Value=0表示任何延迟都会影响设备、请求尽可能好服务。",
+          "Value为[9:0]，Scale为[12:10]，6/7不允许，[14:13]保留。L1SS阈值使用同一Scale编码，但在Control1中字段位置不同；不要把一个16位LTR字段原封不动写到阈值寄存器。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4
+        ],
+        "table": {
+          "columns": [
+            "Scale",
+            "时间乘数（ns）"
+          ],
+          "rows": [
+            [
+              "000",
+              "1"
+            ],
+            [
+              "001",
+              "32"
+            ],
+            [
+              "010",
+              "1024"
+            ],
+            [
+              "011",
+              "32768"
+            ],
+            [
+              "100",
+              "1048576"
+            ],
+            [
+              "101",
+              "33554432"
+            ],
+            [
+              "110 / 111",
+              "不允许"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ltr-platform-budget-boundary",
+        "title": "LTR不保证实际响应时间，Clock PM等待也占平台预算",
+        "paragraphs": [
+          "Endpoint用LTR报告可容忍的Memory Read/Write服务延迟，RC被强烈鼓励满足，但不是本节要求其绝对保证。软件仅在RC和沿途Switch都支持时使能，从靠Root Port的设备开始。",
+          "Clock PM从assert CLKREQ#到有效时钟的额外等待也须计入平台政策。L1SS入口显式使用LTR，不应把6.18中“一般不直接影响Link PM”的概述解读为LTR永远与L1.2无关。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "ltr-aggregation-stale-state",
+        "title": "MFD/Switch聚合与过期LTR：不能永远沿用旧预算",
+        "paragraphs": [
+          "MFD按各Function的最紧预算聚合；snoop与no-snoop最小值可来自不同Function。Switch还要扣除自身引入的延迟并按规定合成，不能简单转发一个任意Function的最后值。",
+          "DL_Down会使端口记录的旧延迟失效；非D0转换或关闭LTR等情况下有撤销原Requirement的消息要求。本站入口工具假定输入是有效、当前的已报告值，未模拟完整聚合/失效流程。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4
+        ]
+      }
+    ]
   },
   {
     "name": "OBFF",
@@ -22319,7 +24816,7 @@
     "prerequisites": "请求/ack/phystatus的极性、脉冲与电平语义依版本而异；示例中的内部lane ack不是AXI ready，也不能套用别的IP时序。",
     "example": "看到目标速率寄存器变了，但并行频率未变或CDR尚未恢复，说明配置写入与操作完成没有对齐。",
     "checks": "同时记录请求、完成、当前rate/width/power、时钟及valid；检查控制域是否会在等待应答时被提前停钟。",
-    "status": "体系条目已整理 · 按来源范围核读",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "reviewed": "2026-10-19",
     "sources": [
       {
@@ -22393,9 +24890,53 @@
         "pdfPage": 69,
         "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 117,
+        "pdfPage": 117,
+        "title": "PIPE电源状态与PCLK/PhyStatus",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 118,
+        "pdfPage": 118,
+        "title": "PIPE标准转换及L1SS机制",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "L1SS侧带机制限制",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "电源转换完成指示",
+        "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
       }
     ],
-    "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
+    "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
     "details": [
       {
         "title": "PCIe模式Rate／Width／PCLK变化：按时序操作",
@@ -22539,6 +25080,64 @@
           5
         ],
         "id": "block-3"
+      },
+      {
+        "id": "pipe-power-l-state-boundary",
+        "title": "P0/P0s/P1/P2与L状态：建议映射不是强制一一对应",
+        "paragraphs": [
+          "PIPE 7.1 PCIe模式定义四个标准PHY电源状态，并允许PHY专用状态。P0保持正常收发；P0s用于TX idle；P1要求双向idle；P2可停PCLK。MAC选状态仍须满足Base协议时序。",
+          "不要把USB同名P2套到PCIe：同一PIPE版本中各协议的PCLK规则不同。L1SS还可能用专用编码或侧带控制，不存在全厂商通用的“L1.2必等某个PowerDown数值”。"
+        ],
+        "referenceIndices": [
+          6,
+          7
+        ]
+      },
+      {
+        "id": "pipe-pclk-running-power-ack",
+        "title": "PCLK还在运行：等待单周期PhyStatus完成再做下一步",
+        "paragraphs": [
+          "P0、P0s、P1及保持PCLK的专用状态之间，完成转换用单周期PhyStatus指示；MAC不得在完成前开始后续操作或新一轮电源转换。",
+          "进入P1完成时PCLK和直流共模还须稳定。PhyStatus在其他阶段也有作用，不能仅数到一个高脉冲就认为完成任意待处理请求，必须结合当前请求上下文。"
+        ],
+        "referenceIndices": [
+          9,
+          6
+        ]
+      },
+      {
+        "id": "pipe-p2-pclk-input-output",
+        "title": "P2进出：PCLK是PHY输出还是输入，握手不同",
+        "paragraphs": [
+          "PCLK由PHY输出时，进P2先assert PhyStatus再停PCLK，完全停止且到P2后deassert；退出时尽早assert并保持到PCLK稳定后。",
+          "PCLK为PHY输入时，进入P2用一个输入PCLK周期的PhyStatus表示可移除时钟；退出并回P0可操作时再以一个周期指示。不能依靠已停止的PCLK采样一个想象中的同步完成脉冲。"
+        ],
+        "referenceIndices": [
+          6
+        ]
+      },
+      {
+        "id": "pipe-asynchronous-power-ack",
+        "title": "无PCLK状态之间转换：用异步完成/确认闭环",
+        "paragraphs": [
+          "从一个不提供PCLK的状态转到另一个也不提供PCLK的状态，PHY完成后保持PhyStatus，MAC用AsyncPowerChangeAck确认，然后PHY释放PhyStatus。",
+          "这是控制完成握手，不是链路可传TLP的证明；退出仍要满足Base的共模、训练和状态恢复要求。不得把时钟门控掉后又等待同域同步逻辑来完成确认。"
+        ],
+        "referenceIndices": [
+          6
+        ]
+      },
+      {
+        "id": "pipe-l1ss-two-mechanisms",
+        "title": "L1SS可用专用PowerDown编码，也可用EI/共模侧带",
+        "paragraphs": [
+          "PIPE 7.1给出两类机制：通过不同PowerDown编码表达子状态，或固定PowerDown编码并用RxEIDetectDisable、TxCommonModeDisable侧带管理。后者要求PCLK为PHY输入，跨子状态时PowerDown保持不变。",
+          "PHY可支持一种或两种，须按其datasheet宣告匹配MAC；不能仅凭RTL端口存在就推断完整机制可用。本轮未用某个产品的PowerDown编码替代标准边界。"
+        ],
+        "referenceIndices": [
+          7,
+          8
+        ]
       }
     ]
   },

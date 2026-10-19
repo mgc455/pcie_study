@@ -59,6 +59,9 @@ phy=json.loads((ROOT/'content/phy.json').read_text(encoding='utf-8'))
 phy_ids=[id for group in phy['groups'] for id in group['ids']]
 assert len(phy_ids)==len(set(phy_ids))==20
 assert set(phy_ids)<={f['id'] for f in features}
+if 'lowPowerReferences' in phy:
+    assert phy['lowPowerReferences']['title'] and len(phy['lowPowerReferences']['ids'])==len(set(phy['lowPowerReferences']['ids']))
+    assert set(phy['lowPowerReferences']['ids'])<={f['id'] for f in features}
 assert all(len(flow['stages'])>=4 for flow in phy['flows'])
 assert '#phy' in raw
 coverage=json.loads((ROOT/'content/coverage.json').read_text(encoding='utf-8'))

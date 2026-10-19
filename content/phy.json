@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-10-19",
-  "summary": "从MAC/PIPE追到模拟通道；增加时钟、复位、固件启动、1b/1b对齐及Flit可靠性细则。产品实现、接口规范、Base规则分别定位，不将任何章节标成全部完成。",
+  "summary": "从MAC/PIPE到模拟通道；本轮加入Link低功耗、CLKREQ#、共享PLL与PIPE停PCLK握手的对应关系，协议状态与产品实现分开定位。",
   "groups": [
     {
       "title": "分层与资料入口",
@@ -78,6 +78,17 @@
         "收发有效和协议训练"
       ],
       "note": "先区分Fundamental/PERST#、PIPE Reset、产品全局复位与FLR；按完成事件启动下一阶段。复位释放、PHY Ready、L0、DL_Active和Function配置就绪是不同里程碑。"
+    },
+    {
+      "title": "低功耗恢复：从CLKREQ#到可传输",
+      "stages": [
+        "CLKREQ#断言与有效时钟预算",
+        "PHY供电与TPOWER_ON等待",
+        "共模恢复与PIPE完成握手",
+        "L1.0/Recovery训练",
+        "Link恢复后传输业务"
+      ],
+      "note": "概念检查链，具体动作存在并行和接口方案差异，不是固定顺序波形；PLL锁定、PhyStatus完成、LTSSM L0和TLP可用分别验证。"
     }
   ],
   "compare": {
@@ -151,5 +162,17 @@
     "按实际filelist展开关键通路和生成宏，并补充可复现数字仿真",
     "核读PIPE速率/宽度切换、Message Bus和低功耗握手完整条款",
     "分开建立PRBS/环回、SI/AMI、CDL/LVS/电路分析与实验室测试方法"
-  ]
+  ],
+  "lowPowerReferences": {
+    "title": "低功耗协议与PHY握手",
+    "ids": [
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      175
+    ]
+  }
 }
