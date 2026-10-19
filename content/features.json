@@ -3044,14 +3044,14 @@
     "checks": "核对板级时钟来源、SSC、Common Clock相关字段及PHY支持，不能靠一个寄存器产生缺失的参考时钟。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 10,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "4",
@@ -3063,9 +3063,139 @@
         "pdfPage": 307,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.8",
+        "page": 530,
+        "pdfPage": 530,
+        "title": "频差、SRNS/SRIS与Lower SKP使能",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "8.6.8",
+        "page": 1431,
+        "pdfPage": 1431,
+        "title": "Form Factor参考时钟架构要求",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.6.8",
+        "page": 1636,
+        "pdfPage": 1636,
+        "title": "Form Factor参考时钟架构要求",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
+    "details": [
+      {
+        "id": "clock-architecture-matrix",
+        "title": "Common Clock、SRNS、SRIS：先查物理来源，再查允许条件",
+        "paragraphs": [
+          "参考时钟架构描述链路两端的频率基准关系。PCLK as PHY Input/Output则描述MAC与PHY之间的并行接口时钟方向；两者是不同维度。板上看到两个同为100 MHz的振荡器，不能据此认定为Common Clock。",
+          "本表的频差依据Base 6.0 §4.2.8；形态规范还可收窄支持范围。不是每个支持某一代速率的端口都自动支持SRIS。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3
+        ],
+        "table": {
+          "columns": [
+            "架构",
+            "频率/SSC关系",
+            "接收与集成影响"
+          ],
+          "rows": [
+            [
+              "Common Refclk",
+              "共同参考；相关漂移",
+              "仍要满足时钟质量和分配要求，不能把“共同”解释为所有数字域同相"
+            ],
+            [
+              "SRNS",
+              "独立参考，不使用独立SSC；该节最大相对频差600 ppm",
+              "弹性缓冲与SKP补偿频差"
+            ],
+            [
+              "SRIS",
+              "独立参考、独立SSC；该节最大相对频差5600 ppm",
+              "补偿压力更高；核对两端及路径器件支持"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "elastic-buffer-skps",
+        "title": "为什么有弹性缓冲：连续小频差会积累成整字节偏移",
+        "paragraphs": [
+          "接收串流跟着发送端的速率进入，MAC消耗数据跟着本地时钟进行。即使瞬时差别很小，长时间也会使缓冲区持续变满或变空。SKP提供允许调整的时机，避免直接增删业务数据。",
+          "Base 6.0给出的量级是SRNS约每1666个时钟积累一次偏移，SRIS约每178个时钟。这是理解频差的量级说明，不能直接作为所有编码/速率下的SKP发送间隔或FIFO深度。真正深度还受最大包、调度延后和Retimer影响。"
+        ],
+        "referenceIndices": [
+          1
+        ]
+      },
+      {
+        "id": "lower-skp-enable",
+        "title": "Lower SKP：能接收、能生成、软件使能是三个条件",
+        "paragraphs": [
+          "在SRIS运行时，某些端口仍能按SRNS的较低SKP频度工作。接收能力向量和生成能力向量按速率分别表达；使能某一发送端之前，软件必须检查对端相应速率的接收能力。",
+          "路径中存在透明扩展器件时，也必须确认其支持。使能后较低频度适用于L0；其他LTSSM状态仍按实际时钟架构的规则调度。不能只改发送端位就认定完整链路兼容。"
+        ],
+        "referenceIndices": [
+          1
+        ],
+        "table": {
+          "columns": [
+            "字段/对象",
+            "职责",
+            "使用时检查"
+          ],
+          "rows": [
+            [
+              "Lower SKP OS Reception Supported Speeds Vector",
+              "接收能力，Link Capabilities 2",
+              "检查对端、当前速率对应位"
+            ],
+            [
+              "Lower SKP OS Generation Supported Speeds Vector",
+              "生成能力，Link Capabilities 2",
+              "核对发送器实现支持"
+            ],
+            [
+              "Enable Lower SKP OS Generation Vector",
+              "发送使能，Link Control 3",
+              "确认对端与透明扩展路径均支持后设置"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "form-factor-clockreq",
+        "title": "CLKREQ#不只属于Common Clock；形态规范决定组合",
+        "paragraphs": [
+          "Base 6.0和7.0 §8.6.8要求形态规范列出主板、模块与Retimer的Common/SRNS/SRIS分别为必须、可选或不允许。表中的示例是虚构形态示例，不能拿来当CEM或M.2的结论。",
+          "支持L1 PM Substates的形态需要CLKREQ#，即使没有共同参考时钟也会使用它。因此“独立时钟就不需要CLKREQ#”不成立；具体接法、时序和电气仍查对应形态规范。"
+        ],
+        "referenceIndices": [
+          2,
+          3
+        ]
+      }
+    ]
   },
   {
     "name": "Retimer与Repeater",
@@ -3757,14 +3887,14 @@
     "checks": "Flit模式与速率并非一一对应；不能仅看到链路降到32GT/s便认定一定是传统Non-Flit。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 13,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "4",
@@ -3776,9 +3906,284 @@
         "pdfPage": 307,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3",
+        "page": 340,
+        "pdfPage": 340,
+        "title": "Flit Mode与各速率编码",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3",
+        "page": 394,
+        "pdfPage": 394,
+        "title": "Flit Mode与各速率编码",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.3",
+        "page": 351,
+        "pdfPage": 351,
+        "title": "256 Byte Flit区域与交织",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.3",
+        "page": 406,
+        "pdfPage": 406,
+        "title": "256 Byte Flit区域与交织",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.1",
+        "page": 357,
+        "pdfPage": 357,
+        "title": "TLP填充、跨Flit与每半Flit限制",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.1",
+        "page": 412,
+        "pdfPage": 412,
+        "title": "TLP填充、跨Flit与每半Flit限制",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2",
+        "page": 359,
+        "pdfPage": 359,
+        "title": "DLP用途、IDLE及有效Flit定义",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2",
+        "page": 415,
+        "pdfPage": 415,
+        "title": "DLP用途、IDLE及有效Flit定义",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.1",
+        "page": 413,
+        "pdfPage": 413,
+        "title": "跨Flit TLP可能被中断",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
+    "details": [
+      {
+        "id": "mode-rate-encoding",
+        "title": "速率、调制、编码、Flit模式：四个维度一起查",
+        "paragraphs": [
+          "64 GT/s及以上使用Flit Mode与PAM4/1b1b；Flit Mode也能工作在较低速率。2.5/5 GT/s下仍用8b/10b，8/16/32 GT/s下仍用128b/130b，不能看到Flit就认为线路一定在PAM4。",
+          "Flit Mode在8b/10b不使用原先STP、SDP、END、EDB包边界标记，在128b/130b不使用相应Framing Tokens。固定Flit区域和TLP长度规则接替包边界识别。不是把旧完整线上包连同旧标记原封不动塞进256字节。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ],
+        "table": {
+          "columns": [
+            "运行速率",
+            "线上编码/调制",
+            "本块适用模式"
+          ],
+          "rows": [
+            [
+              "2.5 / 5 GT/s",
+              "8b/10b，NRZ",
+              "NFM或FM；按协商状态判断"
+            ],
+            [
+              "8 / 16 / 32 GT/s",
+              "128b/130b，NRZ",
+              "NFM或FM；FM去掉旧framing token"
+            ],
+            [
+              "64 GT/s",
+              "1b/1b，PAM4",
+              "FM"
+            ],
+            [
+              "128 GT/s（Base7.0）",
+              "1b/1b，PAM4",
+              "FM；不是6.0具备此速率"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "flit-byte-layout",
+        "title": "256字节布局：TLP区不是236字节应用净载荷",
+        "paragraphs": [
+          "一个Flit是整个Link共同传输的256 B，不是每lane各256 B。TLP区可装多个包，也可只装一个跨Flit包的一部分；包头、NOP及其他事务开销仍占该区。",
+          "236/256=92.1875%仅是TLP区域占比，不能直接当应用吞吐效率；还需考虑包头、填充、SKP、重放、调度和业务空闲。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ],
+        "table": {
+          "columns": [
+            "字节范围（从0开始）",
+            "长度",
+            "职责"
+          ],
+          "rows": [
+            [
+              "0～235",
+              "236 B",
+              "TLP区域：头、数据、NOP或跨包片段"
+            ],
+            [
+              "236～241",
+              "6 B",
+              "DLP：链路控制、Ack/Nak/流控相关信息"
+            ],
+            [
+              "242～249",
+              "8 B",
+              "Flit CRC，保护前242字节"
+            ],
+            [
+              "250～255",
+              "6 B",
+              "三组ECC，每组两个校验字节"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "tlp-packing-nop",
+        "title": "TLP填充与NOP：空闲会占位置，但NOP不消耗Credit",
+        "paragraphs": [
+          "没有业务TLP可发时，事务层安排1 DW的NOP TLP；一旦开始安排NOP，要持续至下一个4 DW边界或本Flit边界，以先到者为准。NOP不消耗流控Credit，不能拿填充字节数去扣Credit。",
+          "TLP可跨多个Flit，靠固定位置的长度信息解析。Gen7还明确提醒接收端应能处理跨Flit TLP被SKP、NOP Flit或Recovery等打断；“每个Flit都必须包含完整包”是错误假设。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          9
+        ]
+      },
+      {
+        "id": "tlps-per-half-version",
+        "title": "实质版本差异：每半Flit非NOP TLP上限从固定8到按接收值4或8",
+        "paragraphs": [
+          "Base 6.0把TLP区分成字节0～127和128～235两半，每半最多8个非NOP TLP，跨入的部分TLP也计算。",
+          "Base 7.0相应条款改为按接收端发送的TLPs per Half Flit值限制为4或8；不能无条件认为仍允许8个。若接收端检查并发现违例，可记录Data Link Protocol Error。这里证实两个正式版的正文差异，首次合入的ECN/中间修订仍待核对。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "比较项",
+            "Base6.0 §4.2.3.4.1 p357",
+            "Base7.0 §4.2.3.4.1 p412"
+          ],
+          "rows": [
+            [
+              "第一半范围",
+              "0～127 B",
+              "0～127 B"
+            ],
+            [
+              "第二半范围",
+              "128～235 B",
+              "128～235 B"
+            ],
+            [
+              "非NOP TLP计数",
+              "每半≤8，含partial",
+              "每半≤4或≤8，依据Receiver值，含partial"
+            ],
+            [
+              "违例检查",
+              "接收端允许检查；DL Protocol Error",
+              "接收端允许检查；DL Protocol Error"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "flit-status-cross-packet",
+        "title": "Poison / Nullify跨Flit传播与Credit归还",
+        "paragraphs": [
+          "若Flit尾部TLP因Flit_Status被poison或nullify且延续到后续Flit，直到该TLP结束的每个相关Flit都必须携带相应状态。接收端允许只检查TLP结束所在Flit的状态。",
+          "在一个有效Flit中被nullify的TLP不交付，但必须释放Credit；poison/nullify后的剩余TLP位置用NOP填到该Flit结束。不能把“丢弃内容”理解为Credit不需要结算，否则会形成流控泄漏。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "dlp-idle-nop-payload",
+        "title": "IDLE Flit、NOP Flit和NOP TLP不是一回事",
+        "paragraphs": [
+          "DLP是每Flit的6字节链路控制区域，可组合Ack/Nak和优化的流控更新，不等同传统DLLP整包加原有校验的直接搬运。IDLE/NOP/Payload是Flit用途分类，NOP TLP是TLP区域的一种填充单位。",
+          "在128b/130b和1b/1b下，IDLE从SDS序列后的Control SKP结束后开始；8b/10b另有TS2/SKP边界规则。L0首次有效non-IDLE之后，后续Flit保持non-IDLE。Gen7把IDLE进一步明确为Usage=00、Sequence Number=0和Replay Command=00。完整DLP字段编码和重放状态机另待逐表展开。"
+        ],
+        "referenceIndices": [
+          7,
+          8
+        ]
+      },
+      {
+        "id": "flit-bandwidth-arithmetic",
+        "title": "算带宽的顺序：PAM4不重复乘2，236/256也不是净载荷率",
+        "paragraphs": [
+          "64 GT/s的PAM4对应32 GBd；128 GT/s对应64 GBd。每符号2 bit已包含在PCIe标称GT/s中，原始单向GB/s=GT/s×lane数÷8，双向合计再乘2。",
+          "例如64 GT/s x4原始单向32 GB/s；若只按236/256计算TLP区上界是29.5 GB/s，尚未扣SKP及包头等。128 GT/s x16原始单向256 GB/s，TLP区同样简化的上界为236 GB/s。FM低速运行还需扣相应线路编码开销，不能套用1b/1b计算。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
   },
   {
     "name": "Gen6 FEC / Flit CRC",
@@ -3790,14 +4195,14 @@
     "checks": "分别检查纠错、CRC、重放和AER/Flit日志；不要把线上纠错当成端到端数据一致性证明。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 14,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "4",
@@ -3809,9 +4214,363 @@
         "pdfPage": 307,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.1",
+        "page": 341,
+        "pdfPage": 341,
+        "title": "TX/RX CRC-FEC-逐lane处理次序",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1",
+        "page": 395,
+        "pdfPage": 395,
+        "title": "TX/RX CRC-FEC-逐lane处理次序",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.3",
+        "page": 384,
+        "pdfPage": 384,
+        "title": "Flit CRC生成规则",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.4",
+        "page": 457,
+        "pdfPage": 457,
+        "title": "Flit CRC生成规则",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.3",
+        "page": 385,
+        "pdfPage": 385,
+        "title": "CRC输入顺序、矩阵和接收校验",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.4",
+        "page": 458,
+        "pdfPage": 458,
+        "title": "CRC输入顺序、矩阵和接收校验",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.4",
+        "page": 385,
+        "pdfPage": 385,
+        "title": "三路交织FEC和单字节纠正",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.5",
+        "page": 458,
+        "pdfPage": 458,
+        "title": "三路交织FEC和单字节纠正",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.4",
+        "page": 389,
+        "pdfPage": 389,
+        "title": "Flit字节到ECC组与syndrome处理",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.5",
+        "page": 462,
+        "pdfPage": 462,
+        "title": "Flit字节到ECC组与syndrome处理",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.4.2",
+        "page": 359,
+        "pdfPage": 359,
+        "title": "有效Flit与错误定义",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.4.2",
+        "page": 415,
+        "pdfPage": 415,
+        "title": "有效Flit与错误定义",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.3",
+        "page": 351,
+        "pdfPage": 351,
+        "title": "Flit组织与重放范围",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.3",
+        "page": 406,
+        "pdfPage": 406,
+        "title": "Flit组织与重放范围",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.3",
+        "page": 352,
+        "pdfPage": 352,
+        "title": "交织、低速FEC保留与重放时更新DLP",
+        "verification": "本轮核读该页正文的相关规则；非整章完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.3",
+        "page": 407,
+        "pdfPage": 407,
+        "title": "交织、低速FEC保留与重放时更新DLP",
+        "verification": "本轮核读该页正文的相关规则；非整章完成声明。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
+    "details": [
+      {
+        "id": "fec-crc-processing-order",
+        "title": "TX先CRC后FEC；RX先纠正再做CRC判定",
+        "paragraphs": [
+          "发送端对236 B TLP区与6 B DLP合计242 B生成8 B CRC，再对加入CRC后的内容生成6 B ECC，形成256 B。之后才按lane交织并进行各lane的扰码、Gray、适用预编码与PAM4发送。",
+          "接收端先逆转逐lane处理，聚合Flit后做FEC解码/纠正，再检查CRC并决定是否可接受。不能在纠错前看到CRC不匹配就立即判定需要重放，也不能FEC报告已纠正就跳过最终CRC。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "fec-protection-limits",
+        "title": "三组各纠正一个字节，为什么不等于任意三字节都能纠正",
+        "paragraphs": [
+          "ECC以GF(2^8)中的字节为符号，三路交织，每组可纠正一个字节。三个错误若分布在不同组，可落在能力范围；两个错误同落一组，就不能依赖这项保证。错误位数与错误字节数也不能混为一谈。",
+          "规范利用交织保证一条线上长度≤16 bit的突发不会影响同一codeword超过一个符号。该保证有“单条线、指定长度、交织映射”的边界，不能推广为任意跨lane相关误码都可恢复。FLIT FEC在低速FM也保留以保持处理机制一致。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "ecc-group-map",
+        "title": "逐字节查ECC归属：最后6字节不再直接用i mod 3",
+        "paragraphs": [
+          "信息及CRC字节0～249映射到组i mod 3、组内偏移floor(i/3)。组1、组2在偏移83补逻辑零，不在链路上额外发送这两个零；组0具有真实偏移83。",
+          "校验字节的放置有专门规则：250/253属于组1，251/254属于组2，252/255属于组0；三组各两个。下方查询器同时按当前宽度算逻辑lane和符号行，lane编号是协议逻辑编号，不是封装管脚编号。"
+        ],
+        "referenceIndices": [
+          9,
+          10
+        ],
+        "table": {
+          "columns": [
+            "Flit字节",
+            "ECC组",
+            "组内位置",
+            "说明"
+          ],
+          "rows": [
+            [
+              "0～249",
+              "i mod 3",
+              "floor(i/3)",
+              "包含TLP/DLP/CRC"
+            ],
+            [
+              "250 / 253",
+              "1",
+              "84 / 85",
+              "组1两个校验字节"
+            ],
+            [
+              "251 / 254",
+              "2",
+              "84 / 85",
+              "组2两个校验字节"
+            ],
+            [
+              "252 / 255",
+              "0",
+              "84 / 85",
+              "组0两个校验字节"
+            ],
+            [
+              "不在线上传输",
+              "1 / 2",
+              "83",
+              "为等长解码模型补00"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ecc-syndrome-decision",
+        "title": "Syndrome判别表：检查字节错误也可能被修复",
+        "paragraphs": [
+          "两个syndrome分别帮助确定出错位模式与符号位置。在单符号错误模型下，可以修复信息字节或校验字节；定位到不存在的列属于不可纠正。超出码能力时可能发生错误定位，所以仍必须保留CRC兜底。"
+        ],
+        "referenceIndices": [
+          9,
+          10
+        ],
+        "table": {
+          "columns": [
+            "Synd_Check",
+            "Synd_Parity",
+            "解释/处理（单符号错误模型）"
+          ],
+          "rows": [
+            [
+              "0",
+              "0",
+              "未检测到错误"
+            ],
+            [
+              "0",
+              "非0",
+              "B85出错，以Parity syndrome纠正"
+            ],
+            [
+              "非0",
+              "0",
+              "B84出错，以Check syndrome纠正"
+            ],
+            [
+              "非0",
+              "非0",
+              "经GF反查及模运算定位符号；不存在的列则不可纠正"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "crc-matrix-boundary",
+        "title": "Flit CRC不是普通32位LCRC换一个宽度",
+        "paragraphs": [
+          "本块CRC为8字节，输入是字节0～241，规范以GF(2^8)上的生成关系定义，并给出1936×64 bit标准生成矩阵。输入位排列从(241,7)到(0,0)，流水实现也必须与规定结果一致。",
+          "FEC有限域的本原多项式与Flit CRC的本原多项式不同，不能复用同一张GF表而不核对。此处提供定位和处理边界，不复制附录矩阵/RTL；完整黄金向量及附录J/K一致性校验留待下一阶段。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "valid-flit-conditions",
+        "title": "有效Flit不只看CRC：ECC与Usage/Status也要合法",
+        "paragraphs": [
+          "Base6.0/7.0均要求纠错后CRC通过、没有ECC组报告不可纠正，且Usage和Flit_Status不能是Reserved编码。一个校验通过但控制字段保留值的Flit不能直接作为有效载荷接收。",
+          "FEC纠正日志、FEC不可纠正、CRC失败、协议framing错误应分别记录；它们触发和排障路径不同。CRC/ECC保护这条链路中的Flit，不证明AXI侧缓存、描述符、软件缓冲或端到端应用数据完全正确。"
+        ],
+        "referenceIndices": [
+          11,
+          12
+        ]
+      },
+      {
+        "id": "replay-fresh-dlp",
+        "title": "重放保留TLP内容，DLP要表达当前状态",
+        "paragraphs": [
+          "Flit的重放内容以TLP区域为基础，DLP不作为原封不动的旧控制负载留在Link Layer Retry Buffer里回放；重发时应携带当前的链路控制。否则旧Ack或Credit更新可能再次作用。",
+          "所以“整个旧256 B比特流再发一次”不是理解Flit Replay的正确模型。重建DLP也会使CRC/ECC重新反映当前Flit。选择性重放与标准重放的序号/缓存/计时条件仍需继续按完整条款展开。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "fec-version-differences",
+        "title": "Gen6/Gen7：相同布局，不同小节号；实现细节需独立核读",
+        "paragraphs": [
+          "两个正式版在本轮所读处均使用256 B、236+6+8+6和三路字节交织。CRC在6.0是§4.2.3.4.3，在7.0是§4.2.3.4.4；ECC由.4变成.5。跨版本跳转不能只换版本名保留旧页码。",
+          "另外发现6.0与7.0的H矩阵/权重示意存在下标显示差异；本轮不把它直接断言为纠错算法更换或已确认勘误。需以各版附录参考结果和正式勘误进一步验证。查询器只实现已逐字节核对一致的映射，不实现ECC编码器。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10,
+          3,
+          4
+        ]
+      }
+    ]
   },
   {
     "name": "L0p动态宽度省电",
@@ -7210,21 +7969,21 @@
   {
     "name": "Fundamental Reset：Cold / Warm / PERST#",
     "group": "功耗与复位",
-    "intro": "平台级基本复位，冷/热条件与供电关系不同。",
+    "intro": "Fundamental Reset分Cold与Warm；Hot Reset是另一类Conventional Reset，避免中文“热复位”混用。",
     "usage": "上电、平台复位；实际复位覆盖范围需按集成设计。",
     "mechanism": "基本复位由平台相关信号/供电条件触发，影响协议与应用状态的范围由规范和集成决定；PERST#通常参与该流程。",
     "example": "上电时先保证电源和参考时钟条件，再按要求释放复位，之后才能期待训练与枚举。",
     "checks": "区分复位来源与同步释放时钟；不要只延迟几个固定周期就假设所有PHY/业务资源已稳定。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 93,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.6",
@@ -7236,9 +7995,232 @@
         "pdfPage": 721,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.1",
+        "page": 721,
+        "pdfPage": 721,
+        "title": "Conventional Reset类别与Fundamental Reset",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.1",
+        "page": 826,
+        "pdfPage": 826,
+        "title": "Conventional Reset类别与Fundamental Reset",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.1",
+        "page": 722,
+        "pdfPage": 722,
+        "title": "复位后Detect、配置就绪与系统等待",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.1",
+        "page": 827,
+        "pdfPage": 827,
+        "title": "复位后Detect、配置就绪与系统等待",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.1",
+        "page": 723,
+        "pdfPage": 723,
+        "title": "配置等待例外、SBR与Switch传播",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.1",
+        "page": 828,
+        "pdfPage": 828,
+        "title": "配置等待例外、SBR与Switch传播",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.1",
+        "page": 724,
+        "pdfPage": 724,
+        "title": "PERST#平台时序参数",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.1",
+        "page": 829,
+        "pdfPage": 829,
+        "title": "PERST#平台时序参数",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
+    "details": [
+      {
+        "id": "reset-taxonomy",
+        "title": "Cold、Warm、Hot与FLR：先把术语分开",
+        "paragraphs": [
+          "Conventional Reset包括除FLR以外的复位。Cold是上电后的Fundamental Reset；Warm是不去掉再加电而触发的Fundamental Reset；Hot则通过链路带内传播。Warm和Hot不能都含糊地称为“热复位”。",
+          "当平台提供PERST#时，组件必须把它作为Fundamental Reset。未提供时由组件自主产生；平台供电越界也必须触发自身Fundamental Reset。退出Conventional Reset后按定义初始化Port寄存器/状态机，sticky例外保留。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "reset-readiness-timers",
+        "title": "20 ms、100 ms、1 s：对象和起算点查询表",
+        "paragraphs": [
+          "下表对应Base 6.0/7.0相关正文。组件开始Detect的期限、设备完成初始化的期限和软件允许发配置请求的时刻，约束不同对象。训练耗时不能从设备1 s配置就绪要求里随意扣除或重起计时。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "约束",
+            "起算点",
+            "对象与边界"
+          ],
+          "rows": [
+            [
+              "≤5 GT/s组件：20 ms内进入Detect",
+              "本组件Fundamental Reset结束",
+              "器件必须达到初始训练状态"
+            ],
+            [
+              "支持>5 GT/s组件：100 ms内进入Detect",
+              "本组件Fundamental Reset结束",
+              "不是100 ms内必须训练到最高速率"
+            ],
+            [
+              "设备1 s内能对有效配置请求返回Successful Completion",
+              "Conventional Reset结束",
+              "不随训练完成时间重新起算；Readiness机制可改变条件"
+            ],
+            [
+              "≤5 GT/s Downstream Port：软件至少等100 ms",
+              "Conventional Reset结束",
+              "再访问直接下游设备；有规定例外"
+            ],
+            [
+              "支持>5 GT/s Downstream Port：软件至少等100 ms",
+              "链路训练完成",
+              "通过DLL Link Active等观测；有规定例外"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "drs-immediate-readiness",
+        "title": "何时可以缩短等待：Immediate Readiness、DRS与报告时间",
+        "paragraphs": [
+          "规范允许在Immediate Readiness已指示，或上方Downstream Port的DRS Message Received已置位时立即进行适用配置访问。实现Readiness Time Reporting且报告更短Reset Time的设备，可按报告值等待。系统已知设备专属要求时也有例外。",
+          "支持Flit Mode的设备要求实现DRS。Readiness不是清掉所有未完成事务的证明；FLR的FRS另有语义。没有这些机制时，不能因为一次配置读取失败就立即判坏，RC/软件须留足至少1 s的就绪期。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "perst-timing-parameters",
+        "title": "PERST#波形参数：Base定义名字，具体值还看形态",
+        "paragraphs": [
+          "电源稳定到复位释放、参考时钟稳定到释放和复位最小保持时间是不同量。数几个管理时钟周期替代不了板级条件，尤其在参考时钟被门控或PLL重新启动时。",
+          "所读Base版本对PERST#释放沿给出的默认最小变化率为50 mV/ns，形态规范可另定。其余时间值需要对应形态/平台明确，不在这里虚构“全PCIe统一100 ms PERST脉宽”。"
+        ],
+        "referenceIndices": [
+          7,
+          8
+        ],
+        "table": {
+          "columns": [
+            "参数",
+            "表示什么",
+            "核对位置"
+          ],
+          "rows": [
+            [
+              "Tpvperl",
+              "供电有效后PERST#至少保持多久",
+              "形态/平台"
+            ],
+            [
+              "Tperst",
+              "PERST#每次有效最小持续时间",
+              "形态/平台"
+            ],
+            [
+              "Tfail",
+              "供电无效后多久内置位PERST#",
+              "形态/平台"
+            ],
+            [
+              "Tperst-clk",
+              "参考时钟稳定后PERST#至少保持多久",
+              "形态/平台"
+            ],
+            [
+              "Tperstslew",
+              "释放沿跨越逻辑切换区间的变化率",
+              "Base默认及形态覆盖"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "reset-bringup-layers",
+        "title": "复位后数据路径的四道门：PHY、训练、VC0、配置",
+        "paragraphs": [
+          "退出Fundamental Reset后启动PHY训练；双方进入初始训练状态，再完成链路初始化和VC0流控初始化。到了DL_Active才具备处理TLP/DLLP的链路条件；具体Function的内部初始化还可能继续。",
+          "因此定位“没有收到配置Completion”时，应分别记录复位结束、Detect开始、训练完成、VC0初始化以及Function就绪，避免一个LinkUp信号掩盖了不同阶段的失败。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
   },
   {
     "name": "Hot Reset / Secondary Bus Reset",
@@ -7250,14 +8232,14 @@
     "checks": "复位前停止相关业务并处理在途事务；恢复后重新确认链路、资源、驱动和应用上下文。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 94,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.6",
@@ -7269,28 +8251,112 @@
         "pdfPage": 721,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.1",
+        "page": 723,
+        "pdfPage": 723,
+        "title": "Secondary Bus Reset与Switch Hot Reset传播",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.1",
+        "page": 828,
+        "pdfPage": 828,
+        "title": "Secondary Bus Reset与Switch Hot Reset传播",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.1",
+        "page": 721,
+        "pdfPage": 721,
+        "title": "Conventional Reset公共规则",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.1",
+        "page": 826,
+        "pdfPage": 826,
+        "title": "Conventional Reset公共规则",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
+    "details": [
+      {
+        "id": "sbr-propagation",
+        "title": "SBR触发在哪里，影响怎样沿Switch向下传播",
+        "paragraphs": [
+          "Root Port或Switch Downstream Port对应Bridge Control中的Secondary Bus Reset置位，必须在该端口发送Hot Reset。Switch的Upstream Port发生SBR、报告DL_Down或收到Hot Reset，也会使所有Downstream Ports发送Hot Reset。",
+          "这解释了一个上游故障为何可能让多个下游Function同时掉线。影响范围由拓扑和触发端口决定，不能把SBR当成只复位当前BDF的操作。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "switch-dl-down-reset",
+        "title": "Switch上游DL_Down：指令进入Hot Reset，不必一直扣住",
+        "paragraphs": [
+          "对支持>5 GT/s的Switch，上游报告DL_Down时，须指令各下游LTSSM进入Hot Reset，但不能一直保持在那里；这样每个下游在自身Hot Reset完成后可立即重新训练。对其他Switch该行为被建议。",
+          "故障恢复设计若把上游down直接组合成下游永久reset，会改变这项语义，也可能让整个子树无法自主恢复。实际复位控制还需防止毛刺和跨域问题。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "hot-reset-versus-perst",
+        "title": "Hot Reset不是重新上电：复位范围与平台动作分开看",
+        "paragraphs": [
+          "Hot Reset是带内协议复位，Fundamental Reset有平台/电气定义；两者都属于Conventional Reset，因此高层初始化与sticky例外适用，但不意味着Hot Reset必定执行完整模拟POR、固件重装或电源循环。",
+          "恢复时先让相关软件和DMA停止活动，随后按范围重建配置与驱动上下文。产品内部是否需要额外时钟/程序恢复，必须与其集成设计对应。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
   },
   {
     "name": "Function Level Reset（FLR）",
     "group": "功耗与复位",
-    "intro": "复位指定功能而尽量不扰动其他功能与链路。",
+    "intro": "复位指定Function并保持Link状态不受影响；还需协调在途事务与重新配置。",
     "usage": "VF移交和驱动恢复；应用/DMA需协调，非自动清所有在途事务。",
     "mechanism": "软件触发某功能FLR，控制器通知应用按该功能清理状态并完成流程，链路及其他功能应按规则保持服务。",
     "example": "VF从一个VM移交另一个VM时，用FLR配合业务资源清理，防止旧地址、队列或中断泄露给新使用者。",
     "checks": "不要认为FLR会自动安全停止所有DMA；检查所属通道、未完成请求、旧Completion和Tag复用处理。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 95,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.6.2",
@@ -7302,9 +8368,224 @@
         "pdfPage": 724,
         "verification": "目录与该PDF章节首页已核对；完整章节继续核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 724,
+        "pdfPage": 724,
+        "title": "FLR作用范围与保留状态",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 829,
+        "pdfPage": 829,
+        "title": "FLR作用范围与保留状态",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 725,
+        "pdfPage": 725,
+        "title": "FLR 100 ms期限、在途事务与FRS",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 831,
+        "pdfPage": 831,
+        "title": "FLR 100 ms期限、在途事务与FRS",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 726,
+        "pdfPage": 726,
+        "title": "FLR期间请求处理与初始化RRS",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "FLR期间请求处理与初始化RRS",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 727,
+        "pdfPage": 727,
+        "title": "避免stale Completion的实现建议",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "避免stale Completion的实现建议",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 830,
+        "pdfPage": 830,
+        "title": "Gen7 FLR保留能力与Flit Mode额外保留块",
+        "verification": "本轮核读该页正文的列举范围；未转录完整寄存器清单。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
+    "details": [
+      {
+        "id": "flr-scope-guarantee",
+        "title": "FLR的保证：一个Function回到可重新配置状态，Link不复位",
+        "paragraphs": [
+          "FLR按Function执行，Link状态必须不受影响；Physical/Data Link中的Port状态机不复位，VC0仍初始化。是否实现FLR要按能力发现；不能假定所有Function都具备。",
+          "功能私有的外部I/O应停止表现为一个已被主机初始化的适配器；内部软件可读的旧秘密状态须消除，且不能由Function去改写分配的主机内存来完成清理。它不是“所有寄存器一律清零”。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "flr-preserved-state",
+        "title": "FLR保留哪些状态，哪些发起能力会关闭",
+        "paragraphs": [
+          "Base列出的sticky、HwInit与专门例外字段不随FLR初始化。例如链路相关控制、MPS以及若干Port级扩展能力保留。发起请求的使能如Bus Master Enable、MSI Enable会清掉，使Function回到静默状态。",
+          "Flit Mode还要求保留ARI控制、L1 PM Substates、LTR、PTM等列出的块。Gen7例外表包含新增的128 GT/s等能力；不能用6.0列表当所有版本的完整清单。下表是用于理解的分类，具体逐寄存器仍按该版完整例外表。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          9
+        ],
+        "table": {
+          "columns": [
+            "状态类别",
+            "典型处理",
+            "意义"
+          ],
+          "rows": [
+            [
+              "Function业务状态/私有队列",
+              "初始化、停止外部活跃行为、清旧秘密",
+              "新软件不能继承旧租户上下文"
+            ],
+            [
+              "请求/中断发起使能",
+              "BME、MSI等清除",
+              "需要驱动重新建立配置"
+            ],
+            [
+              "Port/链路状态机、VC0",
+              "不随FLR复位",
+              "不迫使其他Function重训"
+            ],
+            [
+              "sticky/HwInit/指定字段与能力块",
+              "按版本保留",
+              "不能用全清零模型校验FLR"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "flr-completion-and-timeout",
+        "title": "发起FLR的配置写先完成，再开始复位；100 ms不是全部初始化期限",
+        "paragraphs": [
+          "Function须先返回触发FLR的配置写Completion，再开始FLR；FLR本身必须在100 ms内完成。后续Function专用初始化允许更久，届时配置请求须返回RRS，直到可正常服务。",
+          "一旦对配置请求返回非RRS状态，未再次复位前不允许退回RRS。不能通过一直返回RRS掩盖超过100 ms仍未完成FLR，也不能把100 ms到期等同于应用队列和驱动全部可运行。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "flr-pending-completions",
+        "title": "Transactions Pending、FRS与stale Completion：三个不同问题",
+        "paragraphs": [
+          "带着Transactions Pending=1触发FLR后，软件不能立即复用Function的请求上下文，应等到相应Completion到达或合理确信不会再到达。建议参考复位前Completion Timeout；原来禁用超时时，等待由系统决定但至少100 ms。",
+          "FRS Configuration-Ready允许软件提早进行配置请求，但不保证Function先前发出的请求都已完成。FLR完成时Transactions Pending须为0，也不等于互连中不再存在旧Completion。旧Tag被新请求复用后误接收旧Completion，是需要额外隔离/排空防止的数据损坏路径。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "flr-in-progress-requests",
+        "title": "FLR过程中收到Request/Completion怎么办",
+        "paragraphs": [
+          "FLR期间到达的Request可在更新流控Credit后静默丢弃，不必按错误记录；Completion可作为Unexpected Completion处理，也可在更新Credit后静默丢弃。这个许可限定在FLR过程，不能推广为普通运行时随意吞包。",
+          "需撤销该Function已断言的INTx；多Function共享同一INTx、其他Function仍断言时，不会发送匹配Deassert消息。单Function复位不应破坏其他Function的正常中断状态。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "flr-software-sequence",
+        "title": "软件操作顺序：停访问、停止发起、排空、FLR、重建",
+        "paragraphs": [
+          "规范实现建议的思路是先协调所有会访问该Function的软件，再清Command阻止新请求，轮询Transactions Pending或等待足够长的系统相关期限，随后发起FLR、等待100 ms，再重新配置。",
+          "这是帮助防止stale Completion的一种算法，不是完整OS驱动代码。MSI、DMA队列、IOMMU映射和用户态访问还要按具体软件栈协调。Gen7该实现说明明确提及Non-Posted及UIO请求；不能把新增术语自动套回6.0。"
+        ],
+        "referenceIndices": [
+          7,
+          8
+        ]
+      }
+    ]
   },
   {
     "name": "Power Gating / Retention / UPF",
@@ -12537,7 +13818,7 @@
     "prerequisites": "RxValid的语义要看对应PIPE架构和产品版本；不能把某个数字信号当成模拟误码率证明。",
     "example": "PLL锁定但RX无有效数据时，检查输入信号、接收使能、CDR、恢复时钟及对齐，而不是只看PLL lock。",
     "checks": "按signal present → RX使能 → 时钟/CDR → valid → 协议对齐 → LTSSM逐层定位，丢信号后的恢复流程按手册核对。",
-    "status": "体系条目已整理 · 按来源范围核读",
+    "status": "选定规则已展开 · 持续逐版核读",
     "reviewed": "2026-10-19",
     "sources": [
       {
@@ -12666,9 +13947,108 @@
         "pdfPage": 616,
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核读所列正文页，中文按条件与职责重新组织；并非整章全部规则审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.1.6",
+        "page": 348,
+        "pdfPage": 348,
+        "title": "1b/1b的Unaligned/Aligned/Locked阶段",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1.6",
+        "page": 403,
+        "pdfPage": 403,
+        "title": "1b/1b的Unaligned/Aligned/Locked阶段",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.1.6",
+        "page": 349,
+        "pdfPage": 349,
+        "title": "Control SKP、Recovery与Loopback对齐例外",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1.6",
+        "page": 404,
+        "pdfPage": 404,
+        "title": "Control SKP、Recovery与Loopback对齐例外",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.2",
+        "page": 349,
+        "pdfPage": 349,
+        "title": "Flit数据流中的Ordered Set处理",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.2",
+        "page": 404,
+        "pdfPage": 404,
+        "title": "Flit数据流中的Ordered Set处理",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.2",
+        "page": 350,
+        "pdfPage": 350,
+        "title": "多lane混合OS与L0p限制",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.2",
+        "page": 405,
+        "pdfPage": 405,
+        "title": "多lane混合OS与L0p限制",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1.5",
+        "page": 402,
+        "pdfPage": 402,
+        "title": "Gen7 EIEOS/I-EIEOS及边界移动细则",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已核读本轮所列正文，按角色、版本、编码和测量边界展开；仅目录映射或未审计的范围在章序覆盖页和本页单独标明。",
+    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
     "details": [
       {
         "id": "rx-readiness-layers",
@@ -12969,6 +14349,122 @@
             ]
           ]
         }
+      },
+      {
+        "id": "alignment-1b1b-phases",
+        "title": "1b/1b接收对齐三阶段：概念阶段不是新的LTSSM子状态",
+        "paragraphs": [
+          "以下为Base6.0/7.0对接收机行为的概念定义，不强制RTL必须实现三个同名状态。64 GT/s及以上的1b/1b没有128b/130b的2-bit Sync Header，不可复用后者对齐判据。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14
+        ],
+        "table": {
+          "columns": [
+            "阶段",
+            "进入/检测",
+            "动作与出口"
+          ],
+          "rows": [
+            [
+              "Unaligned",
+              "EI结束、切入1b/1b或实现指令",
+              "匹配EIEOS全部128 bit后调整边界→Aligned"
+            ],
+            [
+              "Aligned",
+              "监视EIEOS与SDS",
+              "RcvrLock中不同对齐EIEOS必须重对齐；RcvrCfg还要后续符号验证；收到SDS→Locked"
+            ],
+            [
+              "Locked",
+              "已进入数据流",
+              "一般禁止随意挪动Block/Flit边界；Recovery/Framing Error后回前阶段"
+            ],
+            [
+              "Control SKP例外",
+              "计划OS位置收到Control SKP",
+              "即使Locked也须按需调整Block/Flit边界"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "sds-control-skp-boundary",
+        "title": "SDS之后先有Control SKP，Flit边界在它结束处",
+        "paragraphs": [
+          "SDS序列使接收机进入Locked，但第一个Flit不是紧跟SDS就开始，而是在其后立即接续的Control SKP结束后开始。后续计划位置的Control SKP也会重新确定Flit边界。",
+          "进入Recovery后必须先收到EIEOS，才能处理训练序列；若由L0收到的EIEOS触发Recovery，可直接处理其后TS，也可等Recovery中的下一个EIEOS。Loopback Follower Active不能任意重对齐，但有计划Control SKP边界例外。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "ordered-set-framing-errors",
+        "title": "1b/1b流内OS判别与framing错误查询表",
+        "paragraphs": [
+          "Flit Mode不使用EDS token结束数据流，EIOS/EIEOS在计划的SKP位置替换它。接收端在期望OS的位置逐active lane检查第一组8字节，至少5个对应字节匹配SKP/EIOS/EIEOS；达不到就产生framing错误并进入Recovery。",
+          "SKP结束还要按8字节分组识别SKP_END；达到最大长度却没有足够SKP_END同样是错误。不能把单lane看起来有效就当整个多lane集合有效。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          17,
+          18
+        ],
+        "table": {
+          "columns": [
+            "收到的组合",
+            "处理",
+            "边界"
+          ],
+          "rows": [
+            [
+              "EIEOS + EIOS，或EIEOS + SKP",
+              "Framing Error→Recovery",
+              "任意两条active lane出现这种混合"
+            ],
+            [
+              "各lane SKP长度不同",
+              "Framing Error→Recovery",
+              "需要跨lane一致长度"
+            ],
+            [
+              "EIOS + SKP",
+              "仅在L0p已使能等条件下允许",
+              "两个lane组须连续；继续的SKP宽度1/2/4/8，且所有lane归属明确"
+            ],
+            [
+              "全部按要求的EIEOS",
+              "终止流并按LTSSM进入Recovery",
+              "不要继续按TLP数据解释"
+            ],
+            [
+              "合法EIOS/SKP降宽组合",
+              "OS结束后在剩余lane继续",
+              "需满足完整L0p条件"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "alignment-gen7-refinement",
+        "title": "Gen7对EIEOS对齐还有细化条件，不能仅复制Gen6概述",
+        "paragraphs": [
+          "Base7.0 §4.2.3.1.5 p402对Aligned阶段移动Block边界增加了关于大于1 UI及不超过1 UI的具体文字，后者与EIEOS后的有效首符号验证相关；同页还明确列出I-EIEOS的全16符号匹配条件。",
+          "本轮将这两处作为版本差异入口单独保留。Gen7 §4.2.3.1.6仍有按RcvrLock/RcvrCfg区分的阶段规则，实际验证应同时核对相邻两节，不用一条简化“见EIEOS就对齐”覆盖全部情形。首次合入修订与I-EIEOS完整流程待下一轮专题核读。"
+        ],
+        "referenceIndices": [
+          19,
+          12
+        ]
       }
     ]
   },
@@ -12982,7 +14478,7 @@
     "prerequisites": "PCLK as PHY Input/Output从PHY视角命名。PIPE 7.1正文对PCIe5及以后不支持PCLK输出模式；旧产品手册描述的可生成模式不应不加限定外推。",
     "example": "两条同link lane频率相同不代表相位关系满足要求；各自的RX时钟也不能当成一个普通同相时钟。",
     "checks": "列出频率、来源、启动条件、是否停钟及domain；跨域使用同步器/FIFO/握手，不能只按时钟名字相同就设为同步。",
-    "status": "体系条目已整理 · 按来源范围核读",
+    "status": "选定规则已展开 · 持续逐版核读",
     "reviewed": "2026-10-19",
     "sources": [
       {
@@ -13023,9 +14519,53 @@
         "title": "CM/TX与RX时钟体系",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1",
+        "page": 110,
+        "pdfPage": 110,
+        "title": "CLK、PCLK、MAX PCLK时钟职责",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 114,
+        "pdfPage": 114,
+        "title": "MacCLK独立时钟请求/应答",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 115,
+        "pdfPage": 115,
+        "title": "MacCLK控制采样与稳定约束",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.4.1",
+        "page": 126,
+        "pdfPage": 126,
+        "title": "PCLK输入模式的切速握手",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。",
+    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
     "details": [
       {
         "title": "从clk_rst出发的时钟清单",
@@ -13073,6 +14613,88 @@
           "切换时钟和解除复位之前，确认无毛刺选择、时钟门控时序、派生时钟定义与RDC/CDC约束。复位释放需满足目标域时钟和产品握手条件。"
         ],
         "id": "block-2"
+      },
+      {
+        "id": "pipe-clock-roles",
+        "title": "PIPE 7.1时钟职责：哪个时钟可以变、哪个用于保持控制",
+        "paragraphs": [
+          "CLK是实现规定的参考输入；PCLK同步PIPE并行边界。PCLK频率与Rate、PCLK_Rate和Width共同有关，不等于串行GT/s，也不应按一个固定倍数覆盖所有速率。",
+          "该规范要求CLK与PCLK来自相同参考并满足相同参考特征，允许mesochronous关系；同频并不直接证明相位同步。MAX PCLK是恒定的最大频率时钟：PCLK输入模式需要，支持8 GT/s及以上的PHY在两种模式都需要。",
+          "PCLK作为PHY输出是旧拓扑，PIPE 7.1不支持将其用于PCIe Gen5设计及以后。这里只描述该版本接口限制，不据此否定旧手册中可生成的其他产品配置。"
+        ],
+        "referenceIndices": [
+          3
+        ]
+      },
+      {
+        "id": "macclk-handshake",
+        "title": "MacCLK独立请求：Rate变更要等待Req/Ack同时空闲",
+        "paragraphs": [
+          "可选MacCLK lane用独立的时钟控制接口给MAC供时，不直接绑定一条数据lane。Reset释放时控制配置必须有效；PHYMode在之后保持不变。运行中的时钟应保持稳定，直到请求撤销。",
+          "影响频率的控制在MacCLKReq上升沿采样；Rate只可在Req与Ack都为0时修改。SSCEnable可以在时钟运行时改变，但切换完成上限由厂商规定。不要把它当成普通无应答的时钟mux选择。"
+        ],
+        "referenceIndices": [
+          4,
+          5
+        ]
+      },
+      {
+        "id": "pclk-input-change-sequence",
+        "title": "PCLK输入模式：切频前的许可和完成后的应答",
+        "paragraphs": [
+          "PCIe模式的Rate/Width/PCLK变化仅在P0或P1且TxElecIdle有效、P0时RxStandby有效的条件下执行。MAC发出新组合后，需改变输入PCLK时先等待PclkChangeOk，安全切换后再置PclkChangeAck。",
+          "PHY用一个输入PCLK周期的PhyStatus表示完成，并在PhyStatus结束边沿撤销PclkChangeOk；MAC采到Ok为低后撤销Ack。在完成之前不能开始下一操作、功耗转换或释放空闲/待机。",
+          "同时需要改变速率/位宽/并行频率和功耗时，默认先完成速率类变化。只有PHY明确允许合并时，才在同一PCLK边沿修改这些控制及PowerDown。"
+        ],
+        "referenceIndices": [
+          6
+        ],
+        "table": {
+          "columns": [
+            "Rate",
+            "Width",
+            "PCLK Rate",
+            "Ok/Ack要求"
+          ],
+          "rows": [
+            [
+              "保持",
+              "任意",
+              "任意",
+              "表8-3标不适用；不是任意组合都合法的声明"
+            ],
+            [
+              "改变",
+              "保持",
+              "保持",
+              "产品参数决定是否需要"
+            ],
+            [
+              "改变",
+              "改变",
+              "保持",
+              "产品参数决定是否需要"
+            ],
+            [
+              "改变",
+              "保持或改变",
+              "改变",
+              "必须握手"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "product-clock-domain-boundary",
+        "title": "Gen6产品里的PLL、RX恢复域和每lane输入PCLK",
+        "paragraphs": [
+          "本地PCS 1.75a要求同一link的输入PCLK相位同步；SerDes架构还有每lane RX输出时钟。它与PIPE允许的参考/PCLK关系不是同一句约束，集成时两个边界都要满足。",
+          "PMA 3.02a把PLL分频时钟供给TX/数字接口；RX在CDR控制下再产生符号时钟。APB能够读写并不能证明RX已锁定，PLL已锁定也不能证明lane已对齐。具体分频选择属于该产品，不能从“Gen6”标签推出通用值。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
       }
     ]
   },
@@ -13240,7 +14862,7 @@
     "prerequisites": "异步置位复位可以不依赖工作时钟，但同步释放和握手需要目标域时钟恢复。每种复位保留哪些寄存器和固件状态取决于具体IP。",
     "example": "数字复位已释放却一直不ready，可能是固件未启动、参考时钟未启用、lane reset还在阻塞状态机或校准等待条件未满足。",
     "checks": "给每个阶段设置可观察状态与超时，先找最早未完成的依赖，不要用固定延时替代全部握手。",
-    "status": "体系条目已整理 · 按来源范围核读",
+    "status": "选定规则已展开 · 持续逐版核读",
     "reviewed": "2026-10-19",
     "sources": [
       {
@@ -13292,9 +14914,53 @@
         "title": "Gen5启动依赖",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.2",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "PIPE Reset初始化条件与完成",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 117,
+        "pdfPage": 117,
+        "title": "PCLK输入/输出的P2完成语义",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 118,
+        "pdfPage": 118,
+        "title": "合法功耗转换与L1子状态",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "掉电后的PHY上下文恢复窗口",
+        "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。",
+    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
     "details": [
       {
         "title": "启动检查顺序",
@@ -13346,6 +15012,141 @@
           "上电与warm reset的最小脉宽、SRAM要求、ack极性和复位后需要重载的补丁均属于产品时序，不在这里给出一套“通用固定数值”。使用对应版本本地手册按页定位，先看图和正文中的条件再配置。"
         ],
         "id": "block-2"
+      },
+      {
+        "id": "reset-boundary-table",
+        "title": "复位不是一根总开关：区分四个覆盖层次",
+        "paragraphs": [
+          "下面按外部可见职责解释复位边界。相同名字在不同交付中可能极性、覆盖范围不同，应建立来源→目标状态→完成事件的对应表。不要将Hot Reset或FLR直接接成模拟PHY的全局POR。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "table": {
+          "columns": [
+            "复位层次",
+            "影响对象",
+            "恢复依赖"
+          ],
+          "rows": [
+            [
+              "Fundamental / PERST#",
+              "平台与PCIe Port初始化",
+              "平台时序、训练、VC0流控与配置就绪"
+            ],
+            [
+              "PIPE Reset#",
+              "MAC/PHY接口初始化",
+              "时钟和接口规定的完成事件"
+            ],
+            [
+              "产品全局PHY reset",
+              "PMA/PCS内部、校准与程序状态",
+              "按版本重新装载固件/配置并等待握手"
+            ],
+            [
+              "产品每lane reset",
+              "该lane内部状态",
+              "检查是否阻塞共享启动状态机和同link协调"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-reset-initial-values",
+        "title": "PIPE复位初值与完成：不能统一写成等一个PhyStatus高脉冲",
+        "paragraphs": [
+          "PIPE 7.1 §8.2要求先保持PHY复位直到供电与CLK稳定。复位期间PCIe初始Rate为2.5 GT/s，PowerDown为P1，发送保持Electrical Idle，不发Receiver Detect/Loopback和Compliance；模式及架构配置也须有效。",
+          "PCLK为PHY输出的这一节用PhyStatus撤销表示复位完成，并确认PCLK/MAX PCLK与目标功耗状态已有效。正常运行中的功耗/切速常用一个PhyStatus高脉冲，不能把那套检测器无条件复用到复位完成。PCLK输入设计应按适用接口及产品时序核对，不能把输出模式波形照抄过去。"
+        ],
+        "referenceIndices": [
+          4
+        ]
+      },
+      {
+        "id": "p2-clock-stop-matrix",
+        "title": "P2停钟：同步脉冲与异步应答要分支处理",
+        "paragraphs": [
+          "P0/P0s/P1保留PCLK；P2或产品深睡态可能停PCLK。控制逻辑如果只在被停的PCLK上采完成，就可能永远等不到恢复条件。下面是PIPE PCIe模式的行为，不能照搬USB同名P2。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "场景",
+            "完成事件",
+            "MAC处理"
+          ],
+          "rows": [
+            [
+              "PCLK输出，进入P2",
+              "停钟前置PhyStatus；完全停钟且状态进入后撤销",
+              "保留能观察异步完成的路径"
+            ],
+            [
+              "PCLK输出，离开P2",
+              "尽快置PhyStatus，保持到PCLK稳定后",
+              "等待时钟及完成条件"
+            ],
+            [
+              "PCLK输入，进入P2",
+              "准备好移除时钟时给一个输入PCLK周期PhyStatus",
+              "收到完成前不能提前断钟"
+            ],
+            [
+              "PCLK输入，离开P2",
+              "已进入P0并可运行后给一周期PhyStatus",
+              "先恢复所需时钟"
+            ],
+            [
+              "两个都不提供PCLK的状态之间",
+              "PhyStatus保持直到AsyncPowerChangeAck",
+              "Ack后PHY撤销完成；不是脉冲"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "phy-power-link-state",
+        "title": "P0/P0s/P1/P2不是L0/L0s/L1/L2的一一同名映射",
+        "paragraphs": [
+          "PIPE 7.1允许的普通PCIe功耗转换是P0↔P0s、P0↔P1、P0↔P2；产品特定状态之间还可有额外转换，但仍须满足Base计时。不能任意从P1跳到P2并期待所有PHY支持。",
+          "P0s只在TX空闲时使用；P1要求TX/RX都空闲，可用于Detect、Disabled及无L1子状态的L1.Idle。P2可用于L1.Idle/L2.Idle/TransmitWake。支持L1子状态时还需能停PCLK、允许移除REFCLK且保留相应EI/共模检测的状态。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "firmware-before-lane-ready",
+        "title": "产品启动里程碑：程序可访问≠CPU运行≠lane ready",
+        "paragraphs": [
+          "Gen6 PMA 3.02a的启动依赖包含静态配置、程序/数据SRAM准备、应用特定配置、启动内部CPU、校准及lane应答完成。CPU在复位移除后默认仍停止，不能把“reset已释放”当作固件正在执行。",
+          "本地PCS 1.75a说明全局PHY复位后要重新应用控制补丁和固件更新；同一link或共享PHY macro的复位还需协调。局部复位保持不当也会阻塞初始化。这里给出依赖关系，完整产品操作及时序以相应手册为准，不发布其镜像、寄存器配置表或信号清单。",
+          "查启动失败时按最早未完成事件向前追：管理可访问→镜像就绪→CPU开始→校准结束→lane配置完成→P0→协议训练。PHY Ready仅到达其中一站，不等于L0、DL_Active或枚举完成。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "id": "restore-window-clock-32",
+        "title": "深度掉电恢复：Restore窗口后还有32个PCLK周期",
+        "paragraphs": [
+          "PIPE 7.1的上下文恢复是独立于普通Reset的可选机制。掉电前MAC要保证接口空闲且没有在途操作；Restore#须在电源爬升前有效，窗口内除PCLK和Restore#外的输入切换被忽略。保存内容与实现方式不由PIPE规定。",
+          "退出窗口后恢复监测，但双方还必须等待PCLK活动并至少运行32周期，才能切换同步于PCLK的PIPE信号。这是该恢复机制的规则，不是所有PCIe复位都要等32周期。"
+        ],
+        "referenceIndices": [
+          7
+        ]
       }
     ]
   },

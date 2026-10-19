@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-10-19",
-  "summary": "从控制器PIPE接口一直追到差分通道；同时把数字控制、模拟收发、固件和验证视图区分开。新增20项核心主题，尚未宣称逐晶体管、全部寄存器或所有版本细则已读完。",
+  "summary": "从MAC/PIPE追到模拟通道；增加时钟、复位、固件启动、1b/1b对齐及Flit可靠性细则。产品实现、接口规范、Base规则分别定位，不将任何章节标成全部完成。",
   "groups": [
     {
       "title": "分层与资料入口",
@@ -77,7 +77,7 @@
         "目标速率/位宽/功耗",
         "收发有效和协议训练"
       ],
-      "note": "APB/寄存器、PIPE Message Bus、内部MCU和PCIe配置空间不是一个地址空间；按各自仲裁与握手使用。"
+      "note": "先区分Fundamental/PERST#、PIPE Reset、产品全局复位与FLR；按完成事件启动下一阶段。复位释放、PHY Ready、L0、DL_Active和Function配置就绪是不同里程碑。"
     }
   ],
   "compare": {
