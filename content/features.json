@@ -17876,19 +17876,19 @@
     "group": "错误处理与可靠性",
     "intro": "TLP端到端校验，有能力、控制和模式适用限制。",
     "usage": "跨交换路径检测错误；不提供加密，也不等于Flit CRC。",
-    "mechanism": "ECRC在适用的事务模式下对TLP提供端到端检测，生成端、转发路径和检查端承担不同职责。Gen6模式还有相应限制。",
+    "mechanism": "源事务层生成、最终接收者按能力检查32位ECRC，保护invariant头/数据；与单跳CRC、Poison和IDE分开；格式转换必须保持错误检测性质。",
     "example": "跨多个交换节点希望发现非单条链路局部问题时，可研究ECRC，但必须确认该路径/模式的实际支持。",
     "checks": "区分LCRC、Flit CRC、ECRC和本地ECC；CRC不是加密/认证，也不能证明业务数据语义正确。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 99,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "2.7",
@@ -17900,28 +17900,293 @@
         "pdfPage": 252,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.1",
+        "page": 252,
+        "pdfPage": 252,
+        "title": "ECRC端到端保护与Switch边界",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.1",
+        "page": 309,
+        "pdfPage": 309,
+        "title": "ECRC端到端保护与Switch边界",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.1",
+        "page": 253,
+        "pdfPage": 253,
+        "title": "ECRC计算、覆盖范围和FM转换",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.1",
+        "page": 310,
+        "pdfPage": 310,
+        "title": "ECRC计算、覆盖范围和FM转换",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.1",
+        "page": 254,
+        "pdfPage": 254,
+        "title": "ECRC字段映射",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.1",
+        "page": 311,
+        "pdfPage": 311,
+        "title": "ECRC字段映射",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1121,
+        "pdfPage": 1121,
+        "title": "AER ECRC能力/使能",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1289,
+        "pdfPage": 1289,
+        "title": "AER ECRC能力/使能",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.1",
+        "page": 310,
+        "pdfPage": 310,
+        "title": "7.0按FM/NFM列出的variant位",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.4.2",
+        "page": 675,
+        "pdfPage": 675,
+        "title": "中间Receiver的ANFE",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4.2",
+        "page": 784,
+        "pdfPage": 784,
+        "title": "中间Receiver的ANFE",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块以对应版正文/字段核读定位；旧背景入口保留，不声明全代际、整章或后续ECN完成。",
+    "details": [
+      {
+        "id": "ecrc-versus-link-crc",
+        "title": "LCRC/Flit CRC保护单跳，ECRC补端到端边界",
+        "paragraphs": [
+          "单跳校验通过之后，Switch内部数据仍可能损坏；下一跳重新形成合法的链路CRC，并不能证明数据和源端一致。ECRC由事务层源端生成、最终PCIe接收者检查，保护其覆盖范围内的端到端内容。",
+          "它不替代LCRC、Flit CRC/FEC、Poison或IDE，也不是端到端软件数据校验的完整替代。这里的“端到端”是PCIe事务路径边界，不是从应用缓存一直到磁盘介质。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "ecrc-support-and-absence",
+        "title": "Generation与Checking独立；未带ECRC本身不报错",
+        "paragraphs": [
+          "ECRC支持是可选能力。开启Generation后按适用规则给本端发起的TLP添加ECRC；开启Checking后检查收到且带ECRC的TLP。仅开启Checking不会让未携带ECRC的TLP自动变成错误。",
+          "支持ECRC的组件至少一个Function需要AER能力。不要把“Gen6/Gen7链路”当成ECRC支持位已经为1，也不要把AER存在等同ECRC已开启。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "ecrc-cover-invariant-fields",
+        "title": "覆盖什么：头、End-End Prefix/OHC和数据；可变位归一",
+        "paragraphs": [
+          "ECRC覆盖适用TLP头及数据，包含End-End Prefix/OHC；FM Trailer不参加自身ECRC计算，7.0明确排除Local TLP Prefix。必须按格式遍历，不能拿抓包文件整段字节直接算CRC。",
+          "计算时把规定的variant位视为1。6.0按Type bit0和EP说明；7.0具体到NFM byte0 bit0、byte2 bit6，以及FM byte0 bit0、byte6 bit7（在某些格式为Reserved），End-End Prefix的Type bit0仍按invariant处理。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          9
+        ]
+      },
+      {
+        "id": "ecrc-algorithm-byte-order",
+        "title": "CRC多项式、初值和位序：不能只选一个库函数名",
+        "paragraphs": [
+          "32位多项式常写为04C11DB7h，寄存器初始化全1，结果按规范取反。输入从TLP byte0开始，每字节从bit0到bit7；算法方向、反射设置、结果排列必须一起匹配。",
+          "结果bit i映到ECRC字段bit 8×floor(i/8)+7−(i mod 8)。这是每字节的位排列约定，不能仅凭同为CRC-32就认定与以太网文件校验或CPU库默认输出完全一致。本轮不提供未验证的ECRC生成器。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "ecrc-nfm-fm-translation",
+        "title": "NFM Digest与FM Trailer：转格式还要保留错误检测性质",
+        "paragraphs": [
+          "NFM以32位TLP Digest携带ECRC，FM把它放在Trailer。未发生FM/NFM格式转换时，非IDE转发路径的ECRC保持不变；转换时须按转换后的TLP处理，并保持入口到出口的错误检测性质，内部实现不由Base规定。",
+          "不能简单认为转换只需搬运同一串32位。IDE TLP不支持ECRC，也不允许这里的FM/NFM转换路径；先区分IDE、运行模式和TLP格式，再解释日志。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "ecrc-switch-forwarding",
+        "title": "Switch检查失败不等于把原包改成CA或触发本跳Replay",
+        "paragraphs": [
+          "支持并使能检查时，Switch检查发给自己的TLP；对穿越流量可选择检查。中间检查不得改变转发TLP的错误检测性质，失败也不按一个统一的“改包并重发”策略处理；Multicast Overlay另有例外。",
+          "ECRC错误归到相应接收Port。链路CRC有效、但ECRC错误的包不能据此要求数据链路重放修好Switch内部已损坏内容；检测、转发、最终接收者恢复和AER上报要分别看。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "ecrc-aer-control-bits",
+        "title": "AER+18h[8:5]：四个位，两个能力、两个开关",
+        "paragraphs": [
+          "B为AER扩展能力基址。能力位RO，软件不能通过把Enable写1创造能力；Enable为RWS且默认0，VF使用关联PF设置。ECRC检测到错误后的Mask/Severity另在UE寄存器中配置。"
+        ],
+        "referenceIndices": [
+          7,
+          8
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "字段",
+            "用途"
+          ],
+          "rows": [
+            [
+              "5",
+              "ECRC Generation Capable",
+              "是否支持生成"
+            ],
+            [
+              "6",
+              "ECRC Generation Enable",
+              "使能生成；默认0"
+            ],
+            [
+              "7",
+              "ECRC Check Capable",
+              "是否支持检查"
+            ],
+            [
+              "8",
+              "ECRC Check Enable",
+              "使能检查；默认0"
+            ],
+            [
+              "UE bit19",
+              "ECRC Error",
+              "Status/Mask/Severity分别在B+04/+08/+0C"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ecrc-diagnosis-boundary",
+        "title": "排查ECRC：先确认谁检查，再看何处损坏",
+        "paragraphs": [
+          "先读发送端生成支持/使能、接收端检查支持/使能和实际包是否携带ECRC，再关联接收Port的UE Status bit19、Mask、Severity与Header Log。只看到ECRC Error置位，不能反推出哪个Switch内部单元出了错。",
+          "中间接收者的非致命ECRC可以走ANFE路径；最终接收者有不同职责。AER Status、ERR_*消息与原Request的Completion不是同一条记录，不能用一个计数代替另两个。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          7,
+          8,
+          10,
+          11
+        ]
+      }
+    ]
   },
   {
     "name": "Poisoned TLP / Data Poisoning",
     "group": "错误处理与可靠性",
     "intro": "将已知不可靠的数据标记为带毒，并通知消费方处理。",
     "usage": "存储/内存错误传播，不能当“忽略错误继续使用数据”。",
-    "mechanism": "Poison用标记传播已知不可信数据的情况，使后续消费者能按策略处理，而不是默默使用损坏结果。不同接口需保持标记一致。",
+    "mechanism": "用EP或适用FM机制传播已知坏payload；控制目标须阻止副作用，出口阻断、ANFE和最终接收规则按角色及模式区分。",
     "example": "内存错误导致某段数据不可信，接收DMA/应用应根据Poison决定丢弃、报错或停止。",
     "checks": "核对PCIe标记到AXI/应用的映射与中断；只记录AER却继续消费结果可能仍破坏业务正确性。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 100,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "2.7",
@@ -17933,28 +18198,275 @@
         "pdfPage": 252,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.2",
+        "page": 257,
+        "pdfPage": 257,
+        "title": "Poison的对象、格式和生成",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.2",
+        "page": 314,
+        "pdfPage": 314,
+        "title": "Poison的对象、格式和生成",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.2.1",
+        "page": 258,
+        "pdfPage": 258,
+        "title": "Poison接收与控制目标",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.2.1",
+        "page": 315,
+        "pdfPage": 315,
+        "title": "Poison接收与控制目标",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.2.1",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "Poison异常与完成",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.2.1",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "Poison异常与完成",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.4.2",
+        "page": 675,
+        "pdfPage": 675,
+        "title": "RC不能保留错误信息的转发例外",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4.2",
+        "page": 784,
+        "pdfPage": 784,
+        "title": "RC不能保留错误信息的转发例外",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4.3",
+        "page": 784,
+        "pdfPage": 784,
+        "title": "7.0最终接收者传播Poison的例子",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块以对应版正文/字段核读定位；旧背景入口保留，不声明全代际、整章或后续ECN完成。",
+    "details": [
+      {
+        "id": "poison-known-bad-data",
+        "title": "Poison表示已知坏数据，不能修复坏地址/坏路由",
+        "paragraphs": [
+          "Poison让接收者知道payload不可当作正常数据使用；它解决“数据已坏但仍须按协议传播/终止”的问题。Header错误、错误地址或错误路由应按自己的错误规则处理，不能靠设置EP掩盖。",
+          "发送侧支持Poison是可选。FM可支持EP、物理层Poison机制、两者或都不支持；若事务层已知数据损坏且支持Poison，应按规则设置EP，不能故意拖到更低层才标记。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "poison-tlp-applicability",
+        "title": "哪些TLP能Poison：有数据，不只Memory Write",
+        "paragraphs": [
+          "适用范围包括带数据的Posted/Non-Posted Write、MsgD、AtomicOp Request、Read Completion和AtomicOp Completion。Byte Enable全0仍可能是有payload的格式，不能仅凭无有效Byte Enable当作No Data。",
+          "Poison只指数据。无数据TLP的FM EP按Reserved处理，NFM不合规则接收行为不应擅自解读成统一可恢复Poison。先按Fmt/Type和模式确认字段意义。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "poison-format-forwarding",
+        "title": "EP和物理Poison跨FM/NFM如何传播",
+        "paragraphs": [
+          "NFM→FM保留EP；FM→NFM时，EP或物理层逻辑Poison任一指明坏数据，都需要在相应输出TLP上表达EP。不能因为转换后没有相同的物理编码就把Poison丢失。",
+          "支持Poison的路由元件收到非IDE的物理层逻辑Poison后，在出口用EP继续表达。这个跨层标记转换与Flit CRC/FEC发现传输错误后的重放机制不同。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "poison-ide-limit",
+        "title": "IDE边界：MAC完成后不能再随意改EP",
+        "paragraphs": [
+          "对IDE TLP，只有原始发送Port可按规则用EP标记；不能在形成IDE保护后再用物理层Poison去改坏接收者看到的认证语义。形成MAC后检测到的损坏按该节规定继续转发，而不是任意补一个Poison标记。",
+          "这不等于损坏被安全忽略，最终完整性检查和系统恢复仍有职责。阅读波形时必须把“发现损坏的时刻”和“是否已形成IDE MAC”分开。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "poison-protected-targets",
+        "title": "控制目标必须阻止副作用：不是所有Poison Write都能落存储器",
+        "paragraphs": [
+          "若Poison写入的是控制状态，继续执行可能把坏数据变成错误DMA、地址窗口或设备命令。所引规则要求下列目标不被修改；这和普通数据缓冲区允许按体系保留Poison信息的处理不同。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "Poison目标/请求",
+            "接收侧限制"
+          ],
+          "rows": [
+            [
+              "Configuration Write",
+              "不得修改目标配置寄存器"
+            ],
+            [
+              "I/O、Memory Write及非Vendor Message with Data的控制寄存器/结构",
+              "不得修改对应控制状态"
+            ],
+            [
+              "AtomicOp Request",
+              "不得执行原子更新"
+            ],
+            [
+              "DMWr",
+              "不得修改目标"
+            ],
+            [
+              "普通数据Memory Write或数据Completion",
+              "按相应应用/体系规则处理，不能套用控制目标结论"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "poison-protected-target-error",
+        "title": "受保护目标的Poison：Non-Fatal仍是Uncorrectable",
+        "paragraphs": [
+          "不存在优先级更高错误时，按Poisoned TLP Received错误处理；对上述禁止副作用场景，即使Severity选Non-Fatal，也不能转成ANFE来弱化。6.0对Non-Posted返回UR；7.0正文明确把UIO也纳入该Completion处理。",
+          "因此“看见ERR_COR就说明Poison总是可纠正”或“Non-Fatal等于Correctable”都不成立。普通数据使用场景与被禁止的控制更新要分开记录。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "poison-egress-blocking",
+        "title": "Poisoned TLP Egress Blocking：出口不发，也需处理请求命运",
+        "paragraphs": [
+          "支持并启用该能力且出口TLP带Poison时，按规则阻止发送，并考虑更高优先级错误；不能把Enable写入理解为所有坏包自动恢复。对适用Non-Posted请求，未触发DPC时返回UR。",
+          "7.0把该出口UR分支限定到在非UIO VC上收到的Non-Posted请求；不要把这个句子推广成所有UIO的出口完成策略。DPC触发时还须看隔离/完成规则，本轮不代替DPC全文。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "poison-vs-replay-and-recovery",
+        "title": "Poison通常不会靠同一包的Replay消失",
+        "paragraphs": [
+          "链路能完整传送一个带Poison的TLP；Poison本身不代表LCRC/Flit CRC损坏，不会仅因EP触发数据链路重放。软件或更高层重新发一笔请求，是另一种恢复动作。",
+          "例：DMA读回的Completion带Poison，驱动需阻止应用把这段数据当正常结果，并结合设备/内存错误恢复策略处理；不是盲目把同一Doorbell再写一次。对有副作用命令尤其不能假定重试安全。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "poison-root-complex-propagation",
+        "title": "RC无法传递Poison时，不能装作普通中间接收者继续转发",
+        "paragraphs": [
+          "RC若本来要在Root Ports之间P2P转发，但内部fabric无法保留EP、Digest或等效错误信息，就不得继续把该事务转发成看似正常的包；检测到相应Non-Fatal错误时按Enable发ERR_NONFATAL。",
+          "最终接收者把Poison数据及标记可靠地传到主存/内部消费者，可以满足继续运行的ANFE条件；丢失标记且可能造成静默数据损坏则不能这样处理。Poisoned TLP Egress Blocked也不是“收到包的中间Receiver”场景。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9
+        ]
+      }
+    ]
   },
   {
-    "name": "UR / CA / CRS Completion Status",
+    "name": "UR / CA / CRS（RRS）Completion Status",
     "group": "错误处理与可靠性",
     "intro": "不支持请求、完成者中止、配置重试等不同完成状态。",
     "usage": "地址错误、目标未就绪与硬故障应区别处理。",
-    "mechanism": "UR表示目标不支持请求，CA表示目标中止完成，CRS/RRS等表示相应请求暂时需要重试。每种状态有不同软件含义。",
+    "mechanism": "SC/UR/RRS/CA表达具体Request结果；RRS（旧称CRS）只限规定就绪场景。失败完成、Requester本地报告、Completer AER与超时须分别判断。",
     "example": "读错BAR地址和功能复位后暂时未就绪，不应使用完全相同的无限重试处理。",
     "checks": "保存完成状态、请求类型、地址/BDF；按具体事务和版本解释重试状态，避免把真实错误掩盖成繁忙。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 101,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "2.3",
@@ -17966,28 +18478,283 @@
         "pdfPage": 204,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.9.1",
+        "page": 197,
+        "pdfPage": 197,
+        "title": "Completion Status编码",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.9.1",
+        "page": 244,
+        "pdfPage": 244,
+        "title": "Completion Status编码",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1",
+        "page": 209,
+        "pdfPage": 209,
+        "title": "UR适用原因",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1",
+        "page": 258,
+        "pdfPage": 258,
+        "title": "UR适用原因",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1",
+        "page": 210,
+        "pdfPage": 210,
+        "title": "CA与请求处理",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1",
+        "page": 260,
+        "pdfPage": 260,
+        "title": "CA与请求处理",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1",
+        "page": 260,
+        "pdfPage": 260,
+        "title": "7.0 RRS及Ready/DRS限制",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "2.2.9",
+        "page": 75,
+        "pdfPage": 75,
+        "title": "1.0a CRS命名与编码",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.5",
+        "page": 676,
+        "pdfPage": 676,
+        "title": "UR/CA接收者的本地处理",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.5",
+        "page": 785,
+        "pdfPage": 785,
+        "title": "UR/CA接收者的本地处理",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.8",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "Completion Timeout边界",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.8",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "Completion Timeout边界",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.9.2",
+        "page": 246,
+        "pdfPage": 246,
+        "title": "7.0 FM OHC-A5和隐含状态",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块以对应版正文/字段核读定位；旧背景入口保留，不声明全代际、整章或后续ECN完成。",
+    "details": [
+      {
+        "id": "completion-status-table",
+        "title": "SC／UR／RRS／CA编码表：先区分状态与Severity",
+        "paragraphs": [
+          "Completion Status是针对具体Request的结果。它不直接编码AER Fatal/Non-Fatal，也不表示整个Link是否健康。旧规范/驱动常写CRS，新版正式文本使用RRS，排查时需兼容两个搜索词。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          8
+        ],
+        "table": {
+          "columns": [
+            "3-bit值",
+            "名称",
+            "读法"
+          ],
+          "rows": [
+            [
+              "000",
+              "SC Successful Completion",
+              "成功完成；仍需按请求判断长度/返回片段"
+            ],
+            [
+              "001",
+              "UR Unsupported Request",
+              "请求不被支持或不被目标认领等"
+            ],
+            [
+              "010",
+              "RRS Request Retry Status；早期称CRS",
+              "只在规范允许的就绪/配置场景使用"
+            ],
+            [
+              "100",
+              "CA Completer Abort",
+              "Completer无法按规则完成请求"
+            ],
+            [
+              "011 / 101 / 110 / 111",
+              "Reserved",
+              "不得按普通成功或通用busy解释"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ur-versus-ca-causes",
+        "title": "UR与CA：设计/配置不支持，与无法完成请求有区别",
+        "paragraphs": [
+          "UR可来自不支持的请求、地址/配置目标没有被认领等；看到UR应先查BAR映射、Command使能、请求Type和路由，不必先怀疑SerDes。",
+          "CA可由永久设备错误或违反设备受限编程模型等导致，不只是链路物理错误，也不是必然Fatal。具体错误仍需结合AER和设备状态；ACS等功能也有自己的完成返回规定。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "rrs-crs-not-generic-busy",
+        "title": "RRS不是设备随时返回的通用“忙，请重试”",
+        "paragraphs": [
+          "7.0对受支持DRS场景规定：相应DRS事件后进入L0、直到DRS Message发出前须按规则返回RRS，之后非VF的合法配置请求应成功完成。没有DRS支持时，也只有规定的复位/电源恢复初始化窗口可用。",
+          "普通Vendor reset控制位不能自动创造RRS窗口；已就绪、Immediate Readiness条件或已返回SC等有明确限制。驱动不能把任意UR/CA改名成CRS再无限轮询。此块以7.0相关正文为界，未把它倒推到1.0a。"
+        ],
+        "referenceIndices": [
+          7
+        ]
+      },
+      {
+        "id": "requester-ur-ca-no-duplicate-aer",
+        "title": "收到UR/CA的Requester：本地报告，不机械再发同类ERR消息",
+        "paragraphs": [
+          "Completer检测错误并按规则返回UR/CA和进行自身错误处理；Requester收到这个失败结果后，通过Requester专用机制让本地软件/上层获知。普通路径不再因“收到UR/CA”做一轮相同的PCIe AER记录和ERR_*消息。",
+          "Root Port PIO有专门例外，需要另外查RP PIO规则。于是一个事务出错不要求每个参与Function的AER Status都出现同一个位；不能据Requester没置位就认定Completer未失败。"
+        ],
+        "referenceIndices": [
+          9,
+          10
+        ]
+      },
+      {
+        "id": "failed-completion-versus-timeout",
+        "title": "失败Completion已返回，与等不到Completion不同",
+        "paragraphs": [
+          "UR/CA是失败完成的结果；Completion Timeout是等不到要求的完整完成，错误检测点不同。收到一个失败结果后再由上层发新请求，也不是原事务继续等待的同义词。",
+          "抓包时把Requester ID/Tag、完成状态、分片长度、超时起点和软件恢复动作放在同一时间轴。只看到一个“读失败”日志无法区分这些路径。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "fm-completion-ohca5",
+        "title": "FM失败状态在OHC-A5中，不能按NFM固定位置硬解",
+        "paragraphs": [
+          "7.0的FM Completion格式通过OHC-A5表达适用的非成功状态；没有OHC-A5时隐含SC，Lower Address[1:0]按该格式规则处理。NFM Completion则有自己的固定头字段。",
+          "UIO Completion和普通Completion格式还要分别识别。本页给的是状态语义入口，不是可把任意日志DWORD都当NFM CplD解析的通用解析器。"
+        ],
+        "referenceIndices": [
+          13,
+          1,
+          2
+        ]
+      }
+    ]
   },
   {
     "name": "Completion Timeout Ranges",
     "group": "错误处理与可靠性",
     "intro": "提供完成等待超时能力及选择范围。",
     "usage": "读请求无响应诊断；避免任意加大超时掩盖问题。",
-    "mechanism": "发起者为需要Completion的事务设置超时，超时后报告错误并进入恢复/资源处理。计时范围与是否可禁用依能力。",
+    "mechanism": "Requester从请求发出检测完整完成期限；DevCap2报告合法Range组合、DevControl2选择区间/Disable；FM支持条件与当前模式分开。",
     "example": "设备发MRd后一直收不到CplD，先查地址授权、目标、路由和链路，而不是直接把超时调到最大。",
     "checks": "超时后还可能有迟到Completion；Tag回收与重用必须遵守相应规则，避免旧包匹配到新请求。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 102,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "2.8",
@@ -18010,28 +18777,431 @@
         "pdfPage": 676,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.8",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "Timeout检测与默认范围",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.8",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "Timeout检测与默认范围",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.8",
+        "page": 260,
+        "pdfPage": 260,
+        "title": "FM范围、部分数据和UIO",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.8",
+        "page": 317,
+        "pdfPage": 317,
+        "title": "FM范围、部分数据和UIO",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.15",
+        "page": 989,
+        "pdfPage": 989,
+        "title": "DevCap2 Timeout范围编码",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1141,
+        "pdfPage": 1141,
+        "title": "DevCap2 Timeout范围编码",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.16",
+        "page": 995,
+        "pdfPage": 995,
+        "title": "DevControl2 Timeout取值/Disable",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.16",
+        "page": 1147,
+        "pdfPage": 1147,
+        "title": "DevControl2 Timeout取值/Disable",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.2",
+        "page": 1113,
+        "pdfPage": 1113,
+        "title": "自行发请求的Switch Port与Timeout状态",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.2",
+        "page": 1279,
+        "pdfPage": 1279,
+        "title": "自行发请求的Switch Port与Timeout状态",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1142,
+        "pdfPage": 1142,
+        "title": "7.0范围尾行与Disable支持",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1142,
+        "pdfPage": 1142,
+        "title": "Disable支持的角色限制",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.4.4",
+        "page": 676,
+        "pdfPage": 676,
+        "title": "Timeout恢复与ANFE",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4.4",
+        "page": 785,
+        "pdfPage": 785,
+        "title": "Timeout恢复与ANFE",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1121,
+        "pdfPage": 1121,
+        "title": "Completion Timeout Header Log能力",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1289,
+        "pdfPage": 1289,
+        "title": "Completion Timeout Header Log能力",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4.4",
+        "page": 784,
+        "pdfPage": 784,
+        "title": "7.0超时恢复与有限次数规则",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块以对应版正文/字段核读定位；旧背景入口保留，不声明全代际、整章或后续ECN完成。",
+    "details": [
+      {
+        "id": "timeout-start-and-full-completion",
+        "title": "Timeout从Request发出计时，首个Completion不保证结束",
+        "paragraphs": [
+          "Requester对需要完成的请求承担计时责任；不能把在内部队列等待发送的时间直接当作协议Timeout。要求完整完成时，收到第一片但后续片段不来仍可能超时。",
+          "超时范围是故障检测窗口，不是设备正常服务延迟承诺或性能指标。仅转发TLP的Switch不变成该事务Requester；Switch Port若自行发需要完成的请求，则须按其Requester职责处理。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          10,
+          11
+        ]
+      },
+      {
+        "id": "timeout-default-fm-supported",
+        "title": "默认40～50ms的判断条件是支持FM，不只是当前运行FM",
+        "paragraphs": [
+          "Completion Timeout Value=0或不提供可编程范围时，传统默认范围为50μs～50ms；支持FM的Function必须把实际计时选在40～50ms。对不支持FM的Function，规范强烈建议不早于10ms超时。",
+          "这里按Flit Mode Supported判断，不能因本次Link跑NFM就切回非常短的默认值。区间代表实现可选择的时间，软件不是写入了一个精确毫秒数。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          8,
+          9
+        ]
+      },
+      {
+        "id": "timeout-supported-range-encodings",
+        "title": "DevCap2[3:0]不是任意四位能力bitmap",
+        "paragraphs": [
+          "PCIe Capability基址为C，C+24h Device Capabilities2[3:0]报告可编程范围集合，只有下列编码有效。不能因为每一位看似对应A/B/C/D，就接受任意组合。VF读值与关联PF一致。"
+        ],
+        "referenceIndices": [
+          6,
+          7,
+          12
+        ],
+        "table": {
+          "columns": [
+            "十六进制编码",
+            "支持范围"
+          ],
+          "rows": [
+            [
+              "0",
+              "无可编程范围；仍有默认Timeout"
+            ],
+            [
+              "1",
+              "A"
+            ],
+            [
+              "2",
+              "B"
+            ],
+            [
+              "3",
+              "A+B"
+            ],
+            [
+              "6",
+              "B+C"
+            ],
+            [
+              "7",
+              "A+B+C"
+            ],
+            [
+              "E",
+              "B+C+D"
+            ],
+            [
+              "F",
+              "A+B+C+D"
+            ],
+            [
+              "其他",
+              "Reserved"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "timeout-value-table",
+        "title": "DevControl2[3:0]取值表：B档在FM支持时有不同下限",
+        "paragraphs": [
+          "C+28h Device Control2[3:0]选择Timeout范围，默认0。只有对应Range受支持时，非零选择才适用；0不是“关闭超时”。以下是允许的时间区间，而非精确计时器装载值。"
+        ],
+        "referenceIndices": [
+          8,
+          9
+        ],
+        "table": {
+          "columns": [
+            "选择值",
+            "所需范围",
+            "实际时间区间"
+          ],
+          "rows": [
+            [
+              "0",
+              "默认",
+              "非FM支持：50μs～50ms；FM支持：40～50ms"
+            ],
+            [
+              "1",
+              "A",
+              "50～100μs"
+            ],
+            [
+              "2",
+              "A",
+              "1～10ms"
+            ],
+            [
+              "5",
+              "B",
+              "16～55ms；FM支持时40～55ms"
+            ],
+            [
+              "6",
+              "B",
+              "65～210ms"
+            ],
+            [
+              "9",
+              "C",
+              "260～900ms"
+            ],
+            [
+              "A",
+              "C",
+              "1～3.5s"
+            ],
+            [
+              "D",
+              "D",
+              "4～13s"
+            ],
+            [
+              "E",
+              "D",
+              "17～64s"
+            ],
+            [
+              "其他",
+              "不适用",
+              "Reserved"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "timeout-disable-and-pending",
+        "title": "Disable和改值：不能精确重设所有在途事务的deadline",
+        "paragraphs": [
+          "DevCap2[4]报告Disable机制支持；DevControl2[4]才是开关，默认0。不支持时不能靠写1关闭；VF使用PF的设置，读取VF自身控制字段不能当成独立计时策略。",
+          "软件可在任意时刻改Timeout Value，硬件对已在途请求可使用新值或旧值，起点也可按原发出时刻或改值时刻处理。解除Disable时，既有请求是否应用计时及其起算点也有规范允许的实现选择。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          13
+        ]
+      },
+      {
+        "id": "timeout-recovery-retry-limits",
+        "title": "超时后重试要有次数上限，且先判断副作用",
+        "paragraphs": [
+          "Requester选择恢复时，非Fatal超时可按ANFE处理当前尝试，但必须限制恢复尝试；最终不再恢复时按适用不可纠正错误规则报告。把Timeout反复当Correctable而永不终止，不是规范允许的无限掩盖。",
+          "安全重试通常需要请求没有副作用；对读清寄存器、AtomicOp或有命令含义的访问，超时并不能证明对端没执行。7.0指出UIO超时并不能证明成功或失败；同一Transaction ID的适用UIO Request会按规定重启计时。"
+        ],
+        "referenceIndices": [
+          14,
+          15,
+          4,
+          5,
+          18
+        ]
+      },
+      {
+        "id": "timeout-log-original-request",
+        "title": "Timeout能记录的是原Request，不是不存在的Completion",
+        "paragraphs": [
+          "AER Advanced Capabilities+18h[12]表示可选Completion Timeout Prefix/Header Log能力。支持时可记录导致超时的原始Request，帮助找目标地址、类型和Tag。",
+          "这个能力不是每个设备必备。Header Log全0或FEP无效时，不能凭空重建“丢失的Completion”；还需结合Requester状态、目标配置、路由和链路历史。"
+        ],
+        "referenceIndices": [
+          16,
+          17
+        ]
+      },
+      {
+        "id": "completion-timeout-explorer",
+        "title": "查询：DevCap2／DevControl2解码与范围一致性",
+        "paragraphs": [
+          "输入十六进制寄存器值，并明确组件是否支持FM。工具只解码Timeout相关字段，检查保留编码、Range支持和Disable能力，不把其他DevCap2功能误解成Timeout配置。",
+          "输出是允许的时间区间和配置一致性提示，不模拟单个在途请求的实际deadline。VF应输入关联PF的有效控制值；工具不通过网页读取设备寄存器。"
+        ],
+        "referenceIndices": [
+          6,
+          7,
+          8,
+          9,
+          4,
+          5
+        ]
+      }
+    ]
   },
   {
     "name": "AER：Advanced Error Reporting",
     "group": "错误处理与可靠性",
     "intro": "细化错误状态、掩码、严重程度、头日志和Root报告。",
     "usage": "系统错误处理和驱动恢复；清状态不等于故障修复。",
-    "mechanism": "AER把错误分为可纠正/不可纠正等，结合Mask、Severity、报告使能和Header Log形成诊断链；Root再决定系统恢复。",
+    "mechanism": "按检测角色分类和记录错误，Status/Mask/Severity/报告Enable分层控制；ANFE先检查CE Mask[13]，Root侧另行聚合消息并产生适用平台通知。",
     "example": "同样是读失败，Completion Timeout、UR和Malformed TLP需要不同排查路径，AER提供更具体证据。",
-    "checks": "先读日志和状态再W1C；写Mask只能改变报告策略，不能修复原始错误或保证数据没有损坏。",
+    "checks": "先读日志和状态再W1C；Mask影响报告及适用记录流程（ANFE还有早期门控），不能修复原始错误或保证数据未损坏。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 103,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.2",
@@ -18054,28 +19224,1201 @@
         "pdfPage": 1109,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.2",
+        "page": 670,
+        "pdfPage": 670,
+        "title": "错误分类",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.2",
+        "page": 778,
+        "pdfPage": 778,
+        "title": "错误分类",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.2.2",
+        "page": 671,
+        "pdfPage": 671,
+        "title": "Fatal与Non-Fatal",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.2.2",
+        "page": 779,
+        "pdfPage": 779,
+        "title": "Fatal与Non-Fatal",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2",
+        "page": 671,
+        "pdfPage": 671,
+        "title": "Error Message与来源",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2",
+        "page": 780,
+        "pdfPage": 780,
+        "title": "Error Message与来源",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.3",
+        "page": 682,
+        "pdfPage": 682,
+        "title": "ANFE记录顺序",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.3",
+        "page": 791,
+        "pdfPage": 791,
+        "title": "ANFE记录顺序",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.2",
+        "page": 1113,
+        "pdfPage": 1113,
+        "title": "UE Status",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.2",
+        "page": 1279,
+        "pdfPage": 1279,
+        "title": "UE Status",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.3",
+        "page": 1115,
+        "pdfPage": 1115,
+        "title": "UE Mask",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.3",
+        "page": 1281,
+        "pdfPage": 1281,
+        "title": "UE Mask",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.4",
+        "page": 1117,
+        "pdfPage": 1117,
+        "title": "UE Severity",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.4",
+        "page": 1283,
+        "pdfPage": 1283,
+        "title": "UE Severity",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.5",
+        "page": 1119,
+        "pdfPage": 1119,
+        "title": "CE Status",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.5",
+        "page": 1286,
+        "pdfPage": 1286,
+        "title": "CE Status",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.6",
+        "page": 1120,
+        "pdfPage": 1120,
+        "title": "CE Mask",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.6",
+        "page": 1287,
+        "pdfPage": 1287,
+        "title": "CE Mask",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1121,
+        "pdfPage": 1121,
+        "title": "Advanced Capabilities/Control",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1289,
+        "pdfPage": 1289,
+        "title": "Advanced Capabilities/Control",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "不可纠正记录与Mask",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "不可纠正记录与Mask",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.4",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "ANFE场景与报告机制",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4",
+        "page": 783,
+        "pdfPage": 783,
+        "title": "ANFE场景与报告机制",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.5",
+        "page": 793,
+        "pdfPage": 793,
+        "title": "7.0 Figure6-2流程图视觉核对",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.3",
+        "page": 673,
+        "pdfPage": 673,
+        "title": "多错误检查先后关系",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.3",
+        "page": 782,
+        "pdfPage": 782,
+        "title": "多错误检查先后关系",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4",
+        "page": 677,
+        "pdfPage": 677,
+        "title": "多Function错误记录",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4",
+        "page": 786,
+        "pdfPage": 786,
+        "title": "多Function错误记录",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.1",
+        "page": 1112,
+        "pdfPage": 1112,
+        "title": "AER能力版本",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.1",
+        "page": 1278,
+        "pdfPage": 1278,
+        "title": "AER能力版本",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1290,
+        "pdfPage": 1290,
+        "title": "7.0 Logged TLP与RC ECS字段",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.9",
+        "page": 1123,
+        "pdfPage": 1123,
+        "title": "Root Error Command",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.9",
+        "page": 1291,
+        "pdfPage": 1291,
+        "title": "Root Error Command",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.11",
+        "page": 1126,
+        "pdfPage": 1126,
+        "title": "Error Source Identification",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.11",
+        "page": 1296,
+        "pdfPage": 1296,
+        "title": "Error Source Identification",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.10",
+        "page": 1124,
+        "pdfPage": 1124,
+        "title": "Root Status布局",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.10",
+        "page": 1293,
+        "pdfPage": 1293,
+        "title": "Root Status布局",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.10",
+        "page": 1294,
+        "pdfPage": 1294,
+        "title": "7.0 Root Status详细字段",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.1.3",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "7.0 SFW处理与OS路径",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.9",
+        "page": 1292,
+        "pdfPage": 1292,
+        "title": "7.0 Root Command ECS位及Source ID",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.10",
+        "page": 1295,
+        "pdfPage": 1295,
+        "title": "7.0 SFW Root Status",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.1.2",
+        "page": 678,
+        "pdfPage": 678,
+        "title": "Root MSI/MSI-X/INTx通知",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.1.2",
+        "page": 787,
+        "pdfPage": 787,
+        "title": "Root MSI/MSI-X/INTx通知",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.2",
+        "page": 1281,
+        "pdfPage": 1281,
+        "title": "VF Status兼容注释",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.3",
+        "page": 1283,
+        "pdfPage": 1283,
+        "title": "VF Mask兼容注释与PF设置",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块以对应版正文/字段核读定位；旧背景入口保留，不声明全代际、整章或后续ECN完成。",
+    "details": [
+      {
+        "id": "aer-baseline-three-paths",
+        "title": "AER扩展基础错误报告，三条通知路径互相补充",
+        "paragraphs": [
+          "基础错误报告有独立要求，AER是可选的扩展能力，提供更细Status、Mask、Severity和日志。没有AER不等于PCIe不能返回UR或报告错误；有AER也不等于所有可选检测/日志能力都实现。",
+          "Completion Status告诉Requester某笔请求的结果；ERR_COR/NONFATAL/FATAL Message把检测事件送到Root；Poison随数据表达坏payload。三者服务的对象和信息不同，不能强行一一对应。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "id": "aer-classification-and-policy",
+        "title": "Correctable、Uncorrectable Non-Fatal和Fatal如何区分",
+        "paragraphs": [
+          "Correctable可包括硬件恢复且不丢信息的链路错误，也包括某些由另一代理负责恢复的事务错误通知。Non-Fatal是某笔事务不可靠但Link其余操作仍可用；Fatal涉及Link及相关硬件可靠性，可能需要复位。",
+          "平台决定怎样把PCIe严重度映射为驱动恢复、隔离或系统动作。Fatal不是Base要求每次整机重启，Non-Fatal也不是“没关系可以照常用坏数据”。ANFE和DPC的ERR_COR通知需另外辨认。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "id": "aer-status-mask-severity",
+        "title": "Status、Mask、Severity、报告Enable是四层不同概念",
+        "paragraphs": [
+          "一般不可纠正错误路径中，检测后Status置位不依赖对应UE Mask；Mask=1阻止该Function相应消息及Header/FEP记录，不能当作“没有发生”。Severity=1选择Fatal，=0选择Non-Fatal，不改变不可纠正分类。",
+          "最终消息还受PCIe Device Control的Correctable/Non-Fatal/Fatal Error Reporting Enable等控制，UR还有独立使能关系。不能只做Status & ~Mask就宣称一定发出了ERR_*。ANFE先过CE Mask[13]，是需要另读顺序的例外。"
+        ],
+        "referenceIndices": [
+          22,
+          23,
+          12,
+          13,
+          14,
+          15,
+          8,
+          9
+        ]
+      },
+      {
+        "id": "aer-anfe-role-table",
+        "title": "ANFE按角色和恢复职责成立，不是所有Non-Fatal的别名",
+        "paragraphs": [
+          "Advisory Non-Fatal把适用的非致命事件以Correctable方式通知，让负责恢复的其他代理接手。有AER按相关Enable可发ERR_COR，只有基础能力时不因此发一条普通Non-Fatal消息。",
+          "Severity若选Fatal仍按Fatal路径，不因表中列有该场景就被强制降级。Poison写入受保护控制目标等明确例外保持Uncorrectable。"
+        ],
+        "referenceIndices": [
+          24,
+          25
+        ],
+        "table": {
+          "columns": [
+            "角色/场景",
+            "为何可按ANFE处理"
+          ],
+          "rows": [
+            [
+              "Completer发送UR/CA",
+              "Requester通过失败完成得知并负责后续恢复"
+            ],
+            [
+              "Intermediate Receiver检查ECRC/Poison",
+              "最终接收者仍承担最终处置"
+            ],
+            [
+              "适用Ultimate Receiver接收Poison",
+              "取决于数据使用方式；受保护控制目标不适用"
+            ],
+            [
+              "Requester选择有限次数恢复Timeout",
+              "当次尝试可通知，最终放弃另按不可纠正规则"
+            ],
+            [
+              "Unexpected Completion",
+              "按对应规则记录并丢弃；并非替Requester补一次成功"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "anfe-recording-order",
+        "title": "ANFE先CE[13]，再UE，再Header：Mask的先后会改变结果",
+        "paragraphs": [
+          "第一步设置CE Status[13] Advisory Non-Fatal Error；若CE Mask[13]=1，到此停止，不继续置对应UE Status或更新Header/FEP。不能把一般UE Mask规则不加条件套到ANFE。",
+          "CE Mask[13]=0时才设置对应UE Status；对应UE Mask影响Header/FEP记录，ERR_COR还需满足报告Enable及适用UR限制。因而UE Mask=1和CE Mask[13]=1在ANFE里不是等价屏蔽，截图只看UE寄存器会漏信息。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          26
+        ]
+      },
+      {
+        "id": "aer-error-precedence",
+        "title": "同一坏TLP可能命中多项检查，不能把Status全部当独立根因",
+        "paragraphs": [
+          "为避免一个坏包在多层形成误导的连锁日志，物理/链路检测已覆盖的同包错误不再机械上推；事务层及Uncorrectable Internal的相关路径允许并建议每个接收TLP最多报告一项，并按下表从高到低选择。",
+          "同一行列出的错误互斥，行内不再排序。Completion Timeout不由接收某个TLP触发，故不在表中；Corrected Internal不造成这种污染，应按规则报告。下表是6.0/7.0所引列表的原创归纳，不把建议强度改写为所有实现都必须同序检查。"
+        ],
+        "referenceIndices": [
+          27,
+          28
+        ],
+        "table": {
+          "columns": [
+            "优先级（高→低）",
+            "错误组",
+            "排查读法"
+          ],
+          "rows": [
+            [
+              "1",
+              "Uncorrectable Internal",
+              "先看组件内部不可纠正故障"
+            ],
+            [
+              "2",
+              "Receiver Overflow",
+              "接收资源/溢出"
+            ],
+            [
+              "3",
+              "Malformed TLP",
+              "先判断头格式是否可信"
+            ],
+            [
+              "4",
+              "IDE Check Failed",
+              "认证/完整性失败"
+            ],
+            [
+              "5",
+              "ECRC Check Failed",
+              "端到端CRC失败"
+            ],
+            [
+              "6",
+              "Misrouted IDE TLP",
+              "IDE路由限制"
+            ],
+            [
+              "7",
+              "AtomicOp / DMWr / TLP Translation Egress Blocked",
+              "按互斥请求/转换类型"
+            ],
+            [
+              "8",
+              "TLP Prefix Blocked",
+              "Prefix通行限制"
+            ],
+            [
+              "9",
+              "ACS Violation",
+              "访问/路由隔离检查"
+            ],
+            [
+              "10",
+              "MC Blocked TLP",
+              "Multicast限制"
+            ],
+            [
+              "11",
+              "UR / CA / Unexpected Completion",
+              "请求支持、完成失败或意外完成"
+            ],
+            [
+              "12",
+              "PCRC Check Failed",
+              "IDE相关payload完整性"
+            ],
+            [
+              "13",
+              "Poisoned TLP Received / Egress Blocked",
+              "已知坏payload的接收/出口处理"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "aer-message-source-and-count",
+        "title": "ERR消息的Requester ID指报告代理，不一定是原业务Requester",
+        "paragraphs": [
+          "Root通过ERR消息头中的Requester ID找到发起报告的代理。它可能是检测到问题的Switch Port，而不是原Memory Read发起Function；不要用这个RID直接判定坏数据源。",
+          "同一事务可在多个检测点形成不同消息，同一报告代理的同严重度事件也可合并。消息数、AER Status位数、失败Request数和软件打印行数没有固定一比一关系。"
+        ],
+        "referenceIndices": [
+          6,
+          7
+        ]
+      },
+      {
+        "id": "aer-mfd-vf-attribution",
+        "title": "非Function专属错误可能在多个Function记录",
+        "paragraphs": [
+          "MFD的非Function专属错误按规则在多个Function记录，不能因多个BDF都出现同一链路错误就断言多个独立硬件故障。SR-IOV下PF、VF的实现/归属还有专门限制；不少VF字段必须为0或由PF控制。",
+          "7.0对部分VF相关位保留兼容性实现选择，并加入SIOV/SDI归属规则；不能用PF/VF的一句话概述覆盖所有设备类别。工具只解释输入快照，不自动推断Function归属。"
+        ],
+        "referenceIndices": [
+          29,
+          30,
+          10,
+          11
+        ]
+      },
+      {
+        "id": "aer-register-map",
+        "title": "先找到AER基址，再按相对偏移读，不是固定MMIO地址",
+        "paragraphs": [
+          "AER扩展能力ID=0001h，从PCIe扩展Capability链发现。设其配置空间基址为B，下面是常用偏移。RW1CS状态写1清，不能把整段寄存器原样回写当安全清除。",
+          "支持FM时AER能力版本为3；其他版本条件还与End-End Prefix支持有关。FM扩展Header Log占用原Prefix位置并可继续增长，不能假定能力永远只到B+44h。"
+        ],
+        "referenceIndices": [
+          31,
+          32,
+          20,
+          21
+        ],
+        "table": {
+          "columns": [
+            "B+偏移",
+            "寄存器",
+            "使用点"
+          ],
+          "rows": [
+            [
+              "04 / 08 / 0C",
+              "UE Status / Mask / Severity",
+              "检测、屏蔽、严重度分开"
+            ],
+            [
+              "10 / 14",
+              "CE Status / Mask",
+              "包含ANFE与Header Overflow"
+            ],
+            [
+              "18",
+              "Advanced Capabilities and Control",
+              "ECRC、FEP、Multiple Header及日志大小"
+            ],
+            [
+              "1C～28",
+              "Header Log DW1～4",
+              "需FEP有效且有对应记录"
+            ],
+            [
+              "2C / 30 / 34",
+              "Root Command / Status / Source ID",
+              "只在适用RP/RCEC中解释"
+            ],
+            [
+              "38起",
+              "NFM Prefix或FM扩展Header",
+              "FM可延伸到5Ch（14DW头日志）"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "aer-ue-bit-table",
+        "title": "UE Status／Mask／Severity同位表：含IDE、PCRC与TLP Translation",
+        "paragraphs": [
+          "同一bit在B+04/+08/+0C分别表示Status/Mask/Severity。Status初始为0；所列默认Severity中1为Fatal、0为Non-Fatal，软件策略可按实现允许范围改变。可选功能不支持时不能据表推断字段必实现。",
+          "默认Mask中Uncorrectable Internal[22]、Poisoned TLP Egress Blocked[26]为1，其他所列已实现错误位通常为0。bit0旧Link Training定义已Undefined，软件只可向该Mask位写1；1:3与6:11保留。此表不构造写寄存器命令。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "错误名称",
+            "默认Severity"
+          ],
+          "rows": [
+            [
+              "4",
+              "Data Link Protocol",
+              "1"
+            ],
+            [
+              "5",
+              "Surprise Down",
+              "1"
+            ],
+            [
+              "12",
+              "Poisoned TLP Received",
+              "0"
+            ],
+            [
+              "13",
+              "Flow Control Protocol",
+              "1"
+            ],
+            [
+              "14",
+              "Completion Timeout",
+              "0"
+            ],
+            [
+              "15",
+              "Completer Abort",
+              "0"
+            ],
+            [
+              "16",
+              "Unexpected Completion",
+              "0"
+            ],
+            [
+              "17",
+              "Receiver Overflow",
+              "1"
+            ],
+            [
+              "18",
+              "Malformed TLP",
+              "1"
+            ],
+            [
+              "19",
+              "ECRC Error",
+              "0"
+            ],
+            [
+              "20",
+              "Unsupported Request",
+              "0"
+            ],
+            [
+              "21",
+              "ACS Violation",
+              "0"
+            ],
+            [
+              "22",
+              "Uncorrectable Internal",
+              "1"
+            ],
+            [
+              "23",
+              "MC Blocked TLP",
+              "0"
+            ],
+            [
+              "24",
+              "AtomicOp Egress Blocked",
+              "0"
+            ],
+            [
+              "25",
+              "TLP Prefix Blocked",
+              "0"
+            ],
+            [
+              "26",
+              "Poisoned TLP Egress Blocked",
+              "0"
+            ],
+            [
+              "27",
+              "DMWr Egress Blocked",
+              "0"
+            ],
+            [
+              "28",
+              "IDE Check Failed",
+              "1"
+            ],
+            [
+              "29",
+              "Misrouted IDE TLP",
+              "0"
+            ],
+            [
+              "30",
+              "PCRC Check Failed",
+              "0"
+            ],
+            [
+              "31",
+              "TLP Translation Egress Blocked",
+              "0"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "aer-ce-bit-table",
+        "title": "CE位表与默认屏蔽：ANFE/内部纠正/日志溢出默认Mask=1",
+        "paragraphs": [
+          "CE Status在B+10h为RW1CS，CE Mask在B+14h为RWS。某个可选报告Status未实现，不表示底层必需错误检测也可以省掉。其他未列位按保留规则处理。"
+        ],
+        "referenceIndices": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "名称",
+            "默认Mask"
+          ],
+          "rows": [
+            [
+              "0",
+              "Receiver Error",
+              "0"
+            ],
+            [
+              "6",
+              "Bad TLP",
+              "0"
+            ],
+            [
+              "7",
+              "Bad DLLP",
+              "0"
+            ],
+            [
+              "8",
+              "REPLAY_NUM Rollover",
+              "0"
+            ],
+            [
+              "12",
+              "Replay Timer Timeout",
+              "0"
+            ],
+            [
+              "13",
+              "Advisory Non-Fatal Error",
+              "1"
+            ],
+            [
+              "14",
+              "Corrected Internal Error",
+              "1"
+            ],
+            [
+              "15",
+              "Header Log Overflow",
+              "1"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "aer-advanced-control-table",
+        "title": "Advanced Capabilities+18h逐字段：能力、使能、当前记录分开",
+        "paragraphs": [
+          "这是混合属性DWORD，不能整体当RW；FEP、Logged TLP Size等由硬件维护，Enable才由软件设置。以下字段在不支持相关能力/格式时有保留或0限制，需先查Capability。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          33
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "字段",
+            "属性/读法"
+          ],
+          "rows": [
+            [
+              "4:0",
+              "First Error Pointer",
+              "ROS；指向有记录的最早错误，须验证对应UE位"
+            ],
+            [
+              "5 / 6、7 / 8",
+              "ECRC Gen Cap/Enable、Check Cap/Enable",
+              "RO能力与RWS使能；Enable默认0"
+            ],
+            [
+              "9 / 10",
+              "Multiple Header Recording Cap/Enable",
+              "RO能力与RWS使能；Enable默认0"
+            ],
+            [
+              "11",
+              "TLP Prefix Log Present",
+              "当前记录标志；FM记录时为0"
+            ],
+            [
+              "12",
+              "Completion Timeout Prefix/Header Log Capable",
+              "HwInit；是否可记原Request"
+            ],
+            [
+              "17:13",
+              "Header Log Size",
+              "HwInit/RsvdP；可容纳DW数"
+            ],
+            [
+              "18",
+              "Logged TLP was Flit Mode",
+              "ROS；当前记录格式，FEP有效时解释"
+            ],
+            [
+              "23:19",
+              "Logged TLP Size",
+              "ROS；实际记录大小，配合FEP"
+            ],
+            [
+              "24",
+              "6.0保留；7.0 RC ECS Handling Capable",
+              "7.0仅适用RP/RCEC，见独立块"
+            ],
+            [
+              "31:25",
+              "Reserved",
+              "不能当可用软件控制位"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "aer-root-command-and-source",
+        "title": "Root Command不是UE Mask；Root Source也不一定是物理故障源",
+        "paragraphs": [
+          "RP/RCEC的B+2Ch Root Error Command[0/1/2]分别允许Correctable/Non-Fatal/Fatal的根侧中断，默认0；这与报告Function上的Device Control报告Enable及AER Mask分开。",
+          "B+34h低16位锁存首个适用ERR_COR消息的RID，高16位锁存首个ERR_FATAL/NONFATAL的RID。它们在对应Root Status有效时解释，记录的是消息报告源，不等于原TLP发起者或最终坏器件。"
+        ],
+        "referenceIndices": [
+          34,
+          35,
+          36,
+          37
+        ]
+      },
+      {
+        "id": "aer-root-status-table",
+        "title": "Root Error Status+30h：先接收到、再多次、再分类",
+        "paragraphs": [
+          "这些位描述Root收到/检测的事件；更新并不由Root Error Command的中断开关决定，但报告源/RP/RCEC的相应消息使能仍需满足。关闭IRQ不能据此认为Status不会变。"
+        ],
+        "referenceIndices": [
+          38,
+          39,
+          40
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "字段",
+            "属性/限制"
+          ],
+          "rows": [
+            [
+              "0 / 1",
+              "ERR_COR Received / Multiple ERR_COR Received",
+              "RW1CS；是否有首个/额外Correctable事件"
+            ],
+            [
+              "2 / 3",
+              "ERR_FATAL/NONFATAL Received / Multiple",
+              "RW1CS；不可纠正消息接收"
+            ],
+            [
+              "4",
+              "First Uncorrectable Fatal",
+              "RW1CS；首个UE是否Fatal"
+            ],
+            [
+              "5 / 6",
+              "Non-Fatal / Fatal Error Messages Received",
+              "RW1CS；分类接收状态"
+            ],
+            [
+              "8:7",
+              "ERR_COR Subclass",
+              "ROS；CE记录有效时解释"
+            ],
+            [
+              "9 / 10",
+              "7.0 SFW Handling ERR_COR Received / Multiple",
+              "RC ECS能力下有效；6.0为保留"
+            ],
+            [
+              "31:27",
+              "Advanced Error Interrupt Message Number",
+              "RO；MSI/MSI-X消息选择，MSI-X前32项"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "aer-root-ecs-version-difference",
+        "title": "7.0 RC ECS分流：SFW通知与OS中断不能混成一个开关",
+        "paragraphs": [
+          "6.0的AER Advanced Cap[24]是保留；7.0在RP/RCEC中定义RC ECS Handling Capable。支持时，Root Command[3:5]选择Legacy、SIG_SFW、SIG_OS ERR_COR是否交固件处理，[31:16]还有只读的SFW Handling Source ID。",
+          "适用SFW分流不受Root Correctable Error Reporting Enable这一OS IRQ开关控制，也不为该事件再产生同一OS中断；相关Root Status/来源另有记录。这里是核到的6.0/7.0字段差异，不宣称该功能首次引入必然在7.0。"
+        ],
+        "referenceIndices": [
+          41,
+          42,
+          43,
+          20,
+          21
+        ]
+      },
+      {
+        "id": "aer-root-irq-transition",
+        "title": "MSI/MSI-X看有效条件从假到真，不是每个Status位都打一条IRQ",
+        "paragraphs": [
+          "根侧MSI/MSI-X按适用消息类别的Received状态与报告Enable组合，从不满足变为满足时产生中断，并考虑向量屏蔽；已有状态未清时重复事件不保证每次再来一个同类边沿。",
+          "INTx是电平语义，还受Command Interrupt Disable影响。驱动应读取、关联并按写1清规则消费状态，再恢复通知；不能只统计中断次数推算错误包数。"
+        ],
+        "referenceIndices": [
+          44,
+          45
+        ]
+      },
+      {
+        "id": "aer-register-explorer",
+        "title": "查询：AER UE／CE位图与Mask／Severity关系",
+        "paragraphs": [
+          "输入同一Function的一组Status、Mask、Severity十六进制快照，工具逐位列出事件、屏蔽状态与UE严重度，并指出ANFE早期屏蔽规则。保留/Undefined位单独提示。",
+          "它不预测真实ERR消息、Root中断、DPC或恢复结果：还缺角色、Device Control报告使能、当时的模式/能力和历史顺序。多个Status位也不证明来自同一TLP。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          8,
+          9
+        ]
+      },
+      {
+        "id": "aer-vf-reserved-pf-settings",
+        "title": "VF的RsvdP和ROZ不是同一种“没有实现”",
+        "paragraphs": [
+          "7.0 UE Mask/Severity说明中，标为VF RsvdP的字段由关联PF设置作用到VF；标为VF ROZ表示该错误不适用于VF。不能读取VF的保留控制位就判定PF没有屏蔽，也不能给VF单独编程链路级错误。",
+          "7.0对高位AtomicOp/TLP Prefix/Poison Egress/DMWr/IDE/PCRC/Translation等保留兼容实现选择：强烈建议VF ROZ，但某些Status在实现对应Mask时可为RW1CS，Mask可为RWS。必须结合具体位表与硬件能力，不把“建议ROZ”写成毫无例外的强制0。"
+        ],
+        "referenceIndices": [
+          46,
+          47
+        ]
+      }
+    ]
   },
   {
     "name": "Multiple Header Logging / First Error Pointer",
     "group": "错误处理与可靠性",
     "intro": "记录导致错误的包头与首错误等证据。",
     "usage": "故障复现前先保留日志，避免W1C丢证据。",
-    "mechanism": "首错误指针与头日志帮助关联哪类错误、哪一个请求首先触发事件；多日志能力用于保留不止一项信息。",
+    "mechanism": "验证FEP后读取版本/格式对应Header，再写1消费FEP记录；多条、共享VF与溢出场景不能把Status位与Header强行一一配对。",
     "example": "持续报错时后续信息可能覆盖/挤满日志，只有最终Status很难还原第一起错误的来源。",
     "checks": "先快照Status、First Error Pointer和Header Log，再清除；检查日志溢出及不同模式的头解释。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 104,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-19",
     "protocolReferences": [
       {
         "section": "6.2.4",
@@ -18087,9 +20430,321 @@
         "pdfPage": 677,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "UE日志和FEP",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "UE日志和FEP",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 680,
+        "pdfPage": 680,
+        "title": "Multiple Header消费规则",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 789,
+        "pdfPage": 789,
+        "title": "Multiple Header消费规则",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.8",
+        "page": 1122,
+        "pdfPage": 1122,
+        "title": "Header Log内容及字节序",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.8",
+        "page": 1290,
+        "pdfPage": 1290,
+        "title": "Header Log内容及字节序",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1121,
+        "pdfPage": 1121,
+        "title": "日志能力与有效性",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1289,
+        "pdfPage": 1289,
+        "title": "日志能力与有效性",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.5",
+        "page": 1119,
+        "pdfPage": 1119,
+        "title": "Header Log Overflow",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.5",
+        "page": 1287,
+        "pdfPage": 1287,
+        "title": "Header Log Overflow",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.4",
+        "page": 682,
+        "pdfPage": 682,
+        "title": "Prefix日志及异常位置",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.4",
+        "page": 791,
+        "pdfPage": 791,
+        "title": "Prefix日志及异常位置",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.12",
+        "page": 1296,
+        "pdfPage": 1296,
+        "title": "7.0 Prefix格式和FM覆盖区域",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2.1",
+        "page": 681,
+        "pdfPage": 681,
+        "title": "VF共享Header Log",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2.1",
+        "page": 790,
+        "pdfPage": 790,
+        "title": "VF共享Header Log",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 681,
+        "pdfPage": 681,
+        "title": "FEP有效性歧义的实现说明",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 790,
+        "pdfPage": 790,
+        "title": "FEP有效性歧义的实现说明",
+        "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "新块以对应版正文/字段核读定位；旧背景入口保留，不声明全代际、整章或后续ECN完成。",
+    "details": [
+      {
+        "id": "fep-validity-not-lowest-bit",
+        "title": "FEP不是最低置位bit；必须先验证有效性",
+        "paragraphs": [
+          "FEP指向最早记录的未消费错误，不是对UE Status做最低位编码。只有它指向的已定义UE Status位为1时，才按规则认为当前FEP记录有效。",
+          "Status=1也可能因为被Mask或没有记录资源而没有Header。不能把任意全0/旧Header与所有Status位逐一拼接；先找有效FEP，再判断日志格式和大小。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "multiple-header-consume-order",
+        "title": "消费多条记录：清FEP对应状态，硬件才切到下一条",
+        "paragraphs": [
+          "Multiple Header Recording支持且使能后，可积累多个错误记录。软件写1清FEP指向的UE Status位，释放当前记录；硬件随后更新下一条FEP/Header/Prefix和Status。同类排队记录可能让该Status仍然为1。",
+          "有有效FEP时，不建议随意同时清其他未屏蔽Status位，那可能丢弃尚未读到的记录。读Status、读日志、再消费需要考虑新错误并发，不是一笔全1写入即可安全排空。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "header-overflow-and-enable-change",
+        "title": "Overflow意味着记录丢失风险；不能带有效FEP直接关多条模式",
+        "paragraphs": [
+          "记录空间有限，新错误仍可能更新Status，却没有相应Header；Header Log Overflow是CE bit15，默认Mask为1，缺IRQ不证明从未溢出。日志不应被当作无损Trace FIFO。",
+          "FEP有效时清Multiple Header Enable会有未定义行为。建议先屏蔽相关错误，再循环读取并按FEP消费，确认排空后改变模式；并发错误、共享空间和设备恢复仍需要驱动同步。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "id": "header-dword-to-tlp-bytes",
+        "title": "Header Log的DW读数如何对应TLP字节",
+        "paragraphs": [
+          "按DWORD读取日志时，数值12345678h对应协议展示的byte0=12h、byte1=34h、byte2=56h、byte3=78h；byte0位于寄存器bit31:24。不能把CPU小端内存的Byte读序直接当协议图左到右字节序。",
+          "对多个DWORD保持日志DW1、DW2的顺序，再在各DW中解释字节。原始寄存器数值与抓包工具输出格式可能不同，应先校准一个已知头，不要整段盲目reverse。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "header-log-nfm-fm-size",
+        "title": "NFM头、Prefix与FM最多14DW：先看记录格式位",
+        "paragraphs": [
+          "NFM通常有4DW Header Log，3DW头之后内容不应当作真实第4DW解析；End-End Prefix另有位置。FM头由Base Header及OHC组成，支持的最大格式可要求最多14DW，日志延伸覆盖原Prefix区域。",
+          "结合Advanced Cap[18] Logged TLP was Flit Mode、Header Log Size[17:13]、Logged TLP Size[23:19]及Type/OHC判断，不要假定所有设备实际都有14DW，也不要把Trailer算进Header日志。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "header-size-zero-and-prefix",
+        "title": "Header Log Size=0的兼容规则有FM支持条件",
+        "paragraphs": [
+          "不支持FM时，Header Log Size=0沿用兼容语义：没有End-End Prefix支持时按4DW，有支持时按8DW。支持FM的组件不能不加条件套用这个零值回退。",
+          "Prefix Log Present只有FEP有效且对应NFM记录时有意义；FM记录该标志为0。Malformed Prefix溢出时，日志开头还可能记录第一个超额Prefix，不能无条件把它当普通TLP Base Header。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          11,
+          12,
+          13
+        ]
+      },
+      {
+        "id": "vf-shared-header-overflow",
+        "title": "VF共享Header空间：全1可能是溢出标志",
+        "paragraphs": [
+          "关联同一PF的VF可按规则共享Header Log资源，PF自身需要独立处理。VF有有效FEP时相关记录锁定；共享资源不足可出现Header Log全1的规定表示，不是抓到一个真实“全FF TLP”。",
+          "此时FM的Logged TLP Size可为0、Prefix Log Present为0等，需按能力/上下文解释。软件不应把多个VF的日志当完全独立、无限容量的记录队列。"
+        ],
+        "referenceIndices": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "aer-read-snapshot-workflow",
+        "title": "实用读取顺序：先保存快照，再消费；清错不等于修好",
+        "paragraphs": [
+          "先保存PCIe Device Status/Control、AER UE/CE Status/Mask/Severity及Advanced Cap，验证FEP后读取足够的Header/Prefix。Root侧另读Root Status、Command、Source ID，并按RID定位报告Function。",
+          "然后按驱动与平台恢复策略处理设备和在途事务，最后有选择地写1清并继续取记录。清Status只消费报告，不会修复坏数据、重新执行请求或解除DPC隔离；恢复策略不能由本站解码工具替代。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "fep-stale-pointer-ambiguity",
+        "title": "FEP有效判据仍有旧指针歧义：为什么不能只读一个位",
+        "paragraphs": [
+          "规范的实现说明指出：若固件先记录UR、清UR后硬件仍把FEP留在UR，OS随后Mask UR；新的探测再置UR Status但不记录Header，就可能出现“FEP所指Status=1，却没有新记录”的歧义。",
+          "推荐硬件在排空后把FEP指向不会置位的保留状态，并用合适内部资源状态管理记录。软件看到有效判据仍需结合Mask、清除历史、日志能力和驱动同步，不能把它当任何实现下都绝无歧义的Trace指针。"
+        ],
+        "referenceIndices": [
+          16,
+          17
+        ]
+      }
+    ]
   },
   {
     "name": "DPC：Downstream Port Containment",
