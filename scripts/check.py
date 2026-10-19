@@ -33,6 +33,7 @@ assert not re.search(r'file:///|[A-Z]:[\\/]|/Users/|pcie_test_ip|DWC_pcie_ctl|CX
 assert not any(p.suffix.lower() in {'.pdf','.sv','.svh','.v','.doc','.docx','.ppt','.pptx','.cdl','.sp','.spi','.gds','.oas','.lef','.lib','.db','.hex','.mem','.rom','.bin'} for p in (ROOT/'docs').rglob('*') if p.is_file())
 assert 'fetch(' not in (ROOT/'web/app.js').read_text(encoding='utf-8'),'Website is intended to work without content/PDF upload APIs'
 assert 'URL.createObjectURL(file)' in raw and '#page=' in raw
+assert (ROOT/'docs/data.js').read_bytes().endswith(b';\n') and b'\r\n' not in (ROOT/'docs/data.js').read_bytes(), 'Use deterministic LF output for Windows/Linux rebuilds'
 class Check(HTMLParser):
     def __init__(self):super().__init__();self.ids=set();self.files=[]
     def handle_starttag(self,tag,attrs):
