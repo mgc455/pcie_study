@@ -5652,5 +5652,1109 @@
     "reviewed": "2026-10-18",
     "protocolReferences": [],
     "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+  },
+  {
+    "id": 163,
+    "name": "PHY／SerDes 分层：逻辑、PCS与PMA",
+    "group": "PHY与SerDes",
+    "intro": "先把协议处理、接口适配、模拟收发和控制面分开，才能沿正确边界排查问题。",
+    "usage": "阅读控制器和PHY代码、连接PIPE接口、判断某项编码或均衡应由谁负责时使用。",
+    "mechanism": "PCIe Base定义物理层的逻辑与电气要求；PIPE定义MAC与PHY之间的接口契约；产品内部还可拆成uPCS、Raw PCS/PMD、PMA。LTSSM、lane deskew、协议编码等逻辑与模拟采样/驱动有不同职责，不能将“PHY”简单等同于全部模拟电路。",
+    "prerequisites": "图中的层名是功能边界，RTL目录名是实现边界，两者不必一一对应。PIPE也明确不规定厂商内部电路结构。",
+    "example": "相同链路在某一实现中由MAC完成编码，在另一种接口架构中由PHY侧PCS完成。定位错误时先确定Original/SerDes PIPE，再追数据。",
+    "checks": "先确认采用的PIPE版本、接口架构、运行速率和产品版本；再标出数据、时钟、复位、控制四类接口。不能以文件名含PCS就推断其承担所有编码。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "Intel · PIPE 7.1 官方接口规范",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2",
+        "page": 17,
+        "pdfPage": 17,
+        "title": "Introduction：PIPE约定与实现自由度",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。PIPE 7.1仅用于该版本接口规则，不反推旧产品已实现全部新功能。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2.6",
+        "page": 23,
+        "pdfPage": 23,
+        "title": "Low Pin Count Interface and SerDes Architecture",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。PIPE 7.1仅用于该版本接口规则，不反推旧产品已实现全部新功能。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2.1",
+        "page": 20,
+        "pdfPage": 20,
+        "title": "PCIe PHY Layer",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。PIPE 7.1仅用于该版本接口规则，不反推旧产品已实现全部新功能。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。",
+    "details": [
+      {
+        "title": "功能与实现边界速查",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "对象",
+            "主要负责",
+            "不能直接等同于"
+          ],
+          "rows": [
+            [
+              "PCIe MAC/物理逻辑",
+              "训练、链路相关逻辑及按架构分配的协议处理",
+              "仅事务层或仅AXI"
+            ],
+            [
+              "uPCS",
+              "PIPE适配、每lane控制、时钟与复位/功耗协调",
+              "全部编码/全部模拟PHY"
+            ],
+            [
+              "Raw PCS/PMD",
+              "产品内部数字管理、状态机或MCU、校准和寄存器控制",
+              "标准强制规定的固定模块名"
+            ],
+            [
+              "PMA/SerDes",
+              "高速收发、时钟/采样、驱动/AFE及相应数字处理",
+              "一份RTL文件"
+            ],
+            [
+              "通道",
+              "封装/连接器/PCB造成的损耗和噪声",
+              "理想连线"
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 164,
+    "name": "Original PIPE 与 SerDes PIPE",
+    "group": "PHY与SerDes",
+    "intro": "SerDes PIPE把更多协议相关处理移到MAC；它不是换个数据总线名字。",
+    "usage": "拼接MAC与PHY、比较Gen5/Gen6交付、排查同宽总线却不能互通时使用。",
+    "mechanism": "Original PIPE在PHY侧承担相应编码和弹性缓冲；SerDes架构使MAC承担更多协议逻辑，PHY侧更接近并行SerDes数据接口。低引脚数Message Bus属于控制接口选择，不能与数据通路架构混为一谈。",
+    "prerequisites": "PIPE 7.1 §2.6和表2-1按PHY配置能力规定接口组合；SerDes要求Low Pin Count。提供的Gen5 PCS手册还包含Original模式，Gen6 PCS手册只支持SerDes；旧手册能力描述不能替代新PIPE版本约束。",
+    "example": "一个Gen6-capable PHY降速到Gen3，不意味着其内部就可以动态切回Original PIPE。应按配置能力、规范版本和允许的接口组合判定。",
+    "checks": "检查时钟方向、RxClk、valid语义、编码归属及Message Bus；PIPE规范版本号不等于PCIe代际。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "Intel · PIPE 7.1 官方接口规范",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2",
+        "page": 17,
+        "pdfPage": 17,
+        "title": "Introduction：PIPE约定与实现自由度",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。PIPE 7.1仅用于该版本接口规则，不反推旧产品已实现全部新功能。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2.6",
+        "page": 23,
+        "pdfPage": 23,
+        "title": "Low Pin Count Interface and SerDes Architecture",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。PIPE 7.1仅用于该版本接口规则，不反推旧产品已实现全部新功能。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2.6",
+        "page": 24,
+        "pdfPage": 24,
+        "title": "表2-1：接口与架构支持组合",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。PIPE 7.1仅用于该版本接口规则，不反推旧产品已实现全部新功能。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "phy5-pcs-1.46",
+        "document": "Gen5 PCS Databook",
+        "version": "1.46_2",
+        "section": "2.1",
+        "page": 27,
+        "pdfPage": 27,
+        "title": "Gen5 PCS的PIPE架构",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。该手册标注Preliminary Information。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.1",
+        "page": 28,
+        "pdfPage": 28,
+        "title": "Gen6 PCS的PIPE架构",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 165,
+    "name": "uPCS：接口适配、时钟与电源控制",
+    "group": "PHY与SerDes",
+    "intro": "uPCS是交付实现中的数字适配层，不保证总是包含完整协议编码。",
+    "usage": "追踪PIPE数据、每lane时钟、复位及速率/电源状态握手时使用。",
+    "mechanism": "uPCS通常含链路/每lane控制、TX/RX数据适配、时钟选择分频、跨域控制和功耗管理。在已核读的Gen6 SerDes示例中，TX/RX通路包含可配置的重排、宽度/节流适配和流水；部分路径可以旁路，不能把模块存在等同于路径生效。",
+    "prerequisites": "此处描述层的职责，具体启用功能、旁路条件和时序必须以生成配置及对应手册为准。",
+    "example": "PIPE输入数据正常但PMA侧数据错位时，应先检查位序、宽度、valid、旁路和时钟关系，不能直接怀疑模拟眼图。",
+    "checks": "分别画出每个接口的位宽、有效条件和时钟；核对同一link的lane配置一致性。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.3",
+        "page": 30,
+        "pdfPage": 30,
+        "title": "uPCS时钟职责",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.4",
+        "page": 33,
+        "pdfPage": 33,
+        "title": "Lane TX/RX数据通路",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 166,
+    "name": "Raw PCS 与 PMD：模拟控制和数字管理",
+    "group": "PHY与SerDes",
+    "intro": "这些是产品实现分层：校准、寄存器仲裁、状态机或固件，不等于PCIe协议包处理。",
+    "usage": "理解为什么只有PMA硬宏仍不能直接工作，以及为何RTL、固件与内存都参与PHY上电时使用。",
+    "mechanism": "提供的Gen5样本用Raw PCS组织每lane状态机、校准/适应控制、寄存器仲裁与程序存储；Gen6样本的PMD组织数字控制、微控制器、寄存器访问和与PMA的数据/控制接口。两者职责有交集，但不是简单改名，也不能逐文件机械对应。",
+    "prerequisites": "Raw PCS和PMD在不同厂商和产品中的含义可能不同；先依据文档和实际实例关系定位。",
+    "example": "APB能读寄存器并不代表固件已运行；固件未加载或握手未完成，PLL/收发器可能还未进入目标工作状态。",
+    "checks": "看复位、boot、SRAM、仲裁、lane状态和校准完成信息；不要拿通用协议规则替代芯片启动流程。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.3",
+        "page": 164,
+        "pdfPage": 164,
+        "title": "Raw PCS功能及控制",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.3",
+        "page": 165,
+        "pdfPage": 165,
+        "title": "Raw PCS组成",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.2",
+        "page": 35,
+        "pdfPage": 35,
+        "title": "PMD组成",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 167,
+    "name": "PMA、公共时钟CM与每lane TX/RX",
+    "group": "PHY与SerDes",
+    "intro": "PMA把并行数字接口连接到实际差分通道，同时依赖偏置、PLL、终端和校准。",
+    "usage": "阅读硬宏交付、连接lane与公共模块、分析为什么多lane共享时钟资源时使用。",
+    "mechanism": "PMA可包含公共时钟/偏置支持与每lane收发器。公共模块提供参考时钟处理和PLL；TX执行高速发送，RX执行采样恢复。模拟与数字电路可能同时存在于名为PMA的宏中，不能仅用“模拟块”概括全部。",
+    "prerequisites": "共享几个PLL、支持几lane、供电和布局限制属于具体实现，不由PCIe Gen编号唯一决定。",
+    "example": "公共PLL异常可能同时影响多个lane；单lane AFE或接收锁定异常则可能只影响一条lane。先区分共享资源和局部资源。",
+    "checks": "检查公共时钟、偏置/电源、校准以及单lane状态；不要由CDL里的模块名直接推导性能。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.2",
+        "page": 149,
+        "pdfPage": 149,
+        "title": "Gen5 PMA组成",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3",
+        "page": 36,
+        "pdfPage": 36,
+        "title": "Gen6 PMA与Common Module",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 168,
+    "name": "TX通路：并行字、Gearbox、Serializer与驱动",
+    "group": "PHY与SerDes",
+    "intro": "位宽转换、串行化和波形整形是不同步骤，必须同时跟踪数据顺序与时钟。",
+    "usage": "排查发送比特顺序、valid丢字、串行输出异常及位宽/频率配置时使用。",
+    "mechanism": "发送侧把已准备好的并行数据经过适配/缓冲送至高速串行器，再由输出驱动器形成电气波形。Gearbox改变组织和时钟/字宽关系，Serializer将并行内容按约定顺序发出；FFE改变符号间权重以补偿信道。",
+    "prerequisites": "编码、Gray/预编码所在边界需要结合架构与旁路配置确认；不能让MAC和PHY重复处理。",
+    "example": "理想连续32 Gbit/s二进制数据若接口每拍承载32个有效bit，需要1 GHz有效节拍。这只是守恒示例，不是任意PIPE配置的规定频率。",
+    "checks": "核对每拍有效bit、时钟边沿、数据使能、位序、gearbox延迟和TX功耗状态；单位是bit还是PAM4 symbol必须写清。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.4",
+        "page": 33,
+        "pdfPage": 33,
+        "title": "uPCS TX数据适配",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.2",
+        "page": 40,
+        "pdfPage": 40,
+        "title": "TX数字/模拟边界与发送通路",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.12.1",
+        "page": 75,
+        "pdfPage": 75,
+        "title": "TX数据使能",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 169,
+    "name": "RX通路：CDR锁定、RxValid与协议对齐",
+    "group": "PHY与SerDes",
+    "intro": "检测到信号、CDR可用、并行数据有效和LTSSM进入L0不是同一事件。",
+    "usage": "RX有摆幅但链路不训练、valid反复抖动、低功耗唤醒失败时使用。",
+    "mechanism": "接收端经AFE、采样和均衡恢复符号/比特，CDR调整采样时相，再产生并行数据和有效指示。之后仍可能需要块/符号对齐、lane deskew及协议检查。产品中的valid可能由定时器、锁定判据和状态过滤共同产生。",
+    "prerequisites": "RxValid的语义要看对应PIPE架构和产品版本；不能把某个数字信号当成模拟误码率证明。",
+    "example": "PLL锁定但RX无有效数据时，检查输入信号、接收使能、CDR、恢复时钟及对齐，而不是只看PLL lock。",
+    "checks": "按signal present → RX使能 → 时钟/CDR → valid → 协议对齐 → LTSSM逐层定位，丢信号后的恢复流程按手册核对。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.6",
+        "page": 179,
+        "pdfPage": 179,
+        "title": "Gen5 RX与valid条件",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.12.2",
+        "page": 75,
+        "pdfPage": 75,
+        "title": "Gen6 RX数据与CDR有效条件",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 170,
+    "name": "REFCLK、PLL、PCLK与恢复时钟",
+    "group": "PHY与SerDes",
+    "intro": "参考时钟、高速PLL时钟、PIPE并行时钟和RX恢复时钟服务不同接口。",
+    "usage": "追踪clk_rst、切速、时钟选择与分频、跨域约束和停钟问题时使用。",
+    "mechanism": "REFCLK为频率基准和部分控制提供时钟；PLL产生高速源及其分频时钟；PCLK为PIPE侧同步传输服务；RX恢复时钟与对端串流有关。某些配置还需MAC侧时钟源/反馈以及每lane时钟协调。",
+    "prerequisites": "PCLK as PHY Input/Output从PHY视角命名。PIPE 7.1正文对PCIe5及以后不支持PCLK输出模式；旧产品手册描述的可生成模式不应不加限定外推。",
+    "example": "两条同link lane频率相同不代表相位关系满足要求；各自的RX时钟也不能当成一个普通同相时钟。",
+    "checks": "列出频率、来源、启动条件、是否停钟及domain；跨域使用同步器/FIFO/握手，不能只按时钟名字相同就设为同步。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "Intel · PIPE 7.1 官方接口规范",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2",
+        "page": 17,
+        "pdfPage": 17,
+        "title": "PCLK方向及版本限制",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。PIPE 7.1仅用于该版本接口规则，不反推旧产品已实现全部新功能。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.3",
+        "page": 30,
+        "pdfPage": 30,
+        "title": "PIPE输入时钟及RxClk",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.5",
+        "page": 47,
+        "pdfPage": 47,
+        "title": "CM/TX与RX时钟体系",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。",
+    "details": [
+      {
+        "title": "从clk_rst出发的时钟清单",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "时钟/域",
+            "来源或服务对象",
+            "重点检查"
+          ],
+          "rows": [
+            [
+              "REFCLK/参考数字域",
+              "外部/片上参考及其分配",
+              "稳定性、使能、可停钟条件"
+            ],
+            [
+              "PLL与其分频域",
+              "高速发送及并行转换",
+              "lock、切换、分频约束"
+            ],
+            [
+              "PIPE PCLK",
+              "MAC/PHY边界数据与控制",
+              "方向、每lane相位关系、频率/宽度组合"
+            ],
+            [
+              "RX恢复域",
+              "对端串流恢复",
+              "失信号后valid、停钟与恢复"
+            ],
+            [
+              "APB/MCU/管理域",
+              "启动、寄存器和固件",
+              "CDC、复位保留、启动可访问性"
+            ]
+          ]
+        }
+      },
+      {
+        "title": "跨域与复位释放",
+        "paragraphs": [
+          "异步信号进入目标域需要合适的同步策略；数据总线不能简单逐bit同步后假定一致。若RX时钟可能停，管理动作不能依赖该时钟永远活动；事件与应答应按实际协议跨域。",
+          "切换时钟和解除复位之前，确认无毛刺选择、时钟门控时序、派生时钟定义与RDC/CDC约束。复位释放需满足目标域时钟和产品握手条件。"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 171,
+    "name": "接收AFE：终端、CTLE、VGA与ADC",
+    "group": "PHY与SerDes",
+    "intro": "AFE先把衰减和失真的模拟输入变成适合采样的信号，后续数字均衡再继续处理。",
+    "usage": "理解眼图、长短通道、PAM4多电平判决及模拟/数字排障边界时使用。",
+    "mechanism": "终端匹配减小反射；CTLE对频率响应进行整形；VGA调节幅度；ADC型接收机把采样结果交给数字处理。并非所有接收机都用同一种ADC或slicer架构。",
+    "prerequisites": "器件的阻抗、增益、带宽与最佳设置取决于工艺、通道和产品；不能从Gen编号得到通用寄存器值。",
+    "example": "短通道下把增益和高频提升全部拉高可能反而恶化噪声/线性度；不是所有EQ参数越大越好。",
+    "checks": "比较输入信号、增益/饱和、校准、时钟和误码结果；RTL仿真不验证真实模拟裕量。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3",
+        "page": 41,
+        "pdfPage": 41,
+        "title": "RX结构图",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.1",
+        "page": 42,
+        "pdfPage": 42,
+        "title": "AFE组成与作用",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 172,
+    "name": "TX FFE、Preset与Coefficient映射",
+    "group": "PHY与SerDes",
+    "intro": "Preset是预定义组合，coefficient是权重；协议系数不一定等于PHY引脚或DAC编码。",
+    "usage": "分析均衡训练、MAC请求与PMA实际输出是否一致时使用。",
+    "mechanism": "TX FFE通过前游标、主游标和后游标加权补偿ISI。Preset到实际电路控制码可能需要缩放、符号转换和合法性约束。Gen5样本与Gen6样本的系数接口和tap组织不同，不能复用一套映射。",
+    "prerequisites": "系数更新须遵守该版本幅度/系数约束与产品更新时序，不能把手册里的某组数当成通用最佳值。",
+    "example": "软件或训练状态要求同一Preset编号，两种PHY的实际输入码可能不同；应比较定义和映射后的物理权重。",
+    "checks": "沿MAC请求 → PIPE控制 → uPCS映射 → PHY输入/寄存器 → 完成状态追踪，并核对适用速率。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.11",
+        "page": 201,
+        "pdfPage": 201,
+        "title": "TX EQ与系数映射",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.2.4",
+        "page": 41,
+        "pdfPage": 41,
+        "title": "TX FFE结构",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.2",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "TX EQ接口与Preset范围",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 173,
+    "name": "RX FFE、DFE、适应与校准",
+    "group": "PHY与SerDes",
+    "intro": "校准修正电路偏差，适应针对通道和工作条件调整；DFE不能与CTLE或TX FFE混称。",
+    "usage": "区分启动校准失败、均衡未收敛、温漂问题和运行误码时使用。",
+    "mechanism": "RX FFE在线性组合采样值中补偿ISI；DFE利用先前判决对当前输入作反馈补偿，也可能有错误传播。校准处理偏置/失配等内部误差；适应可能持续更新参数，具体算法和收敛条件由实现决定。",
+    "prerequisites": "本轮核对了Gen6 RX模块职责，没有核读全部私有算法或所有tap寄存器。",
+    "example": "冷启动通过而温度变化后误码增加时，应检查持续适应、校准状态和时钟/电源条件，不能仅重新跑一次LTSSM掩盖问题。",
+    "checks": "记录校准完成、适应阶段、失败原因和BER；更改EQ前确认固件是否会覆盖手工设置。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3",
+        "page": 41,
+        "pdfPage": 41,
+        "title": "RX均衡和训练/适应模块",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3",
+        "page": 42,
+        "pdfPage": 42,
+        "title": "RX数字处理职责",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.3",
+        "page": 164,
+        "pdfPage": 164,
+        "title": "Raw PCS校准/适应管理",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 174,
+    "name": "PHY启动与复位：Ready不等于Link Up",
+    "group": "PHY与SerDes",
+    "intro": "上电、固件、校准、PLL/数据有效和协议训练是有依赖关系的阶段。",
+    "usage": "设计clk_rst、处理warm reset、PMA不ready或LTSSM卡住时使用。",
+    "mechanism": "典型启动从供电与参考时钟条件开始，经复位、静态配置、程序/寄存器准备、校准和状态握手，再进入目标收发状态，最后由协议层训练链路。全局PHY复位、PIPE lane reset、PERST#和协议Hot Reset语义不同。",
+    "prerequisites": "异步置位复位可以不依赖工作时钟，但同步释放和握手需要目标域时钟恢复。每种复位保留哪些寄存器和固件状态取决于具体IP。",
+    "example": "数字复位已释放却一直不ready，可能是固件未启动、参考时钟未启用、lane reset还在阻塞状态机或校准等待条件未满足。",
+    "checks": "给每个阶段设置可观察状态与超时，先找最早未完成的依赖，不要用固定延时替代全部握手。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.2",
+        "page": 29,
+        "pdfPage": 29,
+        "title": "全局/每lane复位边界",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 53,
+        "pdfPage": 53,
+        "title": "启动条件与时序",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 54,
+        "pdfPage": 54,
+        "title": "固件、校准和Ready顺序",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.2",
+        "page": 169,
+        "pdfPage": 169,
+        "title": "Gen5启动依赖",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。",
+    "details": [
+      {
+        "title": "启动检查顺序",
+        "paragraphs": [],
+        "table": {
+          "columns": [
+            "阶段",
+            "需要确认",
+            "常见误判"
+          ],
+          "rows": [
+            [
+              "电源/参考",
+              "供电、参考时钟、静态模式有效",
+              "有电源就视为已就绪"
+            ],
+            [
+              "复位/时钟域",
+              "全局/lane/接口复位及管理域条件",
+              "只释放一个reset"
+            ],
+            [
+              "程序与配置",
+              "镜像/内存/补丁/寄存器可用",
+              "APB能读就等于程序运行"
+            ],
+            [
+              "校准/PLL/控制握手",
+              "实际完成与故障状态",
+              "固定等待即可保证完成"
+            ],
+            [
+              "收发有效",
+              "目标状态、RX信号/CDR/valid",
+              "PLL lock就是RX lock"
+            ],
+            [
+              "协议训练",
+              "训练序列、对齐、LTSSM",
+              "PHY Ready就是Link Up"
+            ]
+          ]
+        }
+      },
+      {
+        "title": "产品版本的具体延时另查",
+        "paragraphs": [
+          "上电与warm reset的最小脉宽、SRAM要求、ack极性和复位后需要重载的补丁均属于产品时序，不在这里给出一套“通用固定数值”。使用对应版本本地手册按页定位，先看图和正文中的条件再配置。"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 175,
+    "name": "Rate／Width／Power与请求应答握手",
+    "group": "PHY与SerDes",
+    "intro": "切速改变的不只是rate编码，还可能改变时钟、位宽、使能和电源状态。",
+    "usage": "运行时切速、低功耗进入退出、时钟门控和配置更新不生效时使用。",
+    "mechanism": "控制侧发出目标配置后，应按接口协议保持所需条件并等待完成指示。PCS把PIPE层的速率/功耗操作转换成内部PHY动作；执行期间数据和时钟可能暂停或变为无效。完成后重新确认配置与有效条件，不能只打一拍请求。",
+    "prerequisites": "请求/ack/phystatus的极性、脉冲与电平语义依版本而异；示例中的内部lane ack不是AXI ready，也不能套用别的IP时序。",
+    "example": "看到目标速率寄存器变了，但并行频率未变或CDR尚未恢复，说明配置写入与操作完成没有对齐。",
+    "checks": "同时记录请求、完成、当前rate/width/power、时钟及valid；检查控制域是否会在等待应答时被提前停钟。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.3",
+        "page": 30,
+        "pdfPage": 30,
+        "title": "速率/功耗控制与时钟关系",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 54,
+        "pdfPage": 54,
+        "title": "Ready后状态转换的依赖",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 176,
+    "name": "PHY固件、MCU与ICCM／DCCM",
+    "group": "PHY与SerDes",
+    "intro": "现代PHY可能依赖内部处理器和外部存储，不能只连接RTL端口就假定能启动。",
+    "usage": "集成PHY内存、启动镜像、校准控制和现场更新能力时使用。",
+    "mechanism": "固件可通过内部寄存器访问协助初始化、配置和功耗切换。指令/数据存储、镜像加载接口、CPU运行请求与应答需要由SoC正确连接。主机CPU的软件驱动与PHY MCU固件是不同层。",
+    "prerequisites": "有些PHY使用固件状态机而非通用MCU；容量、ECC、字节写和地址序由具体交付定义，不是PCIe统一配置。",
+    "example": "APB可读且PLL存在仍可能缺少ICCM程序；镜像加载成功也不等于CPU已启动或校准已完成。",
+    "checks": "核对镜像版本与硬件版本、内存宽度/掩码、boot完成及CPU/lane握手；复位后的补丁保留情况需确认。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.3",
+        "page": 165,
+        "pdfPage": 165,
+        "title": "固件与ROM/SRAM路径",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.4",
+        "page": 45,
+        "pdfPage": 45,
+        "title": "MCU与外部内存",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 54,
+        "pdfPage": 54,
+        "title": "镜像加载与CPU运行顺序",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 177,
+    "name": "Gen5 NRZ → Gen6 PAM4：比特、符号与编码归属",
+    "group": "PHY与SerDes",
+    "intro": "64 GT/s的PAM4不能再乘2计算带宽；符号速率、比特率和并行接口宽度需要分别写清。",
+    "usage": "比较两代串行器、时钟、误码机制及Gray/预编码处理位置时使用。",
+    "mechanism": "NRZ每符号承载1 bit，PAM4每符号承载2 bit。Gen6提高每符号信息量的同时收紧噪声裕量，并结合FLIT/FEC/CRC/重放提高可靠性。Gray与预编码解决的目标和一般块编码不同，映射及旁路边界须核对。",
+    "prerequisites": "Gen6-capable PHY仍须考虑较低速率运行，不能把64 GT/s的调制方式推广到其所有工作速率；FLIT模式还应独立判断。",
+    "example": "32 Gbaud PAM4承载64 Gbit/s标称比特流，而不是128 Gbit/s。并行总线承载的是bit、symbol还是处理后的码字，要看接口定义。",
+    "checks": "检查调制模式、编码归属、位序、FEC/重放统计和状态机；PAM4误码不能只用是否进入L0判定。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.2",
+        "page": 40,
+        "pdfPage": 40,
+        "title": "Gen6 TX编码/串行化实现示例",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2",
+        "page": 18,
+        "pdfPage": 18,
+        "title": "图2-1：逻辑/电气及编码边界",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。PIPE 7.1仅用于该版本接口规则，不反推旧产品已实现全部新功能。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 178,
+    "name": "Receiver Detect、Signal Detect与Electrical Idle",
+    "group": "PHY与SerDes",
+    "intro": "对端终端检测、接收信号存在与电气空闲是三种不同观测。",
+    "usage": "Detect不通过、误判断链、唤醒后RX不valid或LOS抖动时使用。",
+    "mechanism": "Receiver Detect用于发现对端接收终端；Signal Detect反映输入信号条件；Electrical Idle描述发送电气状态及相应检测/协议行为。CDR锁定、RX valid与LTSSM还在更后的判断层次。",
+    "prerequisites": "每个检测机制的触发条件、阈值、过滤和功耗状态依接口与产品；不能把LOS取反就当成完整Link Up。",
+    "example": "端口能检测到终端但没有训练序列时，Detect可以通过而Polling失败；有噪声也可能看到signal detect但没有有效数据。",
+    "checks": "按终端 → 波形/idle → CDR/valid → 训练序列分段观察；模型的检测行为是否真实模拟需确认。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "Intel · PIPE 7.1 官方接口规范",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2",
+        "page": 18,
+        "pdfPage": 18,
+        "title": "PIPE物理层职责图",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。PIPE 7.1仅用于该版本接口规则，不反推旧产品已实现全部新功能。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.12.2",
+        "page": 75,
+        "pdfPage": 75,
+        "title": "RX信号存在与数据有效",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.6",
+        "page": 179,
+        "pdfPage": 179,
+        "title": "RX检测和恢复条件",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 179,
+    "name": "PRBS、Loopback、BER与误码定位",
+    "group": "PHY与SerDes",
+    "intro": "测试图样与环回是分段工具；通过一次测试不能证明全部PCIe协议和通道符合性。",
+    "usage": "区分MAC/PCS错误、收发器内部错误和板级通道问题时使用。",
+    "mechanism": "PRBS产生可复现测试序列，接收端按配置检查误码；环回将不同边界连接起来，覆盖范围因near/far、digital/analog而不同。BER统计需说明比特数、时间、误码计数及所测边界。",
+    "prerequisites": "本轮只核读RX/TX功能框图确认测试职责，未核对交付全部PRBS多项式、环回寄存器及仪器流程。",
+    "example": "内部数字环回通过、板外链路失败时，仍需检查未覆盖的模拟前端、封装与通道。",
+    "checks": "先标出环回点和时钟源，再比较计数；PAM4的FEC前后误码统计不能混在同一口径。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.2",
+        "page": 40,
+        "pdfPage": 40,
+        "title": "TX测试图样模块",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3",
+        "page": 41,
+        "pdfPage": 41,
+        "title": "RX PRBS Checker与环回边界",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 180,
+    "name": "信道、眼图、抖动与信号完整性",
+    "group": "PHY与SerDes",
+    "intro": "SerDes性能由TX、封装/板级通道、RX和时钟共同决定。",
+    "usage": "理解为什么RTL功能正常仍不能跑满速，以及均衡与布局/电源需要协同优化时使用。",
+    "mechanism": "插入损耗、反射、串扰、时钟抖动和供电噪声影响采样裕量。均衡只能在一定范围内补偿，不能替代阻抗控制、通道与电源设计。PAM4有多眼图，应按正确调制与测试条件评价。",
+    "prerequisites": "本轮提供概念和分析路径；未执行S参数、IBIS-AMI、晶体管级噪声或真实眼图仿真，不能给出该交付的通道通过结论。",
+    "example": "长通道高频损耗可能需要EQ，短通道过度增益也可能导致性能下降；先看通道条件再选策略。",
+    "checks": "记录速率、通道、参考时钟、温压角、测试点和误码口径，分清仿真眼图、仪器测量和协议合规测试。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.1",
+        "page": 42,
+        "pdfPage": 42,
+        "title": "接收AFE对通道损耗的处理",
+        "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+  },
+  {
+    "id": 181,
+    "name": "CDL网表怎么读：层次、端口与器件模型",
+    "group": "PHY与SerDes",
+    "intro": "CDL主要描述电路连接和子电路，不是可直接当Verilog运行的行为模型。",
+    "usage": "阅读PMA交付、定位模拟层次、准备LVS或电路分析时使用。",
+    "mechanism": "先识别.SUBCKT/.ENDS层次、端口顺序、续行、子电路实例及器件/模型引用。网表的连接描述与器件模型共同决定仿真含义；必须结合工艺模型、激励、供电和分析条件。",
+    "prerequisites": "文件名含fixed不证明已经修复正确；相同子电路数量也不代表等价。本轮只做结构统计和顶层入口定位，没有执行LVS、等价或SPICE性能验证。",
+    "example": "一个子电路有大量晶体管，只说明连接规模；不能据此推出其最高速率、CDR稳定性或眼图。",
+    "checks": "核对端口顺序、电源/地别名、参数/模型来源和宏版本；不要把标准单元、子电路实例行数当作全芯片唯一晶体管数。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [],
+    "referenceStatus": "工程方法条目：已检查本地文件结构；不是PCIe规范的独立功能，暂无精确规范章节。"
+  },
+  {
+    "id": 182,
+    "name": "行为模型、RTL、硬宏与模拟验证的边界",
+    "group": "PHY与SerDes",
+    "intro": "Verilog模型能描述串行行为，但不自动等于真实PMA电路。",
+    "usage": "选择仿真文件、判断某个testbench通过能证明什么时使用。",
+    "mechanism": "软RTL验证数字控制和接口；行为模型抽象收发、锁定和检测；硬宏视图支持物理集成；CDL/器件模型支持电路层分析。测试应按模型覆盖范围解释，不可跨层作保证。",
+    "prerequisites": "同名模块可能有behavior、emulation、gate和物理网表多个视图，filelist、宏和生成配置决定实际采用哪种。",
+    "example": "行为模型PLL在固定延时后lock，并不能证明真实PLL在所有PVT条件下锁定；反过来，模拟收发成功也不证明LTSSM和TLP逻辑正确。",
+    "checks": "记录仿真使用的视图、配置和未建模因素；将数字回归、CDC/RDC/STA、LVS/DRC、SI/AMI和实验室测试分开报告。",
+    "status": "体系条目已整理 · 按来源范围核读",
+    "reviewed": "2026-10-19",
+    "sources": [
+      {
+        "title": "PCI-SIG 官方规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "protocolReferences": [],
+    "referenceStatus": "工程方法条目：已检查本地文件结构；不是PCIe规范的独立功能，暂无精确规范章节。"
   }
 ]

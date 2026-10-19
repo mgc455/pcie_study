@@ -29,6 +29,14 @@ Do not control the user's desktop, native Chrome, mouse or keyboard. Use connect
 
 The scheduled AI task performs research and editing. GitHub Actions builds/checks content; it does not itself research or generate explanations.
 
+## PHY and SerDes track
+
+The user added local Gen5/Gen6 PHY material and wants PHY/SerDes as a first-class part of the knowledge system. Maintain `content/phy.json` and the appended `PHY与SerDes` feature group as well as protocol topics. Use the supplied Gen5/Gen6 materials through private local source metadata; do not publish source directory names or locations. Their source code, CDL, firmware, circuit diagrams and extracted manual text stay local; publish only authored learning explanations and locator metadata.
+
+Cover MAC/PIPE boundaries, Original versus SerDes architecture, uPCS, product-specific Raw PCS/PMD management, PMA/common/TX/RX, PLL/CDR, TX/RX equalization, clock/reset/bring-up, firmware/memory, power/rate handshakes, PRBS/loopback/BER, signal integrity and model/netlist boundaries. Rotate these topics with existing protocol work each day. Do not silently equate product module names with standard-required partitions. Mark preliminary manuals and product versions. Do not transplant old timing constraints into newer products or assume PIPE version equals PCIe generation.
+
+CDL inspection is read-only unless explicitly requested otherwise. Structural counts are not transistor counts, functional proof, LVS or analog signoff. Do not execute vendor scripts or modify the supplied `fixed` netlist based on its name. Keep detailed source/module inventories, implementation-specific signals, model limitations and evidence under `.local/`. Public content must not reproduce private RTL, netlist fragments, circuit schematics or vendor register dumps.
+
 ## Scope and generation research
 
 The site is a searchable PCIe reference and learning aid covering Gen1 through Gen7. Maintain `content/generations.json` for the generation comparison and learning path, alongside per-feature explanations. Expand the catalogue when a useful topic is missing, preserving all existing IDs. The initial 162 items are a starting index, not a claim of completeness.
