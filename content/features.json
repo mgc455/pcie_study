@@ -86,7 +86,7 @@
     "checks": "分别读取双方的 Link Capabilities/Supported Link Speeds、目标速率及 Link Status 中的当前速率和宽度，并检查训练与均衡失败原因。不能仅看设备宣传的 Gen7 就认为当前工作在 128 GT/s；同样不能仅凭最高代际断言支持 ACS、ATS 或 SR-IOV。带宽按单向/双向、lane 数、编码和协议开销分别计算。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 3,
-    "status": "已整理 · 待持续深化",
+    "status": "选定逐版规则/字段已展开 · 持续核读",
     "sources": [
       {
         "title": "PCI-SIG Gen1～3 速率与编码 FAQ",
@@ -97,7 +97,7 @@
         "url": "https://pcisig.com/faq?field_category_value%5B%5D=pci_express_7.0"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-20",
     "protocolReferences": [
       {
         "section": "4",
@@ -109,9 +109,580 @@
         "pdfPage": 307,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.5.3.19",
+        "page": 765,
+        "pdfPage": 765,
+        "title": "Target Link Speed及自主降速边界",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.5.3.19",
+        "page": 764,
+        "pdfPage": 764,
+        "title": "早期硬件与速率向量",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.5.3.19",
+        "page": 766,
+        "pdfPage": 766,
+        "title": "Selectable De-emphasis与调试字段",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.4.2",
+        "page": 217,
+        "pdfPage": 217,
+        "title": "Recovery.Speed成功/失败等待",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.4.2",
+        "page": 218,
+        "pdfPage": 218,
+        "title": "协商/回退与Detect",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.4.3",
+        "page": 219,
+        "pdfPage": 219,
+        "title": "RcvrCfg切速条件",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.4.3",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "RcvrCfg不切速/deskew",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.6.4.3",
+        "page": 288,
+        "pdfPage": 288,
+        "title": "Gen3切速与EIOS",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.4.3",
+        "page": 336,
+        "pdfPage": 336,
+        "title": "Gen4切速与EIOSQ",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.3",
+        "page": 357,
+        "pdfPage": 357,
+        "title": "切速等待及共同速率",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.3",
+        "page": 358,
+        "pdfPage": 358,
+        "title": "回退/48ms/状态日志",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "page": 502,
+        "pdfPage": 502,
+        "title": "6.0切速等待",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "page": 503,
+        "pdfPage": 503,
+        "title": "6.0回退与48ms",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 589,
+        "pdfPage": 589,
+        "title": "7.0切速等待入口",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 590,
+        "pdfPage": 590,
+        "title": "7.0 1b/1b回退和条件超时",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 591,
+        "pdfPage": 591,
+        "title": "7.0增强编码96ms条件",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.5.3.18",
+        "page": 761,
+        "pdfPage": 761,
+        "title": "Supported Vector原始寄存器位置",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.5.3.18",
+        "page": 762,
+        "pdfPage": 762,
+        "title": "Supported Vector字段内速率映射",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.5.3.20",
+        "page": 768,
+        "pdfPage": 768,
+        "title": "8GT/s EQ/5GT/s de-emphasis快照",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.5.3.20",
+        "page": 769,
+        "pdfPage": 769,
+        "title": "8GT/s Phase成功与请求属性",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.5",
+        "page": 312,
+        "pdfPage": 312,
+        "title": "LTSSM默认超时容差",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "Base 6.0 章节为训练背景入口；Gen7 概览已核对官方 FAQ，7.0 正文训练规则与字段仍待核读。"
+    "referenceStatus": "逐块绑定版本、正文与PDF页。Base5三阶段/三抽头细则不直接套用64/128GT/s；不标整章完成。",
+    "details": [
+      {
+        "id": "speed-supported-target-current",
+        "title": "支持、目标、当前速率是三件事",
+        "paragraphs": [
+          "Supported描述能力集合，Target Link Speed是配置上限，Current Link Speed是完成切速后应反映的实际运行值。写入Target不能直接证明已升速。",
+          "排查时结合两端能力、角色、TS协商和Recovery历史。看到设备支持Gen5而当前Gen1，并不能直接定位为均衡失败。"
+        ],
+        "referenceIndices": [
+          1,
+          11
+        ]
+      },
+      {
+        "id": "speed-vector-versus-max",
+        "title": "优先读Supported Link Speeds Vector，不按Max推断连续集合",
+        "paragraphs": [
+          "Base5建议软件优先使用速率向量，避免未来存在不要求支持全部低速率的硬件时误判。向量字段与寄存器原始bit位置也要区分。",
+          "对早于Base3且能力2不存在/向量为0的旧组件，规范给出读旧Max字段识别2.5/5GT/s的兼容办法。向量0并不总是“完全不支持PCIe”。",
+          "Base5寄存器原始位置是C+2Ch DWORD[7:1]；取出后再以字段bit0～6解释。查询器输入字段值，不直接输入整个DWORD。"
+        ],
+        "referenceIndices": [
+          2,
+          17,
+          18
+        ]
+      },
+      {
+        "id": "speed-target-index-table",
+        "title": "Target Link Speed编码指向向量位置，不是直接填GT/s",
+        "paragraphs": [
+          "Base5定义Target的1～7分别指向Supported Vector字段bit0～6；这不等于Base5已经定义了未来全部位置的物理速率。写不支持的目标结果未定义。",
+          "不能把32直接写入四位Target字段；也不能把编码5解释成5GT/s。当前版本的可用速率还需按其向量定义检查。"
+        ],
+        "referenceIndices": [
+          1,
+          17,
+          18
+        ],
+        "table": {
+          "columns": [
+            "Target编码",
+            "向量字段内位置",
+            "Base5常用速率映射"
+          ],
+          "rows": [
+            [
+              "1",
+              "bit0",
+              "2.5GT/s"
+            ],
+            [
+              "2",
+              "bit1",
+              "5GT/s"
+            ],
+            [
+              "3",
+              "bit2",
+              "8GT/s"
+            ],
+            [
+              "4",
+              "bit3",
+              "16GT/s"
+            ],
+            [
+              "5",
+              "bit4",
+              "32GT/s"
+            ],
+            [
+              "6 / 7",
+              "bit5 / bit6",
+              "本轮Base5不赋予后续代际速率"
+            ],
+            [
+              "其他",
+              "Reserved或特定低速硬连例外",
+              "不得当任意新速率"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "speed-target-role-multifunction",
+        "title": "Target主要限制DSP运行速率；USP和Function0有例外",
+        "paragraphs": [
+          "Base5对DSP的Target是运行速率上限；USP在Enter Compliance清零时允许该字段对运行速率无效果。",
+          "多Function USP由Function0的字段控制组件，其余Function为RsvdP；仅2.5GT/s组件允许硬连0。软件不能向任意VF/Function写同名字段就认为控制了物理Link。"
+        ],
+        "referenceIndices": [
+          1
+        ]
+      },
+      {
+        "id": "speed-autonomous-disable-exceptions",
+        "title": "Hardware Autonomous Speed Disable仍允许可靠性降速与初始升速",
+        "paragraphs": [
+          "Control2[5]限制硬件基于设备自身原因改变速率，但不阻止为纠正不可靠链路而降低速率，也不阻止初始切到双方最高公共速率。",
+          "它不是“永远锁死频率”。排查降速要分别查软件配置、初始训练和可靠性恢复；不能因该位为1就认定发生了违例。"
+        ],
+        "referenceIndices": [
+          1
+        ]
+      },
+      {
+        "id": "speed-recovery-sequence",
+        "title": "Recovery.Speed先等RX进入Electrical Idle，再改频率",
+        "paragraphs": [
+          "所引Base2～7均要求先进入TX Electrical Idle、确认RX进入，再按成功/失败协商等待后切换。不能从收到升速请求立即改PLL。",
+          "退出Speed后回RcvrLock重新取得接收锁定，后面仍有RcvrCfg/Idle；Speed状态本身不等于业务已恢复。"
+        ],
+        "referenceIndices": [
+          4,
+          8,
+          9,
+          10,
+          12,
+          14
+        ]
+      },
+      {
+        "id": "speed-idle-wait-matrix",
+        "title": "成功协商至少800ns，失败至少6μs：起算点在RX已Idle之后",
+        "paragraphs": [
+          "这些是RX Lanes进入Electrical Idle之后的附加驻留要求，另有不超过额外1ms的上界描述。不是从整个Recovery入口统一计时。",
+          "Base2～7所引Speed正文保留该等待结构；实际RX Idle检测/推断窗口按各版专门表，不能把这个表当完整Idle判定器。"
+        ],
+        "referenceIndices": [
+          4,
+          8,
+          9,
+          10,
+          12,
+          14,
+          15
+        ],
+        "table": {
+          "columns": [
+            "协商结果",
+            "RX已Idle后最短附加等待",
+            "另需核"
+          ],
+          "rows": [
+            [
+              "successful=1",
+              "800ns",
+              "RX Idle判定、切速及锁定"
+            ],
+            [
+              "successful=0",
+              "6μs",
+              "回退目标、检测窗口"
+            ],
+            [
+              "二者",
+              "附加驻留不超过1ms",
+              "不是软件驱动调用总超时"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "speed-eios-evolution",
+        "title": "切速前EIOS规则要按编码与版本查",
+        "paragraphs": [
+          "Base3对2.5/8GT/s写一个EIOS、5GT/s写连续两个；Base4及后续所引正文改以EIOSQ描述入口。Base2文字也有其当前速率条件。",
+          "EIOSQ如何展开取决于对应编码定义，本轮不把一个缩写统一换成固定数量OS。也不把旧5GT/s规则套到64/128GT/s。"
+        ],
+        "referenceIndices": [
+          5,
+          8,
+          9,
+          10,
+          12,
+          15
+        ]
+      },
+      {
+        "id": "speed-highest-advertised-common",
+        "title": "成功协商取双方本次通告的公共最高速率",
+        "paragraphs": [
+          "它不是无视Target和均衡流程、直接取两个硬件Max的较小值。为指定速率做均衡时，DSP可能按规则暂不通告更高速率。",
+          "所有configured lanes随此次切速更新；不能把各lane各自跑不同协议速率当作正常单Link工作。"
+        ],
+        "referenceIndices": [
+          5,
+          10
+        ]
+      },
+      {
+        "id": "speed-same-rate-recovery",
+        "title": "进入Recovery.Speed也可能不改变速率",
+        "paragraphs": [
+          "Base3～7明确：若已处于双方支持的最高公共速率，仍可能执行Speed，但不改速率。",
+          "因此波形见Speed却没有变MHz不必然是硬件失败。应先看协商、当前速率及变更历史，再判断是否应当发生频率变化。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          10,
+          12,
+          15
+        ]
+      },
+      {
+        "id": "speed-second-entry-revert",
+        "title": "一次Recovery内再次进入Speed，可能回到原入口速率",
+        "paragraphs": [
+          "Base2/5/6/7所引规则把changed_speed_recovery作为切速历史：第一次协商成功改速后若再次进入，应按对应条件回到进入Recovery时速率并清历史变量。",
+          "这与无成功切速历史时的默认低速回退不同。不能仅凭当前速率和successful位重新推算原始速率；必须保留入口上下文。"
+        ],
+        "referenceIndices": [
+          5,
+          11,
+          13,
+          15
+        ]
+      },
+      {
+        "id": "speed-base6-base7-fallback",
+        "title": "Base7新增1b/1b默认回退32GT/s分支，不能套用Base6",
+        "paragraphs": [
+          "在前面的成功协商与二次回退分支均不满足时，Base6所引正文默认2.5GT/s；Base7先检查最近编码是否1b/1b，是则回32GT/s，否则2.5GT/s。",
+          "这是对应正式版本的明确分支差异，不能简化为“Gen7任何失败都降到Gen5”，也不证明首次引入在哪个ECN。"
+        ],
+        "referenceIndices": [
+          13,
+          15
+        ]
+      },
+      {
+        "id": "speed-detect-timeout-version-table",
+        "title": "Speed→Detect：Base6的48ms与Base7条件式96ms",
+        "paragraphs": [
+          "Base7区分进入Speed的速率、进入Recovery的速率和TS_Enhanced_Flit_Encode，不能随便替换其中一个条件。其正文建议64GT/s旧编码分支采用96ms，以避免与较长EQ等待冲突。",
+          "下表只归纳所引分支；未覆盖组合不自动填一个默认超时。标准也提示正常条件下不应到此异常出口。",
+          "表中是各版条款的名义值；Base5还受§4.2.5默认−0/+50%超时容差约束，48ms并非固定精确的最晚时刻。其他版本默认容差需另按本版总则核，不在此无依据外推。"
+        ],
+        "referenceIndices": [
+          11,
+          13,
+          15,
+          16,
+          21
+        ],
+        "table": {
+          "columns": [
+            "版本/条件",
+            "Detect超时",
+            "边界"
+          ],
+          "rows": [
+            [
+              "Base5 / Base6",
+              "48ms",
+              "对应所引Speed正文"
+            ],
+            [
+              "Base7：进入Speed<64GT/s",
+              "48ms",
+              "注意起始速率条件"
+            ],
+            [
+              "Base7：进入Speed=64且Enhanced=0",
+              "96或48ms",
+              "强烈建议96ms"
+            ],
+            [
+              "Base7：进入Recovery≥64且Enhanced=1",
+              "96ms",
+              "条件写的是Recovery入口速率"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "speed-rcvrcfg-gen2-counts",
+        "title": "Gen2 RcvrCfg切速：接收8个TS2，还要满足发送32个的条件",
+        "paragraphs": [
+          "Base2的Speed出口要求在任意configured lane收到8个连续、速率标识一致且speed_change=1的TS2，同时满足双方速率条件。",
+          "收到第一个请求TS2后还需发送至少32个带speed_change=1的TS2，中间无EIEOS打断。不能只计8个接收事件就马上切速。"
+        ],
+        "referenceIndices": [
+          6
+        ]
+      },
+      {
+        "id": "speed-rcvrcfg-no-change-deskew",
+        "title": "Gen2不切速出口：全lane匹配、16个发送TS2及deskew",
+        "paragraphs": [
+          "Base2到Recovery.Idle的正常分支还检查所有configured lanes的连续TS2、Link/Lane号码及speed_change/能力子条件，并在接收TS2后完成16个未被EIEOS打断的发送。",
+          "离开RcvrCfg前必须完成lane deskew；N_FTS变化影响后续L0s。这里是Gen2逐条归纳，不称新版本完整RcvrCfg也完全相同。"
+        ],
+        "referenceIndices": [
+          7
+        ]
+      },
+      {
+        "id": "speed-deemphasis-only-five",
+        "title": "Selectable De-emphasis只在5GT/s适用，不是Gen3+Preset开关",
+        "paragraphs": [
+          "Base5 Control2[6]对应1=-3.5dB、0=-6dB，只在5GT/s适用，且端口角色有限制；Status2[0]在其他速率下无定义。",
+          "进入Recovery.Speed时对5GT/s full-swing选用相应de-emphasis；不能把这个一位字段当成P0～P10或Gen6 Q编号。"
+        ],
+        "referenceIndices": [
+          3,
+          10,
+          19
+        ]
+      },
+      {
+        "id": "speed-status-history-not-command",
+        "title": "日志位记录变更原因，不能当控制命令回写",
+        "paragraphs": [
+          "Base5 Speed出口清directed变量、更新Current Link Speed，并按自主原因及接收的Autonomous Change上下文选择带宽状态记录。",
+          "读到某个日志位不表示现在仍在切速；速率配置、当前状态与历史事件分开采集，避免把旧状态套到下一次训练。"
+        ],
+        "referenceIndices": [
+          11
+        ]
+      },
+      {
+        "id": "speed-register-query",
+        "title": "查询：Base5速率目标与8GT/s均衡状态快照",
+        "paragraphs": [
+          "输入Supported Vector字段值、Control2/Status2及当前速率/角色，解释目标是否在已定义集合、目标作用域和8GT/s均衡成功判据。",
+          "只解析选定字段，不支持用Base5解释64/128GT/s能力，不访问硬件、不执行retrain，不根据Complete单独宣告成功。"
+        ],
+        "referenceIndices": [
+          1,
+          3,
+          17,
+          18,
+          19,
+          20
+        ]
+      }
+    ]
   },
   {
     "name": "LTSSM与Link Training",
@@ -2623,14 +3194,14 @@
     "checks": "记录均衡阶段、对端和retimer状态；随意强制Preset可能掩盖根因，需按PHY指导验证。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 9,
-    "status": "已整理 · 待持续深化",
+    "status": "选定逐版规则/字段已展开 · 持续核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-20",
     "protocolReferences": [
       {
         "section": "4.2.4",
@@ -2807,9 +3378,295 @@
         "pdfPage": 219,
         "verification": "核读所列正文页；中文规则为重新组织的学习说明，不复制规范正文。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.3",
+        "page": 218,
+        "pdfPage": 218,
+        "title": "8GT/s首次均衡",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.3",
+        "page": 221,
+        "pdfPage": 221,
+        "title": "Phase角色",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.3",
+        "page": 222,
+        "pdfPage": 222,
+        "title": "请求接受拒绝",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.3",
+        "page": 254,
+        "pdfPage": 254,
+        "title": "8到16GT/s先决条件",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.3",
+        "page": 255,
+        "pdfPage": 255,
+        "title": "软件发起与事务保护",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.3",
+        "page": 256,
+        "pdfPage": 256,
+        "title": "Quiesce/重做请求",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3",
+        "page": 275,
+        "pdfPage": 275,
+        "title": "两种bypass机制",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3",
+        "page": 276,
+        "pdfPage": 276,
+        "title": "自动均衡和速率通告",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3",
+        "page": 277,
+        "pdfPage": 277,
+        "title": "软件发起与成功判据",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3",
+        "page": 278,
+        "pdfPage": 278,
+        "title": "请求及Quiesce",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.2",
+        "page": 346,
+        "pdfPage": 346,
+        "title": "入口及Loopback区别",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.2.1.1",
+        "page": 348,
+        "pdfPage": 348,
+        "title": "DSP Phase1转移",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.2.1.2",
+        "page": 349,
+        "pdfPage": 349,
+        "title": "DSP Phase2响应",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.2.1.3",
+        "page": 350,
+        "pdfPage": 350,
+        "title": "DSP Phase3评估",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.2.1.3",
+        "page": 351,
+        "pdfPage": 351,
+        "title": "DSP Phase3出口",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.2.2.1",
+        "page": 352,
+        "pdfPage": 352,
+        "title": "USP Phase0初始化",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.2.2.1",
+        "page": 353,
+        "pdfPage": 353,
+        "title": "USP Phase0完成/脚注",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.2.2.2",
+        "page": 354,
+        "pdfPage": 354,
+        "title": "USP Phase1出口",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.2.2.3",
+        "page": 355,
+        "pdfPage": 355,
+        "title": "USP Phase2评估完成",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.2.2.4",
+        "page": 356,
+        "pdfPage": 356,
+        "title": "USP Phase3响应",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.4.2.2.4",
+        "page": 357,
+        "pdfPage": 357,
+        "title": "USP Phase3超时",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.5.3.20",
+        "page": 768,
+        "pdfPage": 768,
+        "title": "8GT/s状态位",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.5.3.20",
+        "page": 769,
+        "pdfPage": 769,
+        "title": "Phase状态与RW1CS请求",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.2.2.4",
+        "page": 502,
+        "pdfPage": 502,
+        "title": "64GT/s USP Phase3超时",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.2.2.4",
+        "page": 589,
+        "pdfPage": 589,
+        "title": "128GT/s USP Phase3超时",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.5",
+        "page": 312,
+        "pdfPage": 312,
+        "title": "LTSSM默认超时容差",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
+    "referenceStatus": "逐块绑定版本、正文与PDF页。Base5三阶段/三抽头细则不直接套用64/128GT/s；不标整章完成。",
     "details": [
       {
         "title": "均衡阶段职责：到底在调整谁的TX",
@@ -3031,6 +3888,453 @@
           15
         ],
         "id": "block-4"
+      },
+      {
+        "id": "eq-generation-flow-table",
+        "title": "Gen3、Gen4、Gen5：首次均衡与可选跳过机制逐版看",
+        "paragraphs": [
+          "Base3要求首次到8GT/s执行EQ；Base4逐级扩展到16GT/s，并以8GT/s成功作为继续升速的先决条件。",
+          "Base5增加所引可选bypass/no-EQ条件，不能反过来把这些条件假定为Base3/4已有通用例外。Gen6/7另有TS0与更长计时，原有详情继续保留。"
+        ],
+        "referenceIndices": [
+          16,
+          19,
+          22
+        ],
+        "table": {
+          "columns": [
+            "版本",
+            "已核关键边界"
+          ],
+          "rows": [
+            [
+              "3.0",
+              "8GT/s首次均衡，保存TX设置"
+            ],
+            [
+              "4.0",
+              "8GT/s成功后再到16GT/s"
+            ],
+            [
+              "5.0",
+              "普通逐级；满足所有组件协商时可选bypass或no-EQ"
+            ],
+            [
+              "6.0/7.0",
+              "本轮只补所引USP Phase3与Speed差异，其余沿既有条目继续核"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "eq-bypass-versus-no-eq",
+        "title": "跳到最高速率做均衡，与完全不做均衡不同",
+        "paragraphs": [
+          "Base5 bypass-to-highest跳过中间8/16GT/s均衡，却仍在双方最高公共32GT/s或更高速率做EQ；No Equalization Needed允许在规定可靠性条件下省略整个过程。",
+          "两者都需所有相关组件满足协商与能力条件，包含适用Retimer。不能因为“支持Gen5”就自行跳过训练。"
+        ],
+        "referenceIndices": [
+          22
+        ]
+      },
+      {
+        "id": "eq-skipped-rate-not-operational",
+        "title": "跳过中间速率EQ后，不应在那些速率停留运行",
+        "paragraphs": [
+          "Base5例子可从低速直接对32GT/s做EQ，但未经均衡的8/16GT/s不是随时可用的运行档。",
+          "最高速率失败后应撤销相应通告并回低速，按普通路径补做低速率EQ。不能把失败后的降速当作已自动获得中间速率设置。"
+        ],
+        "referenceIndices": [
+          22
+        ]
+      },
+      {
+        "id": "eq-bypass-advertisement-consistency",
+        "title": "No-EQ与bypass混合协商及Modified TS的一致性",
+        "paragraphs": [
+          "Base5说一端No-EQ、另一端仅bypass时可按bypass运行；Modified TS设置No-EQ时还须设置bypass支持，反向组合可能未定义。",
+          "同页No-EQ禁止通告条件的Disable字段名称与附近说明存在需结合寄存器核验的措辞。本轮不据该句生成自动写寄存器脚本。"
+        ],
+        "referenceIndices": [
+          22
+        ]
+      },
+      {
+        "id": "eq-autonomous-dllp-block",
+        "title": "自动均衡期间DLLP门控与应用可用性不同",
+        "paragraphs": [
+          "在需要执行的自动EQ完成前不得发送DLLP；USP还须等收到DSP的DLLP才开始发送。即便曾短暂到L0，也不等于数据链路已完成初始化。",
+          "自动EQ只覆盖部分目标速率时，其余预期运行速率仍需软件机制完成。门控与恢复的具体原因要结合所选EQ集合。"
+        ],
+        "referenceIndices": [
+          23,
+          24
+        ]
+      },
+      {
+        "id": "eq-software-start-sequence",
+        "title": "软件发起：Perform EQ、Target Speed、Retrain与事务保护",
+        "paragraphs": [
+          "Base5给出先设置Perform Equalization、再选Target、再由DSP发起Retrain的流程，并要求不会对在途事务产生超时等副作用。",
+          "这不是可对任意在线设备直接照抄的三次写操作；还需完整功能宽度、逐速率成功前提或合法bypass，以及平台事务协调。"
+        ],
+        "referenceIndices": [
+          24,
+          20
+        ]
+      },
+      {
+        "id": "eq-redo-quiesce-timing",
+        "title": "重做请求：8个TS2、1ms响应窗口与Quiesce边界",
+        "paragraphs": [
+          "Base5 USP通过RcvrCfg连续8个请求TS2表达所需速率；DSP须在下次回L0后的1ms内启动相应EQ，或置相应请求状态位。",
+          "Quiesce Guarantee用于帮助判断无副作用窗口，不等于暂停所有主机事务的通用命令。DSP请求USP协助的回应还允许无固定时间上限，不能把全部往返统一限制1ms。"
+        ],
+        "referenceIndices": [
+          25,
+          21
+        ]
+      },
+      {
+        "id": "eq-role-adjustment-map",
+        "title": "Phase2由USP评估DSP TX，Phase3反过来",
+        "paragraphs": [
+          "Phase2的请求者/接收评估者是USP，被调的是DSP TX；Phase3的请求者/评估者是DSP，被调的是USP TX。各自还可调本地RX。",
+          "端口名称由拓扑角色决定。不要把“Downstream Lanes”理解成固定某个芯片内部状态，也不要只凭TX/RX命名推断请求方向。"
+        ],
+        "referenceIndices": [
+          17,
+          28,
+          29,
+          34,
+          35
+        ]
+      },
+      {
+        "id": "eq-base5-entry-reset-status",
+        "title": "进入EQ会重置本速率状态；done变量不等于成功",
+        "paragraphs": [
+          "Base5每个方向进入EQ会清相应速率的Complete/Phase成功/请求位，并设置内部equalization_done变量等状态。",
+          "不同速率使用不同状态寄存器。内部done变量含义和软件Complete位不同，不能直接映射成“完成且成功”。"
+        ],
+        "referenceIndices": [
+          31,
+          27
+        ]
+      },
+      {
+        "id": "eq-dsp-phase-one",
+        "title": "DSP Phase1：两连续EC01，选择细调或直接退出",
+        "paragraphs": [
+          "正常8/16/32GT/s Link EQ中，DSP发送EC01。所有configured lanes收到两连续EC01后，选择进入Phase2；若不需要Phase2/3且非Loopback，可直接到RcvrLock并按规则置各成功位。",
+          "允许为稳定RX等待至多500ns；识别有效OS还涉及所引2ms bit-lock要求。未满足转移时24ms名义超时（默认+0～12ms容差）走Speed并记录完成，不代表成功。"
+        ],
+        "referenceIndices": [
+          27,
+          41
+        ]
+      },
+      {
+        "id": "eq-dsp-phase-two",
+        "title": "DSP Phase2：响应USP请求，两连续EC11后进入Phase3",
+        "paragraphs": [
+          "发送EC10，按lane接受合法请求或反映拒绝。所有configured lanes收到两连续EC11后进入Phase3。",
+          "普通Link未完成则32ms、容差+0～4ms后到Speed。不要把请求评估者的24ms计时套到这一侧的响应等待。"
+        ],
+        "referenceIndices": [
+          28
+        ]
+      },
+      {
+        "id": "eq-dsp-phase-three",
+        "title": "DSP Phase3：评估USP TX，完成后回RcvrLock",
+        "paragraphs": [
+          "发送EC11并逐lane评估请求。所有configured lanes达到合适设置，且16/32GT/s满足Retimer Equalization Extend的两连续清零条件时可退出；8GT/s按该正文不要求此附加条件。",
+          "普通Link超时为24ms、容差+0～2ms；超时走Speed且可置Complete。正常退出置Phase3 Successful及Complete，二者要分开看。"
+        ],
+        "referenceIndices": [
+          29,
+          30
+        ]
+      },
+      {
+        "id": "eq-usp-phase-zero",
+        "title": "USP Phase0：应用已交换preset，两连续EC01后进Phase1",
+        "paragraphs": [
+          "按最近的速率切换使用EQ TS2或128b/130b EQ TS2所给preset，发送EC00。所有configured lanes收到两连续EC01后进入Phase1并保存需要的FS/LF。",
+          "允许至多500ns RX稳定等待；普通Link未完成则12ms名义超时（默认+0～6ms容差）到Speed。Phase0不是必须先把全链路重新降回2.5GT/s的命令。"
+        ],
+        "referenceIndices": [
+          31,
+          32,
+          41
+        ]
+      },
+      {
+        "id": "eq-usp-phase-one",
+        "title": "USP Phase1有两个正常出口：两EC10或八EC00",
+        "paragraphs": [
+          "发送EC01。所有configured lanes收到两连续EC10时进入Phase2；收到八连续EC00且不是Loopback时可回RcvrLock，对应对端跳过细调的流程。",
+          "这里不是两个分支都只数2个TS。未满足正常出口时12ms名义超时（默认+0～6ms容差）走Speed，并按规则置Complete。"
+        ],
+        "referenceIndices": [
+          33,
+          32,
+          41
+        ]
+      },
+      {
+        "id": "eq-usp-phase-two",
+        "title": "USP Phase2：评估DSP TX，最优设置及Retimer条件后进Phase3",
+        "paragraphs": [
+          "USP发送EC10，逐lane发请求并评估其接收效果。普通Link所有lane达到合适设置，且适用16/32GT/s的Extend清零条件满足后进Phase3。",
+          "24ms、容差+0～2ms后仍未完成则走Speed。TX请求被接受只是候选，仍需RX评估，不能立刻认为最终设置已选定。"
+        ],
+        "referenceIndices": [
+          34,
+          35
+        ]
+      },
+      {
+        "id": "eq-usp-phase-three",
+        "title": "USP Phase3：响应DSP请求，两连续EC00后退出",
+        "paragraphs": [
+          "USP发送EC11，按合法请求更新自身TX。所有configured lanes收到两连续EC00后回RcvrLock并置相应Phase3成功及Complete。",
+          "Base5普通Link超时32ms、容差+0～4ms；Base6的64GT/s、Base7的64GT/s及以上在所引分支改64ms、容差+0～4ms，不能沿用旧32ms。"
+        ],
+        "referenceIndices": [
+          35,
+          36,
+          39,
+          40
+        ]
+      },
+      {
+        "id": "eq-phase-timeout-role-table",
+        "title": "Base5普通Link的角色/阶段计时总表",
+        "paragraphs": [
+          "此表限定Base5、8/16/32GT/s、非Loopback路径。不是所有Gen都固定相同计时，也不包含TS0或所有中间修订。",
+          "成功转移满足时无需等到表中超时；表里的数是失败出口计时。",
+          "Base5 §4.2.5规定LTSSM超时默认−0/+50%，明确单列容差的条款优先。故DSP Phase1的24ms范围为24～36ms，USP Phase0/1的12ms范围为12～18ms；其余按表中明确容差。"
+        ],
+        "referenceIndices": [
+          27,
+          28,
+          30,
+          32,
+          33,
+          34,
+          36,
+          41
+        ],
+        "table": {
+          "columns": [
+            "角色",
+            "阶段",
+            "发送EC",
+            "主要接收/评估条件",
+            "失败计时"
+          ],
+          "rows": [
+            [
+              "DSP",
+              "1",
+              "01",
+              "全lane两EC01；可选择细调",
+              "24ms，默认+0～12ms"
+            ],
+            [
+              "DSP",
+              "2",
+              "10",
+              "全lane两EC11",
+              "32ms，+0～4ms"
+            ],
+            [
+              "DSP",
+              "3",
+              "11",
+              "全lane最优，适用时Extend清零",
+              "24ms，+0～2ms"
+            ],
+            [
+              "USP",
+              "0",
+              "00",
+              "全lane两EC01",
+              "12ms，默认+0～6ms"
+            ],
+            [
+              "USP",
+              "1",
+              "01",
+              "两EC10→P2；八EC00→RcvrLock",
+              "12ms，默认+0～6ms"
+            ],
+            [
+              "USP",
+              "2",
+              "10",
+              "全lane最优，适用时Extend清零",
+              "24ms，+0～2ms"
+            ],
+            [
+              "USP",
+              "3",
+              "11",
+              "全lane两EC00",
+              "32ms，+0～4ms"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "eq-request-stable-minimum",
+        "title": "每个评估请求至少保持1μs，或直到评估结束，取更晚者",
+        "paragraphs": [
+          "Base5评估方持续发送同一preset/coeff请求，保持时间是两项取更晚，而非收到一次回应就可立刻换设置。",
+          "总请求评估通常须小于2ms；最终优化允许最多两次延长，但仍受该Phase的24ms总超时约束。"
+        ],
+        "referenceIndices": [
+          29,
+          30,
+          34
+        ]
+      },
+      {
+        "id": "eq-response-update-window",
+        "title": "响应方500ns内落实新TX；短暂非法电压也有独立限制",
+        "paragraphs": [
+          "两连续匹配EC的有效新请求触发处理，接受时从第二个TS1结尾到实际TX引脚生效不超过500ns；切换造成的非法电平/参数不得超过1ns。",
+          "500ns不是软件APB命令完成时间，也不是请求方完成整次测量的预算。需要在端口引脚和具体时钟域定义处验证。"
+        ],
+        "referenceIndices": [
+          28,
+          35
+        ]
+      },
+      {
+        "id": "eq-evaluate-after-roundtrip",
+        "title": "评估前等待500ns加往返/逻辑延迟，再核Block Alignment",
+        "paragraphs": [
+          "评估方不能刚改变请求就测旧信号。所引Base5要求等响应生效及往返逻辑延迟，再取得Block Alignment后评估。",
+          "过渡中比特流可能非法，可在等待期忽略；随后还存在实现相关的对齐等待及建议分支。工具不把这些时长合成一个通用固定微秒数。"
+        ],
+        "referenceIndices": [
+          29,
+          33
+        ]
+      },
+      {
+        "id": "eq-request-accept-reject",
+        "title": "接受/拒绝都要反映请求值；拒绝时实际TX不变",
+        "paragraphs": [
+          "收到非法或不支持请求，响应方保持实际TX设置，却在TS1反映请求值并置Reject。请求值出现在回包里不证明已经采用。",
+          "请求方需两连续匹配回应且Reject清零，才可把设置纳入候选；Reject置位不得选用。接收的Use Preset不能拿来判定接受与否。"
+        ],
+        "referenceIndices": [
+          28,
+          29,
+          34,
+          35
+        ]
+      },
+      {
+        "id": "eq-multi-lane-simultaneous",
+        "title": "各lane可选不同设置，但发起新一轮设置需同步呈现",
+        "paragraphs": [
+          "Base5评估允许逐lane采用不同preset/coeff，算法实现相关；新请求要在所有configured lanes同时呈现，不改的lane可继续带旧设置作为新值。",
+          "不等于各lane必须相同，也不等于每次请求可异步随意切换。最终出口还要聚合所有适用lane条件。"
+        ],
+        "referenceIndices": [
+          30,
+          34
+        ]
+      },
+      {
+        "id": "eq-unsupported-preset-footnotes",
+        "title": "Phase0/1的保留preset回显不一定等于物理preset",
+        "paragraphs": [
+          "Base5允许对保留/不支持preset选用实现相关支持值，但TS中仍有原请求值及对应回应规则；USP Phase0还保留了兼容旧版本行为的脚注例外。",
+          "所以协议回显、Reject、真实coeff与TX引脚要共同观察。不能把Phase2/3严格拒绝路径不加区分套到Phase0/1。"
+        ],
+        "referenceIndices": [
+          32
+        ]
+      },
+      {
+        "id": "eq-complete-versus-success",
+        "title": "Complete含超时完成；成功位还能由合法跳阶段设置",
+        "paragraphs": [
+          "Base5在多条超时出口置Complete；DSP也可合法跳过Phase2/3并置相应成功位。因此状态位既不等于当前状态，也不直接证明逐一执行过所有Phase。",
+          "8GT/s继续升速的相应成功判据是Complete与Phase3 Successful同时置位，再结合速率/复位历史；16/32GT/s查其专用状态，不能只读Status2。"
+        ],
+        "referenceIndices": [
+          27,
+          28,
+          30,
+          24,
+          37
+        ]
+      },
+      {
+        "id": "eq-status-word-table",
+        "title": "Base5 Status2低6bit：8GT/s状态，不是当前所有速率的EQ状态",
+        "paragraphs": [
+          "C为PCIe Capability基址，Status2位于C+32h WORD。多Function USP的EQ相关位在Function0实现，其余Function为保留。",
+          "只列本轮核读的相关字段；ROS与RW1CS不能按普通RW目标值回写。Current De-emphasis仅5GT/s有效。"
+        ],
+        "referenceIndices": [
+          37,
+          38
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "字段",
+            "属性/适用"
+          ],
+          "rows": [
+            [
+              "0",
+              "Current De-emphasis",
+              "RO；非5GT/s无定义"
+            ],
+            [
+              "1",
+              "8GT/s EQ Complete",
+              "ROS"
+            ],
+            [
+              "2 / 3 / 4",
+              "8GT/s Phase1 / 2 / 3 Successful",
+              "ROS"
+            ],
+            [
+              "5",
+              "8GT/s Link EQ Request",
+              "RW1CS；写1清，不是开始EQ命令"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "eq-phase-query",
+        "title": "查询：Base5角色/阶段的条件、超时和请求职责",
+        "paragraphs": [
+          "选择DSP/USP和Phase，显示发送EC、主要正常出口、失败计时和评估/响应方向。",
+          "仅用于所引Base5普通Link 8/16/32GT/s，不模拟Loopback、Retimer内部状态或Gen6/7完整状态机。"
+        ],
+        "referenceIndices": [
+          27,
+          28,
+          30,
+          32,
+          33,
+          34,
+          36,
+          41
+        ]
       }
     ]
   },
@@ -32554,8 +33858,8 @@
     "prerequisites": "系数更新须遵守该版本幅度/系数约束与产品更新时序，不能把手册里的某组数当成通用最佳值。",
     "example": "软件或训练状态要求同一Preset编号，两种PHY的实际输入码可能不同；应比较定义和映射后的物理权重。",
     "checks": "沿MAC请求 → PIPE控制 → uPCS映射 → PHY输入/寄存器 → 完成状态追踪，并核对适用速率。",
-    "status": "体系条目已整理 · 按来源范围核读",
-    "reviewed": "2026-10-19",
+    "status": "选定逐版规则/字段已展开 · 持续核读",
+    "reviewed": "2026-10-20",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -32595,9 +33899,391 @@
         "title": "TX EQ接口与Preset范围",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.3.1",
+        "page": 224,
+        "pdfPage": 224,
+        "title": "三抽头系数合法性",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3.1",
+        "page": 286,
+        "pdfPage": 286,
+        "title": "FS范围与绝对值",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3.1",
+        "page": 287,
+        "pdfPage": 287,
+        "title": "系数约束",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3.2",
+        "page": 287,
+        "pdfPage": 287,
+        "title": "Preset编码与RX hint",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "8.3.3.2",
+        "page": 1005,
+        "pdfPage": 1005,
+        "title": "低速de-emphasis与高速度FIR",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "8.3.3.2",
+        "page": 1006,
+        "pdfPage": 1006,
+        "title": "FIR符号与幅度",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "8.3.3.3",
+        "page": 1007,
+        "pdfPage": 1007,
+        "title": "Preset比例与电压定义",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "8.3.3.3",
+        "page": 1008,
+        "pdfPage": 1008,
+        "title": "Reduced swing/P10例外",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3",
+        "page": 281,
+        "pdfPage": 281,
+        "title": "响应与coeff/preset语义",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.2",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "产品4-tap接口与swing映射边界",
+        "verification": "核读3.02a相关正文及映射表，仅归纳边界；不公开厂商表/寄存器转储，不推广到所有PHY。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3",
+        "page": 282,
+        "pdfPage": 282,
+        "title": "系数请求Preset字段及上下文",
+        "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "逐块绑定版本、正文与PDF页。Base5三阶段/三抽头细则不直接套用64/128GT/s；不标整章完成。",
+    "details": [
+      {
+        "id": "ffe-low-speed-high-speed",
+        "title": "2.5/5GT/s为de-emphasis；8/16/32GT/s支持系数式EQ",
+        "paragraphs": [
+          "Base5电气章节把低速TX均衡归为de-emphasis，高速NRZ通过系数式FIR及preset提供精细/粗粒度控制。",
+          "不能把有de-emphasis理解为已经存在Phase0～3协议；也不能把新PHY支持四tap推成Gen3/4/5标准三tap模型改变了。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          12
+        ]
+      },
+      {
+        "id": "ffe-three-tap-sign",
+        "title": "三抽头物理侧副tap可为负，TS里传的是绝对值",
+        "paragraphs": [
+          "所引NRZ模型C0为正，pre/post cursor为零或负；TS1传输其幅值。控制代码、数学符号与实际电压需分别解释。",
+          "给工具输入的是非负整数幅值，不是负数DAC编码。把TS字段原值直接作二补码可能彻底改变含义。"
+        ],
+        "referenceIndices": [
+          4,
+          8
+        ]
+      },
+      {
+        "id": "ffe-fs-sum",
+        "title": "FS是三tap幅值之和，调整不能改变这个总和",
+        "paragraphs": [
+          "FS=|C−1|+C0+|C+1|，在Phase1通告。新请求要保持等于对端通告的FS，而不是按本地偏好改变峰值预算。",
+          "FS不是某个示波器读数mV，也不是PCIe速率；副tap增大时主tap常需相应减小才能保持合法。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "id": "ffe-fs-range",
+        "title": "Full swing的FS为24～63，Reduced为12～63",
+        "paragraphs": [
+          "Base3和Base5所引三抽头规则给出上述整数范围；reduced swing不等于固定减半FS，也不表示所有preset都必须支持。",
+          "这些范围绑定所引NRZ规则，不直接推广到Gen6/7四抽头及厂商引脚位宽。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "ffe-lf-floor",
+        "title": "LF约束低频差分下限：主tap减两侧tap须至少LF",
+        "paragraphs": [
+          "LF对应最低差分电压相对最大差分电压的比例。所引请求检查为C0−|C−1|−|C+1|≥LF。",
+          "它与总和约束共同限制boost空间；数学通过仍不能证明实际TX的电气限值、容差和通道BER都合规。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "id": "ffe-pre-quarter",
+        "title": "Pre-cursor还须不超过floor(FS/4)",
+        "paragraphs": [
+          "这是一条独立约束。例如FS=25时上限是6，不能四舍五入到7；保持总和和LF仍不保证满足这条规则。",
+          "请求方先检查，对端收到更新请求也须检查并拒绝违反条件的请求。不能只在生成preset时验证一次。"
+        ],
+        "referenceIndices": [
+          3,
+          5
+        ]
+      },
+      {
+        "id": "ffe-three-constraint-table",
+        "title": "三条请求合法性条件必须同时满足",
+        "paragraphs": [
+          "下面是Base3/Base5所引三抽头规则的逐项检查。符号pre/post均取绝对值，另需有效FS范围及字段编码。",
+          "这是数字约束，不替代电气测试，也不能用于判断某个未核Gen6四tap请求一定合法。"
+        ],
+        "referenceIndices": [
+          3,
+          5
+        ],
+        "table": {
+          "columns": [
+            "条件",
+            "公式",
+            "排查用途"
+          ],
+          "rows": [
+            [
+              "pre上界",
+              "pre≤floor(FS/4)",
+              "不能四舍五入"
+            ],
+            [
+              "总和守恒",
+              "pre+main+post=FS",
+              "不让峰值随适配漂移"
+            ],
+            [
+              "低频下界",
+              "main−pre−post≥LF",
+              "限制过度boost"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ffe-preset-encoding-table",
+        "title": "Base5 Preset编码P0～P10，其余保留",
+        "paragraphs": [
+          "四位编码0～10对应同编号P0～P10，11～15保留。编号不是按均衡强度从小到大的连续功率档。",
+          "RX Preset Hint是另一字段，仅所引8GT/s定义且可选；不能用TX preset表替代。其完整hint后续继续按表核。"
+        ],
+        "referenceIndices": [
+          6
+        ],
+        "table": {
+          "columns": [
+            "编码范围",
+            "含义"
+          ],
+          "rows": [
+            [
+              "0000～1010",
+              "P0～P10"
+            ],
+            [
+              "1011～1111",
+              "Reserved"
+            ],
+            [
+              "RX Preset Hint",
+              "独立字段；本轮不展开未读的完整续表"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ffe-preset-ratio-meaning",
+        "title": "Preset定义电压比例与容差，不是统一厂商DAC数字",
+        "paragraphs": [
+          "Base5表用preshoot/de-emphasis比例和相应归一化系数描述preset。相同preset在不同PHY可能转换为不同位宽、量化和swing代码。",
+          "所以不能把一份产品里的整数表直接作为PCIe通用寄存器值。实际映射要按所用产品和swing重新核对。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          12
+        ]
+      },
+      {
+        "id": "ffe-ratio-decibel-table",
+        "title": "De-emphasis、Preshoot、Boost的参考电压不同",
+        "paragraphs": [
+          "Base5图中三种dB量分别引用不同电压比。比较两个数字前先明确分子/分母，不能把它们都当同一个“增强倍数”。",
+          "这些是规范测量定义，不是单个UI尖峰截图的读值；测量模式、窗口与容差仍需对应测试要求。"
+        ],
+        "referenceIndices": [
+          9,
+          8
+        ],
+        "table": {
+          "columns": [
+            "指标",
+            "定义"
+          ],
+          "rows": [
+            [
+              "De-emphasis",
+              "20log10(Vb/Va)"
+            ],
+            [
+              "Preshoot",
+              "20log10(Vc/Vb)"
+            ],
+            [
+              "Boost",
+              "20log10(Vd/Vb)"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ffe-p4-p0-example",
+        "title": "P4无pre/post，P0有post：主tap与眼图高度不能混称",
+        "paragraphs": [
+          "Base5 P4为无preshoot/无de-emphasis；P0定义相应post侧均衡比例。选择哪个最终更适合，仍由接收端评估而非编号大小。",
+          "这里给的是规范语义示例，不列厂商模拟整数。系数幅度也不等于TX电压swing幅度。"
+        ],
+        "referenceIndices": [
+          9,
+          8
+        ]
+      },
+      {
+        "id": "ffe-reduced-preset-subset",
+        "title": "Reduced swing至少支持指定子集，不要求所有P都接受",
+        "paragraphs": [
+          "Base5电气表注要求reduced支持P4/P1/P9/P5/P6/P3；full swing支持该表全部preset。",
+          "请求方要结合实际swing判断支持。不能把full swing中合法的编号一律认为在reduced也必须接受，或者把“允许拒绝”理解为任意拒绝合法coeff。"
+        ],
+        "referenceIndices": [
+          10,
+          11
+        ]
+      },
+      {
+        "id": "ffe-p10-lf-dependent",
+        "title": "P10的boost不是固定dB，取决于通告LF",
+        "paragraphs": [
+          "Base5表注明P10的boost上限与TX通告的LF有关，用于full swing下测试boost限制；reduced的相关测试使用P1。",
+          "不应把一份产品P10对应某个整数/固定de-emphasis的例子当成通用协议常量。"
+        ],
+        "referenceIndices": [
+          10
+        ]
+      },
+      {
+        "id": "ffe-coefficient-request-preset-field",
+        "title": "Coeff请求响应不随意重写Preset历史字段",
+        "paragraphs": [
+          "Base5通用规则说coeff接受时实际设置更新、拒绝时保持原设置并回显请求及Reject；响应coeff请求时preset字段保持先前preset历史。",
+          "因此preset字段不一定完整表达当前精细系数组合。查看实际coeff、Reject和请求上下文，别只抓P编号。"
+        ],
+        "referenceIndices": [
+          11,
+          13
+        ]
+      },
+      {
+        "id": "ffe-product-four-tap-boundary",
+        "title": "Gen6产品的pre2/pre1/main/post是实现接口，仍需映射",
+        "paragraphs": [
+          "3.02a产品通过四组输入导出C−2/C−1/C0/C+1的实现控制，并分别列不同swing映射。该说明不等于外部引脚可以原样接TS编码。",
+          "本轮不公开产品映射表或DAC代码，也不把NRZ三tap合法性计算器宣称为PAM4验证器。Gen6/7完整四tap约束另列后续。"
+        ],
+        "referenceIndices": [
+          12,
+          4
+        ]
+      },
+      {
+        "id": "ffe-coefficient-query",
+        "title": "查询：Base3/Base5 NRZ三tap数字约束",
+        "paragraphs": [
+          "输入对端FS/LF和请求pre/main/post的非负整数幅值，逐项显示范围、floor上界、总和及低频约束。",
+          "只检验所引数字条件，不推断preset最优性，不验证Gen6/7四tap、引脚量化、电压容差或真实BER。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5
+        ]
+      }
+    ]
   },
   {
     "id": 173,

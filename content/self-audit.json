@@ -1,6 +1,6 @@
 {
   "date": "2026-10-20",
-  "summary": "R12深化PHY固件、存储器、启动及管理时钟；分离产品版本和预览SDK。",
+  "summary": "R13速率协商/均衡逐版与角色细则、三tap约束和Preset边界。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -226,6 +226,26 @@
       "name": "R12构建与查询回归",
       "status": "通过",
       "detail": "构建/内容边界与JS语法通过；98304组CCM偏移/长度/ECC/分段、400组双时钟/TCK与1024组启动上下文通过。56个详情路由、SDK PDF59、本轮PHY入口和旧详情/引用保持通过；R1～R11回归通过。DOM模拟，未作网站视觉/硬件/固件执行验证。"
+    },
+    {
+      "name": "R13开轮自查",
+      "status": "已核现有正文与队列",
+      "detail": "功能3无细节，9只有四块概述，172尚无细节。优先补速率上限/切速、Base5均衡角色与失败出口、Preset/系数协议边界；发现Complete可在超时置位，不能作成功结论。"
+    },
+    {
+      "name": "R13核读范围与版本",
+      "status": "所引规则已核",
+      "detail": "核读Base2 Speed/RcvrCfg选定条件，Base3/4均衡概述与切速页，Base5 4.2.3/Phase正文、Control2/Status2、电气FIR/比例相关页，以及Base6/7所引Speed和USP Phase3出口。视觉复核Base5 p349/p1007。未把目录/其余提取页当正文已读。"
+    },
+    {
+      "name": "R13构建与新旧查询回归",
+      "status": "通过",
+      "detail": "21个角色/Phase/速率来源样例、149604组FS/LF/三tap/swing、131072组向量/目标/EQ状态快照通过；含legacy0、非F0、Complete非成功及保留位。60个详情路由、PDF349、PHY/章序/搜索及旧详情引用保持；R1～R12回归通过。DOM模拟，未作硬件或站点视觉验证。"
+    },
+    {
+      "name": "R13 LTSSM通用容差复核",
+      "status": "已修正未明列项",
+      "detail": "核读Base5 p312 §4.2.5的−0/+50%默认规则；DSP P1改为24～36ms，USP P0/P1改为12～18ms，明确+2/+4ms的分支保留条款优先。Speed计时表注明名义值，不把未单列当零容差。"
     }
   ],
   "unresolved": [
@@ -268,6 +288,9 @@
     "6.0/7.0 DPA四档示例后出现越界substate4，与0～Max规则不一致；以合法编号约束为准，正式勘误及首次引入ECN链仍待核。",
     "SDK1.00a_pre3为Preliminary，FastSim未调用API时置1的文字与生产默认0的适用关系、reset API命名及固件patch版本字段名存在待澄清项；需正式SDK/发布说明，当前本地资料已存在但未核全。",
     "CCM装载AHB章节80KiB ECC措辞与ROM按32bit有效内容的说明需结合真实固件镜像工具确认；未提供ECC编码器/校验位打包，不把物理容量当可寻址程序空间。",
-    "Gen5/Gen6本文所述仅对应两份产品交付；未做实际SRAM宏时序、启动数字仿真、固件执行/安全认证或硅片测量。"
+    "Gen5/Gen6本文所述仅对应两份产品交付；未做实际SRAM宏时序、启动数字仿真、固件执行/安全认证或硅片测量。",
+    "Base5 No Equalization Needed禁止通告段落中的Disable字段措辞需结合32GT/s控制寄存器和勘误核验；本轮未自动生成bypass寄存器写操作。",
+    "Gen1全部切速（如适用）/Gen2全部训练子状态、Base3/4全部EQ Phase、Gen6/7完整TS0与四tap、RX hint完整续表和Idle推断表尚未核全；不把Base5工具用于64/128GT/s。",
+    "本轮未做完整LTSSM仿真、电气测量、物理FIR/BER验证；Complete位与合法跳阶段不能证明所有Phase实际执行过。"
   ]
 }
