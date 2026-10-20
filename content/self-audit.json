@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-19",
-  "summary": "第十轮：DPC触发/隔离/退出、RP PIO九类错误与异常控制、Surprise Down排除及在途TLP命运。",
+  "date": "2026-10-20",
+  "summary": "第十一轮：OBFF提示/传输/字段，DPA动态功率与Budgeting三种状态命名、预算数据和控制边界。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -191,6 +191,26 @@
       "name": "R10查询与回归",
       "status": "通过",
       "detail": "验证224组触发上下文、2048组能力/角色/FM、32组原因/Source、16384组独立FEP/Status及2304组PIO门控；覆盖Busy/DLL Active必要前提、Mask仍可Exception、无效值与实时输入。62个深链接、7.0 PDF p1426、检索/覆盖及R1～R9回归通过；构建、公开边界、JS语法通过。未做硬件/真实OS CER或浏览器视觉验收。"
+    },
+    {
+      "name": "R11功率机制与字段",
+      "status": "对应选定正文核读",
+      "detail": "核读6.0/7.0的OBFF、DPA所引段落及Budgeting机制/字段，视觉复核7.0 OBFF Supported/Enable编码。核到DPA示例四档却使用编号4的文本不一致，按Max合法范围解释，不复制为有效配置。"
+    },
+    {
+      "name": "R11自查与范围",
+      "status": "修正浅概述并分离查询主题",
+      "detail": "保持原91入口，追加183专门承接预算字段；区分DPA五位档、Budget三位PM Sub State与L1SS。6.0/7.0 System Allocated为HwInit，Enabled RW1C、高功率区间与Scale分离均按正文处理。"
+    },
+    {
+      "name": "R11逐版差异复核",
+      "status": "已修正",
+      "detail": "核读Base6.0 p1095与7.0 p1260：Sustained/Maximum窗口分别5s/1ms与1s/100μs；逐版核Connector表，6.0的0Ah/0Bh及10h～13h保留，7.0已定义。补全连接器编码对照，解码器保留值不报精确功率。"
+    },
+    {
+      "name": "R11查询与兼容回归",
+      "status": "通过",
+      "detail": "验证1536个OBFF上下文、1024组DPA档数/延迟/功率、4096组Budget数值/Scale，以及PM/Type/Rail/版本连接器组合；64个详情路由、PDF1149定位、搜索与代际入口通过。R1～R10原有工具回归通过，旧详情和引用保持。DOM模拟测试，不声称浏览器视觉或设备硬件验证。"
     }
   ],
   "unresolved": [
@@ -228,6 +248,8 @@
     "所有Gen1～Gen7 TX/RX/refclk/信道电气限值、参考模型方程与合规测试仍待分块核读；未做眼图仿真、模拟电路、IBIS-AMI或硬件合规验证。",
     "DPC/RP PIO本轮按所引选定规则展开，完整SFI/热插拔CER平台流程、CPU异常架构及真实驱动恢复尚未验证；工具不执行在线隔离/恢复。",
     "6.0/7.0 RP PIO FM Header字节范围段落、图示及按最大Header/OHC的要求有待结合正式勘误核验；公开内容保留动态解析与分段布局，不编造统一固定长度。",
-    "DPC首次引入、RP扩展/ECS相关ECN及Gen1～Gen3完整规则仍待正文证据；不凭后来版本存在或当前速率推断可选能力。"
+    "DPC首次引入、RP扩展/ECS相关ECN及Gen1～Gen3完整规则仍待正文证据；不凭后来版本存在或当前速率推断可选能力。",
+    "OBFF CEM WAKE#电气脉宽、完整Sense Detect编码、Power Limit固件/形态交互与DPA实际驱动功率调度未核全；本轮无硬件限功率/供电安全验证。",
+    "6.0/7.0 DPA四档示例后出现越界substate4，与0～Max规则不一致；以合法编号约束为准，正式勘误及首次引入ECN链仍待核。"
   ]
 }

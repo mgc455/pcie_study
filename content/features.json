@@ -15849,19 +15849,19 @@
     "group": "功耗与复位",
     "intro": "平台提示设备何时适合进行缓冲填充/冲刷以优化功耗。",
     "usage": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
-    "mechanism": "OBFF由平台提供适合进行缓冲填充/冲刷的时机信息，设备把可合并的工作集中处理，减少频繁打断平台低功耗状态。",
+    "mechanism": "RC用WAKE#或下行Local Message给低增量功耗窗口提示；A/B决定Link睡眠时丢弃还是唤醒后传递，Enabled、Function0控制及异常接收按独立规则判断。",
     "example": "非紧急后台数据可批量发送，而必须立即响应的业务不应因等待节能时机无限延期。",
     "checks": "平台与应用都要支持并正确解释提示；",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 90,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-20",
     "protocolReferences": [
       {
         "section": "2.2.8.9",
@@ -15884,28 +15884,586 @@
         "pdfPage": 787,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.19",
+        "page": 787,
+        "pdfPage": 787,
+        "title": "OBFF提示/编码/角色",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.19",
+        "page": 901,
+        "pdfPage": 901,
+        "title": "OBFF提示/编码/角色",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.19",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "窗口与错误接收",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.19",
+        "page": 902,
+        "pdfPage": 902,
+        "title": "窗口与错误接收",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.19",
+        "page": 789,
+        "pdfPage": 789,
+        "title": "拓扑转换",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.19",
+        "page": 902,
+        "pdfPage": 902,
+        "title": "拓扑转换",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.19",
+        "page": 790,
+        "pdfPage": 790,
+        "title": "Variation及初始化",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.19",
+        "page": 903,
+        "pdfPage": 903,
+        "title": "Variation及初始化",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.15",
+        "page": 992,
+        "pdfPage": 992,
+        "title": "6.0 OBFF Supported",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1143,
+        "pdfPage": 1143,
+        "title": "7.0 OBFF Supported",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.16",
+        "page": 997,
+        "pdfPage": 997,
+        "title": "OBFF Enable编码",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.16",
+        "page": 1149,
+        "pdfPage": 1149,
+        "title": "OBFF Enable编码",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.19",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "6.0异常接收条件",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.19",
+        "page": 901,
+        "pdfPage": 901,
+        "title": "7.0异常接收条件",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.19",
+        "page": 790,
+        "pdfPage": 790,
+        "title": "6.0 Variation A",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.19",
+        "page": 902,
+        "pdfPage": 902,
+        "title": "7.0 Variation A",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.19",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "6.0窗口建议",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.19",
+        "page": 902,
+        "pdfPage": 902,
+        "title": "7.0窗口建议",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.19",
+        "page": 790,
+        "pdfPage": 790,
+        "title": "6.0作用域延续",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.19",
+        "page": 790,
+        "pdfPage": 790,
+        "title": "6.0传播合并",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.19",
+        "page": 902,
+        "pdfPage": 902,
+        "title": "7.0传播合并",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.16",
+        "page": 891,
+        "pdfPage": 891,
+        "title": "DPA在D0内的范围",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.19",
+        "page": 901,
+        "pdfPage": 901,
+        "title": "7.0接收条件",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "按版正文/字段定位；未核中间修订/ECN、形态规范或整章不标完成。",
+    "details": [
+      {
+        "id": "obff-platform-window-hint",
+        "title": "OBFF提示低增量功耗窗口，不是总线主授权",
+        "paragraphs": [
+          "RC告诉Endpoint：平台中央资源已活跃，此时集中做DMA/中断的额外功耗可能较低。窗口怎样确定由平台实现，不是Base统一规定一个周期。",
+          "它是hint；已按其他规则获准的Function仍可在窗口之外发起业务。不能把OBFF Idle当作清Bus Master Enable或暂停全部DMA的硬性命令。"
+        ],
+        "referenceIndices": [
+          2,
+          3
+        ]
+      },
+      {
+        "id": "obff-code-table",
+        "title": "CPU Active、OBFF与Idle的三种Message编码",
+        "paragraphs": [
+          "Message Code所表示的窗口语义有区别，尤其OBFF仅提示内存读写路径可用，不能直接等价为CPU已活跃可廉价处理中断。"
+        ],
+        "referenceIndices": [
+          2,
+          3
+        ],
+        "table": {
+          "columns": [
+            "OBFF Code",
+            "状态",
+            "含义"
+          ],
+          "rows": [
+            [
+              "1111",
+              "CPU Active",
+              "系统对总线主与中断等设备动作全面活跃"
+            ],
+            [
+              "0001",
+              "OBFF",
+              "内存路径适合设备Memory Read/Write"
+            ],
+            [
+              "0000",
+              "Idle",
+              "平台处于空闲低功耗状态"
+            ],
+            [
+              "其他",
+              "Reserved",
+              "OBFF已启用的Receiver按CPU Active处理"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "obff-d0-and-platform-state",
+        "title": "非D0 Function不响应；WAKE#发起还受系统状态限制",
+        "paragraphs": [
+          "Function处于非D0时不得响应OBFF或CPU Active提示。Root Port只能在系统运行状态发起WAKE# OBFF/CPU Active，在ACPI系统对应S0。",
+          "不能把运行态OBFF的WAKE#复用含义与D3唤醒混为一套动作；D-state、Link L-state和中央资源窗口是不同维度。"
+        ],
+        "referenceIndices": [
+          2,
+          3
+        ]
+      },
+      {
+        "id": "obff-message-routing",
+        "title": "Message仅向下、Local终止，跨Switch靠传播/转换",
+        "paragraphs": [
+          "OBFF Message用Routing=100b Local–Terminate at Receiver，仅允许向下发送。Switch不是无条件像地址路由Memory请求一样直接穿透，而是按启用配置传播或转换提示。",
+          "Message用于没有WAKE#的互连段；不能因为控制器有Message发送能力就忽略平台的实际WAKE#接线和共享范围。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          6,
+          7
+        ]
+      },
+      {
+        "id": "obff-reserved-unsupported-reception",
+        "title": "保留Code、未使能和传输模式冲突，三种处理不同",
+        "paragraphs": [
+          "OBFF已使能时收到Reserved Code，按CPU Active；未实现或未使能OBFF的Port收到OBFF Message，按UR报告接收Port错误。",
+          "若已选择WAKE#方式却又收到OBFF Message，行为未定义。不能把这三种情况统一当“忽略未知提示”，也不能把保留Code一律当UR。"
+        ],
+        "referenceIndices": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "obff-supported-field-table",
+        "title": "DevCap2[19:18]报告信令支持，不是Enable编码",
+        "paragraphs": [
+          "C为PCIe Capability基址，C+24h DWORD的[19:18]是HwInit支持能力。WAKE#支持还要求真实连通：DSP能驱动并且对端已知收到同一根信号，USP需能接收相应连接器信号。"
+        ],
+        "referenceIndices": [
+          10,
+          11
+        ],
+        "table": {
+          "columns": [
+            "编码",
+            "支持方式"
+          ],
+          "rows": [
+            [
+              "00",
+              "不支持"
+            ],
+            [
+              "01",
+              "仅Message"
+            ],
+            [
+              "10",
+              "仅WAKE#"
+            ],
+            [
+              "11",
+              "WAKE#及Message"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "obff-enable-field-table",
+        "title": "DevControl2[14:13]选择A／B／WAKE#，不是能力bitmap",
+        "paragraphs": [
+          "C+28h WORD的[14:13]默认00；只选择实际支持的方式。编码11在这里表示WAKE#，不是“两个方法同时开”，与Supported字段的11不同。"
+        ],
+        "referenceIndices": [
+          12,
+          13
+        ],
+        "table": {
+          "columns": [
+            "编码",
+            "配置"
+          ],
+          "rows": [
+            [
+              "00",
+              "Disabled"
+            ],
+            [
+              "01",
+              "Message Variation A"
+            ],
+            [
+              "10",
+              "Message Variation B"
+            ],
+            [
+              "11",
+              "WAKE# signaling"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "obff-multifunction-function-zero",
+        "title": "多Function USP：能力一致，Function0决定Enable",
+        "paragraphs": [
+          "多Function USP各Function必须报告相同OBFF Supported；Enable仅Function0的字段RW并控制整个组件，其他Function为RsvdP。",
+          "不能把每个Function的Enable回读单独当作一套物理信令；配置前还需确认平台能把提示送到此Endpoint。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13
+        ]
+      },
+      {
+        "id": "obff-variation-a",
+        "title": "Variation A：L0发提示，Tx_L0s/L1丢提示",
+        "paragraphs": [
+          "Message Variation A在L0必须发送，在Tx_L0s或L1则丢弃该OBFF Message，不为提示主动唤醒Link。它适合通信不紧急、可自行回L0表达需求的设备。",
+          "因此错过一次提示不必是链路传输错误；它可能是配置方式的预期行为。这里不把不支持L0s的模式强行解释为仍存在Tx_L0s。"
+        ],
+        "referenceIndices": [
+          16,
+          17
+        ]
+      },
+      {
+        "id": "obff-variation-b",
+        "title": "Variation B：必要时先把Link带回L0再发提示",
+        "paragraphs": [
+          "Variation B在L0发送；若在Tx_L0s或L1，则要求返回L0后发送，适合需要及时获知中央资源状态的设备。",
+          "更及时的提示也会影响Link低功耗驻留。A/B选择涉及平台功耗与业务延迟，不能仅按“B名字更新”或当前Gen决定。"
+        ],
+        "referenceIndices": [
+          8,
+          9
+        ]
+      },
+      {
+        "id": "obff-ten-us-recommendation",
+        "title": "10μs是平台窗口建议，不是Endpoint保证可用时长",
+        "paragraphs": [
+          "平台开始CPU Active或OBFF窗口后，建议不要在10μs内回Idle；但也建议Endpoint不要假设窗口必定保持任意固定时间。",
+          "平台可按允许规则提前提示Idle，目的是避免晚到业务立刻拉醒平台。设备仍需自己的缓冲、时延和业务优先级策略，不能把10μs当必然足够完成一轮DMA。"
+        ],
+        "referenceIndices": [
+          18,
+          19
+        ]
+      },
+      {
+        "id": "obff-switch-wake-message-conversion",
+        "title": "混合拓扑：Switch可把WAKE#转Message，再转回WAKE#",
+        "paragraphs": [
+          "Switch的USP和DSP若采用不同方式，且OBFF已启用，就须把上游收到的提示转换成下游适用形式。哪些Link缺WAKE#由硬件/固件拓扑配置决定。",
+          "不能只看终端Supported位配置全路径；WAKE#共享网、各Switch端口方式和Root Port发起方式都要匹配。"
+        ],
+        "referenceIndices": [
+          6,
+          7
+        ]
+      },
+      {
+        "id": "obff-root-enable-scope",
+        "title": "WAKE#共享作用域和Message的单RP作用域不同",
+        "paragraphs": [
+          "WAKE#方式某个RP的Enable可影响全局共享WAKE#，多根线则只影响对应网络；Message方式某RP只控制该RP发出的提示。",
+          "完整启用平台需按规则配置相关支持的Root Ports。共享WAKE#拓扑中，即使Switch本身不支持OBFF，下游组件也可能按允许方式使用共享提示，不能直接宣判不可用。"
+        ],
+        "referenceIndices": [
+          6,
+          7,
+          20
+        ]
+      },
+      {
+        "id": "obff-initial-state-and-enable-order",
+        "title": "初始按CPU Active理解；启用先USP，RP最后",
+        "paragraphs": [
+          "刚配置OBFF后，在观察到第一次转换前，必须假定CPU Active，与WAKE#当前逻辑电平无关。不能仅凭电平高低推断历史编码事件。",
+          "建议先启用USP，再DSP；所有其他Port启用后才启用Root Port。热插拔未连接端口有例外，允许WAKE#方式，但建议不要对未连接端口启用Message发送。"
+        ],
+        "referenceIndices": [
+          8,
+          9
+        ]
+      },
+      {
+        "id": "obff-collapsed-indications",
+        "title": "提示可重复/合并，不保证事件数量一比一",
+        "paragraphs": [
+          "相同事件连续重复允许但不鼓励。Switch应尽量传播所有提示，必要时尤其Message方式下，可丢弃并以新的提示替换先前提示。",
+          "软件不能从提示计数推断CPU唤醒次数，也不能把每一次Code变化当带事务完成保证的队列项。Endpoint状态跟踪应允许合法提示被合并。"
+        ],
+        "referenceIndices": [
+          21,
+          22
+        ]
+      },
+      {
+        "id": "obff-wake-sharing-tracker",
+        "title": "共享WAKE#可能遮住事件；主机活动可帮助重新同步",
+        "paragraphs": [
+          "实施说明指出其他设备用WAKE#唤醒可能遮住OBFF电平转换。推荐Endpoint收到可判断为主机发起的请求，或主机软件已服务其挂起中断时，把本地跟踪状态更新为CPU Active。",
+          "这是跟踪精度/节能建议，不能改变非D0不响应或能力使能限制；也不是收到任何PCIe包就可以认定CPU活跃。"
+        ],
+        "referenceIndices": [
+          8,
+          9
+        ]
+      },
+      {
+        "id": "obff-ltr-aspm-boundary",
+        "title": "OBFF、LTR、ASPM和DPA各回答不同问题",
+        "paragraphs": [
+          "OBFF说中央资源何时活动较省电；LTR说设备可容忍的服务延迟；ASPM管理Link空闲状态；DPA在D0内调整Function功耗分配。",
+          "它们可协同，却不存在一个Enable自动开启其余所有机制。排查时分别读能力、控制、当前状态与真实业务需求，而不把“节能模式”当单一状态。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          12,
+          13,
+          23
+        ]
+      },
+      {
+        "id": "obff-register-explorer",
+        "title": "查询：OBFF能力/Enable与Message接收处理",
+        "paragraphs": [
+          "输入DevCap2 DWORD、DevControl2 WORD、OBFF Code及接收上下文，解码方式支持、A/B策略和Reserved/UR/未定义边界。",
+          "工具不访问设备、不模拟WAKE#脉冲或全拓扑。多Function USP应输入Function0有效Control，实际连接关系必须另核。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13,
+          2,
+          3,
+          24
+        ]
+      }
+    ]
   },
   {
     "name": "DPA / Power Budgeting",
     "group": "功耗与复位",
     "intro": "动态功率分配与功率需求描述辅助平台管理供电。",
     "usage": "实际支持情况需要核对具体设备的能力、控制状态以及平台配合。",
-    "mechanism": "Power Budgeting描述功率需求，DPA等机制参与不同功率档位/分配管理，实际限功率动作由设备/平台执行。",
+    "mechanism": "DPA在D0内用0016h能力动态选择最多32档，0为最大功率；状态在转换中保守报告功率，Enabled为写1清，Budgeting逐字段内容另见功能183。",
     "example": "服务器按插槽预算约束高功率设备时，软件可需要了解支持档位，但控制器本身不会替业务逻辑降频。",
     "checks": "检查支持能力、控制策略和实际功率响应；报告某个瓦数不等于电源系统能安全供给该功率。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 91,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-20",
     "protocolReferences": [
       {
         "section": "6.8",
@@ -15917,9 +16475,604 @@
         "pdfPage": 742,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.16",
+        "page": 777,
+        "pdfPage": 777,
+        "title": "DPA作用域/子状态",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.16",
+        "page": 891,
+        "pdfPage": 891,
+        "title": "DPA作用域/子状态",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.16",
+        "page": 778,
+        "pdfPage": 778,
+        "title": "状态功率与延迟",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.16",
+        "page": 892,
+        "pdfPage": 892,
+        "title": "状态功率与延迟",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.16.1",
+        "page": 778,
+        "pdfPage": 778,
+        "title": "MFD/PF/VF",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.16.1",
+        "page": 892,
+        "pdfPage": 892,
+        "title": "MFD/PF/VF",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.12.2",
+        "page": 1238,
+        "pdfPage": 1238,
+        "title": "DPA能力字段",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.12.2",
+        "page": 1412,
+        "pdfPage": 1412,
+        "title": "DPA能力字段",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.12.4",
+        "page": 1239,
+        "pdfPage": 1239,
+        "title": "DPA Status",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.12.4",
+        "page": 1413,
+        "pdfPage": 1413,
+        "title": "DPA Status",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.12.5",
+        "page": 1240,
+        "pdfPage": 1240,
+        "title": "DPA Control",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.12.5",
+        "page": 1413,
+        "pdfPage": 1413,
+        "title": "DPA Control",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.12.6",
+        "page": 1240,
+        "pdfPage": 1240,
+        "title": "6.0分配数组",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.12.6",
+        "page": 1414,
+        "pdfPage": 1414,
+        "title": "7.0分配数组",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.8.3",
+        "page": 859,
+        "pdfPage": 859,
+        "title": "Power Limit与DPA不同",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.12.2",
+        "page": 1411,
+        "pdfPage": 1411,
+        "title": "7.0 Substate_Max位置",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.12.3",
+        "page": 1239,
+        "pdfPage": 1239,
+        "title": "DPA Indicator",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.12.3",
+        "page": 1412,
+        "pdfPage": 1412,
+        "title": "DPA Indicator",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.12.4",
+        "page": 1240,
+        "pdfPage": 1240,
+        "title": "6.0 Status继续定义",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "按版正文/字段定位；未核中间修订/ECN、形态规范或整章不标完成。",
+    "details": [
+      {
+        "id": "power-mechanism-family",
+        "title": "预算报告、Power Limit和DPA：同属功耗但不是同一控制",
+        "paragraphs": [
+          "Power Budgeting报告需求及可选的PM Sub State限功率机制，字段详见功能183；DPA在D0内按Function切换动态分配子状态。DPA与Budgeting的Scale、Substate位宽和配置时机不同。",
+          "保留原功能91入口和搜索词，下面主要展开DPA，新增功能183承接预算逐字段内容。读某个“Sub State”前先确认能力ID及所在结构。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          15
+        ]
+      },
+      {
+        "id": "dpa-scope-d0-only",
+        "title": "DPA只适用于D0内功率管理，不能代替D1～D3",
+        "paragraphs": [
+          "DPA是可选Endpoint Function机制，供适合通过标准分配管理且没有其他机制的设备使用；D1～D3不适用，与PCI-PM独立管理。",
+          "若支持Emergency Power Reduction，其优先级覆盖这里机制。DPA改变的不是Link宽度/速率或PMCSR D-state编码。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "dpa-substate-order",
+        "title": "最多32档，0是最大功率；后续档功率可相等",
+        "paragraphs": [
+          "支持档位从0连续编号到Substate_Max，数量为Max+1。0为默认并代表Function最大可能功率，后续档分配必须不高于前一档，可以相等。",
+          "编号较大不意味着更高性能/更大瓦数；同瓦数不同档也合法。不要从名称猜某档实际频率、电压或业务吞吐。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "dpa-valid-index-and-text-error",
+        "title": "状态编号必须在0～Max内，不能照搬规范示例中的越界4",
+        "paragraphs": [
+          "6.0/7.0所引正文举四档0～3后，后续文字却出现转到4的例子，和其连续范围规则不一致。本站按能力实际支持范围解释，不把这个例子当允许越界。",
+          "合法任意顺序切换可以是0→3→1→2，不要求逐档经过中间状态。真正的Max和每档功率来自能力及分配数组，不能把示例瓦数当默认值。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "dpa-new-request-during-transition",
+        "title": "尚未转换完也可收到新目标，最终须跟到最新配置",
+        "paragraphs": [
+          "软件可在先前转换未完成时配置另一个支持档位。Function在完成转换后比较当前和配置档，不同就继续向目标转换，也允许实现动态改变进行中的转换。",
+          "因此读到Control已变化不表示Status已完成，轮询不能只等一段固定时间后不读Status。新目标变化还会改变软件的观察上下文。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "dpa-transition-power-status",
+        "title": "转换中Status反映功耗较高档，不能低报需求",
+        "paragraphs": [
+          "任何时刻实际功耗不得超过Substate Status所表示分配。高功耗→低功耗转换时保持高功耗档Status，完成后才改低；低→高时在转换期间及完成后就报告高功耗档。",
+          "Status是预算安全语义，不一定精确指示内部每一步已经结束。单看Control与Status相等也不能拿来推导未规定的模拟频率稳定时间。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "dpa-configuration-access",
+        "title": "任意DPA档位都须响应配置访问",
+        "paragraphs": [
+          "Function在任何DPA子状态都要能处理Configuration Space访问。降功率不能把能力块本身关到无法读取。",
+          "业务性能、吞吐和限功率方式由实现决定。配置能读不代表应用队列已完成、Link重训结束或业务访问不会延迟。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "dpa-transition-latency",
+        "title": "每个目标档选择两种最大延迟之一，按目的档解释",
+        "paragraphs": [
+          "Function提供两个Transition Latency Value，每个子状态通过Indicator选择其中之一。该值代表从任意其他档进入该目标档所需最大时长，允许提前完成。",
+          "这不是PCIe Completion Timeout范围，也不是每次转换都必须恰好耗满该值；不要把DPA单位当微秒。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "dpa-multifunction-accounting",
+        "title": "多Function功率可聚合，缺DPA Function归属由实现解释",
+        "paragraphs": [
+          "一个MFD可部分或全部Function实现DPA，总分配按对应Function相加；某Function的DPA还可包含其他未实现DPA Function的功率。关联方式是实现相关。",
+          "做设备总预算时不能忽略这种覆盖范围，否则可能重复计入或漏计共享资源。不能套用Power Budgeting“仅一Function代表整个Device”的规则自动判断DPA。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "dpa-vf-prohibition",
+        "title": "VF不得实现DPA，若PF支持则通过PF管理VF功率",
+        "paragraphs": [
+          "关联VF的功率通过PF DPA能力管理，VF不能独立实现DPA。给每个VF找一个0016h并写Control不是规范要求。",
+          "PF的分配覆盖哪些资源、与驱动/虚拟化管理如何协调，还需实现和平台规则；Base这里不提供每VF功率调度算法。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "dpa-register-map",
+        "title": "能力0016h：每档Power是BYTE，Control是WORD",
+        "paragraphs": [
+          "B为DPA扩展能力基址，Version=1。注意Power Allocation Array每个元素是一个字节，不是每档一个DWORD；相邻字段宽度不同。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "table": {
+          "columns": [
+            "偏移",
+            "宽度",
+            "寄存器"
+          ],
+          "rows": [
+            [
+              "00h",
+              "DWORD",
+              "能力头0016h/Version1"
+            ],
+            [
+              "04h",
+              "DWORD",
+              "DPA Capability"
+            ],
+            [
+              "08h",
+              "DWORD",
+              "Latency Indicator"
+            ],
+            [
+              "0Ch",
+              "WORD",
+              "DPA Status"
+            ],
+            [
+              "0Eh",
+              "WORD",
+              "DPA Control"
+            ],
+            [
+              "10h+n",
+              "BYTE",
+              "第n档Power Allocation，共Max+1项"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dpa-capability-field-table",
+        "title": "Capability字段：最大编号、延迟单位和功率Scale",
+        "paragraphs": [
+          "Capability为RO，分配数组同一Scale作用于各档。保留位不赋予功能，不把Substate_Max=0当不支持DPA；它表示支持一档。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          16
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "含义"
+          ],
+          "rows": [
+            [
+              "4:0",
+              "Substate_Max，档数=值+1"
+            ],
+            [
+              "9:8",
+              "Transition Latency Unit"
+            ],
+            [
+              "13:12",
+              "Power Allocation Scale"
+            ],
+            [
+              "23:16",
+              "Transition Latency Value0"
+            ],
+            [
+              "31:24",
+              "Transition Latency Value1"
+            ],
+            [
+              "7:5 / 11:10 / 15:14",
+              "RsvdP"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dpa-latency-unit-table",
+        "title": "DPA延迟单位编码：1／10／100ms",
+        "paragraphs": [
+          "各档最大延迟=选择的8bit Value×单位。Unit=11保留，不当成1000ms。"
+        ],
+        "referenceIndices": [
+          7,
+          8
+        ],
+        "table": {
+          "columns": [
+            "Unit",
+            "乘数"
+          ],
+          "rows": [
+            [
+              "00",
+              "1ms"
+            ],
+            [
+              "01",
+              "10ms"
+            ],
+            [
+              "10",
+              "100ms"
+            ],
+            [
+              "11",
+              "Reserved"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dpa-power-scale-table",
+        "title": "DPA Power Scale：10、1、0.1、0.01倍",
+        "paragraphs": [
+          "Power Allocation Scale的四个编码全部定义，与Power Budgeting的三位Data Scale完全不同。每档字节乘以这里Scale得到瓦数，不是基于子状态编号估算。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          13,
+          14
+        ],
+        "table": {
+          "columns": [
+            "Scale",
+            "倍率"
+          ],
+          "rows": [
+            [
+              "00",
+              "10W/单位"
+            ],
+            [
+              "01",
+              "1W/单位"
+            ],
+            [
+              "10",
+              "0.1W/单位"
+            ],
+            [
+              "11",
+              "0.01W/单位"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dpa-latency-indicator-bitmap",
+        "title": "Latency Indicator每bit选一个Value，只定义到Max",
+        "paragraphs": [
+          "Indicator[n]=0选择Value0，=1选择Value1，对应目标子状态n。Max以上的位RsvdP，不应把读到的1当成另一个隐含档。",
+          "Max=31时全部32bit有效；软件移位必须避免把最高bit误作带符号负数或把32bit掩码移出范围。"
+        ],
+        "referenceIndices": [
+          17,
+          18
+        ]
+      },
+      {
+        "id": "dpa-enabled-is-w1c",
+        "title": "Substate Control Enabled为RW1C：写1是关闭，软件不能直接再置1",
+        "paragraphs": [
+          "Status[8]默认1，Conventional Reset或FLR后由硬件设置；软件写1清掉它，软件不能直接重新置1。它不是常见的“写1启用”位。",
+          "清掉后Control字段不再决定当前档位，让其他软件协商机制接管；单纯写Control或把Status写0不会重新启用。复位恢复使能还要考虑复位对整个Function的影响。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          19
+        ]
+      },
+      {
+        "id": "dpa-control-status-width",
+        "title": "Status[4:0]只读，Control[4:0]才是目标值",
+        "paragraphs": [
+          "Status低5位给当前报告档，Control低5位给软件目标，默认0；Status的其他保留位RsvdZ，Control高位RsvdP。",
+          "Enabled=0时Control写值可存储但不直接发起DPA转换。工具分别显示范围、当前/目标与使能，不把只读Status当软件发命令的位置。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "dpa-allocation-array-monotonic",
+        "title": "Power数组长度Max+1，后项不得比前项更耗电",
+        "paragraphs": [
+          "数组长度由Substate_Max决定，不应读满32字节再把未实现尾部当有效功率。合法档位必须连续且按功率非增排序。",
+          "例如相邻两项都20W合法；若后一项25W而前一项20W，则与该排序规则不符。工具可检查输入数组，不推断芯片内部限频算法。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          1,
+          2
+        ]
+      },
+      {
+        "id": "dpa-safe-observation-sequence",
+        "title": "观察流程：先读能力/表，再确认Enabled与目标转换",
+        "paragraphs": [
+          "先确认Function处于D0、读取Max/Scale/Indicator/分配表及Enabled；按受支持档位设置目标，观察Status及所选最大延迟，并处理目标被其他管理者改变的情况。",
+          "本站不直接写设备。尤其不能把Status整个WORD原样回写，意外把Enabled写1清掉后，再误以为所有后续Control都生效。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "dpa-register-explorer",
+        "title": "查询：DPA档位、瓦数、延迟与RW1C接管",
+        "paragraphs": [
+          "输入Capability/Indicator DWORD、Status/Control WORD和Power BYTE数组，解码每档功率及最大进入延迟，检查范围、非增排序与保留编码。",
+          "只分析配置快照，不模拟真实转换；Enabled清零时明确提示目标不生效，不能通过网页“重新启用”。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      }
+    ]
   },
   {
     "name": "Emergency Power Reduction（EPR）",
@@ -33146,5 +34299,1250 @@
     ],
     "protocolReferences": [],
     "referenceStatus": "工程方法条目：已检查本地文件结构；不是PCIe规范的独立功能，暂无精确规范章节。"
+  },
+  {
+    "name": "Power Budgeting：功率预算、连接器与Power Limit",
+    "group": "功耗与复位",
+    "intro": "按工作条件报告功率需求，并区分预算归属、连接器与可选限功率机制。",
+    "usage": "实际支持情况需要核对具体设备的能力、控制状态以及平台配合。",
+    "mechanism": "从0004h扩展能力枚举数据条目，按PM State/Sub State、Type、Rail与连接器解释；Power Limit控制与DPA动态子状态分开。",
+    "example": "相同板卡的12V、3.3V和Thermal条目不可不分条件全部相加；System Allocated表示预算已计入系统。",
+    "checks": "先确认Ext Enable/Present、Scale、作用范围和类型；保留值不伪装成瓦数，预算报告不是实测功率。",
+    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "id": 183,
+    "status": "选定规则/字段已展开 · 持续逐版完善",
+    "sources": [
+      {
+        "title": "PCI-SIG 规范目录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "reviewed": "2026-10-20",
+    "protocolReferences": [
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.8",
+        "page": 742,
+        "pdfPage": 742,
+        "title": "预算机制与部署",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.8",
+        "page": 857,
+        "pdfPage": 857,
+        "title": "预算机制与部署",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.4",
+        "page": 1094,
+        "pdfPage": 1094,
+        "title": "Data布局与Base Power",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1258,
+        "pdfPage": 1258,
+        "title": "Data布局与Base Power",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.4",
+        "page": 1095,
+        "pdfPage": 1095,
+        "title": "Scale/PM状态",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1259,
+        "pdfPage": 1259,
+        "title": "Scale/PM状态",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.4",
+        "page": 1096,
+        "pdfPage": 1096,
+        "title": "6.0 Power Rail与连接器字段",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1260,
+        "pdfPage": 1260,
+        "title": "Type/Rail/连接器",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.4",
+        "page": 1097,
+        "pdfPage": 1097,
+        "title": "Extended条目和并行/互斥",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1261,
+        "pdfPage": 1261,
+        "title": "Extended条目和并行/互斥",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.3",
+        "page": 1092,
+        "pdfPage": 1092,
+        "title": "Budget控制字段",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.3",
+        "page": 1257,
+        "pdfPage": 1257,
+        "title": "Budget控制字段",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.5",
+        "page": 1098,
+        "pdfPage": 1098,
+        "title": "Budget能力字段",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.5",
+        "page": 1263,
+        "pdfPage": 1263,
+        "title": "Budget能力字段",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1",
+        "page": 1090,
+        "pdfPage": 1090,
+        "title": "预算数据作用范围",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1",
+        "page": 1255,
+        "pdfPage": 1255,
+        "title": "预算数据作用范围",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.8",
+        "page": 743,
+        "pdfPage": 743,
+        "title": "Power Budgeting部署表",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.8",
+        "page": 857,
+        "pdfPage": 857,
+        "title": "Power Budgeting部署表",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1",
+        "page": 1090,
+        "pdfPage": 1090,
+        "title": "6.0 PF/VF范围",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1",
+        "page": 1255,
+        "pdfPage": 1255,
+        "title": "7.0 PF/VF/SDI范围",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1",
+        "page": 1090,
+        "pdfPage": 1090,
+        "title": "能力结构",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1",
+        "page": 1255,
+        "pdfPage": 1255,
+        "title": "能力结构",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.2",
+        "page": 1091,
+        "pdfPage": 1091,
+        "title": "Data Select",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.2",
+        "page": 1256,
+        "pdfPage": 1256,
+        "title": "Data Select",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.4",
+        "page": 1093,
+        "pdfPage": 1093,
+        "title": "Data Select语义",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1258,
+        "pdfPage": 1258,
+        "title": "Data Select语义",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.4",
+        "page": 1093,
+        "pdfPage": 1093,
+        "title": "扩展可见性",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1258,
+        "pdfPage": 1258,
+        "title": "扩展可见性",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1259,
+        "pdfPage": 1259,
+        "title": "7.0高功率区间继续",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1262,
+        "pdfPage": 1262,
+        "title": "7.0必需D0/热负载数据",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.4",
+        "page": 1097,
+        "pdfPage": 1097,
+        "title": "6.0 Connector Type尾部",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1261,
+        "pdfPage": 1261,
+        "title": "7.0 12V-2x6编码",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.4",
+        "page": 1097,
+        "pdfPage": 1097,
+        "title": "6.0 Aux限制",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1262,
+        "pdfPage": 1262,
+        "title": "7.0 Aux限制",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.3",
+        "page": 1256,
+        "pdfPage": 1256,
+        "title": "7.0 Extended Enable",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.8.3",
+        "page": 859,
+        "pdfPage": 859,
+        "title": "7.0 Power Limit状态规则",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.8.3",
+        "page": 859,
+        "pdfPage": 859,
+        "title": "7.0配置时机",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.3",
+        "page": 1257,
+        "pdfPage": 1257,
+        "title": "7.0 OOB运行期变化",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.8.3",
+        "page": 859,
+        "pdfPage": 859,
+        "title": "7.0双来源限制",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.8.3",
+        "page": 859,
+        "pdfPage": 859,
+        "title": "7.0功率授予来源",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.9",
+        "page": 860,
+        "pdfPage": 860,
+        "title": "7.0 Slot Power Limit边界",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.6",
+        "page": 1099,
+        "pdfPage": 1099,
+        "title": "6.0 Sense入口/门控",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.6",
+        "page": 1263,
+        "pdfPage": 1263,
+        "title": "7.0 Sense入口",
+        "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      }
+    ],
+    "referenceStatus": "按版正文/字段定位；未核中间修订/ECN、形态规范或整章不标完成。",
+    "details": [
+      {
+        "id": "budget-purpose-versus-permission",
+        "title": "报告需求不是授予功率，更不是ADC实时测量",
+        "paragraphs": [
+          "Budgeting数据描述不同供电轨、D-state和工作条件下的需求，用于平台分配供电与散热预算。条目假定已获得相应许可且外部电源工作。",
+          "报告400W不表示板卡当前获准消耗400W，也不表示当前实测400W。实际许可、驱动限制与可选Power Limit各有机制。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          14,
+          15
+        ]
+      },
+      {
+        "id": "budget-required-optional-form-factor",
+        "title": "是否必需还取决于形态规范，不能只看PCIe代际",
+        "paragraphs": [
+          "不要求热插拔的形态或板载设备，可选实现此能力；形态规范可能要求。适配器在配置并获使能前须遵守对应机电规范的配置功率上限。",
+          "Base提供构件，整个平台预算算法不在这里统一定义。本轮没有凭Gen1～Gen7速率给所有设备强加同一瓦数。"
+        ],
+        "referenceIndices": [
+          0,
+          1
+        ]
+      },
+      {
+        "id": "budget-function-device-card-table",
+        "title": "Function／Device／整卡：先判部署，再求和",
+        "paragraphs": [
+          "同一个能力可能代表不同统计范围，不能无条件把每个BDF的所有条目相加。下面按已核部署表归纳。"
+        ],
+        "referenceIndices": [
+          16,
+          17
+        ],
+        "table": {
+          "columns": [
+            "部署",
+            "报告范围"
+          ],
+          "rows": [
+            [
+              "单Function Device有能力",
+              "Device功率"
+            ],
+            [
+              "MFD只有一个Function有能力",
+              "整个Device功率"
+            ],
+            [
+              "MFD多个Function有能力",
+              "各Function范围，按规则求和"
+            ],
+            [
+              "多Device板卡仅一个Device有能力",
+              "其Function合计代表整卡"
+            ],
+            [
+              "多Device板卡多个Device有能力",
+              "各Device范围，再求整卡合计"
+            ],
+            [
+              "没有能力",
+              "无此接口提供的数据，部分形态不允许"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "budget-pf-vf-scope",
+        "title": "VF不能实现Budgeting；PF数据覆盖相关VF，7.0还列SDI",
+        "paragraphs": [
+          "能力允许放在PF，VF不得实现。PF报告值须覆盖关联VF，7.0文字还明确纳入关联SDI。",
+          "不能再把每个VF按一个独立功率上限重复加入板卡预算；虚拟化资源调度和功率覆盖方式须结合设备。"
+        ],
+        "referenceIndices": [
+          18,
+          19
+        ]
+      },
+      {
+        "id": "budget-register-map",
+        "title": "能力0004h：Data Select是BYTE，Data是复用DWORD",
+        "paragraphs": [
+          "B为Budgeting扩展能力基址，Version=1；Data Select选择一条记录，Data返回该工作条件的数据。它不是DPA数组的连续Power BYTE表。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          22,
+          23
+        ],
+        "table": {
+          "columns": [
+            "偏移",
+            "宽度",
+            "寄存器"
+          ],
+          "rows": [
+            [
+              "00h",
+              "DWORD",
+              "能力头0004h/Version1"
+            ],
+            [
+              "04h",
+              "BYTE",
+              "Data Select，默认未定义"
+            ],
+            [
+              "06h",
+              "WORD",
+              "Power Budgeting Control"
+            ],
+            [
+              "08h",
+              "DWORD",
+              "所选Data，RO"
+            ],
+            [
+              "0Ch",
+              "BYTE",
+              "Power Budgeting Capability"
+            ],
+            [
+              "0Dh起",
+              "按定义字段",
+              "Sense Detect；需能力/使能/Function归属"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "budget-data-select-enumeration",
+        "title": "Data Select从0递增；顺序不代表D-state/功率排序",
+        "paragraphs": [
+          "每条Data描述不同工作条件，规范不规定普通条目的排序。索引超过或等于记录数时返回全0；默认Select/Data未定义，软件应显式选择再读。",
+          "不能把Select=3解释为D3，也不能按条目位置当连接器号。枚举必须解析记录里的条件字段及扩展可见性。"
+        ],
+        "referenceIndices": [
+          24,
+          25
+        ]
+      },
+      {
+        "id": "budget-extended-hidden-entries",
+        "title": "默认隐藏Extended条目：全0不代表不存在扩展数据",
+        "paragraphs": [
+          "Extended Enable=0时Data[31:21]必须0；若Select指向Extended条目，整个Data须返回0。Extended条目必须放在全部普通条目之后，保护旧软件枚举。",
+          "要查连接器与高位Scale，先确认Extended Supported并启用后再枚举。不能在默认使能下遇0就断言全部扩展记录不存在。"
+        ],
+        "referenceIndices": [
+          26,
+          27
+        ]
+      },
+      {
+        "id": "budget-data-field-table",
+        "title": "Data DWORD逐字段：Scale高位与低位不连续",
+        "paragraphs": [
+          "Base Power与Scale描述数值，PM、Type、Rail等描述其条件；Connector字段仅在Extended Present=1时解释。不同条件数据不能直接汇总。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "字段"
+          ],
+          "rows": [
+            [
+              "7:0",
+              "Base Power"
+            ],
+            [
+              "9:8",
+              "Data Scale[1:0]"
+            ],
+            [
+              "12:10",
+              "PM Sub State（3bit）"
+            ],
+            [
+              "14:13",
+              "PM State"
+            ],
+            [
+              "17:15",
+              "Type"
+            ],
+            [
+              "20:18",
+              "Power Rail"
+            ],
+            [
+              "21",
+              "Data Scale[2]"
+            ],
+            [
+              "24:22",
+              "Connector Number"
+            ],
+            [
+              "30:25",
+              "Connector Type"
+            ],
+            [
+              "31",
+              "Extended Power Budgeting Present"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "budget-data-scale-table",
+        "title": "三位Data Scale：1、0.1、0.01、0.001、10、100",
+        "paragraphs": [
+          "Scale=(bit21×4)+bits9:8。旧模式高位须为0；DPA Power Scale只有两位且编码不同。"
+        ],
+        "referenceIndices": [
+          4,
+          5
+        ],
+        "table": {
+          "columns": [
+            "Scale",
+            "乘数"
+          ],
+          "rows": [
+            [
+              "000",
+              "1"
+            ],
+            [
+              "001",
+              "0.1"
+            ],
+            [
+              "010",
+              "0.01"
+            ],
+            [
+              "011",
+              "0.001"
+            ],
+            [
+              "100",
+              "10"
+            ],
+            [
+              "101",
+              "100"
+            ],
+            [
+              "110 / 111",
+              "Reserved"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "budget-legacy-high-power-intervals",
+        "title": "Legacy F0h～FEh是功率区间，FFh保留，不能直接当瓦数",
+        "paragraphs": [
+          "仅当Extended Enable=0、低2bit Scale=00、Base>EFh时使用特殊编码。F0表示(239,250]W，F1为(250,275]W，之后上限每级增加25W，FE为(575,600]W；FF保留给更高值。",
+          "这不是F0=240W的精确线性编码，也不能把FF当255W或650W。Extended启用或其他Scale时，按其普通乘法及有效性规则解释，不自动套旧区间。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          28
+        ]
+      },
+      {
+        "id": "budget-pm-state-and-d3-type",
+        "title": "PM State=11必须结合Type区分D3Hot/Cold",
+        "paragraphs": [
+          "PM State的00/01/10分别D0/D1/D2；11配PME Aux或Auxiliary为D3Cold，配其他Type为D3Hot。",
+          "Data里的PM State是这条功率记录的适用条件，不是写它就改变设备D-state。PM Sub State也不是L1.1/L1.2或DPA五位子状态。"
+        ],
+        "referenceIndices": [
+          4,
+          5
+        ]
+      },
+      {
+        "id": "budget-type-time-windows",
+        "title": "Type与测量窗口：6.0为5s/1ms，7.0为1s/100μs",
+        "paragraphs": [
+          "除形态规范明确覆盖外，Base6.0的Sustained按最大吞吐下5秒平均，Maximum按1ms移动窗口；Base7.0分别改为1秒平均和100μs移动窗口。不能把7.0时间值无标注套到6.0数据。",
+          "Idle在两版所引字段中都要求至少空闲20秒。这里确认的是6.0与7.0正文差异，具体引入ECN和中间修订仍待核。"
+        ],
+        "referenceIndices": [
+          6,
+          7,
+          4
+        ],
+        "table": {
+          "columns": [
+            "Type",
+            "含义"
+          ],
+          "rows": [
+            [
+              "000",
+              "PME Aux"
+            ],
+            [
+              "001",
+              "Auxiliary"
+            ],
+            [
+              "010",
+              "Idle（≥20秒）"
+            ],
+            [
+              "011",
+              "Sustained"
+            ],
+            [
+              "100",
+              "EPR Sustained"
+            ],
+            [
+              "101",
+              "EPR Maximum"
+            ],
+            [
+              "110",
+              "Reserved"
+            ],
+            [
+              "111",
+              "Maximum"
+            ],
+            [
+              "测量窗口（6.0）",
+              "Sustained 5s平均；Maximum 1ms移动窗口"
+            ],
+            [
+              "测量窗口（7.0）",
+              "Sustained 1s平均；Maximum 100μs移动窗口"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "budget-rail-versus-thermal",
+        "title": "Power Rail表：Thermal不等于又一根供电轨",
+        "paragraphs": [
+          "Thermal用于热负载；D0 Maximum/Sustained在不同于各电源轨合计时要提供相应Thermal记录。不要把Thermal再加到电源轨之和，造成重复预算。"
+        ],
+        "referenceIndices": [
+          6,
+          7,
+          29
+        ],
+        "table": {
+          "columns": [
+            "Rail",
+            "含义"
+          ],
+          "rows": [
+            [
+              "000",
+              "12V"
+            ],
+            [
+              "001",
+              "3.3V"
+            ],
+            [
+              "010",
+              "1.5V或1.8V"
+            ],
+            [
+              "011",
+              "Reserved"
+            ],
+            [
+              "100",
+              "48V"
+            ],
+            [
+              "101",
+              "5V"
+            ],
+            [
+              "110",
+              "Reserved"
+            ],
+            [
+              "111",
+              "Thermal"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "budget-connector-number",
+        "title": "Connector Number是整卡物理接口身份，不是条目索引",
+        "paragraphs": [
+          "最多8个连接器，编号整卡一致、跨Function一致。同一个连接器有多个Rail或多个Connector Type条目时，应保持同一Connector Number。",
+          "编号到实际物理位置的映射由实现/形态定义，不能把编号0永远解释为PCIe金手指。Present=0时忽略Connector字段。"
+        ],
+        "referenceIndices": [
+          6,
+          7
+        ]
+      },
+      {
+        "id": "budget-connector-type-evolution",
+        "title": "7.0新增12V-2x6编码；6.0相同区间仍为保留",
+        "paragraphs": [
+          "6.0所引表把10h～2Fh留给PCI-SIG；7.0表明确10h/11h/12h/13h对应12V-2x6的150/300/450/600W级线缆存在条件。30h～3Fh仍为Vendor Specific。",
+          "这只是已核Base6.0与7.0表的差异，不证明首次引入一定在7.0；连接器电气/插拔与Sense时序仍须对应CEM正式规范，不能凭这些枚举设计电路。",
+          "6.0的0Ah/0Bh也为保留，7.0明确为12VHPWR的其余两种Sense组合；08h/09h的Sense描述亦逐版明确到两根线，不能用单一表无差别覆盖两个版本。"
+        ],
+        "referenceIndices": [
+          30,
+          31,
+          6
+        ],
+        "table": {
+          "columns": [
+            "Connector Type",
+            "6.0",
+            "7.0"
+          ],
+          "rows": [
+            [
+              "00h",
+              "形态定义的边缘连接器",
+              "同左"
+            ],
+            [
+              "01h",
+              "系统非连接器供电，如焊接",
+              "同左"
+            ],
+            [
+              "02h",
+              "板卡自带非连接器供电，如电池",
+              "同左"
+            ],
+            [
+              "03h",
+              "系统/板卡之外的非连接器供电，如外置机箱",
+              "同左"
+            ],
+            [
+              "04h",
+              "CEM 2x3",
+              "同左"
+            ],
+            [
+              "05h",
+              "CEM 2x4，可接2x3或2x4线缆",
+              "同左"
+            ],
+            [
+              "06h",
+              "CEM 2x4接2x3线缆",
+              "同左"
+            ],
+            [
+              "07h",
+              "CEM 2x4接2x4线缆",
+              "同左"
+            ],
+            [
+              "08h",
+              "12VHPWR：Sense0开路",
+              "12VHPWR：Sense0/1均开路"
+            ],
+            [
+              "09h",
+              "12VHPWR：Sense0接地",
+              "12VHPWR：Sense0接地，Sense1开路"
+            ],
+            [
+              "0Ah",
+              "Reserved",
+              "12VHPWR：Sense0开路，Sense1接地"
+            ],
+            [
+              "0Bh",
+              "Reserved",
+              "12VHPWR：Sense0/1均接地"
+            ],
+            [
+              "0Ch",
+              "48VHPWR：Sense0/1均开路",
+              "同左"
+            ],
+            [
+              "0Dh",
+              "48VHPWR：Sense0接地，Sense1开路",
+              "同左"
+            ],
+            [
+              "0Eh",
+              "48VHPWR：Sense0开路，Sense1接地",
+              "同左"
+            ],
+            [
+              "0Fh",
+              "48VHPWR：Sense0/1均接地",
+              "同左"
+            ],
+            [
+              "10h",
+              "Reserved",
+              "12V-2x6：150W或更高线缆存在"
+            ],
+            [
+              "11h",
+              "Reserved",
+              "12V-2x6：300W或更高线缆存在"
+            ],
+            [
+              "12h",
+              "Reserved",
+              "12V-2x6：450W或更高线缆存在"
+            ],
+            [
+              "13h",
+              "Reserved",
+              "12V-2x6：600W线缆存在"
+            ],
+            [
+              "14h～2Fh",
+              "Reserved for PCI-SIG",
+              "同左"
+            ],
+            [
+              "30h～3Fh",
+              "Vendor Specific",
+              "同左"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "budget-simultaneous-exclusive",
+        "title": "同条件同PM Sub State可并行，不同Sub State互斥",
+        "paragraphs": [
+          "除PME Aux/Auxiliary等明确例外，同一工作条件及PM Sub State记录代表同时消耗，应提供完整集合；不同PM Sub State记录则互斥，某时刻只工作在一个Sub State。",
+          "预算求和前先按条件与Sub State分组。把所有索引行无条件相加会把互斥功率叠在一起。"
+        ],
+        "referenceIndices": [
+          8,
+          9
+        ]
+      },
+      {
+        "id": "budget-aux-power-not-auto-granted",
+        "title": "Aux/PME Aux报告并不自动提高辅助供电许可",
+        "paragraphs": [
+          "支持辅助供电或其PME时需给相应Type/Rail数据；PME Aux与Auxiliary互斥，由PME_En和Aux Power PM Enable等决定适用项。",
+          "超过形态默认或Aux_Current的报告，仍受规范给出的使能/额外授权条件限制；不能把“能力报告更大”当获得辅助电源预算。完整_DSM流程仍依固件规范。"
+        ],
+        "referenceIndices": [
+          32,
+          33
+        ]
+      },
+      {
+        "id": "budget-capability-byte-table",
+        "title": "Capability BYTE+0Ch：System Allocated不是写入式Enable",
+        "paragraphs": [
+          "这些能力/归属字段为HwInit。System Allocated=1表示已计入系统总预算，软件为预算决定应忽略其报告，避免再次分配；不等于设备被关闭或实际消耗为0。"
+        ],
+        "referenceIndices": [
+          12,
+          13
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "字段"
+          ],
+          "rows": [
+            [
+              "0",
+              "System Allocated"
+            ],
+            [
+              "1",
+              "Extended Power Budgeting Supported"
+            ],
+            [
+              "2",
+              "Sense Detect Supported；需Extended支持"
+            ],
+            [
+              "3",
+              "Power Limit Supported；需Extended支持"
+            ],
+            [
+              "5:4",
+              "Power Disable支持模式"
+            ],
+            [
+              "7:6",
+              "Power Loss Notification支持模式"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "budget-control-field-table",
+        "title": "Control+06h：扩展显示开关与两套Power Limit字段",
+        "paragraphs": [
+          "只在相应Supported成立时解释控制。Power Limit寄存器路径的配置时机与DPA动态控制不同；OOB字段并不因为位于配置空间就变成普通RW。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          34
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "字段",
+            "属性"
+          ],
+          "rows": [
+            [
+              "0",
+              "Extended Power Budgeting Enable",
+              "RW"
+            ],
+            [
+              "1 / 4:2",
+              "Power Limit Enable / PM Sub State",
+              "RWS/RsvdP"
+            ],
+            [
+              "5 / 8:6",
+              "OOB Enable / PM Sub State",
+              "HwInit/RsvdP"
+            ],
+            [
+              "15:9",
+              "Reserved",
+              "RsvdP"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "budget-power-limit-eight-states",
+        "title": "Budget Power Limit最多8个PM Sub States，与DPA32档不同",
+        "paragraphs": [
+          "Power Limit PM Sub State是3bit，含实现相关可选功耗级别，与PM State、L1 PM Substates等无关。每个级别需完整数据，选择没有Data条目的状态行为未定义。",
+          "不能只用编号比较哪个更节电；这里没有给出DPA那种按编号功率非增的通用排序。应对各Rail/Connector读相应条目。"
+        ],
+        "referenceIndices": [
+          35
+        ]
+      },
+      {
+        "id": "budget-power-limit-config-time",
+        "title": "Power Limit经配置写设置只允许D0uninitialized阶段",
+        "paragraphs": [
+          "7.0正文要求Configuration Write设置Power Limit Enable及PM Sub State时，设备全部Function仍为D0uninitialized；任一退出后再改变这些字段行为未定义。",
+          "因此不能把它当DPA那样的任意运行期功率调节器。OOB字段通过实现机制可在Configuration Ready之后变动，软件访问/生效协调另由平台完成。"
+        ],
+        "referenceIndices": [
+          36,
+          37
+        ]
+      },
+      {
+        "id": "budget-two-limit-sources",
+        "title": "两套Power Limit同时启用：按每Rail/Connector取较低功耗",
+        "paragraphs": [
+          "两者都关时由实现决定当前PM Sub State；两者都开时，各Rail/Connector组合按两来源中较低功耗对应的状态运行。",
+          "不是选择较小的子状态编号，也不是把两预算相加。设备全局和不同供电接口之间的关联还需实现解释。"
+        ],
+        "referenceIndices": [
+          38
+        ]
+      },
+      {
+        "id": "budget-power-grant-hierarchy",
+        "title": "六类功率授予机制：不要把Slot消息视为唯一入口",
+        "paragraphs": [
+          "7.0列Initial、Set_Slot_Power_Limit、配置Power Limit PM Sub State、OOB Power Limit、固件额外Aux、形态/Device Class机制。Power Limit可覆盖Initial/Slot消息且可低于Initial；额外Aux有自身覆盖规则。",
+          "它们的形态/类别交互不在Base统一规定。Emergency Power Reduction若支持，还有更高优先级；网页不为任意板卡自动生成一个最终安全瓦数。"
+        ],
+        "referenceIndices": [
+          39,
+          40
+        ]
+      },
+      {
+        "id": "budget-power-loss-disable",
+        "title": "Power Disable、PLN/PLA是形态相关能力，不是同一动作",
+        "paragraphs": [
+          "Power Disable字段00不报告，01支持移除主电源用于恢复，10支持更短断言用于D3Cold请求，11保留；Power Loss Notification另用两位描述通知及是否有确认。",
+          "M.2示例有PLN#/PLA信号，但其他形态可不同。不能只读Base能力字节就推断通用引脚、脉宽和断电时序。"
+        ],
+        "referenceIndices": [
+          12,
+          13
+        ]
+      },
+      {
+        "id": "budget-sense-detect-boundary",
+        "title": "Sense Detect需支持、扩展使能和正确Function归属",
+        "paragraphs": [
+          "Sense Detect报告连接器Sense线检测值，不是电流计或功率计。无支持时保留，Extended Enable清零时读0；MFD实际有效归属还按对应字段规则查。",
+          "本轮只核入口与可见性，不提供未读完整Sense编码表的通用解码；线缆型号、连接器许可和电气安全仍须相应机电规范。"
+        ],
+        "referenceIndices": [
+          41,
+          42
+        ]
+      },
+      {
+        "id": "budget-register-explorer",
+        "title": "查询：Budget Data数值、条件与Legacy高功率区间",
+        "paragraphs": [
+          "输入Data DWORD及Extended Enable，工具解码分离Scale、高功率区间、PM/Type/Rail和Connector字段，保留值不强行输出精确瓦数。",
+          "该工具只解释一条记录，不进行全卡预算合计或许可推断。System Allocated、当前枚举可见性、授权与功率控制仍要在其他字段/平台中确认。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
   }
 ]
