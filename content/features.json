@@ -31848,8 +31848,8 @@
     "prerequisites": "PCLK as PHY Input/Output从PHY视角命名。PIPE 7.1正文对PCIe5及以后不支持PCLK输出模式；旧产品手册描述的可生成模式不应不加限定外推。",
     "example": "两条同link lane频率相同不代表相位关系满足要求；各自的RX时钟也不能当成一个普通同相时钟。",
     "checks": "列出频率、来源、启动条件、是否停钟及domain；跨域使用同步器/FIFO/握手，不能只按时钟名字相同就设为同步。",
-    "status": "选定规则已展开 · 持续逐版核读",
-    "reviewed": "2026-10-19",
+    "status": "选定正文与接口细节已展开 · 持续核对",
+    "reviewed": "2026-10-20",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -31933,9 +31933,130 @@
         "title": "PCLK输入模式的切速握手",
         "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1",
+        "page": 110,
+        "pdfPage": 110,
+        "title": "时钟角色与拓扑",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 115,
+        "pdfPage": 115,
+        "title": "MacCLK动态约束",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.5.2",
+        "page": 47,
+        "pdfPage": 47,
+        "title": "TX/PLL与RX时钟",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.5.3",
+        "page": 48,
+        "pdfPage": 48,
+        "title": "RX分频与CDR图",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.3.1",
+        "page": 30,
+        "pdfPage": 30,
+        "title": "同link PCLK",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.5",
+        "page": 60,
+        "pdfPage": 60,
+        "title": "PLL配置时机",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.4",
+        "page": 83,
+        "pdfPage": 83,
+        "title": "APB最坏延迟",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.4.1",
+        "page": 45,
+        "pdfPage": 45,
+        "title": "独立CPU时钟与JTAG",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 53,
+        "pdfPage": 53,
+        "title": "复位输出时钟毛刺",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "2.1",
+        "page": 18,
+        "pdfPage": 18,
+        "title": "参考时钟选源规则",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "11.1",
+        "page": 120,
+        "pdfPage": 120,
+        "title": "预览时钟监测范围",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
       }
     ],
-    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
+    "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
     "details": [
       {
         "title": "从clk_rst出发的时钟清单",
@@ -32064,6 +32185,178 @@
         "referenceIndices": [
           1,
           2
+        ]
+      },
+      {
+        "id": "clock-domain-purpose-table",
+        "title": "先画时钟职责表：同叫PCLK的不同接口不要直接合并",
+        "paragraphs": [
+          "PIPE PCLK是并行接口时钟；产品APB章节中的pclk是管理总线时钟；CPU、SRAM与RX恢复时钟又各有职责。名字相近不证明同域。",
+          "连接图要记录源、分频/门控、消费端和复位域，再判断是否需CDC。下面是本轮所引接口职责归纳。"
+        ],
+        "referenceIndices": [
+          7,
+          9,
+          13,
+          14
+        ],
+        "table": {
+          "columns": [
+            "时钟",
+            "职责",
+            "排查重点"
+          ],
+          "rows": [
+            [
+              "REFCLK/CLK",
+              "产生串行速率与控制时序基础",
+              "来源、SSC、选择和使能"
+            ],
+            [
+              "PIPE PCLK/MAX PCLK",
+              "MAC-PHY并行接口与输入时钟源",
+              "模式、速率/位宽、相位"
+            ],
+            [
+              "cpu_clk",
+              "MCU与CCM AHB工作域",
+              "加载/CPU暂停时也不能误停"
+            ],
+            [
+              "APB pclk",
+              "外部管理访问",
+              "完成等待跨CPU域"
+            ],
+            [
+              "RX symbol/debug clock",
+              "CDR与分频后的接收观察",
+              "不等同TX源或CPU时钟"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "clock-pclk-mode-applicability",
+        "title": "PIPE7.1的PCLK输出拓扑是legacy，不适用于Gen5设计",
+        "paragraphs": [
+          "PIPE7.1 §8.1.1把PCLK由PHY输出的拓扑限定为legacy，并明确不支持Gen5设计。输入模式又有PHY内PLL、外部PLL和共PLL等拓扑。",
+          "这说的是该接口标准版本的拓扑适用性，不能据此宣布所有历史PIPE实现“从来不允许输出PCLK”。产品需按自己的交付和接口版本核。"
+        ],
+        "referenceIndices": [
+          7
+        ]
+      },
+      {
+        "id": "clock-same-reference-not-same-net",
+        "title": "CLK与PCLK需共同参考和相同特征，不等于必须同一根网",
+        "paragraphs": [
+          "PIPE7.1要求CLK/PCLK来自相同参考、具有相同clocking characteristics；两者可mesochronous。MAX PCLK为按最大支持速率确定的恒频源。",
+          "不要独立给两PLL接不同来源后只把标称MHz配成一样。也不要把相同参考误当所有跨域无需处理。"
+        ],
+        "referenceIndices": [
+          7
+        ]
+      },
+      {
+        "id": "clock-product-multilane-phase",
+        "title": "同link的输入PCLK需相位同步；不能只核平均频率",
+        "paragraphs": [
+          "PCS1.75a要求同一link各lane的输入PCLK相位同步。产品内部按lane做时钟选择和适配，但跨lane仍受整体链路约束。",
+          "检查聚合/拆分时需同时核lane归属、时钟源和相位关系。两组时钟恰好都1GHz不能证明可组合成同一link。"
+        ],
+        "referenceIndices": [
+          11
+        ]
+      },
+      {
+        "id": "clock-divider-path-independence",
+        "title": "PLL word与div输出可独立配置，别用一条分频链解释全部时钟",
+        "paragraphs": [
+          "3.02a图文区分word路径与div clock路径，其分频配置独立；同一VCO可派生多种并行时钟。",
+          "PLL锁定只说明一个条件，不能从某个debug输出频率正确推导所有word输出配置都正确。内部参数仍只适用于该产品。"
+        ],
+        "referenceIndices": [
+          9
+        ]
+      },
+      {
+        "id": "clock-rx-cdr-versus-tx-pll",
+        "title": "RX用CDR控制后再分频，TX频率正确不证明RX采样正确",
+        "paragraphs": [
+          "3.02a把CM高频源送至RX，再由CDR环控制并派生RX symbol/debug时钟；这些观察点与PLL/TX输出不同。",
+          "RX有时钟不等于已锁到输入数据，也不等于数据valid/块对齐。观察时要说明测的是哪个分频点及当前rate。"
+        ],
+        "referenceIndices": [
+          9,
+          10
+        ]
+      },
+      {
+        "id": "clock-pll-retune-only-off",
+        "title": "该产品只有相应PLL掉电后才能改PLL配置",
+        "paragraphs": [
+          "3.02a规定只在对应PLL powered-down时改设置；哪些lane在使用、force enable和lane选择共同决定是否真正掉电。",
+          "只让当前调试lane进入P2仍可能有其他lane使用同一PLL。核共享用户后才能判断改配置前提，不能把lane独立控制理解为PLL独占。"
+        ],
+        "referenceIndices": [
+          12
+        ]
+      },
+      {
+        "id": "clock-reset-glitch-observation",
+        "title": "phy_reset可能使输出时钟毛刺，复位域要覆盖消费端",
+        "paragraphs": [
+          "3.02a明确phy_reset断言时输出PHY时钟可能毛刺；PCS复位约束也需结合具体集成核对。",
+          "采集波形时先分清reset内无效波形与运行态异常。不能用reset期间一次异常边沿证明VCO不稳定，也不能把仍在工作的消费端留在未受保护状态。"
+        ],
+        "referenceIndices": [
+          15
+        ]
+      },
+      {
+        "id": "clock-apb-latency-two-domains",
+        "title": "APB最坏延迟为22个CPU周期加8个APB周期，不是恒定30拍",
+        "paragraphs": [
+          "该3.02a给出从PENABLE断言到PREADY的上界表达式：22×Tcpu+8×Tapb；两时钟相同才是30个APB周期。",
+          "例如500MHz CPU、100MHz APB，公式为44ns+80ns=124ns，即12.4个APB周期时长。它不是四舍五入后的固定实际传输拍数；不包含软件全部调用开销。"
+        ],
+        "referenceIndices": [
+          13
+        ]
+      },
+      {
+        "id": "clock-jtag-cpu-frequency",
+        "title": "CPU JTAG必须严格小于CPU频率三分之一",
+        "paragraphs": [
+          "3.02a要求CPU JTAG TCK始终低于正在使用的CPU时钟三分之一。等于边界不满足“less than”，CPU被停钟时也不能套用原来的最大TCK。",
+          "这是CPU调试口要求，不能推广到所有PMD JTAG/IJTAG或标准PCIe TCK。CPU独立时钟与PIPE PCLK的存在也不能互相替代。"
+        ],
+        "referenceIndices": [
+          14
+        ]
+      },
+      {
+        "id": "clock-sdk-source-switch-future",
+        "title": "SDK选源前先撤enable；Future章节监测能力另核",
+        "paragraphs": [
+          "预览SDK说参考/重复时钟在enable为1时不得换源，给出先撤enable、改源并施加复位后再开启的顺序。具体兼容3.02a仍须发布说明。",
+          "同文时钟监测列在Future Enhancements，不能把其API或100MHz测量引脚说明当当前所有交付已实现。这里保留文档性质，不提供直接改时钟脚本。"
+        ],
+        "referenceIndices": [
+          16,
+          17
+        ]
+      },
+      {
+        "id": "clock-management-query",
+        "title": "查询：双时钟APB等待上界与CPU JTAG比例",
+        "paragraphs": [
+          "输入CPU/APB频率和可选TCK，计算产品公式的时间及严格比例条件。",
+          "这个计算不证明输入频率在产品支持范围内，不生成时钟约束，也不验证CDC、模拟PLL或实际总线完成。"
+        ],
+        "referenceIndices": [
+          13,
+          14
         ]
       }
     ]
@@ -32486,8 +32779,8 @@
     "prerequisites": "异步置位复位可以不依赖工作时钟，但同步释放和握手需要目标域时钟恢复。每种复位保留哪些寄存器和固件状态取决于具体IP。",
     "example": "数字复位已释放却一直不ready，可能是固件未启动、参考时钟未启用、lane reset还在阻塞状态机或校准等待条件未满足。",
     "checks": "给每个阶段设置可观察状态与超时，先找最早未完成的依赖，不要用固定延时替代全部握手。",
-    "status": "选定规则已展开 · 持续逐版核读",
-    "reviewed": "2026-10-19",
+    "status": "选定正文与接口细节已展开 · 持续核对",
+    "reviewed": "2026-10-20",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -32582,9 +32875,108 @@
         "title": "掉电后的PHY上下文恢复窗口",
         "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.1",
+        "page": 52,
+        "pdfPage": 52,
+        "title": "供电与未知初态",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 53,
+        "pdfPage": 53,
+        "title": "复位图和lane应答",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 54,
+        "pdfPage": 54,
+        "title": "CPU与lane启动阶段",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.2",
+        "page": 29,
+        "pdfPage": 29,
+        "title": "PCS复位覆盖与补丁重载",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.2",
+        "page": 169,
+        "pdfPage": 169,
+        "title": "Gen5仿真等待与复位",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.2",
+        "page": 171,
+        "pdfPage": 171,
+        "title": "Gen5正式步骤与POR时长",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "2.3",
+        "page": 23,
+        "pdfPage": 23,
+        "title": "SDK强制复位归属",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "2.4",
+        "page": 24,
+        "pdfPage": 24,
+        "title": "SDK复位退出",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "2.6",
+        "page": 26,
+        "pdfPage": 26,
+        "title": "静态配置观察",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
       }
     ],
-    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
+    "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
     "details": [
       {
         "title": "启动检查顺序",
@@ -32770,6 +33162,179 @@
         ],
         "referenceIndices": [
           7
+        ]
+      },
+      {
+        "id": "startup-reset-is-not-clocked",
+        "title": "复位断言可无时钟，复位退出却依赖REFCLK与使能",
+        "paragraphs": [
+          "3.02a的phy_reset断言不要求提供时钟，但退出和lane ack撤销需要参考时钟及相应enable。复位时TX/RX终端关闭且TX三态。",
+          "因此“复位能拉住”不证明时钟接通。观察ack迟迟不撤销，应先检查REFCLK、选择/使能和启动前提，再讨论LTSSM。"
+        ],
+        "referenceIndices": [
+          9
+        ]
+      },
+      {
+        "id": "startup-por-warm-timing",
+        "title": "同一产品的POR与warm reset最短时长不同",
+        "paragraphs": [
+          "3.02a步骤要求电源上升后phy_reset至少保持15μs；后续warm reset至少10ns。Gen5 2.02a文字步骤也给出这两个数。",
+          "这些是所引产品要求，不能当PCIe PERST#通用时限。Gen5图注出现>10ns也不能覆盖正文对冷启动的15μs要求。"
+        ],
+        "referenceIndices": [
+          10,
+          13
+        ]
+      },
+      {
+        "id": "startup-ack-polarity",
+        "title": "复位期间lane ack为1，初始化完成等它撤销为0",
+        "paragraphs": [
+          "此产品reset期间TX/RX ack被断言；初始化步骤以它们撤销确认配置已应用。高电平本身不表示“lane已经ready”。",
+          "同一信号在复位、配置请求和运行阶段需结合上下文看。只抓一帧ack=1或以名字带ack就当成功，会把等待阶段误判成完成。"
+        ],
+        "referenceIndices": [
+          9,
+          10
+        ]
+      },
+      {
+        "id": "startup-lane-reset-stall",
+        "title": "全局复位叠加lane reset会停住PMD FSM",
+        "paragraphs": [
+          "3.02a明确在全局复位断言期间再断言TX/RX lane reset会使PMD FSM停滞。它们不是越多越保险的一组同义复位。",
+          "启动测试需记录全局、lane以及PCS接口复位的覆盖和释放关系；不能在CPU开始执行后仍无意保持某lane的内部reset。"
+        ],
+        "referenceIndices": [
+          9,
+          11
+        ]
+      },
+      {
+        "id": "startup-cpu-four-phases",
+        "title": "CPU run请求、应答与lane完成分成不同里程碑",
+        "paragraphs": [
+          "该版先在退出复位后装载CCM及应用配置，再发CPU run请求；等run ack后撤请求，随后等待lane ack撤销。",
+          "CPU默认暂停。run ack只完成它的握手，不能单独代替lane配置完成，更不能代替Link Up。请求历史需随快照一起记录。"
+        ],
+        "referenceIndices": [
+          10
+        ]
+      },
+      {
+        "id": "startup-p1-to-p0-training",
+        "title": "该Gen6组合先P1启动，再由PCS带到P0后进行链路训练",
+        "paragraphs": [
+          "3.02a明确要求以P1启动，PCS再用配置请求切换功耗/速率到P0，期间固件按目标速率配置PHY。",
+          "这不是所有厂商的统一开机状态，也不是PCIe LTSSM的P1状态。PHY P-state与L-state、固件就绪和协议训练要分层对应。"
+        ],
+        "referenceIndices": [
+          10
+        ]
+      },
+      {
+        "id": "startup-reload-after-global-reset",
+        "title": "全局phy_reset后重新应用固件更新与寄存器workaround",
+        "paragraphs": [
+          "PCS1.75a说明global reset后要重新应用固件更新及寄存器workaround。只在最初上电加载一次的SoC流程可能无法覆盖后续恢复。",
+          "应把是否发生重置、镜像/补丁是否重载与最终完成状态连在同一条记录中。不能据SRAM可能保留就省略手册规定的恢复动作。"
+        ],
+        "referenceIndices": [
+          11
+        ]
+      },
+      {
+        "id": "startup-wrapper-reset-coupling",
+        "title": "PCS三类复位有耦合：同link和同macro都要核",
+        "paragraphs": [
+          "PCS1.75a区分global、每lane PIPE reset与每lane PERST输入；global时后两类须相应断言。REFCLK引入毛刺也要求对应PERST输入断言。",
+          "同一PHY macro所有lane的PERST都断言时会触发该macro的POR流程；同macro和同link范围均需同步控制。此处是wrapper约束，不直接推广成所有平台的PERST接线图。"
+        ],
+        "referenceIndices": [
+          11
+        ]
+      },
+      {
+        "id": "startup-sdk-override-reset-owner",
+        "title": "SDK可覆盖外部复位引脚：谁在控制必须查清",
+        "paragraphs": [
+          "预览SDK的复位进入/退出API通过内部寄存器强制状态，并说明调用时外部rstn引脚电平被忽略。",
+          "如果板级复位释放但内部仍被override拉住，单看引脚波形不能解释状态。文中reset API命名也有前后不一致，实际符号须核所用SDK，不拼出未经验证的调用脚本。"
+        ],
+        "referenceIndices": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "startup-gen5-sim-time-not-silicon",
+        "title": "Gen5的5ms/15ms是仿真上下文，不是所有硅片启动保证",
+        "paragraphs": [
+          "Gen5 2.02a在初始化说明中给出fast/normal simulation下可能长达5ms/15ms的等待，并说明校准建模背景。",
+          "不要用这些数为Gen6生产硬件写固定超时。实际超时须匹配产品版本、模型选项、固件、时钟和校准流程，并记录最后完成的里程碑。"
+        ],
+        "referenceIndices": [
+          12
+        ]
+      },
+      {
+        "id": "startup-milestone-observation-table",
+        "title": "启动观察表：每一项能证明什么、还不能证明什么",
+        "paragraphs": [
+          "按事件划分故障范围，比只看“ready=1”更有用。下表是所引产品流程的排查归纳，不是强制一条线串起所有硬件。",
+          "输入是带上下文的观察；同一快照不一定能证明曾经发生合法边沿或已满足时长。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          16
+        ],
+        "table": {
+          "columns": [
+            "观察",
+            "可以说明",
+            "仍不能说明"
+          ],
+          "rows": [
+            [
+              "退出global reset",
+              "复位条件已撤",
+              "固件装好/CPU运行"
+            ],
+            [
+              "bootloader done且无error",
+              "所用装载步骤结束",
+              "CPU执行/模拟校准成功"
+            ],
+            [
+              "CPU run ack",
+              "运行请求已得到应答",
+              "全部lane就绪"
+            ],
+            [
+              "static config done",
+              "对应静态配置完成",
+              "CDR/协议训练完成"
+            ],
+            [
+              "TX/RX lane ack撤销",
+              "初始lane配置已应用",
+              "LTSSM L0与TLP可用"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "startup-snapshot-query",
+        "title": "查询：启动快照的分层排查方向",
+        "paragraphs": [
+          "选择固件装载方式，输入复位、时钟、装载/CPU及lane应答观察，工具指出最早尚未确认的阶段。",
+          "它是3.02a学习检查表，不是仿真状态机；不根据一次快照宣布Link Up，不自动产生寄存器写操作。"
+        ],
+        "referenceIndices": [
+          9,
+          10
         ]
       }
     ]
@@ -33119,8 +33684,8 @@
     "prerequisites": "有些PHY使用固件状态机而非通用MCU；容量、ECC、字节写和地址序由具体交付定义，不是PCIe统一配置。",
     "example": "APB可读且PLL存在仍可能缺少ICCM程序；镜像加载成功也不等于CPU已启动或校准已完成。",
     "checks": "核对镜像版本与硬件版本、内存宽度/掩码、boot完成及CPU/lane握手；复位后的补丁保留情况需确认。",
-    "status": "体系条目已整理 · 按来源范围核读",
-    "reviewed": "2026-10-19",
+    "status": "选定正文与接口细节已展开 · 持续核对",
+    "reviewed": "2026-10-20",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -33160,9 +33725,747 @@
         "title": "镜像加载与CPU运行顺序",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.4",
+        "page": 45,
+        "pdfPage": 45,
+        "title": "MCU与外置CCM",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.4.1",
+        "page": 46,
+        "pdfPage": 46,
+        "title": "Watchdog与可选ECC",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13",
+        "page": 78,
+        "pdfPage": 78,
+        "title": "控制及存储器接口",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.1",
+        "page": 79,
+        "pdfPage": 79,
+        "title": "CCM接口访问边界",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.2",
+        "page": 80,
+        "pdfPage": 80,
+        "title": "RiW与Override回读",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.3",
+        "page": 81,
+        "pdfPage": 81,
+        "title": "APB写入/字节使能",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.3",
+        "page": 82,
+        "pdfPage": 82,
+        "title": "APB读取/完成",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.5",
+        "page": 83,
+        "pdfPage": 83,
+        "title": "APB访问错误",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.6",
+        "page": 84,
+        "pdfPage": 84,
+        "title": "CCM装载先决条件与burst",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.7",
+        "page": 85,
+        "pdfPage": 85,
+        "title": "ROM与跨存储器访问",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.8",
+        "page": 86,
+        "pdfPage": 86,
+        "title": "SRAM尺寸和同步语义",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.8",
+        "page": 87,
+        "pdfPage": 87,
+        "title": "SRAM读写使能和保持",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.8",
+        "page": 88,
+        "pdfPage": 88,
+        "title": "多bank组合示例",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "1",
+        "page": 11,
+        "pdfPage": 11,
+        "title": "SDK初步版本与仿真模式",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "2.1.2",
+        "page": 18,
+        "pdfPage": 18,
+        "title": "功能模式与测试模式",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "2.1.2",
+        "page": 19,
+        "pdfPage": 19,
+        "title": "返回值与结构成员",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "2.5",
+        "page": 25,
+        "pdfPage": 25,
+        "title": "CPU启动API边界",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "2.6",
+        "page": 26,
+        "pdfPage": 26,
+        "title": "静态配置完成",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "3.8",
+        "page": 58,
+        "pdfPage": 58,
+        "title": "SDK版本",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "3.9",
+        "page": 59,
+        "pdfPage": 59,
+        "title": "固件版本读取前提",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "7.1",
+        "page": 104,
+        "pdfPage": 104,
+        "title": "调试断点位置",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "7.2",
+        "page": 105,
+        "pdfPage": 105,
+        "title": "断点使能时机",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "7.3",
+        "page": 107,
+        "pdfPage": 107,
+        "title": "断点请求",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "7.4",
+        "page": 108,
+        "pdfPage": 108,
+        "title": "断点确认",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "11",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "Future Enhancements范围",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.3",
+        "page": 165,
+        "pdfPage": 165,
+        "title": "Gen5算法FSM与程序装载",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.3",
+        "page": 166,
+        "pdfPage": 166,
+        "title": "Gen5外部控制口互斥",
+        "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
+    "details": [
+      {
+        "id": "fw-product-architecture",
+        "title": "Gen5算法FSM与Gen6 MCU：固件不是同一种执行模型",
+        "paragraphs": [
+          "所核Gen5 2.02a按lane用FSM执行初始化/适配算法，程序由内部只读区或外部ROM进入SRAM；Gen6 3.02a则由32bit Harvard MCU访问寄存器和外部CCM。",
+          "这是两个产品版本的实现差异。不能从“Gen6”推导所有厂商都必须采用MCU，也不能把Gen5的SRAM完成信号照接成Gen6的CPU运行握手。"
+        ],
+        "referenceIndices": [
+          28,
+          3
+        ]
+      },
+      {
+        "id": "fw-management-versus-payload",
+        "title": "MCU管理通路与PCIe用户数据通路分开",
+        "paragraphs": [
+          "该MCU负责PMD初始化、配置和功耗切换，经内部APB访问PMD/PMA；它不是承担PCIe用户TLP搬运的主机DMA引擎。",
+          "定位故障时先判断卡在管理流程还是链路数据流程。CPU运行并不证明RX对齐、LTSSM已到L0或业务内存访问成功。"
+        ],
+        "referenceIndices": [
+          3,
+          5
+        ]
+      },
+      {
+        "id": "fw-iccm-dccm-purpose",
+        "title": "ICCM放指令、DCCM放数据：两条CPU侧接口可并行",
+        "paragraphs": [
+          "3.02a要求外置两组Closely Coupled SRAM，并非IP交付已经包含物理RAM。CPU可同时通过独立接口访问指令和数据。",
+          "外部AHB装载端口的跨ICCM/DCCM流水限制是另一层约束，不能据CPU有两路接口就允许装载总线无条件跨区流水。"
+        ],
+        "referenceIndices": [
+          3,
+          13,
+          12
+        ]
+      },
+      {
+        "id": "fw-capacity-ecc-table",
+        "title": "64KiB有效存储与80KiB物理宽度：ECC不是多出16KiB程序空间",
+        "paragraphs": [
+          "每组16K个word，非ECC为32bit，ECC为40bit。按二进制容量换算，各组数据容量64KiB，带ECC物理位容量80KiB；两组分别128KiB有效、160KiB物理。",
+          "额外8bit/word用于ECC。不能把80KiB物理阵列直接当成80KiB可寻址固件数据；装载镜像是否含校验位和打包格式须按实际交付另核。"
+        ],
+        "referenceIndices": [
+          13,
+          3
+        ],
+        "table": {
+          "columns": [
+            "模式",
+            "每word",
+            "每组有效数据",
+            "每组物理容量",
+            "两组合计物理"
+          ],
+          "rows": [
+            [
+              "非ECC",
+              "32bit",
+              "64KiB",
+              "64KiB",
+              "128KiB"
+            ],
+            [
+              "ECC",
+              "32+8bit",
+              "64KiB",
+              "80KiB",
+              "160KiB"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "fw-byte-write-versus-ecc",
+        "title": "非ECC按字节写，ECC写入整word：别把mask接反",
+        "paragraphs": [
+          "非ECC SRAM需支持4个数据字节的独立写使能；开启该产品ECC后，物理宽度加8bit，CPU写全word，手册允许不使用逐字节mask。",
+          "这不是所有ECC RAM的通用接口。选宏时同时核总写使能、字节mask、ECC开启输入与真实有效极性，不因引脚名相近直接拼接。"
+        ],
+        "referenceIndices": [
+          3,
+          14
+        ]
+      },
+      {
+        "id": "fw-sram-one-cycle-read",
+        "title": "SRAM必须满足下一周期读数据，不能随意加流水",
+        "paragraphs": [
+          "3.02a的CPU存储器接口要求同步RAM：有效读地址送出后，下一个时钟周期必须得到数据。",
+          "若选用的宏有额外输出寄存器或两周期读延迟，不能只在约束里补一个multicycle就假定功能等价；需要符合产品接口的实现核验。"
+        ],
+        "referenceIndices": [
+          13,
+          14
+        ]
+      },
+      {
+        "id": "fw-sram-hold-when-disabled",
+        "title": "CE撤销后保持上次输出，避免把X/Z送回CPU",
+        "paragraphs": [
+          "手册明确要求ICCM/DCCM在CE未置位时保持前值。某些宏停用后输出X或Z，需要适配其保持行为。",
+          "要分别测试读使能有效周期和空闲周期，仿真用的理想RAM一直输出旧值，不能证明真实宏自动满足要求。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "id": "fw-sram-write-qualification",
+        "title": "真正的写入由CE、WE和适用mask共同决定",
+        "paragraphs": [
+          "该产品的SRAM写操作要在CE和总WE同时有效时发生；非ECC还须按相应字节mask决定更新范围。",
+          "只看到数据总线变化并不代表已写入。核对时应看采样时钟沿、使能和地址/数据稳定性；ECC模式下整word写与非ECC局部写分开测试。"
+        ],
+        "referenceIndices": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "fw-memory-banking",
+        "title": "拼多个RAM bank时，读选择必须跟随返回数据周期",
+        "paragraphs": [
+          "容量不足可组合多个同步RAM，产品示例只是结构说明。各bank的CE、地址与读回选择必须和规定一周期返回时序一致。",
+          "常见错误是用当前地址选择上一周期读回的数据。应覆盖bank边界及CE空闲保持，不把两个32KiB实例相加就视作已完成集成。"
+        ],
+        "referenceIndices": [
+          15,
+          13
+        ]
+      },
+      {
+        "id": "fw-sram-timing-physical",
+        "title": "行为模型可用不等于物理SRAM时序已经收敛",
+        "paragraphs": [
+          "手册建议SRAM与PMD一同硬化或紧邻布局；Clock-to-Q小于CPU周期三分之一是选型起点建议，最终仍需真实路径收敛。",
+          "这不是PCIe协议时限，也不是固定CPU频率的证明。行为模型只能帮助建立测试，不能替代宏时序、布线和工作角验证。"
+        ],
+        "referenceIndices": [
+          13,
+          14
+        ]
+      },
+      {
+        "id": "fw-load-interface-table",
+        "title": "装载口能力表：寄存器、慢CCM、快CCM与ROM各司其职",
+        "paragraphs": [
+          "按3.02a的接口能力选入口，不能因为多个口共享地址图就认定它们能访问相同目标。",
+          "实际总线基址、镜像和SoC桥接按交付确认；这里公开机制归纳，不提供厂商寄存器转储。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          10,
+          12
+        ],
+        "table": {
+          "columns": [
+            "入口",
+            "可用范围",
+            "关键约束"
+          ],
+          "rows": [
+            [
+              "外部APB",
+              "PMD/PMA寄存器、慢速CCM",
+              "fast select或bootloader可能阻止CCM访问"
+            ],
+            [
+              "PMD JTAG/IJTAG",
+              "相应外部配置/慢访问",
+              "与CPU内部访问有仲裁"
+            ],
+            [
+              "CCM AHB-Lite",
+              "ICCM/DCCM",
+              "不能读PHY寄存器；CPU时钟域"
+            ],
+            [
+              "可选ROM",
+              "由bootloader复制到CCM",
+              "不是直接从ROM持续执行的证明"
+            ],
+            [
+              "自有side-load",
+              "外部SRAM装载",
+              "SoC自行保证时序/镜像一致"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "fw-ahb-load-prerequisites",
+        "title": "快速装载前：CPU时钟、退出复位、fast选择与bootloader完成",
+        "paragraphs": [
+          "3.02a列出CCM AHB-Lite访问前提：CPU时钟运行、相关复位已释放、fast access已选择、启用的bootloader已完成。正文该处指定500MHz，应按这份产品要求核验，不能宣称任意CPU频率都受支持。",
+          "通过该口读CCM允许CPU运行或暂停，但向ICCM装固件时必须暂停CPU。访问成功不允许覆盖正在执行的指令。"
+        ],
+        "referenceIndices": [
+          11
+        ]
+      },
+      {
+        "id": "fw-ahb-register-access-error",
+        "title": "CCM AHB-Lite不访问PHY寄存器，失败别只查地址偏移",
+        "paragraphs": [
+          "该接口对PHY寄存器或未使用区域返回AHB错误。共享地址图不改变这个访问能力限制。",
+          "调试PLL状态应换到支持寄存器的管理口；不能把AHB错误直接解释成PLL坏、固件损坏或PCIe Completion UR。"
+        ],
+        "referenceIndices": [
+          6,
+          10
+        ]
+      },
+      {
+        "id": "fw-ahb-one-kib-boundary",
+        "title": "AHB连续装载不能跨1KiB边界；到边界重新起NONSEQ",
+        "paragraphs": [
+          "3.02a明确CCM burst不得跨1KiB地址边界。即使两个word在同一个CCM中，也不能让同一burst越界。",
+          "例如起点距边界只剩16字节，计划64字节时至少拆成16和48两段；分段本身不决定HREADY等待或整个装载时长。"
+        ],
+        "referenceIndices": [
+          11
+        ]
+      },
+      {
+        "id": "fw-ahb-cross-memory-drain",
+        "title": "ICCM与DCCM切换前排空数据阶段，不混合流水",
+        "paragraphs": [
+          "该PMD要求同一存储器内部才能流水；切换ICCM/DCCM时要先完成数据阶段并保持适用基址。此限制对single与burst均适用。",
+          "AHB有地址/数据重叠阶段，但产品可能增加限制。不能以“协议允许流水”为由忽略目标桥接要求。"
+        ],
+        "referenceIndices": [
+          12
+        ]
+      },
+      {
+        "id": "fw-ahb-priority-latency",
+        "title": "一拍一个传输是满足条件的持续能力，不是任意访问保证",
+        "paragraphs": [
+          "手册描述burst可达到每时钟一次传输，而single可能占3～20周期，取决于CPU运行和优先级；专用优先级输入不是AHB标准信号。",
+          "估算装载时间时应加入仲裁、等待、边界重新发起和镜像处理。不要拿总字节数除峰值带宽当固定启动定时器。"
+        ],
+        "referenceIndices": [
+          11
+        ]
+      },
+      {
+        "id": "fw-apb-fast-selection-errors",
+        "title": "APB访问CCM失败：先查bootloader与fast access归属",
+        "paragraphs": [
+          "该版APB错误包括访问空洞、bootloader未完成时读写ICCM、fast access选择已交给CCM高速口时读写ICCM/DCCM。",
+          "错误有效要在完成周期取样；看到PREADY迟到和看到PSLVERR是不同问题。更不能把PHY管理APB错误当成PCIe AER的一种编码。"
+        ],
+        "referenceIndices": [
+          10,
+          9
+        ]
+      },
+      {
+        "id": "fw-rom-optional-scope",
+        "title": "ROM可选，bootloader复制到SRAM后才执行",
+        "paragraphs": [
+          "3.02a允许不包含外部ROM支持，由AHB/APB或SoC自有入口装载；有ROM也不等于CPU直接从ROM取指。",
+          "ROM方案必须和固件后续可更新能力一起设计。手册要求SoC支持硅后固件更新，不能只提供不可修改的一次性初始内容。"
+        ],
+        "referenceIndices": [
+          12,
+          3
+        ]
+      },
+      {
+        "id": "fw-rom-target-and-completion",
+        "title": "ROM选目标与装载状态：ICCM-only或ICCM再DCCM",
+        "paragraphs": [
+          "该版可复制64KiB到ICCM，或先ICCM再DCCM共128KiB有效内容；是否包含DCCM要在启动bootloader前确定，手册推荐同时加载。",
+          "应检查done和error两项，并区分尚未完成、完成成功与失败。原文ROM容量按32bit有效内容描述，不能未经核实把ECC物理位直接拼进ROM镜像。"
+        ],
+        "referenceIndices": [
+          12,
+          13
+        ]
+      },
+      {
+        "id": "fw-post-silicon-update",
+        "title": "硅后可更新是SoC集成职责，重置可能丢失补丁",
+        "paragraphs": [
+          "3.02a明确SoC必须能处理硅后固件更新。支持更新需要可达的装载路径、暂停/复位协调和匹配镜像，并非只保留一个ROM接口。",
+          "更新的兼容性、回滚与认证策略不在这些段落完整定义，不能据此宣称已支持安全更新或带签名启动。"
+        ],
+        "referenceIndices": [
+          3,
+          12
+        ]
+      },
+      {
+        "id": "fw-load-readback-versus-ecc",
+        "title": "装后校验与运行后复核能查错误，但不等价ECC或认证",
+        "paragraphs": [
+          "SRAM章节给出可选的装载、回读比较、执行、再比较流程，用于提高内容可靠性。它不是所有系统都必须执行的固定协议步骤。",
+          "比较能验证选定时刻内容相同，不能替代ECC持续保护、恶意篡改认证或全部运行期数据完整性。运行中DCCM正常变化也不能和初始数据盲比。"
+        ],
+        "referenceIndices": [
+          13
+        ]
+      },
+      {
+        "id": "fw-riw-readback-semantics",
+        "title": "RiW读取的是override后信号，不总是刚写入的值",
+        "paragraphs": [
+          "override关闭时，RiW回读内部信号；打开时回读替代值。由此写入值与立即回读不同，可能符合设计。",
+          "对PLL lock等信号应同时记录override enable。用强制值把“锁定”置高，只改变观察/控制路径，不证明模拟PLL确实锁定。"
+        ],
+        "referenceIndices": [
+          7
+        ]
+      },
+      {
+        "id": "fw-riw-reset-compare",
+        "title": "RiW复位比较要看mask；不能套普通RW默认值检查",
+        "paragraphs": [
+          "产品说明override enable复位后关闭，RiW回读可能由动态内部信号决定；寄存器描述中的默认存储值不保证是此时可见值。",
+          "自动生成测试应尊重volatile/reset mask，并分别覆盖enable关闭和开启。不要为了让复位比较通过就永久打开override。"
+        ],
+        "referenceIndices": [
+          7
+        ]
+      },
+      {
+        "id": "fw-sdk-preliminary-boundary",
+        "title": "SDK 1.00a_pre3是2024预览版，不是3.02a的兼容承诺",
+        "paragraphs": [
+          "本地应用说明明确为Preliminary，早于2025的3.02a产品手册。API名称、字段和行为需要与实际SDK/固件发布说明核对。",
+          "以下引用用于解释管理职责和观察顺序，不发布函数体、寄存器脚本或把预览接口当PCIe标准命令。"
+        ],
+        "referenceIndices": [
+          16,
+          18
+        ]
+      },
+      {
+        "id": "fw-sdk-functional-versus-test",
+        "title": "功能模式由uPCS驱动；测试SDK流程不是必须再执行一遍",
+        "paragraphs": [
+          "所引SDK正文说功能模式无需使用这些API，由uPCS驱动引脚；ATE/Test模式可用SDK做bring-up，但完整ATE流程不在该文范围。",
+          "这与硬件需要固件不是一回事：固件执行于PHY MCU，SDK是外部管理调用。两套控制同时驱动而未协调会使配置归属不清。"
+        ],
+        "referenceIndices": [
+          17,
+          3
+        ]
+      },
+      {
+        "id": "fw-sdk-return-and-ready",
+        "title": "API返回成功不等于Link Up：返回码和阶段结果分别读",
+        "paragraphs": [
+          "此SDK约定返回0为成功、-1为失败，失败再查状态结构error_code；只使用对应API定义的有效成员。",
+          "CPU start调用等到该动作成功/失败，static-done轮询只说明TX/RX静态配置已完成。它们不承诺LTSSM、误码率或PCIe枚举结果。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          20
+        ]
+      },
+      {
+        "id": "fw-sdk-version-versus-firmware",
+        "title": "SDK版本与PHY固件版本是两份证据，读取前提不同",
+        "paragraphs": [
+          "sdk_ver_read报告SDK版本；sdk_fw_ver_read报告PHY固件版本，后者要求退出phy_reset且ICCM/DCCM已加载完成。",
+          "排查混版应同时记录IP交付、SDK和固件版本，不从一个major号推断全部兼容。版本能读出也不证明固件已执行完所有校准。"
+        ],
+        "referenceIndices": [
+          21,
+          22
+        ]
+      },
+      {
+        "id": "fw-breakpoint-milestones",
+        "title": "启动停住可能是断点：校准前与完成前两个观察点",
+        "paragraphs": [
+          "预览SDK为TX/RX分别定义两种启动断点：速率相关配置后、校准前；以及校准完成而上电动作最终完成之前。RX后一处还在idle detect之后。",
+          "这是该SDK的调试接口，不是LTSSM子状态、JTAG CPU断点或所有PHY都必有的功能。应先确认是否启用断点，再判断启动卡死。"
+        ],
+        "referenceIndices": [
+          23
+        ]
+      },
+      {
+        "id": "fw-breakpoint-request-ack",
+        "title": "断点握手：先使能、再等请求，确认正确lane和方向后放行",
+        "paragraphs": [
+          "此SDK要求在TX/RX enable之前配置断点。检查请求时读取请求有效和编码；确认处理完成后用对应ack完成握手。",
+          "默认复位退出并CPU启动后断点关闭。启用断点会改变时序，因此带断点的启动耗时不能直接作为生产启动时间或校准超时依据。"
+        ],
+        "referenceIndices": [
+          24,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "fw-fastsim-production-separation",
+        "title": "FastSim与生产模式必须分开审阅，不能从名字推断安全默认",
+        "paragraphs": [
+          "预览SDK正文称默认固件为Silicon/Production且fastsim=0，又出现不用某API时须置1的说明。这段适用上下文需结合实际交付确认。",
+          "不能据这一句把生产硅片全局切成FastSim；仿真专用短复位也不能搬到硬件。后续SDK版本和发布说明尚待核，不把歧义消成一个通用启动命令。"
+        ],
+        "referenceIndices": [
+          16
+        ]
+      },
+      {
+        "id": "fw-future-api-is-not-implemented",
+        "title": "Future Enhancements中的API不等于本版已经实现",
+        "paragraphs": [
+          "该预览文把时钟监控、TX equalization和CDR health的一组接口放在Future Enhancements章节。存在接口描述不构成本版交付可用证明。",
+          "查询时先看章节性质、实际头文件/库和发布说明，再决定能否调用；这也是文档目录不能冒充实现覆盖的具体例子。"
+        ],
+        "referenceIndices": [
+          27
+        ]
+      },
+      {
+        "id": "fw-memory-query",
+        "title": "查询：SRAM容量与1KiB装载分段",
+        "paragraphs": [
+          "输入ECC选择、按字节计的起点和长度，核对两组CCM容量并拆分不跨1KiB的连续访问。",
+          "这里只计算几何分段，不分配厂商地址、不生成ECC镜像、不执行总线访问，也不模拟AHB的所有等待/错误响应。"
+        ],
+        "referenceIndices": [
+          13,
+          11
+        ]
+      }
+    ]
   },
   {
     "id": 177,
