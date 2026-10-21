@@ -1,6 +1,6 @@
 {
-  "reviewed": "2026-10-20",
-  "summary": "PHY一级体系：补固件/MCU、ICCM/DCCM、ROM/AHB/APB装载、启动里程碑、时钟/复位依赖和预览SDK边界。产品实现与PIPE标准分开查询。",
+  "reviewed": "2026-10-21",
+  "summary": "PHY一级体系：展开接收参考模型、CTLE极零点、各速率DFE约束、128GT/s RX FFE和压力眼校准；规范模型、真实RX及产品适应过程分开。",
   "groups": [
     {
       "title": "分层与资料入口",
@@ -156,13 +156,15 @@
     "本地产品手册与PIPE 7.1并非同一发布时间，差异按版本保留，不用新版规则假定旧交付已完全支持。",
     "CDL已完成结构统计，未做LVS、SPICE或晶体管级功能/性能证明；RTL也未进行完整宏展开、编译和全量仿真。",
     "PHY寄存器地址、固件参数、PLL频率及模拟性能不直接推广成PCIe通用规则。",
-    "SDK应用说明1.00a_pre3为2024 Preliminary，未证明与2025 PHY3.02a完全兼容；Future Enhancements不作已实现能力。"
+    "SDK应用说明1.00a_pre3为2024 Preliminary，未证明与2025 PHY3.02a完全兼容；Future Enhancements不作已实现能力。",
+    "R16参考CTLE/DFE/FFE及压力眼目标不是硅实现要求或实际BER/错误突发安全证明；未运行AMI/SPICE/BERT或标准后处理工具。"
   ],
   "next": [
     "逐主题深化PLL/CDR与EQ的完整状态流程及版本化寄存器",
     "按实际filelist展开关键通路和生成宏，并补充可复现数字仿真",
     "核读PIPE速率/宽度切换、Message Bus和低功耗握手完整条款",
-    "分开建立PRBS/环回、SI/AMI、CDL/LVS/电路分析与实验室测试方法"
+    "分开建立PRBS/环回、SI/AMI、CDL/LVS/电路分析与实验室测试方法",
+    "继续核各代正式版接收电气/采样/CDR及完整压力眼工具要求；保留Base6.0/7.0平均次数与曲线排版疑点，后续核勘误。"
   ],
   "lowPowerReferences": {
     "title": "低功耗协议与PHY握手",
@@ -196,11 +198,14 @@
     ]
   },
   "equalizationReferences": {
-    "title": "协议均衡与TX系数映射",
+    "title": "协议均衡与TX系数映射、RX参考模型",
     "ids": [
       3,
       9,
-      172
+      172,
+      171,
+      173,
+      177
     ]
   }
 }
