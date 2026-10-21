@@ -6,7 +6,7 @@
 
 ## 内容
 
-- 182 项功能与学习主题，13 类主题；可搜索、收藏和标记已读。
+- 183 项功能与学习主题，13 类主题；可搜索、收藏和标记已读。
 - [按协议章序查](https://mgc455.github.io/pcie_study/#coverage)：Gen1～Gen7的117个主章/附录起始定位，分别显示目录定位和选定正文规则的整理情况；不将引用数量当成整章覆盖率。
 - [协议细节查询](https://mgc455.github.io/pcie_study/#lookup)：状态条件、Credit、PIPE、回环、Compliance逐档表、Retimer与接收/误码专题，支持稳定小节链接与版本明确的PDF定位。
 - [PHY／SerDes](https://mgc455.github.io/pcie_study/#phy)：20项分层、数据流、时钟复位、PLL/CDR、均衡、固件启动及验证边界主题。
@@ -16,6 +16,14 @@
 - 文档目录只保存名称/格式/初筛主题。文件名中的版本、草案状态和主题仍待核对。
 - 支持选择本地对应 PDF 并按物理页定位。文件只在浏览器使用，不上传。刷新后需要重新选择，阅读器对 `#page=` 的支持可能不同。
 - 原始 RTL、PDF、商业手册正文、本地路径和工程专属配置不随网站发布。
+
+## PHY细节查询入口
+
+- [PAM4 TX四抽头](https://mgc455.github.io/pcie_study/#feature/172/detail/pam4-four-tap-query)：Base6.0/7.0数字约束、Q类Preset与理想电压/FIR演示。
+- [RX评估反馈](https://mgc455.github.io/pcie_study/#feature/173/detail/rx-eval-query)：反馈提交、中止重叠、无效候选与方向解码。
+- [PHY重新校准](https://mgc455.github.io/pcie_study/#feature/174/detail/recal-sequence-query)：通知、Recovery、IORecal与本次Done的流程图和查询。
+
+查询通过仅表示已检查的必要条件，不替代电气、BER或硬件验证。各块可选择本地对应版本PDF对照。
 
 ## 本地构建
 
