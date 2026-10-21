@@ -28,6 +28,19 @@ for f in features:
         assert isinstance(ref['page'],int) and ref['page']>=1
         assert re.fullmatch(r'(?:\d+(?:\.\d+)*|Glossary)',ref['section'])
         assert ref['url']==doc['url']
+# Packet figures must account for every depicted bit, including short final rows.
+packet_ids=set()
+for f in features:
+    for d in f.get('details',[]):
+        for layout in d.get('packetLayouts',[]):
+            assert layout['id'] not in packet_ids
+            packet_ids.add(layout['id'])
+            assert layout['version'] and layout['title'] and layout['note'] and layout['parts']
+            assert sum(field['width'] for row in layout['rows'] for field in row)==layout['headerBits']
+            for index,row in enumerate(layout['rows']):
+                width=sum(field['width'] for field in row)
+                assert width==32 or index==len(layout['rows'])-1 and width in {8,16,24}
+                assert all(isinstance(field['width'],int) and field['width']>0 and field['key'] and field['label'] and field['help'] for field in row)
 raw='\n'.join((ROOT/'docs'/n).read_text(encoding='utf-8') for n in ['index.html','style.css','app.js','data.js'])
 assert not re.search(r'file:///|[A-Z]:[\\/]|/Users/|pcie_test_ip|DWC_pcie_ctl|CX_[A-Z_]+|CC_[A-Z_]+',raw),'Found local-only/project-specific content in website'
 assert not any(p.suffix.lower() in {'.pdf','.sv','.svh','.v','.doc','.docx','.ppt','.pptx','.cdl','.sp','.spi','.gds','.oas','.lef','.lib','.db','.hex','.mem','.rom','.bin'} for p in (ROOT/'docs').rglob('*') if p.is_file())

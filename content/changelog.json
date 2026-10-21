@@ -1,6 +1,35 @@
 [
   {
     "date": "2026-10-21",
+    "edition": "2026-10-21-r22-viz1",
+    "title": "包结构展示优化：逐bit字段图",
+    "summary": "展示修订，不启动新研究轮次。补TLP、DLLP、InitFC1、DLP逐bit图与完整256B FLIT分区图，标byte/bit偏移和可变包长，支持同字段片段联动及包结构总入口。",
+    "features": [
+      17,
+      20,
+      97,
+      111,
+      13
+    ],
+    "verification": "15种位图及256-byte FLIT图的位宽/偏移、Tag片段联动、短尾行、字段切换、搜索/入口和25套可执行回归通过；构建、公开边界和JS语法通过。已对照规范字段图，本地浏览器视觉验收受file协议策略限制。"
+  },
+  {
+    "date": "2026-10-21",
+    "edition": "2026-10-21-r22",
+    "title": "展开Tag、Completion与MPS/MRRS/RCB",
+    "summary": "新增48个细节：纠正Tag与TPH/VPD误配、14-bit版本矛盾/兼容范围、完成包字段与终止、MPS收发计算、RCB角色和BE跨度；增加三项只读查询。",
+    "features": [
+      22,
+      20,
+      24,
+      25,
+      26,
+      23
+    ],
+    "verification": "所引6.0/7.0正文及关键Tag/RCB表页已核；构建/公开边界/JS、5200组查询与详情路由、24套可执行回归、搜索/章序/PDF201检查通过。两处旧Tag误配明确标错并保留索引。仅程序化UI检查，未作硬件或网站视觉验收。"
+  },
+  {
+    "date": "2026-10-21",
     "edition": "2026-10-21-r21",
     "title": "展开接收对齐、SKP时钟补偿及逐lane边界",
     "summary": "新增46个细节：Block Alignment事件表、两种PIPE RxValid、8周期停钟保护、SKP格式/Parity/调度、7.0差异、极性与Deskew；加入三项只读查询和PHY关联入口。",

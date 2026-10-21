@@ -6867,7 +6867,8 @@
               "三组ECC，每组两个校验字节"
             ]
           ]
-        }
+        },
+        "packetByteLayout": true
       },
       {
         "id": "tlp-packing-nop",
@@ -7012,7 +7013,82 @@
               "DLP2→[31:24]，DLP3→[23:16]，DLP4→[15:8]，DLP5→[7:0]"
             ]
           ]
-        }
+        },
+        "packetLayouts": [
+          {
+            "id": "flit-dlp-six-bytes",
+            "title": "DLP完整6 byte（Flit byte236～241）",
+            "version": "Base6.0 / 7.0 · DLP相对byte0＝Flit byte236",
+            "headerBits": 48,
+            "lengthLabel": "DLP 48 bit / 6 B（不是独立DLLP）",
+            "rowLabel": "行",
+            "rows": [
+              [
+                {
+                  "label": "Usage",
+                  "width": 2,
+                  "key": "usage",
+                  "help": "DLP0[7:6]。"
+                },
+                {
+                  "label": "P",
+                  "width": 1,
+                  "key": "prior",
+                  "help": "DLP0[5]：Prior Flit was Payload。"
+                },
+                {
+                  "label": "T",
+                  "width": 1,
+                  "key": "type",
+                  "help": "DLP0[4]：Type of DLLP Payload，决定后面32-bit负载分支。"
+                },
+                {
+                  "label": "Replay",
+                  "width": 2,
+                  "key": "replay",
+                  "help": "DLP0[3:2]：Replay Command。"
+                },
+                {
+                  "label": "Seq hi",
+                  "width": 2,
+                  "key": "seq",
+                  "help": "DLP0[1:0]：10-bit序号的高2位。"
+                },
+                {
+                  "label": "Seq low",
+                  "width": 8,
+                  "key": "seq",
+                  "help": "DLP1[7:0]：序号低8位。"
+                },
+                {
+                  "label": "Payload[31:16]",
+                  "width": 16,
+                  "key": "payload",
+                  "help": "DLP2～3是32-bit控制负载的高16位。"
+                }
+              ],
+              [
+                {
+                  "label": "Payload[15:0]",
+                  "width": 16,
+                  "key": "payload",
+                  "help": "DLP4～5是控制负载低16位；先按T及payload bit31判断格式。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "DLP控制与序号",
+                "size": "16 bit"
+              },
+              {
+                "label": "控制负载",
+                "size": "32 bit"
+              }
+            ],
+            "note": "图中byte偏移相对DLP起点；整体位于Flit byte236～241。T选择普通DLLP、Optimized_Update_FC/Flit_Marker等分支，不能把所有32-bit负载都按8-bit DLLP Type解析。"
+          }
+        ]
       },
       {
         "id": "dlp-replay-command",
@@ -8024,9 +8100,635 @@
         "pdfPage": 119,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1",
+        "page": 163,
+        "pdfPage": 163,
+        "title": "Memory Request 32/64-bit寻址Header图",
+        "verification": "按对应正式版字段图核对位置；网站为原创重绘，不发布原文截图。通用字段含义结合已核读事务规则，未声明早期版全部布局相同。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 209,
+        "pdfPage": 209,
+        "title": "Memory Request 32/64-bit寻址Header图",
+        "verification": "按对应正式版字段图核对位置；网站为原创重绘，不发布原文截图。通用字段含义结合已核读事务规则，未声明早期版全部布局相同。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已定位规范目录",
+    "details": [
+      {
+        "id": "memory-nfm-bit-layout",
+        "title": "包结构图：MRd/MWr的3DW与4DW Header",
+        "paragraphs": [
+          "按byte偏移和字节内bit号对照协议图；这不是串行线上先后位序。选择MRd/MWr与32/64-bit寻址，查看头长度、数据区和可选Digest。点击字段可看位置、位宽；点击Tag或地址会高亮同一逻辑字段的全部片段。",
+          "以下明确绑定Base6.0/7.0的NFM、TH=0格式；FM不能继续按此头布局解析。数据有效范围和BE、MPS/MRRS规则仍以相应正文为准。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ],
+        "packetLayouts": [
+          {
+            "id": "nfm-mrd32",
+            "title": "MRd32 · 3 DW头",
+            "version": "Base6.0 / 7.0 · NFM · TH=0",
+            "headerBits": 96,
+            "rows": [
+              [
+                {
+                  "label": "Fmt",
+                  "width": 3,
+                  "key": "fmt",
+                  "help": "本图Fmt=000；字段区分是否带数据和头长度。"
+                },
+                {
+                  "label": "Type",
+                  "width": 5,
+                  "key": "type",
+                  "help": "本图是普通Memory Request或普通Completion，不含Locked等特殊Type。"
+                },
+                {
+                  "label": "T9",
+                  "width": 1,
+                  "key": "tag",
+                  "help": "Tag[9]。Tag在NFM头中不是连续10 bit。"
+                },
+                {
+                  "label": "TC",
+                  "width": 3,
+                  "key": "tc",
+                  "help": "Traffic Class；普通非UIO在途Tag不能跨TC重号。"
+                },
+                {
+                  "label": "T8",
+                  "width": 1,
+                  "key": "tag",
+                  "help": "Tag[8]，与Tag[9]及低8位共同组成NFM Tag字段。"
+                },
+                {
+                  "label": "A2",
+                  "width": 1,
+                  "key": "attr",
+                  "help": "Attributes[2]，与低2位分开。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "r0",
+                  "help": "保留位置，不应解释成Payload或有效Tag。"
+                },
+                {
+                  "label": "TH",
+                  "width": 1,
+                  "key": "th",
+                  "help": "TPH提示相关；Memory图限定TH=0，BE按显式字段解释；Completion的TH保留。"
+                },
+                {
+                  "label": "TD",
+                  "width": 1,
+                  "key": "td",
+                  "help": "NFM为1时TLP末尾有32 bit Digest；不计入Payload Length。"
+                },
+                {
+                  "label": "EP",
+                  "width": 1,
+                  "key": "ep",
+                  "help": "Poisoned标记；不是Completion Status。"
+                },
+                {
+                  "label": "Attr",
+                  "width": 2,
+                  "key": "attr",
+                  "help": "Attributes[1:0]；与A2合成3 bit逻辑属性。"
+                },
+                {
+                  "label": "AT",
+                  "width": 2,
+                  "key": "at",
+                  "help": "地址类型；普通Completion要求00b。"
+                },
+                {
+                  "label": "Length",
+                  "width": 10,
+                  "key": "length",
+                  "help": "Payload或请求范围的DW长度字段；MRd本身不因Length非0而携带读数据。"
+                }
+              ],
+              [
+                {
+                  "label": "Requester ID",
+                  "width": 16,
+                  "key": "rid",
+                  "help": "原请求发起Function的身份；Completion按该身份路由。"
+                },
+                {
+                  "label": "Tag[7:0]",
+                  "width": 8,
+                  "key": "tag",
+                  "help": "NFM Tag低8位；普通NP请求关联时还要结合T8、T9。Posted Memory Write不能据此等待逐笔Completion。"
+                },
+                {
+                  "label": "Last BE",
+                  "width": 4,
+                  "key": "lastbe",
+                  "help": "Last DW Byte Enable；Length1 DW时为0000，其他按模式/TPH规则判断。"
+                },
+                {
+                  "label": "First BE",
+                  "width": 4,
+                  "key": "firstbe",
+                  "help": "First DW Byte Enable，bit0对应首DW的最低byte地址。"
+                }
+              ],
+              [
+                {
+                  "label": "Address[31:2]",
+                  "width": 30,
+                  "key": "address",
+                  "help": "DW对齐内存地址的低30 bit；有效首byte由BE等规则决定。"
+                },
+                {
+                  "label": "PH",
+                  "width": 2,
+                  "key": "ph",
+                  "help": "图中PH位置；具体含义依TH/TPH规则。本图不展开TPH模式。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Header",
+                "size": "96 bit / 12 B"
+              },
+              {
+                "label": "Data Payload",
+                "size": "0 bit（请求不带读数据）"
+              },
+              {
+                "label": "Digest（TD=1）",
+                "size": "32 bit，可选"
+              }
+            ],
+            "note": "这是TLP视角，不含可选Prefix、DLL序号/LCRC或物理层帧边界。Fmt=000，Type=00000b；MWr总长度随Payload/TD改变，MRd的数据在后续CplD中返回。"
+          },
+          {
+            "id": "nfm-mrd64",
+            "title": "MRd64 · 4 DW头",
+            "version": "Base6.0 / 7.0 · NFM · TH=0",
+            "headerBits": 128,
+            "rows": [
+              [
+                {
+                  "label": "Fmt",
+                  "width": 3,
+                  "key": "fmt",
+                  "help": "本图Fmt=001；字段区分是否带数据和头长度。"
+                },
+                {
+                  "label": "Type",
+                  "width": 5,
+                  "key": "type",
+                  "help": "本图是普通Memory Request或普通Completion，不含Locked等特殊Type。"
+                },
+                {
+                  "label": "T9",
+                  "width": 1,
+                  "key": "tag",
+                  "help": "Tag[9]。Tag在NFM头中不是连续10 bit。"
+                },
+                {
+                  "label": "TC",
+                  "width": 3,
+                  "key": "tc",
+                  "help": "Traffic Class；普通非UIO在途Tag不能跨TC重号。"
+                },
+                {
+                  "label": "T8",
+                  "width": 1,
+                  "key": "tag",
+                  "help": "Tag[8]，与Tag[9]及低8位共同组成NFM Tag字段。"
+                },
+                {
+                  "label": "A2",
+                  "width": 1,
+                  "key": "attr",
+                  "help": "Attributes[2]，与低2位分开。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "r0",
+                  "help": "保留位置，不应解释成Payload或有效Tag。"
+                },
+                {
+                  "label": "TH",
+                  "width": 1,
+                  "key": "th",
+                  "help": "TPH提示相关；Memory图限定TH=0，BE按显式字段解释；Completion的TH保留。"
+                },
+                {
+                  "label": "TD",
+                  "width": 1,
+                  "key": "td",
+                  "help": "NFM为1时TLP末尾有32 bit Digest；不计入Payload Length。"
+                },
+                {
+                  "label": "EP",
+                  "width": 1,
+                  "key": "ep",
+                  "help": "Poisoned标记；不是Completion Status。"
+                },
+                {
+                  "label": "Attr",
+                  "width": 2,
+                  "key": "attr",
+                  "help": "Attributes[1:0]；与A2合成3 bit逻辑属性。"
+                },
+                {
+                  "label": "AT",
+                  "width": 2,
+                  "key": "at",
+                  "help": "地址类型；普通Completion要求00b。"
+                },
+                {
+                  "label": "Length",
+                  "width": 10,
+                  "key": "length",
+                  "help": "Payload或请求范围的DW长度字段；MRd本身不因Length非0而携带读数据。"
+                }
+              ],
+              [
+                {
+                  "label": "Requester ID",
+                  "width": 16,
+                  "key": "rid",
+                  "help": "原请求发起Function的身份；Completion按该身份路由。"
+                },
+                {
+                  "label": "Tag[7:0]",
+                  "width": 8,
+                  "key": "tag",
+                  "help": "NFM Tag低8位；普通NP请求关联时还要结合T8、T9。Posted Memory Write不能据此等待逐笔Completion。"
+                },
+                {
+                  "label": "Last BE",
+                  "width": 4,
+                  "key": "lastbe",
+                  "help": "Last DW Byte Enable；Length1 DW时为0000，其他按模式/TPH规则判断。"
+                },
+                {
+                  "label": "First BE",
+                  "width": 4,
+                  "key": "firstbe",
+                  "help": "First DW Byte Enable，bit0对应首DW的最低byte地址。"
+                }
+              ],
+              [
+                {
+                  "label": "Address[63:32]",
+                  "width": 32,
+                  "key": "address",
+                  "help": "64-bit寻址的高32 bit；下一DW为Address[31:2]。"
+                }
+              ],
+              [
+                {
+                  "label": "Address[31:2]",
+                  "width": 30,
+                  "key": "address",
+                  "help": "DW对齐内存地址的低30 bit；有效首byte由BE等规则决定。"
+                },
+                {
+                  "label": "PH",
+                  "width": 2,
+                  "key": "ph",
+                  "help": "图中PH位置；具体含义依TH/TPH规则。本图不展开TPH模式。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Header",
+                "size": "128 bit / 16 B"
+              },
+              {
+                "label": "Data Payload",
+                "size": "0 bit（请求不带读数据）"
+              },
+              {
+                "label": "Digest（TD=1）",
+                "size": "32 bit，可选"
+              }
+            ],
+            "note": "这是TLP视角，不含可选Prefix、DLL序号/LCRC或物理层帧边界。Fmt=001，Type=00000b；MWr总长度随Payload/TD改变，MRd的数据在后续CplD中返回。"
+          },
+          {
+            "id": "nfm-mwr32",
+            "title": "MWr32 · 3 DW头",
+            "version": "Base6.0 / 7.0 · NFM · TH=0",
+            "headerBits": 96,
+            "rows": [
+              [
+                {
+                  "label": "Fmt",
+                  "width": 3,
+                  "key": "fmt",
+                  "help": "本图Fmt=010；字段区分是否带数据和头长度。"
+                },
+                {
+                  "label": "Type",
+                  "width": 5,
+                  "key": "type",
+                  "help": "本图是普通Memory Request或普通Completion，不含Locked等特殊Type。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "posted-T9",
+                  "help": "普通Posted MWr在此NFM位置为保留位，不用于逐笔Completion匹配。"
+                },
+                {
+                  "label": "TC",
+                  "width": 3,
+                  "key": "tc",
+                  "help": "Traffic Class；普通非UIO在途Tag不能跨TC重号。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "posted-T8",
+                  "help": "普通Posted MWr在此NFM位置为保留位，不用于逐笔Completion匹配。"
+                },
+                {
+                  "label": "A2",
+                  "width": 1,
+                  "key": "attr",
+                  "help": "Attributes[2]，与低2位分开。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "r0",
+                  "help": "保留位置，不应解释成Payload或有效Tag。"
+                },
+                {
+                  "label": "TH",
+                  "width": 1,
+                  "key": "th",
+                  "help": "TPH提示相关；Memory图限定TH=0，BE按显式字段解释；Completion的TH保留。"
+                },
+                {
+                  "label": "TD",
+                  "width": 1,
+                  "key": "td",
+                  "help": "NFM为1时TLP末尾有32 bit Digest；不计入Payload Length。"
+                },
+                {
+                  "label": "EP",
+                  "width": 1,
+                  "key": "ep",
+                  "help": "Poisoned标记；不是Completion Status。"
+                },
+                {
+                  "label": "Attr",
+                  "width": 2,
+                  "key": "attr",
+                  "help": "Attributes[1:0]；与A2合成3 bit逻辑属性。"
+                },
+                {
+                  "label": "AT",
+                  "width": 2,
+                  "key": "at",
+                  "help": "地址类型；普通Completion要求00b。"
+                },
+                {
+                  "label": "Length",
+                  "width": 10,
+                  "key": "length",
+                  "help": "Payload或请求范围的DW长度字段；MRd本身不因Length非0而携带读数据。"
+                }
+              ],
+              [
+                {
+                  "label": "Requester ID",
+                  "width": 16,
+                  "key": "rid",
+                  "help": "原请求发起Function的身份；Completion按该身份路由。"
+                },
+                {
+                  "label": "Tag[7:0]",
+                  "width": 8,
+                  "key": "tag",
+                  "help": "NFM Tag低8位；普通NP请求关联时还要结合T8、T9。Posted Memory Write不能据此等待逐笔Completion。"
+                },
+                {
+                  "label": "Last BE",
+                  "width": 4,
+                  "key": "lastbe",
+                  "help": "Last DW Byte Enable；Length1 DW时为0000，其他按模式/TPH规则判断。"
+                },
+                {
+                  "label": "First BE",
+                  "width": 4,
+                  "key": "firstbe",
+                  "help": "First DW Byte Enable，bit0对应首DW的最低byte地址。"
+                }
+              ],
+              [
+                {
+                  "label": "Address[31:2]",
+                  "width": 30,
+                  "key": "address",
+                  "help": "DW对齐内存地址的低30 bit；有效首byte由BE等规则决定。"
+                },
+                {
+                  "label": "PH",
+                  "width": 2,
+                  "key": "ph",
+                  "help": "图中PH位置；具体含义依TH/TPH规则。本图不展开TPH模式。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Header",
+                "size": "96 bit / 12 B"
+              },
+              {
+                "label": "Data Payload",
+                "size": "32 × 解码Length bit"
+              },
+              {
+                "label": "Digest（TD=1）",
+                "size": "32 bit，可选"
+              }
+            ],
+            "note": "这是TLP视角，不含可选Prefix、DLL序号/LCRC或物理层帧边界。Fmt=010，Type=00000b；MWr总长度随Payload/TD改变，MRd的数据在后续CplD中返回。"
+          },
+          {
+            "id": "nfm-mwr64",
+            "title": "MWr64 · 4 DW头",
+            "version": "Base6.0 / 7.0 · NFM · TH=0",
+            "headerBits": 128,
+            "rows": [
+              [
+                {
+                  "label": "Fmt",
+                  "width": 3,
+                  "key": "fmt",
+                  "help": "本图Fmt=011；字段区分是否带数据和头长度。"
+                },
+                {
+                  "label": "Type",
+                  "width": 5,
+                  "key": "type",
+                  "help": "本图是普通Memory Request或普通Completion，不含Locked等特殊Type。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "posted-T9",
+                  "help": "普通Posted MWr在此NFM位置为保留位，不用于逐笔Completion匹配。"
+                },
+                {
+                  "label": "TC",
+                  "width": 3,
+                  "key": "tc",
+                  "help": "Traffic Class；普通非UIO在途Tag不能跨TC重号。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "posted-T8",
+                  "help": "普通Posted MWr在此NFM位置为保留位，不用于逐笔Completion匹配。"
+                },
+                {
+                  "label": "A2",
+                  "width": 1,
+                  "key": "attr",
+                  "help": "Attributes[2]，与低2位分开。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "r0",
+                  "help": "保留位置，不应解释成Payload或有效Tag。"
+                },
+                {
+                  "label": "TH",
+                  "width": 1,
+                  "key": "th",
+                  "help": "TPH提示相关；Memory图限定TH=0，BE按显式字段解释；Completion的TH保留。"
+                },
+                {
+                  "label": "TD",
+                  "width": 1,
+                  "key": "td",
+                  "help": "NFM为1时TLP末尾有32 bit Digest；不计入Payload Length。"
+                },
+                {
+                  "label": "EP",
+                  "width": 1,
+                  "key": "ep",
+                  "help": "Poisoned标记；不是Completion Status。"
+                },
+                {
+                  "label": "Attr",
+                  "width": 2,
+                  "key": "attr",
+                  "help": "Attributes[1:0]；与A2合成3 bit逻辑属性。"
+                },
+                {
+                  "label": "AT",
+                  "width": 2,
+                  "key": "at",
+                  "help": "地址类型；普通Completion要求00b。"
+                },
+                {
+                  "label": "Length",
+                  "width": 10,
+                  "key": "length",
+                  "help": "Payload或请求范围的DW长度字段；MRd本身不因Length非0而携带读数据。"
+                }
+              ],
+              [
+                {
+                  "label": "Requester ID",
+                  "width": 16,
+                  "key": "rid",
+                  "help": "原请求发起Function的身份；Completion按该身份路由。"
+                },
+                {
+                  "label": "Tag[7:0]",
+                  "width": 8,
+                  "key": "tag",
+                  "help": "NFM Tag低8位；普通NP请求关联时还要结合T8、T9。Posted Memory Write不能据此等待逐笔Completion。"
+                },
+                {
+                  "label": "Last BE",
+                  "width": 4,
+                  "key": "lastbe",
+                  "help": "Last DW Byte Enable；Length1 DW时为0000，其他按模式/TPH规则判断。"
+                },
+                {
+                  "label": "First BE",
+                  "width": 4,
+                  "key": "firstbe",
+                  "help": "First DW Byte Enable，bit0对应首DW的最低byte地址。"
+                }
+              ],
+              [
+                {
+                  "label": "Address[63:32]",
+                  "width": 32,
+                  "key": "address",
+                  "help": "64-bit寻址的高32 bit；下一DW为Address[31:2]。"
+                }
+              ],
+              [
+                {
+                  "label": "Address[31:2]",
+                  "width": 30,
+                  "key": "address",
+                  "help": "DW对齐内存地址的低30 bit；有效首byte由BE等规则决定。"
+                },
+                {
+                  "label": "PH",
+                  "width": 2,
+                  "key": "ph",
+                  "help": "图中PH位置；具体含义依TH/TPH规则。本图不展开TPH模式。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Header",
+                "size": "128 bit / 16 B"
+              },
+              {
+                "label": "Data Payload",
+                "size": "32 × 解码Length bit"
+              },
+              {
+                "label": "Digest（TD=1）",
+                "size": "32 bit，可选"
+              }
+            ],
+            "note": "这是TLP视角，不含可选Prefix、DLL序号/LCRC或物理层帧边界。Fmt=011，Type=00000b；MWr总长度随Payload/TD改变，MRd的数据在后续CplD中返回。"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Configuration Read / Write，Type0/Type1",
@@ -8361,7 +9063,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "2.2",
@@ -8373,9 +9075,1275 @@
         "pdfPage": 119,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 214,
+        "pdfPage": 214,
+        "title": "读Completion返回与终止",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 263,
+        "pdfPage": 263,
+        "title": "读Completion返回与终止",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 215,
+        "pdfPage": 215,
+        "title": "RCB拆分、顺序及Byte Count递减",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 264,
+        "pdfPage": 264,
+        "title": "RCB拆分、顺序及Byte Count递减",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "丢弃、资源释放、FLR及RRS",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 270,
+        "pdfPage": 270,
+        "title": "丢弃、资源释放、FLR及RRS",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.9.1",
+        "page": 196,
+        "pdfPage": 196,
+        "title": "NFM Completion字段",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.9.1",
+        "page": 243,
+        "pdfPage": 243,
+        "title": "NFM Completion字段",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.9.1",
+        "page": 198,
+        "pdfPage": 198,
+        "title": "身份字段拷贝与长度一致性",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.9.1",
+        "page": 245,
+        "pdfPage": 245,
+        "title": "身份字段拷贝与长度一致性",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.9.2",
+        "page": 198,
+        "pdfPage": 198,
+        "title": "FM Completion与14-bit Tag",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.9.2",
+        "page": 245,
+        "pdfPage": 245,
+        "title": "FM Completion与14-bit Tag",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.9.2",
+        "page": 199,
+        "pdfPage": 199,
+        "title": "OHC-A5存在条件",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.9.2",
+        "page": 246,
+        "pdfPage": 246,
+        "title": "OHC-A5存在条件",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.9.1",
+        "page": 197,
+        "pdfPage": 197,
+        "title": "Completion Status编码表2-37",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.9.1",
+        "page": 244,
+        "pdfPage": 244,
+        "title": "Completion Status编码表2-37",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 217,
+        "pdfPage": 217,
+        "title": "由Length/BE求Byte Count表2-40",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 266,
+        "pdfPage": 266,
+        "title": "由Length/BE求Byte Count表2-40",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 218,
+        "pdfPage": 218,
+        "title": "Lower Address及错误完成终止",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 267,
+        "pdfPage": 267,
+        "title": "Lower Address及错误完成终止",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 216,
+        "pdfPage": 216,
+        "title": "DW对齐、不使能字节和BCM",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 265,
+        "pdfPage": 265,
+        "title": "DW对齐、不使能字节和BCM",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.2",
+        "page": 153,
+        "pdfPage": 153,
+        "title": "Transaction ID与唯一性",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2",
+        "page": 198,
+        "pdfPage": 198,
+        "title": "Transaction ID与唯一性",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 219,
+        "pdfPage": 219,
+        "title": "Unexpected Completion定义和匹配",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 269,
+        "pdfPage": 269,
+        "title": "Unexpected Completion定义和匹配",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "Glossary",
+        "page": 88,
+        "pdfPage": 88,
+        "title": "MUST@FLIT是支持能力条件",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "Glossary",
+        "page": 123,
+        "pdfPage": 123,
+        "title": "MUST@FLIT是支持能力条件",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1",
+        "page": 162,
+        "pdfPage": 162,
+        "title": "MRRS与请求字段",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 208,
+        "pdfPage": 208,
+        "title": "MRRS与请求字段",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1",
+        "page": 163,
+        "pdfPage": 163,
+        "title": "4-KB边界及AtomicOp CAS例外",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 209,
+        "pdfPage": 209,
+        "title": "4-KB边界及AtomicOp CAS例外",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已按块核读所引Base6.0/7.0正文及字段；旧Tag误配已标明，UIO/ATS等特殊机制和早期七代演进继续核读。",
+    "details": [
+      {
+        "id": "completion-request-lifecycle",
+        "title": "一笔MRd怎样从请求走到最终Completion",
+        "paragraphs": [
+          "Requester保存Transaction ID、地址、请求长度/BE及完成进度；Completer可把普通Memory Read分为多个Completion，但不能把不同请求的数据合并成一个普通Completion。I/O和Configuration Read必须只用一个Completion。",
+          "一包CplD到达只推进该请求的返回进度。只有成功返回完整范围或按错误/超时流程终止，才能结束该笔事务；DLL ACK只表示链路可靠性动作，不能替代这一步。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "completion-nfm-header-fields",
+        "title": "NFM Completion头：哪些字段用来关联和定位",
+        "paragraphs": [
+          "NFM使用3 DW Header并按Requester ID路由。Tag字段为10 bit，不代表所有发起端都获准使用10-bit范围；Requester ID、Tag、TC应对应原请求，Attr另有IDO和Translation等例外。",
+          "不要把Completer ID拿来替代Requester ID路由，也不要在初始化前强校验Completer ID：规范对至少一次配置写之前的有效性有专门限制。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "table": {
+          "columns": [
+            "字段",
+            "含义"
+          ],
+          "rows": [
+            [
+              "Requester ID + Tag",
+              "关联原请求；TC仍需匹配但不扩展普通Tag唯一性空间"
+            ],
+            [
+              "Completer ID",
+              "标识完成方，初始化前需按规则忽略"
+            ],
+            [
+              "Completion Status",
+              "SC/UR/RRS/CA等状态"
+            ],
+            [
+              "Byte Count",
+              "含本包在内尚需返回的byte数，存在BCM历史例外"
+            ],
+            [
+              "Lower Address[6:0]",
+              "本包首个使能字节的低地址"
+            ],
+            [
+              "Length",
+              "本包实际Payload的DW数，不是剩余Byte Count"
+            ]
+          ]
+        },
+        "packetLayouts": [
+          {
+            "id": "nfm-cpl",
+            "title": "Cpl · 无数据",
+            "version": "Base6.0 / 7.0 · NFM · 普通非Locked Completion",
+            "headerBits": 96,
+            "rows": [
+              [
+                {
+                  "label": "Fmt",
+                  "width": 3,
+                  "key": "fmt",
+                  "help": "本图Fmt=000；字段区分是否带数据和头长度。"
+                },
+                {
+                  "label": "Type",
+                  "width": 5,
+                  "key": "type",
+                  "help": "本图是普通Memory Request或普通Completion，不含Locked等特殊Type。"
+                },
+                {
+                  "label": "T9",
+                  "width": 1,
+                  "key": "tag",
+                  "help": "Tag[9]。Tag在NFM头中不是连续10 bit。"
+                },
+                {
+                  "label": "TC",
+                  "width": 3,
+                  "key": "tc",
+                  "help": "Traffic Class；普通非UIO在途Tag不能跨TC重号。"
+                },
+                {
+                  "label": "T8",
+                  "width": 1,
+                  "key": "tag",
+                  "help": "Tag[8]，与Tag[9]及低8位共同组成NFM Tag字段。"
+                },
+                {
+                  "label": "A2",
+                  "width": 1,
+                  "key": "attr",
+                  "help": "Attributes[2]，与低2位分开。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "r0",
+                  "help": "保留位置，不应解释成Payload或有效Tag。"
+                },
+                {
+                  "label": "TH",
+                  "width": 1,
+                  "key": "th",
+                  "help": "TPH提示相关；Memory图限定TH=0，BE按显式字段解释；Completion的TH保留。"
+                },
+                {
+                  "label": "TD",
+                  "width": 1,
+                  "key": "td",
+                  "help": "NFM为1时TLP末尾有32 bit Digest；不计入Payload Length。"
+                },
+                {
+                  "label": "EP",
+                  "width": 1,
+                  "key": "ep",
+                  "help": "Poisoned标记；不是Completion Status。"
+                },
+                {
+                  "label": "Attr",
+                  "width": 2,
+                  "key": "attr",
+                  "help": "Attributes[1:0]；与A2合成3 bit逻辑属性。"
+                },
+                {
+                  "label": "AT",
+                  "width": 2,
+                  "key": "at",
+                  "help": "地址类型；普通Completion要求00b。"
+                },
+                {
+                  "label": "Length",
+                  "width": 10,
+                  "key": "length",
+                  "help": "Payload或请求范围的DW长度字段；MRd本身不因Length非0而携带读数据。"
+                }
+              ],
+              [
+                {
+                  "label": "Completer ID",
+                  "width": 16,
+                  "key": "cid",
+                  "help": "完成方身份；不是Requester ID回程路由字段。"
+                },
+                {
+                  "label": "Status",
+                  "width": 3,
+                  "key": "status",
+                  "help": "000 SC、001 UR、010 RRS、100 CA；其他值保留，RRS适用场景受限。"
+                },
+                {
+                  "label": "BCM",
+                  "width": 1,
+                  "key": "bcm",
+                  "help": "PCIe Completer不得置位；PCI-X历史桥接另有规则。"
+                },
+                {
+                  "label": "Byte Count",
+                  "width": 12,
+                  "key": "count",
+                  "help": "含本包在内尚需返回的byte数；字段0编码4096 byte。"
+                }
+              ],
+              [
+                {
+                  "label": "Requester ID",
+                  "width": 16,
+                  "key": "rid",
+                  "help": "原请求发起Function的身份；Completion按该身份路由。"
+                },
+                {
+                  "label": "Tag[7:0]",
+                  "width": 8,
+                  "key": "tag",
+                  "help": "NFM Tag低8位；普通NP请求关联时还要结合T8、T9。Posted Memory Write不能据此等待逐笔Completion。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "r1",
+                  "help": "保留位。"
+                },
+                {
+                  "label": "Lower Address",
+                  "width": 7,
+                  "key": "la",
+                  "help": "本包首个使能byte地址的低7位，不是完整地址。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Header",
+                "size": "96 bit / 12 B"
+              },
+              {
+                "label": "Data Payload",
+                "size": "0 bit"
+              },
+              {
+                "label": "Digest（TD=1）",
+                "size": "32 bit，可选"
+              }
+            ],
+            "note": "Fmt=000，Type=01010b。头长96 bit，不代表整个CplD只有96 bit。普通Read的非SC完成不带数据并终止该请求；此图不替代状态适用性判断。"
+          },
+          {
+            "id": "nfm-cpld",
+            "title": "CplD · 带数据",
+            "version": "Base6.0 / 7.0 · NFM · 普通非Locked Completion",
+            "headerBits": 96,
+            "rows": [
+              [
+                {
+                  "label": "Fmt",
+                  "width": 3,
+                  "key": "fmt",
+                  "help": "本图Fmt=010；字段区分是否带数据和头长度。"
+                },
+                {
+                  "label": "Type",
+                  "width": 5,
+                  "key": "type",
+                  "help": "本图是普通Memory Request或普通Completion，不含Locked等特殊Type。"
+                },
+                {
+                  "label": "T9",
+                  "width": 1,
+                  "key": "tag",
+                  "help": "Tag[9]。Tag在NFM头中不是连续10 bit。"
+                },
+                {
+                  "label": "TC",
+                  "width": 3,
+                  "key": "tc",
+                  "help": "Traffic Class；普通非UIO在途Tag不能跨TC重号。"
+                },
+                {
+                  "label": "T8",
+                  "width": 1,
+                  "key": "tag",
+                  "help": "Tag[8]，与Tag[9]及低8位共同组成NFM Tag字段。"
+                },
+                {
+                  "label": "A2",
+                  "width": 1,
+                  "key": "attr",
+                  "help": "Attributes[2]，与低2位分开。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "r0",
+                  "help": "保留位置，不应解释成Payload或有效Tag。"
+                },
+                {
+                  "label": "TH",
+                  "width": 1,
+                  "key": "th",
+                  "help": "TPH提示相关；Memory图限定TH=0，BE按显式字段解释；Completion的TH保留。"
+                },
+                {
+                  "label": "TD",
+                  "width": 1,
+                  "key": "td",
+                  "help": "NFM为1时TLP末尾有32 bit Digest；不计入Payload Length。"
+                },
+                {
+                  "label": "EP",
+                  "width": 1,
+                  "key": "ep",
+                  "help": "Poisoned标记；不是Completion Status。"
+                },
+                {
+                  "label": "Attr",
+                  "width": 2,
+                  "key": "attr",
+                  "help": "Attributes[1:0]；与A2合成3 bit逻辑属性。"
+                },
+                {
+                  "label": "AT",
+                  "width": 2,
+                  "key": "at",
+                  "help": "地址类型；普通Completion要求00b。"
+                },
+                {
+                  "label": "Length",
+                  "width": 10,
+                  "key": "length",
+                  "help": "Payload或请求范围的DW长度字段；MRd本身不因Length非0而携带读数据。"
+                }
+              ],
+              [
+                {
+                  "label": "Completer ID",
+                  "width": 16,
+                  "key": "cid",
+                  "help": "完成方身份；不是Requester ID回程路由字段。"
+                },
+                {
+                  "label": "Status",
+                  "width": 3,
+                  "key": "status",
+                  "help": "000 SC、001 UR、010 RRS、100 CA；其他值保留，RRS适用场景受限。"
+                },
+                {
+                  "label": "BCM",
+                  "width": 1,
+                  "key": "bcm",
+                  "help": "PCIe Completer不得置位；PCI-X历史桥接另有规则。"
+                },
+                {
+                  "label": "Byte Count",
+                  "width": 12,
+                  "key": "count",
+                  "help": "含本包在内尚需返回的byte数；字段0编码4096 byte。"
+                }
+              ],
+              [
+                {
+                  "label": "Requester ID",
+                  "width": 16,
+                  "key": "rid",
+                  "help": "原请求发起Function的身份；Completion按该身份路由。"
+                },
+                {
+                  "label": "Tag[7:0]",
+                  "width": 8,
+                  "key": "tag",
+                  "help": "NFM Tag低8位；普通NP请求关联时还要结合T8、T9。Posted Memory Write不能据此等待逐笔Completion。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "r1",
+                  "help": "保留位。"
+                },
+                {
+                  "label": "Lower Address",
+                  "width": 7,
+                  "key": "la",
+                  "help": "本包首个使能byte地址的低7位，不是完整地址。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Header",
+                "size": "96 bit / 12 B"
+              },
+              {
+                "label": "Data Payload",
+                "size": "32 × 解码Length bit"
+              },
+              {
+                "label": "Digest（TD=1）",
+                "size": "32 bit，可选"
+              }
+            ],
+            "note": "Fmt=010，Type=01010b。头长96 bit，不代表整个CplD只有96 bit。普通Read的非SC完成不带数据并终止该请求；此图不替代状态适用性判断。"
+          }
+        ]
+      },
+      {
+        "id": "completion-fm-ohc-differences",
+        "title": "FM Completion：14-bit Tag与OHC-A5不能按旧头硬切",
+        "paragraphs": [
+          "FM的非UIO Completion保留相应逻辑规则，但Header Base格式变化，Tag为14 bit，Lower Address[6]、[5:2]、[1:0]不是连续放置。BCM不支持。",
+          "不成功Completion、非UIO Lower Address[1:0]非00，以及需要显式Destination Segment等情形要求OHC-A5；没有OHC-A5时隐含SC及相应低地址位为00。7.0还区分UIOWrCpl/UIORdCpl与UIORdCplD格式，不可用非UIO Byte Count模型解析全部UIO。这里列主要条件，其他安全/Segment条款仍需联合核读。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14
+        ],
+        "packetLayouts": [
+          {
+            "id": "fm-non-uio",
+            "title": "非UIO Cpl / CplD",
+            "version": "Base7.0 · FM · 图2-82 / 2-83 / 2-84",
+            "headerBits": 96,
+            "rows": [
+              [
+                {
+                  "label": "Type",
+                  "width": 8,
+                  "key": "type",
+                  "help": "FM Type为8 bit；不能沿用NFM的Fmt3+Type5拆法。"
+                },
+                {
+                  "label": "TC",
+                  "width": 3,
+                  "key": "tc",
+                  "help": "Traffic Class。"
+                },
+                {
+                  "label": "OHC",
+                  "width": 5,
+                  "key": "ohc",
+                  "help": "指示OHC组合，具体附加头数/格式按编码解释，不等于直接用本字段数值作为DW数。"
+                },
+                {
+                  "label": "TS",
+                  "width": 3,
+                  "key": "ts",
+                  "help": "FM公共头TS字段。本次重绘位置，不展开其全部机制。"
+                },
+                {
+                  "label": "Attr",
+                  "width": 3,
+                  "key": "attr",
+                  "help": "FM Attributes三位在此连续。"
+                },
+                {
+                  "label": "Length",
+                  "width": 10,
+                  "key": "length",
+                  "help": "按相应Completion类型解释Length；不把UIO的字段当普通Byte Count。"
+                }
+              ],
+              [
+                {
+                  "label": "Completer ID",
+                  "width": 16,
+                  "key": "cid",
+                  "help": "完成方身份。"
+                },
+                {
+                  "label": "EP",
+                  "width": 1,
+                  "key": "ep",
+                  "help": "Poisoned标记。"
+                },
+                {
+                  "label": "LA6",
+                  "width": 1,
+                  "key": "la",
+                  "help": "Lower Address[6]。与LA[5:2]、低两位分开放置。"
+                },
+                {
+                  "label": "Tag[13:0]",
+                  "width": 14,
+                  "key": "tag",
+                  "help": "FM基础头Tag宽14 bit；可发起值仍受Tag能力/使能、事务类别和版本约束。"
+                }
+              ],
+              [
+                {
+                  "label": "Destination ID",
+                  "width": 16,
+                  "key": "rid",
+                  "help": "Destination BDF / BF(ARI)；非UIO对应Requester身份路由。"
+                },
+                {
+                  "label": "LA[5:2]",
+                  "width": 4,
+                  "key": "la",
+                  "help": "Lower Address[5:2]。低两位由OHC-A5携带或按条件隐含00b。"
+                },
+                {
+                  "label": "Byte Count",
+                  "width": 12,
+                  "key": "count",
+                  "help": "非UIO完成的剩余Byte Count；不能据该图解析全部UIO。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Header Base",
+                "size": "96 bit / 12 B"
+              },
+              {
+                "label": "OHC",
+                "size": "依条件/编码追加，非固定长度"
+              },
+              {
+                "label": "Data Payload",
+                "size": "按类型/Length，可能为0"
+              }
+            ],
+            "note": "仅展示Header Base；不成功Completion等情形必须带OHC-A5。非UIO基础头只展示LA的5位，低2位另有承载/隐含规则；不是说完整Lower Address只有5位。完整包还可能有其他规定的附加结构。"
+          },
+          {
+            "id": "fm-uio-no-data",
+            "title": "UIOWrCpl / UIORdCpl",
+            "version": "Base7.0 · FM · 图2-82 / 2-83 / 2-84",
+            "headerBits": 96,
+            "rows": [
+              [
+                {
+                  "label": "Type",
+                  "width": 8,
+                  "key": "type",
+                  "help": "FM Type为8 bit；不能沿用NFM的Fmt3+Type5拆法。"
+                },
+                {
+                  "label": "TC",
+                  "width": 3,
+                  "key": "tc",
+                  "help": "Traffic Class。"
+                },
+                {
+                  "label": "OHC",
+                  "width": 5,
+                  "key": "ohc",
+                  "help": "指示OHC组合，具体附加头数/格式按编码解释，不等于直接用本字段数值作为DW数。"
+                },
+                {
+                  "label": "TS",
+                  "width": 3,
+                  "key": "ts",
+                  "help": "FM公共头TS字段。本次重绘位置，不展开其全部机制。"
+                },
+                {
+                  "label": "Attr",
+                  "width": 3,
+                  "key": "attr",
+                  "help": "FM Attributes三位在此连续。"
+                },
+                {
+                  "label": "Length",
+                  "width": 10,
+                  "key": "length",
+                  "help": "按相应Completion类型解释Length；不把UIO的字段当普通Byte Count。"
+                }
+              ],
+              [
+                {
+                  "label": "Completer ID",
+                  "width": 16,
+                  "key": "cid",
+                  "help": "完成方身份。"
+                },
+                {
+                  "label": "EP",
+                  "width": 1,
+                  "key": "ep",
+                  "help": "Poisoned标记。"
+                },
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "r1",
+                  "help": "保留位。"
+                },
+                {
+                  "label": "Tag[13:0]",
+                  "width": 14,
+                  "key": "tag",
+                  "help": "FM基础头Tag宽14 bit；可发起值仍受Tag能力/使能、事务类别和版本约束。"
+                }
+              ],
+              [
+                {
+                  "label": "Destination ID",
+                  "width": 16,
+                  "key": "rid",
+                  "help": "Destination BDF / BF(ARI)；非UIO对应Requester身份路由。"
+                },
+                {
+                  "label": "R",
+                  "width": 9,
+                  "key": "r2",
+                  "help": "保留位置，不是非UIO的LA或Byte Count。"
+                },
+                {
+                  "label": "CDL",
+                  "width": 2,
+                  "key": "cdl",
+                  "help": "UIO CDL[1:0]字段；本图只展示位置，不把它解释成普通Byte Count。"
+                },
+                {
+                  "label": "R",
+                  "width": 5,
+                  "key": "r3",
+                  "help": "保留位置。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Header Base",
+                "size": "96 bit / 12 B"
+              },
+              {
+                "label": "OHC",
+                "size": "依条件/编码追加，非固定长度"
+              },
+              {
+                "label": "Data Payload",
+                "size": "按类型/Length，可能为0"
+              }
+            ],
+            "note": "仅展示Header Base；不成功Completion等情形必须带OHC-A5。非UIO基础头只展示LA的5位，低2位另有承载/隐含规则；不是说完整Lower Address只有5位。完整包还可能有其他规定的附加结构。"
+          },
+          {
+            "id": "fm-uio-read-data",
+            "title": "UIORdCplD",
+            "version": "Base7.0 · FM · 图2-82 / 2-83 / 2-84",
+            "headerBits": 96,
+            "rows": [
+              [
+                {
+                  "label": "Type",
+                  "width": 8,
+                  "key": "type",
+                  "help": "FM Type为8 bit；不能沿用NFM的Fmt3+Type5拆法。"
+                },
+                {
+                  "label": "TC",
+                  "width": 3,
+                  "key": "tc",
+                  "help": "Traffic Class。"
+                },
+                {
+                  "label": "OHC",
+                  "width": 5,
+                  "key": "ohc",
+                  "help": "指示OHC组合，具体附加头数/格式按编码解释，不等于直接用本字段数值作为DW数。"
+                },
+                {
+                  "label": "TS",
+                  "width": 3,
+                  "key": "ts",
+                  "help": "FM公共头TS字段。本次重绘位置，不展开其全部机制。"
+                },
+                {
+                  "label": "Attr",
+                  "width": 3,
+                  "key": "attr",
+                  "help": "FM Attributes三位在此连续。"
+                },
+                {
+                  "label": "Length",
+                  "width": 10,
+                  "key": "length",
+                  "help": "按相应Completion类型解释Length；不把UIO的字段当普通Byte Count。"
+                }
+              ],
+              [
+                {
+                  "label": "Completer ID",
+                  "width": 16,
+                  "key": "cid",
+                  "help": "完成方身份。"
+                },
+                {
+                  "label": "EP",
+                  "width": 1,
+                  "key": "ep",
+                  "help": "Poisoned标记。"
+                },
+                {
+                  "label": "LA6",
+                  "width": 1,
+                  "key": "la",
+                  "help": "Lower Address[6]。与LA[5:2]、低两位分开放置。"
+                },
+                {
+                  "label": "Tag[13:0]",
+                  "width": 14,
+                  "key": "tag",
+                  "help": "FM基础头Tag宽14 bit；可发起值仍受Tag能力/使能、事务类别和版本约束。"
+                }
+              ],
+              [
+                {
+                  "label": "Destination ID",
+                  "width": 16,
+                  "key": "rid",
+                  "help": "Destination BDF / BF(ARI)；非UIO对应Requester身份路由。"
+                },
+                {
+                  "label": "LA[5:2]",
+                  "width": 4,
+                  "key": "la",
+                  "help": "Lower Address[5:2]。"
+                },
+                {
+                  "label": "R",
+                  "width": 5,
+                  "key": "r2",
+                  "help": "保留位置。"
+                },
+                {
+                  "label": "CDL",
+                  "width": 2,
+                  "key": "cdl",
+                  "help": "UIO CDL[1:0]字段。"
+                },
+                {
+                  "label": "LA[11:7]",
+                  "width": 5,
+                  "key": "la",
+                  "help": "UIO带数据读完成还带LA[11:7]；不能只按普通CplD低7位解析。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Header Base",
+                "size": "96 bit / 12 B"
+              },
+              {
+                "label": "OHC",
+                "size": "依条件/编码追加，非固定长度"
+              },
+              {
+                "label": "Data Payload",
+                "size": "按类型/Length，可能为0"
+              }
+            ],
+            "note": "仅展示Header Base；不成功Completion等情形必须带OHC-A5。非UIO基础头只展示LA的5位，低2位另有承载/隐含规则；不是说完整Lower Address只有5位。完整包还可能有其他规定的附加结构。"
+          }
+        ]
+      },
+      {
+        "id": "completion-status-table",
+        "title": "Completion Status全编码：RRS不是DMA通用重试",
+        "paragraphs": [
+          "这张表列NFM的3 bit状态编码。RRS只在指定Configuration条件合法，不是Completer忙时可对任意MRd返回的通用“稍后再试”。FM状态的承载位置按OHC规则解释。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          1,
+          2,
+          13,
+          14
+        ],
+        "table": {
+          "columns": [
+            "二进制值",
+            "状态",
+            "普通理解与限制"
+          ],
+          "rows": [
+            [
+              "000",
+              "SC",
+              "该Completion成功；尚可能还有同请求后续CplD"
+            ],
+            [
+              "001",
+              "UR",
+              "请求不受支持；按错误完成终止"
+            ],
+            [
+              "010",
+              "RRS",
+              "仅指定配置访问/复位就绪场景"
+            ],
+            [
+              "100",
+              "CA",
+              "完成方中止，不继续补齐剩余数据"
+            ],
+            [
+              "011 / 101 / 110 / 111",
+              "保留",
+              "不能自定义成软件重试或超时状态"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "completion-byte-count-decrement",
+        "title": "Byte Count不是本包长度：每次要怎样递减",
+        "paragraphs": [
+          "普通Memory Read的Byte Count表示完成请求尚需返回的byte数，包含当前Completion返回的部分。下一包Byte Count等于上一包减去上一包实际推进的返回字节数；ATS Translation有专门例外。",
+          "Byte Count字段编码0代表4096，不代表“已完成0字节”。对全BE、DW对齐的512 byte请求，若返回128+256+128，三包Byte Count应为512、384、128；Length分别为32、64、32 DW。带首尾BE时须按边界和字段规则计算，不能总用Length×4递减。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          3,
+          4,
+          17,
+          18
+        ]
+      },
+      {
+        "id": "completion-lower-address-reconstruction",
+        "title": "Lower Address只给低7位：不是完整返回地址",
+        "paragraphs": [
+          "首包Lower Address表示首个使能字节的低7位，最低两位由First DW BE的最低使能bit确定。后续Completion一般为0；RCB=64的Root Complex返回时可见bit6按64 byte对齐位置变化。",
+          "例如0x10020开始、RCB=64，首段可到0x10040，后续Lower Address可能为0x40再到0。Requester仍需保留原请求地址和进度，不能靠Lower Address本身区分所有物理地址。"
+        ],
+        "referenceIndices": [
+          19,
+          20,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "completion-padding-crc",
+        "title": "不使能的字节仍占DW位置，也仍参与CRC",
+        "paragraphs": [
+          "Completion Data从请求的DW地址开始；首尾未使能byte内容未指定，Requester不能把它们当有效数据。但它们仍在实际传输DW内，参与适用CRC计算，不可在CRC计算前随意删除。",
+          "因此Length×4、BE使能byte数和Byte Count可能三者不同。调试时把它们分开记录，不能因未使能byte不是0就直接判为数据校验失败；7.0另有减少此类字节信息泄露的实现建议。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          17,
+          18
+        ]
+      },
+      {
+        "id": "completion-order-per-request",
+        "title": "普通Split Completion的顺序：同请求与跨请求分开",
+        "paragraphs": [
+          "同一个普通Memory Read的多个Completion必须按递增地址返回；所有SC完成合起来应覆盖恰好所请求范围。不能重复一段来“凑够总byte数”。",
+          "这条是单请求内部的数据顺序，不能拿它要求不同Tag的所有请求严格按发出顺序返回。7.0 UIO另有机制，本页普通Completion规划器明确不处理UIO乱序或合并。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          23,
+          24
+        ]
+      },
+      {
+        "id": "completion-error-final",
+        "title": "中途CA/UR：剩下没回的数据不是继续等几包",
+        "paragraphs": [
+          "Read收到非SC完成时，该完成不带数据，是该请求最后一个Completion；Completer不得继续发送该请求其他Completion。Byte Count和Lower Address仍描述假如成功时剩余范围/起点。",
+          "例如已收到第一段SC，第二段为CA，不能再等第三、第四段来把缓冲填满。Requester按错误流程释放相关Completion资源，决定已部分返回的数据是否可用属于设备/软件语义，不可当整笔读成功交付。"
+        ],
+        "referenceIndices": [
+          19,
+          20,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "unexpected-completion-checks",
+        "title": "Unexpected Completion：Tag对上也可能不够",
+        "paragraphs": [
+          "没有匹配在途Transaction ID的是Unexpected Completion。ID匹配但其他相应字段不匹配，支持FM的Receiver有MUST@FLIT处理要求；若包本身形式正确，也允许按Malformed TLP处理。Requester不得因IDO没有原样拷贝就报错。",
+          "Unexpected Completion应丢弃并按接收端错误规则报告；不能把它重新绑定给“看起来相近”的请求。原请求可能随后超时，说明Unexpected与Timeout可以是同一故障链中的两个现象。"
+        ],
+        "referenceIndices": [
+          25,
+          26,
+          5,
+          6,
+          27,
+          28
+        ]
+      },
+      {
+        "id": "completion-flr-window",
+        "title": "FLR窗口与旧Completion：何时可以静默丢弃",
+        "paragraphs": [
+          "FLR从开始到完成之间到达的相关Completion，允许按Unexpected Completion处理，或更新流控信用后静默丢弃。FLR完成后，复位前请求的Completion须按相应旧请求规则处理，条文还保留Function重新获准发请求的条件。",
+          "不能把“复位时允许丢弃”扩展成所有运行期间都可忽略迟到包；也不能只清软件队列就立即复用Tag而不考虑硬件尚存的Completion和复位流程。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "configuration-rrs-visible-result",
+        "title": "RRS后的0001h Vendor ID：不是设备真实厂商号",
+        "paragraphs": [
+          "支持并启用Configuration RRS Software Visibility时，配置读包含Vendor ID两字节且收到RRS，RC向软件返回Vendor ID=0001h，其他所读byte为全1；这是专门保留的指示值。",
+          "未启用该可见性，或请求是配置写/其他配置读，RC按规则重新发起新的Configuration Request。RRS终止当前请求，再发是新请求，不等于原Tag一直等到设备就绪。本轮未展开完整复位就绪时限。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "completion-plan-query",
+        "title": "交互规划：一笔读有哪些合法拆分边界",
+        "paragraphs": [
+          "输入DW对齐、全BE、单笔不跨4-KB的普通MRd，工具用MRRS检查请求，用已选有效Completion Payload上限和Completer RCB生成一种贪心拆分，并列出每段地址、Length、Byte Count、Lower Address。",
+          "这是一个可行方案，不是规范要求的唯一包序列，也不模拟不同Tag的到达顺序、信用、ATS、UIO、PCI-X BCM、错误终止或设备内部延迟。有效Payload上限应由调用者先结合路径/目标与MPS规则确定。"
+        ],
+        "referenceIndices": [
+          29,
+          30,
+          31,
+          32,
+          3,
+          4,
+          7,
+          8,
+          19,
+          20
+        ]
+      }
+    ]
   },
   {
     "name": "Posted / Non-Posted / Completion三类流量",
@@ -8498,7 +10466,7 @@
     "group": "事务与数据传输",
     "intro": "Tag区分并发请求；可用位数依版本、模式与能力。",
     "usage": "吞吐调优时同时检查发起端与完成端支持，不只增加软件并发。",
-    "mechanism": "每个未完成读等请求占用可匹配的Tag，完成后才能安全复用。扩展Tag位宽提高可区分请求数量，但发起端、完成端与模式都有约束。",
+    "mechanism": "普通非UIO请求以Requester ID+Tag关联在途事务，不能跨TC复用仍在途的普通Tag。可用范围取决于Requester使能和目标/路径能力；6.0/7.0的14-bit兼容范围分别标注，7.0 UIO使用独立命名空间规则。",
     "example": "远端读延迟很大时，增加在途请求可以填满链路；若Tag已耗尽，单纯加大软件队列也无效。",
     "checks": "检查实际启用的Tag模式、可用Tag池、Completion资源和超时后回收规则，不能只看最大位宽。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
@@ -8510,7 +10478,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "6.17.2",
@@ -8520,7 +10488,7 @@
         "document": "PCI Express Base Specification",
         "version": "6.0",
         "pdfPage": 779,
-        "verification": "已核对该版本目录；正文待逐项核读",
+        "verification": "旧目录误匹配：该条属于TPH Steering Tag或VPD资源描述标签，并非Transaction Tag。保留原索引供更正追踪，不作为本页位宽/唯一性依据。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       },
       {
@@ -8531,11 +10499,701 @@
         "document": "PCI Express Base Specification",
         "version": "6.0",
         "pdfPage": 833,
-        "verification": "已核对该版本目录；正文待逐项核读",
+        "verification": "旧目录误匹配：该条属于TPH Steering Tag或VPD资源描述标签，并非Transaction Tag。保留原索引供更正追踪，不作为本页位宽/唯一性依据。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.2",
+        "page": 153,
+        "pdfPage": 153,
+        "title": "Transaction ID与唯一性",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2",
+        "page": 198,
+        "pdfPage": 198,
+        "title": "Transaction ID与唯一性",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.2",
+        "page": 153,
+        "pdfPage": 153,
+        "title": "7.0 UIO命名空间续页",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2",
+        "page": 199,
+        "pdfPage": 199,
+        "title": "7.0 UIO命名空间续页",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.2",
+        "page": 153,
+        "pdfPage": 153,
+        "title": "Requester/Completer的Tag能力",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2.1",
+        "page": 199,
+        "pdfPage": 199,
+        "title": "Requester/Completer的Tag能力",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.2",
+        "page": 154,
+        "pdfPage": 154,
+        "title": "大Tag目标限制及14-bit修订差异",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2.1",
+        "page": 200,
+        "pdfPage": 200,
+        "title": "大Tag目标限制及14-bit修订差异",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.2",
+        "page": 156,
+        "pdfPage": 156,
+        "title": "路径定义、Posted Tag与身份边界",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2.1",
+        "page": 202,
+        "pdfPage": 202,
+        "title": "路径定义、Posted Tag与身份边界",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.2",
+        "page": 155,
+        "pdfPage": 155,
+        "title": "Tag使能与许可范围表2-11",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2.1",
+        "page": 201,
+        "pdfPage": 201,
+        "title": "Tag使能与许可范围表2-11",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.3",
+        "page": 956,
+        "pdfPage": 956,
+        "title": "Extended Tag Field Supported",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.3",
+        "page": 1105,
+        "pdfPage": 1105,
+        "title": "Extended Tag Field Supported",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.4",
+        "page": 960,
+        "pdfPage": 960,
+        "title": "MPS与Extended Tag使能位",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.4",
+        "page": 1109,
+        "pdfPage": 1109,
+        "title": "MPS与Extended Tag使能位",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.15",
+        "page": 991,
+        "pdfPage": 991,
+        "title": "10-bit Tag能力位16/17",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1143,
+        "pdfPage": 1143,
+        "title": "10-bit Tag能力位16/17",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.16",
+        "page": 997,
+        "pdfPage": 997,
+        "title": "10-bit Tag使能与VF规则",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.16",
+        "page": 1149,
+        "pdfPage": 1149,
+        "title": "10-bit Tag使能与VF规则",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.1",
+        "page": 1072,
+        "pdfPage": 1072,
+        "title": "Device 3扩展能力ID和版本",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.1",
+        "page": 1232,
+        "pdfPage": 1232,
+        "title": "Device 3扩展能力ID和版本",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.2",
+        "page": 1073,
+        "pdfPage": 1073,
+        "title": "14-bit Tag能力及VF映射",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.2",
+        "page": 1233,
+        "pdfPage": 1233,
+        "title": "14-bit Tag能力及VF映射",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.3",
+        "page": 1075,
+        "pdfPage": 1075,
+        "title": "14-bit Tag使能字段",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.3",
+        "page": 1235,
+        "pdfPage": 1235,
+        "title": "14-bit Tag使能字段",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.3",
+        "page": 1075,
+        "pdfPage": 1075,
+        "title": "14-bit Tag动态修改和VF规则续页",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.3",
+        "page": 1236,
+        "pdfPage": 1236,
+        "title": "14-bit Tag动态修改和VF规则续页",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "Glossary",
+        "page": 88,
+        "pdfPage": 88,
+        "title": "MUST@FLIT是支持能力条件",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "Glossary",
+        "page": 123,
+        "pdfPage": 123,
+        "title": "MUST@FLIT是支持能力条件",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.4",
+        "page": 961,
+        "pdfPage": 961,
+        "title": "MRRS字段与Extended Tag动态修改限制",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.4",
+        "page": 1110,
+        "pdfPage": 1110,
+        "title": "MRRS字段与Extended Tag动态修改限制",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已按块核读所引Base6.0/7.0正文及字段；旧Tag误配已标明，UIO/ATS等特殊机制和早期七代演进继续核读。",
+    "details": [
+      {
+        "id": "transaction-tag-not-steering",
+        "title": "先纠正Tag来源：Transaction Tag不是Steering Tag",
+        "paragraphs": [
+          "本页讲的是Request/Completion关联使用的Transaction Tag。旧目录自动匹配到§6.17.2 Steering Tags和VPD Large/Small Resource Data Tags：前者属于TPH提示，后者属于资源描述，均不能作为本页Transaction Tag位宽的依据。旧索引保留并明确标为误配，以下改用§2.2.6.2和对应能力/控制寄存器。",
+          "普通非UIO事务以Requester ID与Tag关联在途请求；同一Requester ID的未完成NP请求必须保持唯一，不能因为TC不同就复用同一Tag。Tag不是DLL序号、DMA描述符编号，也不是物理lane号。"
+        ],
+        "referenceIndices": [
+          2,
+          3
+        ]
+      },
+      {
+        "id": "transaction-id-uio-namespaces",
+        "title": "7.0 UIO例外：三种命名空间不能混成一个Tag池",
+        "paragraphs": [
+          "7.0按Completion类型分三个独立命名空间，各组之间不要求Transaction ID唯一。普通Cpl/CplD仍使用Requester ID+Tag，TC不参与其唯一性；UIO读写加入TC。",
+          "Group II允许多个在途UIO写使用相同Transaction ID；Group III的UIO读仍要求组内唯一。不能把普通MRd的Tag分配器原封不动用于UIO，也不能因7.0出现UIO就允许普通MRd跨TC重号。这里只建立边界，UIO合并/完成机制另行深化。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "table": {
+          "columns": [
+            "7.0组",
+            "Completion",
+            "Transaction ID/唯一性"
+          ],
+          "rows": [
+            [
+              "I",
+              "Cpl / CplD，非UIO",
+              "Requester ID+Tag；在途NP唯一，不看TC"
+            ],
+            [
+              "II",
+              "UIOWrCpl",
+              "TC+Requester ID+Tag；允许组内重号"
+            ],
+            [
+              "III",
+              "UIORdCplD / UIORdCpl",
+              "TC+Requester ID+Tag；组内在途唯一"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "tag-requester-completer-capability",
+        "title": "Requester支持与Completer支持，是两种能力",
+        "paragraphs": [
+          "一个Function的发起与完成能力可以不同。6.0/7.0要求所有Function支持8-bit Tag Completer；支持FM的Function须支持14-bit Tag Completer，因而也支持10-bit。支持16 GT/s及以上的Function也有10-bit Completer要求，PCIe到PCI/PCI-X桥有例外。",
+          "支持10/14-bit Requester必须先支持对应Completer能力；反向不能推出。看到“14-bit Completer Supported=1”，不代表本设备已经能发或已启用14-bit请求。"
+        ],
+        "referenceIndices": [
+          6,
+          7
+        ]
+      },
+      {
+        "id": "tag-enable-not-receive-filter",
+        "title": "Requester Enable关闭，不允许拒收所支持的大Tag",
+        "paragraphs": [
+          "Extended、10-bit、14-bit Requester Enable控制发起请求可用Tag，不是接收过滤开关。支持相应Tag的Completer必须正确处理该尺寸，不能因自身Requester Enable为0而截断或拒绝。",
+          "软件读取能力、使能位和目标路径是三个步骤。即使本地发起端已启用大Tag，也不能据此保证远端或中间路由元素能够用同样位宽返回错误Completion。"
+        ],
+        "referenceIndices": [
+          8,
+          9
+        ]
+      },
+      {
+        "id": "tag-target-path-gating",
+        "title": "大Tag能发到哪里：主机内存与P2P分别检查",
+        "paragraphs": [
+          "对主机内存启用14-bit前，通用软件/固件应确认主机支持对应Completer能力；实现仍可限制某些请求只用10-bit或小Tag。向其他Endpoint发P2P请求，须由实现机制确认目标支持对应大Tag，不可仅依本地Enable。",
+          "“Completer/path”的Tag能力是目标与路径上所有相关路由元素的最大共同能力；路由元素在发现不可纠正错误时可能代替目标产生Completion。目标支持14-bit而路径只支持10-bit时，不能按14-bit端到端使用。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "id": "tag-enable-range-table",
+        "title": "表2-11速查：三个位怎样决定许可范围",
+        "paragraphs": [
+          "下表按8/10/14-bit Completer/path列出规范表2-11的范围；5-bit路径始终0～31。顺序是14-bit Enable、10-bit Enable、Extended Enable，不是按寄存器位置连续取三位。",
+          "14-bit列采用表中的1024～16383。6.0正文与此表有不一致；7.0给出兼容说明，见下一块。7.0另允许为单个非UIO请求选择较小Tag尺寸，但仍须遵守该尺寸的范围，不是随意使用0～16383。"
+        ],
+        "referenceIndices": [
+          12,
+          13,
+          10,
+          11
+        ],
+        "table": {
+          "columns": [
+            "E14",
+            "E10",
+            "Ext",
+            "8-bit路径",
+            "10-bit路径",
+            "14-bit路径（表列）"
+          ],
+          "rows": [
+            [
+              "0",
+              "0",
+              "0",
+              "0～31",
+              "0～31",
+              "0～31"
+            ],
+            [
+              "0",
+              "0",
+              "1",
+              "0～255",
+              "0～255",
+              "0～255"
+            ],
+            [
+              "0",
+              "1",
+              "0",
+              "0～31",
+              "256～1023",
+              "256～1023"
+            ],
+            [
+              "0",
+              "1",
+              "1",
+              "0～255",
+              "256～1023",
+              "256～1023"
+            ],
+            [
+              "1",
+              "0",
+              "0",
+              "0～31",
+              "0～31",
+              "1024～16383"
+            ],
+            [
+              "1",
+              "0",
+              "1",
+              "0～255",
+              "0～255",
+              "1024～16383"
+            ],
+            [
+              "1",
+              "1",
+              "0",
+              "0～31",
+              "256～1023",
+              "1024～16383"
+            ],
+            [
+              "1",
+              "1",
+              "1",
+              "0～255",
+              "256～1023",
+              "1024～16383"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "fourteen-bit-range-revision",
+        "title": "14-bit不是“总共有16384个都能用”：6.0/7.0差异",
+        "paragraphs": [
+          "6.0 p154正文以Tag[13:8]非全0定义14-bit有效值，对应256～16383；p155～156表2-11却为14-bit路径列1024～16383，二者不一致。本页不默默抹平，也不将其中一处当作所有实现唯一答案。",
+          "7.0 p200～201明确：强烈推荐Tag[13:10]非全0，即1024～16383；为兼容旧规范，允许Tag[13:8]非全0，即256～16383。推荐范围有15360个值，兼容范围有16128个值；都不是16384个。实际并发还受硬件资源限制。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          12,
+          13,
+          10,
+          11
+        ]
+      },
+      {
+        "id": "ten-bit-tag-reserved-low-bank",
+        "title": "10-bit Tag为何从256开始，低8位相同又会怎样",
+        "paragraphs": [
+          "10-bit Tag[9:8]不得为00b，因此其范围是256～1023，共768个值，不是1024个。较高位若被不支持的Completer丢失，返回Tag可能落入无效或错误匹配区间。",
+          "Requester会按标准错误处理这些Unexpected Completion，原请求还可能超时。错误有优先级，不能只根据“低8位能对上”认定是正常返回。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          12,
+          13
+        ]
+      },
+      {
+        "id": "larger-smaller-tag-alias",
+        "title": "混用大小Tag：低位别名会造成错误归属",
+        "paragraphs": [
+          "当某些目标使用大Tag、其他目标使用小Tag并发时，Requester须防止大Tag在不支持的完成路径截断后，误命中另一笔小Tag请求。仅保证完整14 bit数值不同还不够。",
+          "例如大Tag的低8位与另一笔小Tag相同，旧Completer可能仅返回这些低位。应依据目标/路径与分配机制防别名；不能把误返回的数据交给另一笔仍在途的请求。本轮不把所有Tag截断情形简化成统一软件回收策略。"
+        ],
+        "referenceIndices": [
+          12,
+          13,
+          10,
+          11
+        ]
+      },
+      {
+        "id": "tag-eight-ten-registers",
+        "title": "8/10-bit能力与使能寄存器：偏移和bit",
+        "paragraphs": [
+          "偏移均相对PCI Express Capability起点，而不是固定配置空间绝对地址。Supported和Enable不同，VF部分字段按PF的SR-IOV控制规则，不能直接把PF字段复制到每个VF。"
+        ],
+        "referenceIndices": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        "table": {
+          "columns": [
+            "寄存器（相对偏移）",
+            "bit",
+            "用途"
+          ],
+          "rows": [
+            [
+              "Device Capabilities +04h",
+              "5",
+              "Extended Tag Field Supported，8-bit Requester能力"
+            ],
+            [
+              "Device Control +08h",
+              "8",
+              "Extended Tag Field Enable，小Tag选5/8位"
+            ],
+            [
+              "Device Capabilities 2 +24h",
+              "16 / 17",
+              "10-bit Completer / Requester Supported"
+            ],
+            [
+              "Device Control 2 +28h",
+              "12",
+              "10-bit Requester Enable；VF使用对应PF的SR-IOV值"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "tag-fourteen-device-three",
+        "title": "14-bit在Device 3扩展能力中，不在Device Control 2",
+        "paragraphs": [
+          "Device 3扩展能力ID为002Fh，结构版本1。相对该扩展能力起点，Capabilities 3为+04h，Completer Supported在bit1，Requester Supported在bit2；Control 3为+08h，Requester Enable在bit2。",
+          "6.0对应§7.7.9.2/.3，7.0移到§7.7.10.2/.3。14-bit Completer Supported是MUST@FLIT，即按支持FM判定；Requester支持/使能不能由当前链路是否运行FM直接推断。VF使用PF的VF 14-bit Tag控制。本块不提供盲写寄存器命令。"
+        ],
+        "referenceIndices": [
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ]
+      },
+      {
+        "id": "tag-enable-change-outstanding",
+        "title": "在途NP还没清空时改Tag使能，会怎样",
+        "paragraphs": [
+          "Extended、10-bit和14-bit Requester Enable的条文均指出：有outstanding Non-Posted Request时修改，会导致行为未定义。软件不能把它们当作运行中随时可调的性能档位。",
+          "需要由驱动/实现先停止新发起并确认相关请求已处理，再按平台流程配置；仅把DMA提交队列暂停，不必然证明硬件Tag池和Completion重组缓冲已空。这里不替具体IP虚构一个统一“Tag Drain Done”寄存器。"
+        ],
+        "referenceIndices": [
+          32,
+          33,
+          20,
+          21,
+          26,
+          27,
+          28,
+          29
+        ]
+      },
+      {
+        "id": "posted-tag-and-tph-boundary",
+        "title": "Posted写的Tag为什么不能用来等Cpl",
+        "paragraphs": [
+          "6.0/7.0中普通Posted请求不依Transaction Tag返回逐笔Completion。NFM的Posted Tag[13:8]保留，TH置位时低8位可复用为Steering Tag；TH未置位的低8位有其不参与接收处理的规则。FM的普通Posted Tag字段保留，特定消息规范存在例外。",
+          "所以“DMA写描述符编号”和“普通Memory Write header的Tag”不能自动组成协议级完成确认。UIO Write有专门Completion命名空间，不能拿它反推普通MWr也应返回Cpl。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          2,
+          3
+        ]
+      },
+      {
+        "id": "tag-range-query",
+        "title": "交互查询：三个位与路径能力对应哪个Tag范围",
+        "paragraphs": [
+          "工具查询非UIO的表2-11最大档位，假设输入的使能已符合本地能力及当前模式。14-bit档显示表列/推荐范围，并提示6.0正文不一致和7.0兼容范围；不把兼容值直接判成违规。",
+          "它不自动探测配置空间、FM协商、目标P2P支持、VF/Phantom/Shadow或在途别名；也不代表实际可并发请求数量。"
+        ],
+        "referenceIndices": [
+          12,
+          13,
+          10,
+          11,
+          8,
+          9
+        ]
+      }
+    ]
   },
   {
     "name": "Byte Enable / 对齐 / 4KB边界",
@@ -8554,7 +11212,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "2.2",
@@ -8566,16 +11224,230 @@
         "pdfPage": 119,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.5.1",
+        "page": 150,
+        "pdfPage": 150,
+        "title": "首尾Byte Enable与非连续例外",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.5.1",
+        "page": 195,
+        "pdfPage": 195,
+        "title": "首尾Byte Enable与非连续例外",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.5.1",
+        "page": 151,
+        "pdfPage": 151,
+        "title": "连续性、零字节读及错误处理",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.5.1",
+        "page": 196,
+        "pdfPage": 196,
+        "title": "连续性、零字节读及错误处理",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 217,
+        "pdfPage": 217,
+        "title": "由Length/BE求Byte Count表2-40",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 266,
+        "pdfPage": 266,
+        "title": "由Length/BE求Byte Count表2-40",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 218,
+        "pdfPage": 218,
+        "title": "Lower Address及错误完成终止",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 267,
+        "pdfPage": 267,
+        "title": "Lower Address及错误完成终止",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 216,
+        "pdfPage": 216,
+        "title": "DW对齐、不使能字节和BCM",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 265,
+        "pdfPage": 265,
+        "title": "DW对齐、不使能字节和BCM",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1",
+        "page": 163,
+        "pdfPage": 163,
+        "title": "4-KB边界及AtomicOp CAS例外",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 209,
+        "pdfPage": 209,
+        "title": "4-KB边界及AtomicOp CAS例外",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已按块核读所引Base6.0/7.0正文及字段；旧Tag误配已标明，UIO/ATS等特殊机制和早期七代演进继续核读。",
+    "details": [
+      {
+        "id": "byte-enable-length-contiguity",
+        "title": "First/Last DW BE：1DW、2DW与更长请求分别判断",
+        "paragraphs": [
+          "以下为NFM Memory Request、TH=0规则：Length=1 DW时Last BE必须0，First可包含非连续bit；Length>1时First/Last都不得0。QW对齐的2 DW请求允许首尾非连续；不满足该例外的2 DW及3 DW以上请求，须保持跨DW的使能范围连续。",
+          "First bit0对应请求DW的最低byte地址。不能为了对齐随意把BE全设1，尤其是有读副作用或写敏感寄存器。TH=1、FM及AtomicOp另有规则，本工具不默认套用。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "byte-count-span-not-popcount",
+        "title": "Byte Count按跨度，不是简单统计BE里有几个1",
+        "paragraphs": [
+          "表2-40对1 DW First=1001b、Last=0000b给Byte Count=4，尽管只有两个使能byte；First=0101b给3。它描述首末使能byte之间的跨度，不能一概用popcount替代。",
+          "多DW有效连续范围可用Length×4减首端未使能前缀和尾端未使能后缀。0x1000、Length4 DW、First1000、Last0001时为16−3−3=10，Lower Address=03h；线上Payload仍包含4 DW。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "id": "zero-byte-read-completion",
+        "title": "零字节读仍返回1 DW：Byte Count特殊取1",
+        "paragraphs": [
+          "Length=1 DW、First/Last BE均0的读是合法特殊情况；Completion仍指定Length1 DW并带1 DW任意内容。表2-40规定Byte Count=1，Lower Address最低两位为00，不是Length0或Byte Count0。",
+          "“零字节”指无byte使能，不是Header Length编码为0。Requester不能把返回的任意Payload当有效寄存器数据，也不应据其内容推断内存值。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "byte-enable-query",
+        "title": "交互计算：BE合法性、Byte Count与Lower Address",
+        "paragraphs": [
+          "输入DW对齐地址、已经解码的Length（1～1024 DW）和四位First/Last BE，查询NFM、TH=0、普通Memory Read的连续性、4-KB范围、Byte Count、使能byte数及首包Lower Address。",
+          "这里只核这些字段，不包含MRRS配置、目标副作用、完整Completion序列和流控；FM的OHC/隐含BE、ATS/UIO/AtomicOp及TPH不在范围内。零字节读的特殊结果单独标注。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "byte-enable-generation-limits",
+        "title": "版本差异：7.0把副作用表述从Prefetchable中拆开",
+        "paragraphs": [
+          "6.0的BE禁读描述使用non-prefetchable条件；7.0改为Read Side Effects，并对TH=1读取有副作用DWORD的情形作更明确说明。不能用旧版“Prefetchable=无副作用”一条假设覆盖所有7.0 BAR。",
+          "本轮逐条核6.0/7.0普通读、Tag及尺寸相关正文，Gen1～Gen5的首次引入、ECN和完整差异仍待核；目录收录和本轮关联的局部规则均不代表整章完成。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
   },
   {
     "name": "MPS：Max Payload Size",
     "group": "事务与数据传输",
     "intro": "限制单个TLP的数据有效载荷上限。",
     "usage": "由拓扑能力与系统软件配置，不是应用总任务长度。",
-    "mechanism": "MPS限制单个数据TLP的Payload长度，发送端须按系统配置生成合法包。大任务会被拆分，不要求任务长度小于MPS。",
+    "mechanism": "MPS限制带数据TLP的适用Payload上限；实际TX/RX限制还要按Rx_MPS_Fixed、Mixed MPS、ARI/MFD和目标计算。MRd不带数据Payload，其请求长度由MRRS等规则限制，返回Completion另按有效Payload上限及RCB拆分。",
     "example": "MPS=256字节时仍可传1MB，只是分成许多请求/完成包；包数与效率会受影响。",
     "checks": "核对设备能力、路径限制和当前Device Control值；不能擅自提高到链路中其他组件不支持的大小。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
@@ -8587,7 +11459,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "2.2",
@@ -8599,9 +11471,374 @@
         "pdfPage": 119,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.2",
+        "page": 141,
+        "pdfPage": 141,
+        "title": "Tx_MPS_Limit与Mixed MPS",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.2",
+        "page": 183,
+        "pdfPage": 183,
+        "title": "Tx_MPS_Limit与Mixed MPS",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.2",
+        "page": 142,
+        "pdfPage": 142,
+        "title": "Rx_MPS_Limit及Length检查",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.2",
+        "page": 184,
+        "pdfPage": 184,
+        "title": "Rx_MPS_Limit及Length检查",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1",
+        "page": 162,
+        "pdfPage": 162,
+        "title": "MRRS与请求字段",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 208,
+        "pdfPage": 208,
+        "title": "MRRS与请求字段",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 215,
+        "pdfPage": 215,
+        "title": "RCB拆分、顺序及Byte Count递减",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 264,
+        "pdfPage": 264,
+        "title": "RCB拆分、顺序及Byte Count递减",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.3",
+        "page": 955,
+        "pdfPage": 955,
+        "title": "MPS支持能力和最小能力要求",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.3",
+        "page": 1104,
+        "pdfPage": 1104,
+        "title": "MPS支持能力和最小能力要求",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.4",
+        "page": 960,
+        "pdfPage": 960,
+        "title": "MPS与Extended Tag使能位",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.4",
+        "page": 1109,
+        "pdfPage": 1109,
+        "title": "MPS与Extended Tag使能位",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.3",
+        "page": 958,
+        "pdfPage": 958,
+        "title": "Rx_MPS_Fixed和Mixed_MPS_Supported",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.3",
+        "page": 1107,
+        "pdfPage": 1107,
+        "title": "Rx_MPS_Fixed和Mixed_MPS_Supported",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "Glossary",
+        "page": 88,
+        "pdfPage": 88,
+        "title": "MUST@FLIT是支持能力条件",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "Glossary",
+        "page": 123,
+        "pdfPage": 123,
+        "title": "MUST@FLIT是支持能力条件",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 214,
+        "pdfPage": 214,
+        "title": "读Completion返回与终止",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 263,
+        "pdfPage": 263,
+        "title": "读Completion返回与终止",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已按块核读所引Base6.0/7.0正文及字段；旧Tag误配已标明，UIO/ATS等特殊机制和早期七代演进继续核读。",
+    "details": [
+      {
+        "id": "mps-mrrs-rcb-comparison",
+        "title": "三个量分别限制哪一侧：MPS、MRRS、RCB",
+        "paragraphs": [
+          "MPS限制携带数据的TLP Payload；MRRS限制发起Memory Read的请求范围；RCB限制读Completion可拆开的自然对齐边界。DMA任务总长度、AXI Burst长度、Tag池大小则是其他维度。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "table": {
+          "columns": [
+            "参数",
+            "作用对象",
+            "不代表什么"
+          ],
+          "rows": [
+            [
+              "MPS",
+              "MWr、CplD等带数据TLP的适用Payload上限",
+              "不是MRd必须小于的上限"
+            ],
+            [
+              "MRRS",
+              "Requester生成的单笔Memory Read",
+              "不是单包CplD长度"
+            ],
+            [
+              "RCB",
+              "Completer允许拆分的自然边界",
+              "不是每包必须恰好64/128 byte"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "mps-register-encoding",
+        "title": "MPS寄存器：Supported与当前设置不能混读",
+        "paragraphs": [
+          "Device Capabilities +04h [2:0]是Max_Payload_Size Supported；Device Control +08h [7:5]是当前MPS设置。偏移相对PCI Express Capability，写入值不得超过支持能力，编码110/111保留。",
+          "当前MPS默认000，即128 byte；这与支持FM的能力至少512 byte不是矛盾，因为一个是配置值、一个是能力。Rx_MPS_Fixed等规则还会改变接收上限的来源。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12
+        ],
+        "table": {
+          "columns": [
+            "编码",
+            "对应byte"
+          ],
+          "rows": [
+            [
+              "000",
+              "128"
+            ],
+            [
+              "001",
+              "256"
+            ],
+            [
+              "010",
+              "512"
+            ],
+            [
+              "011",
+              "1024"
+            ],
+            [
+              "100",
+              "2048"
+            ],
+            [
+              "101",
+              "4096"
+            ],
+            [
+              "110 / 111",
+              "保留"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "mps-fm-supported-requirements",
+        "title": "MUST@FLIT的512 byte与Rx_MPS_Fixed：看支持能力",
+        "paragraphs": [
+          "6.0/7.0规定Max_Payload_Size Supported MUST@FLIT至少512 byte，Rx_MPS_Fixed MUST@FLIT为1。这里MUST@FLIT按Function支持FM判定，不是只有此刻正跑64 GT/s才生效。",
+          "不能据此强制软件把所有Function当前MPS都设为512，也不能在它回落NFM时就否认Rx_MPS_Fixed已经决定的接收能力。能力、设置值、计算出的TX/RX限制要分别保存。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "tx-mps-multi-function-rules",
+        "title": "Tx_MPS_Limit：多Function不总取本Function字段",
+        "paragraphs": [
+          "Single Function取自身MPS设置；ARI Device取Function0；非ARI MFD若各Function一致就取共同值，不一致则由实现指定某个Function的设置。规范鼓励采用发起Function或最小值，但不是要求所有实现唯一取min。",
+          "软件不应在不了解实现的情况下给同一MFD各Function配置不同MPS。调试“本Function设256，为什么只发128”时，应先确认实际Tx_MPS_Limit如何计算，不能只读取一个字段。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "rx-mps-fixed-and-malformed",
+        "title": "Rx_MPS_Limit：超当前MPS不一定等于越接收能力",
+        "paragraphs": [
+          "Rx_MPS_Fixed=1时，接收限制固定取Max_Payload_Size Supported；为0才按MPS设置及MFD/ARI规则计算。必须检查带Payload的TLP是否超过实际Rx_MPS_Limit，违规按Malformed TLP处理。",
+          "例如Supported=512、当前设置128且Rx_MPS_Fixed=1，不能只凭接收256 byte就报越界。反之“支持很大”也不能免除接收长度检查。7.0还明确FM为识别下一个TLP的起点须处理Length完整范围。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "mixed-mps-target-selection",
+        "title": "Mixed MPS：P2P目标可以有不同适用上限",
+        "paragraphs": [
+          "Mixed_MPS_Supported=1时，实现须支持按不同目标选择MPS，并同时处理Request和Completion；目标设置可高于或低于Tx_MPS_Limit，但不得超过本Function的Supported。目标是host memory时仍使用Tx_MPS_Limit。",
+          "支持FM且支持P2P Memory事务、Supported大于512 byte时有必须支持Mixed MPS的条件；未触发条件也可支持。VF的能力值和相应目标策略须与PF按条文一致。不能看到Mixed MPS就假定任意P2P目标均接收4096 byte。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "memory-read-no-data-payload",
+        "title": "MRd不带请求Payload：512 byte读可大于MPS128",
+        "paragraphs": [
+          "Memory Read请求Length描述要读多少DW，但请求本身不携带这512 byte数据，所以不受请求发送端MPS128限制，仍须满足MRRS、BE和地址边界。返回CplD才有数据Payload，要按完成方向的限制分段。",
+          "MWr则同时携带数据，须遵守适用MPS。只把MRd和MWr的Length放到同一MPS比较器，会把合法读请求错误拒绝。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6,
+          17,
+          18
+        ]
+      }
+    ]
   },
   {
     "name": "MRRS：Max Read Request Size",
@@ -8620,7 +11857,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "2.2",
@@ -8632,9 +11869,203 @@
         "pdfPage": 119,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.4",
+        "page": 961,
+        "pdfPage": 961,
+        "title": "MRRS字段与Extended Tag动态修改限制",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.4",
+        "page": 1110,
+        "pdfPage": 1110,
+        "title": "MRRS字段与Extended Tag动态修改限制",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.4",
+        "page": 962,
+        "pdfPage": 962,
+        "title": "MRRS完整编码和默认值",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.4",
+        "page": 1111,
+        "pdfPage": 1111,
+        "title": "MRRS完整编码和默认值",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1",
+        "page": 162,
+        "pdfPage": 162,
+        "title": "MRRS与请求字段",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 208,
+        "pdfPage": 208,
+        "title": "MRRS与请求字段",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1",
+        "page": 163,
+        "pdfPage": 163,
+        "title": "4-KB边界及AtomicOp CAS例外",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 209,
+        "pdfPage": 209,
+        "title": "4-KB边界及AtomicOp CAS例外",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.2",
+        "page": 153,
+        "pdfPage": 153,
+        "title": "Transaction ID与唯一性",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2",
+        "page": 198,
+        "pdfPage": 198,
+        "title": "Transaction ID与唯一性",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 215,
+        "pdfPage": 215,
+        "title": "RCB拆分、顺序及Byte Count递减",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 264,
+        "pdfPage": 264,
+        "title": "RCB拆分、顺序及Byte Count递减",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已按块核读所引Base6.0/7.0正文及字段；旧Tag误配已标明，UIO/ATS等特殊机制和早期七代演进继续核读。",
+    "details": [
+      {
+        "id": "mrrs-register-and-default",
+        "title": "MRRS字段：Device Control[14:12]及默认512",
+        "paragraphs": [
+          "Max_Read_Request_Size在PCI Express Capability的Device Control +08h [14:12]。编码000～101依次为128、256、512、1024、2048、4096 byte；110/111保留，默认010，即512 byte。",
+          "不发大于128 byte读或不代表自身发读的Function，允许该字段只读为000。MRRS是Requester生成上限，不是对端返回能力，也不意味着写该值后DMA引擎必须每笔都发这么大。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "read-request-mrrs-page-split",
+        "title": "MRRS和4-KB必须同时满足：小于MRRS仍可能非法",
+        "paragraphs": [
+          "普通Memory Read不能超过MRRS，也不能让地址/Length覆盖跨越4-KB。例：0x1F80读512 byte，即使MRRS=512，也应先在0x2000边界拆为128+384，而不是发一笔。",
+          "4-KB规则针对内存访问范围，不等同IOMMU页大小或软件buffer大小。AtomicOp CAS的Length包含两个操作数而内存访问按一个操作数大小，不能把普通MRd的范围公式不加判断套给CAS。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "read-size-concurrency-limits",
+        "title": "大MRRS提高在途byte，不等于必然提高吞吐",
+        "paragraphs": [
+          "同一Tag通常维持一笔未完成普通NP请求，读请求可拆多个CplD。更大MRRS可能提高有限Tag数量对应的在途数据范围，也可能改变缓冲压力和包调度。",
+          "可用“在途byte ÷ 往返时间”作理想吞吐上界的数学估算，但这不是协议保证值；实际还受Tag分配、Completion资源、信用、内存服务和业务模式影响。不能只把MRRS调到4096就认定性能问题解决。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          5,
+          6,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "dma-read-size-walkthrough",
+        "title": "把DMA读任务拆成两级：请求拆分和完成拆分",
+        "paragraphs": [
+          "以一个全BE、对齐的1024 byte任务为例，Requester选MRRS512并发出两笔MRd，各占不同在途Tag。若每笔的有效Completion Payload上限256、RCB128，可以各返回256+256。",
+          "这时是2笔请求、4个CplD；仍可能存在其他合法更细拆分。应用描述符的“1个任务”、DMA发出的“2个请求”和收到的“4个完成包”都不是同一个计数，进度/中断应按设备自己的任务协议确定。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          11,
+          12,
+          9,
+          10
+        ]
+      }
+    ]
   },
   {
     "name": "RCB：Read Completion Boundary",
@@ -8653,7 +12084,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "2.3",
@@ -8665,9 +12096,153 @@
         "pdfPage": 204,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 215,
+        "pdfPage": 215,
+        "title": "RCB拆分、顺序及Byte Count递减",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 264,
+        "pdfPage": 264,
+        "title": "RCB拆分、顺序及Byte Count递减",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.7",
+        "page": 972,
+        "pdfPage": 972,
+        "title": "RCB bit3的端口角色语义",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1122,
+        "pdfPage": 1122,
+        "title": "RCB bit3的端口角色语义",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 219,
+        "pdfPage": 219,
+        "title": "Unexpected Completion定义和匹配",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 269,
+        "pdfPage": 269,
+        "title": "Unexpected Completion定义和匹配",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.2",
+        "page": 269,
+        "pdfPage": 269,
+        "title": "7.0 RCB128性能建议的Implementation Note",
+        "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已按块核读所引Base6.0/7.0正文及字段；旧Tag误配已标明，UIO/ATS等特殊机制和早期七代演进继续核读。",
+    "details": [
+      {
+        "id": "rcb-role-and-boundary",
+        "title": "RCB是谁的边界：RC可64/128，其他元素128",
+        "paragraphs": [
+          "RCB定义Completer把同一个读请求拆成多个Completion时可使用的自然地址边界。Root Complex可为64或128 byte，其他System Elements为128。它不是把所有收发方向都统一设成同一个缓冲块。",
+          "Endpoint/Bridge中的RCB配置位可反映上游Root Port的RCB，帮助其优化对RC的交互；这不把Endpoint自身作为Completer的RCB从128改成64。阅读抓包时先确定是谁在完成这笔读。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "rcb-first-middle-last-rules",
+        "title": "首包、中间包、尾包：允许停在哪里",
+        "paragraphs": [
+          "请求没有跨自然RCB边界时，成功Completion必须一次返回全部请求数据。跨过边界才允许多个完成。首包从请求起点开始，结束于请求终点或中间某个RCB边界；尾包到请求终点；中间包长度为RCB整数倍。",
+          "所有包还须满足Payload上限。因此RCB不是“每包64/128”，而是拆分点约束；一个256 byte完成可以跨过多个128边界，也可以直接结束请求。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "rcb-link-control-bit",
+        "title": "Link Control[3]：RO能力与RW提示的角色区别",
+        "paragraphs": [
+          "PCI Express Capability的Link Control +10h bit3，0表示64 byte，1表示128 byte。Root Port此位为硬连线RO，报告其RCB；Endpoint/Bridge可由配置软件设置为上游RC的值。",
+          "软件只有在上游RP报告128时才可把Endpoint/Bridge对应位置1。Switch Port此位不适用、硬连线0；不能据此判定所有Switch完成流都按64拆包。VF按PF设置规则，非实现者也可硬连线0。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "rcb-examples-not-packet-size",
+        "title": "为什么RCB128仍能看到64 byte尾包",
+        "paragraphs": [
+          "对0x10000开始的192 byte读，若Payload上限足够，RCB64可选192、128+64、64+128或64+64+64；RCB128可选192或128+64。64 byte作为请求尾段并不违反RCB128。",
+          "对0x10020开始的256 byte读，RCB128的可行首段到0x10080为96 byte，之后可128+32；若Payload上限足够，也可224+32或直接256。实际包长还要用有效MPS约束筛掉，不可单看这张边界示意。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "rcb-error-check-and-gen7-note",
+        "title": "RCB违规检查是可选的，128 GT/s的128也不是强制",
+        "paragraphs": [
+          "Receiver可选择检查RCB，若实现检查且判违规，须按Malformed TLP处理。这不削弱发送方遵守拆分规则的义务，也不能因为某平台不报错就认定错误包合法。",
+          "7.0 p269的Implementation Note讨论128 GT/s及以上、较宽内部总线和UIO乱序下RCB128的性能收益，这是实现建议，不是所有Gen7 RC必须把RCB设为128。本轮未把UIO完成顺序展开为普通Split模型。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          7
+        ]
+      }
+    ]
   },
   {
     "name": "Transaction Ordering",
@@ -23013,6 +26588,50 @@
         "title": "Posted普通MWr分类",
         "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.5.1",
+        "page": 278,
+        "pdfPage": 278,
+        "title": "DLLP通用结构及Ack/Nak字段图",
+        "verification": "核读正式版本字段图并原创重绘；NFM CRC与FM DLP承载分开标注，不含PHY帧边界。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.5.1",
+        "page": 337,
+        "pdfPage": 337,
+        "title": "DLLP通用结构及Ack/Nak字段图",
+        "verification": "核读正式版本字段图并原创重绘；NFM CRC与FM DLP承载分开标注，不含PHY帧边界。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.5.1",
+        "page": 282,
+        "pdfPage": 282,
+        "title": "DLLP通用结构及Ack/Nak字段图",
+        "verification": "核读正式版本字段图并原创重绘；NFM CRC与FM DLP承载分开标注，不含PHY帧边界。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.5.1",
+        "page": 341,
+        "pdfPage": 341,
+        "title": "DLLP通用结构及Ack/Nak字段图",
+        "verification": "核读正式版本字段图并原创重绘；NFM CRC与FM DLP承载分开标注，不含PHY帧边界。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
     "referenceStatus": "本次已补6.0所引基础规则；其余条款与逐版差异继续核读。",
@@ -23042,6 +26661,214 @@
           3,
           4,
           5
+        ]
+      },
+      {
+        "id": "dllp-packet-bit-layout",
+        "title": "包结构图：DLLP本体、Ack/Nak与FM承载",
+        "paragraphs": [
+          "DLLP不承载整个TLP。NFM DLLP本体固定6 byte：8-bit类型、24-bit类型专用信息、16-bit CRC；FM标准DLLP负载为4 byte，放在Flit的DLP中，不再自带这16-bit CRC。",
+          "下图不把PHY定界符计入DLLP本体。需要比较线上总符号数时，还应按8b/10b或128b/130b对应framing规则计算。"
+        ],
+        "referenceIndices": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "packetLayouts": [
+          {
+            "id": "dllp-nfm-generic",
+            "title": "NFM DLLP通用结构",
+            "version": "Base6.0 / 7.0 · NFM",
+            "headerBits": 48,
+            "lengthLabel": "DLLP本体 48 bit / 6 B",
+            "rowLabel": "行",
+            "rows": [
+              [
+                {
+                  "label": "DLLP Type",
+                  "width": 8,
+                  "key": "type",
+                  "help": "8-bit DLLP类型；00h在NFM是Ack，在FM是NOP2，不可混用。"
+                },
+                {
+                  "label": "Type-specific information",
+                  "width": 24,
+                  "key": "payload",
+                  "help": "24 bit类型专用信息，须先按Type解释。"
+                }
+              ],
+              [
+                {
+                  "label": "CRC",
+                  "width": 16,
+                  "key": "crc",
+                  "help": "NFM DLLP的16-bit CRC；不是TLP的32-bit LCRC，也不是Flit CRC。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Type",
+                "size": "8 bit"
+              },
+              {
+                "label": "类型专用信息",
+                "size": "24 bit"
+              },
+              {
+                "label": "DLLP CRC",
+                "size": "16 bit"
+              }
+            ],
+            "note": "合计48 bit / 6 byte，不含PHY的起止定界/编码开销。最后一行只有16 bit，其余空格不属于包，也不是保留位。FM不会照搬这份独立48-bit DLLP。"
+          },
+          {
+            "id": "dllp-nfm-ack",
+            "title": "NFM Ack DLLP（Type=00h）",
+            "version": "Base6.0 / 7.0 · NFM",
+            "headerBits": 48,
+            "lengthLabel": "DLLP本体 48 bit / 6 B",
+            "rowLabel": "行",
+            "rows": [
+              [
+                {
+                  "label": "DLLP Type",
+                  "width": 8,
+                  "key": "type",
+                  "help": "8-bit DLLP类型；00h在NFM是Ack，在FM是NOP2，不可混用。"
+                },
+                {
+                  "label": "Reserved",
+                  "width": 12,
+                  "key": "reserved",
+                  "help": "Ack/Nak中的保留12位。"
+                },
+                {
+                  "label": "AckNak Seq",
+                  "width": 12,
+                  "key": "seq",
+                  "help": "12-bit TLP序号；仅NFM独立Ack/Nak使用。"
+                }
+              ],
+              [
+                {
+                  "label": "CRC",
+                  "width": 16,
+                  "key": "crc",
+                  "help": "NFM DLLP的16-bit CRC；不是TLP的32-bit LCRC，也不是Flit CRC。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Type",
+                "size": "8 bit"
+              },
+              {
+                "label": "类型专用信息",
+                "size": "24 bit"
+              },
+              {
+                "label": "DLLP CRC",
+                "size": "16 bit"
+              }
+            ],
+            "note": "合计48 bit / 6 byte，不含PHY的起止定界/编码开销。最后一行只有16 bit，其余空格不属于包，也不是保留位。FM不会照搬这份独立48-bit DLLP。"
+          },
+          {
+            "id": "dllp-nfm-nak",
+            "title": "NFM Nak DLLP（Type=10h）",
+            "version": "Base6.0 / 7.0 · NFM",
+            "headerBits": 48,
+            "lengthLabel": "DLLP本体 48 bit / 6 B",
+            "rowLabel": "行",
+            "rows": [
+              [
+                {
+                  "label": "DLLP Type",
+                  "width": 8,
+                  "key": "type",
+                  "help": "8-bit DLLP类型；00h在NFM是Ack，在FM是NOP2，不可混用。"
+                },
+                {
+                  "label": "Reserved",
+                  "width": 12,
+                  "key": "reserved",
+                  "help": "Ack/Nak中的保留12位。"
+                },
+                {
+                  "label": "AckNak Seq",
+                  "width": 12,
+                  "key": "seq",
+                  "help": "Nak对应TLP序号；不是Completion Tag。"
+                }
+              ],
+              [
+                {
+                  "label": "CRC",
+                  "width": 16,
+                  "key": "crc",
+                  "help": "NFM DLLP的16-bit CRC；不是TLP的32-bit LCRC，也不是Flit CRC。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Type",
+                "size": "8 bit"
+              },
+              {
+                "label": "类型专用信息",
+                "size": "24 bit"
+              },
+              {
+                "label": "DLLP CRC",
+                "size": "16 bit"
+              }
+            ],
+            "note": "合计48 bit / 6 byte，不含PHY的起止定界/编码开销。最后一行只有16 bit，其余空格不属于包，也不是保留位。FM不会照搬这份独立48-bit DLLP。"
+          },
+          {
+            "id": "dllp-fm-standard",
+            "title": "FM标准DLLP负载（位于DLP2～5）",
+            "version": "Base6.0 / 7.0 · FM",
+            "headerBits": 32,
+            "lengthLabel": "标准DLLP负载 32 bit / 4 B",
+            "rowLabel": "行",
+            "rows": [
+              [
+                {
+                  "label": "DLLP Type",
+                  "width": 8,
+                  "key": "type",
+                  "help": "DLP2为标准DLLP Type，仅在DLP Type选择普通负载时按此解释。"
+                },
+                {
+                  "label": "Type-specific information",
+                  "width": 24,
+                  "key": "payload",
+                  "help": "DLP3～5为24 bit类型专用内容。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Type",
+                "size": "8 bit"
+              },
+              {
+                "label": "类型专用信息",
+                "size": "24 bit"
+              },
+              {
+                "label": "独立DLLP CRC",
+                "size": "0 bit：由Flit保护"
+              }
+            ],
+            "note": "这4 byte是DLP中的标准DLLP负载，不是整个6-byte DLP。DLP0～1还有Usage、Replay、序号等；Optimized_Update_FC/Flit_Marker必须按另一分支解析。"
+          }
         ]
       }
     ]
@@ -31021,6 +34848,17 @@
         "title": "Gen7 Shared严格半窗比较与版本限定",
         "verification": "本轮核读对应版本所列页的相关正文/字段；中文按目的、条件和动作重新组织，不表示整章或全部后续修订已审计。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.5.1",
+        "page": 283,
+        "pdfPage": 283,
+        "title": "InitFC1 DLLP图3-9",
+        "verification": "按6.0图3-9核字段位置并原创重绘；下图限定NFM Dedicated，不推定Shared/FM或早期版的全部含义。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
     "referenceStatus": "本轮已核读相关正文并重组为规则表；引用分别绑定版本、章节与物理页。具体覆盖范围见详表。",
@@ -31359,6 +35197,95 @@
           12
         ],
         "id": "block-6"
+      },
+      {
+        "id": "fc-dllp-bit-layout",
+        "title": "包结构图：InitFC1的VC、Scale与Credit在哪里",
+        "paragraphs": [
+          "这里按字段位置看流控包，而不是把流控值想成一组主机BAR寄存器。HS/DS分别是Header/Data Scale，位宽与字段含义分开。"
+        ],
+        "referenceIndices": [
+          14
+        ],
+        "packetLayouts": [
+          {
+            "id": "dllp-initfc1-nfm",
+            "title": "InitFC1-P/NP/Cpl · NFM Dedicated",
+            "version": "Base6.0 · 图3-9 · NFM Dedicated",
+            "headerBits": 48,
+            "lengthLabel": "DLLP本体 48 bit / 6 B",
+            "rowLabel": "行",
+            "rows": [
+              [
+                {
+                  "label": "Type hi",
+                  "width": 4,
+                  "key": "type",
+                  "help": "0100=P，0101=NP，0110=Cpl的InitFC1类别。"
+                },
+                {
+                  "label": "S",
+                  "width": 1,
+                  "key": "shared",
+                  "help": "Shared选择位置；本图NFM Dedicated取0，不能据此启用Shared池。"
+                },
+                {
+                  "label": "VC",
+                  "width": 3,
+                  "key": "vc",
+                  "help": "VC[2:0]。"
+                },
+                {
+                  "label": "HS",
+                  "width": 2,
+                  "key": "hdrscale",
+                  "help": "HdrScale[1:0]；是否激活Scaled及编码含义见流控正文。"
+                },
+                {
+                  "label": "HdrFC",
+                  "width": 8,
+                  "key": "hdrfc",
+                  "help": "8-bit Header Credit字段；Scale改变数值语义，不把线上的字段扩成12位。"
+                },
+                {
+                  "label": "DS",
+                  "width": 2,
+                  "key": "datascale",
+                  "help": "DataScale[1:0]。"
+                },
+                {
+                  "label": "DataFC",
+                  "width": 12,
+                  "key": "datafc",
+                  "help": "12-bit Data Credit字段；不能按byte数直接使用，须结合Credit单位。"
+                }
+              ],
+              [
+                {
+                  "label": "CRC",
+                  "width": 16,
+                  "key": "crc",
+                  "help": "NFM DLLP的16-bit CRC；不是TLP的32-bit LCRC，也不是Flit CRC。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "DLLP Type（含VC/S位置）",
+                "size": "8 bit"
+              },
+              {
+                "label": "HS + HdrFC + DS + DataFC",
+                "size": "2 + 8 + 2 + 12 = 24 bit"
+              },
+              {
+                "label": "CRC",
+                "size": "16 bit"
+              }
+            ],
+            "note": "合计48 bit。此图只展开已核的6.0 NFM InitFC1；UpdateFC、Shared、Merged和Optimized_Update_FC需按对应模式/版本，不把不同格式叠在同一张图。"
+          }
+        ]
       }
     ]
   },
