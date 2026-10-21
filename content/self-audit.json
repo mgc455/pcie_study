@@ -1,6 +1,6 @@
 {
   "date": "2026-10-21",
-  "summary": "R20：PTM消息、相邻dialog历史、角色/字段、计时与context有效性，以及粒度和PHY延迟误差。",
+  "summary": "R21：128b/130b对齐事件、PIPE RxValid/RxCLK、编码与SKP长度/Parity/调度、逐lane极性及Deskew。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -356,6 +356,11 @@
       "name": "R20查询与导航验证",
       "status": "本地通过；发布后核线上版本",
       "detail": "100140组角色/支持能力、时间戳、粒度组合及边界通过；包括大于53bit整数精度、0.5ns、无效/空输入、00h未知与FFh非精确值。44个详情、PHY入口、精确条款/PDF来源及旧内容/历史回归通过。"
+    },
+    {
+      "name": "R21 接收链路与SKP正文自查",
+      "status": "所引Base6.0/7.0、PIPE7.1正文按块核读",
+      "detail": "核4.2.2.2.1的必须/允许及SKP例外；PIPE7.1 p64/69的两种RxValid、撤销后8周期和MaxRxClkFrequency；4.2.5.5、4.2.7.3.6和4.2.8。区分TX/RX长度、FM低速编码、Parity域/复位、调度与实际间隔；明确7.0 L0p、Sideband与Loopback差异。8b/10b错误细则本轮只据6.0；未读页不计正文完成。 视觉复核7.0 p375与6.0 p536的状态规则和表布局；程序化路由/字段/数学边界通过。测试tail片段需配合公共harness执行，不作为独立套件。"
     }
   ],
   "unresolved": [
@@ -428,7 +433,12 @@
     "独立Switch作为PTM Root的示例拓扑与一般USP Enable顺序文字需结合完整层级机制进一步核验；快照工具在此类场景不作完整配置裁决。",
     "Local Clock Granularity有Root Capable适用条件；对具体Switch/平台如何提供软件可用的路径粒度、原始计数换算和Context Valid接口仍需实现文档，不虚构统一时间寄存器。",
     "6.0重复PTM Request的Responder失效句位于ePTM相关段，7.0明确必选/建议分支；Requester t4捕获条文写Response而图/算式含ResponseD，保留原引用，不以简化表代替完整类型处理核验。",
-    "Retimer路径不对称、PHY捕获补偿、频率尺度、计数回卷、舍入策略、实测误差和CPU/设备时间API未硬件验证；两个算式工具只展示假设下数学关系。"
+    "Retimer路径不对称、PHY捕获补偿、频率尺度、计数回卷、舍入策略、实测误差和CPU/设备时间API未硬件验证；两个算式工具只展示假设下数学关系。",
+    "R21：Gen1～Gen5编码、OS及对齐条款和首次ECN尚未逐版核完；已有正式文档待核，不是缺文件。",
+    "R21：FM Data Stream完整SKP位置表和6.0/7.0交叉转引需继续核验；本轮调度表明确不覆盖这些全部情形，不把普通长度查询作为环回/扩宽合规裁决。",
+    "R21：Lower SKP能力/控制寄存器的完整偏移字段、Lane Reversal端口与宽度支持表、具体产品RX FIFO深度/时序约束仍待核；不以通用逻辑图替代实现证据。",
+    "R21：RxValid接口要求与电气CDR性能、误码率、抖动容限不是同一证据；理想ppm工具未仿真硬件FIFO、SKP插删、CDC及停顿，不提供规范最小深度。",
+    "R21：PIPE7.1本地副本190页、官网189页差异仍保留；仅使用已核p64/69定位，不推定全书映射。"
   ],
   "externalComparison": {
     "date": "2026-10-21",
