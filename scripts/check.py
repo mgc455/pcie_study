@@ -90,6 +90,21 @@ for d in coverage['documents']:
             detail=next(x for x in f['details'] if x['id']==block['detailId'])
             assert block['referenceIndices'] and set(block['referenceIndices'])<=set(detail['referenceIndices'])
             assert all(f['protocolReferences'][i]['documentId']==d['documentId'] and f['protocolReferences'][i]['section'].split('.')[0]==chapter['section'] for i in block['referenceIndices'])
+        clauses=chapter.get('clauses',[])
+        assert len({x['section'] for x in clauses})==len(clauses)
+        for clause in clauses:
+            assert clause['section'].startswith(chapter['section']+'.')
+            assert clause['status'] in {'indexed','linked-reviewed-rules'}, 'Do not equate a TOC entry or selected rules with a completed clause'
+            assert bool(clause['reviewedBlocks'])==(clause['status']=='linked-reviewed-rules')
+            loc=clause['locator']
+            assert loc['documentId']==d['documentId'] and loc['version']==d['version'] and loc['section']==clause['section'] and loc['url']==doc['url']
+            assert chapter['locator']['page']<=loc['page']<=doc['pages'] and 1<=loc['pdfPage']<=doc['pages'] and clause['tocPdfPage']>0
+            for block in clause['reviewedBlocks']:
+                f=features_by_id[block['featureId']]
+                detail=next(x for x in f['details'] if x['id']==block['detailId'])
+                assert block['referenceIndices'] and set(block['referenceIndices'])<=set(detail['referenceIndices'])
+                assert all(f['protocolReferences'][i]['documentId']==d['documentId'] and f['protocolReferences'][i]['section']==clause['section'] for i in block['referenceIndices']), 'Clause links require precise version and section evidence'
+    if any(c.get('clauses') for c in d['chapters']):assert d.get('clauseIndexStatus')
 assert '#coverage' in raw
 # Audit the entire publication allowlist, including maintenance scripts and instructions.
 public_files=['.gitignore','site.config.json','AGENTS.md','README.md','.github/workflows/check.yml']

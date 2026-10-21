@@ -31267,16 +31267,16 @@
     "mechanism": "应用按软件配置选择Steering Tag/处理提示，并在合规请求中带上，主机按其实现利用提示优化处理位置。提示不强制远端行为。",
     "example": "网络队列希望数据靠近对应处理CPU，可研究TPH与中断/队列亲和关系，减少跨核搬运成本。",
     "checks": "具体控制器要求应用选择有效ST并遵守Enable状态；不要随机填写ST后仅凭Capability开启认定有效。",
-    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "prerequisites": "先发现Requester能力并检查运行使能、合法ST来源和路径支持；平台分配的ST含义不能由CPU编号猜测。",
     "id": 117,
-    "status": "已整理 · 待持续深化",
+    "status": "已深化 · 所引正文/字段已核，逐版继续完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "6.17",
@@ -31288,9 +31288,768 @@
         "pdfPage": 778,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.17.1",
+        "page": 778,
+        "pdfPage": 778,
+        "title": "Processing Hints用途",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.17.1",
+        "page": 892,
+        "pdfPage": 892,
+        "title": "Processing Hints用途",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.17.4",
+        "page": 780,
+        "pdfPage": 780,
+        "title": "全路径能力与表更新",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.17.4",
+        "page": 894,
+        "pdfPage": 894,
+        "title": "全路径能力与表更新",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.17.2",
+        "page": 779,
+        "pdfPage": 779,
+        "title": "平台Steering Tag与存放位置",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.17.2",
+        "page": 893,
+        "pdfPage": 893,
+        "title": "平台Steering Tag与存放位置",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.17.1",
+        "page": 779,
+        "pdfPage": 779,
+        "title": "PH编码与访问模式",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.17.1",
+        "page": 893,
+        "pdfPage": 893,
+        "title": "PH编码与访问模式",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1.1",
+        "page": 167,
+        "pdfPage": 167,
+        "title": "NFM PH与ST位置",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1.1",
+        "page": 213,
+        "pdfPage": 213,
+        "title": "NFM PH与ST位置",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.17.3",
+        "page": 780,
+        "pdfPage": 780,
+        "title": "ST模式与向量范围",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.17.3",
+        "page": 894,
+        "pdfPage": 894,
+        "title": "ST模式与向量范围",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1.1",
+        "page": 166,
+        "pdfPage": 166,
+        "title": "NFM TH/AMA/Prefix条件",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1.1",
+        "page": 212,
+        "pdfPage": 212,
+        "title": "NFM TH/AMA/Prefix条件",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.13",
+        "page": 1241,
+        "pdfPage": 1241,
+        "title": "逐Function与VF能力",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.13",
+        "page": 1414,
+        "pdfPage": 1414,
+        "title": "逐Function与VF能力",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.13.1",
+        "page": 1242,
+        "pdfPage": 1242,
+        "title": "0017h/Version1",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.13.1",
+        "page": 1415,
+        "pdfPage": 1415,
+        "title": "0017h/Version1",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.13.4",
+        "page": 1244,
+        "pdfPage": 1244,
+        "title": "内置ST表条目",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.13.4",
+        "page": 1417,
+        "pdfPage": 1417,
+        "title": "内置ST表条目",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.13.2",
+        "page": 1243,
+        "pdfPage": 1243,
+        "title": "Requester Capability字段",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.13.2",
+        "page": 1416,
+        "pdfPage": 1416,
+        "title": "Requester Capability字段",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.13.3",
+        "page": 1244,
+        "pdfPage": 1244,
+        "title": "模式/Requester Enable",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.13.3",
+        "page": 1417,
+        "pdfPage": 1417,
+        "title": "模式/Requester Enable",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "2.2.7.1.1",
+        "title": "NFM ST低字节和不支持TPH时的接收规则",
+        "page": 168,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 168,
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1.1",
+        "page": 214,
+        "pdfPage": 214,
+        "title": "NFM ST低字节和不支持TPH时的接收规则",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "section": "7.7.2",
+        "title": "MSI-X表16字节步长与Vector Control位置",
+        "page": 1019,
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "pdfPage": 1019,
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2",
+        "page": 1172,
+        "pdfPage": 1172,
+        "title": "MSI-X表16字节步长与Vector Control位置",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已核读Base6.0/7.0所引TPH机制、字段及NFM正文；FM/OHC和早期演进待核。",
+    "details": [
+      {
+        "id": "tph-memory-hint",
+        "title": "TPH优化Memory事务处理，不改变访问目的地址",
+        "paragraphs": [
+          "Requester用对后续访问模式的了解，给接收方提供处理提示；可用于device-to-host、host-to-device或device-to-device。",
+          "它不把内存地址重定向成CPU编号，也不替代IOMMU权限检查、DMA映射或缓存一致性协议。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "tph-hint-ph-st",
+        "title": "PH表示使用模式，ST表示平台处理资源偏好",
+        "paragraphs": [
+          "PH描述数据由谁频繁访问；ST是系统特定值，帮助关联目标处理资源或缓存拓扑。",
+          "ST不是通用APIC ID、NUMA node或核心编号；软件必须从平台得到合法含义，不能按整数大小猜性能优先级。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "tph-ph-code-table",
+        "title": "PH两bit编码与四种意图",
+        "paragraphs": [
+          "00表示主机/设备共享频繁访问；01偏Requester/设备；10偏Target/主机；11增加时间重用优先提示。",
+          "Target with Priority不是TC/VC仲裁的高优先级编码，也不承诺缓存命中或固定性能提升。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "table": {
+          "columns": [
+            "PH",
+            "意图"
+          ],
+          "rows": [
+            [
+              "00",
+              "双向共享数据结构"
+            ],
+            [
+              "01",
+              "Requester，设备很快再访问"
+            ],
+            [
+              "10",
+              "Target，主机很快访问/近期写过"
+            ],
+            [
+              "11",
+              "Target，附时间局部性优先提示"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "tph-usage-models",
+        "title": "DWHR、HWDR、D*D*怎样读",
+        "paragraphs": [
+          "DWHR是设备写后主机很快读；HWDR是设备读主机近期写的数据；D*D*包括设备写/读后自己再读/写的组合。",
+          "这描述通信模型而非事务类型编码，不能看见Memory Read就一律填同一种PH。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "tph-zero-st",
+        "title": "ST=0表示没有资源偏好，不表示资源0",
+        "paragraphs": [
+          "某些使用模式不提供或不需要ST，允许全零表达无偏好；No ST Mode则要求每个ST均为0。",
+          "因此TPH可以只用PH而无软件分配的ST，不能把ST零当成“功能没开”或“全部去CPU0”。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "tph-optional-path",
+        "title": "Requester、Completer和中间路由能力都要确认",
+        "paragraphs": [
+          "Requester通过TPH Requester扩展能力发现，Completer通过Device Capabilities2表明能力；全路径需支持相应TPH能力。",
+          "有端点Requester能力不代表Root Complex会采用这些提示。性能验证需要平台和实际请求格式一起核对。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "tph-unsupported-receiver",
+        "title": "不支持TPH的接收器如何处理TH",
+        "paragraphs": [
+          "所引7.0 NFM规则要求不支持TPH Completer/Routing能力的接收方忽略TH，按同类普通Request处理。",
+          "这个兼容规则不是绕过软件全路径配置要求的理由，也不能外推为任何不支持的TLP Prefix都可忽略。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "tph-capability-id",
+        "title": "Requester扩展能力：ID0017h、版本1",
+        "paragraphs": [
+          "每个能生成TPH Request的Function都需要该结构；B是其能力基址，不是固定MMIO地址。",
+          "B+04h为Capability，B+08h为Control；内置ST表存在时从B+0Ch开始。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ]
+      },
+      {
+        "id": "tph-pf-vf-presence",
+        "title": "PF/VF的TPH结构存在规则",
+        "paragraphs": [
+          "PF和VF支持均可选；但某PF关联VF中若一个包含能力，则该组所有VF都须包含。",
+          "同PF的所有VF Capability字段相同，PF自身可与VF不同。不能因此把运行Control或ST值也假定为全组共享。"
+        ],
+        "referenceIndices": [
+          15,
+          16
+        ]
+      },
+      {
+        "id": "tph-capability-bit-table",
+        "title": "Requester Capability逐字段索引",
+        "paragraphs": [
+          "能力字段为只读，表示可选模式、Extended支持和表位置/大小，不是当前启用状态。",
+          "No ST Supported bit0必须为1；位图里多个支持项可以同时置位，但运行只能选一种ST模式。"
+        ],
+        "referenceIndices": [
+          17,
+          18,
+          21,
+          22
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "含义"
+          ],
+          "rows": [
+            [
+              "0 / 1 / 2",
+              "No ST / Interrupt Vector / Device Specific Supported"
+            ],
+            [
+              "8",
+              "Extended TPH Requester Supported"
+            ],
+            [
+              "10:9",
+              "ST Table Location"
+            ],
+            [
+              "26:16",
+              "ST Table Size，N-1编码"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "tph-control-field-table",
+        "title": "Requester Control的两个独立选择",
+        "paragraphs": [
+          "[2:0]选ST来源模式；[9:8]控制允许发TPH/Extended TPH。选择了合法ST模式也不等于已经允许发提示。",
+          "两字段默认均0；写未支持ST模式时行为未定义，不能把只读能力位直接写进Control。"
+        ],
+        "referenceIndices": [
+          23,
+          24
+        ],
+        "table": {
+          "columns": [
+            "字段",
+            "编码"
+          ],
+          "rows": [
+            [
+              "ST Mode 000/001/010",
+              "No ST / Interrupt Vector / Device Specific"
+            ],
+            [
+              "ST Mode其余",
+              "保留"
+            ],
+            [
+              "Enable 00/01/10/11",
+              "禁用 / 仅TPH / 保留 / TPH与Extended"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "tph-no-st-required",
+        "title": "No ST Mode必选，另外两种模式可选",
+        "paragraphs": [
+          "所有TPH Requester都应支持No ST；若只支持它，Mode Select硬连000、Table Location须为00。",
+          "No ST不禁止PH，只要求ST全零。它不是完整Requester Disable的同义词。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          21,
+          22,
+          23,
+          24
+        ]
+      },
+      {
+        "id": "tph-vector-mode",
+        "title": "Interrupt Vector Mode选择的是ST表项",
+        "paragraphs": [
+          "用合法的MSI或MSI-X向量号索引ST；MSI范围由Multiple Message Enable限定，MSI-X范围由其Table Size限定。",
+          "这不表示每发一个带ST的DMA Request就必须同时触发该中断，向量在此承担关联索引作用。"
+        ],
+        "referenceIndices": [
+          11,
+          12
+        ]
+      },
+      {
+        "id": "tph-device-mode",
+        "title": "Device Specific Mode的ST来源不强制为架构表",
+        "paragraphs": [
+          "推荐使用表项，但不是硬性要求；ST数量可以不同于中断向量数，具体Request到ST的关联由设备定义。",
+          "不能用Interrupt Vector Mode的索引公式解析所有设备模式，也不能在无实现说明时推断DMA队列与ST一一对应。"
+        ],
+        "referenceIndices": [
+          11,
+          12
+        ]
+      },
+      {
+        "id": "tph-vector-table-short",
+        "title": "ST表小于已启用向量范围怎么办",
+        "paragraphs": [
+          "规范允许某些事务不使用TPH、使用ST=0，或使用实现自定的机制从表中选择。",
+          "因此越出ST表的向量号不能由软件随意模表长取余并声称这是协议要求；需要对应设备行为。"
+        ],
+        "referenceIndices": [
+          11,
+          12
+        ]
+      },
+      {
+        "id": "tph-vector-table-long",
+        "title": "ST表大于已启用向量范围怎么办",
+        "paragraphs": [
+          "Interrupt Vector Mode下，超出已启用向量范围的ST条目被Function忽略。",
+          "分配更多表项本身不会增加MSI可用向量数，也不能让驱动绕过MSI/MSI-X能力的范围限制。"
+        ],
+        "referenceIndices": [
+          11,
+          12
+        ]
+      },
+      {
+        "id": "tph-table-locations",
+        "title": "ST表只能选一种位置",
+        "paragraphs": [
+          "Location00无表、01位于Requester能力、10并入MSI-X表、11保留；同Function不能在两处各有一张架构ST表。",
+          "Location10必须实际实现MSI-X能力；仅支持No ST时必须00。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          21,
+          22
+        ]
+      },
+      {
+        "id": "tph-table-size-minus-one",
+        "title": "ST Table Size是N-1，且无表时无定义",
+        "paragraphs": [
+          "有表时，字段0表示1项，3表示4项；能力内表最多64项，MSI-X内表受MSI-X Table Size限制。",
+          "无表时不能把该字段0解释成仍有一项ST。读取条件必须先看Location。"
+        ],
+        "referenceIndices": [
+          21,
+          22
+        ]
+      },
+      {
+        "id": "tph-inline-table-address",
+        "title": "内置表：16bit一项，从B+0Ch开始",
+        "paragraphs": [
+          "索引i的地址为B+0Ch+2×i，总项数Size+1；只有Location01时实现这组寄存器。",
+          "例如B=180h、i=3，地址192h，不是18Fh。端序/分段访问仍按配置空间规则处理。"
+        ],
+        "referenceIndices": [
+          19,
+          20
+        ]
+      },
+      {
+        "id": "tph-msix-table-share",
+        "title": "并入MSI-X时占Vector Control高两字节",
+        "paragraphs": [
+          "每个向量条目的Vector Control高16bit存该ST；低位的中断控制语义并不会因此消失。",
+          "更新ST要避免改坏低半部或其他并发状态；这不是把整个MSI-X表地址当成ST地址。",
+          "已解析的MSI-X表基址为M时，第i项ST半字在M+16×i+0Eh；M来自BAR与Table Offset解析，不是TPH能力基址。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          27,
+          28
+        ]
+      },
+      {
+        "id": "tph-msix-disabled-st",
+        "title": "MSI-X未使能时，该ST存放方式仍可能可用",
+        "paragraphs": [
+          "实现MSI和MSI-X的Function即使当前用MSI，也允许使用并入MSI-X表的ST。",
+          "所以MSI-X Enable=0并不等于这张ST表不存在；必须分别核表位置与当前向量模式范围。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "tph-update-determinism",
+        "title": "更新ST表时建议停流或暂禁Requester",
+        "paragraphs": [
+          "规范建议quiesce Function或禁TPH Requester再改表，以避免更新期间使用不确定的ST值。",
+          "这是一致性建议，不是说写一个16bit项就自动冻结全部DMA；具体同步与驱动所有权仍需平台协调。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "tph-nfm-ph-placement",
+        "title": "NFM的PH占地址最低保留位置",
+        "paragraphs": [
+          "32bit寻址PH在Byte11[1:0]，64bit寻址在Byte15[1:0]。这是带TH时的Header字段解释。",
+          "不能把它当改变字节访问地址的两个有效地址bit；也不能把NFM Byte编号移植到FM Header/OHC布局。"
+        ],
+        "referenceIndices": [
+          9,
+          10
+        ]
+      },
+      {
+        "id": "tph-nfm-low-st",
+        "title": "NFM低8bit ST位置随Request类型变化",
+        "paragraphs": [
+          "Memory Write将ST[7:0]放Byte6，Memory Read/AtomicOp放Byte7；必须先正确识别Request类型。",
+          "本轮不提供全TLP解码器。只从固定Byte6读所有请求会把别的字段当ST。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "tph-th-meaning",
+        "title": "TH为1才解释PH与TPH的ST语义",
+        "paragraphs": [
+          "对Memory Space Request，提供TPH时TH须置1；TH清零时PH保留，对其他Request则TH/PH不适用。",
+          "TH也不是Requester Capability或当前Requester Enable的镜像；一个包的格式与允许生成条件需分开检查。"
+        ],
+        "referenceIndices": [
+          13,
+          14
+        ]
+      },
+      {
+        "id": "tph-first-version-boundary",
+        "title": "6.0/7.0已核内容与早期版本分开",
+        "paragraphs": [
+          "本轮对照§6.17和§7.9.13的模式/字段，并核NFM格式。不能因此写成TPH首次引入Gen6。",
+          "FM/OHC、AMA与全部平台缓存行为仍需各自正文继续核读；存在目录不等于这些分支已完成。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          21,
+          22,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "tph-requester-query",
+        "title": "查询：能力、运行模式与表的合法前提",
+        "paragraphs": [
+          "输入Requester Capability/Control并提供MSI-X表条件，解释支持位、选中模式、Enable及表大小。",
+          "只检查已明示的条件，不执行寄存器操作，也不证明全路径支持或缓存性能。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          23,
+          24
+        ]
+      },
+      {
+        "id": "tph-table-query",
+        "title": "查询：ST表项位置与向量范围",
+        "paragraphs": [
+          "按内置/MSI-X两种位置计算项地址，检查N-1编码、索引和MSI/MSI-X范围。",
+          "设备模式或短表越界的实现自定义选择不由工具猜测，结果不会生成配置写值。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          11,
+          12,
+          21,
+          22,
+          19,
+          20,
+          27,
+          28
+        ]
+      }
+    ]
   },
   {
     "name": "Extended TPH",
@@ -31300,16 +32059,16 @@
     "mechanism": "Extended TPH扩展相关提示承载能力，支持要求与基础TPH分开报告和使能。启用基础功能不隐含扩展格式也可发送。",
     "example": "驱动从系统获得的提示格式超出基础能力时，需要确认设备及路径是否支持扩展方式。",
     "checks": "实际支持情况需要核对具体设备的能力、控制状态以及平台配合。",
-    "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
+    "prerequisites": "先发现Requester能力并检查运行使能、合法ST来源和路径支持；平台分配的ST含义不能由CPU编号猜测。",
     "id": 118,
-    "status": "已整理 · 待持续深化",
+    "status": "已深化 · 所引正文/字段已核，逐版继续完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "6.17",
@@ -31321,9 +32080,329 @@
         "pdfPage": 778,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1.1",
+        "page": 165,
+        "pdfPage": 165,
+        "title": "NFM Baseline与Extended格式",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1.1",
+        "page": 211,
+        "pdfPage": 211,
+        "title": "NFM Baseline与Extended格式",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.17.1",
+        "page": 779,
+        "pdfPage": 779,
+        "title": "PH编码与访问模式",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.17.1",
+        "page": 893,
+        "pdfPage": 893,
+        "title": "PH编码与访问模式",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.13.2",
+        "page": 1243,
+        "pdfPage": 1243,
+        "title": "Requester Capability字段",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.13.2",
+        "page": 1416,
+        "pdfPage": 1416,
+        "title": "Requester Capability字段",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.13.3",
+        "page": 1244,
+        "pdfPage": 1244,
+        "title": "模式/Requester Enable",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.13.3",
+        "page": 1417,
+        "pdfPage": 1417,
+        "title": "模式/Requester Enable",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.17.4",
+        "page": 780,
+        "pdfPage": 780,
+        "title": "全路径能力与表更新",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.17.4",
+        "page": 894,
+        "pdfPage": 894,
+        "title": "全路径能力与表更新",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1.1",
+        "page": 166,
+        "pdfPage": 166,
+        "title": "NFM TH/AMA/Prefix条件",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1.1",
+        "page": 212,
+        "pdfPage": 212,
+        "title": "NFM TH/AMA/Prefix条件",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.13.4",
+        "page": 1244,
+        "pdfPage": 1244,
+        "title": "内置ST表条目",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.13.4",
+        "page": 1417,
+        "pdfPage": 1417,
+        "title": "内置ST表条目",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.17.3",
+        "page": 780,
+        "pdfPage": 780,
+        "title": "ST模式与向量范围",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.17.3",
+        "page": 894,
+        "pdfPage": 894,
+        "title": "ST模式与向量范围",
+        "verification": "已核读所引本版相关正文/表，未宣称整个章节/全部模式已完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已核读Base6.0/7.0所引TPH机制、字段及NFM正文；FM/OHC和早期演进待核。",
+    "details": [
+      {
+        "id": "etph-not-new-ph-model",
+        "title": "Extended TPH扩展信息，不另建一套PH访问模型",
+        "paragraphs": [
+          "NFM中Baseline TPH格式仍为基础，TPH Prefix追加ST高8bit等信息。",
+          "Extended不表示“更高TC优先级”、更多VF或更强权限，它扩展的是特定Header提示信息。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "etph-cap-control-gates",
+        "title": "Extended支持位和Enable=11都要核",
+        "paragraphs": [
+          "Capability[8]表示能生成Extended；Control Enable=11允许TPH及Extended，01仅允许普通TPH，10保留。",
+          "不支持Extended的Function可将Enable的高bit硬连0。软件不能只写11就假定硬件和全路径已支持。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "id": "etph-nfm-st16",
+        "title": "NFM组合ST：Header低8bit＋Prefix高8bit",
+        "paragraphs": [
+          "TH为1时，TPH Prefix的Byte1承载ST[15:8]，与原Header的ST[7:0]合成16bit值。",
+          "例如高12h、低34h组合为1234h，不是把两个字节当两个独立处理器号。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "id": "etph-prefix-ama-fields",
+        "title": "TPH Prefix还可以携带AMA与AV",
+        "paragraphs": [
+          "NFM Prefix的Byte2[7:5]是AMA，bit4是AV；Byte2低4bit及Byte3保留。",
+          "AT不是10b时AMA保留。这里仅核有效条件，不将AMA值解释成通用缓存策略寄存器。"
+        ],
+        "referenceIndices": [
+          11,
+          12
+        ]
+      },
+      {
+        "id": "etph-th0-prefix",
+        "title": "TH=0也可能存在用于AMA的TPH Prefix",
+        "paragraphs": [
+          "对Memory Request，所引规则允许TH清零但Prefix存在；AV置位时AMA才有对应意义。",
+          "因此抓到该Prefix不一定就应解析PH/ST为有效TPH。Prefix存在、TH和AV应分开看。"
+        ],
+        "referenceIndices": [
+          11,
+          12
+        ]
+      },
+      {
+        "id": "etph-nonzero-fields",
+        "title": "Prefix承载非零ST高位或AMA的用途",
+        "paragraphs": [
+          "所引NFM规则说明TPH Prefix用于提供非零AMA或ST高8bit；普通低8bit ST不必仅因名字“Extended”就强加Prefix。",
+          "完整Prefix类型与顺序规则仍需关联2.2.10，不能把任意额外DWORD都当这类Prefix。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          1,
+          2
+        ]
+      },
+      {
+        "id": "etph-table16-not-enable",
+        "title": "16bit表项不代表已经允许发Extended",
+        "paragraphs": [
+          "架构ST表每项本身16bit，但当前Requester Enable、Extended支持和包格式仍决定能发什么。",
+          "表里写高字节非零不自动升级Requester模式；软件要避免仅更新表就越过路径能力检查。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          7,
+          8,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "etph-mode-format-boundary",
+        "title": "模式选择与NFM/FM包格式是不同维度",
+        "paragraphs": [
+          "No ST/Vector/Device Specific决定标签来源，Baseline/Extended决定提示信息的编码承载。",
+          "本轮具体Byte表只适用于NFM；FM应按其Header/OHC条款独立解释，不把TLP Prefix直接附到FLIT字节流就认为正确。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "etph-chapter-route",
+        "title": "按章序对照TPH：机制→字段→事务格式",
+        "paragraphs": [
+          "先读§6.17确定PH/ST语义，再读§7.9.13能力、Control和表，最后读§2.2.7.1.1核NFM格式。",
+          "章序页将这些子条款直接连到本轮知识块；链接存在只代表已展开所列规则，不表示完整子条款和所有交叉引用已核完。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          5,
+          6,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "etph-remaining-branches",
+        "title": "本轮明确留下的TPH缺口",
+        "paragraphs": [
+          "未完成FM全部OHC格式、Device Capabilities2 Completer逐bit差异、AMA/ATS完整交互、软件平台分配ST及早期ECN链。",
+          "这些资料大多已存在，状态是待核读；不会把目录元数据标为已读或声称整个TPH家族已穷尽。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12
+        ]
+      }
+    ]
   },
   {
     "name": "PTM：Precision Time Measurement",
