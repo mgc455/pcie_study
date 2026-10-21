@@ -98,7 +98,10 @@ for d in coverage['documents']:
             assert bool(clause['reviewedBlocks'])==(clause['status']=='linked-reviewed-rules')
             loc=clause['locator']
             assert loc['documentId']==d['documentId'] and loc['version']==d['version'] and loc['section']==clause['section'] and loc['url']==doc['url']
-            assert chapter['locator']['page']<=loc['page']<=doc['pages'] and 1<=loc['pdfPage']<=doc['pages'] and clause['tocPdfPage']>0
+            assert chapter['locator']['page']<=loc['page']<=doc['pages'] and 1<=loc['pdfPage']<=doc['pages']
+            assert clause.get('bodyStartVerified') is True or isinstance(clause.get('tocPdfPage'),int) and clause['tocPdfPage']>0
+            if clause.get('bodyStartVerified'):
+                assert clause['reviewedBlocks'] and any(features_by_id[b['featureId']]['protocolReferences'][i]['pdfPage']==loc['pdfPage'] for b in clause['reviewedBlocks'] for i in b['referenceIndices']), 'Body opening requires its own exact-page evidence'
             for block in clause['reviewedBlocks']:
                 f=features_by_id[block['featureId']]
                 detail=next(x for x in f['details'] if x['id']==block['detailId'])
