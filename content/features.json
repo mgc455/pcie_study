@@ -16,7 +16,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "1.3",
@@ -28,9 +28,70 @@
         "pdfPage": 102,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "1.3",
+        "page": 102,
+        "pdfPage": 102,
+        "title": "点到点拓扑",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "1.3.1",
+        "page": 103,
+        "pdfPage": 103,
+        "title": "RC与层级域、跨RP可选路由",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "1.3.3",
+        "page": 106,
+        "pdfPage": 106,
+        "title": "Switch的虚拟桥结构",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "1.5",
+        "page": 109,
+        "pdfPage": 109,
+        "title": "三层逻辑结构",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "本次已补6.0所引基础规则；其余条款与逐版差异继续核读。",
+    "details": [
+      {
+        "id": "basics-topology-reading-order",
+        "title": "先认拓扑，再沿一次请求看三层协议",
+        "paragraphs": [
+          "Root Complex连接CPU/内存子系统和I/O层级；Root Port从RC引出一个hierarchy domain。Switch由多个虚拟PCI-to-PCI桥组成，在端口间转发；Endpoint提供设备Function。RC、RP、Switch和EP不是四种等价端口名。",
+          "建议阅读顺序：1拓扑 → 17/20/21请求、完成与三类流量 → 57地址/ID/隐式路由 → 36/38/39/41/47枚举、配置链、BAR与桥窗口 → 97/111链路可靠性与流控 → 4/12/163训练、编码及PHY。功能号可直接从全站搜索进入。",
+          "同一条链路上的upstream/downstream描述面向RC的方向；Requester/Completer描述某笔事务的角色。RC跨Root Port转发P2P是可选且依实现的，不能仅凭树形图假设可达。这里只给基础路线，不把RCiEP或全部桥规则算作已展开。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
   },
   {
     "name": "Lane与x1/x2/x4/x8/x16宽度",
@@ -6758,7 +6819,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "2.4",
@@ -6770,9 +6831,92 @@
         "pdfPage": 222,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 236,
+        "pdfPage": 236,
+        "title": "P分类",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 237,
+        "pdfPage": 237,
+        "title": "NP/Cpl与六类Credit",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.9",
+        "page": 195,
+        "pdfPage": 195,
+        "title": "Completion要求",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "本次已补6.0所引基础规则；其余条款与逐版差异继续核读。",
+    "details": [
+      {
+        "id": "basics-p-np-cpl-table",
+        "title": "先按事务语义分P/NP/Cpl，不按有没有数据分",
+        "paragraphs": [
+          "P/NP/Cpl描述协议类别，和带不带Payload是不同维度：MRd不带写数据却是NP；MWr带数据却是P；配置写带数据且仍需Completion。",
+          "下表是Base6.0基础分类。DMWr和AtomicOp也需Completion，不能把名字里有Write的请求全归成Posted。只就事务类别归纳，不展开UIO等后续扩展规则。",
+          "三类再分Header/Data，形成PH/PD、NPH/NPD、CplH/CplD六类基础Credit。Completion不是为“提高准确率”任选的一层确认，而是相应Request定义的返回机制。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3
+        ],
+        "table": {
+          "columns": [
+            "事务",
+            "类别",
+            "返回关系"
+          ],
+          "rows": [
+            [
+              "普通Memory Write / Message",
+              "P",
+              "不要求对应事务Completion"
+            ],
+            [
+              "Memory Read",
+              "NP",
+              "成功时以Completion返回数据"
+            ],
+            [
+              "I/O Read/Write、Configuration Read/Write",
+              "NP",
+              "均要求Completion，是否带数据依类型/结果"
+            ],
+            [
+              "AtomicOp / DMWr",
+              "NP",
+              "均要求Completion"
+            ],
+            [
+              "Completion / CplD",
+              "Cpl",
+              "对应NP Request的响应，本身不是新NP请求"
+            ]
+          ]
+        }
+      }
+    ]
   },
   {
     "name": "Tag与Extended / 10-bit / 14-bit Tags",
@@ -7341,7 +7485,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "7.2",
@@ -7353,9 +7497,46 @@
         "pdfPage": 905,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.2",
+        "page": 905,
+        "pdfPage": 905,
+        "title": "每Function的4KiB与前256字节兼容区",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "1.5.1",
+        "page": 110,
+        "pdfPage": 110,
+        "title": "配置与Memory空间分别定义",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "本次已补6.0所引基础规则；其余条款与逐版差异继续核读。",
+    "details": [
+      {
+        "id": "basics-config-size-not-bdf",
+        "title": "配置空间大小、BDF和BAR空间要分别理解",
+        "paragraphs": [
+          "Base6.0定义每个Function有4096字节配置空间：000h～0FFh是256字节PCI兼容区域，100h～FFFh是其余扩展区域。100h是256，不是“最前4字节”。",
+          "BDF负责选择Function，配置偏移负责选择该Function内的寄存器；配置空间容量不是由BDF字段拼成的大小。BAR寄存器位于配置空间，但BAR映射出的业务内存窗口不受这4KiB容量限制。",
+          "主机的配置访问机制和设备业务MMIO分开：不能把一个BAR窗口里的偏移100h当成PCIe扩展配置空间100h。ECAM的地址计算、桥Type0/Type1路由及能力链细节见48/18/39，仍有后续逐字段缺口。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      }
+    ]
   },
   {
     "name": "Capability / Extended Capability链",
@@ -8045,7 +8226,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "2.2.8",
@@ -8057,9 +8238,87 @@
         "pdfPage": 170,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.4",
+        "page": 145,
+        "pdfPage": 145,
+        "title": "三种路由机制",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.4.2",
+        "page": 147,
+        "pdfPage": 147,
+        "title": "配置、消息及Completion的ID路由",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3",
+        "page": 206,
+        "pdfPage": 206,
+        "title": "Switch转发与Completion Requester ID",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "本次已补6.0所引基础规则；其余条款与逐版差异继续核读。",
+    "details": [
+      {
+        "id": "basics-three-routing-methods",
+        "title": "三种路由：请求去程和Completion回程可以不同",
+        "paragraphs": [
+          "地址路由看目标地址；ID路由看目的Routing ID；隐式路由由消息的路由编码表达方向或范围。四种Address Space与三种路由机制不是一一对应。",
+          "例如MRd去程按地址找到目标，而返回Completion使用Requester ID回到发起Function。Switch转发Completion时不是重新拿最初的Memory地址去匹配BAR。",
+          "Message需结合具体Type中的路由子字段与Message Code，不能只看它带不带数据；地址/ID/隐式各自的角色与非法输入处理仍需具体消息规则。FM跨层级的Segment字段属于进一步规则，本表不假定所有版本格式相同。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3
+        ],
+        "table": {
+          "columns": [
+            "TLP类别",
+            "基础路由",
+            "排查时看什么"
+          ],
+          "rows": [
+            [
+              "Memory / I/O Request",
+              "地址",
+              "地址解码、桥窗口与目标资源"
+            ],
+            [
+              "Configuration Request",
+              "ID",
+              "目标Bus/Device/Function及桥路由"
+            ],
+            [
+              "Completion",
+              "ID",
+              "Requester ID，指向最初发起请求的Function"
+            ],
+            [
+              "Message / MsgD",
+              "地址、ID或隐式",
+              "按具体路由编码与消息定义解释"
+            ]
+          ]
+        }
+      }
+    ]
   },
   {
     "name": "Vendor Defined Message（VDM）",
@@ -19680,7 +19939,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "3",
@@ -19692,9 +19951,93 @@
         "pdfPage": 263,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "1.5.2",
+        "page": 110,
+        "pdfPage": 110,
+        "title": "TLP保护与DLLP职责",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.5.1",
+        "page": 278,
+        "pdfPage": 278,
+        "title": "NFM DLLP字段与FM DLP承载",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.5",
+        "page": 278,
+        "pdfPage": 278,
+        "title": "Ack/Nak仅NFM及链路用途",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.9",
+        "page": 195,
+        "pdfPage": 195,
+        "title": "需要Completion的Request",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 236,
+        "pdfPage": 236,
+        "title": "Posted普通MWr分类",
+        "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "本次已补6.0所引基础规则；其余条款与逐版差异继续核读。",
+    "details": [
+      {
+        "id": "basics-tlp-is-not-dllp",
+        "title": "TLP、链路保护和DLLP：不是逐层套进DLLP",
+        "paragraphs": [
+          "TLP是读写请求、Completion或消息等事务层包。NFM发送时，数据链路层为TLP增加序号/LCRC，PHY再做适用编码和定界；这条路径不能写成“整个TLP放入DLLP”。",
+          "DLLP由相邻两端数据链路层产生和消费，承载Ack/Nak、流控、功耗等链路管理信息。NFM的DLLP本体有Type、24bit类型专用内容及16bit CRC；它与带链路保护的TLP是不同的包。",
+          "FM采用FLIT组织和保护，DLLP信息在DLP字节传送；传统NFM的独立Ack/Nak DLLP和每TLP序号/LCRC图不能原样搬到FM。请结合功能13/14/98的FLIT说明。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "basics-ack-versus-completion",
+        "title": "链路ACK、事务Completion、应用完成是三个观察点",
+        "paragraphs": [
+          "NFM Ack DLLP确认相邻接收端正确收到某个序号范围的TLP，是逐跳的链路可靠性信息。它不表示最终设备已完成请求，也不表示软件已消费数据。",
+          "Completion是为需要响应的Request返回的事务层TLP，可包含数据或错误状态。普通MWr虽不返回Completion，仍受链路可靠传输机制保护；Posted不等于“发完不管是否丢失”。",
+          "应用完成可能另由DMA状态、描述符所有权或中断表示。排查时把三层证据分开：链路重试 → 请求/Completion关联 → 驱动与应用进度，不能仅用有没有中断判断有没有链路ACK。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5
+        ]
+      }
+    ]
   },
   {
     "name": "Flit Retry / Selective Replay",
@@ -27899,7 +28242,8 @@
         "title": "发送门控与回卷：Credit Limit不是瞬时空闲数",
         "paragraphs": [
           "以普通/专用池为例：CREDITS_CONSUMED统计自初始化以来已通过FC门控的累计消耗；CREDIT_LIMIT是对端最近一次合法广告的累计可用额度。它们都按字段位宽回卷，不是不断增长的无限整数。",
-          "上述≤半窗口式对应普通/专用池及所引Base6.0规则；Base7.0 Shared门控改用严格<，Merged还需独立P/Cpl账，见功能112版本专节。"
+          "上述≤半窗口式对应普通/专用池及所引Base6.0规则；Base7.0 Shared门控改用严格<，Merged还需独立P/Cpl账，见功能112版本专节。",
+          "接收缓冲区不必完全空才能发送。发送端只需满足对应VC/类别的Credit门控及其他发送条件；已用掉部分空间仍可能有足够Credit继续流水传输。FC记账属于事务层，与链路层交换FC信息协作，不能因载体是DLLP就把整个功能归到链路层。"
         ],
         "table": {
           "columns": [
@@ -27949,7 +28293,8 @@
           7,
           8,
           9,
-          13
+          13,
+          1
         ],
         "id": "block-5"
       },

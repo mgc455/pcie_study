@@ -1,8 +1,12 @@
 {
   "nextFeatureIds": [
+    36,
+    18,
+    38,
+    39,
+    41,
     119,
     120,
-    96,
     169,
     172
   ],
@@ -56,5 +60,131 @@
     "nextTrack": "沿章序连续推进可核子条款，与PHY/SerDes轮换；接续PTM119/120，保留TPH FM/OHC、Completer字段、早期版本与ECN缺口。"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
-  "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。"
+  "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
+  "externalGapReview": {
+    "date": "2026-10-21",
+    "source": "https://github.com/Vigneshbbaskaran/PCIe-study",
+    "sourceTree": "98eb34ddf5af08565933df0f269a5347770e4d6c",
+    "scope": "检查README与memtester指南的文本、仓库文件清单；未逐张核图。参考其基础主题结构，不把第三方笔记当规范证据，也不复制实验命令或资料正文。",
+    "items": [
+      {
+        "topic": "基础阅读顺序与拓扑",
+        "status": "已有主题，原解释浅；本次补导读",
+        "featureIds": [
+          1,
+          2,
+          163
+        ]
+      },
+      {
+        "topic": "TLP/DLLP、ACK/Completion与P/NP/Cpl",
+        "status": "本次补概念、分类表与易混淆边界",
+        "featureIds": [
+          17,
+          20,
+          21,
+          97,
+          111
+        ]
+      },
+      {
+        "topic": "三种路由与去程/回程",
+        "status": "已有消息主题，本次补路由对照表",
+        "featureIds": [
+          57,
+          18,
+          20,
+          47
+        ]
+      },
+      {
+        "topic": "枚举、BDF、配置头、BAR与ECAM",
+        "status": "本次补空间大小边界；逐字段及枚举过程仍浅",
+        "featureIds": [
+          36,
+          38,
+          39,
+          40,
+          41,
+          47,
+          48
+        ]
+      },
+      {
+        "topic": "LTSSM与链路状态",
+        "status": "已有较详细内容，继续保留版本和分支缺口",
+        "featureIds": [
+          4,
+          3,
+          85,
+          93,
+          94,
+          95
+        ]
+      },
+      {
+        "topic": "Ordered Sets与编码/物理组织",
+        "status": "训练中已有分散解释；跨编码的统一速查表待补",
+        "featureIds": [
+          4,
+          12,
+          13,
+          169,
+          178
+        ]
+      },
+      {
+        "topic": "Linux工具观察与CXL测试边界",
+        "status": "lspci字段到协议映射、CXL.io/cache/mem区分仍需深化；平台实验脚本不作为通用流程",
+        "featureIds": [
+          135,
+          156,
+          157
+        ]
+      }
+    ]
+  },
+  "foundationBacklog": [
+    {
+      "featureIds": [
+        36,
+        18,
+        38,
+        39,
+        40,
+        41,
+        47,
+        48
+      ],
+      "task": "逐步展开枚举、Type0/Type1、Capability链、BAR与ECAM；按正式版逐条补表和条件"
+    },
+    {
+      "featureIds": [
+        17,
+        20,
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "task": "请求关联、Completion拆分、Tag与MPS/MRRS/RCB边界"
+    },
+    {
+      "featureIds": [
+        4,
+        12,
+        13
+      ],
+      "task": "Ordered Set跨编码/模式速查；TS1/TS2/SKP/EIOS/EIEOS/FTS等分别核正文"
+    },
+    {
+      "featureIds": [
+        135,
+        156,
+        157
+      ],
+      "task": "只读工具字段解读与CXL协议边界，平台特定测试流程另行审查"
+    }
+  ]
 }
