@@ -27498,21 +27498,21 @@
   {
     "name": "Virtual Channel（VC）",
     "group": "性能、QoS与时间",
-    "intro": "独立资源/仲裁通道把流量隔离，TC映射到VC。",
+    "intro": "以VC组织缓冲、流控与仲裁资源，TC通过每个Port的映射选择VC。",
     "usage": "实际支持的VC数量受IP接口配置限制；",
     "mechanism": "VC把特定流量映入独立协议资源/仲裁域，减少资源争用；实现成本和支持范围依控制器与接口配置。",
     "example": "大批量数据不希望完全压住某类管理流时，可研究多个VC，但双方与沿途都需支持正确映射。",
-    "checks": "检查实际VC数、TC映射和独立信用；",
+    "checks": "检查两端VC数、TC映射、Enable/协商、专用及共享credit限制；标签不同不保证资源或带宽独立。",
     "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
     "id": 114,
-    "status": "已整理 · 待持续深化",
+    "status": "已深化 · 所引正文/字段已核，逐版仍持续完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "6.3",
@@ -27524,9 +27524,795 @@
         "pdfPage": 702,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.2",
+        "page": 703,
+        "pdfPage": 703,
+        "title": "逐Port TC/VC映射与过滤",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.2",
+        "page": 812,
+        "pdfPage": 812,
+        "title": "逐Port TC/VC映射与过滤",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.1",
+        "page": 708,
+        "pdfPage": 708,
+        "title": "Port与VC两级仲裁",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.1",
+        "page": 815,
+        "pdfPage": 815,
+        "title": "Port与VC两级仲裁",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.2",
+        "page": 1185,
+        "pdfPage": 1185,
+        "title": "VC数量/LPVC/表项宽度",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.2",
+        "page": 1359,
+        "pdfPage": 1359,
+        "title": "VC数量/LPVC/表项宽度",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.2",
+        "page": 704,
+        "pdfPage": 704,
+        "title": "逐跳VC重映射示例",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.2",
+        "page": 813,
+        "pdfPage": 813,
+        "title": "逐跳VC重映射示例",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.2",
+        "page": 709,
+        "pdfPage": 709,
+        "title": "仲裁候选的流控及Ordering门控",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.2",
+        "page": 815,
+        "pdfPage": 815,
+        "title": "仲裁候选的流控及Ordering门控",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1",
+        "page": 1182,
+        "pdfPage": 1182,
+        "title": "VC角色、VF和能力ID",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1",
+        "page": 1357,
+        "pdfPage": 1357,
+        "title": "VC角色、VF和能力ID",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2",
+        "page": 1194,
+        "pdfPage": 1194,
+        "title": "MFVC可选性与位置",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2",
+        "page": 1369,
+        "pdfPage": 1369,
+        "title": "MFVC可选性与位置",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.7",
+        "page": 1189,
+        "pdfPage": 1189,
+        "title": "资源TC映射/仲裁选择/VC ID",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.7",
+        "page": 1364,
+        "pdfPage": 1364,
+        "title": "资源TC映射/仲裁选择/VC ID",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.8",
+        "page": 1191,
+        "pdfPage": 1191,
+        "title": "VC协商状态有效条件",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.8",
+        "page": 1366,
+        "pdfPage": 1366,
+        "title": "VC协商状态有效条件",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.2",
+        "page": 816,
+        "pdfPage": 816,
+        "title": "VC优先级分组与饥饿",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.3",
+        "page": 1186,
+        "pdfPage": 1186,
+        "title": "VC仲裁能力与表偏移",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.3",
+        "page": 1360,
+        "pdfPage": 1360,
+        "title": "VC仲裁能力与表偏移",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.4",
+        "page": 1187,
+        "pdfPage": 1187,
+        "title": "选择与All VCs Enabled版本措辞",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.4",
+        "page": 1361,
+        "pdfPage": 1361,
+        "title": "选择与All VCs Enabled版本措辞",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.6",
+        "page": 1188,
+        "pdfPage": 1188,
+        "title": "Port仲裁及Maximum Time Slots",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.6",
+        "page": 1363,
+        "pdfPage": 1363,
+        "title": "Port仲裁及Maximum Time Slots",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.7",
+        "page": 1191,
+        "pdfPage": 1191,
+        "title": "VC0及双端Enable",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.7",
+        "page": 1190,
+        "pdfPage": 1190,
+        "title": "共享Credit使用上限",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.7",
+        "page": 1365,
+        "pdfPage": 1365,
+        "title": "共享Credit使用上限",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.8",
+        "page": 1192,
+        "pdfPage": 1192,
+        "title": "双端协商完成",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.5",
+        "page": 822,
+        "pdfPage": 822,
+        "title": "SVC与VC/MFVC互斥及措辞边界",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.29.5",
+        "page": 1497,
+        "pdfPage": 1497,
+        "title": "Use VC/MFVC切换字段",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3",
+        "page": 705,
+        "pdfPage": 705,
+        "title": "单VC多TC与队头阻塞",
+        "verification": "已核读本版本该页相关正文/字段，不标整章完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.2",
+        "page": 710,
+        "pdfPage": 710,
+        "title": "低优先级组与策略",
+        "verification": "已核读本版本该页相关正文/字段，不标整章完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1",
+        "page": 1183,
+        "pdfPage": 1183,
+        "title": "VC资源布局图",
+        "verification": "已核读本版本该页相关正文/字段，不标整章完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.6",
+        "page": 1189,
+        "pdfPage": 1189,
+        "title": "Port表偏移字段续表",
+        "verification": "已核读本版本该页相关正文/字段，不标整章完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.7",
+        "page": 1366,
+        "pdfPage": 1366,
+        "title": "双端完全禁用与再启用",
+        "verification": "已核读本版本该页相关正文/字段，不标整章完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "按知识块绑定已核正文；旧目录引用仍仅作入口",
+    "details": [
+      {
+        "id": "vc-resource-not-label",
+        "title": "TC标记与VC资源：两者在哪里相接",
+        "paragraphs": [
+          "TC是流量分类标签；VC提供可分离的缓冲/流控及调度资源。多个TC可以共享一个VC，因此不能看见不同TC就认定缓冲独立。",
+          "用于定位“高优先级业务仍被阻塞”时，先查每一跳实际映射与资源，不只看源端TC。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "vc-default-pair",
+        "title": "TC0/VC0固定支持，扩展VC可选",
+        "paragraphs": [
+          "每个Port必须支持TC0/VC0；额外TC映射和扩展VC由实现能力与系统软件配置决定。支持Gen7不意味着有8个VC。",
+          "Extended VC Count为0表示没有额外VC，不表示VC机制或默认通路不存在。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "vc-per-hop-map",
+        "title": "同一TC可以逐跳改变VC，TC7不要求走VC7",
+        "paragraphs": [
+          "映射属于Port局部配置。Switch先按地址/路由找到Egress，再用该Egress的TC/VC映射选择资源。",
+          "例如Endpoint到Switch只有VC0，Switch到Root Port把TC7映到VC1，仍可在后一段链路提供分离资源；这不自动保障整条路径的隔离。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "vc-tc-filter-error",
+        "title": "没有映射到已启用VC的TC会触发过滤错误",
+        "paragraphs": [
+          "收到的TLP若其TC未映到任何已启用VC，按所引规则视为Malformed TLP，而不是默默降级到VC0。",
+          "该事件还会丢失该TLP对应FC credits并产生不可纠正错误，通常需软件恢复。配置额外TC前要确认路径上的每个Port。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "vc-single-channel-hol",
+        "title": "单VC多TC仍可分类，但不能消除共享资源队头阻塞",
+        "paragraphs": [
+          "单VC设备可以借TC组织不同流、在本地采用不同调度；这并不产生额外独立FC资源。",
+          "共享一个VC时仍可能发生head-of-line blocking。多TC的收益与内部队列、拓扑深度有关，不能把标签数量换算成独立带宽通道。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10,
+          32
+        ]
+      },
+      {
+        "id": "vc-discovery-ids",
+        "title": "发现能力：VC的0002h/0009h与MFVC的0008h",
+        "paragraphs": [
+          "存在MFVC的设备，其VC能力使用0009h；没有MFVC时使用0002h。这是兼容性规则，不是链路速率编码。",
+          "仅TC0/VC0的设备可以没有这组扩展能力；找不到能力结构不意味着默认PCIe传输不可用。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "vc-function-placement",
+        "title": "VC能力位置：Function0、例外与VF",
+        "paragraphs": [
+          "有MFVC时，各非VF Function可分别具有VC能力；特定Switch DSP集合与RCiEP也有逐Function例外。否则通常仅Function0可放该能力。",
+          "6.0 VF使用关联PF的VC且不得自带VC能力；7.0同时明确SIOV SDI使用PF能力。不能为每个VF虚构独立VC寄存器。"
+        ],
+        "referenceIndices": [
+          11,
+          12
+        ]
+      },
+      {
+        "id": "vc-register-layout",
+        "title": "VC能力寄存器布局与资源stride",
+        "paragraphs": [
+          "B表示沿扩展能力链找到的能力基址；n是资源序号，而非当前VC ID。资源0仍存在。",
+          "每个资源占0Ch步长，Status是WORD，后面保留WORD不能当另一个Control。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          15,
+          16,
+          17,
+          18,
+          34
+        ],
+        "table": {
+          "columns": [
+            "偏移",
+            "内容"
+          ],
+          "rows": [
+            [
+              "B+04h",
+              "Port Capability1 DWORD"
+            ],
+            [
+              "B+08h",
+              "Port Capability2 DWORD"
+            ],
+            [
+              "B+0Ch / +0Eh",
+              "Port Control / Status WORD"
+            ],
+            [
+              "B+10h+0Ch×n",
+              "Resource Capability DWORD"
+            ],
+            [
+              "B+14h+0Ch×n",
+              "Resource Control DWORD"
+            ],
+            [
+              "B+18h+0Ch×n",
+              "Resource Status WORD"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "vc-count-low-group",
+        "title": "Port Capability1：扩展个数与低优先级组",
+        "paragraphs": [
+          "[2:0]是额外VC数0～7，总资源数需加1。[6:4]是低优先级组中的额外VC数，范围不能超过Extended VC Count。",
+          "低组包含默认VC0；字段为0时按系统模型全部走strict priority。字段等于扩展个数时，全部VC受所选组仲裁管理。不要把Count当位图。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          19,
+          33
+        ]
+      },
+      {
+        "id": "vc-clock-entry-fields",
+        "title": "Port Capability1：Reference Clock不是PCIe Refclk频率",
+        "paragraphs": [
+          "[9:8]=00表示time-based WRR的100ns参考单位，其他编码保留；这不是100MHz差分REFCLK的测量值，也不是每phase必定100ns。",
+          "[11:10]编码00/01/10/11分别为1/2/4/8bit Port表项；只在适用的Switch、支持P2P的Root Port或RCRB解释，Endpoint不按Port仲裁解释。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "vc-capability-select-fields",
+        "title": "Port Capability2与Control：能力位图对选择编号",
+        "paragraphs": [
+          "Capability2[7:0]是支持位图；Control[3:1]是被选中能力位的编号。选择2对应能力bit2，而不是写入位图04h。",
+          "VC组仲裁仅定义fixed、WRR32、WRR64、WRR128；能力bits4～7保留。不能把Port/Function的Time-based与WRR256编码套到VC组。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          22,
+          23
+        ],
+        "table": {
+          "columns": [
+            "能力bit / Select",
+            "VC组仲裁"
+          ],
+          "rows": [
+            [
+              "0",
+              "硬件固定，如RR"
+            ],
+            [
+              "1",
+              "WRR32 phases"
+            ],
+            [
+              "2",
+              "WRR64 phases"
+            ],
+            [
+              "3",
+              "WRR128 phases"
+            ],
+            [
+              "4～7",
+              "保留"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "vc-table-offset-units",
+        "title": "表偏移是DQWORD单位，且相对能力基址",
+        "paragraphs": [
+          "VC Table Offset取Port Capability2[31:24]；Port Table Offset取对应Resource Capability[31:24]。地址为B+Offset×16字节，00表示没有该表。",
+          "例如B=180h、Offset=10h，则表从280h开始，不是190h。字段越出配置空间、覆盖资源寄存器或无能力却有表时，应核实现而非盲读。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          24,
+          25,
+          35
+        ]
+      },
+      {
+        "id": "vc-map-field-default",
+        "title": "Resource Control[7:0]是TC位图，默认首资源FFh",
+        "paragraphs": [
+          "TCk对应bitk；一个资源可以接多个TC。首资源默认映射FFh，其他资源默认00h。",
+          "bit0为只读：默认VC0必须接TC0，其他已启用VC不能接TC0。设置新VC时不能保留旧映射而假定硬件自动迁移所有标签。"
+        ],
+        "referenceIndices": [
+          15,
+          16
+        ]
+      },
+      {
+        "id": "vc-map-remove-drain",
+        "title": "从已启用VC移除TC前，先停新事务并排空在途",
+        "paragraphs": [
+          "所引字段要求目标Link不再存在该TC的新事务或未完成事务，之后才可从已启用VC删除映射。",
+          "软件应协调生成端、路由/Completion路径和驱动停机；只停止一个DMA写通道并不证明所有相同TC的读请求、完成和其他Function已排空。"
+        ],
+        "referenceIndices": [
+          15,
+          16
+        ]
+      },
+      {
+        "id": "vc-id-enable-control",
+        "title": "VC ID与Enable：资源序号不等于可任意改的ID",
+        "paragraphs": [
+          "Resource Control[26:24]分配VC ID；默认资源ID硬连0，已启用VC的ID不能修改。",
+          "[31]为VC Enable；扩展VC默认禁用。对同一链路VC启用需双方配置匹配，不能仅写本端就开始发送。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          26,
+          27,
+          28
+        ]
+      },
+      {
+        "id": "vc-negotiation-pending",
+        "title": "Negotiation Pending：链路Up也未必VC已初始化",
+        "paragraphs": [
+          "Resource Status[1]表示VC协商未完成，退出FC_INIT2后清除；使用前必须检查Link两端对应VC的Pending都清零。",
+          "普通VC表明确其值只在DL_Active且该VC已启用时定义。禁用状态读到0不能直接宣布可用；VC0还允许硬连0。"
+        ],
+        "referenceIndices": [
+          17,
+          18,
+          29
+        ]
+      },
+      {
+        "id": "vc-disable-reenable",
+        "title": "关闭VC前停流，重启前两端都须完全关闭",
+        "paragraphs": [
+          "两端VC都应关闭，且关闭时不能仍有使用该VC的流量；再次启用前必须先在两端完整禁用。",
+          "这不是写Enable=0即自动取消全部在途事务的保证。配置器应把业务排空、两端控制和协商检查分为独立步骤。"
+        ],
+        "referenceIndices": [
+          26,
+          27,
+          28,
+          17,
+          18,
+          36
+        ]
+      },
+      {
+        "id": "vc-all-enabled-caveat",
+        "title": "All VCs Enabled是资源分配提示，不是批量开关",
+        "paragraphs": [
+          "Control[4]通知硬件将使用的VC都已启用，便于分配buffer；可选，保持0也必须正确运行，只可能影响性能。",
+          "7.0明确此位置1后任意VC Enable变化的行为未定义；6.0的句子写Link Up时变化未定义。两版措辞分别保留，不用一个通用在线修改脚本掩盖差异。"
+        ],
+        "referenceIndices": [
+          22,
+          23
+        ]
+      },
+      {
+        "id": "vc-shared-credit-limit",
+        "title": "共享FC上限：0～87.5%，不是VC带宽权重",
+        "paragraphs": [
+          "Resource Control[29:27]以12.5%为步长，[30]为使能。使能清零时该上限不参与限制；编码000在使能时表示禁止用共享credits。",
+          "限制按每类FC credit独立施加，不按事务数或GB/s保底。Dedicated credits和其他Tx Gate规则需另外判断，不应将上限误当调度权重。"
+        ],
+        "referenceIndices": [
+          27,
+          28
+        ]
+      },
+      {
+        "id": "vc-shared-credit-reconfigure",
+        "title": "共享Credit限制的修改条件和总量约束",
+        "paragraphs": [
+          "VC Enable与Limit Enable均为1时改Limit值行为未定义；VC启用时切换Limit Enable也未定义。",
+          "若所有VC均启用Limit且各Limit总和不足100%，行为未定义。不能用“总和小于100%更保守”作为合法性依据，也不把该规则外推成所有流控模式。"
+        ],
+        "referenceIndices": [
+          27,
+          28
+        ]
+      },
+      {
+        "id": "vc-shared-fields-version",
+        "title": "共享字段的模式/版本与单VC例外",
+        "paragraphs": [
+          "7.0对[29:27]与[30]均明确Flit Mode Supported清零时保留；6.0本轮所引表的Limit段缺同样一句，Enable段仍明确该门控。",
+          "两版单VC时Limit可硬连值，Enable可硬连0；不由当前训练速率断言是否支持这些配置字段，不把后续动态限制ECN自动并入旧版。"
+        ],
+        "referenceIndices": [
+          27,
+          28
+        ]
+      },
+      {
+        "id": "vc-svc-one-way",
+        "title": "7.0的SVC与传统VC/MFVC互斥，切换有复位边界",
+        "paragraphs": [
+          "同时实现时，Use VC/MFVC默认1，传统VC0自动初始化，SVC关闭；将该RW1C位清零后，传统各VC立即关闭，SVC VC0开启。",
+          "清零后直到下一次Conventional Reset都保持0；不是可随时切回的模式选择。6.0已核传统VC0常1规则不能直接用于7.0已切SVC的端口。"
+        ],
+        "referenceIndices": [
+          30,
+          31,
+          26,
+          27,
+          28
+        ]
+      },
+      {
+        "id": "vc-svc-text-conflict",
+        "title": "SVC共存正文的流程措辞与字段定义需并列看",
+        "paragraphs": [
+          "7.0 §6.3.5出现“配置VC/MFVC前清Use VC/MFVC”的措辞，但同段后续及§7.9.29.5字段明确清零会关闭传统机制、开启SVC。",
+          "这里按字段和状态后果解释清零方向，保留原段落歧义待正式勘误，不据此生成自动写寄存器动作；完整SVC协议/事务模式另留后续。"
+        ],
+        "referenceIndices": [
+          30,
+          31
+        ]
+      },
+      {
+        "id": "vc-register-query",
+        "title": "查询：传统VC资源快照与协商前提",
+        "paragraphs": [
+          "输入Resource Control/Status、版本、资源序号和链路条件，解释TC、ID、Enable、Pending与共享上限。",
+          "工具不读硬件，不根据单端Pending清零认定双方已就绪；SVC已激活时，不把传统Control当有效调度配置。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          17,
+          18,
+          27,
+          28,
+          30,
+          31
+        ]
+      }
+    ]
   },
   {
     "name": "Multifunction VC / MFVC",
@@ -27535,17 +28321,17 @@
     "usage": "条件扩展，能力链出现与真正业务QoS须分别核对。",
     "mechanism": "MFVC涉及多功能设备的虚拟通道资源组织，让功能与流量间的关系通过对应能力描述和控制。它与普通多PF或多个DMA通道不同。",
     "example": "多个功能需要明确的协议流量组织时，先研究此能力，而非把每个PF自动当成独立VC。",
-    "checks": "能力出现、功能划分和真实缓冲/仲裁必须一致；",
+    "checks": "核对Function0的MFVC、各Function的VC、表项范围、组映射与公共上行瓶颈；多PF/VF不等于独立VC。",
     "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
     "id": 115,
-    "status": "已整理 · 待持续深化",
+    "status": "已深化 · 所引正文/字段已核，逐版仍持续完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "6.3.3.4",
@@ -27557,28 +28343,767 @@
         "pdfPage": 711,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.4",
+        "page": 711,
+        "pdfPage": 711,
+        "title": "多Function仲裁范围",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.4",
+        "page": 817,
+        "pdfPage": 817,
+        "title": "多Function仲裁范围",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.4",
+        "page": 713,
+        "pdfPage": 713,
+        "title": "MFVC上行请求路径",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.4",
+        "page": 818,
+        "pdfPage": 818,
+        "title": "MFVC上行请求路径",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2",
+        "page": 1194,
+        "pdfPage": 1194,
+        "title": "MFVC可选性与位置",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2",
+        "page": 1369,
+        "pdfPage": 1369,
+        "title": "MFVC可选性与位置",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1",
+        "page": 1182,
+        "pdfPage": 1182,
+        "title": "VC角色、VF和能力ID",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1",
+        "page": 1357,
+        "pdfPage": 1357,
+        "title": "VC角色、VF和能力ID",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2",
+        "page": 1369,
+        "pdfPage": 1369,
+        "title": "MFVC与SIOV互斥",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.7",
+        "page": 1201,
+        "pdfPage": 1201,
+        "title": "MFVC资源映射/装载/ID",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.7",
+        "page": 1375,
+        "pdfPage": 1375,
+        "title": "MFVC资源映射/装载/ID",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.8",
+        "page": 1203,
+        "pdfPage": 1203,
+        "title": "MFVC协商和表状态",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.8",
+        "page": 1377,
+        "pdfPage": 1377,
+        "title": "MFVC协商和表状态",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.2",
+        "page": 1197,
+        "pdfPage": 1197,
+        "title": "MFVC资源数和Function项宽",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.2",
+        "page": 1371,
+        "pdfPage": 1371,
+        "title": "MFVC资源数和Function项宽",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.10",
+        "page": 1204,
+        "pdfPage": 1204,
+        "title": "Function/ARI映射及空闲时隙",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.10",
+        "page": 1378,
+        "pdfPage": 1378,
+        "title": "Function/ARI映射及空闲时隙",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.3",
+        "page": 1198,
+        "pdfPage": 1198,
+        "title": "MFVC VC仲裁能力与偏移",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.3",
+        "page": 1372,
+        "pdfPage": 1372,
+        "title": "MFVC VC仲裁能力与偏移",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.4",
+        "page": 1199,
+        "pdfPage": 1199,
+        "title": "MFVC选择及All VCs Enabled",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.4",
+        "page": 1373,
+        "pdfPage": 1373,
+        "title": "MFVC选择及All VCs Enabled",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.6",
+        "page": 1200,
+        "pdfPage": 1200,
+        "title": "Function仲裁能力与时隙数",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.6",
+        "page": 1374,
+        "pdfPage": 1374,
+        "title": "Function仲裁能力与时隙数",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.7",
+        "page": 1202,
+        "pdfPage": 1202,
+        "title": "MFVC共享FC/Enable",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.7",
+        "page": 1376,
+        "pdfPage": 1376,
+        "title": "MFVC共享FC/Enable",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.5",
+        "page": 822,
+        "pdfPage": 822,
+        "title": "SVC与VC/MFVC互斥及措辞边界",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.29.5",
+        "page": 1497,
+        "pdfPage": 1497,
+        "title": "Use VC/MFVC切换字段",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.7",
+        "page": 1190,
+        "pdfPage": 1190,
+        "title": "共享Credit使用上限",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.7",
+        "page": 1365,
+        "pdfPage": 1365,
+        "title": "共享Credit使用上限",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.3",
+        "page": 711,
+        "pdfPage": 711,
+        "title": "同VC内的Port仲裁",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.3",
+        "page": 817,
+        "pdfPage": 817,
+        "title": "同VC内的Port仲裁",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.10",
+        "page": 1205,
+        "pdfPage": 1205,
+        "title": "Function表长度",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.10",
+        "page": 1379,
+        "pdfPage": 1379,
+        "title": "Function表长度",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.4",
+        "page": 714,
+        "pdfPage": 714,
+        "title": "特定多Function拓扑的过滤错误示例",
+        "verification": "已核读该页表6-6相关示例，非所有设备固定错误路由。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.4",
+        "page": 819,
+        "pdfPage": 819,
+        "title": "特定多Function拓扑的过滤错误示例",
+        "verification": "已核读该页表6-6相关示例，非所有设备固定错误路由。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.4",
+        "page": 712,
+        "pdfPage": 712,
+        "title": "Function TC赋值与局部Port仲裁",
+        "verification": "已核读本版本该页相关正文/字段，不标整章完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.1",
+        "page": 1196,
+        "pdfPage": 1196,
+        "title": "MFVC ID0008h与版本1",
+        "verification": "已核读本版本该页相关正文/字段，不标整章完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.5",
+        "page": 1199,
+        "pdfPage": 1199,
+        "title": "MFVC表一致性只读状态",
+        "verification": "已核读本版本该页相关正文/字段，不标整章完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.7",
+        "page": 1377,
+        "pdfPage": 1377,
+        "title": "双端完全关闭续表",
+        "verification": "已核读本版本该页相关正文/字段，不标整章完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "按知识块绑定已核正文；旧目录引用仍仅作入口",
+    "details": [
+      {
+        "id": "mfvc-scope-upstream",
+        "title": "MFVC解决多个Function争用上行出口的问题",
+        "paragraphs": [
+          "它是可选的设备级QoS基础设施，管理多Function胶合逻辑中的VC及Function仲裁，服务重点是Upstream Requests。",
+          "它不提供与完整Switch相同的Function间P2P和Downstream全路径QoS；不能将其当通用虚拟机隔离或DMA公平性保证。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "mfvc-capability-location",
+        "title": "MFVC能力只能在多Function上行口Function0",
+        "paragraphs": [
+          "有MFVC时在该位置的扩展配置空间发现ID0008h、Version1。即使各Function都没有单独VC能力，也允许设备实现MFVC。",
+          "反过来，多Function设备并不必然实现它；不能逐PF搜索后要求每个Function都有一套MFVC。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          37
+        ]
+      },
+      {
+        "id": "mfvc-two-maps",
+        "title": "Function VC与设备MFVC是两层映射和资源",
+        "paragraphs": [
+          "Function专属VC能力控制自身资源；MFVC控制设备公共Upstream Egress资源。相同TC在两层可以进入不同资源。",
+          "调试时分别保存Function VC和F0 MFVC的配置。只调Function权重却忽略公共出口瓶颈，仍可能看不到端到端收益。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "mfvc-upstream-walk",
+        "title": "上行请求经过的选择链",
+        "paragraphs": [
+          "Function先用专属机制给请求标TC，可选本Function TC/VC映射与仲裁，再由公共逻辑依据路由判上行或P2P。",
+          "上行时经过MFVC TC/VC映射、同VC的Function仲裁，最后多个MFVC资源再争用上行链路。每层仍受Ordering/FC门控。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          36
+        ]
+      },
+      {
+        "id": "mfvc-function-switch-port",
+        "title": "一个Function本身是Switch时，内部仍有Port仲裁",
+        "paragraphs": [
+          "若它的目标VC支持Port Arbitration，该层处理其多个Downstream Ingress的竞争；time-based还可约束这些Ingress注入。",
+          "这和MFVC层的Function Arbitration不是同一个仲裁器，Port号也不能直接填进Function表。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          36
+        ]
+      },
+      {
+        "id": "mfvc-p2p-limit",
+        "title": "P2P分支的QoS留给设备自有机制",
+        "paragraphs": [
+          "请求到达公共资源后先由地址/路由决定是否转另一Function；P2P的QoS管理没有在该MFVC架构中完整统一。",
+          "因此MFVC表中的权重不能直接解释为Function间P2P的服务承诺，更不能视作ACS或IOMMU权限规则。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "mfvc-sriov-siov",
+        "title": "VF跟随PF；7.0明确MFVC与SIOV不得同时使用",
+        "paragraphs": [
+          "VF使用所属PF的VC，不带独立VC能力。PF数量、VF数量与MFVC资源数是不同维度。",
+          "7.0规定任意PF已启SIOV时不得使用MFVC；MFVC使用中也不得启任何PF的SIOV，否则行为未定义。这条是所引7.0限制，不能据此声称6.0已有同样SIOV文字。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "id": "mfvc-register-offsets",
+        "title": "MFVC公共寄存器与每资源寄存器定位",
+        "paragraphs": [
+          "B为MFVC能力基址。整体布局与传统VC相似，但Resource Capability/Control中的Port仲裁名称换成Function仲裁。",
+          "资源索引i的Capability/Control/Status分别为B+10h+0Ch×i、B+14h+0Ch×i、B+18h+0Ch×i；不能把VC ID当数组索引。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          10,
+          11,
+          12,
+          13
+        ]
+      },
+      {
+        "id": "mfvc-cap1-bits",
+        "title": "MFVC Capability1逐字段",
+        "paragraphs": [
+          "Extended VC Count和Low Priority Extended Count分别在[2:0]/[6:4]；Reference Clock[9:8]只定义00=100ns。",
+          "[11:10]为Function表项宽度00/01/10/11→1/2/4/8bit，并不是Function总数。ARI还会施加额外宽度条件。"
+        ],
+        "referenceIndices": [
+          14,
+          15,
+          16,
+          17
+        ]
+      },
+      {
+        "id": "mfvc-vc-arb-control",
+        "title": "MFVC VC组仲裁：位图、选择与装载",
+        "paragraphs": [
+          "Capability2[7:0]支持fixed/WRR32/64/128，表位置在[31:24]，单位16字节；Control[3:1]选能力位编号。",
+          "Control[0]写1装载新表、读恒0；Port Status[0]写表后置1、装载完成清0，不是RW1C事件。LPVC中多于一个VC已启用时不能改选择。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          20,
+          21,
+          38
+        ]
+      },
+      {
+        "id": "mfvc-resource-cap-bits",
+        "title": "MFVC Resource Capability字段",
+        "paragraphs": [
+          "[7:0]是Function仲裁能力；[22:16]是Maximum Time Slots减1编码；[31:24]是Function Table的16字节单位偏移。",
+          "bits8～15在此表为保留，不能照抄传统VC Resource的Reject Snoop字段到MFVC。"
+        ],
+        "referenceIndices": [
+          22,
+          23
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "解释"
+          ],
+          "rows": [
+            [
+              "0～5",
+              "fixed/WRR32/WRR64/WRR128/Time128/WRR256支持位"
+            ],
+            [
+              "6～7",
+              "保留能力位"
+            ],
+            [
+              "22:16",
+              "仅time-based支持时有效，数值+1"
+            ],
+            [
+              "31:24",
+              "表相对MFVC基址的偏移，0无表"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "mfvc-resource-control-bits",
+        "title": "MFVC Resource Control与Status位对照",
+        "paragraphs": [
+          "Control低8bit为TC位图，bit16装载Function表，[19:17]选择Function仲裁，[26:24]分配VC ID，[31]使能VC。",
+          "Status bit0是Function Table一致性，bit1为协商Pending，两者均只读。bit16读恒0不能作为新表已生效的证据。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13
+        ]
+      },
+      {
+        "id": "mfvc-defaults-drain",
+        "title": "MFVC默认映射与重配置也要排空",
+        "paragraphs": [
+          "默认资源TC Map=FFh、其他=00h；TC0只能到默认VC0，已启用VC不能改ID，删除TC前必须无该标签新事务和在途事务。",
+          "这些是协议重配置前提，不是仅在芯片内部修改路由RAM的自由操作。普通初始化和在线重配置要分开处理。"
+        ],
+        "referenceIndices": [
+          10,
+          11
+        ]
+      },
+      {
+        "id": "mfvc-enable-pending",
+        "title": "MFVC两端Enable、协商和SVC边界",
+        "paragraphs": [
+          "启用需链路对端对应VC也启用；使用前双方Pending都清零；关闭前无使用流量，再启前双方完整关闭。",
+          "7.0对应VC可以由传统VC、MFVC或SVC结构管理；若本端已切SVC，传统MFVC资源被关闭，其控制大多不再生效。"
+        ],
+        "referenceIndices": [
+          24,
+          25,
+          12,
+          13,
+          26,
+          27,
+          39
+        ]
+      },
+      {
+        "id": "mfvc-shared-limit-difference",
+        "title": "MFVC共享上限与普通VC的单资源措辞差异",
+        "paragraphs": [
+          "7.0 MFVC的Count=0例外允许Limit硬连000b，普通VC对应字段允许硬连任意值；两个表不宜机械合并。",
+          "共享比例仍按每类credit而非Function事务权重；不能将高字节表偏移或Limit当写带宽的百分比寄存器。"
+        ],
+        "referenceIndices": [
+          24,
+          25,
+          28,
+          29
+        ]
+      },
+      {
+        "id": "mfvc-nonari-idle-code",
+        "title": "非ARI Function表必须留至少一个非实现编码",
+        "paragraphs": [
+          "表项既要覆盖所有已实现Function，还要有至少一个不对应实现Function的值供time-based空闲时隙使用。",
+          "所以2bit共4种值时最多覆盖3个Function，不能按2²直接宣称支持4个Function。编号稀疏时还要确认实际号码可表示。"
+        ],
+        "referenceIndices": [
+          16,
+          17
+        ]
+      },
+      {
+        "id": "mfvc-ari-width-alias",
+        "title": "ARI表宽必须4或8bit，无组模式存在别名集合",
+        "paragraphs": [
+          "没有MFVC Function Groups时，4bit表项按Function Number modulo 8匹配，8bit按modulo 128匹配。不是简单低4位/低8位直连。",
+          "若匹配多个Function，组内调度由实现决定，但必须保证前进。表项为8～15（4bit）或128～255（8bit）不会与这些余数匹配，不能把高半区当更多独立Function。"
+        ],
+        "referenceIndices": [
+          16,
+          17
+        ]
+      },
+      {
+        "id": "mfvc-groups-layer",
+        "title": "Function Groups开启后，表项选择组而非单Function",
+        "paragraphs": [
+          "仅ARI设备支持并由ARI-aware软件启用该能力时，表项指向一个MFVC Function Group；组内Function争用由实现决定且须前进。",
+          "组内哪个Function先被服务不是MFVC表直接定义。ARI组字段与ACS Function Group也不是可以不核能力就复用的一张表。"
+        ],
+        "referenceIndices": [
+          16,
+          17
+        ]
+      },
+      {
+        "id": "mfvc-time-scope",
+        "title": "Time-based Function仲裁只约束上行请求注入",
+        "paragraphs": [
+          "本轮系统架构说明time-based对上行请求的注入进行控制；不能以此承诺Downstream、Function间P2P或Completion流量的全部调度。",
+          "完整等时服务仍需Requester、Completer、Switch/RC各端规则和附录A共同满足；仅写一张表不构成端到端deadline证明。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          30,
+          31
+        ]
+      },
+      {
+        "id": "mfvc-default-forward-progress",
+        "title": "默认Function表必须照顾每个活动Function或组",
+        "paragraphs": [
+          "当默认VC的默认Function仲裁使用这张表时，默认项至少为各活动Function/组提供一次机会，以维持上行前进。",
+          "运行时新启Function/组也须重新检查调度覆盖与资源配置；反复只写F0不是所有多功能设备的通用可用默认表。"
+        ],
+        "referenceIndices": [
+          16,
+          17,
+          32,
+          33
+        ]
+      },
+      {
+        "id": "mfvc-error-location",
+        "title": "过滤错误发生在哪个Function取决于经过哪层映射",
+        "paragraphs": [
+          "所引多Function模型展示错误既可能在源Function映射处，也可能在公共F0路径或目标Function被检测；不是统一由Requester F0报错。",
+          "排查应沿源TC标签→本Function映射→公共MFVC映射→目标映射核对；表6-6是特定拓扑示例，不可当所有芯片固定错误路由。"
+        ],
+        "referenceIndices": [
+          34,
+          35
+        ]
+      }
+    ]
   },
   {
     "name": "Arbitration / WRR / Fairness",
     "group": "性能、QoS与时间",
-    "intro": "在客户端、通道和流量之间选择下一笔事务。",
-    "usage": "避免饥饿并分配吞吐，是具体IP实现策略的一部分。",
-    "mechanism": "轮询/加权轮询等仲裁算法从可运行请求中选择下一项；权重通常描述服务份额或请求额度，而不是固定时间比例。",
-    "example": "写通道0大任务、通道1小任务并发时，加权策略可影响延迟和公平性，但瓶颈还取决于后端。",
+    "intro": "在VC之间、同VC的Ingress来源之间，以及多Function公共出口分配发送机会。",
+    "usage": "按PCIe能力选择VC/Port/Function仲裁；芯片内部DMA或AXI仲裁另按实现资料核对。",
+    "mechanism": "Strict Priority、固定RR、WRR和Time-based WRR具有不同的竞争与空闲规则；选择受能力位图、表项和资源状态约束，候选仍须满足Ordering与FC。",
+    "example": "同一出口的两类持续流量即使得到相同事务机会，包长不同仍可能有不同字节吞吐；另一个VC缺credit时也不能靠加权重越过Tx Gate。",
     "checks": "在持续负载和资源受限两种条件下测试饥饿/延迟；不要把权重2直接解释为精确两倍GB/s。",
     "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
     "id": 116,
-    "status": "已整理 · 待持续深化",
+    "status": "已深化 · 所引正文/字段已核，逐版仍持续完善",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-21",
     "protocolReferences": [
       {
         "section": "6.3.3",
@@ -27590,9 +29115,833 @@
         "pdfPage": 705,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.1",
+        "page": 708,
+        "pdfPage": 708,
+        "title": "Port与VC两级仲裁",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.1",
+        "page": 815,
+        "pdfPage": 815,
+        "title": "Port与VC两级仲裁",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.3",
+        "page": 711,
+        "pdfPage": 711,
+        "title": "同VC内的Port仲裁",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.3",
+        "page": 817,
+        "pdfPage": 817,
+        "title": "同VC内的Port仲裁",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.4",
+        "page": 713,
+        "pdfPage": 713,
+        "title": "MFVC上行请求路径",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.4",
+        "page": 818,
+        "pdfPage": 818,
+        "title": "MFVC上行请求路径",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.2",
+        "page": 709,
+        "pdfPage": 709,
+        "title": "仲裁候选的流控及Ordering门控",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.2",
+        "page": 815,
+        "pdfPage": 815,
+        "title": "仲裁候选的流控及Ordering门控",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.2",
+        "page": 816,
+        "pdfPage": 816,
+        "title": "VC优先级分组与饥饿",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.3.3.2.2",
+        "page": 710,
+        "pdfPage": 710,
+        "title": "RR/WRR机会与带宽边界",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.2.2",
+        "page": 816,
+        "pdfPage": 816,
+        "title": "RR/WRR机会与带宽边界",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.3",
+        "page": 1186,
+        "pdfPage": 1186,
+        "title": "VC仲裁能力与表偏移",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.3",
+        "page": 1360,
+        "pdfPage": 1360,
+        "title": "VC仲裁能力与表偏移",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.6",
+        "page": 1188,
+        "pdfPage": 1188,
+        "title": "Port仲裁及Maximum Time Slots",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.6",
+        "page": 1363,
+        "pdfPage": 1363,
+        "title": "Port仲裁及Maximum Time Slots",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.6",
+        "page": 1200,
+        "pdfPage": 1200,
+        "title": "Function仲裁能力与时隙数",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.6",
+        "page": 1374,
+        "pdfPage": 1374,
+        "title": "Function仲裁能力与时隙数",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.9",
+        "page": 1192,
+        "pdfPage": 1192,
+        "title": "VC表4bit项与长度",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.9",
+        "page": 1367,
+        "pdfPage": 1367,
+        "title": "VC表4bit项与长度",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.10",
+        "page": 1193,
+        "pdfPage": 1193,
+        "title": "Port表与时隙规则",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.10",
+        "page": 1368,
+        "pdfPage": 1368,
+        "title": "Port表与时隙规则",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.2",
+        "page": 1197,
+        "pdfPage": 1197,
+        "title": "MFVC资源数和Function项宽",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.2",
+        "page": 1371,
+        "pdfPage": 1371,
+        "title": "MFVC资源数和Function项宽",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.10",
+        "page": 1204,
+        "pdfPage": 1204,
+        "title": "Function/ARI映射及空闲时隙",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.10",
+        "page": 1378,
+        "pdfPage": 1378,
+        "title": "Function/ARI映射及空闲时隙",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.5",
+        "page": 1187,
+        "pdfPage": 1187,
+        "title": "表一致性状态",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.5",
+        "page": 1362,
+        "pdfPage": 1362,
+        "title": "表一致性状态",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.7",
+        "page": 1189,
+        "pdfPage": 1189,
+        "title": "资源TC映射/仲裁选择/VC ID",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.7",
+        "page": 1364,
+        "pdfPage": 1364,
+        "title": "资源TC映射/仲裁选择/VC ID",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.7",
+        "page": 1201,
+        "pdfPage": 1201,
+        "title": "MFVC资源映射/装载/ID",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.7",
+        "page": 1375,
+        "pdfPage": 1375,
+        "title": "MFVC资源映射/装载/ID",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.8",
+        "page": 1203,
+        "pdfPage": 1203,
+        "title": "MFVC协商和表状态",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.8",
+        "page": 1377,
+        "pdfPage": 1377,
+        "title": "MFVC协商和表状态",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.1.4",
+        "page": 1187,
+        "pdfPage": 1187,
+        "title": "选择与All VCs Enabled版本措辞",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.4",
+        "page": 1361,
+        "pdfPage": 1361,
+        "title": "选择与All VCs Enabled版本措辞",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.4",
+        "page": 1199,
+        "pdfPage": 1199,
+        "title": "MFVC选择及All VCs Enabled",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.4",
+        "page": 1373,
+        "pdfPage": 1373,
+        "title": "MFVC选择及All VCs Enabled",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.2.10",
+        "page": 1205,
+        "pdfPage": 1205,
+        "title": "Function表长度",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2.10",
+        "page": 1379,
+        "pdfPage": 1379,
+        "title": "Function表长度",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.5",
+        "page": 822,
+        "pdfPage": 822,
+        "title": "SVC与VC/MFVC互斥及措辞边界",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.29.5",
+        "page": 1497,
+        "pdfPage": 1497,
+        "title": "Use VC/MFVC切换字段",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.2",
+        "page": 1369,
+        "pdfPage": 1369,
+        "title": "MFVC与SIOV互斥",
+        "verification": "已核读本版本该页相关正文/字段；不表示整章、全部附录或中间ECN完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.3.2.2",
+        "page": 817,
+        "pdfPage": 817,
+        "title": "WRR公平和突发续页",
+        "verification": "已核读本版本该页相关正文/字段，不标整章完成。",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "按知识块绑定已核正文；旧目录引用仍仅作入口",
+    "details": [
+      {
+        "id": "arb-three-contenders",
+        "title": "VC、Port、Function仲裁分别在争什么",
+        "paragraphs": [
+          "VC Arbitration在一个出口的多个VC之间选择；Port Arbitration在同一目标VC中选择不同Ingress来源；Function Arbitration在MFVC同一目标VC中选择不同Function/组。",
+          "先确定竞争资源再找权重。芯片内部AXI客户端或DMA描述符仲裁可能另有算法，不能直接按这三组寄存器控制。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "arb-eligibility-gates",
+        "title": "先满足Ordering和对应credit，才参与仲裁",
+        "paragraphs": [
+          "VC逻辑不能把缺少所需FC credits的包持续暴露为候选而阻塞其他VC；同时必须遵守Posted/Non-Posted/Completion的Ordering规则。",
+          "有较高权重不意味着能越过credit不足或事务顺序约束。测吞吐时要同时看源队列、目标credit和调度机会。"
+        ],
+        "referenceIndices": [
+          7,
+          8
+        ]
+      },
+      {
+        "id": "arb-strict-priority",
+        "title": "Strict Priority低时延与饥饿风险",
+        "paragraphs": [
+          "架构默认按VC ID升序提高相对优先级；若配置上、下两组，上组非空时优先服务，上组内部strict，低组按支持的算法。",
+          "必须限制高优先级注入峰值与占用时长，并保证低优先级充分服务以避免事务超时。高TC编号本身不自动赋予链路优先级。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "id": "arb-rr-not-bytes",
+        "title": "RR公平的是事务机会，不是等GB/s",
+        "paragraphs": [
+          "不同VC各得到相同机会时，大包和小包占链路时间不同；即使机会1:1，字节吞吐也可能显著不同。",
+          "例如同样忽略开销且一次各发一包，256B与64B对应4:1的payload字节；这只是算术示意，不含Header/FLIT/credit及实测效率。"
+        ],
+        "referenceIndices": [
+          10,
+          11
+        ]
+      },
+      {
+        "id": "arb-wrr-weight-limits",
+        "title": "WRR权重影响竞争服务和burst，不直接给固定速率",
+        "paragraphs": [
+          "在持续竞争且候选可发送的前提下，权重调节机会、最低服务与突发程度，最大包长也影响仲裁等待。",
+          "若某源无事务、被FC阻塞、后端存储器受限或高组strict长期占用，权重比不直接转化为整机带宽比。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          7,
+          8,
+          43
+        ]
+      },
+      {
+        "id": "arb-scheme-code-table",
+        "title": "三类仲裁的Select编码表",
+        "paragraphs": [
+          "Select是3bit编号，要核对应Capability的支持位。VC组的可选范围少于Port/Function；0代表硬件固定，不代表关闭仲裁。",
+          "Select=4只在Port/Function层为Time-based128；Select=5为WRR256，VC层这些编码保留。"
+        ],
+        "referenceIndices": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "table": {
+          "columns": [
+            "Select",
+            "VC组",
+            "Port/Function"
+          ],
+          "rows": [
+            [
+              "0",
+              "fixed",
+              "fixed"
+            ],
+            [
+              "1",
+              "WRR32",
+              "WRR32"
+            ],
+            [
+              "2",
+              "WRR64",
+              "WRR64"
+            ],
+            [
+              "3",
+              "WRR128",
+              "WRR128"
+            ],
+            [
+              "4",
+              "保留",
+              "Time-based128"
+            ],
+            [
+              "5",
+              "保留",
+              "WRR256"
+            ],
+            [
+              "6/7",
+              "保留",
+              "保留"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "arb-vc-table-format",
+        "title": "VC表每phase固定4bit，最高位保留",
+        "paragraphs": [
+          "低3bit记录已启用且有效的VC ID；bit3保留。WRR32/64/128分别需32/64/128项，即16/32/64字节。",
+          "Phase0位于表起始DWORD最低4bit，Phase7位于最高4bit；下一DWORD从Phase8开始。不能把每个phase当独立DWORD。"
+        ],
+        "referenceIndices": [
+          18,
+          19
+        ]
+      },
+      {
+        "id": "arb-port-function-width",
+        "title": "Port/Function表项可为1/2/4/8bit",
+        "paragraphs": [
+          "用Capability1的Entry Size编码确定项宽；phase数由所选算法确定，两者独立。总字节=phase数×项宽÷8。",
+          "同样128phase、2bit项仅32字节；128phase、8bit项为128字节。MFVC ARI还要求4或8bit，不是任何宽度都合法。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          22,
+          23,
+          24,
+          25
+        ]
+      },
+      {
+        "id": "arb-table-addressing",
+        "title": "表项定位：DQWORD偏移与DWORD内bit范围",
+        "paragraphs": [
+          "先由能力基址+Table Offset×16找到表首，再按phase×项宽定位对应字节/DWORD内bit。",
+          "16字节对齐来自表偏移单位，不表示所有表都只有16字节；需检查完整表末尾仍在配置空间且不与其他结构重叠。"
+        ],
+        "referenceIndices": [
+          12,
+          13,
+          14,
+          15,
+          20,
+          21
+        ]
+      },
+      {
+        "id": "arb-write-load-status",
+        "title": "写表不等于仲裁器已采用新表",
+        "paragraphs": [
+          "任一表项软件写入会置对应Table Status=1；写Load=1请求锁存，硬件完成后清Status。Load读回总为0、写0无动作。",
+          "VC组表看Port Status[0]；Port/Function表看该Resource Status[0]。不能把1解释成完成，也不能用RW1C去清只读状态。"
+        ],
+        "referenceIndices": [
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33
+        ]
+      },
+      {
+        "id": "arb-select-change-limit",
+        "title": "VC组Select不能在多个LPVC已启用时修改",
+        "paragraphs": [
+          "普通VC与MFVC的Port Control[3:1]均有这个限制。切换算法与刷新表是两种不同操作，不能把Load命令当允许任意在线换算法。",
+          "先确认活动VC、业务排空和所选能力；本轮查询工具只做检查，不给未经协调的寄存器写序列。"
+        ],
+        "referenceIndices": [
+          34,
+          35,
+          36,
+          37
+        ]
+      },
+      {
+        "id": "arb-port-wrr-empty",
+        "title": "普通WRR Port：一项一事务，无事务立即跳过",
+        "paragraphs": [
+          "当前phase指向某Ingress的该VC，有事务则服务一笔、完成后转下一phase；无事务则立即跳过。",
+          "普通WRR表项不能填当前Egress Port号作为空闲编码；不能照搬time-based表中的显式idle。"
+        ],
+        "referenceIndices": [
+          20,
+          21
+        ]
+      },
+      {
+        "id": "arb-port-time-idle",
+        "title": "Time-based Port：保留虚拟时隙，允许指定空闲",
+        "paragraphs": [
+          "每phase对齐虚拟时隙，服务该Ingress一笔，推进到下一phase要等下一虚拟时隙。",
+          "填Egress Port号或该Ingress无此VC事务时，这一时隙为空闲，不立即借给下一phase。这与工作保持型普通WRR有实质区别。"
+        ],
+        "referenceIndices": [
+          20,
+          21
+        ]
+      },
+      {
+        "id": "arb-function-wrr-time",
+        "title": "Function WRR与Time-based：空队列的处理不同",
+        "paragraphs": [
+          "普通WRR服务一笔后推进，无事务立即跳过；time-based等下一虚拟时隙推进。",
+          "time-based时，表项指向不存在的Function/组或其无事务都会形成idle；普通WRR不将不存在项当可自由使用的合法配置。"
+        ],
+        "referenceIndices": [
+          24,
+          25
+        ]
+      },
+      {
+        "id": "arb-max-timeslots",
+        "title": "Maximum Time Slots为减1编码，不等于固定表长度",
+        "paragraphs": [
+          "Resource Capability[22:16]值0→最多1个time slot，127→最多128；仅支持time-based时有效。",
+          "Time-based表仍有128phase。Reference Clock=100ns只给参考单位；完整虚拟时隙时长和等时带宽核算还需附录A，不用字段相乘编造deadline。"
+        ],
+        "referenceIndices": [
+          14,
+          15,
+          16,
+          17,
+          20,
+          21
+        ]
+      },
+      {
+        "id": "arb-reject-snoop",
+        "title": "Reject Snoop与仲裁权重无关，且有角色限制",
+        "paragraphs": [
+          "普通Resource Capability[15]仅Root Port/RCRB有效；置位允许拒绝适用No Snoop却未置该属性的事务，返回UR。",
+          "这不是强制拒绝所有读写、不是ACS规则，也不适用于Endpoint或Switch Port；MFVC对应bits不按此解释。"
+        ],
+        "referenceIndices": [
+          14,
+          15,
+          16,
+          17
+        ]
+      },
+      {
+        "id": "arb-old-aps-ignore",
+        "title": "旧Advanced Packet Switching位14如今读值未定义",
+        "paragraphs": [
+          "所引6.0/7.0要求软件忽略此位；不能把旧名称作为当前支持APS的能力判据。",
+          "解析历史寄存器转储时必须绑定版本。普通VC的该位也不应误读成MFVC的有效Function仲裁能力。"
+        ],
+        "referenceIndices": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "arb-default-tables",
+        "title": "默认表的前进要求因仲裁层不同",
+        "paragraphs": [
+          "默认VC Arbitration使用表时，默认项全0以保证VC0前进；默认Port表要给每个其他Port至少一项。",
+          "默认Function表要覆盖各活动Function/组。不能把所有表都清零当成通用初始化，更不能把有一项就认为满足所有负载的延迟目标。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          20,
+          21,
+          24,
+          25,
+          38,
+          39
+        ]
+      },
+      {
+        "id": "arb-version-boundary",
+        "title": "6.0/7.0确认的相同与不同，早期版本另核",
+        "paragraphs": [
+          "已对照两版传统VC/MFVC表、32/64/128/256phase、Function别名及WRR跳空；7.0另有SVC切换、SIOV互斥及All VCs Enabled措辞变化。",
+          "这些证据不确定首次引入版本，不把QoS能力绑定成某个Gen速率的必选功能。Gen1～Gen5对应正文/ECN及完整附录A仍待逐项核读。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          24,
+          25,
+          34,
+          35,
+          40,
+          41,
+          42
+        ]
+      },
+      {
+        "id": "arb-table-query",
+        "title": "查询：仲裁表大小、地址与phase bit位置",
+        "paragraphs": [
+          "选择VC/Port/Function、算法、项宽及能力支持，计算表长度和指定phase所在DWORD。",
+          "只对已定义且通告支持的算法计算；固定硬件方案不猜表长，零偏移代表无表。不会生成配置写操作。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          20,
+          21,
+          24,
+          25,
+          38,
+          39
+        ]
+      },
+      {
+        "id": "arb-phase-query",
+        "title": "查询：Port phase在WRR和time-based下的结果",
+        "paragraphs": [
+          "输入phase指向的Port、Egress Port号和是否有该VC事务，分别解释服务、跳过、保留空闲时隙或非法配置。",
+          "这是所引Port表规则的条件说明，不是整个Switch的吞吐/延迟仿真；未模拟真实credit、FLIT打包和虚拟时钟。"
+        ],
+        "referenceIndices": [
+          20,
+          21
+        ]
+      }
+    ]
   },
   {
     "name": "TPH：TLP Processing Hints",
