@@ -64,6 +64,10 @@ if 'marginReferences' in phy:
     assert set(phy['marginReferences']['ids'])<={f['id'] for f in features}
     assert 'p.marginReferences' in raw
 assert set(phy_ids)<={f['id'] for f in features}
+if 'timeReferences' in phy:
+    assert phy['timeReferences']['title'] and len(phy['timeReferences']['ids'])==len(set(phy['timeReferences']['ids']))
+    assert set(phy['timeReferences']['ids'])<={f['id'] for f in features}
+    assert 'p.timeReferences' in raw
 if 'lowPowerReferences' in phy:
     assert phy['lowPowerReferences']['title'] and len(phy['lowPowerReferences']['ids'])==len(set(phy['lowPowerReferences']['ids']))
     assert set(phy['lowPowerReferences']['ids'])<={f['id'] for f in features}

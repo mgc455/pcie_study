@@ -1,6 +1,6 @@
 {
   "date": "2026-10-21",
-  "summary": "R19：从配置请求与枚举观察点推进到BAR、桥窗口及ECAM，并纠正Base7.0语义外推。",
+  "summary": "R20：PTM消息、相邻dialog历史、角色/字段、计时与context有效性，以及粒度和PHY延迟误差。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -346,6 +346,16 @@
       "name": "R19计算与导航验证",
       "status": "本地构建和回归通过；发布后核线上资源",
       "detail": "验证23866组BAR/桥窗口/ECAM及新详情路由，保留64bit精度，检查零掩码/未实现/关闭范围、版本类型差异、空输入及实时事件；42个新详情、章序补录与PDF1090、旧来源索引及历史回归通过。"
+    },
+    {
+      "name": "R20 PTM正文与公式自查",
+      "status": "所引6.0/7.0机制、消息、字段及术语已核读",
+      "detail": "核读6.21、2.2.8.10、7.9.15及字段续页；视觉核公式6-2与7.0 Capability图表。明确ResponseD本轮t2′配前轮t3−t2、100us/1us/10us/10ms不同条件、ePTM重放恢复、Local/Effective 00h/FFh不同语义。Glossary6.0 p88/7.0 p123确认MUST@FLIT看支持能力，不看当前运行模式。"
+    },
+    {
+      "name": "R20查询与导航验证",
+      "status": "本地通过；发布后核线上版本",
+      "detail": "100140组角色/支持能力、时间戳、粒度组合及边界通过；包括大于53bit整数精度、0.5ns、无效/空输入、00h未知与FFh非精确值。44个详情、PHY入口、精确条款/PDF来源及旧内容/历史回归通过。"
     }
   ],
   "unresolved": [
@@ -413,7 +423,12 @@
     "R19未完成全部能力链、完整固件/OS枚举算法、ACPI MCFG及CPU屏障API；ECAM查询基址明确为Bus0、非ARI，不能自动替代平台地址描述。",
     "BAR/桥窗口新旧语义的首次ECN与6.x/7.x合入链、Secure Selective IDE所有路由/认证分支、FPB/ARI/SR-IOV/RBAR/EA仍待继续；不按当前Link速率推断规范修订。",
     "7.0配置Type1非IDE分支还带captured Bus条件及SR-IOV多Bus交叉条款；本轮未将未覆盖条件强行简化成全局UR。6.0桥Prefetchable窗口先有实现须支持64bit要求，随后有通用32/64编码说明，查询按其PCIe实现要求限定。",
-    "本轮未执行真实BAR sizing、寄存器写入、DMA、OS资源重分配或RTL验证；计算结果不是设备可达性/安全性的证明。"
+    "本轮未执行真实BAR sizing、寄存器写入、DMA、OS资源重分配或RTL验证；计算结果不是设备可达性/安全性的证明。",
+    "R20仍未核PTM/ePTM/Delay Adaptation首次ECN及Gen1～Gen5全部条款和后续修订；已存在资料待核读不等于缺文档。",
+    "独立Switch作为PTM Root的示例拓扑与一般USP Enable顺序文字需结合完整层级机制进一步核验；快照工具在此类场景不作完整配置裁决。",
+    "Local Clock Granularity有Root Capable适用条件；对具体Switch/平台如何提供软件可用的路径粒度、原始计数换算和Context Valid接口仍需实现文档，不虚构统一时间寄存器。",
+    "6.0重复PTM Request的Responder失效句位于ePTM相关段，7.0明确必选/建议分支；Requester t4捕获条文写Response而图/算式含ResponseD，保留原引用，不以简化表代替完整类型处理核验。",
+    "Retimer路径不对称、PHY捕获补偿、频率尺度、计数回卷、舍入策略、实测误差和CPU/设备时间API未硬件验证；两个算式工具只展示假设下数学关系。"
   ],
   "externalComparison": {
     "date": "2026-10-21",
