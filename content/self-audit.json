@@ -371,6 +371,16 @@
       "name": "包结构可视化修订",
       "status": "字段图逐项对照",
       "detail": "原创重绘6.0 p163/196与7.0 p209/246，区分NFM/FM、TH边界和Base Header/完整包；同一逻辑Tag跨片段联动，不将图的视觉bit顺序冒充线上位序。未绘制的OHC/各消息/早期版本继续保留边界。 补6.0 p278/282/283与7.0 p337/341的DLLP字段，及既有FLIT/DLP定位的图形展示；25套程序化回归通过，file协议预览被浏览器策略拦截，不计为视觉验收。"
+    },
+    {
+      "name": "236B TLP区内部解释与图形补缺",
+      "status": "按对应正式版正文及图核对",
+      "detail": "区分FLIT/TLP、Base/完整包、MRd Length/请求Payload，展开OHC位图及TS非线性长度；6.0 suffix占位和7.0语法、TS001在IDE下的内容差异保留。Header位置依据图形而非PDF文本抽取顺序。图例限定无Prefix/OHC/Trailer普通全BE MWr64，未冒充完整协议解析器。"
+    },
+    {
+      "name": "FLIT包内展示回归",
+      "status": "通过",
+      "detail": "20种位图、7692组新增查询/路由及26套可执行回归通过；验证跨FLIT续传字节守恒、无重复头、每半FLIT计数、MRd无请求数据、OHC/TS长度与Memory高低地址DW位置。仅程序化UI检查，网站视觉验收未完成。研究队列未推进。"
     }
   ],
   "unresolved": [
