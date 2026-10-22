@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-站点地址：[PCIe Study](https://mgc455.github.io/pcie_study/)，已配置 main 分支 /docs 发布。
+历史GitHub Pages地址：[PCIe Study](https://mgc455.github.io/pcie_study/)（当前已关闭）。仓库保持私有，Cloudflare Pages + Access正在准备，尚无已验证的新线上地址。部署步骤见 [Cloudflare部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -43,7 +43,7 @@ python -m http.server 8000 --directory docs --bind 127.0.0.1
 
 打开 http://127.0.0.1:8000 。也可直接打开 `docs/index.html` 阅读；浏览器本地存储/PDF预览能力因环境而异。
 
-## GitHub Pages 首次配置
+## GitHub Pages 历史配置（本次不启用）
 
 在仓库 Settings → Pages → Build and deployment 中选 **Deploy from a branch**，分支 **main**，目录 **/docs**，保存。之后公开 `docs/` 的提交可触发 Pages 发布。见 [GitHub 官方说明](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)。
 
