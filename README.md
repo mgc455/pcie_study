@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-22-r35`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-22-r36`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -114,3 +114,9 @@ UIO细规则绑定Base7.0；恢复与L1SS相关规则分别核对Base6.0/7.0。�
 - [Configuration候选Lane组](https://mgc455.github.io/pcie_study/#feature/4/detail/cfg-upstream-group-query)
 
 ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会员下载版逐字一致或后续Base合入。
+
+## R36细节入口
+
+- [接收错误处置](https://mgc455.github.io/pcie_study/#feature/33/detail/uio-receive-disposition-query)：Malformed、UIO无法服务与流控记账。
+- [UIO读地址覆盖](https://mgc455.github.io/pcie_study/#feature/20/detail/uio-read-range-ledger-query)：DW总量、成功区间、重复和未知错误地址。
+- [EB恢复窗口](https://mgc455.github.io/pcie_study/#feature/169/detail/pipe-eb-reset-window-query)：Original PIPE弹性缓冲恢复与16PCLK窗口。

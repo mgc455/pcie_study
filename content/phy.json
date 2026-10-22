@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-10-22",
-  "summary": "PHY一级体系：从接口与数据通路查到时钟复位、动态校准Bank、供电保持和评估中止；按PIPE及具体产品版本区分。",
+  "summary": "PHY一级体系：对齐控制、弹性缓冲复位与有效指示分层；结合时钟复位、动态校准与协议训练逐项查阅。",
   "groups": [
     {
       "title": "分层与资料入口",
@@ -154,6 +154,10 @@
     {
       "symptom": "切速/掉电恢复后偶发不稳定，或者ABORT后仍有反馈",
       "checks": "先核动态Bank是否匹配且保存域可信，再核PLL变化对TX校准的依赖；把静态回填、校准完成、PHY有效、对齐分别记录。MAC中止后丢弃迟到评估结果不等于PMA运算立即停止。"
+    },
+    {
+      "symptom": "EB reset后仍未恢复或把write_ack误当接收就绪",
+      "checks": "分别观察控制事件、RxStatus=1xx、指针/clean数据恢复与16PCLK窗口；BlockAlignControl/消息Ack/RxValid不是同一个完成事件。先确认Original还是SerDes、Loopback角色及适用速率。"
     }
   ],
   "limits": [
@@ -172,7 +176,8 @@
     "继续核PIPE7.1 LocalPresetIndex 64GT/s跳号及§8.6/§9.9时间差异的官方勘误；四tap完整合法性和全部方向字段另核。",
     "继续完整PRBS多项式/产品配置、实际回环覆盖、各代测试规范、FBER与突发模型；本轮未做BERT/AMI/硬件验收。",
     "继续核PIPE P2→P1/六条转换清单/计时行差异及官方澄清、最早修订和全部产品保持清单；已有文件未核读不视为缺失。",
-    "R34已核动态Bank及选定评估/监测规则；共享MPLL并发列表拼写、Gen6全复位/掉电保持矩阵、6µs同拍/重触发/后续动作、产品FOM遍历计数疑点待继续核正文或勘误。"
+    "R34已核动态Bank及选定评估/监测规则；共享MPLL并发列表拼写、Gen6全复位/掉电保持矩阵、6µs同拍/重触发/后续动作、产品FOM遍历计数疑点待继续核正文或勘误。",
+    "R36补Original PIPE块对齐控制和EB Reset/错误；继续Gen5/Gen6实际接收检测与6µs超时后硬件动作，不从简短手册推断完整重试/复位优先级。"
   ],
   "lowPowerReferences": {
     "title": "低功耗协议与PHY握手、共享PLL及产品PG/Context恢复",
