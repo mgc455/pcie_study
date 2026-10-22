@@ -88,3 +88,9 @@ python -m http.server 8000 --directory docs --bind 127.0.0.1
 - [静态Context ID与固件前调试交接](https://mgc455.github.io/pcie_study/#feature/176/detail/context-selection-query)
 
 以上为Gen5/Gen6指定产品版本的原创解释和有限依赖查询，区分协议、PIPE、PMD和物理供电；已标出PCS/PMA上电复位时间的资料差异。
+
+### 私有仓库与R32离线查阅
+
+仓库已设为私有，GitHub Pages当前关闭。下载本仓库后，在本地打开 `docs/index.html`，可继续使用站内搜索、详情深链接和本地PDF对照；本轮不恢复公开Pages。
+
+R32新增Recovery复杂出口、速率切换和NFM/FM改宽条件，分别见功能4、5、6。三个查询块的稳定ID为 `recovery-lock-branch-query`、`speed-window-target-query`、`width-entry-version-query`；在本地网页的“协议细节查询”中可检索。正文分列Base6.0/7.0、接收/发送计数起点、EI窗口、48/96ms超时与未核交互。
