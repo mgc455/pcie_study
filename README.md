@@ -62,3 +62,12 @@ python -m http.server 8000 --directory docs --bind 127.0.0.1
 - [DeepPM/Restore事件顺序与32周期](https://mgc455.github.io/pcie_study/#feature/174/detail/deep-pm-trace-query)
 
 接口规则绑定PIPE7.1，产品接收行为分别绑定2.02a/3.02a；工具为只读学习模型，保留规范内部差异及尚未核读范围。
+
+### UIO与SVC配置查询
+
+- [UIO请求位图与Type](https://mgc455.github.io/pcie_study/#feature/33/detail/uio-request-header-maps)
+- [256B/4KB边界与请求拆分](https://mgc455.github.io/pcie_study/#feature/33/detail/uio-boundary-split-query)
+- [SVC寄存器解码](https://mgc455.github.io/pcie_study/#feature/114/detail/svc-register-decoder)
+- [双端TC/VC映射和协商检查](https://mgc455.github.io/pcie_study/#feature/114/detail/svc-link-configuration-query)
+
+本组细规则绑定Base7.0，区分Supported/Selected、资源序号/VC ID及Pending有效范围；工具只检查输入，不操作设备。
