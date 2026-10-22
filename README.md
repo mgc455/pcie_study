@@ -25,6 +25,12 @@
 
 查询通过仅表示已检查的必要条件，不替代电气、BER或硬件验证。各块可选择本地对应版本PDF对照。
 
+## UIO查询入口
+
+- [UIO机制与端到端条件](https://mgc455.github.io/pcie_study/#feature/33)：全路径FM、独立ID命名空间及顺序责任。
+- [UIO完成DW账本](https://mgc455.github.io/pcie_study/#feature/20/detail/uio-completion-ledger-query)：无序/聚合完成、错误状态归并、原创字段图。
+- [UIO流控与接受依赖](https://mgc455.github.io/pcie_study/#feature/21/detail/uio-fc-class-versus-completion)：写用Posted FC仍需事务完成。
+
 ## 本地构建
 
 仅需 Python 3 标准库；浏览器端没有外部 CDN/框架依赖：
