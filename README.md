@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，内容版本为 `2026-10-22-r33`。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-22-r34`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -18,6 +18,10 @@
 - 原始 RTL、PDF、商业手册正文、本地路径和工程专属配置不随网站发布。
 
 ## PHY细节查询入口
+
+- [动态校准Bank分支](https://mgc455.github.io/pcie_study/#feature/176/detail/dynamic-bank-learning-query)：配置匹配、保持证据、首次/同Bank/跨Bank与Force/Skip。
+- [6µs对齐观察窗口](https://mgc455.github.io/pcie_study/#feature/174/detail/recal-window-learning-query)：PHY有效到MAC RxReady，明确未知边界。
+- [评估中止的两层职责](https://mgc455.github.io/pcie_study/#feature/173/detail/adapt-abort-two-boundaries)：内部继续计算与MAC忽略迟到反馈。
 
 - [PAM4 TX四抽头](https://mgc455.github.io/pcie_study/#feature/172/detail/pam4-four-tap-query)：Base6.0/7.0数字约束、Q类Preset与理想电压/FIR演示。
 - [RX评估反馈](https://mgc455.github.io/pcie_study/#feature/173/detail/rx-eval-query)：反馈提交、中止重叠、无效候选与方向解码。

@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-10-22",
-  "summary": "PHY一级体系：深化参考时钟许可、RX待机/EI/CDR、DeepPM异步闭环与上下文恢复；按PIPE及具体产品版本区分证据。",
+  "summary": "PHY一级体系：从接口与数据通路查到时钟复位、动态校准Bank、供电保持和评估中止；按PIPE及具体产品版本区分。",
   "groups": [
     {
       "title": "分层与资料入口",
@@ -150,6 +150,10 @@
     {
       "symptom": "内部环回通过，板外链路失败",
       "checks": "确认环回点覆盖范围，再查未覆盖的AFE、封装、PCB、时钟/电源和对端。"
+    },
+    {
+      "symptom": "切速/掉电恢复后偶发不稳定，或者ABORT后仍有反馈",
+      "checks": "先核动态Bank是否匹配且保存域可信，再核PLL变化对TX校准的依赖；把静态回填、校准完成、PHY有效、对齐分别记录。MAC中止后丢弃迟到评估结果不等于PMA运算立即停止。"
     }
   ],
   "limits": [
@@ -167,7 +171,8 @@
     "继续核各代正式版接收电气/采样/CDR及完整压力眼工具要求；保留Base6.0/7.0平均次数与曲线排版疑点，后续核勘误。",
     "继续核PIPE7.1 LocalPresetIndex 64GT/s跳号及§8.6/§9.9时间差异的官方勘误；四tap完整合法性和全部方向字段另核。",
     "继续完整PRBS多项式/产品配置、实际回环覆盖、各代测试规范、FBER与突发模型；本轮未做BERT/AMI/硬件验收。",
-    "继续核PIPE P2→P1/六条转换清单/计时行差异及官方澄清、最早修订和全部产品保持清单；已有文件未核读不视为缺失。"
+    "继续核PIPE P2→P1/六条转换清单/计时行差异及官方澄清、最早修订和全部产品保持清单；已有文件未核读不视为缺失。",
+    "R34已核动态Bank及选定评估/监测规则；共享MPLL并发列表拼写、Gen6全复位/掉电保持矩阵、6µs同拍/重触发/后续动作、产品FOM遍历计数疑点待继续核正文或勘误。"
   ],
   "lowPowerReferences": {
     "title": "低功耗协议与PHY握手、共享PLL及产品PG/Context恢复",
@@ -251,6 +256,31 @@
       177,
       180,
       175
+    ]
+  },
+  "contextReferences": {
+    "title": "动态Context、保持与评估边界",
+    "links": [
+      {
+        "featureId": 176,
+        "detailId": "dynamic-context-path-table",
+        "title": "动态切换分支表：首次、同Bank、跨Bank和强制校准"
+      },
+      {
+        "featureId": 176,
+        "detailId": "dynamic-bank-learning-query",
+        "title": "查询：目标校准结果是否可复用，需走哪个产品分支"
+      },
+      {
+        "featureId": 174,
+        "detailId": "recal-window-learning-query",
+        "title": "查询：6µs对齐观察窗口与未知边界"
+      },
+      {
+        "featureId": 173,
+        "detailId": "adapt-abort-two-boundaries",
+        "title": "MAC中止与PMA中止有不同后果，不能跨接口解释ABORT"
+      }
     ]
   }
 }

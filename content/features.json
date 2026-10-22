@@ -68792,7 +68792,7 @@
     "example": "冷启动通过而温度变化后误码增加时，应检查持续适应、校准状态和时钟/电源条件，不能仅重新跑一次LTSSM掩盖问题。",
     "checks": "记录校准完成、适应阶段、失败原因和BER；更改EQ前确认固件是否会覆盖手工设置。",
     "status": "已深化 · 所引正文/模型已核，逐版持续完善",
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-22",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -69536,6 +69536,160 @@
         "title": "评估完成",
         "verification": "核读本地PIPE7.1所引正文，相关印刷页与本地PDF物理页一致；本地190页、官网189页副本差异保留，不假定整份同页。只确认所述规则。",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.1",
+        "page": 61,
+        "pdfPage": 61,
+        "title": "Gen6产品一次RX评估的前提：P0、出EI、数据使能和CDR有效",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6",
+        "page": 61,
+        "pdfPage": 61,
+        "title": "Ack有效才采本次FOM/方向，不能读旧寄存器值当新结果",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "5.7",
+        "page": 160,
+        "pdfPage": 160,
+        "title": "Ack有效才采本次FOM/方向，不能读旧寄存器值当新结果",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "9.10",
+        "page": 182,
+        "pdfPage": 182,
+        "title": "Ack有效才采本次FOM/方向，不能读旧寄存器值当新结果",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.1",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "评估进行时不要重叠普通RX配置请求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "5.7",
+        "page": 160,
+        "pdfPage": 160,
+        "title": "MAC中止与PMA中止有不同后果，不能跨接口解释ABORT",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.1",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "MAC中止与PMA中止有不同后果，不能跨接口解释ABORT",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "9.10",
+        "page": 183,
+        "pdfPage": 183,
+        "title": "MAC中止与PMA中止有不同后果，不能跨接口解释ABORT",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.1",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "直接中断PMA评估可能留下较差接收设置",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.1",
+        "page": 61,
+        "pdfPage": 61,
+        "title": "相邻评估之间可能需要重新建立接收工作点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6",
+        "page": 61,
+        "pdfPage": 61,
+        "title": "评估时长依赖baud与参考频率，不能借用6µs对齐监测",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "5.6",
+        "page": 159,
+        "pdfPage": 159,
+        "title": "评估时长依赖baud与参考频率，不能借用6µs对齐监测",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.1.1",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "产品FOM示例计数有歧义：不要直接照抄成统一遍历算法",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.1.1",
+        "page": 63,
+        "pdfPage": 63,
+        "title": "产品FOM示例计数有歧义：不要直接照抄成统一遍历算法",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       }
     ],
     "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
@@ -70255,6 +70409,100 @@
             ]
           ]
         }
+      },
+      {
+        "id": "adapt-product-evaluation-prerequisites",
+        "title": "Gen6产品一次RX评估的前提：P0、出EI、数据使能和CDR有效",
+        "paragraphs": [
+          "PMA3.02a §4.6.1限定评估入口：接收器处于P0，检测到电气空闲退出，接收数据使能已置位，且CDR名义锁定由PHY有效指示。缺一项都不能用“发了adapt请求”证明评估合法开始。",
+          "这套条件与Base规范的远端TX均衡阶段属于不同层次；内部P0、PHY有效以及LTSSM进入Equalization不是同一个信号。"
+        ],
+        "referenceIndices": [
+          67
+        ]
+      },
+      {
+        "id": "adapt-product-request-ack-result-window",
+        "title": "Ack有效才采本次FOM/方向，不能读旧寄存器值当新结果",
+        "paragraphs": [
+          "该PMA把适配结果的有效窗口绑定到adapt Ack有效。请求之前/过程中看到FOM或方向总线非零，不证明本次评估结束。",
+          "反之本次结果和上次数值相同也可能是一次有效完成。PCS负责把内部完成转成适用Message Bus反馈，MAC应看本次提交与事务状态，不以数值发生变化作为完成条件。"
+        ],
+        "referenceIndices": [
+          68,
+          69,
+          70
+        ]
+      },
+      {
+        "id": "adapt-product-no-lane-configuration-overlap",
+        "title": "评估进行时不要重叠普通RX配置请求",
+        "paragraphs": [
+          "PMA3.02a在adapt请求有效期间禁止经普通RX Req/Ack路径发送请求。配置握手和评估握手并非两个可随意并发的独立功能。",
+          "如果控制器超时想切速、进入其它功耗态或复位，要核对完整退出/异常路径；“另一路Ack空闲”不能证明可以抢占。"
+        ],
+        "referenceIndices": [
+          71
+        ]
+      },
+      {
+        "id": "adapt-abort-two-boundaries",
+        "title": "MAC中止与PMA中止有不同后果，不能跨接口解释ABORT",
+        "paragraphs": [
+          "PCS1.75a说明MAC经Message Bus撤评估后，PHY仍完成最后一次评估，PCS随后发出完成事务；所以ABORT后还可能有内部耗时与反馈。PIPE7.1则要求MAC忽略中止后的、包括重叠返回的反馈。",
+          "两者可以同时成立：内部运算完成不代表MAC重新接受结果。直接过早撤PMA adapt请求或复位的后果另见PMA说明，不能把它当作上层ABORT的等价实现。"
+        ],
+        "referenceIndices": [
+          72,
+          73,
+          74
+        ]
+      },
+      {
+        "id": "adapt-abort-can-leave-suboptimal-settings",
+        "title": "直接中断PMA评估可能留下较差接收设置",
+        "paragraphs": [
+          "PMA3.02a提示：在Ack之前撤adapt请求，或通过RX复位打断，可能留下非最优接收设置。中止一次测量不保证自动回到此前最优工作点。",
+          "因此排障要记录实际控制边界、最后有效设置与后续训练，不只看MAC已经取消。此处是产品风险描述，不声称每次中止都会导致链路错误。"
+        ],
+        "referenceIndices": [
+          75
+        ]
+      },
+      {
+        "id": "adapt-reacquire-between-evaluations",
+        "title": "相邻评估之间可能需要重新建立接收工作点",
+        "paragraphs": [
+          "3.02a解释：某些均衡设置会让CDR漂移并不能自行恢复，因此给出评估间先执行RX复位、再按P0→出EI→数据使能→有效→评估的推荐流程。",
+          "这是对应产品的集成建议，并非PCIe每次评估都必须重置整个PHY。具体复位脉宽、请求相位和实现接线应查该交付正文；不把推荐缩成一个跨产品延时常量。"
+        ],
+        "referenceIndices": [
+          76
+        ]
+      },
+      {
+        "id": "adapt-timeout-not-fixed-six-us",
+        "title": "评估时长依赖baud与参考频率，不能借用6µs对齐监测",
+        "paragraphs": [
+          "PMA3.02a的请求到完成最大时间依赖波特率和参考时钟；PCS1.75a的6µs窗口则从PHY有效等控制器对齐。两者起点、目标事件与层次均不同。",
+          "设总预算时应分别计远端应用参数、接收重新捕获、内部评估和消息反馈。当前正文不足以推出适用于所有配置的一条数值上限，网页不制造通用超时。"
+        ],
+        "referenceIndices": [
+          77,
+          78
+        ]
+      },
+      {
+        "id": "adapt-fom-example-count-ambiguity",
+        "title": "产品FOM示例计数有歧义：不要直接照抄成统一遍历算法",
+        "paragraphs": [
+          "3.02a §4.6.1.1把候选描述成11个Preset加一次最佳复测，但后面的N初始化、循环上界和终止步骤存在计数理解不一致。这个示例不能直接当成所有Gen6 MAC必须如此实现的算法。",
+          "本轮保留问题并定位p62～63，不擅自修正成12或13次，也不把产品文字中的总超时转成所有均衡阶段通用定时器。完整策略需独立对照Base对应速率/角色规则及产品勘误。"
+        ],
+        "referenceIndices": [
+          79,
+          80
+        ]
       }
     ]
   },
@@ -71244,6 +71492,160 @@
         "title": "寄存器访问前复位窗口",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.4.1",
+        "page": 194,
+        "pdfPage": 194,
+        "title": "Gen5强制MPLL重校准要看到请求间的低→高，不是长期保持1",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.4.1",
+        "page": 194,
+        "pdfPage": 194,
+        "title": "共享MPLL的并发复位/请求限制，需按原版逐项核对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "5.6",
+        "page": 159,
+        "pdfPage": 159,
+        "title": "PCS 6µs监测只属于SerDes架构启用的本产品路径",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "5.6",
+        "page": 159,
+        "pdfPage": 159,
+        "title": "PHY有效→MAC对齐：两层证据之间才是6µs观察窗口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "5.6",
+        "page": 159,
+        "pdfPage": 159,
+        "title": "禁用6µs监测只移除该超时判定，不修复对齐问题",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.1",
+        "page": 185,
+        "pdfPage": 185,
+        "title": "保持证据表：供电域、存储和完成事件分别记录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.8",
+        "page": 86,
+        "pdfPage": 86,
+        "title": "保持证据表：供电域、存储和完成事件分别记录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "保持证据表：供电域、存储和完成事件分别记录",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.33",
+        "page": 165,
+        "pdfPage": 165,
+        "title": "保持证据表：供电域、存储和完成事件分别记录",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "5.6",
+        "page": 159,
+        "pdfPage": 159,
+        "title": "查询：6µs对齐观察窗口与未知边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.1",
+        "page": 185,
+        "pdfPage": 185,
+        "title": "原创图：保存配置、匹配校准、接收有效与协议对齐是不同关口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.23",
+        "page": 234,
+        "pdfPage": 234,
+        "title": "原创图：保存配置、匹配校准、接收有效与协议对齐是不同关口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "5.6",
+        "page": 159,
+        "pdfPage": 159,
+        "title": "原创图：保存配置、匹配校准、接收有效与协议对齐是不同关口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.33",
+        "page": 165,
+        "pdfPage": 165,
+        "title": "原创图：保存配置、匹配校准、接收有效与协议对齐是不同关口",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       }
     ],
     "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
@@ -72310,6 +72712,132 @@
           76,
           78,
           75
+        ]
+      },
+      {
+        "id": "recal-pll-force-needs-sampled-edge",
+        "title": "Gen5强制MPLL重校准要看到请求间的低→高，不是长期保持1",
+        "paragraphs": [
+          "§5.9.4.1要求在后续请求之间检测到Force上升事件：先在已校准Bank的一次TX请求中采到低，再在下一次适用请求置高；持续高不能让每次功耗请求都重校准。",
+          "该节还限定与PLL使能配合，并在TX Ack断言后撤Force。这是产品输入采样契约；不能拿PIPE IORecal的一次消息事件直接替代。"
+        ],
+        "referenceIndices": [
+          88
+        ]
+      },
+      {
+        "id": "recal-shared-resource-concurrency-caution",
+        "title": "共享MPLL的并发复位/请求限制，需按原版逐项核对",
+        "paragraphs": [
+          "2.02a强制校准页给共享MPLL Lane列出TX/RX同时复位或请求的限制。不能把“每Lane独立握手”理解成任意组合都可并发。",
+          "但该页最后一项信号拼写存在疑点，视觉核对仍如此；本轮不擅自补成另一个信号或发布完整编码矩阵。调试应串清受影响资源与请求，正式允许矩阵待勘误/交付说明核实。"
+        ],
+        "referenceIndices": [
+          89
+        ]
+      },
+      {
+        "id": "recal-six-us-architecture-scope",
+        "title": "PCS 6µs监测只属于SerDes架构启用的本产品路径",
+        "paragraphs": [
+          "PCS1.75a §5.6描述在SerDes PIPE架构下支持重新校准计时器；起点是收到PHY有效数据，停止条件是控制器检测对齐并报告RxReady。",
+          "6µs不是PCIe全部Gen的CDR锁定上限、PIPE IORecal完成预算或从上电开始计的总超时。Original PIPE、其它产品和其它版本不据此自动套用。"
+        ],
+        "referenceIndices": [
+          90
+        ]
+      },
+      {
+        "id": "recal-six-us-valid-ready-gap",
+        "title": "PHY有效→MAC对齐：两层证据之间才是6µs观察窗口",
+        "paragraphs": [
+          "PHY侧有效指示与控制器侧对齐就绪是两个里程碑。看到前者只能开始观察后者，不能当成Link Up，也不能把有数据但尚未对齐直接判成固件未启动。",
+          "应在同一次接收活动中关联两个事件。该页没有完整说明失去有效、重复有效边沿或超时同拍RxReady的优先级，网页不会自创重装/复位次数。"
+        ],
+        "referenceIndices": [
+          91
+        ]
+      },
+      {
+        "id": "recal-six-us-disable-is-not-repair",
+        "title": "禁用6µs监测只移除该超时判定，不修复对齐问题",
+        "paragraphs": [
+          "PCS1.75a提供关闭这项超时的配置选项。关闭后可以用于隔离监测策略对恢复的影响，但不能让失配的时钟、块边界或Lane配置自动正确。",
+          "§5.6这段正文未说明超时之后每一步硬件动作，也未给出所有模式默认值；本轮只发布起止条件和禁用含义，实际动作与重试策略继续核对应实现。"
+        ],
+        "referenceIndices": [
+          92
+        ]
+      },
+      {
+        "id": "recal-retention-object-table",
+        "title": "保持证据表：供电域、存储和完成事件分别记录",
+        "paragraphs": [
+          "以下是原创排查清单；“未证明”不等于“一定丢失”。每种保存对象的复位/供电覆盖仍要按实际产品补齐。"
+        ],
+        "referenceIndices": [
+          93,
+          94,
+          95,
+          96
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "应检查的证据",
+            "不能替代它的现象"
+          ],
+          "rows": [
+            [
+              "校准Bank",
+              "保存域供电、配置匹配、对应有效结果",
+              "静态Context Done"
+            ],
+            [
+              "ICCM/DCCM",
+              "实际RAM保持、镜像完整性、CPU访问条件",
+              "CE撤销时输出保持"
+            ],
+            [
+              "PIPE恢复窗口",
+              "Restore条件与PCLK保护周期",
+              "内部存储已有效的假设"
+            ],
+            [
+              "运行期IORecal",
+              "Recovery内本次请求及本次Done",
+              "旧Done或Message write_ack"
+            ],
+            [
+              "对齐观察窗口",
+              "同次PHY有效和MAC RxReady时刻",
+              "PHY有效已经置1"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "recal-window-learning-query",
+        "title": "查询：6µs对齐观察窗口与未知边界",
+        "paragraphs": [
+          "输入SerDes架构、监测是否开启、PHY有效时刻、RxReady时刻与当前观察时刻，只分类“未起计/等待/窗口内停止/超过窗口/边界待核”。",
+          "相同时间点的事件优先级和实际超时动作未由所引短节充分定义，因此恰好6µs返回边界待核，而不是虚构一个通过/失败判定。"
+        ],
+        "referenceIndices": [
+          97
+        ]
+      },
+      {
+        "id": "recal-original-dependency-diagram",
+        "title": "原创图：保存配置、匹配校准、接收有效与协议对齐是不同关口",
+        "paragraphs": [
+          "这张依赖示意把对象和完成证据分开：静态回填不能直接跨到校准有效，PHY有效也不能直接跨到Data Link可用。它不是完整芯片启动波形或LTSSM图。"
+        ],
+        "referenceIndices": [
+          98,
+          99,
+          100,
+          101
         ]
       }
     ]
@@ -74227,6 +74755,369 @@
         "title": "初始化",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.1",
+        "page": 185,
+        "pdfPage": 185,
+        "title": "动态Context：缓存校准结果，避免每次切速重新测一遍",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.1",
+        "page": 185,
+        "pdfPage": 185,
+        "title": "Bank不是Gen编号：识别完整时钟配置，而不是只看速率",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.3.2",
+        "page": 192,
+        "pdfPage": 192,
+        "title": "Bank不是Gen编号：识别完整时钟配置，而不是只看速率",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.1",
+        "page": 185,
+        "pdfPage": 185,
+        "title": "MPLL、TX和RX各有Bank，不能用一个全局编号代替",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.2",
+        "page": 186,
+        "pdfPage": 186,
+        "title": "初始校准按目标Bank首次使用判定，不只是整机第一次上电",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.2",
+        "page": 186,
+        "pdfPage": 186,
+        "title": "初始校准的外部入口先进入P1，再完成PLL与Lane配置握手",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.2",
+        "page": 188,
+        "pdfPage": 188,
+        "title": "初始校准的外部入口先进入P1，再完成PLL与Lane配置握手",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.2",
+        "page": 187,
+        "pdfPage": 187,
+        "title": "为什么初始校准更慢：先测全速/半速，再恢复目标工作点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.2",
+        "page": 188,
+        "pdfPage": 188,
+        "title": "为什么初始校准更慢：先测全速/半速，再恢复目标工作点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.2",
+        "page": 189,
+        "pdfPage": 189,
+        "title": "为什么初始校准更慢：先测全速/半速，再恢复目标工作点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.3.1",
+        "page": 190,
+        "pdfPage": 190,
+        "title": "跨Bank且目标已校准：仍需配置切换，省掉的是重新测量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.3.1",
+        "page": 191,
+        "pdfPage": 191,
+        "title": "跨Bank且目标已校准：仍需配置切换，省掉的是重新测量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.3.2",
+        "page": 192,
+        "pdfPage": 192,
+        "title": "同Bank切速：本路径无需MPLL停开，但仍要P1与TX/RX握手",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.3.2",
+        "page": 193,
+        "pdfPage": 193,
+        "title": "同Bank切速：本路径无需MPLL停开，但仍要P1与TX/RX握手",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.2",
+        "page": 186,
+        "pdfPage": 186,
+        "title": "Force与Skip改变默认选择；Skip不创建从未求得的结果",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.4.2",
+        "page": 194,
+        "pdfPage": 194,
+        "title": "强制TX/RX校准结果只对应当次Bank与rate组合",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.4.3",
+        "page": 196,
+        "pdfPage": 196,
+        "title": "强制TX/RX校准结果只对应当次Bank与rate组合",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.4.2",
+        "page": 195,
+        "pdfPage": 195,
+        "title": "MPLL设置改变或重校准后，还要处理依赖它的TX校准",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.1",
+        "page": 185,
+        "pdfPage": 185,
+        "title": "AON只是保留域边界：域失电后不能继续相信旧校准标记",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.1",
+        "page": 185,
+        "pdfPage": 185,
+        "title": "重装静态Context不能证明动态校准缓存有效",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.23",
+        "page": 234,
+        "pdfPage": 234,
+        "title": "重装静态Context不能证明动态校准缓存有效",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.2",
+        "page": 186,
+        "pdfPage": 186,
+        "title": "动态切换分支表：首次、同Bank、跨Bank和强制校准",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.3.1",
+        "page": 190,
+        "pdfPage": 190,
+        "title": "动态切换分支表：首次、同Bank、跨Bank和强制校准",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.3.2",
+        "page": 192,
+        "pdfPage": 192,
+        "title": "动态切换分支表：首次、同Bank、跨Bank和强制校准",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.4.2",
+        "page": 194,
+        "pdfPage": 194,
+        "title": "动态切换分支表：首次、同Bank、跨Bank和强制校准",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.1",
+        "page": 185,
+        "pdfPage": 185,
+        "title": "查询：目标校准结果是否可复用，需走哪个产品分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.2",
+        "page": 186,
+        "pdfPage": 186,
+        "title": "查询：目标校准结果是否可复用，需走哪个产品分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.3.1",
+        "page": 190,
+        "pdfPage": 190,
+        "title": "查询：目标校准结果是否可复用，需走哪个产品分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.3.2",
+        "page": 192,
+        "pdfPage": 192,
+        "title": "查询：目标校准结果是否可复用，需走哪个产品分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.4.2",
+        "page": 195,
+        "pdfPage": 195,
+        "title": "查询：目标校准结果是否可复用，需走哪个产品分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.9.1",
+        "page": 185,
+        "pdfPage": 185,
+        "title": "Gen5 Bank与Gen6 MCU：共同问题可以比较，实现不能互换",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.4",
+        "page": 45,
+        "pdfPage": 45,
+        "title": "Gen5 Bank与Gen6 MCU：共同问题可以比较，实现不能互换",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 54,
+        "pdfPage": 54,
+        "title": "Gen5 Bank与Gen6 MCU：共同问题可以比较，实现不能互换",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       }
     ],
     "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
@@ -74922,6 +75813,238 @@
           35,
           32,
           33
+        ]
+      },
+      {
+        "id": "dynamic-context-cache-purpose",
+        "title": "动态Context：缓存校准结果，避免每次切速重新测一遍",
+        "paragraphs": [
+          "Gen5 PHY 2.02a的Fast Context Switching把已经求得的MPLL、TX占空比校正和RX占空比/IQ校正结果放入Raw PCS的常开电源域。再次使用匹配配置时恢复这些结果，缩短重复校准工作。",
+          "这里缓存的是模拟工作点相关的动态结果；既不是保存TLP/Replay Buffer，也不是前文静态Context镜像。配置已写回和动态校准结果有效应分开观察。"
+        ],
+        "referenceIndices": [
+          44
+        ]
+      },
+      {
+        "id": "dynamic-bank-configuration-key",
+        "title": "Bank不是Gen编号：识别完整时钟配置，而不是只看速率",
+        "paragraphs": [
+          "这款产品分别以MPLL时钟配置、TX时钟配置和RX VCO配置定义不同校准Bank的使用边界。相同PCIe速率不保证参考源、分频及接收配置相同。",
+          "反过来，§5.9.3.2明确有同Bank内切rate路径，因此也不能机械地“一种rate一个Bank”。表5-5列的是判定配置的信号集合，具体组合到Bank的分配须按交付配置核对，不能仅按表中出现rate就否定同Bank路径。"
+        ],
+        "referenceIndices": [
+          45,
+          46
+        ]
+      },
+      {
+        "id": "dynamic-bank-independent-domains",
+        "title": "MPLL、TX和RX各有Bank，不能用一个全局编号代替",
+        "paragraphs": [
+          "MPLL校准、TX DCC、RX DCC/IQC属于不同保存对象，各自有选择与有效性；一个PLL Bank已经有效不证明所有接收Lane的Bank也有效。",
+          "记录切换证据时至少分清资源、Lane/Link、Bank和目标配置。下面查询只使用学习用“匹配/有效”事实，不公开或生成产品选择编码。"
+        ],
+        "referenceIndices": [
+          47
+        ]
+      },
+      {
+        "id": "dynamic-initial-first-use-not-first-boot",
+        "title": "初始校准按目标Bank首次使用判定，不只是整机第一次上电",
+        "paragraphs": [
+          "§5.9.2把新Bank第一次被配置定义为初始校准。固件判断目标Bank的校准完成标记，尚未完成则执行所需校准并保存。",
+          "所以系统运行很久后首次切到一个未准备配置，仍可能走完整初始校准；不能以“启动早已完成”推定这次一定走快速恢复。"
+        ],
+        "referenceIndices": [
+          48
+        ]
+      },
+      {
+        "id": "dynamic-initial-p1-before-config",
+        "title": "初始校准的外部入口先进入P1，再完成PLL与Lane配置握手",
+        "paragraphs": [
+          "该Gen5流程先让TX/RX完成进入P1，再关闭所需MPLL、设置目标配置、重新开启并完成对应请求应答，最后回到P0。P1是这套产品流程的外部控制入口。",
+          "固件在此期间可能临时覆盖内部PMA功耗/速率用于测量；不要把外部请求一直是P1理解为内部所有电路始终完全不动，也不能把内部图上的P0改成外部可跳过P1的许可。"
+        ],
+        "referenceIndices": [
+          49,
+          50
+        ]
+      },
+      {
+        "id": "dynamic-initial-full-half-calibrations",
+        "title": "为什么初始校准更慢：先测全速/半速，再恢复目标工作点",
+        "paragraphs": [
+          "2.02a初始流程对TX DCC和RX DCC/IQC分别取得全速与半速结果，然后恢复当前目标速率对应结果、释放内部override并完成请求。",
+          "请求完成既包含一次测量也包含恢复目标配置的阶段。不能在中间看到某校准码稳定就认为外部速率转换已完成；各阶段仍以规定握手为准。"
+        ],
+        "referenceIndices": [
+          51,
+          52,
+          53
+        ]
+      },
+      {
+        "id": "dynamic-different-bank-valid-restore",
+        "title": "跨Bank且目标已校准：仍需配置切换，省掉的是重新测量",
+        "paragraphs": [
+          "跨Bank快速路径保留进入P1、MPLL停开和配置握手，固件恢复匹配的MPLL、TX DCC、RX DCC/IQC结果。目标已校准不等于可在L0无握手地热换模拟配置。",
+          "这条路径减少重复测量，不能推出全链路无中断、固定微秒时限或不用LTSSM Recovery。协议训练、PIPE切速与产品内部步骤分别核对。"
+        ],
+        "referenceIndices": [
+          54,
+          55
+        ]
+      },
+      {
+        "id": "dynamic-same-bank-pll-restart-not-needed",
+        "title": "同Bank切速：本路径无需MPLL停开，但仍要P1与TX/RX握手",
+        "paragraphs": [
+          "§5.9.3.2允许同Bank切rate不重启MPLL；进入P1、应用目标rate和恢复匹配DCC/IQC、再返回P0的步骤仍保留。",
+          "前提是确属已校准的同Bank配置。若实际MPLL时钟配置改变、Bank分配不明或旧数据已失效，不能只因速率差距小就套用此分支。"
+        ],
+        "referenceIndices": [
+          56,
+          57
+        ]
+      },
+      {
+        "id": "dynamic-force-skip-not-free-recovery",
+        "title": "Force与Skip改变默认选择；Skip不创建从未求得的结果",
+        "paragraphs": [
+          "2.02a给出强制重新校准与跳过校准的控制：前者请求重算，后者使用已存值。跳过校准不是生成有效数据的替代办法，未证明保存值有效时不能据Skip让恢复通过。",
+          "本段正文未给Force和Skip同时有效的清晰优先级。查询对此返回“待核”，不会自创Force优先或Skip优先，也不会输出一个硬件安全结论。"
+        ],
+        "referenceIndices": [
+          58
+        ]
+      },
+      {
+        "id": "dynamic-forced-tx-rx-scope",
+        "title": "强制TX/RX校准结果只对应当次Bank与rate组合",
+        "paragraphs": [
+          "§5.9.4.2/3特别限制强制校准后存值的适用范围：只对选中的Bank和rate组合有效，不能自动扩成整个Bank的所有速率已重新测过。",
+          "例如在配置A上强制RX校准后，后续切配置B应核对B自己的有效性。工具用“目标配置有有效结果”作为输入，不从任意一次Done推导所有配置都有效。"
+        ],
+        "referenceIndices": [
+          59,
+          60
+        ]
+      },
+      {
+        "id": "dynamic-pll-change-invalidates-tx-assumption",
+        "title": "MPLL设置改变或重校准后，还要处理依赖它的TX校准",
+        "paragraphs": [
+          "2.02a明确：Lane使用某MPLL时，改变该MPLL设置或重新校准该MPLL要求重新校准TX。PLL Done不能替代TX DCC结果有效。",
+          "这是资源依赖，不只是一条Lane的软件习惯。共享该PLL的使用者应一并审查；本文没有提供跨产品通用失效传播表。"
+        ],
+        "referenceIndices": [
+          61
+        ]
+      },
+      {
+        "id": "dynamic-aon-conditional-retention",
+        "title": "AON只是保留域边界：域失电后不能继续相信旧校准标记",
+        "paragraphs": [
+          "校准结果放在常开域意味着PMA可在相应流程中恢复保存值；“常开”是集成时的供电属性，不是断掉整个SoC电源后仍非易失。",
+          "必须同时证实保存数据和有效标记仍可信。复位覆盖、保持单元和隔离顺序的完整矩阵仍待核读；资料存在但本轮未验证的路径标待核，不凭模块名宣称保持。"
+        ],
+        "referenceIndices": [
+          62
+        ]
+      },
+      {
+        "id": "dynamic-static-image-not-calibration-proof",
+        "title": "重装静态Context不能证明动态校准缓存有效",
+        "paragraphs": [
+          "静态Context镜像给目标寄存器提供配置；动态Bank保存实际测量得到的校正结果。加载同一静态镜像不等于恢复本芯片、本次环境的校准结果。",
+          "排查恢复失败时应分别记录镜像版本与回填完成、Bank和配置匹配、校准有效证据，再看Lane握手和Link训练。不要只保留一个“restore_done”日志。"
+        ],
+        "referenceIndices": [
+          63,
+          64
+        ]
+      },
+      {
+        "id": "dynamic-context-path-table",
+        "title": "动态切换分支表：首次、同Bank、跨Bank和强制校准",
+        "paragraphs": [
+          "按2.02a产品流程重排；以下“可恢复”均以前提成立为条件，不是通用PCIe状态机。"
+        ],
+        "referenceIndices": [
+          65,
+          66,
+          67,
+          68
+        ],
+        "table": {
+          "columns": [
+            "分支",
+            "关键前提",
+            "仍需执行",
+            "不能推断"
+          ],
+          "rows": [
+            [
+              "目标首次使用",
+              "目标配置未完成校准",
+              "P1、目标配置、校准及握手",
+              "无需校准"
+            ],
+            [
+              "同Bank后续切速",
+              "匹配结果仍有效",
+              "P1、rate切换、恢复及握手",
+              "PLL一律要重启"
+            ],
+            [
+              "跨Bank后续切速",
+              "目标Bank配置和结果匹配",
+              "P1、MPLL停开、恢复及握手",
+              "L0直接改"
+            ],
+            [
+              "强制TX/RX",
+              "针对当次Bank/rate",
+              "重新测量并更新该组合结果",
+              "全Bank所有rate都刷新"
+            ],
+            [
+              "Skip且结果未知",
+              "不满足可靠复用证据",
+              "先核旧值有效性",
+              "查询通过就能启动"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "dynamic-bank-learning-query",
+        "title": "查询：目标校准结果是否可复用，需走哪个产品分支",
+        "paragraphs": [
+          "选择目标是否首次使用、同Bank/跨Bank、配置匹配、保存域证据和Force/Skip，查看“初始校准/恢复/重校准/待核”及PLL对TX的依赖。",
+          "仅为2.02a选定规则的学习分支，不读实际有效位、不分配Bank、不模拟复位矩阵，也不许可真实切速。未知输入和冲突控制必须保持待核。"
+        ],
+        "referenceIndices": [
+          69,
+          70,
+          71,
+          72,
+          73
+        ]
+      },
+      {
+        "id": "dynamic-product-generation-boundary",
+        "title": "Gen5 Bank与Gen6 MCU：共同问题可以比较，实现不能互换",
+        "paragraphs": [
+          "Gen5 2.02a在此以固件算法和Raw PCS AON Bank解释快速恢复；Gen6 3.02a有MCU及外部ICCM/DCCM启动职责。共同问题是配置与校准结果是否匹配、是否保留、谁确认完成。",
+          "本轮没有核得Gen6完整动态缓存布局与所有复位保持清单，因此不把Gen5 Bank位宽、流程耗时或Force语义复制到Gen6；更不按Gen1～Gen7链路速率推断内部架构。"
+        ],
+        "referenceIndices": [
+          74,
+          75,
+          76
         ]
       }
     ]
