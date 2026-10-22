@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-22-r34`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-22-r35`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -106,3 +106,11 @@ R32新增Recovery复杂出口、速率切换和NFM/FM改宽条件，分别见功
 - [L1.2退出计时](https://mgc455.github.io/pcie_study/#feature/87/detail/l1ss-exit-timing-query)：本端唤醒采样、主动驱动下界与DSP共模TS1保持。
 
 UIO细规则绑定Base7.0；恢复与L1SS相关规则分别核对Base6.0/7.0。查询是必要条件学习模型，不操作设备，不证明整章或七代已全部覆盖。
+
+## R35细节入口
+
+- [动态SharedFC有效上限](https://mgc455.github.io/pcie_study/#feature/114/detail/svc-ecn-effective-limit-query)
+- [FCParameters包图与解码](https://mgc455.github.io/pcie_study/#feature/21/detail/fcparameters-byte-decoder)
+- [Configuration候选Lane组](https://mgc455.github.io/pcie_study/#feature/4/detail/cfg-upstream-group-query)
+
+ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会员下载版逐字一致或后续Base合入。

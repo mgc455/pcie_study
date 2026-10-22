@@ -130,6 +130,15 @@ for d in coverage['documents']:
                 assert all(f['protocolReferences'][i]['documentId']==d['documentId'] and f['protocolReferences'][i]['section']==clause['section'] for i in block['referenceIndices']), 'Clause links require precise version and section evidence'
     if any(c.get('clauses') for c in d['chapters']):assert d.get('clauseIndexStatus')
 assert '#coverage' in raw
+for change in coverage.get('independentChanges',[]):
+    assert change['documentId'] in documents_by_id
+    assert change['status']=='selected-rules-reviewed-local-copy', 'Independent changes are not whole-Base completion'
+    assert change['reviewedBlocks'] and change['note']
+    for block in change['reviewedBlocks']:
+        f=features_by_id[block['featureId']]
+        detail=next(d for d in f['details'] if d['id']==block['detailId'])
+        assert block['referenceIndices'] and set(block['referenceIndices'])<=set(detail['referenceIndices'])
+        assert all(f['protocolReferences'][i]['documentId']==change['documentId'] for i in block['referenceIndices'])
 # Audit the entire publication allowlist, including maintenance scripts and instructions.
 public_files=['.gitignore','site.config.json','AGENTS.md','README.md','.github/workflows/check.yml']
 public_files += ['scripts/'+n for n in ['build.py','check.py','import_content.py','index_protocol.py','map_references.py','prepare_public.py']]
