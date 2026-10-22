@@ -755,14 +755,14 @@
     "checks": "先记录停住的完整子状态，再看哪个方向、哪些Lane未满足进入下一状态的条件。PhyStatus、RxValid、LinkUp、DL_Active表示不同层次。表中是Base 6.0主要普通端口规则；Crosslink、Retimer及一致性测试的组合分支另标范围，不声称已经成为所有版本全部条件的可执行模型。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 4,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-22",
     "protocolReferences": [
       {
         "section": "4.2.6",
@@ -1610,9 +1610,273 @@
         "pdfPage": 617,
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核读所列正文页，中文按条件与职责重新组织；并非整章全部规则审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "page": 482,
+        "pdfPage": 482,
+        "title": "TS接收计数前的对齐时间边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.1",
+        "page": 567,
+        "pdfPage": 567,
+        "title": "TS接收计数前的对齐时间边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "page": 484,
+        "pdfPage": 484,
+        "title": "请求传播",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.1",
+        "page": 569,
+        "pdfPage": 569,
+        "title": "请求传播",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "page": 487,
+        "pdfPage": 487,
+        "title": "RcvrLock正常条件/24ms首分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.1",
+        "page": 572,
+        "pdfPage": 572,
+        "title": "RcvrLock正常条件/24ms首分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "page": 484,
+        "pdfPage": 484,
+        "title": "进入时速率广告",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.1",
+        "page": 569,
+        "pdfPage": 569,
+        "title": "进入时速率广告",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "page": 485,
+        "pdfPage": 485,
+        "title": "广告保持与成功变量清零",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.1",
+        "page": 570,
+        "pdfPage": 570,
+        "title": "广告保持与成功变量清零",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "page": 486,
+        "pdfPage": 486,
+        "title": "Margin采样与生效",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.1",
+        "page": 571,
+        "pdfPage": 571,
+        "title": "Margin采样与生效",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "page": 488,
+        "pdfPage": 488,
+        "title": "RcvrLock超时后续分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.1",
+        "page": 573,
+        "pdfPage": 573,
+        "title": "RcvrLock超时后续分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 508,
+        "pdfPage": 508,
+        "title": "RcvrCfg到Idle条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 597,
+        "pdfPage": 597,
+        "title": "RcvrCfg到Idle条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 509,
+        "pdfPage": 509,
+        "title": "已改速EI回原速",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 598,
+        "pdfPage": 598,
+        "title": "已改速EI回原速",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 510,
+        "pdfPage": 510,
+        "title": "RcvrCfg超时",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 599,
+        "pdfPage": 599,
+        "title": "RcvrCfg超时",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.5.4",
+        "page": 436,
+        "pdfPage": 436,
+        "title": "EI推断条件表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.5.4",
+        "page": 513,
+        "pdfPage": 513,
+        "title": "EI推断条件表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.5",
+        "page": 512,
+        "pdfPage": 512,
+        "title": "Idle成功条件和重试计数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.5",
+        "page": 601,
+        "pdfPage": 601,
+        "title": "Idle成功条件和重试计数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
       }
     ],
-    "referenceStatus": "已核读本轮所列正文，按角色、版本、编码和测量边界展开；仅目录映射或未审计的范围在章序覆盖页和本页单独标明。",
+    "referenceStatus": "所引Base6.0/7.0 Recovery、Speed及改宽入口正文已核读；早期修订/全部角色/后续ECN及整章覆盖仍待继续。",
     "details": [
       {
         "title": "阅读状态表之前：角色、计数、超时和覆盖范围",
@@ -3110,6 +3374,299 @@
             ]
           ]
         }
+      },
+      {
+        "id": "rlock-alignment-new-tenure",
+        "title": "RcvrLock计TS之前先重新Block Alignment，旧锁定不能跨入口沿用",
+        "paragraphs": [
+          "在≥8GT/s运行，Receiver只有取得该Lane的Block Alignment后才可把TS0/TS1/TS2算作收到。从L1/Speed/L0s进入时，对齐须在退出Electrical Idle之后取得；从L0进入则须在最后Data Stream结束之后取得。",
+          "因此调试计数既要带Lane，也要带本次入口代次；前一次L0中的block-lock状态或旧TS样本不能直接凑本次8个。本规则不等同于模拟CDR锁定的充分条件。"
+        ],
+        "referenceIndices": [
+          77,
+          78
+        ]
+      },
+      {
+        "id": "rlock-directed-any-eight-ts1",
+        "title": "directed_speed_change的传播：任一Lane收到8个连续带speed_change的TS1",
+        "paragraphs": [
+          "发起方可在L0/L1中置该变量；被动一侧在RcvrLock中任一配置Lane收到连续8个speed_change=1的TS1后置位，并在发送TS1中反映。",
+          "“任一Lane可传播请求”与“全部Lane已满足正常退出”是两种判定。单Lane收到请求还不能直接跳Speed，中间须走RcvrCfg的协商条件。"
+        ],
+        "referenceIndices": [
+          79,
+          80,
+          81,
+          82
+        ]
+      },
+      {
+        "id": "rlock-negotiation-clear-advertise",
+        "title": "进入RcvrLock清成功协商变量；允许更新广告的时机有限",
+        "paragraphs": [
+          "successful_speed_negotiation进入本子状态清0。设备允许在进入时改变所广告的受支持速率，之后须遵守均衡请求等特定例外，不能在RcvrCfg/EQ中任意抖动能力。",
+          "广告只应包含能可靠支持的更高速率。最大硬件能力、当次广告、双方共同速率和最终运行速率分别记录。"
+        ],
+        "referenceIndices": [
+          83,
+          84,
+          85,
+          86
+        ]
+      },
+      {
+        "id": "rlock-margin-reacquire",
+        "title": "Transmit Margin在入口采样并于192ns内生效，早期锁定之后仍可能失锁",
+        "paragraphs": [
+          "Link Control2的Transmit Margin在进入RcvrLock时采样，最迟192ns内在TX封装引脚生效；从L0/L0s/L1下一次进入时才重新取值。",
+          "对端可能先完成早期bit/块锁定，再因幅度变化重新获取锁定。因此看到block-lock先高后低，不能只凭一个电平就断言状态机计错；要对照裕量改变时刻。"
+        ],
+        "referenceIndices": [
+          87,
+          88,
+          81,
+          82
+        ]
+      },
+      {
+        "id": "rlock-l0-tail-packets",
+        "title": "从L0进入后，到第一份TS之前仍须接收合法TLP/DLLP",
+        "paragraphs": [
+          "进入RcvrLock并不是立即丢弃流水线尾部的合法包；规范要求从L0进入本态后、收到第一个TS之前接受所有good TLP/DLLP，128b/130b仍须满足其成帧规则。",
+          "这是Data Stream与训练交接的边界，不表示TS之后仍可无限混入普通包；抓包器也不能仅靠LTSSM码变化就把这段全部标成非法。"
+        ],
+        "referenceIndices": [
+          81,
+          82
+        ]
+      },
+      {
+        "id": "rlock-normal-all-lanes-eight",
+        "title": "正常到RcvrCfg：全部配置Lane各自连续8个，编号与speed_change都匹配",
+        "paragraphs": [
+          "每个配置Lane均须收到连续8个TS1或TS2，Link/Lane匹配本Lane发送值，speed_change等于directed_speed_change；当前≥8GT/s时这些TS1的EC须为00。",
+          "不是8个Lane各收1个，也不能跨编号/控制条件不满足的样本任意累计。1b/1b的编号匹配须按其解释规则先解码，不能拿普通8b/10b字段位置硬比。TS类型/连续规则及均衡入口条件分别核对。"
+        ],
+        "referenceIndices": [
+          81,
+          82
+        ]
+      },
+      {
+        "id": "rlock-extended-synch-transmit-gate",
+        "title": "Extended Synch加的是本端连续发送≥1024个TS1条件",
+        "paragraphs": [
+          "当Extended Synch置位，正常转RcvrCfg之前还必须发送最少1024个连续TS1；接收端8个连续序列条件没有被1024替换。",
+          "两个计数分别是RX和TX，起点/连续性也不同。不能用“本端已发1024”来绕过另一条Lane始终没有完成接收条件。"
+        ],
+        "referenceIndices": [
+          81,
+          82
+        ]
+      },
+      {
+        "id": "rlock-after-eq-coefficients-check",
+        "title": "USP从EQ返回需比较最终系数/预置，不一致在RcvrCfg请求重新均衡",
+        "paragraphs": [
+          "从Recovery.Equalization进入时，USP评估收到8个TS1的Lane上报告的系数或preset，比较是否与Phase2最终接受值一致；不一致在后续TS2通过Request Equalization报告。",
+          "EQ阶段完成位、对端实际TX设置、后续训练中报告的设置是三份证据。这里不是“只要EQ Complete就永远跳过重新均衡”。"
+        ],
+        "referenceIndices": [
+          81,
+          82
+        ]
+      },
+      {
+        "id": "rlock-timeout-first-speed-evidence",
+        "title": "24ms首选出口：任一Lane已有带speed_change=1的8个匹配TS，可继续RcvrCfg",
+        "paragraphs": [
+          "正常全部Lane条件未满足而24ms到期后，先看任一配置Lane是否有8个匹配编号且speed_change=1的TS1/TS2，再看当前>2.5GT/s，或双方都广告了更高速率。满足则到RcvrCfg。",
+          "这条容许继续协商的超时出口排在降速/回原速之前；不是所有Lane失败就立刻Detect，也不能把它误当正常的all-Lane成功。"
+        ],
+        "referenceIndices": [
+          81,
+          82
+        ]
+      },
+      {
+        "id": "rlock-timeout-fm-pad-seven",
+        "title": "7.0超时首分支增加FM PAD-Link TS2路径，6.0所引正文未列此替代项",
+        "paragraphs": [
+          "7.0在任一Lane连续8个TS2、Link=PAD而Lane编号匹配的FM场景，允许作为24ms后继续RcvrCfg的另一种接收证据；后面的当前速率/双方广告条件仍需满足。",
+          "6.0 §4.2.7.4.1所引页只列匹配编号且speed_change=1的路径。这里确认的是两个正式版本文本差异，不声称该规则首次出现于7.0，也未替代后续ECN核查。"
+        ],
+        "referenceIndices": [
+          81,
+          82
+        ]
+      },
+      {
+        "id": "rlock-timeout-unchanged-fallback",
+        "title": "未成功改过速且当前>2.5GT/s：24ms失败后走Speed降速",
+        "paragraphs": [
+          "在前一条继续RcvrCfg条件不成立时，若changed_speed_recovery=0且当前>2.5GT/s，转Speed。8b/10b或128b/130b回2.5GT/s，1b/1b回32GT/s。",
+          "“降速”不是固定降一代，也不是Gen6/Gen7无条件回Gen1；它依赖本次编码及前面已失败的分支。"
+        ],
+        "referenceIndices": [
+          81,
+          82,
+          89,
+          90
+        ]
+      },
+      {
+        "id": "rlock-timeout-return-original",
+        "title": "已在本次Recovery成功改过速：失败后回L0/L1进入Recovery时的原速",
+        "paragraphs": [
+          "若changed_speed_recovery=1，且前面的继续协商条件不成立，RcvrLock转Speed并回到从L0/L1进入Recovery时的速率。",
+          "原速不是“上一次随便存的PLL频率”，也不是自动减半。日志要保留原始Recovery入口速率，不能被Speed内临时工作速率覆盖。"
+        ],
+        "referenceIndices": [
+          81,
+          82,
+          89,
+          90
+        ]
+      },
+      {
+        "id": "rlock-timeout-configuration-low-rate",
+        "title": "后续Configuration出口：至少有匹配TS证据，且未成功改速",
+        "paragraphs": [
+          "当前面的RcvrCfg/Speed分支都不成立，还需至少一个配置Lane曾收到匹配Link/Lane的TS，并且未成功改速；再满足未请求切速且收到speed_change=0，或当前2.5GT/s且共同最高也仅2.5GT/s，才转Configuration。",
+          "此时清directed_speed_change；否则Detect。它不是无接收证据时的通用“再试一次”。"
+        ],
+        "referenceIndices": [
+          89,
+          90
+        ]
+      },
+      {
+        "id": "rlock-timeout-ordered-table",
+        "title": "RcvrLock超时分支表：按原文先后检查，不能并列任选",
+        "paragraphs": [
+          "先单独排除均衡入口并检查正常出口；下表用于24ms到期后的else链。多项看似成立时，应保留前项优先，而不是总选择“最保守Detect”。"
+        ],
+        "referenceIndices": [
+          81,
+          82,
+          89,
+          90
+        ],
+        "table": {
+          "columns": [
+            "顺序",
+            "已核条件摘要",
+            "目标"
+          ],
+          "rows": [
+            [
+              "1",
+              "任一Lane具备规定8个TS证据，且速率条件成立；7.0另有FM PAD TS2替代",
+              "RcvrCfg"
+            ],
+            [
+              "2",
+              "未成功改速、当前>2.5GT/s",
+              "Speed→2.5或32GT/s"
+            ],
+            [
+              "3",
+              "已在本次Recovery成功改速",
+              "Speed→Recovery入口原速"
+            ],
+            [
+              "4",
+              "匹配TS证据、未改速及规定不切速条件",
+              "Configuration"
+            ],
+            [
+              "5",
+              "以上均不满足",
+              "Detect"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "rcvrcfg-normal-eight-sixteen",
+        "title": "RcvrCfg正常到Idle：全部Lane接收8个TS2，并在首个之后再发16个",
+        "paragraphs": [
+          "全部配置Lane的8个连续TS2须编号匹配、每Lane内速率标识一致，且speed_change=0；2.5GT/s且任一侧不广告更高速率时有对应例外。首个TS2之后还须发16个TS2，不被EIEOS打断。",
+          "进入Idle时清changed_speed_recovery和directed_speed_change；新N_FTS用于后续L0s。8b/10b须在离开RcvrCfg前完成Lane deskew，不能拖到任意业务时刻。"
+        ],
+        "referenceIndices": [
+          91,
+          92
+        ]
+      },
+      {
+        "id": "rcvrcfg-ei-no-ts2-fallback",
+        "title": "RcvrCfg收到EI却从未收到TS2：按是否已改速选择Speed回退",
+        "paragraphs": [
+          "进入RcvrCfg以来无任何配置Lane收到TS2，又在任一Lane检测/推断EI：已改过速则走Speed回原速；未改过且当前>2.5GT/s则按编码降到2.5或32GT/s。",
+          "“无TS2”是从本子状态入口计的历史条件，不是当前这一拍没看到TS2；曾收过TS2后不能再用这条出口。EI推断还须按所处态/速率查对应窗口。"
+        ],
+        "referenceIndices": [
+          93,
+          94,
+          95,
+          96,
+          97,
+          98
+        ]
+      },
+      {
+        "id": "rcvrcfg-timeout-idle-not-success",
+        "title": "RcvrCfg 48ms超时：高速可能转Idle，但该入口不能冒充正常训练成功",
+        "paragraphs": [
+          "48ms到期，2.5/5GT/s到Detect；≥8GT/s且idle_to_rlock_transitioned<FFh可到Idle并清切速变量，否则Detect。",
+          "由RcvrCfg超时进入Idle时，128b/130b NFM及FM的正常L0出口明确被禁止；不能看后来Idle计数够就抹去timeout来源。"
+        ],
+        "referenceIndices": [
+          95,
+          96,
+          99,
+          100
+        ]
+      },
+      {
+        "id": "recovery-idle-counts-by-mode",
+        "title": "Idle成功计数按模式/编码分：NFM 8收16发；FM 2收4或8发",
+        "paragraphs": [
+          "NFM在全部Lane收到连续8个Idle Symbol Time，并在收到首个Idle之后发16个Idle；FM收到连续2个IDLE Flit后，首个之后至少发4个（8b/10b或128b/130b）或8个（1b/1b）。",
+          "128b/130b NFM要求Idle在Data Block内、开始Data Stream处理前完成deskew；FM也要求在开始处理前完成deskew。计数不是总字节数或PCLK周期数。"
+        ],
+        "referenceIndices": [
+          99,
+          100
+        ]
+      },
+      {
+        "id": "recovery-idle-retry-counter",
+        "title": "Idle 2ms失败后的FFh重试：高速度递增，5GT/s直接置FFh",
+        "paragraphs": [
+          "Idle成功条件未满足而2ms到期，计数<FFh则回RcvrLock；≥8GT/s时加1，5GT/s时直接置FFh，2.5GT/s可选同样处理；已为FFh则Detect。",
+          "128b/130b NFM及FM成功回L0时清00h。不要把FFh当“还可重试255次”的固定次数承诺，因为它还受其它状态入口和复位规则影响。"
+        ],
+        "referenceIndices": [
+          99,
+          100
+        ]
+      },
+      {
+        "id": "recovery-lock-branch-query",
+        "title": "查询：RcvrLock正常门槛与24ms出口的逐版分支",
+        "paragraphs": [
+          "输入各Lane已解码且已取得本次对齐后的连续TS快照，以及Extended Synch、本次切速历史和24ms观察。工具把all-Lane正常出口、any-Lane超时协商、回原速、降速与Detect分开。",
+          "均衡分支必须先独立核对；勾选尚待均衡处理时本工具不裁决后续RcvrLock出口。它不从模拟波形判断锁定、不解析全部1b/1b字段、不模拟完整LTSSM及全部相同时刻竞态。"
+        ],
+        "referenceIndices": [
+          81,
+          82,
+          89,
+          90
+        ]
       }
     ]
   },
@@ -3123,14 +3680,14 @@
     "checks": "发起控制的端口必须有相应职责和能力；记录切换前后速率、训练状态和错误计数。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 5,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-22",
     "protocolReferences": [
       {
         "section": "6.11",
@@ -3142,9 +3699,696 @@
         "pdfPage": 750,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "page": 485,
+        "pdfPage": 485,
+        "title": "成功变量清零",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.1",
+        "page": 570,
+        "pdfPage": 570,
+        "title": "成功变量清零",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "page": 502,
+        "pdfPage": 502,
+        "title": "Speed入口EI保持",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 589,
+        "pdfPage": 589,
+        "title": "Speed入口EI保持",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "page": 503,
+        "pdfPage": 503,
+        "title": "Speed目标与超时",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 590,
+        "pdfPage": 590,
+        "title": "Speed目标与超时",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 508,
+        "pdfPage": 508,
+        "title": "RcvrCfg到Idle条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 597,
+        "pdfPage": 597,
+        "title": "RcvrCfg到Idle条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 506,
+        "pdfPage": 506,
+        "title": "Speed协商TS2分类",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 595,
+        "pdfPage": 595,
+        "title": "Speed协商TS2分类",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 507,
+        "pdfPage": 507,
+        "title": "任一EQ TS2后等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 595,
+        "pdfPage": 595,
+        "title": "任一EQ TS2后等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 507,
+        "pdfPage": 507,
+        "title": "32/128个发送要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 595,
+        "pdfPage": 595,
+        "title": "32/128个发送要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 507,
+        "pdfPage": 507,
+        "title": "共同速率选择",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 595,
+        "pdfPage": 595,
+        "title": "共同速率选择",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 508,
+        "pdfPage": 508,
+        "title": "成功协商仍可同速",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 597,
+        "pdfPage": 597,
+        "title": "成功协商仍可同速",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.5.4",
+        "page": 436,
+        "pdfPage": 436,
+        "title": "EI推断条件表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.5.4",
+        "page": 513,
+        "pdfPage": 513,
+        "title": "EI推断条件表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.5.4",
+        "page": 437,
+        "pdfPage": 437,
+        "title": "推断实现说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.5.4",
+        "page": 514,
+        "pdfPage": 514,
+        "title": "推断实现说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "page": 487,
+        "pdfPage": 487,
+        "title": "RcvrLock正常条件/24ms首分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.1",
+        "page": 572,
+        "pdfPage": 572,
+        "title": "RcvrLock正常条件/24ms首分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 510,
+        "pdfPage": 510,
+        "title": "RcvrCfg超时",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 599,
+        "pdfPage": 599,
+        "title": "RcvrCfg超时",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "page": 503,
+        "pdfPage": 503,
+        "title": "Speed 48ms超时",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 590,
+        "pdfPage": 590,
+        "title": "48/96ms选择与理由",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 591,
+        "pdfPage": 591,
+        "title": "增强编码96ms条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "page": 503,
+        "pdfPage": 503,
+        "title": "速率及带宽状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 591,
+        "pdfPage": 591,
+        "title": "速率及带宽状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.5",
+        "page": 512,
+        "pdfPage": 512,
+        "title": "Idle成功条件和重试计数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.5",
+        "page": 601,
+        "pdfPage": 601,
+        "title": "Idle成功条件和重试计数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 591,
+        "pdfPage": 591,
+        "title": "增强超时",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "所引Base6.0/7.0 Recovery、Speed及改宽入口正文已核读；早期修订/全部角色/后续ECN及整章覆盖仍待继续。",
+    "details": [
+      {
+        "id": "speed-three-variables",
+        "title": "切速三个变量分别回答：想切、协商成功、是否已在本次Recovery改过",
+        "paragraphs": [
+          "directed_speed_change表示切速意图及传播；successful_speed_negotiation表示已满足本轮协商条件；changed_speed_recovery记录本次从L0/L1进入Recovery后是否已按共同速率改变。",
+          "前者到Speed清0，成功变量进入RcvrLock清0；changed变量决定失败时回原速还是按编码降速。它们不是同一个“speed_done”标志。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "table": {
+          "columns": [
+            "变量",
+            "常见观察",
+            "不等于"
+          ],
+          "rows": [
+            [
+              "directed",
+              "TS中传播切速意图",
+              "已经切频"
+            ],
+            [
+              "successful",
+              "共同速率协商完成",
+              "新速率已训练成功"
+            ],
+            [
+              "changed",
+              "本次Recovery已按共同速率改变",
+              "已到L0或每次均减半"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "speed-negotiation-standard-versus-eq",
+        "title": "RcvrCfg到Speed：普通TS2任一Lane可构成证据，EQ TS2还有all-Lane/等待分支",
+        "paragraphs": [
+          "两版均区分普通连续8个TS2与EQ TS2。普通TS2在任一配置Lane满足相同速率标识、相同Symbol6及speed_change=1等条件；EQ TS2可由全部Lane满足，或任一Lane满足后再等1ms。",
+          "7.0另列1b/1b EQ TS2的all-Lane及any-Lane+1ms路径。不要把“任一Lane收8个”推广到所有EQ格式和所有出口。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "speed-negotiation-transmit-count",
+        "title": "收8个还不够：8b/10b至少再发32个，128b/130b与1b/1b至少128个",
+        "paragraphs": [
+          "在同一配置Lane收到首个speed_change=1的TS2之后，本端还需按编码发送规定数量的speed_change=1 TS2；8b/10b的32个明确不得被EIEOS打断，其它两类为至少128个。",
+          "这些是RcvrCfg到Speed前的发送条件，与正常到Idle的16个、RcvrLock Extended Synch的1024个不同。起算点若拿成进入RcvrCfg会过早满足。"
+        ],
+        "referenceIndices": [
+          13,
+          14
+        ]
+      },
+      {
+        "id": "speed-highest-common-advertised",
+        "title": "目标速率是本次双方广告的共同最高，不直接读取硬件最大Gen",
+        "paragraphs": [
+          "满足Speed协商分支后，记录收到的8个TS2所广告的对端速率，并选双方共同最高；当前2.5GT/s时还要确认双方至少广告了更高速率，除其它出口规定的例外。",
+          "硬件支持Gen7但当前为可靠性只广告到Gen5，并不必然升到128GT/s。通用查询要求用户给已核的共同最高值，不猜全部能力/策略寄存器。"
+        ],
+        "referenceIndices": [
+          15,
+          16
+        ]
+      },
+      {
+        "id": "speed-state-without-rate-change",
+        "title": "已经处于双方共同最高时仍执行Recovery.Speed，频率可以保持不变",
+        "paragraphs": [
+          "所引两版明确这种情况下仍执行Speed，但数据速率不改变。因此看到Speed状态而Current Link Speed没变，不足以证明硬件切速失败。",
+          "仍需满足EIOS/EI及后续RcvrLock流程，不能因“不变频”就绕过握手；也不能把状态名当作实际频率跳变触发器。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6,
+          17,
+          18
+        ]
+      },
+      {
+        "id": "speed-eios-before-idle",
+        "title": "Speed先发送EIOSQ，再进入Electrical Idle",
+        "paragraphs": [
+          "进入EI之前必须发送EIOSQ，让对端获得有意义的边界指示；对端也可按适用规则检测或推断EI。",
+          "“本端关闭驱动”与“对端已进入/已被判定EI”之间有依赖，不能把二者同一拍绑定。Speed期间直流共模电压不要求保持在规定范围内，但后续退出仍有适用要求。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "speed-frequency-after-rx-ei",
+        "title": "只能在接收Lane进入EI后改变频率，不靠本端已发EIOS提前切",
+        "paragraphs": [
+          "Speed中先维持TX EI直到RX Lane进入EI，然后才允许改到新速率，并继续满足额外保持窗口。",
+          "这不是PLL切换完成时间的规定：PIPE/PMA接口握手、时钟切换、均衡和Block Alignment各自还要完成。查波形时把EIOS、RX EI证据、切频和恢复TS四个时刻分开。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "speed-extra-hold-window",
+        "title": "额外EI保持：成功最少800ns，失败最少6µs，额外最多1ms",
+        "paragraphs": [
+          "额外等待从接收Lane进入EI之后计算；successful_speed_negotiation=1为至少800ns，0为至少6µs，额外等待不得超过1ms。",
+          "不是从进入Speed就固定等800ns。前面判断EI可能已经用掉UI或ms窗口，不能把那段等待当成全部额外保持。查询按这一有限窗口检查，不声称这就是完整PHY切换预算。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "speed-ei-inference-table",
+        "title": "EI推断重排表：RcvrCfg、Speed成功和Speed失败使用不同观察对象",
+        "paragraphs": [
+          "两版表4-39/4-51相关行如下。UI是协议物理时间单位，不是一个PCLK周期；本表保留UI口径，不从GT/s擅自换算PAM4符号/时钟周期。"
+        ],
+        "referenceIndices": [
+          19,
+          20
+        ],
+        "table": {
+          "columns": [
+            "子状态/观察",
+            "2.5GT/s",
+            "5GT/s",
+            "≥8GT/s"
+          ],
+          "rows": [
+            [
+              "RcvrCfg：窗口内无TS1/TS2",
+              "1280UI",
+              "1280UI",
+              "4ms"
+            ],
+            [
+              "Speed成功：窗口内无TS1/TS2",
+              "1280UI",
+              "1280UI",
+              "4680UI"
+            ],
+            [
+              "Speed失败：窗口内从未观察EI退出",
+              "2000UI",
+              "16000UI",
+              "16000UI"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "speed-failed-inference-not-missing-ts",
+        "title": "失败时不能只凭“收不到TS”沿用成功推断窗口",
+        "paragraphs": [
+          "成功协商时此前已能接收TS，规定时间未见TS可用来推断EI；失败时本来就可能收不准TS，改用在较长窗口从未检测到EI退出的条件。",
+          "因此失败路径不是把4680UI稍微加大，也不是只看某个TS计数=0。两者的观察事件本身不同。"
+        ],
+        "referenceIndices": [
+          19,
+          20,
+          21,
+          22,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "speed-ei-exit-not-inferred",
+        "title": "可以推断进入EI，不能用“EI推断不成立”来判断退出EI",
+        "paragraphs": [
+          "§4.2.5.4明确Electrical Idle exit不得根据EI条件推断而确定。实现可用公共LTSSM超时计数器观察各Lane的入口推断窗口，但退出仍须合适证据。",
+          "“无信号被推断为idle”并不建立一套取反就能得到可靠wake的逻辑。与PHY的RxElecIdle输出、EIEOS检测及恢复锁定分别对照。"
+        ],
+        "referenceIndices": [
+          19,
+          20
+        ]
+      },
+      {
+        "id": "speed-success-changes-all-lanes",
+        "title": "成功从RcvrCfg进入Speed后，全部配置Lane切共同速率并置changed",
+        "paragraphs": [
+          "成功协商且入口为RcvrCfg时，离开Speed到RcvrLock时把所有配置Lane改成双方广告的共同最高，并置changed_speed_recovery=1。",
+          "随后还须按新速率重锁、均衡及训练，不能在置changed的同一时刻宣告业务恢复。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "speed-second-entry-old-rate",
+        "title": "本次Recovery第二次失败进入Speed时，回原始L0/L1速率并清changed",
+        "paragraphs": [
+          "当changed_speed_recovery=1，后续失败回Speed的目标是最初从L0/L1进入Recovery时的数据速率；本次离开Speed后清changed。",
+          "这解释“升速失败又回原速”的闭环，与第一次当前速率失效时降到2.5/32GT/s不同。工具按成功协商分支优先，再检查回原速分支。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "speed-six-seven-fallback-wording",
+        "title": "6.0保留1b/1b回退表述差异；7.0在Speed正文明确回32GT/s",
+        "paragraphs": [
+          "6.0 RcvrLock/RcvrCfg明确1b/1b失败回32GT/s，但Speed末尾通用else写2.5GT/s；7.0增加latest encoding=1b/1b则回32GT/s的分支。",
+          "工具对6.0来源为RcvrLock/RcvrCfg时显示明确的32GT/s入口依据，同时提示Speed通用句差异；对未核明的其它1b/1b失败来源返回待核，不静默“修正规范”。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6,
+          23,
+          24,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "speed-six-timeout-forty-eight",
+        "title": "6.0 Speed超时明列48ms，不与EQ各阶段计时合并",
+        "paragraphs": [
+          "6.0 Speed正文规定48ms到Detect，并说明正常条件下该转移不会发生；这不是全部Recovery过程统一只有48ms，也不是EQ Phase2/3的上限。",
+          "各子状态计时必须以实际入口和条件关联，不把多个状态累计时间直接套到单个子状态的定时器。"
+        ],
+        "referenceIndices": [
+          27
+        ]
+      },
+      {
+        "id": "speed-seven-timeout-table",
+        "title": "7.0 Speed 48/96ms表：64GT/s非增强允许二选一，强烈推荐96ms",
+        "paragraphs": [
+          "7.0对Speed入口速率<64GT/s规定48ms；Speed入口64GT/s且TS_Enhanced_Flit_Encode=0允许48或96ms，强烈推荐96ms，避免与对端较长EQ阶段形成非预期Detect。",
+          "另句规定Recovery入口速率≥64GT/s且增强编码为1时96ms。注意原文前两句写Recovery.Speed入口，后句写Recovery入口；混合入口快照不能擅自合并。查询保留重叠/未覆盖组合为待核，不编造“128GT/s增强关闭”的通用结果。"
+        ],
+        "referenceIndices": [
+          28,
+          29
+        ]
+      },
+      {
+        "id": "speed-status-management-autonomous",
+        "title": "变更日志：Current Link Speed、管理带宽状态、自主带宽状态要分开",
+        "paragraphs": [
+          "Speed后新速率须反映到Current Link Speed。实际带宽变化时，成功协商且收到Autonomous Change，或由DSP以自主原因发起等规定条件下置Autonomous Bandwidth Status；其它变更置Bandwidth Management Status。",
+          "从软件Retrain触发的后续L0返回还有管理状态规定。状态位是事件记录，不是“整个端到端路径都完成”的证据；本轮不扩展完整中断寄存器驱动。"
+        ],
+        "referenceIndices": [
+          30,
+          31,
+          32,
+          33
+        ]
+      },
+      {
+        "id": "speed-window-target-query",
+        "title": "查询：Recovery.Speed额外EI窗口、回退目标与48/96ms适用条件",
+        "paragraphs": [
+          "输入版本、从哪里进Speed、成功/changed变量、Speed与原Recovery入口速率、共同目标、EI证据及额外保持ns。查询分别显示频率改变的前提、离开EI的窗口和目标速率。",
+          "7.0增强与普通模式分别列超时选择，6.0有上下文差异的失败来源保留待核。工具不决定PLL锁定，不推断真实EI或整个LTSSM的竞态优先级。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6,
+          19,
+          20,
+          34,
+          23,
+          24,
+          25,
+          26
+        ]
+      }
+    ]
   },
   {
     "name": "宽度调整与Upconfigure",
@@ -3156,14 +4400,14 @@
     "checks": "先判断这是训练降宽、主动重训练还是L0p；不要把所有宽度变化都当成物理故障。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 6,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-22",
     "protocolReferences": [
       {
         "section": "4",
@@ -3175,9 +4419,503 @@
         "pdfPage": 307,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 509,
+        "pdfPage": 509,
+        "title": "NFM重配置入口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 597,
+        "pdfPage": 597,
+        "title": "NFM重配置入口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 509,
+        "pdfPage": 509,
+        "title": "FM重配置及版本差异",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 598,
+        "pdfPage": 598,
+        "title": "FM重配置及版本差异",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.5",
+        "page": 511,
+        "pdfPage": 511,
+        "title": "推荐重配置入口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.5",
+        "page": 600,
+        "pdfPage": 600,
+        "title": "推荐重配置入口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 503,
+        "pdfPage": 503,
+        "title": "RcvrCfg发送TS2与PAD",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 591,
+        "pdfPage": 591,
+        "title": "RcvrCfg发送TS2与PAD",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 591,
+        "pdfPage": 591,
+        "title": "1b/1b EQ字段复用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 508,
+        "pdfPage": 508,
+        "title": "RcvrCfg到Idle条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 597,
+        "pdfPage": 597,
+        "title": "RcvrCfg到Idle条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.1",
+        "page": 573,
+        "pdfPage": 573,
+        "title": "主动缩宽前等待建议",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 506,
+        "pdfPage": 506,
+        "title": "不活动Lane EI检测建议",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 595,
+        "pdfPage": 595,
+        "title": "不活动Lane EI检测建议",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.5",
+        "page": 511,
+        "pdfPage": 511,
+        "title": "Idle PAD入口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.5",
+        "page": 599,
+        "pdfPage": 599,
+        "title": "Idle PAD入口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.5",
+        "page": 600,
+        "pdfPage": 600,
+        "title": "NFM/FM推荐入口区分",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.5",
+        "page": 511,
+        "pdfPage": 511,
+        "title": "已活动流EDS与控制转移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.5",
+        "page": 600,
+        "pdfPage": 600,
+        "title": "已活动流EDS与控制转移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.5",
+        "page": 512,
+        "pdfPage": 512,
+        "title": "FM不插Idle数据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.5",
+        "page": 600,
+        "pdfPage": 600,
+        "title": "FM不插Idle数据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.1",
+        "page": 573,
+        "pdfPage": 573,
+        "title": "主动FM缩宽等待建议",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "独立核读本版对应正文和所需续页；关键表/分支已另作本地视觉复核，所引印刷页与PDF物理页一致。原创说明及示意，仅覆盖所列规则，不代表整章/七代全部修订或ECN完成。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "所引Base6.0/7.0 Recovery、Speed及改宽入口正文已核读；早期修订/全部角色/后续ECN及整章覆盖仍待继续。",
+    "details": [
+      {
+        "id": "width-three-mechanisms",
+        "title": "改链宽分三条：NFM Upconfigure、FM错误缩宽、L0p调活动Lane",
+        "paragraphs": [
+          "传统NFM可经Recovery→Configuration重新配置宽度；所引FM错误缩宽路径用于故障时减少已配置Link的Lane；L0p在L0里调整活动Lane集合，是另一机制。",
+          "FM条文说无upconfig support，针对该传统重配置路径，不意味着L0p只能缩不能扩。不要把活动Lane恢复与重新配置Link宽度共用一个未标模式的“upconfigure done”。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "width-fm-pad-only-removed-lanes",
+        "title": "FM发起缩宽时，在待剔除Lane的TS2 Link Number发PAD",
+        "paragraphs": [
+          "RcvrCfg发送TS2时，若本次要到Configuration改变宽度，对待移除Lane将Link Number置PAD，其余Lane保留Link号。",
+          "因此只见某一条Lane的PAD，不应说整条Link已消失。最终是否能组成合法新宽度及Lane编号仍由Configuration各子态决定。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "width-seven-no-rate-or-eq-concurrent",
+        "title": "7.0明确禁止speed_change=1或刚经EQ返回RcvrLock后发起宽度改变",
+        "paragraphs": [
+          "7.0 RcvrCfg开头新增/明确：speed_change=1，或到本态之前经过Equalization再到RcvrLock时，LTSSM不得发起宽度改变。",
+          "6.0所引开头未列同一句；这里只对照两个版本正文，不据此推导6.0所有并发都允许。模式/切速/均衡/改宽交互要保留入口历史。"
+        ],
+        "referenceIndices": [
+          7,
+          8
+        ]
+      },
+      {
+        "id": "width-one-bit-ts2-link-field-context",
+        "title": "1b/1b EQ TS2有字段复用，不能把Symbols1/9一律读作Link Number",
+        "paragraphs": [
+          "7.0指出，当1b/1b TS2正在传均衡请求时，Symbols1/9表示Equalization Byte0而非Link Number，且Request Equalization及其它字段按对应规则。",
+          "查询输入的PAD/匹配结果必须是按正确格式解码后的语义。把复用字节的数值直接解释成PAD，会产生虚假的缩宽事件。"
+        ],
+        "referenceIndices": [
+          9
+        ]
+      },
+      {
+        "id": "width-nfm-eight-ts1-mismatch",
+        "title": "NFM从RcvrCfg到Configuration：任一Lane连续8个编号不匹配TS1",
+        "paragraphs": [
+          "8个连续TS1的Link或Lane号不匹配本Lane发送值，是这条入口的接收证据；普通匹配TS2用于走Idle，不应混成一个“TS计数”。",
+          "还须满足发送16个TS2与speed_change相关条件；不是看到一个PAD就立即离开。其它格式/均衡优先分支不由这个单项决定。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "width-nfm-sixteen-after-ts1",
+        "title": "NFM此入口的16个TS2从收到首个TS1后计，不从状态入口计",
+        "paragraphs": [
+          "在收到一份TS1之后发送16个TS2，再结合连续8个编号不匹配TS1证据和其它条件，才能走该Configuration入口。",
+          "正常RcvrCfg→Idle的16个计数从首个TS2之后起，切速32/128个又从speed_change=1 TS2起；这三个TX计数窗口不能直接共用同一个总发送数。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          10,
+          11
+        ]
+      },
+      {
+        "id": "width-nfm-speed-zero-exception",
+        "title": "NFM入口要求speed_change=0，或2.5GT/s且任一侧无更高速率广告",
+        "paragraphs": [
+          "编号不匹配和计数满足后，还要收到的TS1 speed_change=0；另一允许条件是当前2.5GT/s且收到或发出的速率标识至少一方未广告5GT/s及以上。",
+          "不能把这个“无更高速率广告”的低速例外拓展到Gen3及以上，也不能认为任一不匹配TS都无条件触发改宽。"
+        ],
+        "referenceIndices": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "width-fm-one-ms-origin",
+        "title": "FM重配置的1ms从本态收到首份TS1/TS2起计",
+        "paragraphs": [
+          "两版该入口都要求，在本次RcvrCfg任一配置Lane收到一份TS1/TS2后经过1ms。它不是进入Recovery后1ms，也不是从连续第8个TS才开始。",
+          "另有7.0 RcvrLock中的额外1ms建议，是另一段用于减少双方错开时机的等待；时间起点与强度都不同。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          12
+        ]
+      },
+      {
+        "id": "width-fm-ts1-after-ts2",
+        "title": "FM接收模式一：先收到TS2，再收到连续8个TS1",
+        "paragraphs": [
+          "在任一配置Lane已收到TS2之后，接着出现连续8个TS1，是两版列出的改宽接收模式；仍需1ms、16个发送TS2及speed_change=0。",
+          "“先TS2后TS1”是时序关系，不是本轮总共收了8个TS1和任意历史TS2就够。查询将此输入作为已经按本次代次核实的模式。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "width-fm-seven-pad-ts1-no-ts2",
+        "title": "FM 7.0接收模式二：一直无TS2，但有连续8个Link或Lane=PAD的TS1",
+        "paragraphs": [
+          "7.0独立列此模式，要求本态未在任何配置Lane收到TS2；PAD可在Link或Lane号。6.0所引FM分支没有这一条。",
+          "此时7.0还允许以首份PAD TS1作为后续发送16个TS2的计数起点，因此即使完全没收到TS2也能按明确条件推进；不要用6.0只认TS2的计数规则卡死该路径。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "width-fm-eight-ts2-pad",
+        "title": "FM另一模式：连续8个Link=PAD的TS2，或满足该TS2分支且本端正在发PAD",
+        "paragraphs": [
+          "两版列连续8个TS2与Link PAD相关条件；条文也包含本端TS2正在发送PAD的替代。不能只看一次本地PAD输出而跳过接收序列要求。",
+          "1b/1b仍先按其匹配/复用规则解码；这一查询使用已分类的协议语义，不模拟Raw Symbol到TS2的解析。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "width-fm-sixteen-origin-version-table",
+        "title": "FM发送16个TS2的起点：6.0只列首TS2，7.0加首PAD TS1",
+        "paragraphs": [
+          "两版差别如下，版本必须和页面绑定。无TS2的PAD TS1模式与新的发送起点配合，不能只搬一半规则。"
+        ],
+        "referenceIndices": [
+          3,
+          4
+        ],
+        "table": {
+          "columns": [
+            "版本",
+            "16个发送TS2计数可从哪份接收后起",
+            "接收模式额外差异"
+          ],
+          "rows": [
+            [
+              "6.0",
+              "首份TS2之后",
+              "所引条文无“无TS2但PAD TS1”独立分支"
+            ],
+            [
+              "7.0",
+              "首份TS2，或首份Link/Lane=PAD TS1之后",
+              "明确增加无TS2的PAD TS1模式"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "width-configuration-clears-speed-history",
+        "title": "从RcvrCfg进入Configuration时清changed与directed，不沿用旧切速代次",
+        "paragraphs": [
+          "NFM/FM这两条重配置入口均规定清changed_speed_recovery和directed_speed_change。之后的Configuration重新确定可用Lane与编号。",
+          "日志应把“本次Recovery尝试升速”“随后改宽”和“之后新的Recovery”分开；旧changed=1不能一直让后续任意失败回到很早以前的速率。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "width-inactive-lane-ei-recommendation",
+        "title": "NFM扩宽预备：未切速时建议提前启用不活动Lane的EI检测",
+        "paragraphs": [
+          "对支持Upconfigure的设备，directed_speed_change=0时，建议在RcvrCfg、Recovery.Idle和Configuration.Linkwidth.Start激活不活动Lane的EI检测，避免漏掉发起端首份EIEOSQ。",
+          "这是推荐性检测准备，不是旁路训练/编号检查；也不能从接口Standby位推断模拟检测器已经在系统要求时间内工作。"
+        ],
+        "referenceIndices": [
+          13,
+          14
+        ]
+      },
+      {
+        "id": "width-recovery-idle-pad-fast-path",
+        "title": "NFM推荐的快速入口：Recovery.Idle任一Lane连续2个Lane=PAD TS1",
+        "paragraphs": [
+          "Idle中任一配置Lane连续收到2个Lane Number=PAD的TS1，可到Configuration；可选发起重配置的一侧保证所有Lane发Lane=PAD。",
+          "7.0建议NFM用此路径降低改宽耗时，FM则用RcvrCfg到Configuration。PAD所处字段与所需计数在两条路径不同，不能混成“一律2个PAD TS”。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          17
+        ]
+      },
+      {
+        "id": "width-end-active-stream-before-ts",
+        "title": "128b/130b NFM已开始Data Stream时，要发EDS结束，再回训练TS",
+        "paragraphs": [
+          "一侧可能先进入Idle并发出SDS/Idle数据，随后才收到对端改宽TS1；这时先在当前活动Lane集合发送EDS结束Data Stream，再发送Configuration TS1。",
+          "被指令转其它态时，128b/130b NFM不得为了“凑Idle”新发Idle Symbols；FM也不得在转控制态前额外开始IDLE Flit数据流。训练/数据边界不是看总线空闲即可略过。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          20,
+          21
+        ]
+      },
+      {
+        "id": "width-seven-rlock-wait-recommendation",
+        "title": "7.0主动FM缩宽建议：等任一TS2，或正常Lock退出资格后额外等1ms",
+        "paragraphs": [
+          "7.0实施说明建议主动缩宽方采用上述一种等待，让对端仍有机会收到带有效Link/Lane的TS1，减少对端只能走RcvrLock超时弧的可能。",
+          "这是recommendation，不能写成所有RcvrLock退出都强制加1ms。也不能取代RcvrCfg内从首TS开始的规定1ms。"
+        ],
+        "referenceIndices": [
+          22
+        ]
+      },
+      {
+        "id": "width-entry-version-query",
+        "title": "查询：NFM/FM重配置入口、PAD模式与6.0/7.0计数起点",
+        "paragraphs": [
+          "输入模式、版本、已核实的接收模式、本态首TS后时间、规定起点后发送TS2数量和切速/均衡历史。输出此条入口的缺项和版本差异。",
+          "“入口条件满足”仅表示这条已列弧，不保证新Lane集合合法、宽度协商完成或整个LTSSM无其它优先事件。该工具不生成厂商控制信号，也不执行Link重训练。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          7,
+          8
+        ]
+      }
+    ]
   },
   {
     "name": "Lane Reversal / Flip",
