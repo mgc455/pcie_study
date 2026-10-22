@@ -1,6 +1,6 @@
 {
   "date": "2026-10-22",
-  "summary": "R37：Receiver Detect有效证据、切速时钟架构与Configuration.Lanenum/Complete角色分支。",
+  "summary": "R38：ACS/Atomic错误根因、UIO越过/接收依赖及VC启用承诺。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -621,6 +621,21 @@
       "name": "R37构建与行为检查",
       "status": "通过",
       "detail": "新增571个查询分支/来源/渲染检查与41套历史回归通过；保留全部原详情及来源索引。正常与超时同时标记时保留事件先后待核。build/check与JS语法通过；发布后继续实际页面检查。"
+    },
+    {
+      "name": "R38先自查与正文核读",
+      "status": "所列规则已核读",
+      "detail": "确认114是VC而非ACS；108此前无详细块，本轮补专门错误处置。核Base7的ACS、Atomic、IDE、UIO两类矩阵/可见性、VC及AER/Control正文，并对照Base6 ACS/Atomic相关页；关键矩阵和错误页视觉核对。纠正常见混淆：CA/UR完成不等于本地同名错误、UIO的DSP/USP依赖不同、完成提示置1后修改VC未定义、单VC Merged模式仍有P/Cpl专用credit。"
+    },
+    {
+      "name": "R38仍未覆盖",
+      "status": "保留待核",
+      "detail": "查询从已分类单一入口开始，不决定Malformed/ACS/IDE等全部并发错误优先级、不验证全系统死锁/所有VF与日志序列。Gen1～5及中间修订、Base6该ACS段未列UIO的缘由仍需对应正式正文/ECN。"
+    },
+    {
+      "name": "R38行为与公开边界检查",
+      "status": "通过",
+      "detail": "198项新增矩阵/错误/寄存器/来源/渲染检查，42套历史回归，旧详情与来源索引保留。源码仅新增学习查询，不操作硬件；发布仅明确文件清单。页面实测与上线状态在发布后单独核对。"
     }
   ],
   "unresolved": [
