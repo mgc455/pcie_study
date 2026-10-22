@@ -1,6 +1,6 @@
 {
   "date": "2026-10-22",
-  "summary": "R36：UIO接收错误处置、读完成地址覆盖和Original PIPE弹性缓冲恢复。",
+  "summary": "R37：Receiver Detect有效证据、切速时钟架构与Configuration.Lanenum/Complete角色分支。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -606,6 +606,21 @@
       "name": "R36行为与保留检查",
       "status": "本地通过",
       "detail": "137项新增分支/地址区间/周期/来源/渲染检查及41套回归通过。旧详情和来源索引逐项保留；本轮未新增packet布局，原36项包图校验继续通过。错误入口工具不定义多重错误总优先级，地址工具不定位无数据错误地址，EB查询不验证所有信号波形或真实指针。"
+    },
+    {
+      "name": "R37自查与正文核对",
+      "status": "选定规则已核读",
+      "detail": "核PIPE7.1检测、状态与切速架构；Gen6 PMA3.02a检测正文/图；Base6/7 Lanenum.Accept/Wait/Complete相关正文及续页。纠正常见推断：1µs为Lane耗时差，Fixed PCLK可停钟，8收与16发同时需要，Complete超时不总回Detect。保留6/7 Upstream SRIS文字和Downstream段内Upstream延迟命名歧义。"
+    },
+    {
+      "name": "R36网页复核补记",
+      "status": "已实际打开并交互核对UIO覆盖",
+      "detail": "用户重新打开网站后，R36首页/深链接可读；默认重复4DW示例不判完整，修改为不重叠两段后唯一8DW且判模型内完整。已保存内置浏览器截图；其余接收/EB页面继续实际复核，不把此项当全部页面已验。 随后实际打开接收处置和EB深链接；缓冲归属从否改为是后显示FC许可分支，EB默认16PCLK/64ns显示正确。"
+    },
+    {
+      "name": "R37构建与行为检查",
+      "status": "通过",
+      "detail": "新增571个查询分支/来源/渲染检查与41套历史回归通过；保留全部原详情及来源索引。正常与超时同时标记时保留事件先后待核。build/check与JS语法通过；发布后继续实际页面检查。"
     }
   ],
   "unresolved": [
