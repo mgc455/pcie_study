@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-21",
-  "summary": "R27：PAM4四抽头与Q类Preset、电压/量化；PIPE评估中止、RX训练以及Recovery重新校准。",
+  "date": "2026-10-22",
+  "summary": "D1：UIO端到端条件、Transaction ID、DW完成记账、状态归并与上下游依赖表。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -456,6 +456,21 @@
       "name": "R27构建、模型与回归",
       "status": "通过",
       "detail": "54个新细节、3项只读查询、原创离散FIR图及Recal流程图；3525项新增检查、31套回归、构建/公开边界与JS语法通过。核对LF的pre2加号、FS预算、Q类理想比值与量化边界；评估中止优先忽略、消息commit与请求Ack分开、重新校准不复用旧Done。未进行浏览器视觉或硬件验收。"
+    },
+    {
+      "name": "2026-10-22 D1自查",
+      "status": "所引7.0正文及关键图表核读",
+      "detail": "发现33仅有6.0排序背景，已明确其不是UIO证据，补7.0精确正文。区分UIO写Posted FC与必须Completion、读无序地址重组、错误仍需完成DW、状态优先级与关闭批次。视觉核对UIO完成图2-83/84、排序/Downstream接受依赖表；Upstream表独立核对，不互相复制。"
+    },
+    {
+      "name": "2026-10-22 D1保留问题",
+      "status": "继续核读",
+      "detail": "尚未完成UIO全部请求类型位图、256B Boundary Disable及所有边界条件、全部SVC能力字段、错误/超时与跨Segment/安全分支；未证明UIO首次引入修订。资料存在，非缺文件。DW查询不检测重叠/重复地址，不作硬件或浏览器视觉验收。"
+    },
+    {
+      "name": "2026-10-22 D1回归",
+      "status": "通过",
+      "detail": "111项新增账本/路由/来源检查及32套回归、构建/公开边界和JS语法通过。新增2张96-bit FM基础头，Type8/TC3/OHC5/TS3/Attr3/Length10逐bit核对，不混入NFM字段；无数据Length仍记DW，UIO读重组检查明确留界。旧详情和来源索引保留。"
     }
   ],
   "unresolved": [
