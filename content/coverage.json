@@ -1,6 +1,6 @@
 {
   "updated": "2026-10-22",
-  "edition": "2026-10-22-r30",
+  "edition": "2026-10-22-r31",
   "scope": "七份Base规范的主章与附录起始位置；不是全部子条款、全部独立规范和ECN已覆盖的声明。",
   "method": [
     "沿每个版本的主章及附录建立缺口清单，再将选定正文规则映射到主题，保留跨主题关联。",
@@ -145066,6 +145066,446 @@
             72,
             73,
             74
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-10-22",
+      "title": "R31 PHY产品功耗、PG与静态Context Restore",
+      "scope": "Gen5 PMA2.02a及Gen6 PMA3.02a/PCS1.75a选定正文；产品规则，非Base主章覆盖或Gen1～Gen7普遍要求。",
+      "reviewedBlocks": [
+        {
+          "featureId": 175,
+          "detailId": "product-power-layer-vocabulary",
+          "referenceIndices": [
+            42,
+            43
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-lane-req-four-phase",
+          "referenceIndices": [
+            44
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-same-link-config-coherence",
+          "referenceIndices": [
+            44
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-same-link-symbol-clock",
+          "referenceIndices": [
+            44,
+            45
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-p0s-direction-asymmetry",
+          "referenceIndices": [
+            42,
+            46,
+            47
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-p1-is-not-pll-off",
+          "referenceIndices": [
+            42,
+            45
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-p2-is-not-all-off",
+          "referenceIndices": [
+            45,
+            46,
+            48
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-rx-disable-depth",
+          "referenceIndices": [
+            49,
+            46
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-data-enable-only-p0",
+          "referenceIndices": [
+            42
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-disable-after-p1-completion",
+          "referenceIndices": [
+            42,
+            44
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-refclk-off-after-pll-state",
+          "referenceIndices": [
+            42,
+            48
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-shared-pll-default-vote",
+          "referenceIndices": [
+            48
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-pll-settings-while-down",
+          "referenceIndices": [
+            48
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-pclk-pll-entry-all-links",
+          "referenceIndices": [
+            50,
+            51
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-pclk-pll-exit-first-clock",
+          "referenceIndices": [
+            52,
+            53
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-rate-power-combine-limitation",
+          "referenceIndices": [
+            43
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-power-timing-not-one-constant",
+          "referenceIndices": [
+            54,
+            55
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "product-shared-pll-query",
+          "referenceIndices": [
+            42,
+            48,
+            50,
+            51
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg-state-versus-voltage",
+          "referenceIndices": [
+            75,
+            76
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg5-switches-external",
+          "referenceIndices": [
+            75,
+            76
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg5-stable-feedback-threshold",
+          "referenceIndices": [
+            75,
+            77
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg5-entry-prepare-before-cut",
+          "referenceIndices": [
+            76
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg5-reset-not-global-reset",
+          "referenceIndices": [
+            76,
+            78
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg5-rails-may-stay-on",
+          "referenceIndices": [
+            76
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg5-exit-rails-before-clock-enable",
+          "referenceIndices": [
+            78,
+            76
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg5-calibration-retention-boundary",
+          "referenceIndices": [
+            76,
+            78
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg5-refclock-repeat-chain",
+          "referenceIndices": [
+            75,
+            79
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg6-mode-is-static-choice",
+          "referenceIndices": [
+            77
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg6-level-shift-versus-isolation",
+          "referenceIndices": [
+            80,
+            81
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg6-isolation-stable-before-release",
+          "referenceIndices": [
+            82,
+            83
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg6-power-ramp-and-order",
+          "referenceIndices": [
+            84
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg6-reset-before-defined-output",
+          "referenceIndices": [
+            84
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg6-reset-ten-versus-fifteen",
+          "referenceIndices": [
+            85,
+            86
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg6-register-reset-clock-window",
+          "referenceIndices": [
+            87
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg-product-observation-table",
+          "referenceIndices": [
+            75,
+            78,
+            77,
+            80,
+            81
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "pg5-event-query",
+          "referenceIndices": [
+            76,
+            78,
+            75
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-three-restore-mechanisms",
+          "referenceIndices": [
+            30,
+            31
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-static-configuration-purpose",
+          "referenceIndices": [
+            30,
+            32,
+            33
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-link-level-not-lane-local",
+          "referenceIndices": [
+            30,
+            34
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-round-robin-not-parallel",
+          "referenceIndices": [
+            30
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-broadcast-within-link",
+          "referenceIndices": [
+            30
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-two-us-is-conditional",
+          "referenceIndices": [
+            30
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-stalls-external-register-access",
+          "referenceIndices": [
+            30
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-enable-captured-on-request",
+          "referenceIndices": [
+            34
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-selector-stable-before-lane-reset-release",
+          "referenceIndices": [
+            34
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-id-change-is-not-rate-number",
+          "referenceIndices": [
+            34,
+            32,
+            33
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-id-domain-eight-bit",
+          "referenceIndices": [
+            34,
+            32,
+            33
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-common-and-dual-pll",
+          "referenceIndices": [
+            34,
+            32,
+            33
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-debug-pause-before-firmware",
+          "referenceIndices": [
+            35
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-done-not-firmware-done",
+          "referenceIndices": [
+            35,
+            36
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-image-support-contract",
+          "referenceIndices": [
+            32,
+            33,
+            37
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-sram-hold-not-retention",
+          "referenceIndices": [
+            38,
+            39,
+            40,
+            41
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-recovery-evidence-table",
+          "referenceIndices": [
+            30,
+            41,
+            42,
+            43
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "context-selection-query",
+          "referenceIndices": [
+            30,
+            34,
+            35,
+            32,
+            33
           ]
         }
       ]
