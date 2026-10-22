@@ -71,3 +71,12 @@ python -m http.server 8000 --directory docs --bind 127.0.0.1
 - [双端TC/VC映射和协商检查](https://mgc455.github.io/pcie_study/#feature/114/detail/svc-link-configuration-query)
 
 本组细规则绑定Base7.0，区分Supported/Selected、资源序号/VC ID及Pending有效范围；工具只检查输入，不操作设备。
+
+### PME唤醒、关机与Root通知
+
+- [PM消息逐bit包结构](https://mgc455.github.io/pcie_study/#feature/57/detail/pm-message-fm-bit-layouts)
+- [PME四态图与转移查询](https://mgc455.github.io/pcie_study/#feature/59/detail/pme-delivery-state-query)
+- [Switch聚合、Ready和100ns/超时检查](https://mgc455.github.io/pcie_study/#feature/85/detail/turnoff-gather-query)
+- [来源与Root状态及中断条件](https://mgc455.github.io/pcie_study/#feature/59/detail/pme-native-register-query)
+
+本组独立对照Base6.0/7.0；只读工具区分消息应答、Link就绪、软件服务和平台掉电条件，不操作设备。
