@@ -1,6 +1,6 @@
 {
   "updated": "2026-10-22",
-  "edition": "2026-10-22-d1",
+  "edition": "2026-10-22-r28",
   "scope": "七份Base规范的主章与附录起始位置；不是全部子条款、全部独立规范和ECN已覆盖的声明。",
   "method": [
     "沿每个版本的主章及附录建立缺口清单，再将选定正文规则映射到主题，保留跨主题关联。",
@@ -141418,6 +141418,355 @@
         "8.32",
         "8.33",
         "9.10"
+      ]
+    },
+    {
+      "edition": "2026-10-22-r28",
+      "documentId": "pipe-7.1",
+      "scope": "参考需求、RX待机/EI与DeepPM/Restore逐条件；独立接口规则，不提升Base章序为整章已读。",
+      "reviewedBlocks": [
+        {
+          "featureId": 170,
+          "detailId": "refclk-required-active-low",
+          "referenceIndices": [
+            32
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-required-state-table",
+          "referenceIndices": [
+            33
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-clkreq-not-interchangeable",
+          "referenceIndices": [
+            34,
+            35,
+            36
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-sample-entry-sequence",
+          "referenceIndices": [
+            37,
+            38
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-delayed-gating-route",
+          "referenceIndices": [
+            39,
+            40
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-wake-not-one-delay",
+          "referenceIndices": [
+            41,
+            42
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-p1-ready-commonmode",
+          "referenceIndices": [
+            43
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-low-power-clock-table",
+          "referenceIndices": [
+            44,
+            45
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-async-ack-four-phase",
+          "referenceIndices": [
+            46,
+            47
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-no-clock-control-observation",
+          "referenceIndices": [
+            48,
+            49
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-l1ss-control-two-methods",
+          "referenceIndices": [
+            50,
+            51,
+            52
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-source-inconsistency-p2-p1",
+          "referenceIndices": [
+            53,
+            54,
+            55
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-datasheet-timing-measurements",
+          "referenceIndices": [
+            56,
+            57
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-gen-versus-interface-revision",
+          "referenceIndices": [
+            58,
+            59
+          ]
+        },
+        {
+          "featureId": 170,
+          "detailId": "refclk-removal-query",
+          "referenceIndices": [
+            60,
+            40
+          ]
+        },
+        {
+          "featureId": 169,
+          "detailId": "rx-standby-state-domain",
+          "referenceIndices": [
+            38,
+            39
+          ]
+        },
+        {
+          "featureId": 169,
+          "detailId": "rx-standby-status-scope",
+          "referenceIndices": [
+            40,
+            41
+          ]
+        },
+        {
+          "featureId": 169,
+          "detailId": "rx-standby-aborts-operations",
+          "referenceIndices": [
+            42,
+            43
+          ]
+        },
+        {
+          "featureId": 169,
+          "detailId": "rx-ei-disable-forces-high",
+          "referenceIndices": [
+            44
+          ]
+        },
+        {
+          "featureId": 169,
+          "detailId": "rx-ei-enable-settle",
+          "referenceIndices": [
+            45
+          ]
+        },
+        {
+          "featureId": 169,
+          "detailId": "rx-ei-disable-supported-states",
+          "referenceIndices": [
+            46,
+            47,
+            48
+          ]
+        },
+        {
+          "featureId": 169,
+          "detailId": "rx-highrate-idle-inference",
+          "referenceIndices": [
+            49
+          ]
+        },
+        {
+          "featureId": 169,
+          "detailId": "rx-sample-tail-data-discard",
+          "referenceIndices": [
+            50,
+            51
+          ]
+        },
+        {
+          "featureId": 169,
+          "detailId": "rx-sample-wake-delay-components",
+          "referenceIndices": [
+            52,
+            53,
+            54
+          ]
+        },
+        {
+          "featureId": 169,
+          "detailId": "rx-wake-evidence-query",
+          "referenceIndices": [
+            63,
+            64,
+            65,
+            66
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "deep-pm-purpose-and-eligibility",
+          "referenceIndices": [
+            42,
+            43
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "deep-pm-request-ack-polarities",
+          "referenceIndices": [
+            44,
+            45
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "deep-pm-entry-ack-not-sleep",
+          "referenceIndices": [
+            46
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "deep-pm-exit-ack-means-exited",
+          "referenceIndices": [
+            47
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "deep-pm-before-powerdown-change",
+          "referenceIndices": [
+            48,
+            49
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "deep-pm-pclk-can-stay-gated",
+          "referenceIndices": [
+            50,
+            51
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "deep-pm-restore-independent-signals",
+          "referenceIndices": [
+            52,
+            53,
+            54
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "restore-pre-off-idle-no-outstanding",
+          "referenceIndices": [
+            55
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "restore-active-before-rail-ramp",
+          "referenceIndices": [
+            56,
+            57
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "restore-input-mask-both-directions",
+          "referenceIndices": [
+            58
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "restore-monitor-now-drive-later",
+          "referenceIndices": [
+            59
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "restore-thirty-two-is-minimum",
+          "referenceIndices": [
+            60,
+            61
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "restore-firmware-retention-not-assumed",
+          "referenceIndices": [
+            62
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "restore-deep-ack-window-race",
+          "referenceIndices": [
+            63,
+            64
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "deep-pm-signal-contract-table",
+          "referenceIndices": [
+            65,
+            66,
+            67,
+            68
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "deep-pm-original-handshake-diagram",
+          "referenceIndices": [
+            69,
+            70
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "restore-original-window-diagram",
+          "referenceIndices": [
+            71
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "deep-pm-trace-query",
+          "referenceIndices": [
+            72,
+            73,
+            74
+          ]
+        }
       ]
     }
   ]

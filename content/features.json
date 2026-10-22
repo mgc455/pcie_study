@@ -55984,7 +55984,7 @@
     "example": "PLL锁定但RX无有效数据时，检查输入信号、接收使能、CDR、恢复时钟及对齐，而不是只看PLL lock。",
     "checks": "按signal present → RX使能 → 时钟/CDR → valid → 协议对齐 → LTSSM逐层定位，丢信号后的恢复流程按手册核对。",
     "status": "选定规则已展开 · 持续逐版核读",
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-22",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -56409,6 +56409,325 @@
         "title": "Recovered RxCLK与停钟保护",
         "verification": "已核读所引本版对应规则及所需续页；仅覆盖本块，不代表整节完成。PIPE本地副本190页与官网189页的整体映射不作推定。",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "RxStandby的PCIe语义",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "EI检测器控制",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 63,
+        "pdfPage": 63,
+        "title": "RxStandbyStatus适用范围",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "RxValid按架构定义",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "RxStandby改变时中止",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.4.1",
+        "page": 67,
+        "pdfPage": 67,
+        "title": "写提交与完成区分",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "EI检测器禁用与强制输出",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "检测器重新启用资格",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "EI禁用支持状态",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 56,
+        "pdfPage": 56,
+        "title": "TX共模控制有效范围",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 147,
+        "pdfPage": 147,
+        "title": "状态能力声明",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "RxElecIdle高速EI入口与beacon语义",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "9.4",
+        "page": 176,
+        "pdfPage": 176,
+        "title": "2.5GT/s样例范围",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "9.4",
+        "page": 177,
+        "pdfPage": 177,
+        "title": "尾部数据丢弃",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "9.4",
+        "page": 177,
+        "pdfPage": 177,
+        "title": "Idle到Active的延时组成",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 146,
+        "pdfPage": 146,
+        "title": "接收延时",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 147,
+        "pdfPage": 147,
+        "title": "PHY lock time",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.6",
+        "page": 179,
+        "pdfPage": 179,
+        "title": "定时器与内部valid",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.12.2",
+        "page": 75,
+        "pdfPage": 75,
+        "title": "CDR bit lock与内部valid",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.6",
+        "page": 179,
+        "pdfPage": 179,
+        "title": "参考跟踪与内部覆盖",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.6",
+        "page": 179,
+        "pdfPage": 179,
+        "title": "丢信号恢复",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.12.2",
+        "page": 75,
+        "pdfPage": 75,
+        "title": "丢信号后禁用/重新启用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.6",
+        "page": 179,
+        "pdfPage": 179,
+        "title": "图5-8计量边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.6",
+        "page": 180,
+        "pdfPage": 180,
+        "title": "表5-2 SSC与non-SSC锁定",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "5.6",
+        "page": 180,
+        "pdfPage": 180,
+        "title": "切速关闭/恢复及无效数据恢复建议",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "EI禁用",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "待机与中止",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 63,
+        "pdfPage": 63,
+        "title": "待机状态",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "两类valid及速率条件",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
       }
     ],
     "referenceStatus": "所引Base6.0/7.0 RX对齐、极性、编码与SKP条款及PIPE7.1接口已按块核读；早期逐版演进、FM数据流完整调度和产品实现仍待核。",
@@ -57068,6 +57387,185 @@
           22,
           23
         ]
+      },
+      {
+        "id": "rx-standby-state-domain",
+        "title": "RxStandby在PCIe中仅控制P0/P0s的高速RX",
+        "paragraphs": [
+          "RxStandby=0请求接收活动，1请求待机；在PCIe P0/P0s之外忽略此输入。它不负责替代PowerDown选择P1/P2，也不表示链路已进入某个L-state。",
+          "与低频电气空闲检测器的开关分开看：高速接收机待机与RxEIDetectDisable控制的检测器并非同一个接口开关。"
+        ],
+        "referenceIndices": [
+          38,
+          39
+        ]
+      },
+      {
+        "id": "rx-standby-status-scope",
+        "title": "RxStandbyStatus是实际RX状态；P1/P2不能读成Active或Standby",
+        "paragraphs": [
+          "在有效范围内Status=0表示高速RX活动，1表示待机；它报告状态而非复制请求。PIPE明确PCIe P1/P2下此状态没有定义，工具会显示“不适用”，而不把0解码成已经活动。",
+          "返回活动与CDR/数据有效仍是不同里程碑，Status=0不能单独证明RxValid或协议对齐。"
+        ],
+        "referenceIndices": [
+          40,
+          41
+        ]
+      },
+      {
+        "id": "rx-standby-aborts-operations",
+        "title": "RxStandby改变会中止三种RX操作，握手应答不代表成功",
+        "paragraphs": [
+          "在IORecal、RxEqEval或RxEqTraining期间改变RxStandby，PHY必须中止请求并返回握手确认。这里是“发生改变”，不能只检查最后值是否为1。",
+          "此时收到Ack不能据此判定校准/训练成功。日志要关联请求、待机控制边沿、Ack以及本次结果；不要沿用先前缓存的FOM/Done。"
+        ],
+        "referenceIndices": [
+          42,
+          43
+        ]
+      },
+      {
+        "id": "rx-ei-disable-forces-high",
+        "title": "RxEIDetectDisable=1时，RxElecIdle被强制为1",
+        "paragraphs": [
+          "这个可选输入异步禁用接收EI检测逻辑，并强制RxElecIdle为高。因此观测到高电平可能仅说明检测器被软件/控制器关闭，不能证明线端当前真正没有活动。",
+          "查唤醒卡点时把检测器使能上下文一起记录；不能在禁用状态下要求它用RxElecIdle下降报告输入活动。"
+        ],
+        "referenceIndices": [
+          44
+        ]
+      },
+      {
+        "id": "rx-ei-enable-settle",
+        "title": "重新启用EI检测器后，输出继续保持高直到检测逻辑可用",
+        "paragraphs": [
+          "RxEIDetectDisable从1回0后，PHY仍必须保持RxElecIdle高，直到检测逻辑已可工作。撤销disable的边沿本身不是“当前线端已空闲”的采样结果。",
+          "等待检测器恢复、判断线上活动、让CDR恢复、取得相应RxValid是不同条件；不要把它们合并成一个零延时组合路径。"
+        ],
+        "referenceIndices": [
+          45
+        ]
+      },
+      {
+        "id": "rx-ei-disable-supported-states",
+        "title": "EI禁用在哪些PowerDown状态有效，需要独立能力表",
+        "paragraphs": [
+          "PHY可以把此节能机制用于L1之外的状态，但必须在datasheet通过RxEIDetectDisableSupportedStates声明允许的PowerDown状态。引脚存在不代表在每个P-state都可使用。",
+          "TxCommonmodeDisable也只在支持相应L1子状态管理的编码下有效；避免把任意P0或私有状态当成深睡控制窗口。"
+        ],
+        "referenceIndices": [
+          46,
+          47,
+          48
+        ]
+      },
+      {
+        "id": "rx-highrate-idle-inference",
+        "title": "5～128GT/s不能仅靠RxElecIdle判断进入EI",
+        "paragraphs": [
+          "PIPE7.1明确5、8、16、32、64、128GT/s的PCIe MAC必须使用逻辑检测EI入口，而非依赖RxElecIdle。该输出又是异步信号，采样和适用情境均需核对。",
+          "这是EI“进入”的要求，不应扩大成输出在所有状态和所有用途都无效。P2中低电平还具有beacon检测语义；不要将低速样例外推到所有高速编码。"
+        ],
+        "referenceIndices": [
+          49
+        ]
+      },
+      {
+        "id": "rx-sample-tail-data-discard",
+        "title": "低速样例：收到EIOS后的尾部RxData可能仍有无效内容",
+        "paragraphs": [
+          "§9.4仅适用于2.5GT/s，说明EI检测与RxValid撤销之间可有弹性缓冲/同步延时。收到电气空闲Ordered Set后直到RxValid撤销期间，MAC应丢弃后续符号。",
+          "波形中的输出延迟并不自动表示PHY故障；也不能把此样例替代FM、128b/130b或SerDes架构的对应接收规则。"
+        ],
+        "referenceIndices": [
+          50,
+          51
+        ]
+      },
+      {
+        "id": "rx-sample-wake-delay-components",
+        "title": "低速样例：有输入活动到RxValid之间包含重训练与缓冲延时",
+        "paragraphs": [
+          "§9.4说明RxElecIdle撤销到RxValid断言可以有显著间隔，来源包括接收重训练和弹性缓冲深度。不能看到线端跳变就立即消费并行数据。",
+          "第9章是样例而非强制精确波形；所需时间仍按架构、速率和产品的lock/receive latency参数确定。"
+        ],
+        "referenceIndices": [
+          52,
+          53,
+          54
+        ]
+      },
+      {
+        "id": "rx-gen5-timer-gen6-bitlock",
+        "title": "本地Gen5和Gen6产品的valid依据不同，不能当作代际通用差异",
+        "paragraphs": [
+          "Gen5 PMA2.02a §5.6把内部接收valid与预设bit-lock定时器到期关联；Gen6 PMA3.02a §4.12.2表述为CDR已bit locked后断言。两者都要求先满足P0及输入存在条件再启用接收数据路径。",
+          "这是两份具体产品说明的差异，不是“Gen5全部靠定时器、Gen6全部有真实锁定检测”的协议结论，更不能把任一valid当作BER达标证明。"
+        ],
+        "referenceIndices": [
+          55,
+          56
+        ]
+      },
+      {
+        "id": "rx-reference-tracking-gen5",
+        "title": "Gen5产品关闭数据跟踪后仍会做参考跟踪，不等于RX所有时钟停了",
+        "paragraphs": [
+          "2.02a描述关闭数据使能时，RX VCO利用参考时钟校准频率，为后续重新跟踪输入数据保留所需精度；数据跟踪和参考跟踪是不同运行模式。",
+          "该产品还描述频漂越界时内部覆盖并回到参考跟踪再恢复的行为。不要由外部data enable仍为1直接推断CDR一直处于有效数据跟踪；阈值和控制编码需按产品版本查阅。"
+        ],
+        "referenceIndices": [
+          57
+        ]
+      },
+      {
+        "id": "rx-loss-rearm-product-contract",
+        "title": "两个产品都要求丢信号后先禁用，再检测到信号后重新启用CDR",
+        "paragraphs": [
+          "丢信号可来自低频信号检测撤销，也可由上层协议推断。两份手册都要求先撤销接收数据使能，等信号重新被检测到后再使能，不能只等待旧valid自行恢复。",
+          "这是该产品接口的恢复契约；PCIe侧可能还有EI推断、Recovery和对齐工作。重新使能完成不保证多lane deskew、L0或DL_Active。"
+        ],
+        "referenceIndices": [
+          58,
+          59
+        ]
+      },
+      {
+        "id": "rx-gen5-lock-time-ssc",
+        "title": "Gen5产品CDR锁定表：SSC与非SSC分开，不用图中注释覆盖表",
+        "paragraphs": [
+          "2.02a表5-2分别给出non-SSC 6560 UI和SSC 36800 UI最大锁定时间，计量边界按图5-8。不能把邻近图里小于10000 UI的标注套给所有SSC配置。",
+          "这些是该交付的UI时间参数，不是Gen5全体产品保证，也不推广到Gen6 PAM4的UI/符号换算。协议训练总时间还包含其它工作。"
+        ],
+        "referenceIndices": [
+          60,
+          61
+        ]
+      },
+      {
+        "id": "rx-rate-change-product-rearm",
+        "title": "Gen5产品P0切速：先关闭RX数据使能，完成请求/应答后再打开",
+        "paragraphs": [
+          "2.02a要求P0中切速前先关闭接收数据使能，在速率配置请求/应答完成后再重新打开。内部产品req/ack与PIPE的PhyStatus是不同边界，不能只观察其中一层。",
+          "手册针对无效数据时误使能给出的P0→P1→P0恢复建议和约30μs属于该产品上下文，不构成所有PHY的通用最快恢复策略或超时上限。"
+        ],
+        "referenceIndices": [
+          62
+        ]
+      },
+      {
+        "id": "rx-wake-evidence-query",
+        "title": "查询：RX待机、EI检测器和valid快照可以证明到哪一层",
+        "paragraphs": [
+          "输入架构、P-state、RxStandby/Status、RxValid、检测器控制、速率及操作期间是否发生待机改变，工具提示状态适用性、中止条件和可用证据。",
+          "它不会从一次快照推断完整边沿历史；RxValid=1在SerDes仅说明恢复时钟稳定，在Original按架构解释，均不宣布Link Up。"
+        ],
+        "referenceIndices": [
+          63,
+          64,
+          65,
+          66
+        ]
       }
     ]
   },
@@ -57082,7 +57580,7 @@
     "example": "两条同link lane频率相同不代表相位关系满足要求；各自的RX时钟也不能当成一个普通同相时钟。",
     "checks": "列出频率、来源、启动条件、是否停钟及domain；跨域使用同步器/FIFO/握手，不能只按时钟名字相同就设为同步。",
     "status": "选定正文与接口细节已展开 · 持续核对",
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-22",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -57441,6 +57939,325 @@
         "title": "MacCLK异步控制",
         "verification": "核读本地7.1对应正文；所引印刷页与本地PDF物理页相同。官网副本189页、本地190页，未假定两份文件全部页码一致；图表疑点另列。仅覆盖所述规则，不是整章完成。",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "表6-6 RefClkRequired#",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "参考时钟需求及状态限制",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "RefClkRequired#",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 117,
+        "pdfPage": 117,
+        "title": "PCLK持续运行",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "9.5",
+        "page": 178,
+        "pdfPage": 178,
+        "title": "CLKREQ#用途示例",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "9.5.1",
+        "page": 178,
+        "pdfPage": 178,
+        "title": "L1中CLKREQ#示例",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "参考时钟移除许可",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "9.5.3",
+        "page": 179,
+        "pdfPage": 179,
+        "title": "延迟CLKREQ#示例",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 118,
+        "pdfPage": 118,
+        "title": "标准转换集合",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "9.5.1",
+        "page": 178,
+        "pdfPage": 178,
+        "title": "L1唤醒示例",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 147,
+        "pdfPage": 147,
+        "title": "各类恢复时间需产品声明",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 117,
+        "pdfPage": 117,
+        "title": "P1完成资格",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "标准状态与同步完成",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 117,
+        "pdfPage": 117,
+        "title": "状态时钟及空闲条件",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 63,
+        "pdfPage": 63,
+        "title": "AsyncPowerChangeAck输入",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 117,
+        "pdfPage": 117,
+        "title": "无PCLK状态间转换",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 117,
+        "pdfPage": 117,
+        "title": "异步PhyStatus",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "深度功耗异步握手",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 118,
+        "pdfPage": 118,
+        "title": "两类L1SS管理方案",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "旁带方案时钟方向",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 147,
+        "pdfPage": 147,
+        "title": "管理方案能力声明",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 51,
+        "pdfPage": 51,
+        "title": "PowerDown及P2到P1",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 118,
+        "pdfPage": 118,
+        "title": "转换清单与图8-8",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 147,
+        "pdfPage": 147,
+        "title": "P2到P0计时行",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 146,
+        "pdfPage": 146,
+        "title": "参数表起始及N_FTS",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 147,
+        "pdfPage": 147,
+        "title": "锁定与转换时间",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 56,
+        "pdfPage": 56,
+        "title": "可选DeepPM/Restore接口",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "PCIe模式功耗契约",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "参考需求",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
       }
     ],
     "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
@@ -57847,6 +58664,238 @@
           29,
           30,
           31
+        ]
+      },
+      {
+        "id": "refclk-required-active-low",
+        "title": "RefClkRequired#：低电平表示PHY仍需要参考时钟",
+        "paragraphs": [
+          "这是PHY→MAC的可选低有效输出。0表示必须保留参考时钟；1表示PHY在适用低功耗状态已准备好让参考时钟被移除。它不是PHY把REFCLK直接输出给MAC，也不是PLL lock。",
+          "若实现了此信号，MAC必须在它为0时阻止CLKREQ#撤销。先确认接口是否存在，再解释电平，不能把未接引脚的默认值当许可。"
+        ],
+        "referenceIndices": [
+          32
+        ]
+      },
+      {
+        "id": "refclk-required-state-table",
+        "title": "哪些状态允许撤销RefClkRequired#，退出请求又如何恢复",
+        "paragraphs": [
+          "除P1、P2和分配给L1子状态的PowerDown状态外，此信号必须保持断言。处于这些允许状态也不是自动许可移除：PHY准备好后才撤销，检测到退出请求后重新断言。",
+          "PHY许可只是一个条件，还需链路/平台本身允许移除REFCLK。P1下能撤销该输出不等于软件可以在任意P1场景直接停所有时钟。"
+        ],
+        "referenceIndices": [
+          33
+        ],
+        "table": {
+          "columns": [
+            "状态/观察",
+            "PHY规则",
+            "MAC判断"
+          ],
+          "rows": [
+            [
+              "P0 / P0s",
+              "保持0",
+              "不可撤CLKREQ#"
+            ],
+            [
+              "P1 / P2 / L1子状态分配态",
+              "准备好移除时才可1",
+              "仍核平台与协议条件"
+            ],
+            [
+              "低功耗状态检测到退出请求",
+              "重新置0",
+              "保留或恢复参考时钟"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "refclk-clkreq-not-interchangeable",
+        "title": "CLKREQ#、RefClkRequired#、PCLK三者的控制边界",
+        "paragraphs": [
+          "CLKREQ#用于平台参考时钟请求；RefClkRequired#反映PHY对参考时钟的需求；PCLK是MAC/PHY并行接口时钟。三者可能相关，但不是同一根网的三个别名。",
+          "例如P1规定PCLK继续运行，并不能仅凭REFCLK可移除就断言PCLK也应消失。实现必须满足所选时钟架构的产生关系和持续运行要求。"
+        ],
+        "referenceIndices": [
+          34,
+          35,
+          36
+        ]
+      },
+      {
+        "id": "refclk-sample-entry-sequence",
+        "title": "CLKREQ#示例的进入次序：先完成适用低功耗流程，再释放请求",
+        "paragraphs": [
+          "§9.5给出使用CLKREQ#的示例：准备在L1停止REFCLK时，完成链路进入L1的要求，并把PHY带到P2而非停在P1，然后撤销CLKREQ#。",
+          "这是第9章操作示例，不是把所有PHY/平台限定为一张固定波形；额外RefClkRequired#约束若实现仍需满足，不能仅依据PowerDown总线已经写成P2就提前停钟。"
+        ],
+        "referenceIndices": [
+          37,
+          38
+        ]
+      },
+      {
+        "id": "refclk-delayed-gating-route",
+        "title": "已经在P1停留后想关REFCLK：示例经过P0再到P2",
+        "paragraphs": [
+          "§9.5.3的延迟关钟示例从P1先回P0，再到P2，随后撤销CLKREQ#。不能把P1→P2当作普通六条标准转换之一。",
+          "这不要求链路先恢复业务L0：PHY P0与LTSSM L0分属不同层。每次PHY转换还需等待各自完成，不能在一个周期连续改两次PowerDown而跳过中间握手。"
+        ],
+        "referenceIndices": [
+          39,
+          40
+        ]
+      },
+      {
+        "id": "refclk-wake-not-one-delay",
+        "title": "恢复次序包含不同等待：参考稳定、PHY准备、P0、训练",
+        "paragraphs": [
+          "CLKREQ#恢复示例先断言请求，等待实现特定的REFCLK稳定，再等待PHY特定准备条件，随后转P0并开始训练。时钟恢复的等待不是一笔固定的协议通用延时。",
+          "这些阶段可以按实现存在并行；应分别记录请求、参考有效、PHY应答、RX有效及LTSSM进度。只增加一个总超时会掩盖最早没有进展的阶段。"
+        ],
+        "referenceIndices": [
+          41,
+          42
+        ]
+      },
+      {
+        "id": "refclk-p1-ready-commonmode",
+        "title": "进入P1的完成条件还包含DC共模稳定",
+        "paragraphs": [
+          "PCIe P1要求PCLK继续运行；PHY必须等PCLK稳定、工作DC共模已稳定且符合Base要求后，才用PhyStatus表示成功进入。只检测PLL状态不能替代这个接口完成条件。",
+          "P1只在TX和RX都空闲时请求。它与P0s只要求TX空闲不同，不能为省电在RX还活动时直接切P1。"
+        ],
+        "referenceIndices": [
+          43
+        ]
+      },
+      {
+        "id": "refclk-low-power-clock-table",
+        "title": "四个标准P-state的时钟/活动条件查询表",
+        "paragraphs": [
+          "以下是PIPE7.1 PCIe模式的普通状态定义；PCLK输出模式的适用代际仍受接口架构限制，不给Gen5～Gen7凭空增加旧架构支持。L1子状态还可能使用产品特定编码。"
+        ],
+        "referenceIndices": [
+          44,
+          45
+        ],
+        "table": {
+          "columns": [
+            "PHY态",
+            "PCLK",
+            "进入低功耗的条件/用途"
+          ],
+          "rows": [
+            [
+              "P0",
+              "运行",
+              "正常收发；不代表已L0"
+            ],
+            [
+              "P0s",
+              "运行",
+              "TX空闲；可用于Tx_L0s.Idle"
+            ],
+            [
+              "P1",
+              "运行",
+              "TX/RX空闲；Detect、Disabled及不支持L1SS的L1.Idle"
+            ],
+            [
+              "P2",
+              "停止/异步接口",
+              "可用于L1.Idle、L2.Idle、L2.TransmitWake；按时钟方向握手"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "refclk-async-ack-four-phase",
+        "title": "AsyncPowerChangeAck：两个无PCLK状态之间的完整应答",
+        "paragraphs": [
+          "当PHY在两个均无PCLK的功耗状态间完成转换，先保持PhyStatus=1；MAC置AsyncPowerChangeAck=1；PHY撤销PhyStatus；MAC观察撤销后再结束Ack。不是要求MAC给一个PCLK脉冲。",
+          "此信号只对支持经PowerDown管理PCIe L1子状态的PHY要求实现。不能因所有设计都有PhyStatus就推断也必须有这条异步确认路径。"
+        ],
+        "referenceIndices": [
+          46,
+          47
+        ]
+      },
+      {
+        "id": "refclk-no-clock-control-observation",
+        "title": "异步不等于无需CDC：观察完成的控制域不能一起关掉",
+        "paragraphs": [
+          "规范允许停PCLK期间使用异步功耗握手。集成时需要一条仍能观察请求/应答的保留路径；具体同步器、时钟域和供电域由实现决定。",
+          "如果完成采集仅在已经停掉的PCLK域内，等待会自锁。排查记录应明确哪个域发请求、哪个域看应答和哪些复位仍有效，而不是从信号名字推定它已跨域安全。"
+        ],
+        "referenceIndices": [
+          48,
+          49
+        ]
+      },
+      {
+        "id": "refclk-l1ss-control-two-methods",
+        "title": "L1子状态有两类PHY控制方案，先查datasheet选哪一种",
+        "paragraphs": [
+          "一种用不同PowerDown编码选择各态，可声明不同退出延时；另一种保持PowerDown不变，用RxEIDetectDisable和TxCommonmodeDisable控制。PHY可支持一种或两种，须在datasheet声明。",
+          "旁带控制方案要求PCLK作为PHY输入；不要把PCLK输出的示意图和旁带输入方案拼成一个真实接口。禁用检测器的意义也要按当前方案解释。"
+        ],
+        "referenceIndices": [
+          50,
+          51,
+          52
+        ]
+      },
+      {
+        "id": "refclk-source-inconsistency-p2-p1",
+        "title": "资料内部差异：P2→P1描述与标准转换清单并不完全一致",
+        "paragraphs": [
+          "§6.1.2的PowerDown表专门提到PCLK输出时P2→P1为异步，图8-8也画出P1；但§8.3.1列出的六条标准转换只有P2→P0。表8-4名为P2→P0的计时行又用写P1作为起点。",
+          "这里保留差异，不擅自把三处统一改写成一条强制流程。实现应核对应PHY datasheet及官方澄清；网站普通转换查询仅按明确的六条清单给出结果，并对这条分支提示待核。"
+        ],
+        "referenceIndices": [
+          53,
+          54,
+          55
+        ]
+      },
+      {
+        "id": "refclk-datasheet-timing-measurements",
+        "title": "恢复时间表要写清起点和终点，不能只留一个ns数",
+        "paragraphs": [
+          "PHY需声明典型及最坏时间。P0s→P0、P1→P0以PowerDown设P0到PhyStatus断言衡量；PHY lock time从有效符号到可靠bit/symbol lock衡量；N_FTS另按common clock配置声明。",
+          "这些数不能互换，也不能直接把另一协议的USB/DisplayPort延时表套到PCIe。P2计时的前后文字差异已单列，尚未当作已解决的通用计时公式。"
+        ],
+        "referenceIndices": [
+          56,
+          57
+        ]
+      },
+      {
+        "id": "refclk-gen-versus-interface-revision",
+        "title": "Gen与PIPE修订是两个轴：本轮没有证明七代首次引入",
+        "paragraphs": [
+          "本组核读的是PIPE7.1 PCIe模式接口契约；不能因为规范编号7.1就认为只用于Gen7，也不能因为最高支持某速率就认为所有可选深度功耗引脚都存在。",
+          "产品2.02a与3.02a的CDR例子各自绑定版本；早期PIPE修订的引入历史、全部Gen1～Gen7电气和恢复时限仍需逐份核读，现有官方文件尚未读到不等于缺文件。"
+        ],
+        "referenceIndices": [
+          58,
+          59
+        ]
+      },
+      {
+        "id": "refclk-removal-query",
+        "title": "查询：参考时钟移除许可与标准P-state转换",
+        "paragraphs": [
+          "输入当前PHY态、目标态、RefClkRequired#实现及电平、平台允许条件和本次转换是否完成。工具区分六条普通标准转换、保持状态与需要产品证据的分支，并指出是否仍有显式阻止移除REFCLK的条件。",
+          "输出是已输入条件的检查表，不控制时钟，不验证板级CEM、实际CDC或完整L1SS时序；无RefClkRequired#接口时提示应改查产品许可，绝不把未实现默认为1。"
+        ],
+        "referenceIndices": [
+          60,
+          40
         ]
       }
     ]
@@ -62543,7 +63592,7 @@
     "example": "数字复位已释放却一直不ready，可能是固件未启动、参考时钟未启用、lane reset还在阻塞状态机或校准等待条件未满足。",
     "checks": "给每个阶段设置可观察状态与超时，先找最早未完成的依赖，不要用固定延时替代全部握手。",
     "status": "选定正文与接口细节已展开 · 持续核对",
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-22",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -63012,6 +64061,369 @@
         "title": "NELB限制",
         "verification": "核读本地PIPE7.1所引正文，相关印刷页与本地PDF物理页一致；本地190页、官网189页副本差异保留，不假定整份同页。只确认所述规则。",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 56,
+        "pdfPage": 56,
+        "title": "DeepPMReq#限制",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "深度功耗许可和动作",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 56,
+        "pdfPage": 56,
+        "title": "Req#低有效及默认值",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "完整异步握手",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "许可应答先于实际进入",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "退出完成应答",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "先确认深睡退出再变PowerDown",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 117,
+        "pdfPage": 117,
+        "title": "标准功耗完成",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "异步握手和停钟",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.4",
+        "page": 66,
+        "pdfPage": 66,
+        "title": "Message Bus时钟前提",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.2",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "PHY复位",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "深度功耗许可",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "上下文恢复范围",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "断电前接口条件",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 56,
+        "pdfPage": 56,
+        "title": "Restore#定义",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "电源变化与恢复窗口",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "窗口内输入切换处理",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "窗口结束与32周期",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "最小周期限制",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.2",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "复位退出独立规则",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "上下文保存范围未定义",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "深度功耗退出",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "独立恢复窗口",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 56,
+        "pdfPage": 56,
+        "title": "DeepPMReq#/Restore#",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "Ack#响应",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "恢复与周期限制",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 63,
+        "pdfPage": 63,
+        "title": "AsyncPowerChangeAck",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "DeepPM依赖",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "图8-12/13",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "恢复窗口及32周期",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 56,
+        "pdfPage": 56,
+        "title": "非P0与恢复接口",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "四相握手",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.6.2",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "电源/窗口/周期条件",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
       }
     ],
     "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
@@ -63555,6 +64967,282 @@
           39,
           40,
           41
+        ]
+      },
+      {
+        "id": "deep-pm-purpose-and-eligibility",
+        "title": "DeepPM是更深省电的许可，只能用于适用的非P0状态",
+        "paragraphs": [
+          "DeepPMReq#/DeepPMAck#是可选异步接口。MAC依据延时容忍或负载等策略判断能承受更长恢复，允许PHY在某些非P0状态进一步门控时钟、电源门控或移除电源。",
+          "MAC不允许在P0断言DeepPMReq#；也不是所有非P0都必然支持所有省电动作。接口能力、状态、内部策略与平台供电必须一起确认。"
+        ],
+        "referenceIndices": [
+          42,
+          43
+        ]
+      },
+      {
+        "id": "deep-pm-request-ack-polarities",
+        "title": "低有效四相闭环：请求0、应答0、撤请求1、撤应答1",
+        "paragraphs": [
+          "MAC把Req#从1置0允许进入，PHY把Ack#置0应答；MAC要退出时把Req#置1，PHY完成退出后才把Ack#置1。两个信号都带#，不能套用高有效Req/Ack解释。",
+          "正常运行中的闭环与复位默认值分开：接口表规定Req#出复位默认0，因此工具明确从已完成初始化、Req#/Ack#均1的运行快照开始，不伪造复位序列。"
+        ],
+        "referenceIndices": [
+          44,
+          45
+        ],
+        "table": {
+          "columns": [
+            "Req# / Ack#",
+            "正常运行阶段",
+            "可证明什么"
+          ],
+          "rows": [
+            [
+              "1 / 1",
+              "未许可/退出已确认",
+              "已完成本次深睡退出"
+            ],
+            [
+              "0 / 1",
+              "等待进入许可应答",
+              "不能证明实际已深睡"
+            ],
+            [
+              "0 / 0",
+              "许可已应答",
+              "实际深睡可能尚未发生或永不发生"
+            ],
+            [
+              "1 / 0",
+              "等待退出完成",
+              "不能先改PowerDown"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "deep-pm-entry-ack-not-sleep",
+        "title": "进入Ack只确认许可，PHY可能永远没有实际进入深睡",
+        "paragraphs": [
+          "PHY立即确认DeepPM许可后，实际进入动作才可能发生；内部条件也可能使其根本不进入。因此Ack#=0不证明电源轨下降、上下文已经保存或PLL已停。",
+          "功耗统计与恢复测试应分别看许可握手和真实省电动作。不能仅从Ack边沿计算“实际断电持续时间”，也不能因电源未掉就判接口违约。"
+        ],
+        "referenceIndices": [
+          46
+        ]
+      },
+      {
+        "id": "deep-pm-exit-ack-means-exited",
+        "title": "退出Ack的语义更强：PHY先退出深睡再撤销Ack#",
+        "paragraphs": [
+          "检测Req#撤销后，PHY必须退出深度功耗状态，并在退出完成后撤销Ack#。此阶段不能把Req#已变1当作已经恢复。",
+          "即使内部从未真的深睡，MAC仍需完成握手。Ack#撤销只结束深度功耗许可闭环，不等于当前P-state已经P0或链路已经L0。"
+        ],
+        "referenceIndices": [
+          47
+        ]
+      },
+      {
+        "id": "deep-pm-before-powerdown-change",
+        "title": "改变PowerDown之前必须先确认PHY已退出深度功耗",
+        "paragraphs": [
+          "MAC改变PowerDown前须确认PHY不在DeepPM状态；PCLK作为PHY输入时，这让PowerDown仍可按同步接口使用。不能在Req#刚撤销、Ack#仍低时就切P0。",
+          "深睡退出和P2/P1→P0的功耗转换是两项操作，后者仍须自己的PhyStatus完成条件。不要把DeepPMAck#接成PhyStatus的替代完成信号。"
+        ],
+        "referenceIndices": [
+          48,
+          49
+        ]
+      },
+      {
+        "id": "deep-pm-pclk-can-stay-gated",
+        "title": "DeepPM握手可在PCLK门控期间进行，不通过Message Bus轮询",
+        "paragraphs": [
+          "Req#/Ack#为异步信号，进入和离开DeepPM期间允许PCLK保持门控。MAC仍需能处理异步退出完成，不能只靠停钟域内的轮询状态机。",
+          "PIPE Message Bus要求PCLK运行；DeepPM不是向普通消息寄存器写一个命令然后等待停钟期间的write_ack。两条控制通路应按各自接口契约集成。"
+        ],
+        "referenceIndices": [
+          50,
+          51
+        ]
+      },
+      {
+        "id": "deep-pm-restore-independent-signals",
+        "title": "DeepPM、Restore#、Reset#分别解决不同问题",
+        "paragraphs": [
+          "DeepPM用于允许更深省电及确认退出；Restore#标识恢复先前保存在PHY外部的上下文窗口；Reset#执行PHY复位。它们不能因都可能出现在唤醒期间就合并成一条reset。",
+          "不掉电的DeepPM优化未必需要上下文恢复；需要恢复的实现仍须满足Restore窗口规则。是否保存、保存哪些内容及存储位置不由PIPE定义。"
+        ],
+        "referenceIndices": [
+          52,
+          53,
+          54
+        ]
+      },
+      {
+        "id": "restore-pre-off-idle-no-outstanding",
+        "title": "移除电源前：MAC保证PIPE空闲且没有未完成操作",
+        "paragraphs": [
+          "PHY可在掉电前把内部上下文保存到PHY外部，作为节能优化。移除电源前MAC必须保证PIPE接口空闲且没有在途操作；链路看起来没传Payload不等于控制写/读都结束。",
+          "这不是要求把整个系统所有DMA完成都强行等完的通用算法，范围是此PIPE接口及所需集成条件。保存机制本身由实现负责。"
+        ],
+        "referenceIndices": [
+          55
+        ]
+      },
+      {
+        "id": "restore-active-before-rail-ramp",
+        "title": "Restore#必须先于电源轨爬升有效，不能上电后才临时补拉",
+        "paragraphs": [
+          "恢复窗口由Restore#=0标识，撤销为1结束；规范要求其在电源轨ramp之前断言。原保存上下文应在窗口内完成恢复。",
+          "工具仅检查输入事件的先后，不验证模拟ramp形状、电压稳定、隔离单元或保存介质可靠性；实际电源时序由产品与平台共同规定。"
+        ],
+        "referenceIndices": [
+          56,
+          57
+        ]
+      },
+      {
+        "id": "restore-input-mask-both-directions",
+        "title": "恢复窗口内双方忽略PIPE输入切换，仅PCLK/Restore#例外",
+        "paragraphs": [
+          "输入屏蔽同时约束MAC和PHY，范围为PIPE接口输入；PCLK和Restore#例外。窗口内出现普通控制切换，不能假定对方已经记住、排队或执行。",
+          "此规则不等于硬件可以随意产生毛刺。电气安全、隔离和复位仍由实现保证；软件也不应拿窗口内被忽略的跳变当作已提交操作。"
+        ],
+        "referenceIndices": [
+          58
+        ]
+      },
+      {
+        "id": "restore-monitor-now-drive-later",
+        "title": "窗口退出立即恢复监测；同步信号驱动还要等PCLK满32周期",
+        "paragraphs": [
+          "Restore#撤销后双方立即重新监测输入，但必须等PCLK活动并至少运行32周期，才能切换同步于PCLK的PIPE信号。监测恢复与发起同步动作是不同门槛。",
+          "32按PCLK周期计，不是32ns、32个REFCLK周期或32个RxCLK周期。PCLK尚未恢复时不能让软件计时循环冒充已满足；工具只累计明确输入的活动PCLK周期。"
+        ],
+        "referenceIndices": [
+          59
+        ]
+      },
+      {
+        "id": "restore-thirty-two-is-minimum",
+        "title": "32周期是最小保护，不是PLL、固件与训练的总完成预算",
+        "paragraphs": [
+          "满足32周期只解除这条同步切换限制，不能覆盖PHY产品的其它恢复前提。PLL稳定、固件恢复、功耗应答和协议训练仍可能需要更多时间。",
+          "不使用此上下文恢复机制的普通Reset也不能机械套32周期；对应Reset#退出规则仍按§8.2和产品时序处理。"
+        ],
+        "referenceIndices": [
+          60,
+          61
+        ]
+      },
+      {
+        "id": "restore-firmware-retention-not-assumed",
+        "title": "上下文可以包含哪些内容：PIPE不替产品保证固件/校准值保留",
+        "paragraphs": [
+          "PIPE只规定恢复窗口和接口行为，不规定上下文列表、保存介质或恢复算法。不能由Restore#存在便断言固件SRAM、模拟校准和所有lane配置都自动保留。",
+          "产品全局复位后的重载要求与本机制并列核对；恢复设计必须有实际版本对应的保存清单和校验依据。本轮不编写厂商私有寄存器恢复脚本。"
+        ],
+        "referenceIndices": [
+          62
+        ]
+      },
+      {
+        "id": "restore-deep-ack-window-race",
+        "title": "DeepPM退出应答与Restore窗口没有被规定成一根同义信号",
+        "paragraphs": [
+          "一条通路确认PHY离开DeepPM，一条通路标记上下文恢复期间的输入屏蔽，窗口结束后还有32周期限制。不能只检查Ack#=1便省略Restore检查，也不能把Restore#=1当作PowerDown转换已完成。",
+          "本页原创示意给出一种组合顺序以便阅读，不把特定图的每个相对边沿规定成所有实现的强制关系；异常恢复和退出中断策略需匹配产品。"
+        ],
+        "referenceIndices": [
+          63,
+          64
+        ]
+      },
+      {
+        "id": "deep-pm-signal-contract-table",
+        "title": "深睡恢复信号表：方向、有效极性、完成含义及不能替代的对象",
+        "paragraphs": [
+          "表格用于排查日志的归属。信号支持范围按所选PIPE架构/产品确认；#低有效与普通高有效Status不要混用。"
+        ],
+        "referenceIndices": [
+          65,
+          66,
+          67,
+          68
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "方向/极性",
+            "说明"
+          ],
+          "rows": [
+            [
+              "DeepPMReq#",
+              "MAC→PHY / 低",
+              "允许更深省电；1要求退出"
+            ],
+            [
+              "DeepPMAck#",
+              "PHY→MAC / 低",
+              "0确认许可；撤销确认已退出"
+            ],
+            [
+              "Restore#",
+              "MAC→PHY / 低",
+              "标识上下文恢复及输入屏蔽窗口"
+            ],
+            [
+              "PhyStatus",
+              "PHY→MAC / 高",
+              "按操作表示复位/切速/功耗/检测完成，不是全局LinkUp"
+            ],
+            [
+              "AsyncPowerChangeAck",
+              "MAC→PHY / 高",
+              "两个无PCLK状态间的完成确认，不是DeepPM Ack"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "deep-pm-original-handshake-diagram",
+        "title": "原创图：许可应答与实际省电分开，退出后再改PowerDown",
+        "paragraphs": [
+          "图中进入许可应答后的阴影表示“允许更深省电”，不是证明实际已断电。退出边要求PHY完成退出后撤Ack#；PowerDown改变放在闭环结束之后。",
+          "图只表达事件依赖，没有比例时间轴或固定ns延时；不代表实现内部PLL/电源状态机。"
+        ],
+        "referenceIndices": [
+          69,
+          70
+        ]
+      },
+      {
+        "id": "restore-original-window-diagram",
+        "title": "原创图：恢复窗口和32个有效PCLK周期是两个区间",
+        "paragraphs": [
+          "图把先前保存、掉电/恢复、上下文窗口结束、PCLK活动32周期以及允许同步操作分开。PCLK可在窗口内活动，但窗口内的周期不抵扣退出后的32周期。",
+          "这是接口学习示意；电源重启、DeepPM退出、REFCLK和具体固件动作的并行关系仍须产品定义，不能把此图当作可直接烧进SoC的完整电源FSM。"
+        ],
+        "referenceIndices": [
+          71
+        ]
+      },
+      {
+        "id": "deep-pm-trace-query",
+        "title": "查询：逐事件检查DeepPM闭环与Restore保护周期",
+        "paragraphs": [
+          "事件工具从非P0、初始化已完成、Req#/Ack#均1、PCLK可用且PIPE空闲的学习快照开始。可试许可应答而未断电的短路径，或已保存上下文并执行掉电/Restore的路径。",
+          "它检查最早违反输入模型的事件：P0发许可、没等Ack就改PowerDown、上电前Restore未有效、窗口未结束/周期不足便驱动同步信号等。不是硬件仿真、完整复位序列或官方认证；不知道的产品时间不会编造。",
+          "模型不把Restore窗口内的普通握手边沿视为已接收；PCLK再次停止后保守地重新累计保护周期。这些是工具的证据处理方式，不额外规定规范未定义的中断恢复策略。"
+        ],
+        "referenceIndices": [
+          72,
+          73,
+          74
         ]
       }
     ]
