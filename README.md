@@ -80,3 +80,11 @@ python -m http.server 8000 --directory docs --bind 127.0.0.1
 - [来源与Root状态及中断条件](https://mgc455.github.io/pcie_study/#feature/59/detail/pme-native-register-query)
 
 本组独立对照Base6.0/7.0；只读工具区分消息应答、Link就绪、软件服务和平台掉电条件，不操作设备。
+
+### PHY产品低功耗与恢复查询
+
+- [共享PLL：谁还在用、何时能撤Force/改配置](https://mgc455.github.io/pcie_study/#feature/175/detail/product-shared-pll-query)
+- [Gen5外部Power Gating：逐事件检查准备与恢复](https://mgc455.github.io/pcie_study/#feature/174/detail/pg5-event-query)
+- [静态Context ID与固件前调试交接](https://mgc455.github.io/pcie_study/#feature/176/detail/context-selection-query)
+
+以上为Gen5/Gen6指定产品版本的原创解释和有限依赖查询，区分协议、PIPE、PMD和物理供电；已标出PCS/PMA上电复位时间的资料差异。
