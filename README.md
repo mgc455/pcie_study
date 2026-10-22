@@ -54,3 +54,11 @@ python -m http.server 8000 --directory docs --bind 127.0.0.1
 以 `content/features.json` 为公开内容主数据，保持功能 ID 稳定。北京时间每天 09:00 的 Codex 任务先自查，再新增或深化少量知识块，轮流推进 Gen1～Gen7 演进及协议各主题。核读来源、修正/深化后运行检查，更新 `content/changelog.json` 和 `content/self-audit.json`。本地任务需电脑与 Codex 保持开启。参考 `AGENTS.md` 和 `content/maintenance.json`。
 
 规范、实现选项和平台机制分开标注。协议位置绑定版本；尚未核实的项目明确保留待核实状态。学习笔记不替代标准，不作硬件符合性或实现完成的保证。
+
+### 时钟与深睡恢复查询
+
+- [REFCLK移除与P-state条件](https://mgc455.github.io/pcie_study/#feature/170/detail/refclk-removal-query)
+- [RX待机、EI检测和valid证据](https://mgc455.github.io/pcie_study/#feature/169/detail/rx-wake-evidence-query)
+- [DeepPM/Restore事件顺序与32周期](https://mgc455.github.io/pcie_study/#feature/174/detail/deep-pm-trace-query)
+
+接口规则绑定PIPE7.1，产品接收行为分别绑定2.02a/3.02a；工具为只读学习模型，保留规范内部差异及尚未核读范围。
