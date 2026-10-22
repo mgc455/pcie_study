@@ -1,6 +1,6 @@
 {
   "date": "2026-10-22",
-  "summary": "R28：参考需求、RX待机/检测与DeepPM/Restore接口逐条件深化。",
+  "summary": "R29：UIO请求格式/边界与SVC寄存器、双端配置逐条件深化。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -486,6 +486,21 @@
       "name": "R28行为/公开差异与导航检查",
       "status": "通过",
       "detail": "15369项新增条件/事件/深链接检查及33套回归：P1/P2 Status不适用、RxStandby改变中止、低有效四相闭环、Ack未结束先改PowerDown、Restore输入屏蔽和31/32周期边界；搜索/PHY入口及旧详情/来源索引保留。构建与JS语法、公开路径/原始资料边界检查通过。保守处理停钟重新计数，不模拟完整模拟电源或浏览器视觉。"
+    },
+    {
+      "name": "R29自查与规范核读",
+      "status": "所引7.0正文/表及关键图核读",
+      "detail": "核读UIO Type/基础头、256B/4KB、Device3与SVC完整结构/字段及TC映射正文；视觉复核SVC布局/位图/编码表。明确UIOMRd22h而非MRdLk21h、仅4DW64-bit、Supported3与Selected3不同、资源序号≠VC ID、Pending定义域及RW1C方向。旧详情与来源索引保留。"
+    },
+    {
+      "name": "R29后续边界",
+      "status": "继续核读",
+      "detail": "规则绑定Base7.0，未证明首次引入或全部早期/后续修订。Shared FC Usage Limits后续ECN、UIO错误/超时全分支、完整SVC运行期协调与厂商协议仍待核；相关现有文件未读不称缺失。工具为只读范围/快照模型，非完整fabric、驱动或硬件/浏览器视觉验收。"
+    },
+    {
+      "name": "R29查询/导航与公开检查",
+      "status": "通过",
+      "detail": "4682项新增检查覆盖大于2^53地址、64-bit溢出、刚好256B/4KB边界、Length0=1024DW、Count/资源stride、Supported/Selected、Pending定义域、两端ID/Map/协议/使能与UIO出口规则。34套回归、旧详情/来源索引保留、搜索/章序/PDF定位及公开边界通过。仅程序化UI，未做真实设备和浏览器视觉验收。"
     }
   ],
   "unresolved": [
