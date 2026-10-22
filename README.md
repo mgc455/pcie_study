@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-历史GitHub Pages地址：[PCIe Study](https://mgc455.github.io/pcie_study/)（当前已关闭）。仓库保持私有，Cloudflare Pages + Access正在准备，尚无已验证的新线上地址。部署步骤见 [Cloudflare部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，内容版本为 `2026-10-22-r32`。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -43,7 +43,7 @@ python -m http.server 8000 --directory docs --bind 127.0.0.1
 
 打开 http://127.0.0.1:8000 。也可直接打开 `docs/index.html` 阅读；浏览器本地存储/PDF预览能力因环境而异。
 
-## GitHub Pages 历史配置（本次不启用）
+## GitHub Pages 发布配置
 
 在仓库 Settings → Pages → Build and deployment 中选 **Deploy from a branch**，分支 **main**，目录 **/docs**，保存。之后公开 `docs/` 的提交可触发 Pages 发布。见 [GitHub 官方说明](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)。
 
@@ -89,8 +89,8 @@ python -m http.server 8000 --directory docs --bind 127.0.0.1
 
 以上为Gen5/Gen6指定产品版本的原创解释和有限依赖查询，区分协议、PIPE、PMD和物理供电；已标出PCS/PMA上电复位时间的资料差异。
 
-### 私有仓库与R32离线查阅
+### R32在线与离线查阅
 
-仓库已设为私有，GitHub Pages当前关闭。下载本仓库后，在本地打开 `docs/index.html`，可继续使用站内搜索、详情深链接和本地PDF对照；本轮不恢复公开Pages。
+仓库和GitHub Pages现已恢复公开，可通过上方在线地址阅读。也可下载本仓库，在本地打开 `docs/index.html`，使用站内搜索、详情深链接和本地PDF对照。
 
 R32新增Recovery复杂出口、速率切换和NFM/FM改宽条件，分别见功能4、5、6。三个查询块的稳定ID为 `recovery-lock-branch-query`、`speed-window-target-query`、`width-entry-version-query`；在本地网页的“协议细节查询”中可检索。正文分列Base6.0/7.0、接收/发送计数起点、EI窗口、48/96ms超时与未核交互。

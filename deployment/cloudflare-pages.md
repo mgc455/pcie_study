@@ -1,6 +1,6 @@
 # Cloudflare Pages + Access 部署
 
-这是部署准备说明，不表示 Cloudflare 项目或 Access 已创建。GitHub 仓库保持私有，不启用 GitHub Pages。
+此方案已暂缓（2026-10-22）：用户已恢复公开仓库和 GitHub Pages，当前在线地址为 https://mgc455.github.io/pcie_study/ 。以下仅保留为以后需要私有访问时的备用部署步骤，不表示 Cloudflare 项目或 Access 已创建，也不代表当前仓库可见性。
 
 ## 先部署占位目录
 
