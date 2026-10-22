@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，内容版本为 `2026-10-22-r32`。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，内容版本为 `2026-10-22-r33`。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -94,3 +94,11 @@ python -m http.server 8000 --directory docs --bind 127.0.0.1
 仓库和GitHub Pages现已恢复公开，可通过上方在线地址阅读。也可下载本仓库，在本地打开 `docs/index.html`，使用站内搜索、详情深链接和本地PDF对照。
 
 R32新增Recovery复杂出口、速率切换和NFM/FM改宽条件，分别见功能4、5、6。三个查询块的稳定ID为 `recovery-lock-branch-query`、`speed-window-target-query`、`width-entry-version-query`；在本地网页的“协议细节查询”中可检索。正文分列Base6.0/7.0、接收/发送计数起点、EI窗口、48/96ms超时与未核交互。
+
+### UIO超时、错误恢复与L1.2时序
+
+- [同ID UIO时间线](https://mgc455.github.io/pcie_study/#feature/33/detail/uio-timeout-trace-query)：发新请求重启计时、完成DW记账与错误状态。
+- [错误处理责任查询](https://mgc455.github.io/pcie_study/#feature/102/detail/timeout-report-policy-query)：Timeout、Unexpected和UR/CA的责任及ANFE边界。
+- [L1.2退出计时](https://mgc455.github.io/pcie_study/#feature/87/detail/l1ss-exit-timing-query)：本端唤醒采样、主动驱动下界与DSP共模TS1保持。
+
+UIO细规则绑定Base7.0；恢复与L1SS相关规则分别核对Base6.0/7.0。查询是必要条件学习模型，不操作设备，不证明整章或七代已全部覆盖。
