@@ -76495,6 +76495,72 @@
         "title": "Gen6产品：全部活动Lane复位时可能停输出时钟，先核依赖再等待",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.4",
+        "page": 58,
+        "pdfPage": 58,
+        "title": "进入P0的时钟资格：TX符号时钟须在撤Req之前有效",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.5.2",
+        "page": 47,
+        "pdfPage": 47,
+        "title": "进入P0的时钟资格：TX符号时钟须在撤Req之前有效",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.3",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "同Link符号时钟的400ps是产品边界条件，不能换算成串行Lane deskew结论",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.4",
+        "page": 57,
+        "pdfPage": 57,
+        "title": "撤参考许可前同时核PLL命令与实际状态，不能只等一根控制线",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.5",
+        "page": 60,
+        "pdfPage": 60,
+        "title": "撤参考许可前同时核PLL命令与实际状态，不能只等一根控制线",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.1.1",
+        "page": 38,
+        "pdfPage": 38,
+        "title": "撤参考许可前同时核PLL命令与实际状态，不能只等一根控制线",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       }
     ],
     "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
@@ -77181,6 +77247,45 @@
             ]
           ]
         }
+      },
+      {
+        "id": "g6-tx-clock-before-req-release",
+        "title": "进入P0的时钟资格：TX符号时钟须在撤Req之前有效",
+        "paragraphs": [
+          "3.02a §4.4对TX P0要求：请求进入P0时，txN_symclk输入必须在撤销txN_req之前已有效且频率正确。这个时点早于最后Ack下降完成；不能等收到完整转换完成后才给输入数据时钟。",
+          "因此可能形成的集成错误是：控制器等待Ack最终撤低才开符号时钟，而PHY流程在撤Req阶段已需要它。排查应同时记录目标P-state、时钟源/频率、Req撤销时点和Ack全过程；不能用“PLL状态高”代替外部输入符号时钟正确。",
+          "CPU/APB时钟、PIPE PCLK和该PMD符号时钟需要分别取证。手册同处说明TX PLL上电时可提供多种word派生时钟，但有一个输出在翻转并不证明SoC送回的输入选源、分频、相位已符合目标配置。"
+        ],
+        "referenceIndices": [
+          64,
+          65
+        ]
+      },
+      {
+        "id": "g6-same-link-symbol-clock-skew",
+        "title": "同Link符号时钟的400ps是产品边界条件，不能换算成串行Lane deskew结论",
+        "paragraphs": [
+          "3.02a §4.3要求同Link的txN_symclk来自同一源，且相位skew平衡在400ps以内。这是该PMD接口的跨Lane输入时钟约束；检查时应说明量测边界、时钟路径与模式。仅平均频率相同不够。",
+          "它不是PCIe串行接收Lane允许的总skew，不是UI数量的通用上限，也不能替代PCS手册对同Link输入PCLK相位关系的要求。若使用另一个工艺/PHY版本，不能直接复制400ps作为其签核约束。",
+          "本页只记录明确产品约束及其用途，不据一次RTL仿真或共享时钟源证明布局后skew已合格；还需结合该交付的时钟约束与物理时序。"
+        ],
+        "referenceIndices": [
+          66
+        ]
+      },
+      {
+        "id": "g6-refclock-gate-pll-command-and-state",
+        "title": "撤参考许可前同时核PLL命令与实际状态，不能只等一根控制线",
+        "paragraphs": [
+          "3.02a §4.4要求撤销refa_clk_en之前，txN_pll_en与txN_pll_state均已撤销。前者是控制意图，后者是状态观察；先发关PLL命令就立即关参考，跳过了实际完成条件。",
+          "§4.5还限定对应PLL只可在powered-down时改配置。默认设置下，要结合force enable、每条Lane是否请求PLL及PLL选择判断共享资源能否关闭；只让当前Lane退出P0不足以证明共享PLL已停。",
+          "对于参考重复链，还须保留已有供钟依赖审查：一个PMD的本地Link可休眠，不代表它正在供给的其他PMD都可停钟。此处是产品集成依赖，不能当作PIPE RefClkRequired#或板级CLKREQ#的同名信号规则。"
+        ],
+        "referenceIndices": [
+          67,
+          68,
+          69
+        ]
       }
     ]
   },
@@ -84280,6 +84385,204 @@
         "title": "启动依赖对照：供钟、镜像、CPU、Rescal与Lane握手分别取证",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.3",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "Gen6产品Lane配置：Req↑→Ack↑→Req↓→Ack↓才走完本次转换",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 53,
+        "pdfPage": 53,
+        "title": "Gen6产品Lane配置：Req↑→Ack↑→Req↓→Ack↓才走完本次转换",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 54,
+        "pdfPage": 54,
+        "title": "Gen6产品Lane配置：Req↑→Ack↑→Req↓→Ack↓才走完本次转换",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 54,
+        "pdfPage": 54,
+        "title": "独立TX/RX控制与同Link一致性同时成立：不是每Lane任意配速率",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.3",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "独立TX/RX控制与同Link一致性同时成立：不是每Lane任意配速率",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.4",
+        "page": 57,
+        "pdfPage": 57,
+        "title": "先完成P1转换，再断言TX/RX disable：不能只看目标值已写P1",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.3",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "先完成P1转换，再断言TX/RX disable：不能只看目标值已写P1",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.4",
+        "page": 57,
+        "pdfPage": 57,
+        "title": "P1.1/P1.2不是新增的pstate编码：需联合PLL、disable与参考许可解释",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.4",
+        "page": 58,
+        "pdfPage": 58,
+        "title": "P1.1/P1.2不是新增的pstate编码：需联合PLL、disable与参考许可解释",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.4",
+        "page": 59,
+        "pdfPage": 59,
+        "title": "P1.1/P1.2不是新增的pstate编码：需联合PLL、disable与参考许可解释",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.4",
+        "page": 57,
+        "pdfPage": 57,
+        "title": "产品RX P0s会停恢复时钟，不能与PIPE的TX侧P0s概念混用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.4",
+        "page": 58,
+        "pdfPage": 58,
+        "title": "产品RX P0s会停恢复时钟，不能与PIPE的TX侧P0s概念混用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.4",
+        "page": 59,
+        "pdfPage": 59,
+        "title": "产品RX P0s会停恢复时钟，不能与PIPE的TX侧P0s概念混用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.3",
+        "page": 56,
+        "pdfPage": 56,
+        "title": "P2到P0/P0s示例经过P1：按本Link分两次握手完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.4",
+        "page": 58,
+        "pdfPage": 58,
+        "title": "P2到P0/P0s示例经过P1：按本Link分两次握手完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.3",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "查询与原创图：检查本次Lane四相序列和P0时钟资格",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.4",
+        "page": 58,
+        "pdfPage": 58,
+        "title": "查询与原创图：检查本次Lane四相序列和P0时钟资格",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 53,
+        "pdfPage": 53,
+        "title": "查询与原创图：检查本次Lane四相序列和P0时钟资格",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       }
     ],
     "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
@@ -85589,6 +85892,195 @@
             ]
           ]
         }
+      },
+      {
+        "id": "g6-lane-config-four-phase",
+        "title": "Gen6产品Lane配置：Req↑→Ack↑→Req↓→Ack↓才走完本次转换",
+        "paragraphs": [
+          "3.02a §4.3把TX与RX配置更新分别画为四相握手：准备目标配置后升Req，观察本次Ack升高后撤Req，再等Ack撤低；图中transition complete位于最后Ack下降处。Req不是发一个固定宽度脉冲就忘记，Ack上升也不是整个更新已经结束。",
+          "受Req控制的配置，从本次请求开始至最终完成需保持为本次目标；不能在Ack刚升高时立即覆盖下一档Rate/Width。运行中空闲Req/Ack=0/0与复位期Ack=1是不同上下文，旧Ack高不能当本次请求的响应。",
+          "这里是该PMD的Lane接口，不是PIPE的PhyStatus，也不是CPU run应答或PCIe Completion。图没有给出任意请求都保证多少纳秒完成，网页不自行添加统一超时或自动重置策略。"
+        ],
+        "referenceIndices": [
+          116,
+          117,
+          118
+        ],
+        "table": {
+          "columns": [
+            "观察／阶段",
+            "产品规则与含义",
+            "检查边界"
+          ],
+          "rows": [
+            [
+              "0/0，尚未发请求",
+              "可准备新目标；没有本次完成证据",
+              "不能只看当前电平宣布一次更新成功"
+            ],
+            [
+              "Req↑，Ack仍低",
+              "本次请求进行中，保持配置",
+              "不能把Ack尚低解释为已经完成"
+            ],
+            [
+              "Req/Ack=1/1",
+              "观察到本次应答后撤Req",
+              "还需等Ack撤销"
+            ],
+            [
+              "Req=0，Ack=1",
+              "等待应答撤销",
+              "不能开始下一笔或覆盖当前配置"
+            ],
+            [
+              "本次Ack↓回0/0",
+              "该TX或RX转换完成",
+              "不等于另一方向、其他Lane或Link训练完成"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "g6-link-captured-config-coherence",
+        "title": "独立TX/RX控制与同Link一致性同时成立：不是每Lane任意配速率",
+        "paragraphs": [
+          "3.02a允许Lane间、同Lane TX/RX方向分别控制，但同一Link的Lane对Req采样配置有一致性要求。TX侧需一致的对象包括pstate、rate、width、PLL enable与PLL select；RX侧包括pstate、rate、width与PLL select。",
+          "所以“有每Lane引脚”不等于x4 Link内可以让一条Lane采32GT/s、另一条采64GT/s。调试时按实际Link成员集合比对本次请求捕获的配置，而不是只比当前寄存器最终读数。",
+          "这也不是要求TX与RX每个字段都彼此数值相同：手册分别列出两个方向，同Link约束在各自方向内核查。产品层一致性不代替PCIe协商出来的Link宽度、速率和Lane编号。"
+        ],
+        "referenceIndices": [
+          119,
+          120
+        ],
+        "table": {
+          "columns": [
+            "观察／阶段",
+            "产品规则与含义",
+            "检查边界"
+          ],
+          "rows": [
+            [
+              "TX同Link集合",
+              "pstate / rate / width / pll_en / pll_sel一致",
+              "核本次被请求捕获的值"
+            ],
+            [
+              "RX同Link集合",
+              "pstate / rate / width / pll_sel一致",
+              "不额外编造RX同名pll_en输入"
+            ],
+            [
+              "不同Link",
+              "按各自成员与资源约束核",
+              "另一Link不参加本Link握手不等于共享PLL可任意改"
+            ],
+            [
+              "同Lane两个方向",
+              "有各自Req/Ack及配置",
+              "一个方向Ack完成不能替代另一个"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "g6-disable-after-p1-complete",
+        "title": "先完成P1转换，再断言TX/RX disable：不能只看目标值已写P1",
+        "paragraphs": [
+          "3.02a §4.4要求在TX/RX进入P1转换经对应Ack接口表明完成前，不得断言txN_disable或rxN_disable。把pstate输入改成P1只是请求目标，不证明硬件已经进入P1。",
+          "检查顺序应关联本次P1请求、对应四相握手完成和随后disable动作。若同Link的某方向或某Lane仍未完成，不要用另一条Lane的Ack替它放行。本文把条件按产品原句与§4.3图关联，不将disable自动解释为电源轨已断开。",
+          "disable、lane reset、data_en与PLL enable不是同义词。它们分别影响禁用、复位、数据/CDR活动和时钟资源；在恢复时也不能反向猜测一份所有产品都通用的撤销顺序。"
+        ],
+        "referenceIndices": [
+          121,
+          122
+        ]
+      },
+      {
+        "id": "g6-power-map-multiple-control-axes",
+        "title": "P1.1/P1.2不是新增的pstate编码：需联合PLL、disable与参考许可解释",
+        "paragraphs": [
+          "3.02a的功耗映射不只看tx/rx_pstate。表4-1中，多个更深功耗标签仍把两个方向pstate设为P1，差异通过PLL enable、TX/RX disable及参考许可等控制表达；P2与P2.CPM也有参考许可区别。不能看到P1就断言模拟块、PLL和参考都保持同一活动程度。",
+          "此处仅按控制职责重新归纳，实际驱动值与时序仍查产品表及对应控制说明。P1.1/P1.2等产品表标签不作为新的PCIe LTSSM状态；不能把它们直接等同于协议L1.1/L1.2已协商且已进入。"
+        ],
+        "referenceIndices": [
+          123,
+          124,
+          125
+        ],
+        "table": {
+          "columns": [
+            "观察／阶段",
+            "产品规则与含义",
+            "检查边界"
+          ],
+          "rows": [
+            [
+              "看pstate",
+              "先判断基础P0/P0s/P1/P2控制目标",
+              "同名pstate不充分描述整套省电配置"
+            ],
+            [
+              "看PLL enable与共享使用者",
+              "判断时钟资源请求及实际可掉电性",
+              "命令撤销不是PLL实际已停"
+            ],
+            [
+              "看TX/RX disable",
+              "区分数据方向及更深禁用条件",
+              "须先满足P1完成前提"
+            ],
+            [
+              "看参考许可",
+              "核参考输入和重复链是否可停",
+              "不能仅凭基础P-state推断"
+            ],
+            [
+              "看协议侧状态",
+              "另核LTSSM、L1SS及平台控制",
+              "产品功耗配置不证明协议入口完成"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "g6-rx-p0s-clock-and-cdr",
+        "title": "产品RX P0s会停恢复时钟，不能与PIPE的TX侧P0s概念混用",
+        "paragraphs": [
+          "3.02a分别描述TX和RX内部P-state。TX P0s相对P0撤销data enable；RX P0s则关闭CDR/数据通路，要求rx_data_en撤销，rx_symclk也停止。RX P1在此基础上再使RX VCO掉电，P2再使模拟前端掉电。",
+          "产品的协议功耗映射表在P0s一行采用TX=P0s、RX=P0，不能因为手册还有内部RX P0s说明，就把整条PIPE链路的P0s入口改成同时关闭RX CDR。两张表描述的层次不同。",
+          "对使用恢复时钟的逻辑，进入RX内部P0s后不能期待该时钟继续帮助观察完成或释放复位；需要按实际控制接口与保留域设计。CDR/data_en恢复、RxValid、块对齐、deskew和LTSSM Link Up仍是不同证据。"
+        ],
+        "referenceIndices": [
+          126,
+          127,
+          128
+        ]
+      },
+      {
+        "id": "g6-p2-p1-p0-sequence",
+        "title": "P2到P0/P0s示例经过P1：按本Link分两次握手完成",
+        "paragraphs": [
+          "3.02a图4-4把TX P2→P0/P0s画成先P2→P1、再P1→目标的两次Req/Ack事务；同Link的Lane按图共同参与，其他Link不参加该组事务。不要把两次Req挤成一个长脉冲，或看到中间P1便误报最终恢复成功。",
+          "该图不提供精确过渡耗时，也不能从其他Link的Don’t Care画法推出共享PLL、供钟链和资源没有约束。网页图仅重组两个阶段及其完成关系，不复制产品波形，也不引申所有PIPE版本都禁止其他P-state路径。"
+        ],
+        "referenceIndices": [
+          129,
+          130
+        ]
+      },
+      {
+        "id": "g6-lane-sequence-query",
+        "title": "查询与原创图：检查本次Lane四相序列和P0时钟资格",
+        "paragraphs": [
+          "输入一个从Req/Ack都低开始的单次运行态事务，用req+、ack+、req-、ack-表达按顺序观测到的边沿。查询器检查顺序、是否保持配置、同Link配置一致，以及进入P0时在req-之前符号时钟是否已经有效；它只识别本次事务前缀，不接受用历史Ack或第二笔事务拼出完成。",
+          "复位期Ack高不是此运行态状态机的起点；如有复位、同拍未区分先后、丢边沿、超时或新的并发请求，应回到完整波形另查。选择“完成”只代表所填单方向Lane配置握手和已填前提满足，不证明校准、其他Lane、LTSSM或BER。"
+        ],
+        "referenceIndices": [
+          131,
+          132,
+          133
+        ]
       }
     ]
   },
@@ -88276,6 +88768,39 @@
         "title": "Gen6固件集成：大端MCU、独立CPU时钟与活性证据分别核对",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.14",
+        "page": 89,
+        "pdfPage": 89,
+        "title": "PMD的intr输出属于PHY管理面，不是一个天然生成MSI-X的PCIe功能",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.4.1",
+        "page": 45,
+        "pdfPage": 45,
+        "title": "PMD的intr输出属于PHY管理面，不是一个天然生成MSI-X的PCIe功能",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.14",
+        "page": 89,
+        "pdfPage": 89,
+        "title": "Sticky状态、Mask与Clear分工：先保存原因，不猜测字段极性和清除写法",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       }
     ],
     "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
@@ -89287,6 +89812,60 @@
           89,
           90
         ]
+      },
+      {
+        "id": "g6-pmd-interrupt-versus-msix",
+        "title": "PMD的intr输出属于PHY管理面，不是一个天然生成MSI-X的PCIe功能",
+        "paragraphs": [
+          "3.02a §4.14说明PMD提供单一中断层级，经intr输出通知外部控制。共同模块与RX Lane相关状态需要进一步读取才能定位；单根输出不能直接告诉你是哪条Lane、哪项原因或哪次运行阶段。",
+          "这不是PCIe Function的MSI/MSI-X消息格式，也不意味着内部MCU的中断控制器已经把所有故障自动转发到主机。SoC要怎样接入管理中断、保存事件与通知驱动属于集成路径，应与PCIe AER和MSI-X配置分开画。",
+          "一个有用的故障记录应关联产品版本、Lane/Link映射、当前复位/功耗/配置事务、发生时的管理中断状态以及上层链路状态。读APB成功不等于原因已解除，更不能由intr不活跃证明固件或模拟电路无错。"
+        ],
+        "referenceIndices": [
+          91,
+          92
+        ]
+      },
+      {
+        "id": "g6-sticky-interrupt-snapshot-boundary",
+        "title": "Sticky状态、Mask与Clear分工：先保存原因，不猜测字段极性和清除写法",
+        "paragraphs": [
+          "§4.14指出相关原因寄存器返回sticky interrupt status，另有关联mask和clear字段。Sticky用来保留事件痕迹，因此当前输入条件已消失时仍可能读到历史原因；清除状态也不等于修好了触发条件。",
+          "排障建议先记录原因、对应Lane和本次事务上下文，再按实际字段定义处理屏蔽与清除，并复查是否重新出现。这是依据sticky语义归纳的诊断方法，不是手册规定的一套固定ISR算法。",
+          "该Databook段落不足以确定所有原因位、mask的有效极性、清除是写1还是其他语义、重复事件与清除同拍的优先级。项目内已有对应Reference Manual，应继续逐项核读；本轮不把“尚未核读”写成缺文件，也不公开寄存器转储或自造通用clear-all写值。"
+        ],
+        "referenceIndices": [
+          93
+        ],
+        "table": {
+          "columns": [
+            "观察／阶段",
+            "产品规则与含义",
+            "检查边界"
+          ],
+          "rows": [
+            [
+              "Status",
+              "记录已发生的原因，可能sticky",
+              "不等于当前电平或事件次数"
+            ],
+            [
+              "Mask",
+              "控制中断通知资格，具体极性另核字段",
+              "不据Mask推断原始原因已消失"
+            ],
+            [
+              "Clear",
+              "按实际字段语义清事件记录",
+              "不能默认所有字段均W1C"
+            ],
+            [
+              "intr输出",
+              "管理面通知，需要定位来源",
+              "不等于MSI/MSI-X，也不是Link Up指示"
+            ]
+          ]
+        }
       }
     ]
   },
