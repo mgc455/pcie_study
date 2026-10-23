@@ -76375,14 +76375,14 @@
     "id": 164,
     "name": "Original PIPE 与 SerDes PIPE",
     "group": "PHY与SerDes",
-    "intro": "SerDes PIPE把更多协议相关处理移到MAC；它不是换个数据总线名字。",
+    "intro": "PIPE逐信号与Message Bus字段参考：架构、方向、bit编码、时钟域、握手和修订差异。",
     "usage": "拼接MAC与PHY、比较Gen5/Gen6交付、排查同宽总线却不能互通时使用。",
     "mechanism": "Original/SerDes分区及Message Bus各有职责；MAC需把Base命令转换为PIPE语义，特别是时间裕量方向反转、提交与完成应答分开。",
     "prerequisites": "PIPE 7.1 §2.6和表2-1按PHY配置能力规定接口组合；SerDes要求Low Pin Count。提供的Gen5 PCS手册还包含Original模式，Gen6 PCS手册只支持SerDes；旧手册能力描述不能替代新PIPE版本约束。",
     "example": "一个Gen6-capable PHY降速到Gen3，不意味着其内部就可以动态切回Original PIPE。应按配置能力、规范版本和允许的接口组合判定。",
     "checks": "检查时钟方向、RxClk、valid语义、编码归属及Message Bus；PIPE规范版本号不等于PCIe代际。",
     "status": "选定规则/字段已展开 · 持续逐版完善",
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-23",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -76708,10 +76708,2824 @@
         "title": "评估与Abort握手",
         "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2.6",
+        "page": 23,
+        "pdfPage": 23,
+        "title": "PIPE逐信号速查：名称、位定义与版本边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2.6",
+        "page": 24,
+        "pdfPage": 24,
+        "title": "PIPE逐信号速查：名称、位定义与版本边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6",
+        "page": 45,
+        "pdfPage": 45,
+        "title": "PIPE逐信号速查：名称、位定义与版本边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7",
+        "page": 78,
+        "pdfPage": 78,
+        "title": "PIPE逐信号速查：名称、位定义与版本边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2.6",
+        "page": 24,
+        "pdfPage": 24,
+        "title": "架构、协议选择与Gen1～Gen7适用矩阵",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 49,
+        "pdfPage": 49,
+        "title": "架构、协议选择与Gen1～Gen7适用矩阵",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.3",
+        "page": 72,
+        "pdfPage": 72,
+        "title": "架构、协议选择与Gen1～Gen7适用矩阵",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.1",
+        "page": 46,
+        "pdfPage": 46,
+        "title": "TxData / RxData / Valid：每个byte、symbol与时钟域",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.1",
+        "page": 48,
+        "pdfPage": 48,
+        "title": "TxData / RxData / Valid：每个byte、symbol与时钟域",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "TxData / RxData / Valid：每个byte、symbol与时钟域",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.1",
+        "page": 69,
+        "pdfPage": 69,
+        "title": "TxData / RxData / Valid：每个byte、symbol与时钟域",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.3.1",
+        "page": 72,
+        "pdfPage": 72,
+        "title": "Original专属K、块边界与SyncHeader",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.3.1",
+        "page": 73,
+        "pdfPage": 73,
+        "title": "Original专属K、块边界与SyncHeader",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.3.2",
+        "page": 74,
+        "pdfPage": 74,
+        "title": "Original专属K、块边界与SyncHeader",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 57,
+        "pdfPage": 57,
+        "title": "Rate / Width / RxWidth / PCLKRate / DataBusWidth逐bit编码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 59,
+        "pdfPage": 59,
+        "title": "Rate / Width / RxWidth / PCLKRate / DataBusWidth逐bit编码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 60,
+        "pdfPage": 60,
+        "title": "Rate / Width / RxWidth / PCLKRate / DataBusWidth逐bit编码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.2",
+        "page": 70,
+        "pdfPage": 70,
+        "title": "Rate / Width / RxWidth / PCLKRate / DataBusWidth逐bit编码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.4",
+        "page": 77,
+        "pdfPage": 77,
+        "title": "Rate / Width / RxWidth / PCLKRate / DataBusWidth逐bit编码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.4",
+        "page": 75,
+        "pdfPage": 75,
+        "title": "CLK / PCLK / MaxPCLK：时钟方向、要求与上限",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.4",
+        "page": 76,
+        "pdfPage": 76,
+        "title": "CLK / PCLK / MaxPCLK：时钟方向、要求与上限",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1",
+        "page": 110,
+        "pdfPage": 110,
+        "title": "CLK / PCLK / MaxPCLK：时钟方向、要求与上限",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 50,
+        "pdfPage": 50,
+        "title": "TxElecIdle / TxDetectRx / RXTermination / RxElecIdle",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 61,
+        "pdfPage": 61,
+        "title": "TxElecIdle / TxDetectRx / RXTermination / RxElecIdle",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "TxElecIdle / TxDetectRx / RXTermination / RxElecIdle",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.7",
+        "page": 130,
+        "pdfPage": 130,
+        "title": "TxElecIdle / TxDetectRx / RXTermination / RxElecIdle",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.8",
+        "page": 131,
+        "pdfPage": 131,
+        "title": "TxElecIdle / TxDetectRx / RXTermination / RxElecIdle",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "PhyStatus与RxStatus[2:0]完整PCIe状态码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 65,
+        "pdfPage": 65,
+        "title": "PhyStatus与RxStatus[2:0]完整PCIe状态码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.2",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "PhyStatus与RxStatus[2:0]完整PCIe状态码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 50,
+        "pdfPage": 50,
+        "title": "Reset# / PowerDown / RxStandby与状态完成",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 51,
+        "pdfPage": 51,
+        "title": "Reset# / PowerDown / RxStandby与状态完成",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "Reset# / PowerDown / RxStandby与状态完成",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 63,
+        "pdfPage": 63,
+        "title": "Reset# / PowerDown / RxStandby与状态完成",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.2",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "Reset# / PowerDown / RxStandby与状态完成",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 117,
+        "pdfPage": 117,
+        "title": "Reset# / PowerDown / RxStandby与状态完成",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 118,
+        "pdfPage": 118,
+        "title": "Reset# / PowerDown / RxStandby与状态完成",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 63,
+        "pdfPage": 63,
+        "title": "PclkChangeOk/Ack：切速与PCLK调整顺序",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 65,
+        "pdfPage": 65,
+        "title": "PclkChangeOk/Ack：切速与PCLK调整顺序",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.4.1",
+        "page": 126,
+        "pdfPage": 126,
+        "title": "PclkChangeOk/Ack：切速与PCLK调整顺序",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "L1ss、RefClkRequired#、DeepPM与Restore#",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 56,
+        "pdfPage": 56,
+        "title": "L1ss、RefClkRequired#、DeepPM与Restore#",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "L1ss、RefClkRequired#、DeepPM与Restore#",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 66,
+        "pdfPage": 66,
+        "title": "L1ss、RefClkRequired#、DeepPM与Restore#",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 118,
+        "pdfPage": 118,
+        "title": "L1ss、RefClkRequired#、DeepPM与Restore#",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "L1ss、RefClkRequired#、DeepPM与Restore#",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 70,
+        "pdfPage": 70,
+        "title": "可选MacCLK lane：七个信号与四相启停",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 71,
+        "pdfPage": 71,
+        "title": "可选MacCLK lane：七个信号与四相启停",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 72,
+        "pdfPage": 72,
+        "title": "可选MacCLK lane：七个信号与四相启停",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 114,
+        "pdfPage": 114,
+        "title": "可选MacCLK lane：七个信号与四相启停",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 115,
+        "pdfPage": 115,
+        "title": "可选MacCLK lane：七个信号与四相启停",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.4",
+        "page": 66,
+        "pdfPage": 66,
+        "title": "Message Bus引脚、命令与bit布局",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.4",
+        "page": 67,
+        "pdfPage": 67,
+        "title": "Message Bus引脚、命令与bit布局",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.4",
+        "page": 68,
+        "pdfPage": 68,
+        "title": "Message Bus引脚、命令与bit布局",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7",
+        "page": 78,
+        "pdfPage": 78,
+        "title": "Message Bus引脚、命令与bit布局",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7",
+        "page": 79,
+        "pdfPage": 79,
+        "title": "Message Bus引脚、命令与bit布局",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.3",
+        "page": 82,
+        "pdfPage": 82,
+        "title": "PHY RX寄存器：极性、弹性缓存与块对齐",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.4",
+        "page": 82,
+        "pdfPage": 82,
+        "title": "PHY RX寄存器：极性、弹性缓存与块对齐",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.4",
+        "page": 83,
+        "pdfPage": 83,
+        "title": "PHY RX寄存器：极性、弹性缓存与块对齐",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.8",
+        "page": 85,
+        "pdfPage": 85,
+        "title": "PHY RX寄存器：极性、弹性缓存与块对齐",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.9",
+        "page": 86,
+        "pdfPage": 86,
+        "title": "PHY RX寄存器：极性、弹性缓存与块对齐",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.22",
+        "page": 94,
+        "pdfPage": 94,
+        "title": "PHY RX寄存器：极性、弹性缓存与块对齐",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.5",
+        "page": 83,
+        "pdfPage": 83,
+        "title": "PHY RX均衡、重校准与PAM4字段",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.5",
+        "page": 84,
+        "pdfPage": 84,
+        "title": "PHY RX均衡、重校准与PAM4字段",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.7",
+        "page": 85,
+        "pdfPage": 85,
+        "title": "PHY RX均衡、重校准与PAM4字段",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.6",
+        "page": 98,
+        "pdfPage": 98,
+        "title": "PHY RX均衡、重校准与PAM4字段",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.6",
+        "page": 99,
+        "pdfPage": 99,
+        "title": "PHY RX均衡、重校准与PAM4字段",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.7",
+        "page": 99,
+        "pdfPage": 99,
+        "title": "PHY RX均衡、重校准与PAM4字段",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.13",
+        "page": 88,
+        "pdfPage": 88,
+        "title": "TX均衡与摆幅：TxDeemph / TxSwing / TxMargin",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.14",
+        "page": 89,
+        "pdfPage": 89,
+        "title": "TX均衡与摆幅：TxDeemph / TxSwing / TxMargin",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.15",
+        "page": 89,
+        "pdfPage": 89,
+        "title": "TX均衡与摆幅：TxDeemph / TxSwing / TxMargin",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.19",
+        "page": 92,
+        "pdfPage": 92,
+        "title": "TX均衡与摆幅：TxDeemph / TxSwing / TxMargin",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.20",
+        "page": 93,
+        "pdfPage": 93,
+        "title": "TX均衡与摆幅：TxDeemph / TxSwing / TxMargin",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.5",
+        "page": 129,
+        "pdfPage": 129,
+        "title": "TX均衡与摆幅：TxDeemph / TxSwing / TxMargin",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.6",
+        "page": 130,
+        "pdfPage": 130,
+        "title": "TX均衡与摆幅：TxDeemph / TxSwing / TxMargin",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.16",
+        "page": 90,
+        "pdfPage": 90,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.17",
+        "page": 91,
+        "pdfPage": 91,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.18",
+        "page": 91,
+        "pdfPage": 91,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.16",
+        "page": 104,
+        "pdfPage": 104,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.17",
+        "page": 105,
+        "pdfPage": 105,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.18",
+        "page": 105,
+        "pdfPage": 105,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.19",
+        "page": 106,
+        "pdfPage": 106,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.23",
+        "page": 107,
+        "pdfPage": 107,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.27",
+        "page": 108,
+        "pdfPage": 108,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.28",
+        "page": 108,
+        "pdfPage": 108,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.9",
+        "page": 100,
+        "pdfPage": 100,
+        "title": "均衡反馈：FOM、三tap与四tap方向编码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.10",
+        "page": 100,
+        "pdfPage": 100,
+        "title": "均衡反馈：FOM、三tap与四tap方向编码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.13",
+        "page": 102,
+        "pdfPage": 102,
+        "title": "均衡反馈：FOM、三tap与四tap方向编码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.14",
+        "page": 103,
+        "pdfPage": 103,
+        "title": "均衡反馈：FOM、三tap与四tap方向编码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.1",
+        "page": 81,
+        "pdfPage": 81,
+        "title": "Margin与EB状态：每个字段及位数",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.2",
+        "page": 81,
+        "pdfPage": 81,
+        "title": "Margin与EB状态：每个字段及位数",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.1",
+        "page": 97,
+        "pdfPage": 97,
+        "title": "Margin与EB状态：每个字段及位数",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.2",
+        "page": 97,
+        "pdfPage": 97,
+        "title": "Margin与EB状态：每个字段及位数",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.3",
+        "page": 98,
+        "pdfPage": 98,
+        "title": "Margin与EB状态：每个字段及位数",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.4",
+        "page": 98,
+        "pdfPage": 98,
+        "title": "Margin与EB状态：每个字段及位数",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.5",
+        "page": 98,
+        "pdfPage": 98,
+        "title": "Margin与EB状态：每个字段及位数",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.23",
+        "page": 94,
+        "pdfPage": 94,
+        "title": "Near-end loopback：控制、回送位置与状态",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.23",
+        "page": 95,
+        "pdfPage": 95,
+        "title": "Near-end loopback：控制、回送位置与状态",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.29",
+        "page": 108,
+        "pdfPage": 108,
+        "title": "Near-end loopback：控制、回送位置与状态",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.29",
+        "page": 109,
+        "pdfPage": 109,
+        "title": "Near-end loopback：控制、回送位置与状态",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "Revision History",
+        "page": 12,
+        "pdfPage": 12,
+        "title": "PIPE版本变化：明确哪些来自修订记录，哪些已核当前正文",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "Revision History",
+        "page": 13,
+        "pdfPage": 13,
+        "title": "PIPE版本变化：明确哪些来自修订记录，哪些已核当前正文",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "Revision History",
+        "page": 14,
+        "pdfPage": 14,
+        "title": "PIPE版本变化：明确哪些来自修订记录，哪些已核当前正文",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2.6",
+        "page": 23,
+        "pdfPage": 23,
+        "title": "PIPE版本变化：明确哪些来自修订记录，哪些已核当前正文",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 59,
+        "pdfPage": 59,
+        "title": "覆盖边界、非PCIe信号与发现的表文矛盾",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.2",
+        "page": 70,
+        "pdfPage": 70,
+        "title": "覆盖边界、非PCIe信号与发现的表文矛盾",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 71,
+        "pdfPage": 71,
+        "title": "覆盖边界、非PCIe信号与发现的表文矛盾",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.3.1",
+        "page": 72,
+        "pdfPage": 72,
+        "title": "覆盖边界、非PCIe信号与发现的表文矛盾",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.4",
+        "page": 77,
+        "pdfPage": 77,
+        "title": "覆盖边界、非PCIe信号与发现的表文矛盾",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7",
+        "page": 78,
+        "pdfPage": 78,
+        "title": "覆盖边界、非PCIe信号与发现的表文矛盾",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.16",
+        "page": 90,
+        "pdfPage": 90,
+        "title": "覆盖边界、非PCIe信号与发现的表文矛盾",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.6",
+        "page": 98,
+        "pdfPage": 98,
+        "title": "覆盖边界、非PCIe信号与发现的表文矛盾",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.11",
+        "page": 101,
+        "pdfPage": 101,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.12",
+        "page": 102,
+        "pdfPage": 102,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.20",
+        "page": 106,
+        "pdfPage": 106,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.21",
+        "page": 106,
+        "pdfPage": 106,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.22",
+        "page": 106,
+        "pdfPage": 106,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.24",
+        "page": 107,
+        "pdfPage": 107,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.2.25",
+        "page": 107,
+        "pdfPage": 107,
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.5",
+        "page": 83,
+        "pdfPage": 83,
+        "title": "覆盖边界、非PCIe信号与发现的表文矛盾",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
       }
     ],
     "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
     "details": [
+      {
+        "id": "pipe-signal-directory",
+        "title": "PIPE逐信号速查：名称、位定义与版本边界",
+        "paragraphs": [
+          "范围是PCIe所用的PIPE 7.1通用、Original-only、SerDes-only专用引脚，以及Message Bus中的PCIe逻辑字段；非PCIe专用项另列排除清单。一个接口可静态省略规范允许省略的信号，也可能带厂商扩展，不能将本页当任意产品的端口声明。",
+          "下面按信号名搜索，可查方向、宽度、有效电平、bit编码、完成条件和正文来源。方向一律相对PHY：MAC→PHY为Input，PHY→MAC为Output；#表示低有效。PHY寄存器由MAC写，MAC寄存器由PHY写，两侧同一地址不是同一寄存器。",
+          "Original/SerDes划分协议处理职责，Legacy pins/Low Pin Count划分控制传递形式。SerDes只允许Low Pin Count；Rate降速不代表可以动态改变架构。PIPE是MAC–PHY接口，不是线上TLP包格式，也不是AXI带任意反压的数据流。",
+          "本页当前值以7.1正文为依据；旧版变化依据7.1修订记录及§2.6逐项注明。未取得并核读的旧修订不会伪装成逐版完整信号表。已有PIPE 1.00本地副本版权页明确写为intermediate draft，仅作历史研究，不用它替代正式版设计要求。"
+        ],
+        "referenceIndices": [
+          29,
+          30,
+          31,
+          32
+        ]
+      },
+      {
+        "id": "pipe-signal-architecture",
+        "title": "架构、协议选择与Gen1～Gen7适用矩阵",
+        "paragraphs": [
+          "接口组合由PHY支持的能力集合决定，不只看当前协商速率。PIPE 7.1表2-1对PCIe4及以下、PCIe5、PCIe6及以上分别约束；Gen5支持Original的推荐带原表脚注，不能扩成“所有Gen5产品必须有Original”。",
+          "PCIe Gen1/2为2.5/5GT/s，Original主要交换8b/10b编码前后的byte/K；Gen3/4/5为8/16/32GT/s，Original增加块起始和SyncHeader；SerDes把更多编码、对齐及弹性缓存职责移到MAC。Gen6/7的64/128GT/s使用SerDes，本页不把FLIT/FEC功能放到TxDataK或RxStatus解码中。"
+        ],
+        "referenceIndices": [
+          33,
+          34,
+          35
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "PHYMode[3:0]",
+              "MAC→PHY，4bit，异步",
+              "0=PCIe；1=USB；2=SATA；3=DP；7=USB4；其余保留",
+              "仅Reset#有效期间改变；单协议PHY可省略"
+            ],
+            [
+              "SerDesArch",
+              "MAC→PHY，1bit，异步",
+              "1选择SerDes；0为Original",
+              "仅Reset#期间改变；不是切速时跟Rate切换"
+            ],
+            [
+              "SRISEnable",
+              "MAC→PHY，1bit",
+              "1选择SRIS相关工作条件",
+              "首次Receiver Detect前有效；产品可要求PLL启动前；PCIe≤5之后不能改变；PCIe6及以上允许初始置1后在Configuration中清0"
+            ],
+            [
+              "PCIe Gen1～4能力",
+              "表2-1",
+              "Original必需，SerDes可选；Legacy必需，Low Pin Count对Gen4接收margining必需，其他场合可选",
+              "不是所有4种接口组合均合法；SerDes要求Low Pin Count"
+            ],
+            [
+              "PCIe Gen5能力",
+              "表2-1",
+              "SerDes必需；Original recommended并带脚注；Low Pin Count必需；Legacy不允许",
+              "按配置能力检查，不能由当前只跑8GT/s推断Legacy又合法"
+            ],
+            [
+              "PCIe Gen6/7能力",
+              "表2-1",
+              "SerDes和Low Pin Count必需；Original和Legacy不允许",
+              "Gen6-capable MAC配旧PHY的兼容情形应另核双方能力"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-data",
+        "title": "TxData / RxData / Valid：每个byte、symbol与时钟域",
+        "paragraphs": [
+          "低编号byte或symbol先在线上传输。SerDes的10bit槽位不意味着在所有速率下每槽都有10bit有效协议数据：PCIe块编码速率时仅每槽低8bit有效，高2bit保留。160bit物理总线因此对应16个8bit数据位置；不要按160个Payload bit计算吞吐。",
+          "TxDataValid=0只让PHY忽略该节拍；规范没有配套TxReady供PHY随意反压。具体速率/宽度/PCLK组合、有效节拍排布仍须按表3-1和PHY参数核对。本表列可选宽度，不声称其笛卡尔积都合法。"
+        ],
+        "referenceIndices": [
+          36,
+          37,
+          38,
+          39
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "TxData",
+              "MAC→PHY；Original 8/16/32bit；SerDes 10/20/40/80/160bit",
+              "Original [7:0]先于[15:8]；SerDes每10bit槽按序",
+              "Original以PCLK采样；SerDes TX仍以PCLK采样；不含TxData2"
+            ],
+            [
+              "RxData",
+              "PHY→MAC；宽度候选同TxData",
+              "Original byte序、SerDes槽序同发送方向定义",
+              "Original由PCLK采样，SerDes由RxCLK采样；RxWidth可独立选择RX宽度"
+            ],
+            [
+              "SerDes 10bit槽位映射",
+              "第i槽[10i+9:10i]",
+              "PCIe≥8GT/s：数据[10i+7:10i]；保留[10i+9:10i+8]",
+              "例byte0在[7:0]、byte1在[17:10]；不要把[15:8]当连续byte1"
+            ],
+            [
+              "TxDataValid",
+              "MAC→PHY，1bit，高有效",
+              "1=该PCLK beat可用；0=忽略beat",
+              "不用该限定的模式必须置1；TxElecIdle发生变化时也必须为1"
+            ],
+            [
+              "RxValid（Original）",
+              "PHY→MAC，1bit",
+              "表示symbol/block lock；还限定RxDataValid",
+              "不是直接等于LTSSM L0；BlockAlignControl状态与EB故障影响锁定报告"
+            ],
+            [
+              "RxValid（SerDes）",
+              "PHY→MAC，1bit，RxCLK同步",
+              "表示恢复RxCLK已稳定",
+              "不是MAC已block lock、不是RxDataValid替身；掉低后RxCLK至少再跑8拍"
+            ],
+            [
+              "RxCLK",
+              "PHY→MAC，仅SerDes",
+              "供MAC采样RxData与RxValid的恢复时钟",
+              "即使RxValid=0，也不能超过PHY所报MaxRxClkFrequency"
+            ],
+            [
+              "Tx+/Tx−、Rx+/Rx−",
+              "PHY差分输出／输入",
+              "分别连接串行发射／接收差分通道",
+              "不按PCLK逻辑电平解释；接口复制到每条PCIe lane，区别于多协议Tx2/Rx2"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-original",
+        "title": "Original专属K、块边界与SyncHeader",
+        "paragraphs": [
+          "这些端口不适用于SerDes-only PHY。PCIe 8/16/32GT/s Original模式用StartBlock与SyncHeader描述128b/130b块，而2.5/5GT/s通过每byte的K位区分数据与控制字符。",
+          "TxSyncHeader/RxSyncHeader表中总宽4bit是多协议接口定义；PCIe使用低2bit，不能给PCIe头部凭空增加2bit。接收无效SyncHeader时，已对齐块仍可被转交MAC，因此“收到块起始”不等于块内容合法。"
+        ],
+        "referenceIndices": [
+          40,
+          41,
+          42
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "TxDataK",
+              "MAC→PHY，每byte 1bit",
+              "bit0对应TxData最低byte；0数据、1控制字符",
+              "仅8b/10b模式；不用于PCIe≥8GT/s或SerDes"
+            ],
+            [
+              "RxDataK",
+              "PHY→MAC，每byte 1bit",
+              "bit0对应RxData最低byte；0数据、1控制字符",
+              "同样不用于PCIe≥8GT/s或SerDes"
+            ],
+            [
+              "TxStartBlock",
+              "MAC→PHY，1bit",
+              "高表示byte0是新块起始",
+              "仅Original PCIe8/16/32GT/s"
+            ],
+            [
+              "RxStartBlock",
+              "PHY→MAC，1bit",
+              "高表示byte0是新块起始",
+              "RxValid=0时不应拉高；无效sync header不等于不转交块"
+            ],
+            [
+              "TxSyncHeader[3:0]",
+              "MAC→PHY；PCIe使用[1:0]",
+              "在TxStartBlock时采样对应块的同步头",
+              "PCIe8/16/32GT/s；其余高位不能当PCIe有效头"
+            ],
+            [
+              "RxSyncHeader[3:0]",
+              "PHY→MAC；PCIe使用[1:0]",
+              "在RxStartBlock时配合解释RxData",
+              "不能据此忽略MAC合法性检查"
+            ],
+            [
+              "RxDataValid",
+              "PHY→MAC，1bit",
+              "1=当前数据beat有效；0=忽略",
+              "适用时RxValid=0不得为1；不需要的受支持模式保持1；SerDes不使用"
+            ],
+            [
+              "TxCompliance",
+              "MAC→PHY，1bit，高有效",
+              "置负running disparity，帮助生成compliance pattern",
+              "Original用法，受TxDataValid限定；不是Gen6/7全套测试图样选择接口"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-rate-width",
+        "title": "Rate / Width / RxWidth / PCLKRate / DataBusWidth逐bit编码",
+        "paragraphs": [
+          "Rate是线上速率，Width/RxWidth是接口数据宽度选择，PCLKRate是并行时钟频率选择，DataBusWidth是可选宽度报告；四类量不能互换。不要用Rate编码乘某个固定PCLK倍数去推导所有PHY接口。",
+          "PIPE7.1 p59的说明文字仍称RxWidth[1:0]，但§6.2.2表6-16明列RxWidth[2:0]及编码4的160bit。这里采用3bit表定义并保留该矛盾；DataBusWidth的2bit表则确实没有160bit编码。"
+        ],
+        "referenceIndices": [
+          43,
+          44,
+          45,
+          46,
+          47
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "Rate[3:0]",
+              "MAC→PHY，4bit",
+              "0/1/2/3/4/5/6 → 2.5/5/8/16/32/64/128GT/s；7～15保留",
+              "单速率实现可省略；选编码前检查PHY支持"
+            ],
+            [
+              "Width[2:0]，Original且bypass=0",
+              "MAC→PHY，3bit",
+              "0/1/2 → 8/16/32bit；3～7保留",
+              "控制并行宽度，不是x1/x4/x16 PCIe链路宽度"
+            ],
+            [
+              "Width[2:0]，SerDes",
+              "MAC→PHY，3bit",
+              "0/1/2/3/4 → 10/20/40/80/160bit；5～7保留",
+              "只控制TX；Original bypass的数据宽度细节见独立字段说明"
+            ],
+            [
+              "RxWidth[2:0]，SerDes",
+              "MAC→PHY，3bit",
+              "0/1/2/3/4 → 10/20/40/80/160bit；5～7保留",
+              "只控制RX；固定每速率一个选项的实现可省略"
+            ],
+            [
+              "PCLKRate[4:0]",
+              "MAC→PHY，5bit",
+              "0/1/2/3/4/5/6 → 62.5/125/250/500/1000/2000/4000MHz；其余保留",
+              "本文统一使用规范表名PCLKRate，产品可能写作PCLK_Rate；31.25MHz没有定义编码"
+            ],
+            [
+              "DataBusWidth[1:0]，Original",
+              "PHY→MAC，可选报告",
+              "00=32、01=16、10=8bit、11保留",
+              "注意编码方向不同于Width"
+            ],
+            [
+              "DataBusWidth[1:0]，SerDes",
+              "PHY→MAC，可选报告",
+              "00=10、01=20、10=40、11=80bit",
+              "7.1此表没有160bit表示；禁止私自扩成3bit并声称是标准"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-clock",
+        "title": "CLK / PCLK / MaxPCLK：时钟方向、要求与上限",
+        "paragraphs": [
+          "PIPE信号方向相对PHY。PCLK可以作为PHY输入或输出，但§8.1.1的PHY输出拓扑仅适用于Legacy，PCIe Gen5设计不支持该拓扑。RxCLK是SerDes接收域的例外，不能把全部接收信号直接打进PCLK。",
+          "MaxPCLK表给的是上限，实际频率由PHY datasheet公布；例如支持64GT/s的PHY不代表MaxPCLK一定4GHz。§6.4称其在多数PCLK-output情况下可选，§8.1又要求最大支持≥8GT/s的PHY在所有模式提供；集成应同时满足更具体条件，不能只摘录“可选”。"
+        ],
+        "referenceIndices": [
+          48,
+          49,
+          50
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "CLK",
+              "外部→PHY，参考时钟",
+              "生成TX/RX内部bit-rate时钟；频率、抖动、SSC条件按实现",
+              "PIPE通用定义不统一规定必须100MHz；CLK/PCLK应源于同参考并保持相同clocking特性"
+            ],
+            [
+              "PCLK（PHY input）",
+              "MAC／时钟源→PHY，上升沿",
+              "控制和TX并行接口采样时钟",
+              "切速受PclkChangeOk/Ack约束；SerDes RX用RxCLK"
+            ],
+            [
+              "PCLK（PHY output）",
+              "PHY→MAC，上升沿",
+              "Legacy拓扑由PHY提供并行时钟",
+              "不能将旧Gen1拓扑直接用于Gen5/6/7"
+            ],
+            [
+              "MaxPCLK",
+              "PHY→MAC，固定频率",
+              "PHY输入PCLK拓扑所需源；PCLK活动时提供",
+              "真实频率看产品参数；不是数据有效限定信号"
+            ],
+            [
+              "MaxPCLK频率上限",
+              "按PHY最高支持速率分档",
+              "2.5→250MHz；5→500MHz；8→1GHz；16→2GHz；32/64/128→4GHz",
+              "是Maximum MaxPCLK，不是强制工作频率"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-idle-detect",
+        "title": "TxElecIdle / TxDetectRx / RXTermination / RxElecIdle",
+        "paragraphs": [
+          "Receiver Detect测量的是对端端接是否存在，不是接收到TS、锁住CDR或Link Up。TxDetectRx请求须保持到PhyStatus完成；同步检测读RxStatus 000/011，无时钟检测采用保持应答直到请求撤销的形式。",
+          "TxElecIdle的多bit是同一lane接口内不同symbol组的EI控制，不是四条lane的开关。在Original只用bit0；SerDes≤32GT/s每bit覆盖2个symbol，在64/128GT/s每bit覆盖4个symbol。"
+        ],
+        "referenceIndices": [
+          51,
+          52,
+          53,
+          54,
+          55
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "TxElecIdle[3:0]",
+              "MAC→PHY，高有效",
+              "1要求对应TX组电气空闲；Original只用[0]",
+              "TxDataValid必须在EI变化时为1；未用bit保留，loopback语义另核"
+            ],
+            [
+              "TxElecIdle映射，80bit/≤32GT/s",
+              "4bit",
+              "bit0→symbols0/1，bit1→2/3，bit2→4/5，bit3→6/7",
+              "80bit指8个10bit槽；不按byte排列"
+            ],
+            [
+              "TxElecIdle映射，160bit/64或128GT/s",
+              "4bit",
+              "bit0→symbols0～3，bit1→4～7，bit2→8～11，bit3→12～15",
+              "窄接口不用的高位保留"
+            ],
+            [
+              "TxDetectRx/Loopback",
+              "MAC→PHY，1bit",
+              "拉高开始检测；Original中也用于PHY follower loopback",
+              "PCIe P1或可选P2做检测；SerDes loopback在MAC，不能沿用PHY loopback解释"
+            ],
+            [
+              "RXTermination",
+              "MAC→PHY，1bit",
+              "0移除RX端接，1呈现端接",
+              "PCIe所需；电气条件仍看对应Base与PHY"
+            ],
+            [
+              "RxElecIdle",
+              "PHY→MAC，1bit，异步",
+              "1检测到电气空闲；0不是电气空闲",
+              "PCIe≥5GT/s需逻辑推断EI进入；不能仅凭该pin判定所有训练状态"
+            ],
+            [
+              "P2 Beacon",
+              "以TxElecIdle控制",
+              "P2中清TxElecIdle可请求Beacon；重新置1停止",
+              "回到P0前必须置1；不是普通P0数据传输"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-status",
+        "title": "PhyStatus与RxStatus[2:0]完整PCIe状态码",
+        "paragraphs": [
+          "PhyStatus必须结合正在等待的操作解释：reset、切速、功耗变化、Receiver Detect等都可能用它。其完成并不代表LTSSM已到L0、DLL初始化完成或可以开始DMA。",
+          "SerDes下RxStatus唯一适用的功能码为011 Receiver detected；不能把Original中的decode error、disparity或弹性缓存状态直接作为SerDes PHY错误报告。PCIe8/16/32GT/s也不应寻找8b/10b的disparity语义。"
+        ],
+        "referenceIndices": [
+          56,
+          57,
+          58
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "PhyStatus",
+              "PHY→MAC，1bit，高有效",
+              "同步操作常以1拍完成；reset和PCLK-off场景另有电平握手",
+              "必须关联当前请求和时钟拓扑；不能对所有场景只等一个上升沿"
+            ],
+            [
+              "RxStatus=000",
+              "PHY→MAC，3bit",
+              "接收数据正常；Receiver Detect上下文则表示未检测到接收器",
+              "语义随操作改变"
+            ],
+            [
+              "RxStatus=001",
+              "PHY→MAC，3bit",
+              "PCIe添加1个SKP",
+              "Original相应弹性缓存语义"
+            ],
+            [
+              "RxStatus=010",
+              "PHY→MAC，3bit",
+              "PCIe移除1个SKP",
+              "不应套用USB整组SKP OS描述"
+            ],
+            [
+              "RxStatus=011",
+              "PHY→MAC，3bit",
+              "检测到接收器",
+              "结合Receiver Detect完成；SerDes也用此码"
+            ],
+            [
+              "RxStatus=100",
+              "PHY→MAC，3bit",
+              "8b/10b或128b/130b decode error；可合并disparity error",
+              "EncodeDecodeBypass时不报告此解码错误"
+            ],
+            [
+              "RxStatus=101",
+              "PHY→MAC，3bit",
+              "Elastic Buffer overflow",
+              "7.0修订记录说明恢复了6.1.1误删的定义"
+            ],
+            [
+              "RxStatus=110",
+              "PHY→MAC，3bit",
+              "Elastic Buffer underflow",
+              "nominal empty模式不使用该错误码"
+            ],
+            [
+              "RxStatus=111",
+              "PHY→MAC，3bit",
+              "disparity error；若已合并100则保留",
+              "bypass不使用；USB的SKP corrected不能搬到PCIe"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-reset-power",
+        "title": "Reset# / PowerDown / RxStandby与状态完成",
+        "paragraphs": [
+          "Reset#可在任意状态异步置低；PHY复位期间保持该lane最低功耗。MAC在电源与CLK稳定前保持复位，并配置协议、架构、初始Rate及空闲控制，直到规定reset完成指示后才开始操作。PCLK-output的完成是复位释放后PhyStatus撤销，不能写成统一的高脉冲。",
+          "PowerDown是PHY内部状态，LTSSM是链路协议状态；本表P0s、P1、P2只是规范给出的适用映射，不是一一硬编码。改变PowerDown或RxStandby还会中止IORecal、RxEqEval和RxEqTraining并返回相应完成；完成不必意味着训练成功。"
+        ],
+        "referenceIndices": [
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "Reset#",
+              "MAC→PHY，1bit，低有效、异步",
+              "0复位；1释放复位",
+              "复位过程中其他控制不能使PHY脱离要求的最低功耗"
+            ],
+            [
+              "PowerDown[3:0]",
+              "MAC→PHY，4bit",
+              "PCIe0=P0；1=P0s；2=P1；3=P2；4～15 PHY-specific",
+              "不要套USB的0=P0、1=P1、2=P2、3=P3"
+            ],
+            [
+              "P0 / P0s",
+              "PowerDown 0 / 1",
+              "P0正常收发；P0s要求TX空闲，PCLK运行",
+              "P0s可用于Tx_L0s.Idle，RX可独立恢复"
+            ],
+            [
+              "P1 / P2",
+              "PowerDown 2 / 3",
+              "P1保持PCLK；P2可关PCLK并异步握手",
+              "P1可用于Detect/Disabled等；L1ss还需PHY-specific或sideband方案"
+            ],
+            [
+              "RxStandby",
+              "MAC→PHY，1bit",
+              "0=receiver active；1=standby",
+              "PCIe仅P0/P0s有效，其他状态忽略；不是关掉整个lane"
+            ],
+            [
+              "RxStandbyStatus",
+              "PHY→MAC，1bit",
+              "0=RX active；1=RX standby",
+              "P1/P2未定义；请求与状态返回分开"
+            ],
+            [
+              "AsyncPowerChangeAck",
+              "MAC→PHY，1bit",
+              "两个都无PCLK的状态转换：PHY先置PhyStatus，MAC置Ack，PHY撤Status，MAC撤Ack",
+              "通过PowerDown管理PCIe L1ss时需要；不是同步单周期PhyStatus路径"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-rate-handshake",
+        "title": "PclkChangeOk/Ack：切速与PCLK调整顺序",
+        "paragraphs": [
+          "PCIe只允许在P0或P1且TxElecIdle有效时改变串行速率、PCLK或宽度；P0还要求RxStandby有效。MAC不能在PHY完成前再次切速、开始其他操作或提前放开TX/RX。",
+          "PCLK作为PHY输入时，Rate改变且PCLKRate也改变必须走Ok/Ack；PCLKRate不变的Rate改变是否也要握手，由PHY参数说明。表8-3将Rate不变列为Not applicable，不能把该表推导成任意单独PCLK/Width变化都合法。",
+          "一条典型顺序为：保证EI与Standby→设置Rate/PCLKRate及必要Width→等PclkChangeOk=1→切实际PCLK并稳定→PclkChangeAck=1→看到PhyStatus完成及Ok撤销→撤Ack→按LTSSM条件恢复数据。Ok只是允许切时钟，不是已经完成切速。"
+        ],
+        "referenceIndices": [
+          66,
+          67,
+          68
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "PclkChangeOk",
+              "PHY→MAC，1bit，高有效",
+              "PHY已准备好让MAC改变输入PCLK/Rate/必要Width",
+              "仅PCLK作为PHY输入的相关握手"
+            ],
+            [
+              "PclkChangeAck",
+              "MAC→PHY，1bit，高有效",
+              "MAC通知新PCLK/相关配置已稳定",
+              "等PHY Ok变低后再清Ack"
+            ],
+            [
+              "PhyStatus与Ok结束",
+              "PHY→MAC",
+              "PHY对完成给1个输入PCLK拍的Status，并在尾沿撤Ok",
+              "Status不能用软件轮询慢采样；MAC逻辑须捕获"
+            ],
+            [
+              "切速与功耗同时改变",
+              "产品能力条件",
+              "通常先完成Rate/Width/PCLK，再改变PowerDown",
+              "只有PHY明确支持时才允许同PCLK沿合并请求"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-lowpower-sidebands",
+        "title": "L1ss、RefClkRequired#、DeepPM与Restore#",
+        "paragraphs": [
+          "L1ss可用不同PowerDown编码，或保持一个PowerDown值而由RxEIDetectDisable/TxCommonmodeDisable补充控制，后者要求PCLK-input拓扑。支持哪种方式必须由PHY参数说明。DeepPM权限握手与具体P-state完成也要分开。"
+        ],
+        "referenceIndices": [
+          69,
+          70,
+          71,
+          72,
+          73,
+          74
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "RxEIDetectDisable",
+              "MAC→PHY，1bit，高有效、异步",
+              "禁用接收EI检测以省电；期间RxElecIdle强制1",
+              "重新使能后保持1直到检测电路恢复；其他可用状态由PHY声明"
+            ],
+            [
+              "TxCommonmodeDisable",
+              "MAC→PHY，1bit，高有效、异步",
+              "允许关闭TX common-mode相关电路",
+              "只在适合的功耗状态使用；不等于TxElecIdle"
+            ],
+            [
+              "RefClkRequired#",
+              "PHY→MAC，可选1bit，低有效",
+              "0=仍需参考时钟；1=PHY允许移除",
+              "MAC须用它阻止不当CLKREQ#撤销；不是板级CLKREQ#本身"
+            ],
+            [
+              "DeepPMReq#",
+              "MAC→PHY，可选1bit，低有效、异步",
+              "0允许更深节电；1要求退出深节电以满足当前PowerDown退出时限",
+              "复位缺省0；不可在P0请求深节电"
+            ],
+            [
+              "DeepPMAck#",
+              "PHY→MAC，可选1bit，低有效、异步",
+              "0确认接收深节电许可；1仅在已完成深节电退出后返回",
+              "0不证明PHY实际已经进入最深电源状态"
+            ],
+            [
+              "Restore#",
+              "MAC→PHY，可选1bit，低有效、异步",
+              "0指示电源恢复后上下文restore窗口；1非restore窗口",
+              "复位时0或1均可，实际供电/恢复配合需产品参数"
+            ],
+            [
+              "ShortChannelPowerControl[1:0]",
+              "MAC→PHY，可选2bit",
+              "0正常；1为所支持的最激进MCP短通道省电；2/3可选实现档",
+              "Reset#释放前稳定，保持到下次reset；不是通用dB值表"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-macclk",
+        "title": "可选MacCLK lane：七个信号与四相启停",
+        "paragraphs": [
+          "MacCLK lane独立于其他PIPE lane，并处在MacCLKReset#复位域。只有声明MacCLK Support的PHY实现这些信号；不能把MacCLKReq理解为启动串行lane或请求Rate改变。",
+          "启动：MAC配置模式、频率和SSC后置Req，PHY使MacCLK稳定后置Ack；停止：MAC清Req，PHY可在停钟前或后清Ack。Req/Ack都为0时才可改Rate，再发新请求；MacCLK运行期间频率保持稳定，SSCEnable可动态改变，完成延迟由参数给出。"
+        ],
+        "referenceIndices": [
+          75,
+          76,
+          77,
+          78,
+          79
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "MacCLKPHYMode[3:0]",
+              "MAC→PHY，4bit，异步",
+              "协议编码同PHYMode",
+              "仅MacCLKReset#期间改变"
+            ],
+            [
+              "MacCLKRate[4:0]",
+              "MAC→PHY，5bit，异步",
+              "已定义的0～30编码遵循PCLKRate；31使用vendor override",
+              "不是全部0～30均定义了标准频率；Req=Ack=0才可改"
+            ],
+            [
+              "MacCLKReq",
+              "MAC→PHY，1bit，异步，reset=0",
+              "1请求开启MacCLK；0请求停止",
+              "影响频率的配置在Req上升沿采样"
+            ],
+            [
+              "MacCLKSSCEnable",
+              "MAC→PHY，1bit，异步",
+              "1使能SSC，0关闭",
+              "允许运行中改变；需等产品MaxSSCEnableDisableTime"
+            ],
+            [
+              "MacCLKReset#",
+              "MAC→PHY，1bit，低有效、异步",
+              "独立MacCLK lane复位",
+              "最小低脉宽看MinimumMacCLKReset#AssertionPulse，不能通用写固定拍数"
+            ],
+            [
+              "MacCLK",
+              "PHY→MAC，时钟",
+              "可选独立时钟输出",
+              "Ack=1后才按所选稳定频率使用"
+            ],
+            [
+              "MacCLKAck",
+              "PHY→MAC，1bit，异步，reset=0",
+              "1表示时钟已启动且频率有效；0为停止/正在停止",
+              "stop Ack不保证与实际最后一拍同步"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-messagebus",
+        "title": "Message Bus引脚、命令与bit布局",
+        "paragraphs": [
+          "M2P和P2M都是8bit，每方向都可发请求和应答。PHY与MAC各有独立12bit字节地址空间，0x000～0x3FF是RX区，0x400～0x7FF是TX区，0x800～0xBFF是Common区，0xC00～0xFFF是vendor区，每大区1024byte；原文p78写KB与12bit地址及图7-1不符，不能照搬成MB级空间。",
+          "寄存器为8bit；同地址读改写须保留同寄存器内其他字段，保留位按规范要求处理。Level写入后维持到下一次写或reset；one-cycle字段在接收侧寄存器提交时只有效1个PCLK，不能把传输用了3拍误当该位有效3拍。",
+          "write_uncommitted暂存，write_committed使同组待提交写原子生效；PHY至少可缓冲5条写、每条含地址和数据。写到commit后须等write_ack再发新写。write_ack证明写提交，不是RxEqTrainDone、margin完成或LTSSM训练完成。每方向最多1笔未完成read，各命令内部拍连续，可背靠背发起。"
+        ],
+        "referenceIndices": [
+          80,
+          81,
+          82,
+          83,
+          84
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "M2P_MessageBus[7:0]",
+              "MAC→PHY，8bit，PCLK",
+              "MAC发PHY空间请求；也携带MAC对PHY请求的应答",
+              "PCLK必须运行，Reset#复位接口"
+            ],
+            [
+              "P2M_MessageBus[7:0]",
+              "PHY→MAC，8bit，PCLK",
+              "PHY发MAC空间更新；也携带PHY对MAC请求的应答",
+              "两个方向不是各固定一种命令"
+            ],
+            [
+              "首拍[7:4] / [3:0]",
+              "命令nibble / Addr[11:8]",
+              "命令1/2/3首拍同时携带地址高4bit",
+              "后续拍不能当成新命令解码"
+            ],
+            [
+              "Cmd=0 NOP",
+              "1拍",
+              "8bit全0表示idle",
+              "不要求每笔之间插NOP"
+            ],
+            [
+              "Cmd=1 write_uncommitted",
+              "3拍",
+              "[1|Addr高4] → Addr低8 → Data8",
+              "暂存，尚未应用"
+            ],
+            [
+              "Cmd=2 write_committed",
+              "3拍",
+              "[2|Addr高4] → Addr低8 → Data8",
+              "提交当前与此前暂存写"
+            ],
+            [
+              "Cmd=3 read",
+              "2拍",
+              "[3|Addr高4] → Addr低8",
+              "等待反方向read completion"
+            ],
+            [
+              "Cmd=4 read completion",
+              "2拍",
+              "40h → Data8",
+              "首拍低4bit为0；不是地址"
+            ],
+            [
+              "Cmd=5 write_ack",
+              "1拍",
+              "50h",
+              "首拍低4bit为0；6～15命令保留"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-rx-controls",
+        "title": "PHY RX寄存器：极性、弹性缓存与块对齐",
+        "paragraphs": [
+          "本表地址均在PHY空间，由MAC经M2P更新；不与MAC同址状态混读。Original-only的RxPolarity、EB和BlockAlignControl在SerDes由MAC负责相应功能，不表示物理链路不需要极性处理、对齐或时钟补偿。"
+        ],
+        "referenceIndices": [
+          85,
+          86,
+          87,
+          88,
+          89,
+          90
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "ElasticBufferDepthControl",
+              "MAC→PHY，0x002[7:0]，Level，默认0",
+              "设置PHY支持的弹性缓存深度；完成回MAC 0x003[0]",
+              "可选、Original；只能在发TS1时改；深度编码看PHY参数"
+            ],
+            [
+              "RxPolarity",
+              "MAC→PHY，0x003[1]，Level，默认0",
+              "0不反相；1反相接收极性",
+              "Original-only；旧版独立pin的逻辑功能迁入寄存器"
+            ],
+            [
+              "ElasticityBufferMode",
+              "MAC→PHY，0x003[0]，Level，默认0",
+              "0 nominal half full；1 nominal empty",
+              "可选、Original；RX关闭且PCLK运行时改；follower loopback由PHY处理buffer切换"
+            ],
+            [
+              "ElasticBufferLocationUpdateFrequency",
+              "MAC→PHY，0x007[7:0]，Level，默认5",
+              "控制占用量状态的最大更新频率；间隔规则为16×N symbol times",
+              "Original-only；允许N范围看PHY参数，不把编码直接解释成Hz"
+            ],
+            [
+              "BlockAlignControl",
+              "MAC→PHY，0x008[0]，Level，默认0",
+              "1搜索EIEOS bit边界，0停止搜索",
+              "Original PCIe8/16/32GT/s；所有active lane一致；datastream中0、其他场合1；follower忽略"
+            ],
+            [
+              "ElasticBufferResetControl",
+              "MAC→PHY，0x008[1]，one-cycle，默认0",
+              "置1触发EB reset序列",
+              "Original-only；完整动作还看既有EB reset窗口条目"
+            ],
+            [
+              "EncodeDecodeBypass",
+              "MAC→PHY，0x800[0]，Level，默认0",
+              "0由PHY正常编码/解码；1绕过",
+              "Original可选；只reset或非P0更改；2.5/5GT/s为10/20/40bit；8/16/32GT/s说明列8/16/32bit，K和StartBlock不使用"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-rx-eq",
+        "title": "PHY RX均衡、重校准与PAM4字段",
+        "paragraphs": [
+          "RxEqTraining是接收器训练，RxEqEval是评估对端TX设置；二者均不能用Message Bus write_ack当完成。IORecal、RxEqTraining是PCIe one-cycle请求，而RxEqEval/在途状态是Level，必须按各自清除规则实现。",
+          "RxInPhase01Equalization和PAM4RestrictedLevels是否必须提供，由对应PHY requirement参数说明；“optional字段”不代表当所选PHY要求它时MAC仍可忽略。"
+        ],
+        "referenceIndices": [
+          91,
+          92,
+          93,
+          94,
+          95,
+          96
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "RxEqTraining",
+              "MAC→PHY，0x004[0]，PCIe one-cycle",
+              "置1让RX进行均衡训练，期间RxData未定义",
+              "可选；实现后必须等MAC 0x005[0] RxEqTrainDone握手"
+            ],
+            [
+              "IORecal",
+              "MAC→PHY，0x004[1]，one-cycle",
+              "请求RX重校准",
+              "可因PHY请求或MAC自主发起；完成为IORecalDone"
+            ],
+            [
+              "PAM4RestrictedLevels",
+              "MAC→PHY，0x004[2]，Level",
+              "表示即将/正在接收64/128GT/s TS0受限电平",
+              "需EQ时切速PhyStatus后且放开RxStandby前置1；NoEq不得置；请求TS0→TS1时清除；PHY在相应切速完成前自动清此位"
+            ],
+            [
+              "RxInPhase01Equalization",
+              "MAC→PHY，0x004[4]，Level",
+              "告知远端已应用Phase0/1请求的preset",
+              "在RxEqTraining/Eval之前或同时置；退出Phase1时清；[3]是USB4 PAM3字段，不能当PCIe"
+            ],
+            [
+              "RxEqEval",
+              "MAC→PHY，0x006[0]，Level",
+              "置1开始评估远端TX均衡设置",
+              "PCIe8/16/32/64/128GT/s；返回反馈字段的committed写表示完成"
+            ],
+            [
+              "RxEqInProgress",
+              "MAC→PHY，0x006[1]，Level",
+              "阶段2/3评估在途标记",
+              "与RxEqEval同时置，阶段2/3结束清；不是一次Eval完成后必清整个phase标志"
+            ],
+            [
+              "InvalidRequest",
+              "MAC→PHY，0x006[2]，Level",
+              "MAC计算出请求越界或收到对端NACK时置1",
+              "下一次RxEqEval清0，并让PHY再次评估最后合法设置"
+            ],
+            [
+              "RxEqTrainDone",
+              "PHY→MAC，MAC空间0x005[0]，one-cycle",
+              "响应接收训练完成",
+              "与USB timer-based训练不同"
+            ],
+            [
+              "IORecalDone",
+              "PHY→MAC，MAC空间0x005[1]，one-cycle",
+              "响应RX重校准成功完成",
+              "与write_ack、PhyStatus分开"
+            ],
+            [
+              "PhyIORecalRequest",
+              "PHY→MAC，MAC空间0x006[0]，one-cycle",
+              "请求MAC进入Recovery并发IORecal",
+              "不是PHY收到此位后自行切换LTSSM"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-tx-eq",
+        "title": "TX均衡与摆幅：TxDeemph / TxSwing / TxMargin",
+        "paragraphs": [
+          "所有系数都须落在PHY支持和相应Base允许的组合内，MAC负责跟踪历史系数。PIPE系数码并不直接等于模拟电压、tap DAC码或可跨产品复制的寄存器值。多寄存器系数应以Message Bus暂存/提交一致更新，避免把半组新参数短暂应用。",
+          "对于PIPE7.1当前定义，8/16/32GT/s是三组6bit，64/128GT/s是四组6bit。6.0初步支持曾用8bit，6.1修订为6bit；因此同叫PIPE6的资料不能不看小版本就接线。2.5GT/s时MAC应选择−3.5dB设置；仅支持2.5GT/s的实现可不实现TxDeemph。"
+        ],
+        "referenceIndices": [
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "TxDeemph，2.5/5GT/s",
+              "MAC→PHY，PHY0x402[5:0]",
+              "编码0=−6dB，1=−3.5dB，2=no de-emphasis，3保留",
+              "只使用受支持值；当前表未把更高编码定义为额外低速档"
+            ],
+            [
+              "TxDeemph[17:0]，8/16/32GT/s",
+              "MAC→PHY，三个Level字段",
+              "0x402[5:0]=C−1；0x403[5:0]=C0；0x404[5:0]=C+1",
+              "各byte[7:6]保留；拼接值不是Preset编号"
+            ],
+            [
+              "TxDeemph_Cminus2[5:0]",
+              "MAC→PHY，0x409[5:0]，Level",
+              "64/128GT/s precursor C−2",
+              "低速不使用此四tap扩展"
+            ],
+            [
+              "TxDeemph_Cminus1/Czero/Cplus1[5:0]",
+              "MAC→PHY，0x402/403/404[5:0]",
+              "64/128GT/s分别为C−1、C0、C+1",
+              "系数合法性与幅度关系看对应Base和PHY"
+            ],
+            [
+              "TxSwing",
+              "MAC→PHY，0x408[3]，Level",
+              "0 full swing；1 low swing，可选",
+              "8GT/s及以上不使用；仅full swing的实现可省略"
+            ],
+            [
+              "TxMargin[2:0]",
+              "MAC→PHY，0x408[2:0]，Level",
+              "0正常范围；1 full 800～1200mV/half 400～700mV；2/3是必需的vendor-defined档；4为必需终档或vendor档；5～7可选",
+              "终档full 200～400mV/half 100～200mV；不能把2～7固定线性插值；只2.5GT/s实现不实现该字段"
+            ],
+            [
+              "TX参数生效时间",
+              "PHY TX引脚观察",
+              "TxMargin 128ns内；5GT/s TxDeemph 128ns内；8/16/32/64/128GT/s TxDeemph 256ns内",
+              "为对应P0操作要求，不是任何芯片所有配置写的通用超时"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-preset",
+        "title": "Preset查询与本地／远端FS/LF：完整地址和索引边界",
+        "paragraphs": [
+          "GetLocalPresetCoefficients是“查本地Preset对应系数”，返回系数后还需要MAC把它们写入TxDeemph才实际应用。FS/LF输入是对端广告值；LocalFS/LocalLF等输出是本地PHY参数，不应混写。",
+          "本地Preset索引包含速率bank。8GT/s P0～P10为0～10，16GT/s为11～21，32GT/s为22～32，128GT/s为45～55。64GT/s表7-17列P0=33、P1=35、…P10=44，缺34；本页保留疑点，不自动填成连续编码。旧版和产品集成必须再核其正式表/勘误。"
+        ],
+        "referenceIndices": [
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "LocalPresetIndex[5:0]",
+              "MAC→PHY，PHY0x405[5:0]，Level",
+              "速率与Preset联合索引，默认0",
+              "[6]保留，不是P编号直接通用"
+            ],
+            [
+              "GetLocalPresetCoefficients",
+              "MAC→PHY，PHY0x405[7]，one-cycle",
+              "请求映射；PHY最大响应128ns",
+              "仅需动态preset coefficient更新的PHY；5.1历史从bit5迁至bit7"
+            ],
+            [
+              "FS[5:0] / LF[5:0]",
+              "MAC→PHY，PHY0x406/407[5:0]，Level",
+              "远端在当前速率所广告的FS/LF",
+              "仅新捕获值或速率变化时更新；PHY可据其调整评估时长"
+            ],
+            [
+              "LocalTxPresetCoefficients[17:0]",
+              "PHY→MAC，MAC0x400/401/402各[5:0]",
+              "8/16/32GT/s返回C−1、C0、C+1",
+              "只是查询返回；不是已经应用TX设置"
+            ],
+            [
+              "LocalTxPresetCoefficients_Cminus2[5:0]",
+              "PHY→MAC，MAC0x407[5:0]",
+              "64/128GT/s返回C−2",
+              "其余三tap仍位于MAC0x400/401/402"
+            ],
+            [
+              "LocalFS / LocalLF[5:0]",
+              "PHY→MAC，MAC0x403/404[5:0]",
+              "8GT/s本地FS/LF",
+              "reset完成前及切入8GT/s首次PhyStatus前更新；查询对应bank也可更新"
+            ],
+            [
+              "LocalG4FS / LocalG4LF[5:0]",
+              "PHY→MAC，MAC0x405/406[5:0]",
+              "16GT/s本地FS/LF",
+              "查询索引11～21或切入16GT/s，成对取样"
+            ],
+            [
+              "LocalG5FS / LocalG5LF[5:0]",
+              "PHY→MAC，MAC0x00C/00D[5:0]",
+              "32GT/s本地FS/LF",
+              "查询索引22～32或切入32GT/s；注意位于RX地址区"
+            ],
+            [
+              "LocalG6FS / LocalG6LF[5:0]",
+              "PHY→MAC，MAC0x408/409[5:0]",
+              "64GT/s本地FS/LF",
+              "查询索引范围>32且≤44或切入64GT/s；索引跳号疑点保留"
+            ],
+            [
+              "LocalG7FS / LocalG7LF[5:0]",
+              "PHY→MAC，MAC0x40B/40C[5:0]",
+              "128GT/s本地FS/LF",
+              "查询相应bank或切入128GT/s；有效Preset编码仍限表7-17，不能将所有>44值视为有效"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-feedback",
+        "title": "均衡反馈：FOM、三tap与四tap方向编码",
+        "paragraphs": [
+          "PHY更新反馈的write_committed表示本次RxEqEval完成。FOM和Direction Change两种格式依PHY能力选择，不能假设每次都同时有效。反馈描述的是接收端对远端TX设置的评价，由MAC转成线上均衡请求，不是直接改本地TX。",
+          "C−2/C−1/C+1的编码按实际FIR系数的绝对值；增加幅度码可能令负系数更负，不可当带符号有理数简单加减。8GT/s时MAC忽略反馈中C0并按Base规则求正确值。"
+        ],
+        "referenceIndices": [
+          114,
+          115,
+          116,
+          117
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "LinkEvaluationFeedbackFigureMerit[7:0]",
+              "PHY→MAC，MAC0x00A[7:0]，Level",
+              "无符号0最差，255最好",
+              "8/16/32/64/128GT/s；不支持FOM的PHY不更新"
+            ],
+            [
+              "LinkEvaluationFeedbackDirectionChange[5:0]",
+              "PHY→MAC，MAC0x00B[5:0]，Level",
+              "[1:0]C−1，[3:2]C0，[5:4]C+1；每项00保持、01增、10减、11保留",
+              "仅8/16/32GT/s；[7:6]保留"
+            ],
+            [
+              "LinkEvalFeedbackDirectionChange_Cminus2[2:0]",
+              "PHY→MAC，MAC0x00E[2:0]",
+              "64/128GT/s C−2方向和步长",
+              "000保持，001+1，010−1，011+2，100−2，101+4，110−4，111保留"
+            ],
+            [
+              "LinkEvalFeedbackDirectionChange_Cminus1[2:0]",
+              "PHY→MAC，MAC0x00E[6:4]",
+              "64/128GT/s C−1方向和步长",
+              "编码同C−2；bit7/3保留"
+            ],
+            [
+              "LinkEvalFeedbackDirectionChange_Czero[2:0]",
+              "PHY→MAC，MAC0x00F[2:0]",
+              "64/128GT/s C0方向和步长",
+              "三bit步长编码，不是旧的2bit格式"
+            ],
+            [
+              "LinkEvalFeedbackDirectionChange_Cplus1[2:0]",
+              "PHY→MAC，MAC0x00F[6:4]",
+              "64/128GT/s C+1方向和步长",
+              "编码同C−2；bit7/3保留"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-margin-eb-status",
+        "title": "Margin与EB状态：每个字段及位数",
+        "paragraphs": [
+          "RX margin控制与统计是独立于TxMargin的路径。选择电压/时间和方向只能在停止时改，Offset可在进行中改；PIPE时间方向与Base方向约定相反，MAC要转换。以下均为各自空间的8bit寄存器。",
+          "7.1 Sample Count段落把reset指向Rx Margin Control1，但§7.1.1表7-2明确将reset放在Control0的bit3/2；本页按实际字段表定位并注明文字矛盾。USB4的8/16bit Error Count也不能覆盖PCIe仅低6bit的定义。"
+        ],
+        "referenceIndices": [
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "Start Margin",
+              "MAC→PHY，PHY0x000[0]，Level",
+              "0→1开始，1→0停止",
+              "完成用MAC Margin Status/NAK，不等同write_ack"
+            ],
+            [
+              "Margin Voltage or Timing",
+              "MAC→PHY，PHY0x000[1]，Level",
+              "0电压，1时间",
+              "停止margin后才可改"
+            ],
+            [
+              "Error Count Reset / Sample Count Reset",
+              "MAC→PHY，PHY0x000[2]/[3]，one-cycle，可选",
+              "分别清错误计数／采样计数",
+              "不要按叙述中的错误寄存器名写到0x001"
+            ],
+            [
+              "Margin Direction",
+              "MAC→PHY，PHY0x001[7]，Level",
+              "时间0左1右；电压0上1下",
+              "停止时改；时间约定与Base相反"
+            ],
+            [
+              "Margin Offset[6:0]",
+              "MAC→PHY，PHY0x001[6:0]，Level",
+              "离默认采样点的步数",
+              "可运行时改；真实步长/范围看PHY"
+            ],
+            [
+              "Margin Status / Margin NAK",
+              "PHY→MAC，MAC0x000[0]/[1]，one-cycle",
+              "Status确认有效Start/Offset变化；NAK为可选电压请求拒绝",
+              "NAK只针对范围内不支持的电压offset；超广告范围是MAC错误，不保证NAK"
+            ],
+            [
+              "Sample Count[6:0]",
+              "PHY→MAC，MAC0x001[6:0]，Level，可选",
+              "编码3×log2(已margin的bit数)，不是原始bit计数",
+              "Error Count饱和后停止增加；采样率不由datasheet报告时需要"
+            ],
+            [
+              "Error Count[5:0]",
+              "PHY→MAC，MAC0x002[5:0]，Level，可选",
+              "独立error sampler统计实际bit错误",
+              "PCIe[7:6]保留；只Start期间增加；不是USB4 16bit"
+            ],
+            [
+              "Elastic Buffer Status",
+              "PHY→MAC，MAC0x003[0]，one-cycle，可选",
+              "PHY已完成深度调整",
+              "Original-only，不是任意EB错误标志"
+            ],
+            [
+              "ElasticBufferLocation[7:0]",
+              "PHY→MAC，MAC0x004[7:0]，Level，可选",
+              "当前EB entry占用数",
+              "Original-only；更新受PHY0x007频率限制"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-nelb",
+        "title": "Near-end loopback：控制、回送位置与状态",
+        "paragraphs": [
+          "NELB是可选的本地数字/模拟回送测试，不是PCIe远端LTSSM Loopback Follower，也不是TxDetectRx检测。启停方法和支持的回送点须看PHY声明；部分PHY只能通过PIPE reset退出。",
+          "表7-24对SerDes把位置1/2列为保留，但通用说明又说至少支持0/1/2之一；对SerDes不能据此强行实现保留位置，应要求支持位置0并结合PHY参数确认。"
+        ],
+        "referenceIndices": [
+          125,
+          126,
+          127,
+          128
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "NELB Enable",
+              "MAC→PHY，PHY0x801[7]，Level",
+              "0正常，1请求NELB",
+              "只有支持该可选功能的PHY实现"
+            ],
+            [
+              "NELB Loopback Position[2:0]",
+              "MAC→PHY，PHY0x801[2:0]，Level",
+              "Original：0PIPE边界，1EB入口，2串并转换器接口侧，3die pad侧，4高速数字/模拟，5～7PHY-specific",
+              "SerDes的1/2保留；3die edge侧，其他按表；[6:3]保留"
+            ],
+            [
+              "NELB State",
+              "PHY→MAC，MAC0x800[0]，Level",
+              "0正常，1处于NELB",
+              "独立于写入应答与错误码"
+            ],
+            [
+              "NELB Error",
+              "PHY→MAC，MAC0x800[1]，Level",
+              "请求不支持的位置或不支持的MB退出方式时报1",
+              "如需reset退出，不能只清Enable就假定已经退出"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-revisions",
+        "title": "PIPE版本变化：明确哪些来自修订记录，哪些已核当前正文",
+        "paragraphs": [
+          "这里对照的是PIPE修订，不是PCIe Gen编号。旧版各阶段的归纳来自7.1的Revision History及§2.6；未逐本核读4.4.1、5.0、5.1、5.2、6.0、6.1的完整信号表，不能据此导出任意旧版的完整RTL端口。当前7.1字段、编码和适用边界见各详细表。",
+          "6.0/6.1对PCIe6的说明分别基于当时Base草案0.5/0.71，7.0对PCIe7基于当时草案0.7；它们是发布历史，不拿这些初步定义代替正式Base规范。现行PIPE7.1介绍列对PCIe Base7.0的支持。"
+        ],
+        "referenceIndices": [
+          129,
+          130,
+          131,
+          132
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "4.4 / 4.4.1",
+              "2016/2017修订记录",
+              "4.4引入Message Bus用于RX margin/EB深度；4.4.1取消MB必须PCLK-input的要求，明确L1ss两种管理方案",
+              "不能说所有MB都必须输入PCLK；SerDes是后续另一个条件"
+            ],
+            [
+              "5.0",
+              "2017修订记录及§2.6",
+              "引入SerDes；可迁移的Legacy控制/状态映射到MB；增加RefClkRequired#",
+              "新旧pins要建立逻辑映射，不能把旧pin消失当功能消失"
+            ],
+            [
+              "5.1 / 5.1.1",
+              "2018修订记录",
+              "PCIe5正式速率；GetLocalPresetCoefficients bit5→7；修正EB更新频率、控制/状态寄存器位置，5.1.1删除遗留重复RxStatus0～3",
+              "同一逻辑名称的地址/bit曾变化，旧版不能直接用7.1地址"
+            ],
+            [
+              "5.2 / 5.2.1",
+              "2019/2020修订记录",
+              "增加ShortChannelPowerControl；PCIe RxEqTraining/Done、IORecal请求/完成；明确SerDes RxValid同步RxCLK",
+              "5.2.1进一步说明宽度/PCLK组合表只是示例"
+            ],
+            [
+              "6.0",
+              "2020修订记录，PCIe6支持当时属初步定义",
+              "增加DeepPMReq#/Ack#/Restore#；Gen6要求SerDes；初步四tap系数及FS/LF使用8bit",
+              "当前7.1已不是8bit，不能照旧bus宽度接线"
+            ],
+            [
+              "6.1",
+              "2021修订记录",
+              "四tap和FS/LF由8bit改6bit；增加NELB、RxCLK失效后至少8拍与最大频率约束",
+              "这些具体宽度修订适用于对应字段，不是所有PIPE总线都变6bit"
+            ],
+            [
+              "6.1.1 / 6.2 / 6.2.1",
+              "2022/2023修订记录",
+              "6.1.1加PAM4RestrictedLevels；6.2加可选MacCLK lane及多协议可配置pair；6.2.1加RxInPhase01Equalization",
+              "Rx2/Tx2和PAM3等不自动成为PCIe所需信号"
+            ],
+            [
+              "7.0",
+              "2024修订记录，PCIe7支持当时属初步定义",
+              "160bit RxData/TxData、128GT/s Rate/LocalPresetIndex/LocalG7FS/LF；恢复RxStatus101",
+              "同时删除没有编码的31.25MHz示例；不将其列为标准PCLKRate"
+            ],
+            [
+              "7.1",
+              "2025修订记录及本次正文核读",
+              "补表3-1的2GHz组合，修LocalTx C0措辞、可选margin count写资格、BlockAlignControl示意图地址",
+              "不能理解成整个7.1所有表已无勘误；下面另列疑点"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-signal-scope-errata",
+        "title": "覆盖边界、非PCIe信号与发现的表文矛盾",
+        "paragraphs": [
+          "本次补的是PIPE接口查阅，不改变七代Base章序覆盖状态，不宣称整个PHY模拟实现或所有PIPE旧修订已完成。原始手册、RTL和PDF图不公开；网页表格为独立编写的中文解释，来源按钮可选择对应本地PDF对照。",
+          "发现的内部不一致只列证据与安全边界；没有官方勘误或供应商确认前，不为填满表格而猜测编码。对实际项目应以双方约定修订、参数配置、产品手册和正式勘误共同确定集成合同。"
+        ],
+        "referenceIndices": [
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          148
+        ],
+        "table": {
+          "columns": [
+            "信号／逻辑字段",
+            "方向、位宽／位置",
+            "功能与bit定义",
+            "适用条件／使用注意"
+          ],
+          "rows": [
+            [
+              "非PCIe专用端口",
+              "不纳入PCIe必接列表",
+              "TxData2/RxData2、TxDetectRx2、TxElecIdle2、RxEIDetectDisable2、RxStandby2/Status2、RxElecIdle2、RxValid2、RxCLK2、DP_Mode_Tx_Rx、AlignDetect、PowerPresent及DP AUX",
+              "名称带2是多协议第二可配置pair，不是PCIe第二lane"
+            ],
+            [
+              "非PCIe专用MB字段",
+              "按Relevant Protocols排除",
+              "RxPAM3Mode、RxLaneEnable/Ready、TxLaneEnable/Ready、TxOnesZeros、TxPattern、MacTransmitLFPS、USB4 Margin Eye/高位Error Count",
+              "PCIe Gen6/7是PAM4，不能用USB4的PAM3控制代替"
+            ],
+            [
+              "RxWidth宽度冲突",
+              "p59文字 vs p70表6-16",
+              "文字[1:0]，表[2:0]并支持编码4",
+              "采用明确3bit字段表，标注不一致"
+            ],
+            [
+              "DataBusWidth未覆盖160bit",
+              "p77表6-25",
+              "仍为2bit且只列10/20/40/80",
+              "不发明160bit编码；产品若扩展需单独标注"
+            ],
+            [
+              "TxDataK表多出64bit行",
+              "p72表 vs p46 TxData定义",
+              "TxDataK表出现64bit，但Original TxData表只列8/16/32",
+              "不据此补出通用Original64bit组合"
+            ],
+            [
+              "地址区单位误写",
+              "p78段落 vs 12bit字节地址/图7-1",
+              "0x000～0x3FF应为1024byte，而非1024KB",
+              "地址范围可计算验证；不向RTL传播单位错误"
+            ],
+            [
+              "LocalPresetIndex 64GT/s跳号",
+              "p90表7-17",
+              "P0=33、P1=35，34未列；P10=44",
+              "保留待勘误，不用未经确认的连续公式"
+            ],
+            [
+              "Rx Status0保留位重叠",
+              "p98～99表7-31",
+              "[7:1]写Reserved，同时bit1定义IORecalDone",
+              "按明确bit1字段解释，保留位范围应再核官方勘误"
+            ],
+            [
+              "其他图文差异",
+              "p115图8-5 vs p71表6-17",
+              "图标MacCLKRate[3:0]，表定义[4:0]含31 override",
+              "使用5bit字段表；margin reset位置的段落引用也另列于对应详细表"
+            ],
+            [
+              "PHY Rx Control1保留范围重叠",
+              "p83～84表7-6",
+              "首部分列[7:3]保留，续表又定义bit4和bit3",
+              "按显式字段定义解释；bit3只用于USB4，bit4可用于PCIe；不能把[7:3]一概清零"
+            ]
+          ]
+        }
+      },
       {
         "title": "Original PIPE与SerDes PIPE：信号同名不等于语义相同",
         "paragraphs": [],

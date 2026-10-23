@@ -1,6 +1,6 @@
 {
   "date": "2026-10-23",
-  "summary": "R50：Memory Byte Enable、zero-length与有效范围规划。",
+  "summary": "PIPE专项：逐信号与字段、版本差异及表文疑点；常规队列不动。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -871,6 +871,26 @@
       "name": "R50自动检查",
       "status": "通过",
       "detail": "核Base6.0/7.0所列正文和关键图表；261项旧ID/引用/章序/渲染检查、8762项掩码/地址/分包/资源/输入/事件断言通过；R49的233+319项检查及既有查询抽测通过。构建、公开边界、资源哈希与JS语法通过。未证明完整硬件形成、权限或七代覆盖。"
+    },
+    {
+      "name": "PIPE专项来源与范围",
+      "status": "已核所列7.1页",
+      "detail": "核§2.6、§6 PCIe相关信号、§7 PCIe相关字段及§8.1～8.8选定操作正文；视觉核p65/70/90。旧版沿革来自7.1修订记录，不冒充旧版全文；1.00副本为draft，不作正式版依据。"
+    },
+    {
+      "name": "PIPE专项矛盾检查",
+      "status": "显式保留疑点",
+      "detail": "RxWidth宽度、DataBusWidth无160、TxDataK64bit行、MB地址KB单位、64GT/s索引跳号、IORecalDone保留位重叠、MacCLKRate图文及margin reset段落引用均已提示。"
+    },
+    {
+      "name": "PIPE待核",
+      "status": "保留",
+      "detail": "需要PIPE4.4.1/5.0/5.1/5.2/6.0/6.1各正式发布版正文及7.1相关官方勘误，才能完成旧版逐信号完整差分；现有7.1资料未缺。未声明Base或PHY产品覆盖增加。"
+    },
+    {
+      "name": "PIPE专项发布前验证",
+      "status": "通过",
+      "detail": "build.py、check.py、JavaScript语法通过；325项保留/来源/渲染检查，157行搜索、输入响应和HTML转义通过。所有旧detail ID/引用前缀保留，普通维护队列及Base章序正文覆盖不变。线上验证在发布后单独核实。"
     }
   ],
   "unresolved": [
