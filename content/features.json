@@ -5878,6 +5878,83 @@
         "title": "交互查询：Disabled何时退出，谁适用2ms兜底",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R56核读对应正式版所列Hot Reset、Disabled或控制寄存器正文；印刷页与本地PDF物理页分别核对后一致。视觉核1.0a p196/199和7.0 p610。仅所列规则，不代表整章、全部中间修订或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.5",
+        "page": 167,
+        "pdfPage": 167,
+        "title": "LTSSM默认超时容差",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R56补核七版LTSSM描述开头的默认超时−0/+50%及显式例外条款；印刷页与本地PDF物理页相同。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.5",
+        "page": 188,
+        "pdfPage": 188,
+        "title": "LTSSM默认超时容差",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R56补核七版LTSSM描述开头的默认超时−0/+50%及显式例外条款；印刷页与本地PDF物理页相同。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.5",
+        "page": 244,
+        "pdfPage": 244,
+        "title": "LTSSM默认超时容差",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R56补核七版LTSSM描述开头的默认超时−0/+50%及显式例外条款；印刷页与本地PDF物理页相同。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.5",
+        "page": 284,
+        "pdfPage": 284,
+        "title": "LTSSM默认超时容差",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R56补核七版LTSSM描述开头的默认超时−0/+50%及显式例外条款；印刷页与本地PDF物理页相同。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.5",
+        "page": 312,
+        "pdfPage": 312,
+        "title": "LTSSM默认超时容差",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R56补核七版LTSSM描述开头的默认超时−0/+50%及显式例外条款；印刷页与本地PDF物理页相同。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6",
+        "page": 444,
+        "pdfPage": 444,
+        "title": "LTSSM默认超时容差",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R56补核七版LTSSM描述开头的默认超时−0/+50%及显式例外条款；印刷页与本地PDF物理页相同。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6",
+        "page": 521,
+        "pdfPage": 521,
+        "title": "LTSSM默认超时容差",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R56补核七版LTSSM描述开头的默认超时−0/+50%及显式例外条款；印刷页与本地PDF物理页相同。"
       }
     ],
     "referenceStatus": "所引Base6.0/7.0 Recovery、Speed及改宽入口正文已核读；早期修订/全部角色/后续ECN及整章覆盖仍待继续。",
@@ -9106,7 +9183,8 @@
         "title": "交互查询：Hot Reset由谁发起、何时去Detect、何时重置计时",
         "paragraphs": [
           "输入发起/接收角色、连续合格序列、发生时刻及上层保持意图。工具用微秒统一时间单位，并显示原创分支图；两组序列的合格性还要求同一已配置Lane、连续且编号/请求匹配。",
-          "发起端的已确认回应时间相对本次Hot Reset进入；接收端的事件与经过时间相对最近一次计时器起点。事件必须不晚于观察时刻。恰好2000µs接收的竞争不强行定优先级；1.0a接收端的显式刷新证据另行提示。工具不是完整LTSSM或硬件合规验证器。"
+          "发起端的已确认回应时间相对本次Hot Reset进入；接收端的事件与经过时间相对最近一次计时器起点。事件必须不晚于观察时刻。恰好2000µs接收的竞争不强行定优先级；1.0a接收端的显式刷新证据另行提示。工具不是完整LTSSM或硬件合规验证器。",
+          "名义2ms的默认LTSSM容差为−0/+50%；可在查询中选择2000～3000µs的模型到期点。默认2000不是对真实硬件精确截止时刻的断言。"
         ],
         "referenceIndices": [
           393,
@@ -9120,7 +9198,14 @@
           401,
           402,
           403,
-          404
+          404,
+          465,
+          466,
+          467,
+          468,
+          469,
+          470,
+          471
         ]
       },
       {
@@ -9304,7 +9389,8 @@
         "title": "交互查询：Disabled何时退出，谁适用2ms兜底",
         "paragraphs": [
           "选择对应Base正式版、现代端口角色、发送EIOS(Q)是否完成、是否在任一Lane收到EIOS、是否退出Electrical Idle和上层指示。查询给出所核状态段的出口，并画出DSP/USP分支。",
-          "2ms输入从本次进入Disabled开始，用于未收到EIOS的分支；不能在已收到EIOS但其它条件未完成时继续套“无EIOS”兜底。1.0a走该版不拆角色的文本，2.0明确提示component到端口的映射。工具不验证TS1/EIOS原始码流或模拟模拟终端。"
+          "2ms输入从本次进入Disabled开始，用于未收到EIOS的分支；不能在已收到EIOS但其它条件未完成时继续套“无EIOS”兜底。1.0a走该版不拆角色的文本，2.0明确提示component到端口的映射。工具不验证TS1/EIOS原始码流或模拟模拟终端。",
+          "名义2ms的默认LTSSM容差为−0/+50%；可在查询中选择2000～3000µs的模型到期点。默认2000不是对真实硬件精确截止时刻的断言。"
         ],
         "referenceIndices": [
           455,
@@ -9316,7 +9402,32 @@
           461,
           462,
           463,
-          464
+          464,
+          465,
+          466,
+          467,
+          468,
+          469,
+          470,
+          471
+        ]
+      },
+      {
+        "id": "ltssm-timeout-tolerance-seven-revisions",
+        "title": "七版LTSSM默认超时−0/+50%：2ms不是精确2000µs硬截止",
+        "paragraphs": [
+          "所核Base1.0a、2.0、3.0、4.0、5.0、6.0、7.0的LTSSM描述开头均规定：未明确另列容差时，LTSSM超时值允许−0/+50%。因此名义2ms计时器可有2～3ms的到期点，不宜用抓到第2000µs尚未跳转就直接判硬件违反规范。",
+          "Hot Reset和Disabled查询增加“模型采用的到期点”输入，允许2000～3000µs；默认2000只是合法下界的学习模型，不代表实际实现一定选该值。工具假定输入的计时起点及事件时刻已知，并按这个选定的计时器到期事件判断分支。",
+          "这项默认值只作用于LTSSM超时，不把USP在1ms内满足终端阻抗的电气要求、软件SBR最短保持时间或其它非LTSSM计时都扩大50%；明确另定容差的条目也须优先按自身文字。"
+        ],
+        "referenceIndices": [
+          465,
+          466,
+          467,
+          468,
+          469,
+          470,
+          471
         ]
       }
     ]
