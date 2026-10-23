@@ -1,6 +1,6 @@
 {
   "date": "2026-10-23",
-  "summary": "R40：IDE保护边界、Stream关联/控制字段与受保护密钥管理目录；保留6.0/7.0差异和未核时序。",
+  "summary": "R41每日维护：MSI控制与向量编码、Mask/Pending生命周期、MSI-X资源定位和更新同步。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -681,6 +681,21 @@
       "name": "R40执行范围",
       "status": "针对性复核",
       "detail": "本轮集中三个IDE条目，无新增交互状态机；检查稳定ID/引用索引及新表结构，构建/检查/JS语法后发布，线上结果另按实际记录。"
+    },
+    {
+      "name": "R41先自查",
+      "status": "已检查",
+      "detail": "远端R40与本地基线一致，上一轮Validate/Pages成功；53～55仍只有概述和目录引用。本轮追加正文来源并将MSI/MSI-X不能同时开启写成明确的未定义行为。"
+    },
+    {
+      "name": "R41来源与边界",
+      "status": "选定正文核读及图表核对",
+      "detail": "核Base6.0/7.0中断正文/控制寄存器、Table/BIR/Vector Control/PBA；7.0 p1175与1179视觉核验。MUST@FLIT、SR-IOV/SIOV PVM条件、设备驱动与系统软件权限、Pending非计数器均明确。"
+    },
+    {
+      "name": "R41未完成",
+      "status": "保留待核",
+      "detail": "全部MSI-X MMIO访问限制、复位/FLR/VF、主机重映射/中断控制器、早期修订与ECN仍未逐项核读；通知到达不代表跨TC全部数据已可见。临时工作副本不含原PDF/RTL，发布采用明确8文件清单。"
     }
   ],
   "unresolved": [
