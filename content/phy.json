@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-10-22",
-  "summary": "PHY一级体系：Gen5/Gen6产品评估、AFE/CDR校准与协议Idle分层查阅；产品准备完成、LinkUp变量、L0和Data Link分别取证。",
+  "summary": "PHY一级体系：时钟、固件管理访问与外部校准依赖分层查阅；按产品版本标注，不把片内管理接口当PCIe包接口。",
   "groups": [
     {
       "title": "分层与资料入口",
@@ -166,6 +166,10 @@
     {
       "symptom": "RX评估结果异常，或LinkUp已1但LTSSM仍Idle",
       "checks": "核所选产品反馈能力、DFE bypass/外部PPM检测和普通配置占用，分清RX普通Ack低与adapt Ack高；协议侧核NFM Symbol/FM Flit计数、Complete超时入口、deskew先后和有限Recovery回退。"
+    },
+    {
+      "symptom": "CPU已启动但Lane长时间未完成，或寄存器读回偶发错位",
+      "checks": "按本笔APB完成窗口采样；核参考重复链和全活动Lane复位停钟条件，再核lead校准结果/Valid与follower等待，分别观察CPU与Lane里程碑。"
     }
   ],
   "limits": [
@@ -187,7 +191,8 @@
     "R34已核动态Bank及选定评估/监测规则；共享MPLL并发列表拼写、Gen6全复位/掉电保持矩阵、6µs同拍/重触发/后续动作、产品FOM遍历计数疑点待继续核正文或勘误。",
     "R36补Original PIPE块对齐控制和EB Reset/错误；继续Gen5/Gen6实际接收检测与6µs超时后硬件动作，不从简短手册推断完整重试/复位优先级。",
     "R37细化Receiver Detect的PIPE/PMA完成有效窗口、1µs Lane差值及切速停钟约束；产品检测总超时未由该差值推出。",
-    "R39按Gen5 2.02a与Gen6 3.02a展开FOM/方向能力、8ns/2µs/约1.3ms上下文、PPM检测与校准对象；完整收敛阈值及FOM循环勘误继续核。"
+    "R39按Gen5 2.02a与Gen6 3.02a展开FOM/方向能力、8ns/2µs/约1.3ms上下文、PPM检测与校准对象；完整收敛阈值及FOM循环勘误继续核。",
+    "R42已核Gen6参考选源/重复输出、全Lane复位停钟、APB完成窗口/写字节与Rescal共享码；完整加载字节布局、watchdog寄存器和异常恢复仍待核。"
   ],
   "lowPowerReferences": {
     "title": "低功耗协议与PHY握手、共享PLL及产品PG/Context恢复",

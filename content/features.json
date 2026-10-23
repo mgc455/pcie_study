@@ -72397,7 +72397,7 @@
     "example": "两条同link lane频率相同不代表相位关系满足要求；各自的RX时钟也不能当成一个普通同相时钟。",
     "checks": "列出频率、来源、启动条件、是否停钟及domain；跨域使用同步器/FIFO/握手，不能只按时钟名字相同就设为同步。",
     "status": "选定正文与接口细节已展开 · 持续核对",
-    "reviewed": "2026-10-22",
+    "reviewed": "2026-10-23",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -73075,6 +73075,39 @@
         "title": "参考需求",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
         "verification": "核读所引正文及所需续页；印刷页与本地PDF物理页按本页核对。PIPE本地190页、官网189页副本差异保留，不推定整份映射。仅所述规则，非整节完成。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.1.1",
+        "page": 37,
+        "pdfPage": 37,
+        "title": "Gen6产品：PLL参考选源与参考重复输出选源要分别检查",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.5.1",
+        "page": 47,
+        "pdfPage": 47,
+        "title": "Gen6产品：PLL参考选源与参考重复输出选源要分别检查",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.1.1",
+        "page": 38,
+        "pdfPage": 38,
+        "title": "Gen6产品：全部活动Lane复位时可能停输出时钟，先核依赖再等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       }
     ],
     "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
@@ -73714,6 +73747,53 @@
           60,
           40
         ]
+      },
+      {
+        "id": "g6-reference-source-and-repeat-selection",
+        "title": "Gen6产品：PLL参考选源与参考重复输出选源要分别检查",
+        "paragraphs": [
+          "3.02a提供外部差分pad参考与两组片内差分参考输入。Common Module的PLL参考选源与参考重复输出的选源由不同控制决定；不能因为PLL已选对，就认为送给另一个PMD的重复参考也来自同一路。",
+          "重复输出可以连接到其他PMD的片内参考输入，形成共同源的供钟链。排查下游无时钟时，应画出“源→当前PMD输入→重复输出→下游输入”的依赖表，分别检查选源、供电和时钟许可。这里不复制厂商电路，也不推断任意级联长度、抖动预算或在线无毛刺切源能力。"
+        ],
+        "referenceIndices": [
+          61,
+          62
+        ]
+      },
+      {
+        "id": "g6-all-lanes-reset-clock-dependency",
+        "title": "Gen6产品：全部活动Lane复位时可能停输出时钟，先核依赖再等待",
+        "paragraphs": [
+          "3.02a在参考时钟章节注明：全部活动Lane施加TX/RX lane reset时，默认关闭相关时钟；PLL force-enable输入允许该情况下继续供钟。这是特定产品的复位/供钟控制，不能当作PIPE所有PHY统一行为。",
+          "由此得到的集成排查原则是：若某个恢复控制器使用了受上述条件影响的输出时钟，不能一边保持全部Lane复位，一边只靠该时钟域推进释放复位。先核控制器实际时钟、复位范围和产品保持供钟选项，再分析是否形成循环等待；并非这里已经证明某一SoC存在死锁。"
+        ],
+        "referenceIndices": [
+          63
+        ],
+        "table": {
+          "columns": [
+            "观察对象／阶段",
+            "规则与含义",
+            "不能据此推断"
+          ],
+          "rows": [
+            [
+              "仅CPU/APB活着",
+              "管理访问仍可能有进展",
+              "不能证明PLL输出、PCLK或串行通路都运行"
+            ],
+            [
+              "全部活动Lane保持reset",
+              "产品默认时钟停用条件需核对",
+              "不能继续按正常数据时钟周期计算等待时间"
+            ],
+            [
+              "选择保持供钟控制",
+              "按产品配置保持所需PLL时钟",
+              "不替代PLL稳定、CDC和复位释放的完整验证"
+            ]
+          ]
+        }
       }
     ]
   },
@@ -79530,7 +79610,7 @@
     "example": "数字复位已释放却一直不ready，可能是固件未启动、参考时钟未启用、lane reset还在阻塞状态机或校准等待条件未满足。",
     "checks": "给每个阶段设置可观察状态与超时，先找最早未完成的依赖，不要用固定延时替代全部握手。",
     "status": "选定正文与接口细节已展开 · 持续核对",
-    "reviewed": "2026-10-22",
+    "reviewed": "2026-10-23",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -80659,6 +80739,160 @@
         "title": "原创图：保存配置、匹配校准、接收有效与协议对齐是不同关口",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.1.3",
+        "page": 38,
+        "pdfPage": 38,
+        "title": "Gen6电阻校准：共享的是数字校准码，不能并接多个REFRES",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.10",
+        "page": 73,
+        "pdfPage": 73,
+        "title": "Gen6电阻校准：共享的是数字校准码，不能并接多个REFRES",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.11",
+        "page": 74,
+        "pdfPage": 74,
+        "title": "Gen6电阻校准：共享的是数字校准码，不能并接多个REFRES",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.1.3",
+        "page": 38,
+        "pdfPage": 38,
+        "title": "Gen6启动等待：follower可先启动固件，但必须等校准码Valid",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.10",
+        "page": 73,
+        "pdfPage": 73,
+        "title": "Gen6启动等待：follower可先启动固件，但必须等校准码Valid",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 54,
+        "pdfPage": 54,
+        "title": "Gen6启动等待：follower可先启动固件，但必须等校准码Valid",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.1.3",
+        "page": 39,
+        "pdfPage": 39,
+        "title": "Gen6校准耗时与物理范围：约200µs不是整PHY启动上限",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 53,
+        "pdfPage": 53,
+        "title": "Gen6校准耗时与物理范围：约200µs不是整PHY启动上限",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 54,
+        "pdfPage": 54,
+        "title": "Gen6校准耗时与物理范围：约200µs不是整PHY启动上限",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.1.1",
+        "page": 37,
+        "pdfPage": 37,
+        "title": "启动依赖对照：供钟、镜像、CPU、Rescal与Lane握手分别取证",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.1.3",
+        "page": 38,
+        "pdfPage": 38,
+        "title": "启动依赖对照：供钟、镜像、CPU、Rescal与Lane握手分别取证",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 53,
+        "pdfPage": 53,
+        "title": "启动依赖对照：供钟、镜像、CPU、Rescal与Lane握手分别取证",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 54,
+        "pdfPage": 54,
+        "title": "启动依赖对照：供钟、镜像、CPU、Rescal与Lane握手分别取证",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.3",
+        "page": 81,
+        "pdfPage": 81,
+        "title": "启动依赖对照：供钟、镜像、CPU、Rescal与Lane握手分别取证",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       }
     ],
     "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
@@ -81852,6 +82086,122 @@
           100,
           101
         ]
+      },
+      {
+        "id": "g6-rescal-share-code-not-analog-pin",
+        "title": "Gen6电阻校准：共享的是数字校准码，不能并接多个REFRES",
+        "paragraphs": [
+          "3.02a允许每个PMD使用独立参考电阻，也允许一个lead生成校准码供follower使用。其明确限制是多个PMA/PMD不能物理共用同一参考电阻连接；“共享电阻”章节讲的是共享数字校准结果，并非把所有REFRES脚短接。",
+          "共享码方案中，lead接参考电阻、执行本地校准，follower不接该电阻而使用收到的码；独立电阻方案中，每个实例都作为lead自行校准。选择哪一个实例当lead并没有固定PMD编号要求，实际数字连接应随选择调整。"
+        ],
+        "referenceIndices": [
+          102,
+          103,
+          104
+        ]
+      },
+      {
+        "id": "g6-rescal-follower-valid-startup-wait",
+        "title": "Gen6启动等待：follower可先启动固件，但必须等校准码Valid",
+        "paragraphs": [
+          "3.02a允许follower固件在lead之前或之后启动；follower到电阻校准阶段后等待输入Valid，收到有效码后写入模拟配置并继续下一阶段。因此“CPU已运行但Lane未完成”可能是正常等待外部校准依赖，不能只据此宣布固件死机。",
+          "排查顺序是核lead/follower角色、lead是否完成自身校准、数字码连接和对应Valid是否一起到达，再看follower是否继续推进。不能只给一个常数Valid绕过校准便认定结果可信；还要核实际交付的码与Valid信号命名，手册不同段落存在缩写差异，不按名字相近直接短接。"
+        ],
+        "referenceIndices": [
+          105,
+          106,
+          107
+        ],
+        "table": {
+          "columns": [
+            "观察对象／阶段",
+            "规则与含义",
+            "不能据此推断"
+          ],
+          "rows": [
+            [
+              "Lead执行校准",
+              "自身参考连接和固件流程应有效",
+              "有参考时钟不等于已生成码"
+            ],
+            [
+              "Lead发布码与Valid",
+              "码和资格必须对应",
+              "只看码总线非零不能代替Valid"
+            ],
+            [
+              "Follower等待",
+              "可以先运行CPU并停在外部条件等待",
+              "CPU运行Ack不能替代Lane完成"
+            ],
+            [
+              "Follower应用结果后继续",
+              "校准依赖完成后还需后续初始化",
+              "电阻校准完成不等于L0或Data Link就绪"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "g6-rescal-time-and-die-edge-scope",
+        "title": "Gen6校准耗时与物理范围：约200µs不是整PHY启动上限",
+        "paragraphs": [
+          "3.02a对lead电阻校准给出约200µs描述，follower本身不执行该测量，而是等输入Valid；资料还要求多PMD实例布局至少按每个die edge安排一个电阻校准。它们限定这款产品，不能推广成PCIe统一定时器或跨整片任意共享一个码的充分条件。",
+          "系统启动预算应分开记录供电/复位、镜像装载、CPU运行、电阻校准、Lane配置及后续训练的等待。约200µs是其中一个阶段的近似值，不是所有PVT下保证完成的全流程超时，也不能拿PIPE/协议定时器去替代产品故障恢复策略。"
+        ],
+        "referenceIndices": [
+          108,
+          109,
+          110
+        ]
+      },
+      {
+        "id": "g6-clock-firmware-calibration-dependency-table",
+        "title": "启动依赖对照：供钟、镜像、CPU、Rescal与Lane握手分别取证",
+        "paragraphs": [
+          "下表是依据3.02a各段归纳的集成检查清单，不规定所有对象的全局并发顺序，也不创造新的通用硬件寄存器。它把“可访问”“已运行”“已校准”和“协议可用”拆开，便于对照实际波形。"
+        ],
+        "referenceIndices": [
+          111,
+          112,
+          113,
+          114,
+          115
+        ],
+        "table": {
+          "columns": [
+            "观察对象／阶段",
+            "规则与含义",
+            "不能据此推断"
+          ],
+          "rows": [
+            [
+              "管理访问完成",
+              "按本笔APB完成窗口采结果和错误",
+              "不能证明镜像已全部装载"
+            ],
+            [
+              "镜像装载／核对",
+              "核格式、字节排列和选定装载通路",
+              "不能证明CPU已经执行"
+            ],
+            [
+              "CPU运行应答",
+              "表示CPU启动流程的特定阶段",
+              "不能证明follower已收到外部校准码"
+            ],
+            [
+              "参考时钟与校准依赖",
+              "检查供钟者和lead/follower有效条件",
+              "不能以本地Lane不活跃就随意关闭供给其他实例的资源"
+            ],
+            [
+              "Lane Ack撤销",
+              "产品所需配置已应用后续再按P-state推进",
+              "不等于PCIe Link已经完成训练"
+            ]
+          ]
+        }
       }
     ]
   },
@@ -83531,7 +83881,7 @@
     "example": "APB可读且PLL存在仍可能缺少ICCM程序；镜像加载成功也不等于CPU已启动或校准已完成。",
     "checks": "核对镜像版本与硬件版本、内存宽度/掩码、boot完成及CPU/lane握手；复位后的补丁保留情况需确认。",
     "status": "选定正文与接口细节已展开 · 持续核对",
-    "reviewed": "2026-10-22",
+    "reviewed": "2026-10-23",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -84385,6 +84735,160 @@
         "title": "Gen5 Bank与Gen6 MCU：共同问题可以比较，实现不能互换",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.3",
+        "page": 81,
+        "pdfPage": 81,
+        "title": "Gen6产品APB时序：下一笔仍需Setup，不能把PENABLE长期拉高",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.3",
+        "page": 82,
+        "pdfPage": 82,
+        "title": "Gen6产品APB时序：下一笔仍需Setup，不能把PENABLE长期拉高",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.4",
+        "page": 83,
+        "pdfPage": 83,
+        "title": "Gen6产品APB时序：下一笔仍需Setup，不能把PENABLE长期拉高",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.3",
+        "page": 81,
+        "pdfPage": 81,
+        "title": "Gen6产品：PRDATA与PSLVERR随完成窗口采样，不按常驻状态轮询",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.3",
+        "page": 82,
+        "pdfPage": 82,
+        "title": "Gen6产品：PRDATA与PSLVERR随完成窗口采样，不按常驻状态轮询",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.5",
+        "page": 83,
+        "pdfPage": 83,
+        "title": "Gen6产品：PRDATA与PSLVERR随完成窗口采样，不按常驻状态轮询",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.3",
+        "page": 81,
+        "pdfPage": 81,
+        "title": "Gen6产品：PSTRB控制写字节，读仍返回完整32bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.3",
+        "page": 82,
+        "pdfPage": 82,
+        "title": "Gen6产品：PSTRB控制写字节，读仍返回完整32bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.3",
+        "page": 83,
+        "pdfPage": 83,
+        "title": "Gen6产品：PSTRB控制写字节，读仍返回完整32bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.4",
+        "page": 45,
+        "pdfPage": 45,
+        "title": "Gen6固件集成：大端MCU、独立CPU时钟与活性证据分别核对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.4.1",
+        "page": 45,
+        "pdfPage": 45,
+        "title": "Gen6固件集成：大端MCU、独立CPU时钟与活性证据分别核对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.4.1",
+        "page": 46,
+        "pdfPage": 46,
+        "title": "Gen6固件集成：大端MCU、独立CPU时钟与活性证据分别核对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 54,
+        "pdfPage": 54,
+        "title": "Gen6固件集成：大端MCU、独立CPU时钟与活性证据分别核对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.13.8",
+        "page": 86,
+        "pdfPage": 86,
+        "title": "Gen6固件集成：大端MCU、独立CPU时钟与活性证据分别核对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       }
     ],
     "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
@@ -85312,6 +85816,89 @@
           74,
           75,
           76
+        ]
+      },
+      {
+        "id": "g6-apb-setup-access-and-completion",
+        "title": "Gen6产品APB时序：下一笔仍需Setup，不能把PENABLE长期拉高",
+        "paragraphs": [
+          "该3.02a管理接口按APB4说明实现，但不支持PPROT。访问可能等待多个APB周期；不能把手册示例中的几拍画法作为每笔固定延迟。此前的双时钟最坏等待公式仍需按CPU和APB各自周期换算。",
+          "同一接口连续访问可以不撤PSEL，但两笔之间PENABLE要撤低一拍，给下一笔Setup。进入下一笔Access后仍需等待本笔PREADY，不能把前一笔的完成当作后一笔也完成。下面按产品时序重新组织观察顺序。"
+        ],
+        "referenceIndices": [
+          77,
+          78,
+          79
+        ],
+        "table": {
+          "columns": [
+            "观察对象／阶段",
+            "规则与含义",
+            "不能据此推断"
+          ],
+          "rows": [
+            [
+              "Setup",
+              "选定本笔地址、读写方向及写数据，PENABLE=0",
+              "PSEL有效不等于完成"
+            ],
+            [
+              "Access等待",
+              "PENABLE进入有效，等待本笔PREADY",
+              "等待周期数不是固定3拍"
+            ],
+            [
+              "完成边沿",
+              "在本笔有效Access且PREADY有效时采纳结果/错误",
+              "不能脱离本笔握手单独采一个历史PREADY"
+            ],
+            [
+              "紧邻下一笔",
+              "PSEL可以保持；PENABLE需先低一拍",
+              "不是PENABLE连续为1便自动处理多个地址"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "g6-apb-read-error-valid-window",
+        "title": "Gen6产品：PRDATA与PSLVERR随完成窗口采样，不按常驻状态轮询",
+        "paragraphs": [
+          "该产品读事务的PRDATA和PSLVERR在PREADY断言的完成窗口有效，图示完成有效期为一个APB周期；写事务的错误也随PREADY有效。软件或桥接器不能在等待阶段将旧PRDATA当新结果，或等很久后单独轮询PSLVERR来判前一笔访问。",
+          "排障时区分“未完成”和“完成且报错”：前者还要核CPU/APB时钟与控制路径；后者再核未使用地址、bootloader未完成时访问ICCM、或快速CCM访问归属等产品错误条件。PREADY完成仅证明本笔总线事务结束，不证明固件、校准或链路训练成功。"
+        ],
+        "referenceIndices": [
+          80,
+          81,
+          82
+        ]
+      },
+      {
+        "id": "g6-apb-byte-strobe-read-not-mask",
+        "title": "Gen6产品：PSTRB控制写字节，读仍返回完整32bit",
+        "paragraphs": [
+          "该产品PSTRB用于字节写；手册示例1111b写全32bit、0001b只写低8bit。读操作忽略PSTRB并返回全部32bit，不能以PSTRB=0001便宣称只触发一次8bit寄存器读。读的副作用与字段属性仍需查具体寄存器。",
+          "字节写也不能让任意读改写天然安全：如果一次读包含易变、清除或握手属性，应分别按字段语义判断。此处不公开厂商寄存器转储，也不提供跨所有寄存器通用的RMW脚本。"
+        ],
+        "referenceIndices": [
+          83,
+          84,
+          85
+        ]
+      },
+      {
+        "id": "g6-mcu-endian-and-clock-not-alive-proof",
+        "title": "Gen6固件集成：大端MCU、独立CPU时钟与活性证据分别核对",
+        "paragraphs": [
+          "3.02a MCU采用大端存储方向、独立CPU时钟，固件通过内部APB配置PMD/PMA，另有实时时间计数器与watchdog。不能由主机小端、PCIe传输字节顺序或加载工具名称直接推导固件镜像应该怎样交换字节。",
+          "集成应分别保留镜像约定、装载口字节排列、SRAM读回和实际执行里程碑的证据；“读回一致”只证明与装入的内容一致，不能证明入口指令或镜像格式适配正确。手册列有watchdog也不等于已核实其本版超时、使能、恢复动作或安全认证能力，这些字段继续查对应接口/寄存器说明。"
+        ],
+        "referenceIndices": [
+          86,
+          87,
+          88,
+          89,
+          90
         ]
       }
     ]
