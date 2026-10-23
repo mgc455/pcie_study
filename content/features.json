@@ -33531,7 +33531,7 @@
     "group": "虚拟化、翻译与隔离",
     "intro": "IP提供扩展VF配置/管理机制，与普通SR-IOV能力有联系但不相同。",
     "usage": "大量VF资源集成，依IP具体参数和应用接口。",
-    "mechanism": "具体控制器可通过外部VF接口扩展部分虚拟功能资源组织，把某些配置/业务责任交给应用。它与内部VF生成方式存在组合限制。",
+    "mechanism": "Controller6.50a的Extensible IOV把VF寄存器及部分管理职责交给应用实现，通过产品接口衔接；本版内部与外部VF不能混用。这是扩展SR-IOV实现资源的产品机制，不是SIOV/SDI的别名。",
     "example": "需要超过内置VF资源规模时，应先核对Extensible IOV接口和应用实现成本，而非只扩大VF数量常量。",
     "checks": "按具体版本检查内/外VF能否混用、配置完成与FLR处理；不等于支持VF迁移。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
@@ -33543,7 +33543,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-23",
     "protocolReferences": [
       {
         "section": "9",
@@ -33555,16 +33555,112 @@
         "pdfPage": 1433,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "28.7",
+        "page": 745,
+        "pdfPage": 745,
+        "title": "Extensible IOV是外置VF实现接口：6.50a不能混用内部与外部VF",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1",
+        "page": 1648,
+        "pdfPage": 1648,
+        "title": "Extensible IOV是外置VF实现接口：6.50a不能混用内部与外部VF",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.2",
+        "page": 1680,
+        "pdfPage": 1680,
+        "title": "Extensible IOV是外置VF实现接口：6.50a不能混用内部与外部VF",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "28.7",
+        "page": 745,
+        "pdfPage": 745,
+        "title": "外置VF把哪些责任移到应用：MSI-X表、错误消息与FLR通知",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "28.7",
+        "page": 746,
+        "pdfPage": 746,
+        "title": "外置VF把哪些责任移到应用：MSI-X表、错误消息与FLR通知",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "29.7",
+        "page": 754,
+        "pdfPage": 754,
+        "title": "外置VF把哪些责任移到应用：MSI-X表、错误消息与FLR通知",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "旧Base第9章引用仅为IOV背景，不证明Extensible IOV产品功能；R47追加Controller6.50a直接正文。",
+    "details": [
+      {
+        "id": "extiov-external-vf-product-scope",
+        "title": "Extensible IOV是外置VF实现接口：6.50a不能混用内部与外部VF",
+        "paragraphs": [
+          "Controller6.50a §28.7提供Extensible IOV，在需要超出本控制器内置VF规模时，由应用实现外部VF寄存器并经产品接口访问。该节以超过256VF的需求说明用途；256不是PCIe整个SR-IOV设备的通用VF上限。",
+          "本版明确内部和外部VF不能同时使用。外部寄存器地址布局、总线握手和父PF共享字段由生成配置及接口约定决定，外部访问协议按ELBI说明；不能只改TotalVFs常量便认为资源已扩展。",
+          "外置VF仍属于此SR-IOV实现路径，有VF配置与复位/中断责任；SIOV使用SDI、硬件不暴露每SDI配置空间，是另一种模型。旧Base第9章背景定位不能单独证明这个厂商接口存在或支持任意组合。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "id": "extiov-interrupt-error-flr-owner",
+        "title": "外置VF把哪些责任移到应用：MSI-X表、错误消息与FLR通知",
+        "paragraphs": [
+          "6.50a Extensible IOV不支持控制器内置MSI-X Table功能，应用须为所有PF/VF外置实现表。外部VF的MSI地址/数据不由控制器内部掌握，因此专用MSI接口不能发送该外部VF的MSI；应用可经适用业务接口发送相应请求。不要把这条MSI限制误写成完全不能发MSI-X。",
+          "本模式下外部VF错误消息的构造与发送由应用负责；外部FRS/PM能力也没有由该外置接口直接支持，但应用可通过适用接口发送FRS消息。这里的产品实现限制不是规范取消了VF的就绪、错误或功耗要求。",
+          "§29.7要求外部FLR寄存器写1完成后，应用通过FLR-set接口通知控制器，并提供对应PF/VF身份。完成外部配置访问、触发FLR和最终复位完成是不同里程碑，不能把总线Ack直接当复位已完成。本页不发布厂商寄存器映射/原波形，也不凭简图补造全部并发或超时规则。"
+        ],
+        "referenceIndices": [
+          4,
+          5,
+          6
+        ]
+      }
+    ]
   },
   {
     "name": "Scalable IOV（SIOV）",
     "group": "虚拟化、翻译与隔离",
-    "intro": "采用不同于传统逐VF模式的可扩展虚拟化组织方式。",
+    "intro": "以PCIe Base7.0 SIOV为依据：每个SDI有独立RID，硬件不为每SDI暴露配置空间，由VI/SR-PCIM组织资源。",
     "usage": "需要平台/驱动/应用实现，不等于SR-IOV改个名字。",
-    "mechanism": "SIOV通过更细粒度可分配接口/工作资源组织共享设备，平台和驱动参与身份、地址空间、队列及中断管理。",
+    "mechanism": "PF提供SIOV能力与底层资源，SDI作为PF内资源组合使用专属RID；配置、虚拟BAR和中断管理由VI/SR-PCIM及设备特定接口协作。不是PASID开启或VF数量增大就自动具备。",
     "example": "大量轻量工作负载共享加速器时可研究该方案，但现有SR-IOV驱动通常不能直接不改就复用。",
     "checks": "核对完整应用/软件架构，不把PASID开启或队列很多当作SIOV已经实现。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
@@ -33576,9 +33672,790 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-23",
+    "protocolReferences": [
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1",
+        "page": 1639,
+        "pdfPage": 1639,
+        "title": "PF是Function，SDI有专属RID却没有硬件配置空间：先分清三个层次",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1",
+        "page": 1651,
+        "pdfPage": 1651,
+        "title": "PF是Function，SDI有专属RID却没有硬件配置空间：先分清三个层次",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1.1",
+        "page": 1652,
+        "pdfPage": 1652,
+        "title": "PF是Function，SDI有专属RID却没有硬件配置空间：先分清三个层次",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.3.1.1.1.1",
+        "page": 1660,
+        "pdfPage": 1660,
+        "title": "PF是Function，SDI有专属RID却没有硬件配置空间：先分清三个层次",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.3.1.1.1.1",
+        "page": 1661,
+        "pdfPage": 1661,
+        "title": "PF是Function，SDI有专属RID却没有硬件配置空间：先分清三个层次",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.2",
+        "page": 1680,
+        "pdfPage": 1680,
+        "title": "PF是Function，SDI有专属RID却没有硬件配置空间：先分清三个层次",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1",
+        "page": 1651,
+        "pdfPage": 1651,
+        "title": "虚拟BAR由页映射与模拟组成；共享PF页不能天然告诉设备是哪个SDI在访问",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1.1",
+        "page": 1652,
+        "pdfPage": 1652,
+        "title": "虚拟BAR由页映射与模拟组成；共享PF页不能天然告诉设备是哪个SDI在访问",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.3.1.1.1.1",
+        "page": 1661,
+        "pdfPage": 1661,
+        "title": "虚拟BAR由页映射与模拟组成；共享PF页不能天然告诉设备是哪个SDI在访问",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1.1",
+        "page": 1652,
+        "pdfPage": 1652,
+        "title": "SDI中断仍是Memory Write且使用SDI RID，资源不要求先分给PF再转交",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.3.1.2",
+        "page": 1661,
+        "pdfPage": 1661,
+        "title": "SDI中断仍是Memory Write且使用SDI RID，资源不要求先分给PF再转交",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.3.1.2",
+        "page": 1662,
+        "pdfPage": 1662,
+        "title": "SDI中断仍是Memory Write且使用SDI RID，资源不要求先分给PF再转交",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.3",
+        "page": 1680,
+        "pdfPage": 1680,
+        "title": "0038h能力与读取快照查询：Total SDIs是16bit，SIOV Enabled在+0Bh且只读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.4",
+        "page": 1681,
+        "pdfPage": 1681,
+        "title": "0038h能力与读取快照查询：Total SDIs是16bit，SIOV Enabled在+0Bh且只读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.5",
+        "page": 1682,
+        "pdfPage": 1682,
+        "title": "0038h能力与读取快照查询：Total SDIs是16bit，SIOV Enabled在+0Bh且只读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.6",
+        "page": 1682,
+        "pdfPage": 1682,
+        "title": "0038h能力与读取快照查询：Total SDIs是16bit，SIOV Enabled在+0Bh且只读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.7",
+        "page": 1682,
+        "pdfPage": 1682,
+        "title": "0038h能力与读取快照查询：Total SDIs是16bit，SIOV Enabled在+0Bh且只读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.4.3.3.1",
+        "page": 1669,
+        "pdfPage": 1669,
+        "title": "0038h能力与读取快照查询：Total SDIs是16bit，SIOV Enabled在+0Bh且只读",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1.1",
+        "page": 1652,
+        "pdfPage": 1652,
+        "title": "SDI RID两种模式：Strided必须遵循Offset/Stride，非Strided由VI分配",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1.1",
+        "page": 1653,
+        "pdfPage": 1653,
+        "title": "SDI RID两种模式：Strided必须遵循Offset/Stride，非Strided由VI分配",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.5",
+        "page": 1682,
+        "pdfPage": 1682,
+        "title": "SDI RID两种模式：Strided必须遵循Offset/Stride，非Strided由VI分配",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.8",
+        "page": 1683,
+        "pdfPage": 1683,
+        "title": "SDI RID两种模式：Strided必须遵循Offset/Stride，非Strided由VI分配",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.9",
+        "page": 1683,
+        "pdfPage": 1683,
+        "title": "SDI RID两种模式：Strided必须遵循Offset/Stride，非Strided由VI分配",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1.1",
+        "page": 1652,
+        "pdfPage": 1652,
+        "title": "动态RID池如何排除冲突：不仅减掉PF与当前枚举到的VF",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1.1",
+        "page": 1653,
+        "pdfPage": 1653,
+        "title": "动态RID池如何排除冲突：不仅减掉PF与当前枚举到的VF",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.5",
+        "page": 1682,
+        "pdfPage": 1682,
+        "title": "Mixed IOV只解决不同PF的混用；同PF的SR-IOV与SIOV互斥",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.4.3.3.1",
+        "page": 1669,
+        "pdfPage": 1669,
+        "title": "Mixed IOV只解决不同PF的混用；同PF的SR-IOV与SIOV互斥",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1.2",
+        "page": 1653,
+        "pdfPage": 1653,
+        "title": "SDI Reset何时才算结束：DMA、中断、ATS与PRS都要处理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1.2",
+        "page": 1654,
+        "pdfPage": 1654,
+        "title": "SDI Reset何时才算结束：DMA、中断、ATS与PRS都要处理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.3.1.1",
+        "page": 1660,
+        "pdfPage": 1660,
+        "title": "SDI Reset何时才算结束：DMA、中断、ATS与PRS都要处理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1.2",
+        "page": 1653,
+        "pdfPage": 1653,
+        "title": "重置期间收包与秘密状态：可丢弃仍须更新Credit，清状态不等于改主存",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1.2",
+        "page": 1654,
+        "pdfPage": 1654,
+        "title": "重置期间收包与秘密状态：可丢弃仍须更新Credit，清状态不等于改主存",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.3.1.1",
+        "page": 1660,
+        "pdfPage": 1660,
+        "title": "创建SDI与可信接入：设备特定管理、VI模拟和TDISP是不同职责",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.3.1.1.1.1",
+        "page": 1661,
+        "pdfPage": 1661,
+        "title": "创建SDI与可信接入：设备特定管理、VI模拟和TDISP是不同职责",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.3.1.1.1.2",
+        "page": 1661,
+        "pdfPage": 1661,
+        "title": "创建SDI与可信接入：设备特定管理、VI模拟和TDISP是不同职责",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.7",
+        "page": 1682,
+        "pdfPage": 1682,
+        "title": "创建SDI与可信接入：设备特定管理、VI模拟和TDISP是不同职责",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "27.1",
+        "page": 732,
+        "pdfPage": 732,
+        "title": "规范SIOV与控制器6.50a实现：本版要求Native接口，不能据AXI连接宣称支持",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "27.2",
+        "page": 733,
+        "pdfPage": 733,
+        "title": "规范SIOV与控制器6.50a实现：本版要求Native接口，不能据AXI连接宣称支持",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "27.3",
+        "page": 734,
+        "pdfPage": 734,
+        "title": "规范SIOV与控制器6.50a实现：本版要求Native接口，不能据AXI连接宣称支持",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "27.4",
+        "page": 735,
+        "pdfPage": 735,
+        "title": "规范SIOV与控制器6.50a实现：本版要求Native接口，不能据AXI连接宣称支持",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "27.5",
+        "page": 736,
+        "pdfPage": 736,
+        "title": "规范SIOV与控制器6.50a实现：本版要求Native接口，不能据AXI连接宣称支持",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      }
+    ],
+    "referenceStatus": "R47已核Base7.0 §9.1/9.3/9.5所列正文；早期独立规范与ECN沿革仍待核，不再把现有Base正文当缺文档。",
+    "details": [
+      {
+        "id": "siov-sdi-versus-vf",
+        "title": "PF是Function，SDI有专属RID却没有硬件配置空间：先分清三个层次",
+        "paragraphs": [
+          "PCIe Base7.0 §9.1将SIOV与SR-IOV并列讨论：SIOV把更多虚拟化职责留给系统软件，以减少每个虚拟接口复制的硬件。此处按这一版PCIe SIOV解释，不把其他历史同名方案的身份模型直接拼入。",
+          "PF依旧可由配置空间枚举；SDI是PF内部资源的组合，并不实现自己的硬件Configuration Space。VI（虚拟化中介）可选择向SI（System Image，例如系统/虚拟机）呈现一个虚拟Type0 Function，其Vendor ID、Device ID、Class等甚至可不同于PF，但那是软件呈现，不是发现了一个真实VF配置头。",
+          "每个SDI发起的流量必须用该SDI专属RID。因此“没有每SDI配置空间”不等于“所有SDI都用PF RID”，也不能通过数虚拟机中的BDF就判断物理fabric上的VF数量。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "table": {
+          "columns": [
+            "对象／条件",
+            "规则与机制",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "PF",
+              "真实Function，包含SIOV扩展能力",
+              "管理与底层资源入口"
+            ],
+            [
+              "SDI",
+              "PF内可分配资源组合，有专属RID",
+              "不实现自己的硬件配置空间"
+            ],
+            [
+              "VI呈现的虚拟Function",
+              "可向SI模拟Type0头和能力",
+              "软件可见外观不能直接当硬件VF"
+            ],
+            [
+              "SR-IOV的VF",
+              "具有规范定义的Function配置机制",
+              "不把VF枚举流程直接用于SDI"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "siov-virtual-bar-page-identity",
+        "title": "虚拟BAR由页映射与模拟组成；共享PF页不能天然告诉设备是哪个SDI在访问",
+        "paragraphs": [
+          "VI向SI呈现SDI为Function时，虚拟BAR可由PF BAR中的页映射组成；某些页也可设为无效，使CPU访问陷入软件，再由设备特定SR-PCIM扩展模拟读写。由此可以让初始化/销毁等控制页留在软件，而业务页直接映射。",
+          "PF BAR的某页被多个SDI共享时要额外审查：读写可能按地址路由，且不携带目标SDI对应的RID；设备不能仅凭这次访问识别“来自SDI A还是SDI B”。如果写门铃会触发DMA等后续流量，必须有可靠的设备/软件上下文确定身份，不能想当然借用CPU请求中的Requester ID。",
+          "这也是与SR-IOV VF BAR连续窗口公式的区别。虚拟BAR页可以映射硬件或被模拟，不能把R45的每VF aperture乘法直接当作每SDI硬件资源布局。涉及TDISP/TEE时，共享页还存在可信映射限制，本轮不证明任何共享方案安全。"
+        ],
+        "referenceIndices": [
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "siov-interrupt-resource-identity",
+        "title": "SDI中断仍是Memory Write且使用SDI RID，资源不要求先分给PF再转交",
+        "paragraphs": [
+          "Base7.0把SDI的MSI/MSI-X中断消息资源解释为产生相应Memory Write所需的地址、数据等系统值；具体数值及分配策略由系统决定。与SDI的其他Memory Write一样，中断必须使用该SDI的RID。",
+          "中断资源不要求先通过PF的标准MSI/MSI-X配置分配，再委派给SDI。设备可按MSI或MSI-X等价模型保存必要状态，位置也不强制为CPU可见配置空间或一块连续MMIO表；这不等于设备可以不保存产生正确中断所需的信息。",
+          "若VI把SDI呈现为带Type0头的Function，必须向SI呈现MSI或MSI-X能力，并截获其中断配置访问，交给SR-PCIM；若不这样呈现，则由SR-PCIM提供其他软件接口。不要把客户机写入虚拟MSI-X表当成已经直接写了物理PF表。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "id": "siov-capability-snapshot-query",
+        "title": "0038h能力与读取快照查询：Total SDIs是16bit，SIOV Enabled在+0Bh且只读",
+        "paragraphs": [
+          "Base7.0的SIOV Extended Capability ID=0038h，所列版本为1h。偏移相对此能力块起点。+04h是32bit能力寄存器；+08h的低16bit是Total SDIs，+0Ah字节保留，+0Bh才是8bit Status。不能把+08h整个DWORD或低24bit当数量。",
+          "Capabilities bit0是Strided RID Mapping，bit1是Mixed IOV Supported，二者均只读；Status bit0 SIOV Enabled也只读，表示至少一个SDI经设备特定方式被启用，全部禁用时清0，默认0。它不是仿照SR-IOV VF Enable直接写1的创建开关。",
+          "若系统启动或系统复位后发现Enabled仍为1，规范说可能需要对PF执行FLR以确保没有SDI活动；不能未经状态管理便复用RID。下面输入读取的+04h及+08h DWORD作学习解码，并检查同PF/跨PF混用关系，不执行配置写入或自动复位。"
+        ],
+        "referenceIndices": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "table": {
+          "columns": [
+            "对象／条件",
+            "规则与机制",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "+00h / 32bit",
+              "Header：ID[15:0]、Version[19:16]、Next[31:20]",
+              "此版0038h / Version1"
+            ],
+            [
+              "+04h / 32bit",
+              "bit0 Strided；bit1 Mixed IOV；[31:2] RsvdP",
+              "能力，不是可写使能"
+            ],
+            [
+              "+08h / 16bit",
+              "Total SDIs，RO",
+              "支持总数，不是当前活动数"
+            ],
+            [
+              "+0Ah / 8bit",
+              "RsvdP",
+              "不是数量高8bit"
+            ],
+            [
+              "+0Bh / 8bit",
+              "Status bit0=至少一个SDI活动；[7:1] RsvdZ",
+              "RO；不得作为创建控制位写"
+            ],
+            [
+              "+0Ch / 16bit；+0Eh / 16bit",
+              "First SDI Offset；SDI Stride，RO",
+              "仅Strided=1有效，否则RsvdP"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "siov-rid-strided-dynamic",
+        "title": "SDI RID两种模式：Strided必须遵循Offset/Stride，非Strided由VI分配",
+        "paragraphs": [
+          "每SDI必须有独立RID，其Bus Number属于该Endpoint获分配的Bus集合，且不得与任何Function或其他SDI冲突。Strided RID Mapping=1时，SDI只能使用First SDI Offset与SDI Stride所确定的RID；不能在该模式下再任意挑一个空RID。",
+          "以第一个SDI称SDI0：RID(SDI0)=(PF RID+First SDI Offset) mod 65536，后续每个SDI在前一个RID上加Stride，16bit无符号丢弃进位。SDI Stride在Strided=1时必须非0；不要搬用“只有NumVFs>1才检查VF Stride非0”的SR-IOV字段规则。Offset导致首SDI与PF相同也会违反RID唯一性。",
+          "Strided=0时Offset/Stride字段为RsvdP，VI按可用RID池提供身份。动态分配有助利用受桥/FPB配置影响的RID集合，但仍需验证可路由Bus和唯一性。本轮没有把VF的Bus不得小于PF条件未经正文依据移植到SDI，也不把16bit模运算当任意RID都合法。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          20,
+          21,
+          22
+        ]
+      },
+      {
+        "id": "siov-dynamic-rid-pool",
+        "title": "动态RID池如何排除冲突：不仅减掉PF与当前枚举到的VF",
+        "paragraphs": [
+          "Base7.0 §9.1.1在相关桥已分配Bus、任何SDI投入使用之前给出候选池算法。先从上游桥Secondary/Subordinate及适用FPB隐含的逻辑Bus建立集合，每Bus最多256个RID，再逐类排除已占用或保留身份。",
+          "需要排除配置枚举发现的Function、ARI发现的Function、其他PF的SR-IOV VF RID、其他PF按Strided方式会占用的SDI RID、其他非Strided PF当前在用的RID，以及Phantom/Shadow Function。并非“lspci没显示就是可分配”。",
+          "不同PF采用动态分配时，后续分配与回收仍需统一维护占用信息。此页是规范算法的原创归纳，不是可直接运行的跨所有桥/FPB的枚举脚本；没有提供完整平台资源信息时，网页不能替用户证明RID池可用。"
+        ],
+        "referenceIndices": [
+          23,
+          24
+        ],
+        "table": {
+          "columns": [
+            "对象／条件",
+            "规则与机制",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "建立候选Bus",
+              "桥Secondary/Subordinate与FPB逻辑Bus",
+              "不能只取PF所在Bus"
+            ],
+            [
+              "排除Function",
+              "常规枚举和ARI枚举身份",
+              "涵盖PF及其他真实Function"
+            ],
+            [
+              "排除其他PF的固定需求",
+              "SR-IOV VF及Strided SDI的计算RID集合",
+              "不只看当前业务队列"
+            ],
+            [
+              "排除其他动态在用身份",
+              "其他非Strided PF正在使用的SDI RID",
+              "需统一分配/回收记录"
+            ],
+            [
+              "排除特殊Function身份",
+              "Phantom及Shadow Function",
+              "未显示为普通Function不等于可用"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "siov-mixed-iov-two-scopes",
+        "title": "Mixed IOV只解决不同PF的混用；同PF的SR-IOV与SIOV互斥",
+        "paragraphs": [
+          "Base7.0对同PF给出互斥：SIOV Enabled已置位时，禁止置该PF的VF Enable；即同一个PF不能同时运行SR-IOV与SIOV。两个Capability都存在不代表可以同时使用。",
+          "跨PF则看SIOV Capabilities中的Mixed IOV Supported。相关其他PF存在且支持SR-IOV时，bit1=0要求设备内统一选择SR-IOV或统一选择SIOV；bit1=1允许有的PF启用SR-IOV、有的PF启用SIOV。它没有取消每PF自身的互斥。",
+          "如果没有其他PF，或其他PF都不支持SR-IOV，此bit没有意义且硬连0。不能看到单PF设备Mixed=0就报缺陷，也不能看到某PF Mixed=1就忽略设备内其他适用PF的能力/软件策略。"
+        ],
+        "referenceIndices": [
+          25,
+          26
+        ],
+        "table": {
+          "columns": [
+            "对象／条件",
+            "规则与机制",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "同PF同时开启",
+              "不允许",
+              "Mixed=1也不改变"
+            ],
+            [
+              "不同PF分别用两模式，Mixed=0",
+              "适用条件下需统一选择",
+              "不能把每PF可选理解为可并行混用"
+            ],
+            [
+              "不同PF分别用两模式，Mixed=1",
+              "允许这种选择",
+              "仍须按各PF能力、资源与配置检查"
+            ],
+            [
+              "没有相关其他PF",
+              "Mixed无意义，硬连0",
+              "不是失败或必须升级能力"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "siov-sdi-reset-completion",
+        "title": "SDI Reset何时才算结束：DMA、中断、ATS与PRS都要处理",
+        "paragraphs": [
+          "每个SDI必须可独立复位而不影响其他SDI，复位通过设备特定接口发起，概念上类似FLR；SDI没有硬件配置头，因此不能凭空给它写一个通用VF FLR控制位。PF的Conventional Reset或FLR则可用于禁用PF及其全部SDI。",
+          "复位不能在只清了队列指针时就报告完成。规范要求本SDI的DMA写排空或中止、DMA读完成或中止、全部中断已经产生；若支持ATS，其请求完成或中止；若支持PRS，不再产生新Page Request，并已收到全部响应或会丢弃未完成请求的后续响应。",
+          "这些条件用于避免旧实例的事务在新归属下继续产生影响。不能把“中断已经产生”改写成“主机ISR已经执行完”，也不能因为没有业务DMA就省掉ATS/PRS的未完成状态处理。"
+        ],
+        "referenceIndices": [
+          27,
+          28,
+          29
+        ],
+        "table": {
+          "columns": [
+            "对象／条件",
+            "规则与机制",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "DMA Write",
+              "已排空或中止",
+              "不能留待新实例继续发"
+            ],
+            [
+              "DMA Read",
+              "已完成或中止",
+              "不能只等写队列空"
+            ],
+            [
+              "中断",
+              "本SDI的全部中断已产生",
+              "不要求借此证明主机ISR完成"
+            ],
+            [
+              "ATS（若支持）",
+              "请求已完成或中止",
+              "业务队列空不代表ATS空"
+            ],
+            [
+              "PRS（若支持）",
+              "停新请求；响应已齐或会丢弃未完成项的后续响应",
+              "未收到响应不必无限等待，但需具备相应丢弃处理"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "siov-reset-state-and-arrivals",
+        "title": "重置期间收包与秘密状态：可丢弃仍须更新Credit，清状态不等于改主存",
+        "paragraphs": [
+          "SDI Reset应使该接口不再在外部I/O上表现为一个已有活动主机初始化好的适配器；如何终止非PCIe外部接口活动由具体设备定义。SDI内部不得留有软件可读、可能包含前一归属秘密的信息；应清除或随机化适用内部存储，但分配给SDI的主机主存不得被SDI改写。",
+          "经PF或SR-PCIM配置的非架构状态允许跨实例保留；相应架构状态允许恢复旧值或设新值，下一实例的RID、Memory资源、中断资源可能变化。因此不能复用上个实例缓存的身份与窗口假设，也不能把规则简化为“一定擦除整个设备所有状态”。",
+          "复位过程中到来的Request允许在更新流控Credit后静默丢弃且不记错；Completion可按Unexpected Completion处理，或在更新Credit后静默丢弃而不记错。这里的允许分支不是强制全部记UC，也不是可以丢包却不归还相应链路资源。"
+        ],
+        "referenceIndices": [
+          30,
+          31
+        ]
+      },
+      {
+        "id": "siov-software-config-and-tdisp",
+        "title": "创建SDI与可信接入：设备特定管理、VI模拟和TDISP是不同职责",
+        "paragraphs": [
+          "SDI可由VI/SR-PCIM通过设备特定机制逐个配置、启用和禁用；Base没有给出一个统一的SIOV NumSDIs写寄存器。SR-PCIM往往需要设备特定驱动扩展，如何打包或运行在何种进程不是本节规定。",
+          "支持TDISP的Endpoint与SIOV结合时，SI要考虑SR-PCIM实现的配置/初始化部分可能在可信计算基之外。相关流程允许驱动先完成适用初始化，再从CONFIG_UNLOCKED进入CONFIG_LOCKED，检查DEVICE_INTERFACE_REPORT可接受后进入RUN。",
+          "RUN不是“SIOV Enabled=1”的别名，也不因PASID、IOMMU或中断配置存在就自动成立。本节只说明所列SIOV软件协作要求，不是全部TDISP状态机、认证、密钥或TEE安全验证。"
+        ],
+        "referenceIndices": [
+          32,
+          33,
+          34,
+          35
+        ]
+      },
+      {
+        "id": "siov-controller-native-interface-limit",
+        "title": "规范SIOV与控制器6.50a实现：本版要求Native接口，不能据AXI连接宣称支持",
+        "paragraphs": [
+          "Controller6.50a §27.1的SIOV配置在EP Native路径使用Header Pass-through区分本地生成流量与SDI流量。对本地流量控制器按BDF生成Requester/Completer身份；对SDI流量应用提供其身份并保持透传。它是该产品实现SIOV RID模型的职责边界。",
+          "同节明确SIOV不能与本版AXI控制器配置一起启用。此限制不能反向推广为PCIe标准禁止任何SIOV设备使用AXI片内接口，也不能把本工程有AXI端口当作已具备该产品SIOV配置。",
+          "产品另外讨论Completion队列管理、ECRC及TDISP相关粒度，必须按本版集成规则继续核。网页当前确认的是接口适用性和身份责任；不提供用Header透传绕过权限检查的配置脚本，也不证明应用提供的RID一定已授权。"
+        ],
+        "referenceIndices": [
+          36,
+          37,
+          38,
+          39,
+          40
+        ]
+      }
+    ]
   },
   {
     "name": "ATS：Address Translation Services",
