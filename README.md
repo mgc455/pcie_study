@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-24-r55`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-24-r56`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -241,3 +241,9 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [RxDataValid节奏查询](https://mgc455.github.io/pcie_study/#feature/170/detail/clock-empty-cadence-query)
 - [单拍错误优先级查询](https://mgc455.github.io/pcie_study/#feature/169/detail/pipe-rxerror-event-query)
 - [RxPolarity的20PCLK响应](https://mgc455.github.io/pcie_study/#feature/8/detail/pipe-polarity-twenty-pclk)
+
+## R56 Hot Reset与Disabled七版规则
+
+- [Hot Reset角色与计时查询](https://mgc455.github.io/pcie_study/#feature/4/detail/hotreset-role-timer-query)
+- [Disabled退出条件查询](https://mgc455.github.io/pcie_study/#feature/4/detail/disabled-exit-role-query)
+- [SBR字段与最短保持时间](https://mgc455.github.io/pcie_study/#feature/94/detail/sbr-fixed-bit-minimum-duration)
