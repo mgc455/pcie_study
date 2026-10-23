@@ -1,6 +1,6 @@
 {
-  "reviewed": "2026-10-23",
-  "summary": "PHY一级体系：按产品版本分别查询Lane配置四相握手、P-state/时钟依赖和管理面事件；保留此前启动、固件及校准研究。",
+  "reviewed": "2026-10-24",
+  "summary": "PHY一级体系：新增Original PIPE时钟补偿、Nominal Empty有效节奏、接收错误竞争与极性响应；保留产品启动、握手、固件及校准研究。",
   "groups": [
     {
       "title": "分层与资料入口",
@@ -197,7 +197,8 @@
     "R37细化Receiver Detect的PIPE/PMA完成有效窗口、1µs Lane差值及切速停钟约束；产品检测总超时未由该差值推出。",
     "R39按Gen5 2.02a与Gen6 3.02a展开FOM/方向能力、8ns/2µs/约1.3ms上下文、PPM检测与校准对象；完整收敛阈值及FOM循环勘误继续核。",
     "R42已核Gen6参考选源/重复输出、全Lane复位停钟、APB完成窗口/写字节与Rescal共享码；完整加载字节布局、watchdog寄存器和异常恢复仍待核。",
-    "R46已核Gen6 3.02a §4.3/4.4/4.5与PMD中断概念；Reference Manual已有文件，具体中断原因/极性/清除、watchdog恢复、全复位保持矩阵与PVT超时继续核，未验证真实硅片。"
+    "R46已核Gen6 3.02a §4.3/4.4/4.5与PMD中断概念；Reference Manual已有文件，具体中断原因/极性/清除、watchdog恢复、全复位保持矩阵与PVT超时继续核，未验证真实硅片。",
+    "R55已核PIPE7.1 §8.14/8.15/8.17；继续128b/130b SKP first 4N+1符号与N的完整格式联核、其它Rate/Width/PCLK有效节奏、64/128GT/s及旧修订差分；不把接口修订号当链路代际。"
   ],
   "lowPowerReferences": {
     "title": "低功耗协议与PHY握手、共享PLL及产品PG/Context恢复",
@@ -365,6 +366,16 @@
         "featureId": 88,
         "detailId": "clock-slot-versus-ccc",
         "title": "Slot Clock Configuration是硬件事实，Common Clock Configuration是软件配置"
+      },
+      {
+        "featureId": 170,
+        "detailId": "clock-empty-cadence-query",
+        "title": "Nominal Empty示例的RxDataValid拍图与间隔查询"
+      },
+      {
+        "featureId": 169,
+        "detailId": "pipe-rxerror-event-query",
+        "title": "单拍错误竞争与MAC Header职责查询"
       }
     ]
   }

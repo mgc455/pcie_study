@@ -9173,7 +9173,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-24",
     "protocolReferences": [
       {
         "section": "4",
@@ -9394,6 +9394,17 @@
         "title": "Recovered RxCLK与停钟保护",
         "verification": "已核读所引本版对应规则及所需续页；仅覆盖本块，不代表整节完成。PIPE本地副本190页与官网189页的整体映射不作推定。",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.17",
+        "page": 142,
+        "pdfPage": 142,
+        "title": "RxPolarity的20 PCLK响应：不是检测截止时间，也不是20ns",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
       }
     ],
     "referenceStatus": "所引Base6.0/7.0 RX对齐、极性、编码与SKP条款及PIPE7.1接口已按块核读；早期逐版演进、FM数据流完整调度和产品实现仍待核。",
@@ -9552,6 +9563,18 @@
           17,
           18,
           19
+        ]
+      },
+      {
+        "id": "pipe-polarity-twenty-pclk",
+        "title": "RxPolarity的20 PCLK响应：不是检测截止时间，也不是20ns",
+        "paragraphs": [
+          "PIPE7.1 §8.17要求RxPolarity置位时由PHY反转收到的数据，反转后的数据须在置位后的20个PCLK内开始出现在RxData上。这是已提出反转控制后的接口响应界限，不是MAC必须20拍内从训练序列检测出极性。",
+          "不能把20 PCLK直接写成20ns；若PCLK持续250MHz，20周期对应80ns，仅是这个频率假设下的换算。时钟可能变动时须按周期观察，不能由此推导允许任意停钟。",
+          "该动作不等于Lane Reversal、Deskew或TX也跟着反转。具体集成应先确认架构是否使用本条所述RxPolarity→RxData契约；不能仅因都叫SerDes就给其它接口套一个20周期截止时间。"
+        ],
+        "referenceIndices": [
+          20
         ]
       }
     ]
@@ -80960,7 +80983,7 @@
     "example": "一个Gen6-capable PHY降速到Gen3，不意味着其内部就可以动态切回Original PIPE。应按配置能力、规范版本和允许的接口组合判定。",
     "checks": "检查时钟方向、RxClk、valid语义、编码归属及Message Bus；PIPE规范版本号不等于PCIe代际。",
     "status": "选定规则/字段已展开 · 持续逐版完善",
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-24",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -82606,6 +82629,17 @@
         "title": "覆盖边界、非PCIe信号与发现的表文矛盾",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
         "verification": "PIPE专项：核读所列7.1正文/表；Revision History为未编号修订记录，不是旧版正文核读。所引本地印刷页与物理页一致；官网副本总页数不同，使用本地PDF定位。视觉核表6-8、6-16和7-17。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 135,
+        "pdfPage": 135,
+        "title": "RxStatus补偿单位须按速率与模型解释",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
       }
     ],
     "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
@@ -83025,7 +83059,8 @@
         "referenceIndices": [
           56,
           57,
-          58
+          58,
+          149
         ],
         "table": {
           "columns": [
@@ -83050,14 +83085,14 @@
             [
               "RxStatus=001",
               "PHY→MAC，3bit",
-              "PCIe添加1个SKP",
-              "Original相应弹性缓存语义"
+              "PCIe SKP添加指示；数量依操作速率",
+              "Original Half Full：2.5/5按1个，8/16/32GT/s按4个SKP symbol；同时核正文时序"
             ],
             [
               "RxStatus=010",
               "PHY→MAC，3bit",
-              "PCIe移除1个SKP",
-              "不应套用USB整组SKP OS描述"
+              "PCIe SKP移除指示；数量/边界依模式与速率",
+              "Half Full补偿单位依速率；Nominal Empty按COM或SKP_END边界通知，不能跨模式固定算1个"
             ],
             [
               "RxStatus=011",
@@ -84638,7 +84673,7 @@
     "example": "PLL锁定但RX无有效数据时，检查输入信号、接收使能、CDR、恢复时钟及对齐，而不是只看PLL lock。",
     "checks": "按signal present → RX使能 → 时钟/CDR → valid → 协议对齐 → LTSSM逐层定位，丢信号后的恢复流程按手册核对。",
     "status": "选定规则已展开 · 持续逐版核读",
-    "reviewed": "2026-10-22",
+    "reviewed": "2026-10-24",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -85580,6 +85615,215 @@
         "title": "查询与原创时序图：EB触发、1xx忙、clean恢复和16周期边界",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
         "verification": "R36核读所引相关正文及必要续页，关键图页本地视觉核对。Base7.0所引页与物理页一致；PIPE按本地文本页号/物理页定位，部分页脚有水印遮挡，本地190页与官网189页副本不假定同页。不是整章/七代或硬件验证。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15",
+        "page": 137,
+        "pdfPage": 137,
+        "title": "同一接收拍多个错误：Decode > Overflow > Underflow > Disparity",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 65,
+        "pdfPage": 65,
+        "title": "同一接收拍多个错误：Decode > Overflow > Underflow > Disparity",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15",
+        "page": 137,
+        "pdfPage": 137,
+        "title": "128b/130b Sync Header由MAC检查，不能把所有block错误都推给PHY",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 65,
+        "pdfPage": 65,
+        "title": "128b/130b Sync Header由MAC检查，不能把所有block错误都推给PHY",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 66,
+        "pdfPage": 66,
+        "title": "128b/130b Sync Header由MAC检查，不能把所有block错误都推给PHY",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15.1",
+        "page": 137,
+        "pdfPage": 137,
+        "title": "8b/10b解码错误：坏byte替换EDB，状态跟替换数据同拍",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15.1",
+        "page": 138,
+        "pdfPage": 138,
+        "title": "8b/10b解码错误：坏byte替换EDB，状态跟替换数据同拍",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15.2",
+        "page": 138,
+        "pdfPage": 138,
+        "title": "Disparity可单独报111，也可合并报100：码值不唯一反推根因",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 65,
+        "pdfPage": 65,
+        "title": "Disparity可单独报111，也可合并报100：码值不唯一反推根因",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 66,
+        "pdfPage": 66,
+        "title": "Disparity可单独报111，也可合并报100：码值不唯一反推根因",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 65,
+        "pdfPage": 65,
+        "title": "先限定上下文：SerDes、Bypass、Receiver Detect和EB Reset不能混解",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15.3.1",
+        "page": 140,
+        "pdfPage": 140,
+        "title": "先限定上下文：SerDes、Bypass、Receiver Detect和EB Reset不能混解",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15",
+        "page": 137,
+        "pdfPage": 137,
+        "title": "查询与原创图：单拍错误竞争、SKP状态与MAC Header职责",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15.1",
+        "page": 138,
+        "pdfPage": 138,
+        "title": "查询与原创图：单拍错误竞争、SKP状态与MAC Header职责",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15.2",
+        "page": 138,
+        "pdfPage": 138,
+        "title": "查询与原创图：单拍错误竞争、SKP状态与MAC Header职责",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 65,
+        "pdfPage": 65,
+        "title": "查询与原创图：单拍错误竞争、SKP状态与MAC Header职责",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 66,
+        "pdfPage": 66,
+        "title": "查询与原创图：单拍错误竞争、SKP状态与MAC Header职责",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 135,
+        "pdfPage": 135,
+        "title": "查询与原创图：单拍错误竞争、SKP状态与MAC Header职责",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 135,
+        "pdfPage": 135,
+        "title": "PCIe Nominal Empty不报普通Underflow：必须以RxDataValid表示空拍",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
       }
     ],
     "referenceStatus": "所引Base6.0/7.0 RX对齐、极性、编码与SKP条款及PIPE7.1接口已按块核读；早期逐版演进、FM数据流完整调度和产品实现仍待核。",
@@ -86525,13 +86769,14 @@
       },
       {
         "id": "pipe-eb-nominal-empty-exception",
-        "title": "Nominal Empty的补数据不是普通Underflow错误：可用SKP或RxDataValid节奏",
+        "title": "PCIe Nominal Empty不报普通Underflow：必须以RxDataValid表示空拍",
         "paragraphs": [
-          "PIPE在Nominal Empty模式下不按普通Underflow报错，需插入内容时可在接口移动SKP或使用RxDataValid，正文偏好后者。",
-          "因此“某拍没有正常数据”不是无条件报Underflow的充分条件。先看缓冲工作模式、有效节奏及状态，再分析是否违反真实数据流。"
+          "PIPE7.1 §8.15.3通用错误段落提到SKP或RxDataValid的补数据路径，但PCIe的具体契约还必须联读§8.14：使用RxDataValid为必需，SOS的SKP符号移除；空条件保持RxValid=1、RxDataValid=0、RxStatus=0。",
+          "因此“某拍没有正常数据”不能直接报Underflow或推断失锁，也不能把其它协议的插入SKP选项当成PCIe的自由替代。Nominal Empty仍可能overflow；发生真实满溢不能以低延迟模型为由忽略。"
         ],
         "referenceIndices": [
-          81
+          81,
+          103
         ]
       },
       {
@@ -86556,6 +86801,122 @@
         "referenceIndices": [
           84
         ]
+      },
+      {
+        "id": "pipe-rxerror-priority-matrix",
+        "title": "同一接收拍多个错误：Decode > Overflow > Underflow > Disparity",
+        "paragraphs": [
+          "PIPE7.1给接收错误排序：8b/10b decode或适用block decode错误最高，其后是EB overflow、EB underflow，再后是disparity。SATA另有Misalign，本页PCIe不套用它。宽接口的一拍覆盖多个byte，多个byte的不同错误也可能竞争这一个状态码。",
+          "错误在并行数据流最接近实际错误的位置用1拍RxStatus报告；SKP添加/移除若恰与错误竞争同一PCLK，错误优先。这是接口状态选择优先级，不是PCIe AER严重程度排序，也不是LTSSM多个出口的优先级。"
+        ],
+        "referenceIndices": [
+          85,
+          86
+        ],
+        "table": {
+          "columns": [
+            "条件／事件",
+            "规则与动作",
+            "边界"
+          ],
+          "rows": [
+            [
+              "最高",
+              "8b/10b decode / 适用block decode",
+              "100"
+            ],
+            [
+              "其次",
+              "Elastic Buffer overflow",
+              "101"
+            ],
+            [
+              "再次",
+              "Elastic Buffer underflow",
+              "110；Nominal Empty不使用"
+            ],
+            [
+              "之后",
+              "Receive disparity",
+              "111，或PHY选择合并报100"
+            ],
+            [
+              "低于接收错误",
+              "SKP添加/移除",
+              "001/010；同拍错误先报"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "pipe-sync-header-versus-skp-decode",
+        "title": "128b/130b Sync Header由MAC检查，不能把所有block错误都推给PHY",
+        "paragraphs": [
+          "§8.15明确：PHY不报告PCIe 128b/130b header错误，而把原始header bit传给控制器，由控制器检测/处理。因此RxStatus=000不能证明原始Sync Header一定合法。",
+          "但这不等于PHY在128b/130b永不报告decode error：状态表的脚注要求SKP Ordered Set错误按128/130 decode error上报。源文还规定first 4N+1 symbols的检查范围；本轮未联核N与全部SKP格式/变体，不用这个式子生成完整OS判错器。",
+          "边界在“原始block header合法性”和“需由PHY检查的SKP内容”之间。不能因为两者都叫block，就把MAC的header检测错误机械映射成PHY 100。"
+        ],
+        "referenceIndices": [
+          87,
+          88,
+          89
+        ]
+      },
+      {
+        "id": "pipe-decode-edb-same-beat",
+        "title": "8b/10b解码错误：坏byte替换EDB，状态跟替换数据同拍",
+        "paragraphs": [
+          "检测到8b/10b decode error时，PCIe的PHY应以EDB替换坏byte，在受影响byte跨并行接口的那个周期报decode error。EDB是数据流中用于标识坏内容的符号，不是成功TLP数据，也不是返回Completion Status。",
+          "在多byte接口上，另一个byte可能同时有disparity错误，但decode error优先；不能把一个3bit状态码拆成每个byte各自独立的完整错误日志。USB使用SUB的分支不用于PCIe。",
+          "这段是8b/10b接口行为，不授权在128b/130b或PAM4数据里随意插入一个8b/10b EDB符号；编码、架构与具体错误类型须先匹配。"
+        ],
+        "referenceIndices": [
+          90,
+          91
+        ]
+      },
+      {
+        "id": "pipe-disparity-ambiguity",
+        "title": "Disparity可单独报111，也可合并报100：码值不唯一反推根因",
+        "paragraphs": [
+          "disparity错误应在对应byte经过接口的周期上报；宽于8bit时，MAC无法仅据RxStatus区分是哪一个byte或多个byte出错。PHY可选择把disparity错误报为100，很多MAC将两者同样处理。",
+          "如果PHY选择以100报告disparity，那么111为保留。不能在未知PHY报告策略时看到100就唯一断言“非法10bit码组”；也不能仅凭111缺席证明没有disparity问题。",
+          "PCIe在8/16/32GT/s不报告8b/10b disparity错误；USB3 Gen2的111=SKP Corrected不能带入PCIe解释。"
+        ],
+        "referenceIndices": [
+          92,
+          93,
+          94
+        ]
+      },
+      {
+        "id": "pipe-rxstatus-context-and-bypass",
+        "title": "先限定上下文：SerDes、Bypass、Receiver Detect和EB Reset不能混解",
+        "paragraphs": [
+          "PIPE状态表注明SerDes architecture唯一适用的RxStatus功能是Receiver detected（011）；Original接收流的decode、EB和disparity码不能直接当SerDes PHY的同类上报接口。",
+          "EncodeDecodeBypass断言时，100解码错误和111 disparity不使用。8b/10b之外的disparity语义同样不能保留；接收器检测中的011又须结合对应操作完成判定，不是正常数据流“第三严重错误”。",
+          "EB Reset期间原本就有1xx忙指示和保持有效的专门流程，不能拿日常错误优先级工具直接判定重置忙阶段发生了某个真实decode/overflow错误。本轮工具明确排除该窗口。"
+        ],
+        "referenceIndices": [
+          95,
+          96
+        ]
+      },
+      {
+        "id": "pipe-rxerror-event-query",
+        "title": "查询与原创图：单拍错误竞争、SKP状态与MAC Header职责",
+        "paragraphs": [
+          "输入已经由各检测器确认的单拍事件，工具按PIPE7.1顺序选择本拍RxStatus；这不是从一份原始串行波形自动解码事件。只支持Original接收流，排除Receiver Detect和EB Reset忙窗口。",
+          "128b/130b的“decode事件”在工具中限定为PHY所需上报的SKP内容错误，Sync Header错误作为独立MAC职责说明。Nominal Empty的普通underflow和8/16/32的disparity输入会被标为范围冲突，不偷偷归一成合法硬件状态。"
+        ],
+        "referenceIndices": [
+          97,
+          98,
+          99,
+          100,
+          101,
+          102
+        ]
       }
     ]
   },
@@ -86570,7 +86931,7 @@
     "example": "两条同link lane频率相同不代表相位关系满足要求；各自的RX时钟也不能当成一个普通同相时钟。",
     "checks": "列出频率、来源、启动条件、是否停钟及domain；跨域使用同步器/FIFO/握手，不能只按时钟名字相同就设为同步。",
     "status": "选定正文与接口细节已展开 · 持续核对",
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-24",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -87490,6 +87851,182 @@
         "title": "原创边界图：板级参考、PIPE接口域、恢复时钟与Lower SKP不能互相替代",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
         "verification": "R51核对应正式版所列正文、字段或表；6.0 p1030、7.0 p1183/1215/1629关键表已视觉核对。所引印刷页与本地PDF物理页一致；并非整章或Gen1～7历史沿革完成。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 134,
+        "pdfPage": 134,
+        "title": "Clock Tolerance Compensation：先确认EB在PHY还是MAC",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 65,
+        "pdfPage": 65,
+        "title": "Clock Tolerance Compensation：先确认EB在PHY还是MAC",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 134,
+        "pdfPage": 134,
+        "title": "EB容量要覆盖最坏频差与最长补偿间隔，不能只算平均ppm",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 135,
+        "pdfPage": 135,
+        "title": "EB容量要覆盖最坏频差与最长补偿间隔，不能只算平均ppm",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 135,
+        "pdfPage": 135,
+        "title": "Nominal Half Full：2.5/5按1个SKP，8/16/32按4个SKP补偿",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 65,
+        "pdfPage": 65,
+        "title": "Nominal Half Full：2.5/5按1个SKP，8/16/32按4个SKP补偿",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 135,
+        "pdfPage": 135,
+        "title": "补偿状态在何拍上报：低速跟COM，高速允许SOS到SKP_END窗口",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15",
+        "page": 137,
+        "pdfPage": 137,
+        "title": "补偿状态在何拍上报：低速跟COM，高速允许SOS到SKP_END窗口",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 135,
+        "pdfPage": 135,
+        "title": "Nominal Empty的空拍：RxValid维持1、RxDataValid=0、RxStatus=000",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15.3",
+        "page": 139,
+        "pdfPage": 139,
+        "title": "Nominal Empty的空拍：RxValid维持1、RxDataValid=0、RxStatus=000",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 135,
+        "pdfPage": 135,
+        "title": "移除SKP不等于抹掉全部SOS：COM或SKP_END仍要通知MAC",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 135,
+        "pdfPage": 135,
+        "title": "空拍后可尽快恢复，但不能加速补发：两组RxDataValid间隔示例",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 136,
+        "pdfPage": 136,
+        "title": "空拍后可尽快恢复，但不能加速补发：两组RxDataValid间隔示例",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 134,
+        "pdfPage": 134,
+        "title": "查询与原创拍图：检查两组示例的RxDataValid节奏",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 135,
+        "pdfPage": 135,
+        "title": "查询与原创拍图：检查两组示例的RxDataValid节奏",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 136,
+        "pdfPage": 136,
+        "title": "查询与原创拍图：检查两组示例的RxDataValid节奏",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
       }
     ],
     "referenceStatus": "产品手册、PIPE与Preliminary SDK按版本绑定；不推广内部实现到全部Gen，不声称芯片/固件合规验证。",
@@ -88293,6 +88830,131 @@
           80,
           81,
           82
+        ]
+      },
+      {
+        "id": "clock-eb-architecture-boundary",
+        "title": "Clock Tolerance Compensation：先确认EB在PHY还是MAC",
+        "paragraphs": [
+          "PIPE7.1 §8.14明确不适用于SerDes architecture。本节描述PHY接收端的Elastic Buffer吸收链路两端速率频差；Original接口中从RX接收流到PCLK消费流之间要处理这种长期差异。",
+          "SerDes架构不能直接借用本节的PHY插删SKP、RxStatus和缓冲模型契约；相应数据处理职责需回到该架构的MAC侧边界。REFCLK同源、PLL已锁或PCLK稳定，也都不能单独证明弹性缓冲及其有效节奏正确。",
+          "本文只给PIPE7.1实际列明的PCIe速率与架构规则，不能把“规范版本7.1”当成PCIe Gen7，也不把2.5～32GT/s示例外推成64/128GT/s全格式行为。"
+        ],
+        "referenceIndices": [
+          83,
+          84
+        ]
+      },
+      {
+        "id": "clock-eb-capacity-worst-case",
+        "title": "EB容量要覆盖最坏频差与最长补偿间隔，不能只算平均ppm",
+        "paragraphs": [
+          "PHY的缓冲必须能容纳所选模式下最坏频差，以及可做速率补偿的符号之间最坏间隔共同造成的积累。即使长期平均数据率相同，SSC相位差、补偿点间隔和突发占用仍需要余量。",
+          "可用“占用变化≈输入累计符号数−输出累计符号数”理解漂移方向；这只是学习记账式，不是规范给出一个固定深度公式。§8.14没有给所有PHY统一的若干byte最小深度，不能从PCLK位宽或一个ppm数直接宣称EB尺寸合规。",
+          "Half Full与Nominal Empty改变目标占用、延迟和MAC接口义务，但并不取消最坏条件设计。产品具体深度、阈值和时钟配置须查对应datasheet。"
+        ],
+        "referenceIndices": [
+          85,
+          86
+        ]
+      },
+      {
+        "id": "clock-half-full-skp-units",
+        "title": "Nominal Half Full：2.5/5按1个SKP，8/16/32按4个SKP补偿",
+        "paragraphs": [
+          "Half Full模型尽量把缓冲维持在半满，PHY利用收到的SKP Ordered Set增删补偿符号。PCIe在2.5/5GT/s的单位为1个SKP；8/16/32GT/s的单位为4个SKP，不是任意删改业务byte。",
+          "USB按整组SKP或其它规则、SATA按ALIGN处理的文字属于不同协议，不能因为共用RxStatus线就移植到PCIe。一次001/010状态指示的是对应速率的补偿事件，不能跨速率固定解释为恰好1byte。"
+        ],
+        "referenceIndices": [
+          87,
+          88
+        ],
+        "table": {
+          "columns": [
+            "条件／事件",
+            "规则与动作",
+            "边界"
+          ],
+          "rows": [
+            [
+              "2.5 / 5 GT/s",
+              "收到SKP OS时可增删1个SKP symbol",
+              "不是删Payload byte"
+            ],
+            [
+              "8 / 16 / 32 GT/s",
+              "对应补偿单位4个SKP symbol",
+              "不用低速1符号单位"
+            ],
+            [
+              "USB / SATA条目",
+              "各有自身OS/ALIGN规则",
+              "不属于PCIe补偿单位表"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "clock-half-full-status-placement",
+        "title": "补偿状态在何拍上报：低速跟COM，高速允许SOS到SKP_END窗口",
+        "paragraphs": [
+          "Half Full下发生SKP添加/移除时，RxStatus用一个PCLK周期给出非零添加/移除指示。2.5/5GT/s必须在SKP OS的COM经过并行接口的那个周期上报。",
+          "8/16/32GT/s则允许在SKP OS开始到SKP_END之间、含两端的任一周期上报。不能把低速“必须跟COM同拍”的检查器原样用于128b/130b。若同拍还需报告接收错误，错误指示优先，不能据没有001/010就断言没有发生补偿。"
+        ],
+        "referenceIndices": [
+          89,
+          90
+        ]
+      },
+      {
+        "id": "clock-empty-valid-triplet",
+        "title": "Nominal Empty的空拍：RxValid维持1、RxDataValid=0、RxStatus=000",
+        "paragraphs": [
+          "PCIe Nominal Empty要求MAC支持RxDataValid，PHY尽量维持低占用，移除SOS中的SKP符号。因频差或移除SOS而出现空条件时，RxValid必须保持高，RxDataValid必须撤销，RxStatus必须为0。",
+          "这三者表达“对齐资格仍在、这一拍没有数据、没有该类错误”，不能把数据空拍等同于CDR失锁或强制拉低RxValid。条文建议RxValid只因symbol/block alignment丢失而撤销。",
+          "Nominal Empty不报普通EB underflow；EB full仍可能发生并属于错误。低延迟并不意味着永远不溢出，也不意味着消费者可以忽略RxDataValid继续采样每拍数据。"
+        ],
+        "referenceIndices": [
+          91,
+          92
+        ]
+      },
+      {
+        "id": "clock-empty-sos-framing-remains",
+        "title": "移除SKP不等于抹掉全部SOS：COM或SKP_END仍要通知MAC",
+        "paragraphs": [
+          "PCIe Nominal Empty中，8b/10b的SOS必须把COM传给MAC并同拍RxStatus=010，SKP符号丢弃。不能把“移除全部SKP符号”误写成“整个SKP Ordered Set完全消失且没有边界通知”。",
+          "128b/130b则传出SOS block开始，以SKP_END或SKP_END_CTRL作为首byte并报010，所有AA SKP符号移除。该条是接口补偿后的表示，不能把它当作串行线上对端发送了一个首byte就是SKP_END的原始OS。",
+          "抓包应注明采样位置：串行链路、PHY内部还是PIPE并行接口。它们的SKP长度和出现位置本就可能经过合法补偿。"
+        ],
+        "referenceIndices": [
+          93
+        ]
+      },
+      {
+        "id": "clock-empty-cadence-not-phase",
+        "title": "空拍后可尽快恢复，但不能加速补发：两组RxDataValid间隔示例",
+        "paragraphs": [
+          "§8.14允许一有数据就恢复RxDataValid，但不应快于通常的有效节奏。它不要求空拍之后继续锁定原先相位，也不许可把积压数据连续突发补发。",
+          "文中固定配置例：Rate=1、Width=2、PCLK_Rate=2时，RxDataValid不应连续两个PCLK都为1；PCLK_Rate=3时，相邻两次为1之间至少要有3个为0的PCLK。这里列的是这两组编码的例子，不推广到其它Rate/Width/PCLK组合。 前一例原文为should never，后一例为must always，保留其措辞强度，不统一提升为额外MUST。",
+          "例如后一配置中1所在周期0、4、9、13，间距4、5、4满足该间隔约束；0、4、7则最后间距3不满足。仅有一段轨迹无冲突不证明缓冲深度、持续吞吐或全链路协议正确。"
+        ],
+        "referenceIndices": [
+          94,
+          95
+        ]
+      },
+      {
+        "id": "clock-empty-cadence-query",
+        "title": "查询与原创拍图：检查两组示例的RxDataValid节奏",
+        "paragraphs": [
+          "选择PIPE7.1所列的两组固定配置，输入按PCLK排列的0/1轨迹；工具列出有效拍位置、相邻间距，并画出每拍有效性。允许空格和换行，最多128拍。",
+          "工具只核示例的最小间隔，不强迫固定相位，不判断平均吞吐、RxValid/Status、电气训练或全体配置组合。不含USB/SATA，也不对SerDes架构作同样的PHY EB判定。"
+        ],
+        "referenceIndices": [
+          96,
+          97,
+          98
         ]
       }
     ]

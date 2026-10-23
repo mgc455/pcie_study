@@ -1,6 +1,6 @@
 {
   "date": "2026-10-24",
-  "summary": "R54：补I/O正文空缺，配置逐字段与Posted接收期限。",
+  "summary": "R55：Original PIPE时钟补偿、RxDataValid节奏和接收错误。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -976,6 +976,26 @@
       "name": "R54本地验证",
       "status": "通过",
       "detail": "build/check/JavaScript语法通过；394项保留、来源、表格和包图渲染检查；12734项I/O字段/Completion/配置偏移编码/边界及事件断言通过；R53回归330项和10550项通过。"
+    },
+    {
+      "name": "R55初查修正",
+      "status": "两处范围已澄清",
+      "detail": "远端与R54一致。修正Nominal Empty概述将通用SKP/valid路径混用于PCIe的歧义；RxStatus001/010不再跨速率固定解释为1个SKP。旧ID与来源前缀保留，追加具体§8.14。"
+    },
+    {
+      "name": "R55资料核读",
+      "status": "选定正文与图",
+      "detail": "核PIPE7.1本地p65/66、134～140、142对应段落，视觉核135/138；官网189页与本地190页差异保留。本轮不改Base主章覆盖状态。"
+    },
+    {
+      "name": "R55仍未完成",
+      "status": "保留",
+      "detail": "完整SKP first4N+1和N格式关联、其它Rate/Width/PCLK组合、64/128GT/s及历史修订未核全；查询仅检查给定示例节奏和单拍事件，不模拟完整PHY或作为硬件验收。"
+    },
+    {
+      "name": "R55本地验证",
+      "status": "通过",
+      "detail": "build/check与JavaScript语法通过；245项保留/来源/更正/渲染检查，1309项有效拍间隔、错误竞争、架构/编码/缓冲边界及交互断言通过；R54的12734项查询断言回归通过。"
     }
   ],
   "unresolved": [
