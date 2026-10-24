@@ -41188,9 +41188,12 @@
                 "size": "2 B"
               }
             ],
-            "note": "左byte为Control[7:0]，右byte为[15:8]；位号是寄存器逻辑位，不是串行发送次序。"
+            "note": "左byte为Control[7:0]，右byte为[15:8]；位号是寄存器逻辑位，不是串行发送次序。",
+            "lengthLabel": "16 bit 寄存器",
+            "rowLabel": "行"
           }
-        ]
+        ],
+        "packetReading": "此图是配置/表项寄存器位域，不是线上Packet。左侧为该寄存器低byte，向右byte递增，每个byte内bit7→0；逻辑bit号见说明。图中宽度只指该寄存器，不含TLP Header或Payload。"
       },
       {
         "id": "msi-four-capability-layouts",
@@ -42437,9 +42440,12 @@
                 "size": "2 B"
               }
             ],
-            "note": "低byte在前，byte内bit7→0；Table Size的两个图块是同一个11bit字段。"
+            "note": "低byte在前，byte内bit7→0；Table Size的两个图块是同一个11bit字段。",
+            "lengthLabel": "16 bit 寄存器",
+            "rowLabel": "行"
           }
-        ]
+        ],
+        "packetReading": "此图是配置/表项寄存器位域，不是线上Packet。左侧为该寄存器低byte，向右byte递增，每个byte内bit7→0；逻辑bit号见说明。图中宽度只指该寄存器，不含TLP Header或Payload。"
       },
       {
         "id": "msix-resource-isolation-access",
@@ -42519,9 +42525,12 @@
                 "size": "4 B"
               }
             ],
-            "note": "图只展开每项第四DWORD；不是完整16byte表项，也不是Memory Write Payload。"
+            "note": "图只展开每项第四DWORD；不是完整16byte表项，也不是Memory Write Payload。",
+            "lengthLabel": "32 bit 寄存器",
+            "rowLabel": "行"
           }
-        ]
+        ],
+        "packetReading": "此图是配置/表项寄存器位域，不是线上Packet。左侧为该寄存器低byte，向右byte递增，每个byte内bit7→0；逻辑bit号见说明。图中宽度只指该寄存器，不含TLP Header或Payload。"
       },
       {
         "id": "msix-mask-pending-and-aliasing",
