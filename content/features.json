@@ -73021,7 +73021,7 @@
     "checks": "按P/NP/Cpl和VC看资源，不只看总缓存；滞留的一个完成路径可能间接影响其他流量。",
     "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
     "id": 111,
-    "status": "选定DL/InitFC规则已展开 · 持续逐版核读",
+    "status": "选定流控/SVC字段与规则已深化 · 持续逐版核对",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
@@ -73623,9 +73623,867 @@
         "title": "InitFC轨迹查询：看缺项、FI1/FI2与DL_Up门控",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R60核读6.0/7.0所列DL状态、Feature及InitFC正文与字段；视觉核7.0 p344/1189。印刷页与本地PDF物理页一致。局部规则，不代表整章/七代核读；保留表文差异。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 238,
+        "pdfPage": 238,
+        "title": "先分清：能力、初始广告、累计广告与当前可用量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 290,
+        "pdfPage": 290,
+        "title": "先分清：能力、初始广告、累计广告与当前可用量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 239,
+        "pdfPage": 239,
+        "title": "先分清：能力、初始广告、累计广告与当前可用量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 291,
+        "pdfPage": 291,
+        "title": "先分清：能力、初始广告、累计广告与当前可用量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 238,
+        "pdfPage": 238,
+        "title": "Header最小值：7.0 Shared ×1从1改为4个单位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 291,
+        "pdfPage": 291,
+        "title": "Header最小值：7.0 Shared ×1从1改为4个单位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 239,
+        "pdfPage": 239,
+        "title": "Header最小值：7.0 Shared ×1从1改为4个单位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 292,
+        "pdfPage": 292,
+        "title": "Header最小值：7.0 Shared ×1从1改为4个单位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 238,
+        "pdfPage": 238,
+        "title": "Data最小广告：×4/×16的+1与7.0 Shared ×1的+4",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 291,
+        "pdfPage": 291,
+        "title": "Data最小广告：×4/×16的+1与7.0 Shared ×1的+4",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 239,
+        "pdfPage": 239,
+        "title": "Data最小广告：×4/×16的+1与7.0 Shared ×1的+4",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 292,
+        "pdfPage": 292,
+        "title": "Data最小广告：×4/×16的+1与7.0 Shared ×1的+4",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 239,
+        "pdfPage": 239,
+        "title": "NPD的B从哪里来：AtomicOp、DMWr与扩展类型取最大",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 292,
+        "pdfPage": 292,
+        "title": "NPD的B从哪里来：AtomicOp、DMWr与扩展类型取最大",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 240,
+        "pdfPage": 240,
+        "title": "NPD的B从哪里来：AtomicOp、DMWr与扩展类型取最大",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 239,
+        "pdfPage": 239,
+        "title": "Completion为何常是Infinite：EP、RC与Switch分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 292,
+        "pdfPage": 292,
+        "title": "Completion为何常是Infinite：EP、RC与Switch分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 240,
+        "pdfPage": 240,
+        "title": "Completion为何常是Infinite：EP、RC与Switch分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 332,
+        "pdfPage": 332,
+        "title": "Completion为何常是Infinite：EP、RC与Switch分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "page": 271,
+        "pdfPage": 271,
+        "title": "InitFC分配表总入口：3条NFM、6条FM以及四种编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 329,
+        "pdfPage": 329,
+        "title": "InitFC分配表总入口：3条NFM、6条FM以及四种编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 330,
+        "pdfPage": 330,
+        "title": "InitFC分配表总入口：3条NFM、6条FM以及四种编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 331,
+        "pdfPage": 331,
+        "title": "InitFC分配表总入口：3条NFM、6条FM以及四种编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 332,
+        "pdfPage": 332,
+        "title": "InitFC分配表总入口：3条NFM、6条FM以及四种编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "page": 271,
+        "pdfPage": 271,
+        "title": "单VC且不Merged：P/NP/Cpl全部Dedicated必须Zero",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 330,
+        "pdfPage": 330,
+        "title": "单VC且不Merged：P/NP/Cpl全部Dedicated必须Zero",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "page": 272,
+        "pdfPage": 272,
+        "title": "单VC且不Merged：P/NP/Cpl全部Dedicated必须Zero",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 331,
+        "pdfPage": 331,
+        "title": "单VC且不Merged：P/NP/Cpl全部Dedicated必须Zero",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "page": 271,
+        "pdfPage": 271,
+        "title": "单VC且Merged：只有NP专用为Zero，P/Cpl专用仍存在",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 330,
+        "pdfPage": 330,
+        "title": "单VC且Merged：只有NP专用为Zero，P/Cpl专用仍存在",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 332,
+        "pdfPage": 332,
+        "title": "单VC且Merged：只有NP专用为Zero，P/Cpl专用仍存在",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 242,
+        "pdfPage": 242,
+        "title": "单VC且Merged：只有NP专用为Zero，P/Cpl专用仍存在",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 294,
+        "pdfPage": 294,
+        "title": "单VC且Merged：只有NP专用为Zero，P/Cpl专用仍存在",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "page": 272,
+        "pdfPage": 272,
+        "title": "多VC布局：Shared可Zero，Dedicated不由它替代",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 331,
+        "pdfPage": 331,
+        "title": "多VC布局：Shared可Zero，Dedicated不由它替代",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 332,
+        "pdfPage": 332,
+        "title": "多VC布局：Shared可Zero，Dedicated不由它替代",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 290,
+        "pdfPage": 290,
+        "title": "多VC布局：Shared可Zero，Dedicated不由它替代",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 290,
+        "pdfPage": 290,
+        "title": "7.0 Shared最小量按总和：基线×已启用VC数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 291,
+        "pdfPage": 291,
+        "title": "7.0 Shared最小量按总和：基线×已启用VC数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 331,
+        "pdfPage": 331,
+        "title": "7.0 Shared最小量按总和：基线×已启用VC数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 291,
+        "pdfPage": 291,
+        "title": "Merged总量：Posted须同时覆盖P与Completion两份基线",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 294,
+        "pdfPage": 294,
+        "title": "Merged总量：Posted须同时覆盖P与Completion两份基线",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 332,
+        "pdfPage": 332,
+        "title": "Merged总量：Posted须同时覆盖P与Completion两份基线",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.2",
+        "page": 336,
+        "pdfPage": 336,
+        "title": "Scale选择看整个Shared池：字段没溢出不等于总量合法",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 294,
+        "pdfPage": 294,
+        "title": "Scale选择看整个Shared池：字段没溢出不等于总量合法",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 295,
+        "pdfPage": 295,
+        "title": "Scale选择看整个Shared池：字段没溢出不等于总量合法",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 291,
+        "pdfPage": 291,
+        "title": "Scale选择看整个Shared池：字段没溢出不等于总量合法",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 241,
+        "pdfPage": 241,
+        "title": "Shared信用块：6.0 Merged为8，7.0统一4且跨TLP保留",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 295,
+        "pdfPage": 295,
+        "title": "Shared信用块：6.0 Merged为8，7.0统一4且跨TLP保留",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 242,
+        "pdfPage": 242,
+        "title": "Shared信用块：6.0 Merged为8，7.0统一4且跨TLP保留",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1.1",
+        "page": 243,
+        "pdfPage": 243,
+        "title": "六个TX量与RX账本：累计值、当前占用和初值容量分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 298,
+        "pdfPage": 298,
+        "title": "六个TX量与RX账本：累计值、当前占用和初值容量分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1.1",
+        "page": 244,
+        "pdfPage": 244,
+        "title": "六个TX量与RX账本：累计值、当前占用和初值容量分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 299,
+        "pdfPage": 299,
+        "title": "六个TX量与RX账本：累计值、当前占用和初值容量分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.2",
+        "page": 303,
+        "pdfPage": 303,
+        "title": "六个TX量与RX账本：累计值、当前占用和初值容量分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 294,
+        "pdfPage": 294,
+        "title": "六个TX量与RX账本：累计值、当前占用和初值容量分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1.1",
+        "page": 245,
+        "pdfPage": 245,
+        "title": "Shared门控6→7：小于半模与Dedicated的小于等于分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 300,
+        "pdfPage": 300,
+        "title": "Shared门控6→7：小于半模与Dedicated的小于等于分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1.1",
+        "page": 246,
+        "pdfPage": 246,
+        "title": "Shared门控6→7：小于半模与Dedicated的小于等于分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 302,
+        "pdfPage": 302,
+        "title": "Shared门控6→7：小于半模与Dedicated的小于等于分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 301,
+        "pdfPage": 301,
+        "title": "Shared门控6→7：小于半模与Dedicated的小于等于分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 240,
+        "pdfPage": 240,
+        "title": "Infinite与Zero的后续Update：Scale不能照抄初始化特例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 293,
+        "pdfPage": 293,
+        "title": "Infinite与Zero的后续Update：Scale不能照抄初始化特例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 332,
+        "pdfPage": 332,
+        "title": "Infinite与Zero的后续Update：Scale不能照抄初始化特例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1.1",
+        "page": 246,
+        "pdfPage": 246,
+        "title": "Infinite与Zero的后续Update：Scale不能照抄初始化特例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 302,
+        "pdfPage": 302,
+        "title": "Infinite与Zero的后续Update：Scale不能照抄初始化特例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 238,
+        "pdfPage": 238,
+        "title": "查询：最小有限广告的编码、实际单位与7.0总基线",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 291,
+        "pdfPage": 291,
+        "title": "查询：最小有限广告的编码、实际单位与7.0总基线",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 239,
+        "pdfPage": 239,
+        "title": "查询：最小有限广告的编码、实际单位与7.0总基线",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 292,
+        "pdfPage": 292,
+        "title": "查询：最小有限广告的编码、实际单位与7.0总基线",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 290,
+        "pdfPage": 290,
+        "title": "查询：最小有限广告的编码、实际单位与7.0总基线",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "page": 271,
+        "pdfPage": 271,
+        "title": "查询：按本端/对端能力选择FM初始分配矩阵",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 330,
+        "pdfPage": 330,
+        "title": "查询：按本端/对端能力选择FM初始分配矩阵",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "page": 272,
+        "pdfPage": 272,
+        "title": "查询：按本端/对端能力选择FM初始分配矩阵",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 331,
+        "pdfPage": 331,
+        "title": "查询：按本端/对端能力选择FM初始分配矩阵",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 332,
+        "pdfPage": 332,
+        "title": "查询：按本端/对端能力选择FM初始分配矩阵",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 293,
+        "pdfPage": 293,
+        "title": "7.0 Shared Zero和Merged后续Scale例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 332,
+        "pdfPage": 332,
+        "title": "7.0 Shared Zero和Merged后续Scale例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
       }
     ],
-    "referenceStatus": "R60核6.0/7.0 DL_Feature、能力字段、FI1/FI2与34μs规则；保留表文差异、早期版本与完整FM分配矩阵。",
+    "referenceStatus": "R67核6/7初始FC分配/有限最小广告、7.0 Shared总量/块记账与SVC边界；保留重新启用表文、单位措辞和中间修订缺口。",
     "details": [
       {
         "title": "流控到底有哪些：先分清不同维度",
@@ -74268,11 +75126,14 @@
         "paragraphs": [
           "Scaled FC已激活时，后续该VC的UpdateFC必须使用01/10/11的HdrScale/DataScale；不支持或未激活时使用00。初始信用特例和UpdateFC字段规则不可混用。",
           "FC_INIT2中收到InitFC数值已忽略；完成后空间释放靠正常累计信用广告。重复收到一份累计广告不能再加同样一份资源。",
-          "本轮不生成信用重配置写值，也不裁定所有FM池/无限组合的合法性。后续发送门控仍需实际信用、排序、Replay窗口和端口状态共同满足。"
+          "本轮不生成信用重配置写值，也不裁定所有FM池/无限组合的合法性。后续发送门控仍需实际信用、排序、Replay窗口和端口状态共同满足。",
+          "R67补充7.0例外：初始化Zero Shared的VC，Update改用其它非Zero VC的Scale；全Shared Zero时Update Scale未定义；Merged Cpl用Shared Posted对应Scale。初始特例不能机械复制为后续字段。"
         ],
         "referenceIndices": [
           46,
-          47
+          47,
+          130,
+          131
         ]
       },
       {
@@ -74290,6 +75151,318 @@
           51,
           52,
           53
+        ]
+      },
+      {
+        "id": "fc-initial-table-scope-and-units",
+        "title": "先分清：能力、初始广告、累计广告与当前可用量",
+        "paragraphs": [
+          "最小初始广告表给接收端必须准备并通告的资源基线，不是每次UpdateFC要返回的最小数量，也不是当前空闲缓冲快照。Header以一个头信用为单位，Data以16Byte为单位；不把Header字节数除16算头信用。",
+          "Rx_MPS_Limit是接收端接受的最大Payload约束，不直接等于驱动当前MPS写值。多Function的Rx_MPS_Limit不同时，本表要求使用所有Function中的最大值。Rx_NP_MPS_Limit则由可接受NP负载另算。",
+          "FC字段、Scale倍率和实际credit units分开显示：字段01h在×4时是4个单位。取哪个池、是否允许Zero/Infinite/Merged，先查InitFC分配表，再看有限广告公式。"
+        ],
+        "referenceIndices": [
+          54,
+          55,
+          56,
+          57
+        ]
+      },
+      {
+        "id": "fc-initial-header-minima",
+        "title": "Header最小值：7.0 Shared ×1从1改为4个单位",
+        "paragraphs": [
+          "6.0有限PH/NPH以及允许有限的CplH，×1字段01h、×4字段01h、×16字段01h，分别代表1/4/16个实际Header单位。Completion还受角色与Infinite规则限制。",
+          "7.0中Shared FM且×1时Header表基线为4，字段04h；非Shared FM仍1。×4/×16仍字段01h，实际4/16。这里Shared多个VC的值还须按总广告规则解释，不要求每个VC各给04h。"
+        ],
+        "referenceIndices": [
+          58,
+          59,
+          60,
+          61
+        ],
+        "table": {
+          "columns": [
+            "条件／字段",
+            "含义／操作",
+            "限制与版本"
+          ],
+          "rows": [
+            [
+              "6.0有限Header",
+              "×1/4/16字段均01h",
+              "实际1/4/16"
+            ],
+            [
+              "7.0 Shared FM Header",
+              "×1字段04h；×4/16字段01h",
+              "实际4/4/16；多VC汇总另查"
+            ],
+            [
+              "7.0其它有限Header",
+              "×1/4/16字段01h",
+              "Completion角色单独判断"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "fc-initial-data-minima-versioned",
+        "title": "Data最小广告：×4/×16的+1与7.0 Shared ×1的+4",
+        "paragraphs": [
+          "设B为已正确换算成Byte的接收Payload上限。6.0有限Data表基线：×1为B/16；×s（s=4或16）为ceil(B/(16s))+1个编码单位，再乘s得到实际信用。这个+1不能丢掉。",
+          "7.0 Shared FM且×1时，PD用ceil(B/16)+4；NPD用max(B/16,4)+4；允许有限的CplD用max(B/16,4)+4。其它池/模式的×1保留B/16；×4/16公式仍ceil(B/(16s))+1。",
+          "B=1024Byte的PD：6.0 ×1为040h；7.0 Shared FM ×1为044h。×4为011h（68实际单位），×16为005h（80实际单位）。多VC Shared总量与Merged加倍仍另算。"
+        ],
+        "referenceIndices": [
+          62,
+          63,
+          64,
+          65
+        ]
+      },
+      {
+        "id": "fc-np-payload-capability-input",
+        "title": "NPD的B从哪里来：AtomicOp、DMWr与扩展类型取最大",
+        "paragraphs": [
+          "不能拿普通Memory Write MPS直接当NP Payload上限。6/7表注列：扩展预留类型的实现负载，DMWr路由/完成能力，AtomicOp路由/完成能力，以及至少16Byte，取其中最大值。",
+          "DMWr Request Routing Supported=1需128Byte；只支持DMWr完成且Lengths Supported=00b为64Byte，其它编码为128Byte。AtomicOp路由支持需32Byte；无路由时128bit CAS完成能力决定32Byte，否则16Byte。",
+          "7.0表注把Rx_NP_MPS_Limit写有“in DW”，同页又用Byte/credit单位举例。本网页查询统一要求显式输入Byte，先由能力推导并换算，不把规范裸数值直接代入；该单位措辞仍保留待勘误核验。"
+        ],
+        "referenceIndices": [
+          66,
+          67,
+          68
+        ]
+      },
+      {
+        "id": "fc-completion-role-finite-infinite",
+        "title": "Completion为何常是Infinite：EP、RC与Switch分别看",
+        "paragraphs": [
+          "Endpoint和完全不支持Root Port间P2P的RC按表广告Infinite Completion；这里Infinite是发送门控解释，不是设备SRAM无限。Requester仍要保证发出的NP请求有足够的完成接收资源。",
+          "RC若支持部分或全部Root Port间P2P，正文允许在相应Root Port广告有限Completion，但须避免死锁并保证朝RC方向的完成前进；Switch按有限基线。表头简写与正文“部分或全部”的范围须一起读。",
+          "Merged时Shared Cpl使用Shared Posted池，CplH/CplD均Merged；Dedicated Cpl永不Merged。不能因为Completion允许Infinite就把某个必须Zero的Dedicated行改成Infinite。先满足InitFC布局，再应用角色要求。"
+        ],
+        "referenceIndices": [
+          69,
+          70,
+          71,
+          72
+        ]
+      },
+      {
+        "id": "fc-init-row-map-and-encodings",
+        "title": "InitFC分配表总入口：3条NFM、6条FM以及四种编码",
+        "paragraphs": [
+          "NFM每VC依次广告Dedicated P/NP/Cpl三条；FM依次Dedicated P/NP/Cpl，再Shared P/NP/Cpl六条。即使Dedicated为Zero，仍有对应InitFC条目，不是少发该条。",
+          "FM特例用(Scale,FC)表达：Infinite=(00,0)，Zero=(01,0)，Merged=(10,0)且只给Shared Cpl；有限值为Scale01/10/11配非零FC。Hdr与Data分别编码，但Merged必须H/D一致。",
+          "7.0表3-3行3～13由Local/Remote Extended VC Count及Merged选布局；NFM分到表3-2。6.0仍合在表3-2。本轮查询只看FM布局，不能拿它处理NFM的零值编码。"
+        ],
+        "referenceIndices": [
+          73,
+          74,
+          75,
+          76,
+          77
+        ]
+      },
+      {
+        "id": "fc-single-vc-nonmerged-all-shared",
+        "title": "单VC且不Merged：P/NP/Cpl全部Dedicated必须Zero",
+        "paragraphs": [
+          "单VC非Merged布局，Shared P/NP/Cpl各为Infinite或合法有限非零；Dedicated P/NP/Cpl全部Zero。只有一条VC并不消灭Shared字段，它仍按Shared机制使用。",
+          "7.0 Local=0，或Local非0且Remote=0时选用单VC布局，对应行3/4；6.0对应行3/4及注6。不能把“一个VC使能”替代“硬件只支持一个VC”的选择条件。"
+        ],
+        "referenceIndices": [
+          78,
+          79,
+          80,
+          81
+        ],
+        "table": {
+          "columns": [
+            "条件／字段",
+            "含义／操作",
+            "限制与版本"
+          ],
+          "rows": [
+            [
+              "Shared P / NP / Cpl",
+              "有限非零或Infinite",
+              "仍遵角色、最小值和合池一致性"
+            ],
+            [
+              "Dedicated P / NP / Cpl",
+              "Zero=(01,0)",
+              "不是Infinite=(00,0)"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "fc-single-vc-merged-layout",
+        "title": "单VC且Merged：只有NP专用为Zero，P/Cpl专用仍存在",
+        "paragraphs": [
+          "单VCMerged布局：Shared P/NP各有限非零或Infinite；Shared Cpl固定Merged。Dedicated NP为Zero；Dedicated P/Cpl有限非零或Infinite，不能照抄非Merged的“所有Dedicated为Zero”。",
+          "6.0行5～8、7.0行5～8表达这一路径；7.0注10还以防死锁强调P/Cpl不得Zero。Merged不是让Shared NP也与P/Cpl共池，两个方向是否Merged由各自接收端独立决定。"
+        ],
+        "referenceIndices": [
+          82,
+          83,
+          84,
+          85,
+          86
+        ]
+      },
+      {
+        "id": "fc-multi-vc-layout-and-zero",
+        "title": "多VC布局：Shared可Zero，Dedicated不由它替代",
+        "paragraphs": [
+          "Local Extended VC Count非0时可用多VC布局。非Merged：Shared P/NP/Cpl可有限非零、Infinite或Zero，Dedicated各类可有限非零或Infinite。Merged时Shared Cpl固定Merged，Shared P/NP仍按该类可选值；Dedicated都不能Merged。",
+          "6.0 Zero Shared不允许VC0；7.0明确允许多VC全部Shared为Zero、只用Dedicated，但Merged的Posted又要求至少一个非Zero贡献者，不能把“全Zero允许”无条件套进Merged。",
+          "Zero表示本VC没有新增公共池容量，不等于本VC不能借用其它VC贡献的Shared。具体总量、Scale跨VC一致、角色、H/D组合及防死锁条件仍要检查，表的单个单元格不是全局合法性结论。"
+        ],
+        "referenceIndices": [
+          87,
+          88,
+          89,
+          90
+        ]
+      },
+      {
+        "id": "fc-shared-global-minimum",
+        "title": "7.0 Shared最小量按总和：基线×已启用VC数",
+        "paragraphs": [
+          "对某信用类型，多VC初始化Shared可以混合Zero和有限非零，所有非Zero贡献者使用同一Scale；有有限贡献时，所有VC广告之和至少为表2-50相应基线×已启用VC数。只要总量满足，单个VC不必各满足表中最小值。",
+          "这与Extended VC Count是两个数：能力决定可支持的资源，乘数用enabled VCs。不要把支持8个但启用2个的链路按8倍计算，也不要把VC编号最大值当数量。",
+          "例：7.0 Shared PH、×1、两个已启用VC，基线4，有限总广告至少8；可以由某个VC贡献而另一VC为Zero，仍须遵跨VC一致性。6.0正文没有本轮7.0这一汇总表述，查询不会声称该公式已在6.0核实。"
+        ],
+        "referenceIndices": [
+          91,
+          92,
+          93
+        ]
+      },
+      {
+        "id": "fc-merged-posted-double-minimum",
+        "title": "Merged总量：Posted须同时覆盖P与Completion两份基线",
+        "paragraphs": [
+          "7.0 Merged时，所有VC的Posted广告之和至少为相应表基线×2×已启用VC数。Completion的Merged编码不再贡献另一份独立物理容量，所以不能只算一次，也不能又把Cpl初值加一遍。",
+          "例：Shared PH、×1、两个已启用VC且Merged，Posted有限总广告基线为4×2×2=16 Header单位。这个是初始化下限，不是P/Cpl固定各拿50%，更不决定运行期仲裁权重。",
+          "Merged的Shared Header/Data两者必须一致，所有VC必须一致；P和Cpl的占用/返回仍分别跟踪。接收方必须保证Requester的Completion处理速率与发请求速率在不超过100µs滑动窗口匹配。"
+        ],
+        "referenceIndices": [
+          94,
+          95,
+          96
+        ]
+      },
+      {
+        "id": "fc-scale-range-and-global-capacity",
+        "title": "Scale选择看整个Shared池：字段没溢出不等于总量合法",
+        "paragraphs": [
+          "Header Scale01/10/11的最大未用信用分别127/508/2032，Data为2047/8188/32752；计数宽度Header为8/10/12bit，Data为12/14/16bit。线上字段仍8/12bit，×4/16通过移位隐含低位。",
+          "7.0要求Shared同类Scale能够表达所有VC合计分配量。规范例：VC0与VC1各120 Header，合计240，不能都用×1，即便各自120都不超过127。HdrScale与DataScale可不同，要分别检查。",
+          "信用块4个是Shared记账粒度，Scale是字段表示倍率，两者不能再相乘成一个新的“64信用块”。Dedicated可在各VC/各类型选择不同Scale。"
+        ],
+        "referenceIndices": [
+          97,
+          98,
+          99,
+          100
+        ]
+      },
+      {
+        "id": "fc-credit-block-version-difference",
+        "title": "Shared信用块：6.0 Merged为8，7.0统一4且跨TLP保留",
+        "paragraphs": [
+          "6.0：Merged时Shared P/Cpl按8个Header及有Data时8个Data计数；非Merged P/Cpl和NP按4个。接收方释放也遵对应8或4粒度。不要把这段直接抄进7.0。",
+          "7.0 Shared Header/Data都以4-credit block预留/释放，与Scale无关，Dedicated不适用。未耗尽的块只给同VC、同FC Type后续TLP使用；即使Merged也区分P与Cpl，不得拿VC0:P的剩余槽给VC1或Completion。",
+          "7.0块一旦分配，保持打开直到同VC/类型填满，或关联VC关闭和/或DL_Down；中间穿插其它VC/类型TLP不转让该块。每TLP的基本Header/Data信用量与“新预留一个块”是不同层次。"
+        ],
+        "referenceIndices": [
+          101,
+          102,
+          103
+        ]
+      },
+      {
+        "id": "fc-shared-ledger-and-return-identity",
+        "title": "六个TX量与RX账本：累计值、当前占用和初值容量分别看",
+        "paragraphs": [
+          "TX的Dedicated记CREDITS_CONSUMED/CREDIT_LIMIT；Shared另记每VC SHARED_CREDITS_CONSUMED、SHARED_CREDIT_LIMIT、当前占用SCCC及Port TOTAL_SHARED_CREDITS_AVAILABLE，再求跨VC累计和。7.0明确SCCC用Field Size+1位，不能直接用8bit邮箱字段替代。",
+          "Merged的Cpl初始TOTAL_SHARED_CREDITS_AVAILABLE和SHARED_CREDIT_LIMIT为0；后续P/Cpl分别累计，Shared总门控把二者适当合起来，不是反复把Posted初值复制到Cpl。",
+          "7.0 Shared RX的CREDITS_RECEIVED为必须；Dedicated/NFM按可选溢出检查实现。接收方返回时须指明实际释放缓冲的VC；Merged仍带原FC Type。UpdateFC是累计广告，重复接收同一个值不再增加一份容量。"
+        ],
+        "referenceIndices": [
+          104,
+          105,
+          106,
+          107,
+          108,
+          109
+        ]
+      },
+      {
+        "id": "fc-shared-gate-version-boundary",
+        "title": "Shared门控6→7：小于半模与Dedicated的小于等于分开",
+        "paragraphs": [
+          "7.0非Merged Shared比较(总累计Limit−本次累计需求) mod 2^w < 2^(w−1)；Merged P/Cpl则把P/Cpl两套累计Limit和需求结合再比较。6.0对应Shared比较写≤，不能抹去边界差异。",
+          "7.0 Dedicated/NFM门控仍写≤半模。单条式子相等时的行为不能从Shared推Dedicated；这些模比较建立在合法广告与未用量上限约束之上，不是任意整数都可判定安全。",
+          "Limit Enable设定时还要满足每VC当前占用加需求不超相应Shared容量限额；Shared不通过再尝试Dedicated。本轮不把局部门控式做成整链路无死锁证明。"
+        ],
+        "referenceIndices": [
+          110,
+          111,
+          112,
+          113,
+          114
+        ]
+      },
+      {
+        "id": "fc-infinite-and-update-exceptions",
+        "title": "Infinite与Zero的后续Update：Scale不能照抄初始化特例",
+        "paragraphs": [
+          "若某类初始化是Infinite，之后不要求返回该类Credit；若仍发Update，对应信用值须0且接收方忽略。H/D只有一方Infinite时另一方仍需正常更新，不能因此停掉整个P/NP/Cpl更新。",
+          "7.0初始化Zero Shared的VC，后续Shared Update使用其它非Zero VC的Scale；若全部Shared都是Zero，则这些Update的Scale未定义。Merged Cpl更新使用相应Shared Posted Scale，而不是初始化Merged专用编码10b。",
+          "因此Scale不是运行期任意改池大小的旋钮；初始化语义、累计回卷到0、Infinite、Zero、Merged四件事要分开。返回FC Credit只表示接收缓冲管理，不证明事务Completion、内存可见性或软件已消费。"
+        ],
+        "referenceIndices": [
+          115,
+          116,
+          117,
+          118,
+          119
+        ]
+      },
+      {
+        "id": "fc-minimum-advertisement-query",
+        "title": "查询：最小有限广告的编码、实际单位与7.0总基线",
+        "paragraphs": [
+          "选择正式版本、NFM/FM、Shared/Dedicated、信用类型、Scale、Payload Byte上限和已启用VC数，计算表基线的字段值与实际信用；7.0 Shared另列有限贡献的总量下限，Merged的P加倍。",
+          "这是“假定该行允许有限广告”的公式查询：不自动判断EP/RC角色、单VC Dedicated必须Zero、全Shared Zero特例、所有VC具体分摊和完整防死锁条件。Cpl Merged改指向Posted池，不单独算一份。输入Payload已换算Byte，必须先由能力得出。"
+        ],
+        "referenceIndices": [
+          120,
+          121,
+          122,
+          123,
+          124
+        ]
+      },
+      {
+        "id": "fc-fm-allocation-matrix-query",
+        "title": "查询：按本端/对端能力选择FM初始分配矩阵",
+        "paragraphs": [
+          "输入两端Extended VC Count、单VC/多VC布局选择和Merged，列出Shared/Dedicated的P/NP/Cpl六类允许编码。Auto在对端只有单VC时选择单VC布局；7.0将此推荐，6.0仅确认允许，不把推荐强度回填。",
+          "输出是布局选择与表中集合，不代表输入缓冲量已足够。它不检查实际启用VC数、具体InitFC字段、Cpl角色、Hdr/Data所有组合、Shared全局一致或功能协议死锁；必须与最小量表和正文一起看。"
+        ],
+        "referenceIndices": [
+          125,
+          126,
+          127,
+          128,
+          129
         ]
       }
     ]
@@ -75813,14 +76986,14 @@
     "checks": "检查两端VC数、TC映射、Enable/协商、专用及共享credit限制；标签不同不保证资源或带宽独立。",
     "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
     "id": 114,
-    "status": "已深化 · 所引正文/字段已核，逐版仍持续完善",
+    "status": "选定流控/SVC字段与规则已深化 · 持续逐版核对",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-22",
+    "reviewed": "2026-10-24",
     "protocolReferences": [
       {
         "section": "6.3",
@@ -77262,9 +78435,317 @@
         "title": "VC隔离与矩阵只是局部必要条件，不是拓扑无死锁证明",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R38核读所引正式版相关正文及必要续页，UIO依赖/IDE矩阵与ACS/Atomic错误关键图页本地视觉核对。所引Base6/7印刷页与物理页一致；仅所述规则，非整章、七代全部修订或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 290,
+        "pdfPage": 290,
+        "title": "SVC资源个数、对端能力和实际启用数：不要混成一个Count",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 330,
+        "pdfPage": 330,
+        "title": "SVC资源个数、对端能力和实际启用数：不要混成一个Count",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 331,
+        "pdfPage": 331,
+        "title": "SVC资源个数、对端能力和实际启用数：不要混成一个Count",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.5",
+        "page": 280,
+        "pdfPage": 280,
+        "title": "SVC资源个数、对端能力和实际启用数：不要混成一个Count",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "page": 272,
+        "pdfPage": 272,
+        "title": "本端多VC、对端单VC：推荐布局与允许布局同时列出",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 331,
+        "pdfPage": 331,
+        "title": "本端多VC、对端单VC：推荐布局与允许布局同时列出",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 330,
+        "pdfPage": 330,
+        "title": "本端多VC、对端单VC：推荐布局与允许布局同时列出",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 332,
+        "pdfPage": 332,
+        "title": "本端多VC、对端单VC：推荐布局与允许布局同时列出",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 331,
+        "pdfPage": 331,
+        "title": "Shared贡献为Zero不等于Usage Limit为0%",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.29.7",
+        "page": 1499,
+        "pdfPage": 1499,
+        "title": "Shared贡献为Zero不等于Usage Limit为0%",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.29.7",
+        "page": 1500,
+        "pdfPage": 1500,
+        "title": "Shared贡献为Zero不等于Usage Limit为0%",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 293,
+        "pdfPage": 293,
+        "title": "重要表文边界：FM关闭后Shared账本保留，再启用有未定义限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 298,
+        "pdfPage": 298,
+        "title": "重要表文边界：FM关闭后Shared账本保留，再启用有未定义限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 299,
+        "pdfPage": 299,
+        "title": "重要表文边界：FM关闭后Shared账本保留，再启用有未定义限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.2",
+        "page": 303,
+        "pdfPage": 303,
+        "title": "重要表文边界：FM关闭后Shared账本保留，再启用有未定义限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.7",
+        "page": 1366,
+        "pdfPage": 1366,
+        "title": "重要表文边界：FM关闭后Shared账本保留，再启用有未定义限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.29.7",
+        "page": 1500,
+        "pdfPage": 1500,
+        "title": "重要表文边界：FM关闭后Shared账本保留，再启用有未定义限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.1.8",
+        "page": 1366,
+        "pdfPage": 1366,
+        "title": "Pending清零与Enablement Completed：初始化状态和冻结承诺",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.29.8",
+        "page": 1500,
+        "pdfPage": 1500,
+        "title": "Pending清零与Enablement Completed：初始化状态和冻结承诺",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.5",
+        "page": 280,
+        "pdfPage": 280,
+        "title": "Pending清零与Enablement Completed：初始化状态和冻结承诺",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.4.1",
+        "page": 271,
+        "pdfPage": 271,
+        "title": "排查顺序：别只看Link Up或一个FC字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 329,
+        "pdfPage": 329,
+        "title": "排查顺序：别只看Link Up或一个FC字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.4.1",
+        "page": 331,
+        "pdfPage": 331,
+        "title": "排查顺序：别只看Link Up或一个FC字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 294,
+        "pdfPage": 294,
+        "title": "排查顺序：别只看Link Up或一个FC字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1.1",
+        "page": 300,
+        "pdfPage": 300,
+        "title": "排查顺序：别只看Link Up或一个FC字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.29.8",
+        "page": 1500,
+        "pdfPage": 1500,
+        "title": "排查顺序：别只看Link Up或一个FC字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 293,
+        "pdfPage": 293,
+        "title": "FM重新启用未定义与通用寄存器重启前提并列",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 293,
+        "pdfPage": 293,
+        "title": "FM重新启用未定义与通用寄存器重启前提并列",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R67核读6.0/7.0选定FC最小广告、InitFC分配表、Shared记账与SVC启停规则；视觉核7.0 p291/331。局部条款非整章覆盖；中间版/ECN与硬件验证另核。"
       }
     ],
-    "referenceStatus": "按知识块绑定已核正文；旧目录引用仍仅作入口",
+    "referenceStatus": "R67核6/7初始FC分配/有限最小广告、7.0 Shared总量/块记账与SVC边界；保留重新启用表文、单位措辞和中间修订缺口。",
     "details": [
       {
         "id": "vc-resource-not-label",
@@ -77550,7 +79031,8 @@
         "title": "关闭VC前停流，重启前两端都须完全关闭",
         "paragraphs": [
           "两端VC都应关闭，且关闭时不能仍有使用该VC的流量；再次启用前必须先在两端完整禁用。",
-          "这不是写Enable=0即自动取消全部在途事务的保证。配置器应把业务排空、两端控制和协商检查分为独立步骤。"
+          "这不是写Enable=0即自动取消全部在途事务的保证。配置器应把业务排空、两端控制和协商检查分为独立步骤。",
+          "R67补充版本/模式边界：Base7.0 §2.6.1 p293明确FM关闭VC1～7后再次启用行为未定义；本条寄存器的双端关闭前提不能当FM可安全重启的充分条件。见“FM关闭后Shared账本保留”详情及两处同版来源，待正式勘误核验。"
         ],
         "referenceIndices": [
           26,
@@ -77558,7 +79040,8 @@
           28,
           17,
           18,
-          36
+          36,
+          157
         ]
       },
       {
@@ -77978,11 +79461,13 @@
         "title": "关闭前停流；再次开启前Link两端都要完全关闭",
         "paragraphs": [
           "关闭VC时软件必须保证没有流量使用它，并在两端都关闭。重新启用前先确保两端已完全禁用，不能只反复toggle本端Enable。",
-          "这与Capability Mode的一次性SVC切换是不同层次；VC资源关闭不自动将Use VC/MFVC恢复到1，也不能替代Conventional Reset。"
+          "这与Capability Mode的一次性SVC切换是不同层次；VC资源关闭不自动将Use VC/MFVC恢复到1，也不能替代Conventional Reset。",
+          "R67补充版本/模式边界：Base7.0 §2.6.1 p293明确FM关闭VC1～7后再次启用行为未定义；本条寄存器的双端关闭前提不能当FM可安全重启的充分条件。见“FM关闭后Shared账本保留”详情及两处同版来源，待正式勘误核验。"
         ],
         "referenceIndices": [
           64,
-          65
+          65,
+          158
         ]
       },
       {
@@ -78389,6 +79874,94 @@
           128,
           129,
           130
+        ]
+      },
+      {
+        "id": "svc-capable-count-versus-enabled-count",
+        "title": "SVC资源个数、对端能力和实际启用数：不要混成一个Count",
+        "paragraphs": [
+          "Extended VC Count表示额外支持资源数，资源总数为Count+1；它是能力，不随当前只启用VC0而变0。Data Link Feature里的远端Count用于单VC/多VC初始化布局判断。",
+          "7.0最小Shared总量公式使用已启用VC数；SVC资源的VC ID又是固定身份，不要求资源编号与VC ID连续相等。读寄存器时应分别记录能力资源数、实际启用集合、TC映射和对端能力。"
+        ],
+        "referenceIndices": [
+          131,
+          132,
+          133,
+          134
+        ]
+      },
+      {
+        "id": "svc-remote-single-fallback",
+        "title": "本端多VC、对端单VC：推荐布局与允许布局同时列出",
+        "paragraphs": [
+          "7.0 Local≠0且Remote=0，非Merged推荐表3-3行3/4，但允许9/10；Merged推荐5～8，但允许11～13。没有要求本端物理资源必须删到一份。",
+          "Local=0只能使用单VC布局。Local、Remote都非0时用多VC布局，即便软件此刻只启用了VC0；不能用“启用数1”冒充“Local能力0”。6.0注6确认对端Count0允许采用单VC路径，未据此声称同等推荐。"
+        ],
+        "referenceIndices": [
+          135,
+          136,
+          137,
+          138
+        ]
+      },
+      {
+        "id": "svc-zero-shared-contribution-and-usage",
+        "title": "Shared贡献为Zero不等于Usage Limit为0%",
+        "paragraphs": [
+          "某VC InitFC广告Zero Shared，表示它不增加公共容量；只要其它VC贡献资源且门控满足，该VC仍可使用公共池。SVC Usage Limit=0且Enable=1，则该VC不得消耗Shared，含义不同。",
+          "InitFC贡献、累计返回、当前占用上限、仲裁带宽四个维度独立。例如VC1贡献0、使用上限50%，并不矛盾；也不承诺VC1获得50%的链路吞吐。全体VC上限启用且总和<100%仍未定义，不能用贡献总量替代限额总和。"
+        ],
+        "referenceIndices": [
+          139,
+          140,
+          141
+        ]
+      },
+      {
+        "id": "svc-fm-disable-preserve-and-reenable-conflict",
+        "title": "重要表文边界：FM关闭后Shared账本保留，再启用有未定义限制",
+        "paragraphs": [
+          "7.0 §2.6.1明确：FM关闭VC1～7清Dedicated计数，Shared不受影响，已收TLP消费后仍按原VC返回信用并给剩余VC使用；随后重新启用VC1～7的行为未定义。不能靠清Enable重建一份Shared初值。",
+          "同版VC/SVC Control字段又要求重新启用前两端完整关闭。这里保留两处规则：通用寄存器重启前提不自动豁免FM流控章节的未定义限制，也不能仅凭章节号擅自宣布某句已被删除。先查正式勘误、具体修订和实现约束。",
+          "旧条目已补这项警示。共享SHARED_CREDIT_LIMIT、SCCC、TOTAL_SHARED_CREDITS_AVAILABLE和RX累计量的保留字段分别看；不是一条VC关闭就释放全部Shared物理池。"
+        ],
+        "referenceIndices": [
+          142,
+          143,
+          144,
+          145,
+          146,
+          147
+        ]
+      },
+      {
+        "id": "svc-pending-and-completed-gates",
+        "title": "Pending清零与Enablement Completed：初始化状态和冻结承诺",
+        "paragraphs": [
+          "业务使用前双方VC/SVC Negotiation Pending都须清0，硬件在退出FC_INIT2后清除；此位仅在DL_Active且资源Enable=1时值有定义。资源关掉后读到0不能作为“对端和本端都完成了安全重配”的证据。",
+          "VC Enablement Completed / All VCs Enabled是推荐的软件完成提示；一旦设定，随后增减VC行为未定义。提示虽可选，设定后的承诺不是可忽略的建议。这个边界与FM重新启用未定义是两道独立限制。"
+        ],
+        "referenceIndices": [
+          148,
+          149,
+          150
+        ]
+      },
+      {
+        "id": "svc-fc-bringup-evidence-workflow",
+        "title": "排查顺序：别只看Link Up或一个FC字段",
+        "paragraphs": [
+          "先确定Base版本、当前FM/NFM、双方Scaled FC状态、Local/Remote Extended VC Count与Merged选择；再查资源的VC ID/TC/协议、双方Enable及Pending。不要按当前GT/s猜这些开关。",
+          "随后核六条InitFC是否齐、每条Hdr/Data的Scale/值语义、Dedicated/Shared布局、Completion角色、全局Shared总量和Scale范围，最后看Shared block、累计Limit/Consumed和每VC限额。日志须保留方向及VC/FC Type，避免把接收广告当成本端发包所需空间。",
+          "本轮查询只回答布局与有限广告基线；其它层如排序、Replay、P2P/UIO/SVC协议限制仍需继续核。已有正式资料尚未读完不记作缺文件，不把两项查询当全链路合规验证器。"
+        ],
+        "referenceIndices": [
+          151,
+          152,
+          153,
+          154,
+          155,
+          156
         ]
       }
     ]
