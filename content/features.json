@@ -91109,9 +91109,86 @@
         "title": "AXI响应与PCIe错误：OKAY不总等于远端成功",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
         "verification": "R62核读6.50a产品手册所列正文；图600/635视觉核对，印刷页与本地PDF物理页一致。仅该产品/模式，不是PCIe Base通用要求；RTL关系校核记录留本地，无仿真/硬件验证。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 665,
+        "pdfPage": 665,
+        "title": "数据缓冲与描述符是两套所有权，通知不是缓存同步",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.4",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "数据缓冲与描述符是两套所有权，通知不是缓存同步",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.1.5",
+        "page": 632,
+        "pdfPage": 632,
+        "title": "数据缓冲与描述符是两套所有权，通知不是缓存同步",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.3",
+        "page": 661,
+        "pdfPage": 661,
+        "title": "Read Buffer、Tag与背压：为什么链路有数据却停住",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.4",
+        "page": 662,
+        "pdfPage": 662,
+        "title": "Read Buffer、Tag与背压：为什么链路有数据却停住",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.7",
+        "page": 667,
+        "pdfPage": 667,
+        "title": "Read Buffer、Tag与背压：为什么链路有数据却停住",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.7",
+        "page": 668,
+        "pdfPage": 668,
+        "title": "Read Buffer、Tag与背压：为什么链路有数据却停住",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
       }
     ],
-    "referenceStatus": "R62核Controller 6.50a相关AXI/iATU/HDMA正文；实现规则与Base分开，保留完整寄存器/模式/平台和硬件验证缺口。",
+    "referenceStatus": "R63核6.50a停止/错误/链表回收相关正文与USP/DSP选定字段。原有条目保留；CB/PCS、Watermark LLP、地址偏移与部分错误方向差异显式待核，无仿真/驱动验证。",
     "details": [
       {
         "id": "axi-controller-roles-and-four-paths",
@@ -91202,6 +91279,35 @@
           17,
           18,
           19
+        ]
+      },
+      {
+        "id": "axi-hdma-memory-ownership",
+        "title": "数据缓冲与描述符是两套所有权，通知不是缓存同步",
+        "paragraphs": [
+          "描述符可回收说明软件可以准备下次任务，并不自动证明另一份缓冲可以立即交CPU读取或取消DMA映射。需分别核对源读、目标写、预取和通知时点。",
+          "HDMA Read的本地AXI写错误不会回滚已做的写，Direct残量和LL元素上下文还可能无效；应用层需要定义部分数据如何标记、丢弃或重建。",
+          "平台的一致性/同步方法必须保证设备和CPU观察同一份内容。这里是平台职责提醒，不从产品寄存器值推定某OS、CPU缓存或IOMMU操作已经完成。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          22
+        ]
+      },
+      {
+        "id": "axi-hdma-read-buffer-backpressure",
+        "title": "Read Buffer、Tag与背压：为什么链路有数据却停住",
+        "paragraphs": [
+          "HDMA Read通过Read Buffer重排不同请求的Completion，使本地写数据按地址顺序前进；应用AXI背压会使已到数据仍占缓冲和Tag资源。不要把“收到CplD”直接等同于目标数据都写好。",
+          "乱序Completion需要等待较早请求，段数据送给应用前可能延迟Tag归还。手册还描述AXI Manager的Cpl/P顺序约束可阻塞队头；排障应同时看Tag可用数、Read Buffer、AXI背压和顺序属性。",
+          "RO或不同VC是有条件的系统设计选择，不能为了吞吐量任意置RO绕过正确性。配置MPS、MPS Supported、MRRS和Tag池是不同资源；相关手册例段差异仍保留待核。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          25,
+          26
         ]
       }
     ]
@@ -91991,9 +92097,317 @@
         "title": "HDMA候选远端包规划：方向、4KB边界与MPS/MRRS",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
         "verification": "R62核读6.50a产品手册所列正文；图600/635视觉核对，印刷页与本地PDF物理页一致。仅该产品/模式，不是PCIe Base通用要求；RTL关系校核记录留本地，无仿真/硬件验证。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.7",
+        "page": 20774,
+        "pdfPage": 20774,
+        "title": "CYCLE寄存器CB/CCS与软件PCS：三个值属于不同主体",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.60.7",
+        "page": 4539,
+        "pdfPage": 4539,
+        "title": "CYCLE寄存器CB/CCS与软件PCS：三个值属于不同主体",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.3",
+        "page": 673,
+        "pdfPage": 673,
+        "title": "CYCLE寄存器CB/CCS与软件PCS：三个值属于不同主体",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.1",
+        "page": 670,
+        "pdfPage": 670,
+        "title": "数据元素所有权查询：CB=CCS只是消费条件之一",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.3",
+        "page": 673,
+        "pdfPage": 673,
+        "title": "数据元素所有权查询：CB=CCS只是消费条件之一",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.4",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "数据元素所有权查询：CB=CCS只是消费条件之一",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.3",
+        "page": 636,
+        "pdfPage": 636,
+        "title": "Link元素TCB：先处理周期语义，再看列表边界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.1",
+        "page": 670,
+        "pdfPage": 670,
+        "title": "Link元素TCB：先处理周期语义，再看列表边界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.3",
+        "page": 673,
+        "pdfPage": 673,
+        "title": "Link元素TCB：先处理周期语义，再看列表边界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.2",
+        "page": 671,
+        "pdfPage": 671,
+        "title": "Watermark是回收触发点，不是每个缓冲的完成证明",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.3",
+        "page": 673,
+        "pdfPage": 673,
+        "title": "Watermark是回收触发点，不是每个缓冲的完成证明",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.4",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "Watermark是回收触发点，不是每个缓冲的完成证明",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.60.5",
+        "page": 4535,
+        "pdfPage": 4535,
+        "title": "Watermark是回收触发点，不是每个缓冲的完成证明",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.4",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "发布顺序：先内容，后控制字，最后交出周期位",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.3",
+        "page": 636,
+        "pdfPage": 636,
+        "title": "发布顺序：先内容，后控制字，最后交出周期位",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.3",
+        "page": 673,
+        "pdfPage": 673,
+        "title": "回收CB数值差异：PCS与~PCS不能静默混用",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.3",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "回收CB数值差异：PCS与~PCS不能静默混用",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.4",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "回收CB数值差异：PCS与~PCS不能静默混用",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.4",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "回收与STOP的竞态：检查事件、状态和位置",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.1",
+        "page": 670,
+        "pdfPage": 670,
+        "title": "回收与STOP的竞态：检查事件、状态和位置",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 666,
+        "pdfPage": 666,
+        "title": "回收与STOP的竞态：检查事件、状态和位置",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.3",
+        "page": 636,
+        "pdfPage": 636,
+        "title": "预取不等于完成：不能随意改仍归硬件的描述符",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.3.1",
+        "page": 637,
+        "pdfPage": 637,
+        "title": "预取不等于完成：不能随意改仍归硬件的描述符",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.6",
+        "page": 643,
+        "pdfPage": 643,
+        "title": "预取不等于完成：不能随意改仍归硬件的描述符",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.60.43",
+        "page": 4599,
+        "pdfPage": 4599,
+        "title": "预取不等于完成：不能随意改仍归硬件的描述符",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.5",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "掉链恢复：LLP可辅助定位，但不是已持久化字节数",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.6",
+        "page": 643,
+        "pdfPage": 643,
+        "title": "掉链恢复：LLP可辅助定位，但不是已持久化字节数",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 666,
+        "pdfPage": 666,
+        "title": "掉链恢复：LLP可辅助定位，但不是已持久化字节数",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
       }
     ],
-    "referenceStatus": "R62核Controller 6.50a相关AXI/iATU/HDMA正文；实现规则与Base分开，保留完整寄存器/模式/平台和硬件验证缺口。",
+    "referenceStatus": "R63核6.50a停止/错误/链表回收相关正文与USP/DSP选定字段。原有条目保留；CB/PCS、Watermark LLP、地址偏移与部分错误方向差异显式待核，无仿真/驱动验证。",
     "details": [
       {
         "id": "hdma-directions-and-request-paths",
@@ -92106,6 +92520,162 @@
           16,
           17,
           18
+        ]
+      },
+      {
+        "id": "hdma-cycle-register-and-software-pcs",
+        "title": "CYCLE寄存器CB/CCS与软件PCS：三个值属于不同主体",
+        "paragraphs": [
+          "CYCLE寄存器bit0 CB由元素带入，bit1 CCS为消费者周期，其他位保留。PCS是软件维护的生产者周期变量，不能把它当作CYCLE中隐藏的第三个位。",
+          "启动LL前软件须初始化CCS，并按同一初始化约定建立元素。流程示例的PCS=CCS=1是该示例起始条件，字段复位为0不能替代显式初始化。",
+          "DSP与USP的Wire访问权限不同，且硬件运行时更新此寄存器。不能为“同步”在RUNNING中随意改CCS或读取后写回整个值。"
+        ],
+        "referenceIndices": [
+          19,
+          20,
+          21
+        ]
+      },
+      {
+        "id": "hdma-data-element-ownership-query",
+        "title": "数据元素所有权查询：CB=CCS只是消费条件之一",
+        "paragraphs": [
+          "对数据元素，CB=CCS表示本轮归HDMA消费；CB不等于CCS时列表暂空，可进入STOPPED。这个周期位区分的是相同内存槽的不同轮次，不是包序号、Tag或完成计数。",
+          "相等并不单独证明其余DWORD、数据缓冲、映射和缓存已经发布。查询增加“其余内容已可见”和“控制字已最后发布”两个软件前提；前提不满足时给出提前消费风险。",
+          "仅对数据元素使用此真值表。Link元素的TCB、指针加载和停在Link后的恢复另有规则，不能用这个工具推导其CCS翻转或生成CB写值。"
+        ],
+        "referenceIndices": [
+          22,
+          23,
+          24
+        ],
+        "table": {
+          "columns": [
+            "条件／字段",
+            "含义",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "CB=0，CCS=0",
+              "本轮可消费候选",
+              "仍需正确发布/映射"
+            ],
+            [
+              "CB=1，CCS=1",
+              "本轮可消费候选",
+              "不是已经完成"
+            ],
+            [
+              "CB≠CCS",
+              "列表暂空",
+              "不是地址非法或永久结束"
+            ],
+            [
+              "任意值但发布未完成",
+              "软件交接不成立",
+              "相等时可能提前取到半更新元素"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "hdma-link-element-cycle-order",
+        "title": "Link元素TCB：先处理周期语义，再看列表边界",
+        "paragraphs": [
+          "Link元素不搬SAR→DAR数据，它加载下一列表指针。TCB仅对Link有效，循环复用时用于协调消费者CCS与软件PCS；跳到新列表可采用不翻周期的专门组织。",
+          "手册说明Link会加载到上下文，且CB/CCS检查在TCB处理后。流程中的“翻转CCS”和后续文字的~CB表达应结合元素发布约定理解，本页不把它压缩成对所有Link都通用的单行公式。",
+          "若停在Link元素上，手册要求软件重设LLP并重新Doorbell。不能用数据元素的“只改CB继续”替代这一专门恢复要求。"
+        ],
+        "referenceIndices": [
+          25,
+          26,
+          27
+        ]
+      },
+      {
+        "id": "hdma-watermark-recycle-boundary",
+        "title": "Watermark是回收触发点，不是每个缓冲的完成证明",
+        "paragraphs": [
+          "软件可在列表中段数据元素设置LWIE/RWIE，使消费者经过后提醒生产者回收已经消费的元素。末尾数据元素的Empty通知也是元素安排，不等于Link元素搬运或新的固定寄存器事件位。",
+          "Watermark放太晚或软件回收太慢，HDMA回绕到尚未发布的元素会停止，需要确认终态后重新启动；若软件及时发布，HDMA可连续进入下一轮，无需每次Doorbell。",
+          "回收边界需结合事件、有效LLP快照和当前软件周期。Reference与Databook对Watermark指针文字有差异；本页不把单次LLP读值当实时硬件预取头，也不从中任意释放后续缓冲。"
+        ],
+        "referenceIndices": [
+          28,
+          29,
+          30,
+          31
+        ]
+      },
+      {
+        "id": "hdma-descriptor-publication-order",
+        "title": "发布顺序：先内容，后控制字，最后交出周期位",
+        "paragraphs": [
+          "6.50a回收规则要求先更新其他DWORD，再更新首控制DWORD；控制DWORD内部还要求其它控制位先准备，再交出CB。目的在于阻止HDMA取到软件正在改写的元素。",
+          "这里描述的是设备观察到的先后关系，不能仅用源代码赋值顺序证明。CPU缓存、DMA一致性、写合并和互连排序属于平台契约；需使用该平台认可的发布/同步方法。",
+          "本轮不提供CPU架构专用barrier或缓存维护代码，也不假定一个普通C结构体写入天然原子。周期具体值存在下条所列手册差异，发布顺序与数值选择须分开核对。"
+        ],
+        "referenceIndices": [
+          32,
+          33
+        ]
+      },
+      {
+        "id": "hdma-recycling-pcs-ambiguity",
+        "title": "回收CB数值差异：PCS与~PCS不能静默混用",
+        "paragraphs": [
+          "13.4.9.3的回收阶段写数据元素CB=PCS；13.4.9.4同页又把最后写入的CB描述成~PCS。两处对同一软件变量的时间点/解释不够一致，不能只保留其中一句作为规范算法。",
+          "确定可用的基础是数据CB/CCS相等的消费判断、Link专属TCB语义以及先内容后控制的发布顺序。完整循环生产者还须核实PCS在哪个事件翻转、Link CB取哪一轮以及预取行为。",
+          "需与实际交付的验证环境/寄存器模型或厂商勘误对齐。本页保留页码和未解决状态，不输出自动循环回收代码，不因资料存在就声称算法已经消歧。"
+        ],
+        "referenceIndices": [
+          34,
+          35,
+          36
+        ]
+      },
+      {
+        "id": "hdma-restart-after-recycle-race",
+        "title": "回收与STOP的竞态：检查事件、状态和位置",
+        "paragraphs": [
+          "生产者回收期间，消费者可能已经因暂空停下，也可能还在连续运行。手册要求回收后检查STATUS；若STOPPED，需要重新Doorbell。",
+          "为了处理“读状态”和“提交动作”之间的竞态，手册又要求确认STOP事件位并核对LLP位置。不能只读一次STATUS或只看到Watermark就盲目再Start。",
+          "若Link本身是停点，需要重设LLP；Abort则应进入错误恢复而非套用暂空续跑。此处不给缺乏并发/平台原子保证的完整驱动状态机，相关边界作为实现审查项保留。"
+        ],
+        "referenceIndices": [
+          37,
+          38,
+          39
+        ]
+      },
+      {
+        "id": "hdma-prefetch-cache-ownership",
+        "title": "预取不等于完成：不能随意改仍归硬件的描述符",
+        "paragraphs": [
+          "HDMA会预取元素并维持内部队列。内存槽被取走、元素进入内部缓存、数据请求发出、目标写出和完成通知是不同时间点；软件不应只凭内存位置或Doorbell推算安全回收。",
+          "LL模式加载元素会覆盖相应通道上下文。直接修改内存或上下文既不能保证已预取元素被撤销，也不能替代所有权同步；Stop/Abort会丢弃相关预取队列，但必须等其处理确认。",
+          "Read通道PF_DEPTH是共享预取容量分配字段，越界可导致数据损坏或通道串扰，且有所有相关通道Doorbell状态限制。此次只核此风险，不生成具体容量调整值。"
+        ],
+        "referenceIndices": [
+          40,
+          41,
+          42,
+          43
+        ]
+      },
+      {
+        "id": "hdma-link-down-context-recovery",
+        "title": "掉链恢复：LLP可辅助定位，但不是已持久化字节数",
+        "paragraphs": [
+          "正常操作中掉链会由控制器向外部逻辑请求链路相关复位。手册建议读取通道LLP了解列表进展；这依赖复位集成及时保留现场，不能等全部上下文被清再假定还能追溯。",
+          "进展位置不证明所有已发Posted写都已被远端应用接受，也不能保证重试没有重复。恢复需决定任务重建、缓冲重新授权和上层重复写处理，而非只恢复链路后再次Start。",
+          "链路低功耗与Link Down是不同条件，L0的软件Stop前提不能覆盖失链。未核完整热复位/断链在途数据语义，不给通用无损续传承诺。"
+        ],
+        "referenceIndices": [
+          44,
+          45,
+          46
         ]
       }
     ]
@@ -92238,9 +92808,581 @@
         "title": "停止与复位：Stop是请求，等待在途操作处理完",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
         "verification": "R62核读6.50a产品手册所列正文；图600/635视觉核对，印刷页与本地PDF物理页一致。仅该产品/模式，不是PCIe Base通用要求；RTL关系校核记录留本地，无仿真/硬件验证。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.17",
+        "page": 20791,
+        "pdfPage": 20791,
+        "title": "STATUS[1:0]：运行、异常停止和正常停止不是同一结论",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.44",
+        "page": 20836,
+        "pdfPage": 20836,
+        "title": "STATUS[1:0]：运行、异常停止和正常停止不是同一结论",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.2.1",
+        "page": 633,
+        "pdfPage": 633,
+        "title": "STATUS[1:0]：运行、异常停止和正常停止不是同一结论",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.6",
+        "page": 643,
+        "pdfPage": 643,
+        "title": "STATUS[1:0]：运行、异常停止和正常停止不是同一结论",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.2",
+        "page": 20767,
+        "pdfPage": 20767,
+        "title": "Doorbell[1:0]：Start/Stop命令与确认状态分离",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.60.29",
+        "page": 4573,
+        "pdfPage": 4573,
+        "title": "Doorbell[1:0]：Start/Stop命令与确认状态分离",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.8",
+        "page": 647,
+        "pdfPage": 647,
+        "title": "Doorbell[1:0]：Start/Stop命令与确认状态分离",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.6",
+        "page": 643,
+        "pdfPage": 643,
+        "title": "Doorbell[1:0]：Start/Stop命令与确认状态分离",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.18",
+        "page": 20792,
+        "pdfPage": 20792,
+        "title": "INT_STATUS：事件3bit与4bit错误码分开看",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.18",
+        "page": 20793,
+        "pdfPage": 20793,
+        "title": "INT_STATUS：事件3bit与4bit错误码分开看",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.18",
+        "page": 20794,
+        "pdfPage": 20794,
+        "title": "INT_STATUS：事件3bit与4bit错误码分开看",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.45",
+        "page": 20837,
+        "pdfPage": 20837,
+        "title": "INT_STATUS：事件3bit与4bit错误码分开看",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.2",
+        "page": 633,
+        "pdfPage": 633,
+        "title": "INT_STATUS：事件3bit与4bit错误码分开看",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.19",
+        "page": 20795,
+        "pdfPage": 20795,
+        "title": "INT_SETUP：本地Mask、Local Enable、Remote Enable各自管什么",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.19",
+        "page": 20796,
+        "pdfPage": 20796,
+        "title": "INT_SETUP：本地Mask、Local Enable、Remote Enable各自管什么",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.19",
+        "page": 20797,
+        "pdfPage": 20797,
+        "title": "INT_SETUP：本地Mask、Local Enable、Remote Enable各自管什么",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.3.1",
+        "page": 637,
+        "pdfPage": 637,
+        "title": "INT_SETUP：本地Mask、Local Enable、Remote Enable各自管什么",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.20",
+        "page": 20798,
+        "pdfPage": 20798,
+        "title": "INT_CLEAR：先取证再清，清事件不会恢复传输",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.20",
+        "page": 20799,
+        "pdfPage": 20799,
+        "title": "INT_CLEAR：先取证再清，清事件不会恢复传输",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 666,
+        "pdfPage": 666,
+        "title": "INT_CLEAR：先取证再清，清事件不会恢复传输",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.18",
+        "page": 20792,
+        "pdfPage": 20792,
+        "title": "ERROR编码按阶段分类：取描述符、读数据、写目标",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.45",
+        "page": 20837,
+        "pdfPage": 20837,
+        "title": "ERROR编码按阶段分类：取描述符、读数据、写目标",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 665,
+        "pdfPage": 665,
+        "title": "ERROR编码按阶段分类：取描述符、读数据、写目标",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 666,
+        "pdfPage": 666,
+        "title": "ERROR编码按阶段分类：取描述符、读数据、写目标",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 665,
+        "pdfPage": 665,
+        "title": "Read引擎错误：远端MRd失败与本地写失败要分开",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.4",
+        "page": 642,
+        "pdfPage": 642,
+        "title": "Read引擎错误：远端MRd失败与本地写失败要分开",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.45",
+        "page": 20837,
+        "pdfPage": 20837,
+        "title": "Read引擎错误：远端MRd失败与本地写失败要分开",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 665,
+        "pdfPage": 665,
+        "title": "Write引擎错误：本地源读取失败不会变成远端坏数据包",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 666,
+        "pdfPage": 666,
+        "title": "Write引擎错误：本地源读取失败不会变成远端坏数据包",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.18",
+        "page": 20792,
+        "pdfPage": 20792,
+        "title": "Write引擎错误：本地源读取失败不会变成远端坏数据包",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 666,
+        "pdfPage": 666,
+        "title": "Abort顺序：停止生成、处理在途、保存流中首错",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.1.5",
+        "page": 632,
+        "pdfPage": 632,
+        "title": "Abort顺序：停止生成、处理在途、保存流中首错",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 665,
+        "pdfPage": 665,
+        "title": "Abort顺序：停止生成、处理在途、保存流中首错",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.6.1",
+        "page": 642,
+        "pdfPage": 642,
+        "title": "停止检查顺序：请求、确认、上下文、资源归还",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.6",
+        "page": 643,
+        "pdfPage": 643,
+        "title": "停止检查顺序：请求、确认、上下文、资源归还",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.5",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "停止检查顺序：请求、确认、上下文、资源归还",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.17",
+        "page": 20791,
+        "pdfPage": 20791,
+        "title": "HDMA状态/错误查询：解码快照，不直接批准释放缓冲",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.18",
+        "page": 20792,
+        "pdfPage": 20792,
+        "title": "HDMA状态/错误查询：解码快照，不直接批准释放缓冲",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.45",
+        "page": 20837,
+        "pdfPage": 20837,
+        "title": "HDMA状态/错误查询：解码快照，不直接批准释放缓冲",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 665,
+        "pdfPage": 665,
+        "title": "HDMA状态/错误查询：解码快照，不直接批准释放缓冲",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 666,
+        "pdfPage": 666,
+        "title": "HDMA状态/错误查询：解码快照，不直接批准释放缓冲",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.7",
+        "page": 644,
+        "pdfPage": 644,
+        "title": "6.50a文档差异清单：偏移、进度、错误与分段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.23",
+        "page": 20802,
+        "pdfPage": 20802,
+        "title": "6.50a文档差异清单：偏移、进度、错误与分段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.25",
+        "page": 20804,
+        "pdfPage": 20804,
+        "title": "6.50a文档差异清单：偏移、进度、错误与分段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.1.5",
+        "page": 632,
+        "pdfPage": 632,
+        "title": "6.50a文档差异清单：偏移、进度、错误与分段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.60.5",
+        "page": 4535,
+        "pdfPage": 4535,
+        "title": "6.50a文档差异清单：偏移、进度、错误与分段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 665,
+        "pdfPage": 665,
+        "title": "6.50a文档差异清单：偏移、进度、错误与分段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.18",
+        "page": 20792,
+        "pdfPage": 20792,
+        "title": "6.50a文档差异清单：偏移、进度、错误与分段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.7",
+        "page": 667,
+        "pdfPage": 667,
+        "title": "6.50a文档差异清单：偏移、进度、错误与分段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.2",
+        "page": 661,
+        "pdfPage": 661,
+        "title": "6.50a文档差异清单：偏移、进度、错误与分段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.60.7",
+        "page": 4539,
+        "pdfPage": 4539,
+        "title": "6.50a文档差异清单：偏移、进度、错误与分段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.7",
+        "page": 20774,
+        "pdfPage": 20774,
+        "title": "6.50a文档差异清单：偏移、进度、错误与分段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R63核读6.50a所列产品正文/字段，Reference明确区分DSP与USP；印刷页与本地PDF页一致。非Base七代通用规则，无硬件验证；文档冲突在关联细则中保留。"
       }
     ],
-    "referenceStatus": "R62核Controller 6.50a相关AXI/iATU/HDMA正文；实现规则与Base分开，保留完整寄存器/模式/平台和硬件验证缺口。",
+    "referenceStatus": "R63核6.50a停止/错误/链表回收相关正文与USP/DSP选定字段。原有条目保留；CB/PCS、Watermark LLP、地址偏移与部分错误方向差异显式待核，无仿真/驱动验证。",
     "details": [
       {
         "id": "hdma-local-remote-interrupt-setup",
@@ -92287,6 +93429,288 @@
           8,
           9
         ]
+      },
+      {
+        "id": "hdma-channel-state-bits",
+        "title": "STATUS[1:0]：运行、异常停止和正常停止不是同一结论",
+        "paragraphs": [
+          "6.50a通道STATUS是只读状态，不是启动命令。编码0保留、1 RUNNING、2 ABORTED、3 STOPPED；其余[31:2]保留。不要把0当成统一IDLE，也不要靠Doorbell回读代替状态。",
+          "STOPPED有多种原因：Direct传完、LL暂空、软件Stop或Hard Stop。Reference的简要“已传完”说明须结合Databook的停止条件；LL首元素不归消费者也可能零搬运就Stop。",
+          "ABORTED说明该通道因错误停止，错误码另在INT_STATUS.ERROR。STOPPED或ABORTED均不证明远端CPU已消费数据；读状态本身也不是缓存同步或解除DMA映射的完整流程。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13
+        ],
+        "table": {
+          "columns": [
+            "条件／字段",
+            "含义",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "[1:0]=00",
+              "保留",
+              "不解释为可启动/空闲"
+            ],
+            [
+              "01",
+              "RUNNING",
+              "上下文不可当实时完成字节数"
+            ],
+            [
+              "10",
+              "ABORTED",
+              "先留存ERROR及有效上下文"
+            ],
+            [
+              "11",
+              "STOPPED",
+              "结合原因、模式、残量判断"
+            ],
+            [
+              "[31:2]",
+              "保留",
+              "非状态扩展位"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "hdma-doorbell-command-bits",
+        "title": "Doorbell[1:0]：Start/Stop命令与确认状态分离",
+        "paragraphs": [
+          "Doorbell bit0=DB_START、bit1=DB_STOP，其余[31:2]保留；字段为写命令，具有易变/写后读不作命令完成确认的属性。必须先Enable再Start。",
+          "软件Stop只提交停止请求。Reference要求看到STATUS=3后才能按停止状态处理；手册还要求软件Stop在L0使用，不能在低功耗中照搬。不要把写寄存器成功当成排空完成。",
+          "背靠背的Hard/Software Stop中第二个可能被忽略。本页不建议同时写Start和Stop，也不从未定义组合产生可执行写值。Enable的Wire/DBI权限还要按USP/DSP地址块分开核对。"
+        ],
+        "referenceIndices": [
+          14,
+          15,
+          16,
+          17
+        ]
+      },
+      {
+        "id": "hdma-interrupt-status-bits",
+        "title": "INT_STATUS：事件3bit与4bit错误码分开看",
+        "paragraphs": [
+          "INT_STATUS bit0 STOP、bit1 WATERMARK、bit2 ABORT，[6:3] ERROR，[31:7]保留。ERROR是一个4bit编码，不能按4个独立故障使能位逐位解释。",
+          "STOP与ABORT按字段说明互斥；两者同时置位的输入应视作不符合所核字段语义的快照，先检查采样/版本/寄存器选择，不能任选一位掩盖矛盾。WATERMARK可保留到软件清除。",
+          "字段文字把事件置位与本地使能/通知关联，而Databook还描述远端路径。不能仅凭本地状态位为0断言没有任何远端事件；无通知配置时仍应核STATUS等直接状态。"
+        ],
+        "referenceIndices": [
+          18,
+          19,
+          20,
+          21,
+          22
+        ]
+      },
+      {
+        "id": "hdma-interrupt-enable-mask-bits",
+        "title": "INT_SETUP：本地Mask、Local Enable、Remote Enable各自管什么",
+        "paragraphs": [
+          "6.50a所核SETUP低7bit依次为STOP_MASK、WATERMARK_MASK、ABORT_MASK、RSIE、LSIE、RAIE、LAIE。[31:7]保留；高四个Enable与低三个位不能混成同一种开关。",
+          "MASK=1的字段说明针对本地interrupt pin。它不是禁止DMA、撤销错误、清STATUS，也不能据此推断远端IMWr已被屏蔽。远端Stop/Abort由RSIE/RAIE管理，还需正确地址/Data与平台MSI配置。",
+          "LL Watermark使用元素LWIE/RWIE；它们仅用于Watermark，Direct模式不使用。故启用LSIE/RSIE不等于每份描述符都会发进度中断。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          25,
+          26
+        ],
+        "table": {
+          "columns": [
+            "条件／字段",
+            "含义",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "0/1/2",
+              "Stop/Watermark/Abort的本地Mask",
+              "1屏蔽本地pin，非远端统一Mask"
+            ],
+            [
+              "3 / 4",
+              "RSIE / LSIE",
+              "远端/本地Stop使能"
+            ],
+            [
+              "5 / 6",
+              "RAIE / LAIE",
+              "远端/本地Abort使能"
+            ],
+            [
+              "元素LWIE/RWIE",
+              "本地/远端Watermark",
+              "LL元素字段，不是SETUP新bit"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "hdma-interrupt-clear-bits",
+        "title": "INT_CLEAR：先取证再清，清事件不会恢复传输",
+        "paragraphs": [
+          "INT_CLEAR bit0 STOP_CLEAR、bit1 WATERMARK_CLEAR、bit2 ABORT_CLEAR；写相应1执行清除，命令自清，回读0。ABORT_CLEAR同时清INT_STATUS中的ABORT和ERROR。",
+          "因此应先记录通道STATUS、INT_STATUS、相关有效上下文与导致错误的描述符，再清事件。若先清Abort再读ERROR，会丢失这一现场。",
+          "清事件不等于Start、不修改缓冲所有权，也不能修复已经发生的目标写错误。只对本次要处理的事件提交清除，不对未核保留位作读改写；并发事件的精确原子仲裁尚未核定。"
+        ],
+        "referenceIndices": [
+          27,
+          28,
+          29
+        ]
+      },
+      {
+        "id": "hdma-error-code-interpretation",
+        "title": "ERROR编码按阶段分类：取描述符、读数据、写目标",
+        "paragraphs": [
+          "ERROR[6:3]的字段值0表示无错误；1/2/3对应描述符获取的UR/CA/Poison，8对应源数据Completion超时，9/A/B对应源数据UR/CA/Poison，C对应目标写响应类错误。4～7、D～F在本次字段表未定义，不猜补其名称。",
+          "同一编码在Write/Read引擎的适用条件并不完全相同：Read的8注明只对Read有效，B受产品Poison Abort生成选项配置限制；Write的C说明与Databook方向存在冲突，工具明确提示而不把它当已确认远端MWr回执。",
+          "这里的Fatal/Non-fatal是HDMA产品错误表的处理分类，不直接等于AER UE Severity寄存器的Fatal/Non-Fatal，也不说明Non-fatal就自动继续传输。"
+        ],
+        "referenceIndices": [
+          30,
+          31,
+          32,
+          33
+        ]
+      },
+      {
+        "id": "hdma-read-error-recovery",
+        "title": "Read引擎错误：远端MRd失败与本地写失败要分开",
+        "paragraphs": [
+          "Read把远端数据写本地。远端UR/CA、Completion超时属于手册所列Non-fatal来源；Poison与描述符获取错误属于其Fatal来源。无论分类，检测后都进入该通道的Abort处理，不是自动忽略失败包。",
+          "本地目标AXI写错误是关键例外：当前通道上下文可能损坏，已发出的MWr不会回滚，不能用XFERSIZE推算精确成功范围。手册要求从传输起点重启；LL模式仅当前元素的上下文受该错误影响。",
+          "重启是数据正确性决策的一部分：若目标有副作用或应用不是幂等复制，不能照着“从头重启”重复写设备寄存器。先确认目标类型与已提交数据处理策略，软件恢复流程与硬件错误语义分开。"
+        ],
+        "referenceIndices": [
+          34,
+          35,
+          36
+        ]
+      },
+      {
+        "id": "hdma-write-error-recovery",
+        "title": "Write引擎错误：本地源读取失败不会变成远端坏数据包",
+        "paragraphs": [
+          "Write的数据源在本地。源读取收到AXI错误时，内部错误响应被HDMA丢弃，不转换为正常远端MWr；描述符读取错误也使链表任务不能继续按该元素执行。",
+          "这类内部HDMA错误不能只去普通AXI Bridge错误日志或MSG中找；Databook对这些路径明确说Bridge不经该机制向软件报告，应查HDMA通道错误和事件。",
+          "普通远端Posted MWr没有Completion，不能把Write通道DATA_MWR编码简单解释成“远端内存写失败回执”。该编码的文档方向冲突保留在下方差异细则，尚未由生成交付/厂商澄清。"
+        ],
+        "referenceIndices": [
+          37,
+          38,
+          39
+        ]
+      },
+      {
+        "id": "hdma-abort-drain-first-error",
+        "title": "Abort顺序：停止生成、处理在途、保存流中首错",
+        "paragraphs": [
+          "发生错误后，HDMA丢弃相应阶段后续任务和预取描述符，清Doorbell状态，并按顺序处理/丢弃已返回或在途的Completion数据。待本通道在途事务处理完，设置ABORT及ABORTED。",
+          "记录的是传输流顺序上的首个错误，不保证是墙钟时间最早被发现的错误。较早发出的写响应错误可能晚于另一个CplD错误才被发现，但最终现场仍定位前者。",
+          "手册说通常不需要额外Soft Reset，停机后的上下文可指向恢复点；必须同时保留“描述符装载错误上下文无效”和“Read本地写错误上下文损坏”的例外，不能给所有Abort统一续传命令。"
+        ],
+        "referenceIndices": [
+          40,
+          41,
+          42
+        ]
+      },
+      {
+        "id": "hdma-stop-confirmation-sequence",
+        "title": "停止检查顺序：请求、确认、上下文、资源归还",
+        "paragraphs": [
+          "先阻止软件继续提交本通道新任务，再按实际链路/功耗状态选择可用停止机制。Software Stop要求L0；Hard Stop依赖应用接口握手，不是把同一寄存器多写几次。",
+          "提交停止后等待终态与在途处理确认，区分STOPPED与ABORTED。保留残量、上下文、模式和错误现场后，再决定是否清事件、重新排队、回收描述符及解除映射；绝不把Stop写响应作为释放许可。",
+          "FLR不直接替这版HDMA完成停止，须先处理其传输。Link Down时需与外部复位集成配合，不能在链路不可用时继续照L0的软件Stop流程无限等待。",
+          "这是一份职责检查顺序，未指定OS的DMA barrier、缓存同步或超时值；超时应由系统定义并保留失败状态，不生成未经验证的轮询驱动。"
+        ],
+        "referenceIndices": [
+          43,
+          44,
+          45
+        ]
+      },
+      {
+        "id": "hdma-status-error-query",
+        "title": "HDMA状态/错误查询：解码快照，不直接批准释放缓冲",
+        "paragraphs": [
+          "输入STATUS、INT_STATUS（32bit hex），并选择Direct/LL与Read/Write。查询显示状态、三种事件和ERROR编码，区分上下文无效、Read本地写损坏、未知编码、保留bit及互斥冲突。",
+          "这是寄存器快照解释器，不模拟通道执行。ERROR非零但ABORT未置位、RUNNING与旧事件并存等情形给出核对提示，不擅自补成某一次完成。",
+          "查询始终保留“没有足够证据批准释放/重试”的边界。它不执行清状态、Doorbell、内存访问，不把软件输入当成真实硬件已确认。"
+        ],
+        "referenceIndices": [
+          46,
+          47,
+          48,
+          49,
+          50
+        ]
+      },
+      {
+        "id": "hdma-source-discrepancies",
+        "title": "6.50a文档差异清单：偏移、进度、错误与分段",
+        "paragraphs": [
+          "同版本资料也有不一致。下表记录实际核读差异，不自行宣布哪份一定正确；还需生成配置/寄存器模型、勘误或厂商答复确认。对这些点不输出可执行写序列。",
+          "DSP与USP地址块本身也不同：例如DSP CYCLE字段Wire标No access，而USP对应字段Wire标R/W。不要以另一角色的页码或权限代替当前角色；本轮仅对指定字段作比对，不声明全部角色一致。",
+          "R62远端规划器采用13.2.1.3与13.4.2的MPS Supported上限；13.4.7例段却写当前MPS。其结果仍是明确假设下的候选分段，不能作为实际发包预测。"
+        ],
+        "referenceIndices": [
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61
+        ],
+        "table": {
+          "columns": [
+            "条件／字段",
+            "含义",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "Watermark / Abort地址",
+              "Databook p644：98h/A0h对应Abort/Watermark；Reference p20802/20804相反",
+              "不提供这两组的最终写地址"
+            ],
+            [
+              "Watermark LLP含义",
+              "Databook p632偏回收快照描述；Reference p4535说触发中断的描述符地址",
+              "不从指针裸值推整队列实时进度"
+            ],
+            [
+              "Write DATA_MWR",
+              "Reference Write列目标写错误；Databook p665～666 Write错误路径为本地源读/描述符",
+              "需交付核对，不能推远端MWr有Completion"
+            ],
+            [
+              "Read请求上限",
+              "p631/661写MPS Supported；p667示例文字写MPS",
+              "候选规划保留既定假设"
+            ],
+            [
+              "角色权限",
+              "DSP CYCLE p4539 Wire无访问；USP p20774 Wire可读写",
+              "具体访问入口必须按角色核"
+            ]
+          ]
+        }
       }
     ]
   },
