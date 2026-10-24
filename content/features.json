@@ -58860,14 +58860,14 @@
     "checks": "分别检查重放计数、定时器与日志，不能用“没有DMA完成中断”直接推断链路没有ACK。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 97,
-    "status": "已整理 · 待持续深化",
+    "status": "NFM选定可靠性规则已展开 · 初始化待续",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-24",
     "protocolReferences": [
       {
         "section": "3",
@@ -58978,9 +58978,416 @@
         "title": "DLLP通用结构及Ack/Nak字段图",
         "verification": "核读正式版本字段图并原创重绘；NFM CRC与FM DLP承载分开标注，不含PHY帧边界。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.2.1",
+        "page": 288,
+        "pdfPage": 288,
+        "title": "NFM链路可靠性状态：逐跳，不等于事务完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.2.1",
+        "page": 347,
+        "pdfPage": 347,
+        "title": "NFM链路可靠性状态：逐跳，不等于事务完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.2.1",
+        "page": 289,
+        "pdfPage": 289,
+        "title": "发送窗口：准确使用模4096暂停公式",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.2.1",
+        "page": 348,
+        "pdfPage": 348,
+        "title": "发送窗口：准确使用模4096暂停公式",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.2.1",
+        "page": 290,
+        "pdfPage": 290,
+        "title": "包外套：16bit链路前缀＋TLP＋32bit LCRC",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.2.1",
+        "page": 349,
+        "pdfPage": 349,
+        "title": "包外套：16bit链路前缀＋TLP＋32bit LCRC",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.2.1",
+        "page": 293,
+        "pdfPage": 293,
+        "title": "Nullify：主动作废与传输损坏的区别",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.2.1",
+        "page": 352,
+        "pdfPage": 352,
+        "title": "Nullify：主动作废与传输损坏的区别",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.2.1",
+        "page": 293,
+        "pdfPage": 293,
+        "title": "重放触发与顺序：最旧未确认包先发，不重新申请信用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.2.1",
+        "page": 352,
+        "pdfPage": 352,
+        "title": "重放触发与顺序：最旧未确认包先发，不重新申请信用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.2.1",
+        "page": 294,
+        "pdfPage": 294,
+        "title": "重放期间收到ACK/NAK：确认照常处理，已起发的包须发完",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.2.1",
+        "page": 353,
+        "pdfPage": 353,
+        "title": "重放期间收到ACK/NAK：确认照常处理，已起发的包须发完",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.2.1",
+        "page": 293,
+        "pdfPage": 293,
+        "title": "REPLAY_NUM：NFM每次加2，溢出后请求重新训练",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.2.1",
+        "page": 352,
+        "pdfPage": 352,
+        "title": "REPLAY_NUM：NFM每次加2，溢出后请求重新训练",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.2.1",
+        "page": 289,
+        "pdfPage": 289,
+        "title": "REPLAY_TIMER的起停：跟最旧未确认项和确认进展关联",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.2.1",
+        "page": 348,
+        "pdfPage": 348,
+        "title": "REPLAY_TIMER的起停：跟最旧未确认项和确认进展关联",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.2.1",
+        "page": 294,
+        "pdfPage": 294,
+        "title": "NFM简化Replay限值：Extended Synch控制两档",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.2.1",
+        "page": 353,
+        "pdfPage": 353,
+        "title": "NFM简化Replay限值：Extended Synch控制两档",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.2.2",
+        "page": 296,
+        "pdfPage": 296,
+        "title": "接收DLLP：PHY错误、CRC16错误和不支持Type不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.2.2",
+        "page": 355,
+        "pdfPage": 355,
+        "title": "接收DLLP：PHY错误、CRC16错误和不支持Type不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.2.2",
+        "page": 297,
+        "pdfPage": 297,
+        "title": "累计确认窗口：NAK的序号也是最后连续正确接收项",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.2.2",
+        "page": 356,
+        "pdfPage": 356,
+        "title": "累计确认窗口：NAK的序号也是最后连续正确接收项",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.3.1",
+        "page": 301,
+        "pdfPage": 301,
+        "title": "接收序号判定：2048边界属于重复包",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.3.1",
+        "page": 358,
+        "pdfPage": 358,
+        "title": "接收序号判定：2048边界属于重复包",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.3.1",
+        "page": 301,
+        "pdfPage": 301,
+        "title": "接收检查顺序：先PHY与作废/CRC，再做序号",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.3.1",
+        "page": 358,
+        "pdfPage": 358,
+        "title": "接收检查顺序：先PHY与作废/CRC，再做序号",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.3.1",
+        "page": 304,
+        "pdfPage": 304,
+        "title": "ACK调度：计时到期不等于无条件立即上线路",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.3.1",
+        "page": 359,
+        "pdfPage": 359,
+        "title": "ACK调度：计时到期不等于无条件立即上线路",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.3.1",
+        "page": 305,
+        "pdfPage": 305,
+        "title": "ACK最大延迟速查：速率×Rx_MPS_Limit×链路宽度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.3.1",
+        "page": 360,
+        "pdfPage": 360,
+        "title": "ACK最大延迟速查：速率×Rx_MPS_Limit×链路宽度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.3.1",
+        "page": 304,
+        "pdfPage": 304,
+        "title": "ACK最大延迟速查：速率×Rx_MPS_Limit×链路宽度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.3.1",
+        "page": 306,
+        "pdfPage": 306,
+        "title": "Retry Buffer容量：需要覆盖往返和调度延迟",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.3.1",
+        "page": 361,
+        "pdfPage": 361,
+        "title": "Retry Buffer容量：需要覆盖往返和调度延迟",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.3.1",
+        "page": 301,
+        "pdfPage": 301,
+        "title": "接收查询：预期序号、重复/失序与NAK抑制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.3.1",
+        "page": 358,
+        "pdfPage": 358,
+        "title": "接收查询：预期序号、重复/失序与NAK抑制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.6.2.2",
+        "page": 297,
+        "pdfPage": 297,
+        "title": "发送查询：累计释放和NAK重放起点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.6.2.2",
+        "page": 356,
+        "pdfPage": 356,
+        "title": "发送查询：累计释放和NAK重放起点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R59核读6.0/7.0所列NFM正文；核7.0 p356流程与p360表。印刷页与本地PDF物理页一致；选定规则，不代表整章/七代已核全。"
       }
     ],
-    "referenceStatus": "本次已补6.0所引基础规则；其余条款与逐版差异继续核读。",
+    "referenceStatus": "R59核Base6.0/7.0 NFM发送/接收、序号窗口、ACK/NAK、重放与ACK延迟表；早期版本和DL初始化保留缺口。",
     "details": [
       {
         "id": "basics-tlp-is-not-dllp",
@@ -59215,6 +59622,454 @@
             ],
             "note": "这4 byte是DLP中的标准DLLP负载，不是整个6-byte DLP。DLP0～1还有Usage、Replay、序号等；Optimized_Update_FC/Flit_Marker必须按另一分支解析。"
           }
+        ]
+      },
+      {
+        "id": "nfm-hop-state",
+        "title": "NFM链路可靠性状态：逐跳，不等于事务完成",
+        "paragraphs": [
+          "这里的ACK只确认对端链路层已正确接收，不能代替Completion或证明业务写入已经持久化。Switch的每一条链路各有自己的序号、LCRC和Retry Buffer；转发出去的链路会重新形成自己的链路信息。",
+          "DL_Inactive初始化12bit NEXT_TRANSMIT_SEQ=000h、ACKD_SEQ=FFFh，3bit REPLAY_NUM=000b。接收侧NEXT_RCV_SEQ=000h、NAK_SCHEDULED清零、AckNak_LATENCY_TIMER清零。序号按模4096环绕。",
+          "本轮核Base6.0/7.0的Non-Flit Mode（NFM）。FM的完整性和重放在Flit级，不能将本页ACK/NAK DLLP规则移植过去。"
+        ],
+        "referenceIndices": [
+          10,
+          11
+        ]
+      },
+      {
+        "id": "nfm-tx-window",
+        "title": "发送窗口：准确使用模4096暂停公式",
+        "paragraphs": [
+          "当(NEXT_TRANSMIT_SEQ−ACKD_SEQ) mod4096 ≥2048时，发送端停止接受事务层的新TLP，直到该条件不成立。不能用普通大于小于比较FFFh和000h。",
+          "NEXT_TRANSMIT_SEQ是下一待分配序号，ACKD_SEQ是最近已累计确认序号；两者存在一格偏移。若用连续未确认窗口模型，未确认数是模距离减1，而不是模距离本身。复位后的000h与FFFh距离为1，但没有待确认TLP。",
+          "该暂停公式不直接给出Retry Buffer的物理深度、字节容量或任意实现可缓存的所有状态；查询只在一致的连续窗口快照下推导。"
+        ],
+        "referenceIndices": [
+          12,
+          13
+        ]
+      },
+      {
+        "id": "nfm-sequence-lcrc",
+        "title": "包外套：16bit链路前缀＋TLP＋32bit LCRC",
+        "paragraphs": [
+          "NFM在TLP前加16bit：高4bit对支持PMUX的TLP为0000b，其余情形按相应保留定义；低12bit为序号。TLP后附32bit LCRC。这里的链路前缀不是事务层的TLP Prefix。",
+          "LCRC使用多项式04C11DB7h、初始全1；从链路序号前缀byte0 bit0开始，每byte按bit0到bit7处理，包含TLP保留位。正常发送的余数还涉及取反及规定的位映射，不能把一个通用软件CRC整数直接当线上的4byte。",
+          "本页只说明覆盖与顺序，不提供未验证的CRC计算器。所画16bit不含后续TLP和32bit LCRC，也不包含PHY定界开销。"
+        ],
+        "referenceIndices": [
+          14,
+          15
+        ],
+        "packetLayouts": [
+          {
+            "id": "nfm-link-sequence-r59",
+            "title": "NFM链路序号前缀 · 16bit",
+            "version": "Base6.0/7.0 · TLP之前的链路字段",
+            "headerBits": 16,
+            "rows": [
+              [
+                {
+                  "label": "高4bit",
+                  "width": 4,
+                  "key": "upper",
+                  "help": "PMUX支持时TLP为0000；其它情形按保留规则"
+                },
+                {
+                  "label": "Sequence Number",
+                  "width": 12,
+                  "key": "seq",
+                  "help": "12bit，模4096"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "链路前缀",
+                "size": "2 B"
+              },
+              {
+                "label": "TLP",
+                "size": "变长"
+              },
+              {
+                "label": "LCRC",
+                "size": "4 B"
+              }
+            ],
+            "note": "位图只展开前2byte；不是完整TLP Header图。"
+          }
+        ]
+      },
+      {
+        "id": "nfm-nullification",
+        "title": "Nullify：主动作废与传输损坏的区别",
+        "paragraphs": [
+          "发送端作废TLP时使用正常LCRC的逻辑反值，并提供PHY的nullified指示；128b/130b时仍须发送全部DW。被作废TLP不进入Retry Buffer，不使NEXT_TRANSMIT_SEQ递增。",
+          "接收端只有同时满足nullified指示和LCRC反值匹配，才把它作为正常作废丢弃且不报告错误；不能只看PHY指示就无条件忽略CRC。LCRC不匹配仍按Bad TLP处理。",
+          "作废包既不交给事务层，也不能被当成已经收到一个业务TLP来推进接收序号。"
+        ],
+        "referenceIndices": [
+          16,
+          17
+        ]
+      },
+      {
+        "id": "nfm-replay-order",
+        "title": "重放触发与顺序：最旧未确认包先发，不重新申请信用",
+        "paragraphs": [
+          "收到NAK或REPLAY_TIMER到期可触发重放。Retry Buffer为空则结束；否则阻止新的事务层接收，完成当前正在发送的TLP，再从最旧未确认项开始按原顺序重发。",
+          "重放不额外消耗一份新的接收流控资源：原发送时已按流控保证对端资源。不能把同一个重发TLP再次扣作一个新的P/NP/Cpl信用消耗。",
+          "NAK本身不是需要报告的错误；它是恢复协议的一部分。永久链路故障、TLP业务错误与正常NAK恢复应分开诊断。"
+        ],
+        "referenceIndices": [
+          18,
+          19
+        ]
+      },
+      {
+        "id": "nfm-ack-during-replay",
+        "title": "重放期间收到ACK/NAK：确认照常处理，已起发的包须发完",
+        "paragraphs": [
+          "重放期间仍必须处理ACK/NAK。实现可继续原重放计划，也可跳过后来已获确认的TLP；但一个重发TLP一旦开始发送，必须完整发送，不能在半包处撤销。",
+          "连续收到确认时可以将较早确认折叠到较新确认；NAK后若又收到覆盖它的后续ACK，可以由后者取代前者。不能把抓包中每一份NAK机械解释为必定独立重放一遍。",
+          "这里不是所有仲裁和并发事件的完整状态机。下方发送查询只处理非重放中的一致快照，不推演正在发包时的事件竞争。"
+        ],
+        "referenceIndices": [
+          20,
+          21
+        ]
+      },
+      {
+        "id": "nfm-replay-num",
+        "title": "REPLAY_NUM：NFM每次加2，溢出后请求重新训练",
+        "paragraphs": [
+          "NFM发起重放时3bit REPLAY_NUM加2，不是加1。NAK若确认了新TLP，会先重置计数，再按允许的重放行为处理；因此必须结合是否取得确认进展判断。",
+          "计数从110/111回卷到000/001时，端口报告相关错误并请求PHY重新训练，等待训练结果。不能仅按“看见几次NAK”给出所有实现统一的失败次数。",
+          "重新训练本身不要求清掉所有链路状态和Retry Buffer；若Physical LinkUp变为0而进入DL_Inactive，则适用该状态的清理规则。"
+        ],
+        "referenceIndices": [
+          22,
+          23
+        ]
+      },
+      {
+        "id": "nfm-replay-timer",
+        "title": "REPLAY_TIMER的起停：跟最旧未确认项和确认进展关联",
+        "paragraphs": [
+          "首个未确认TLP发送完成后开始计时；新ACK/NAK累计释放未确认TLP时重置计时，剩余未确认项决定是否继续等待。只有重复确认且没有新进展，不能伪装成新的确认进展。",
+          "收到NAK启动重放时，计时需配合重放暂停/重启；第一份重发TLP的最后一个symbol发出时重新开始。超时本身的处理与重复ACK不等价。",
+          "时间测量端点、允许等待当前TLP/DLLP结束和实现内部调度必须分开。下面给的是简化重放计时限值，不是软件从任意日志时间戳相减的保证。"
+        ],
+        "referenceIndices": [
+          24,
+          25
+        ]
+      },
+      {
+        "id": "nfm-replay-limits",
+        "title": "NFM简化Replay限值：Extended Synch控制两档",
+        "paragraphs": [
+          "所核6.0/7.0 NFM简化限值：Extended Synch=0为24000～31000 Symbol Times；=1为80000～100000，均为包含端点且−0%/+0%。不是PCLK拍数，也不是固定纳秒。",
+          "支持16GT/s或更高速率的实现必须在全部NFM速率采用简化限值；仅支持低于16GT/s的实现强烈建议采用，但仍有PCIe3.1限值路径，本轮未核旧版那套计算。",
+          "从最旧未确认TLP相应发送完成端点，或推进最旧项的ACK端点，至重发开始测量，并计入规范允许的当前TLP/DLLP发送等待。Extended Synch修改时限值调整可立即生效或延后到下一次计时重置。",
+          "7.0的FM另转向Replay Schedule Rule 0；不能把这两档NFM表泛化成FM的统一Replay计时规则。"
+        ],
+        "referenceIndices": [
+          26,
+          27
+        ]
+      },
+      {
+        "id": "nfm-dllp-integrity",
+        "title": "接收DLLP：PHY错误、CRC16错误和不支持Type不同",
+        "paragraphs": [
+          "PHY报告接收错误时丢弃DLLP，错误由PHY负责报告；CRC16校验失败时丢弃并报告Bad DLLP。",
+          "CRC正确但DLLP Type编码不支持时丢弃，不作为错误；保留位非零被忽略。接收端仍须按到达速率处理DLLP，不能因“不支持”而阻塞整条处理通路。",
+          "NOP被丢弃，流控DLLP交事务层，电源管理DLLP交对应逻辑；ACK/NAK进入下面的序号窗口处理。查询假定已经通过这里的完整性检查。"
+        ],
+        "referenceIndices": [
+          28,
+          29
+        ]
+      },
+      {
+        "id": "nfm-cumulative-ack",
+        "title": "累计确认窗口：NAK的序号也是最后连续正确接收项",
+        "paragraphs": [
+          "ACK/NAK中的AckNak_Seq_Num必须对应Retry Buffer中的未确认TLP，或等于当前ACKD_SEQ；否则丢弃并报告Data Link Protocol Error。缓冲区为空时，等于ACKD_SEQ仍合法，包括复位后首次发包之前。",
+          "确认新TLP时，释放从最旧项直到该序号（含该项）的全部条目，更新ACKD_SEQ，并重置REPLAY_NUM和REPLAY_TIMER。NAK随后启动对剩余条目的重放。",
+          "例如未确认FFFh、000h、001h，NAK=000h表示前两项已连续正确收到，重放从001h开始；不是重发000h，也不是说000h是坏包。"
+        ],
+        "referenceIndices": [
+          30,
+          31
+        ]
+      },
+      {
+        "id": "nfm-rx-sequence",
+        "title": "接收序号判定：2048边界属于重复包",
+        "paragraphs": [
+          "通过PHY、nullify和LCRC检查后，先比较收到序号与NEXT_RCV_SEQ。相等才剥去链路前缀/LCRC并交事务层，接着NEXT_RCV_SEQ加1并清NAK_SCHEDULED。",
+          "不相等时计算d=(NEXT_RCV_SEQ−ReceivedSeq) mod4096。d≤2048为重复：丢弃并安排ACK；d>2048为失序：丢弃，在NAK_SCHEDULED未置位时安排NAK、置位并报告Bad TLP。",
+          "已置NAK_SCHEDULED的后续失序包不重复安排NAK；这时进一步报告Bad TLP是可选但不推荐。重复包不再次交事务层，也不再次计作新的流控接收消耗。"
+        ],
+        "referenceIndices": [
+          32,
+          33
+        ]
+      },
+      {
+        "id": "nfm-rx-check-order",
+        "title": "接收检查顺序：先PHY与作废/CRC，再做序号",
+        "paragraphs": [
+          "若正在接收TLP时发生PHY错误，则丢弃；NAK_SCHEDULED未置位时立即安排NAK并置位。该PHY错误不由链路层再次变成Bad TLP。",
+          "合法nullified包无错误丢弃；非法作废CRC或正常TLP的坏LCRC则丢弃并报告Bad TLP，NAK只在标志原先清零时安排。不能因为坏CRC包的序号看似正确而交事务层。",
+          "只有完成上述检查才判序号。因此一个有效作废包即使带着不等于预期的序号，也不进入普通失序分支。接收查询按这个先后顺序给出结果。"
+        ],
+        "referenceIndices": [
+          34,
+          35
+        ]
+      },
+      {
+        "id": "nfm-ack-scheduling",
+        "title": "ACK调度：计时到期不等于无条件立即上线路",
+        "paragraphs": [
+          "AckNak_Seq_Num统一为NEXT_RCV_SEQ−1（模4096）。安排ACK或NAK时重启AckNak_LATENCY_TIMER；收到首个尚未确认、且真正交事务层的TLP才启动相关等待，全部接收TLP已确认后清零。",
+          "最晚发送ACK条件同时包括DL_Active、存在已交事务层但未确认的TLP、达到Ack延迟限值、反向链路L0、无正在发送的其它TLP/DLLP、NAK_SCHEDULED清零。ACK也允许更早发送。",
+          "端口测量从收到TLP最后symbol到ACK首symbol；允许考虑正在发送的包和L0s退出所引入的等待。多Function的Rx_MPS_Limit不同，强烈建议使用最小者。不能把ACK延迟表当任意负载下软件可见的固定响应时间。"
+        ],
+        "referenceIndices": [
+          36,
+          37
+        ]
+      },
+      {
+        "id": "nfm-ack-latency-tables",
+        "title": "ACK最大延迟速查：速率×Rx_MPS_Limit×链路宽度",
+        "paragraphs": [
+          "单位全部为Symbol Times；Rx_MPS_Limit单位byte。列为实际链路工作宽度x1/x2/x4/x8/x16。不能把MPS、MRRS、Retry Buffer深度和Rx_MPS_Limit混成一个概念。",
+          "Base6.0表3-9/3-10/3-11（p304～305）与Base7.0表3-10/3-11/3-12（p360）的所列值一致。2.5和5.0GT/s表明确−0%/+0%；不套用LTSSM常见的其它容差。8GT/s及以上这一行限定本节NFM适用范围。",
+          "以下是按三维参数整理的数值速查；计时端点及允许的发送等待仍须结合上一个知识块理解。未列出的链宽不在本轮自行插值。"
+        ],
+        "referenceIndices": [
+          38,
+          39,
+          40
+        ],
+        "table": {
+          "columns": [
+            "工作速率",
+            "Rx_MPS_Limit(B)",
+            "x1",
+            "x2",
+            "x4",
+            "x8",
+            "x16"
+          ],
+          "rows": [
+            [
+              "2.5 GT/s",
+              "128",
+              "237",
+              "128",
+              "73",
+              "67",
+              "48"
+            ],
+            [
+              "2.5 GT/s",
+              "256",
+              "416",
+              "217",
+              "118",
+              "107",
+              "72"
+            ],
+            [
+              "2.5 GT/s",
+              "512",
+              "559",
+              "289",
+              "154",
+              "86",
+              "86"
+            ],
+            [
+              "2.5 GT/s",
+              "1024",
+              "1071",
+              "545",
+              "282",
+              "150",
+              "150"
+            ],
+            [
+              "2.5 GT/s",
+              "2048",
+              "2095",
+              "1057",
+              "538",
+              "278",
+              "278"
+            ],
+            [
+              "2.5 GT/s",
+              "4096",
+              "4143",
+              "2081",
+              "1050",
+              "534",
+              "534"
+            ],
+            [
+              "5.0 GT/s",
+              "128",
+              "288",
+              "179",
+              "124",
+              "118",
+              "99"
+            ],
+            [
+              "5.0 GT/s",
+              "256",
+              "467",
+              "268",
+              "169",
+              "158",
+              "123"
+            ],
+            [
+              "5.0 GT/s",
+              "512",
+              "610",
+              "340",
+              "205",
+              "137",
+              "137"
+            ],
+            [
+              "5.0 GT/s",
+              "1024",
+              "1122",
+              "596",
+              "333",
+              "201",
+              "201"
+            ],
+            [
+              "5.0 GT/s",
+              "2048",
+              "2146",
+              "1108",
+              "589",
+              "329",
+              "329"
+            ],
+            [
+              "5.0 GT/s",
+              "4096",
+              "4194",
+              "2132",
+              "1101",
+              "585",
+              "585"
+            ],
+            [
+              "8.0 GT/s及以上（NFM）",
+              "128",
+              "333",
+              "224",
+              "169",
+              "163",
+              "144"
+            ],
+            [
+              "8.0 GT/s及以上（NFM）",
+              "256",
+              "512",
+              "313",
+              "214",
+              "203",
+              "168"
+            ],
+            [
+              "8.0 GT/s及以上（NFM）",
+              "512",
+              "655",
+              "385",
+              "250",
+              "182",
+              "182"
+            ],
+            [
+              "8.0 GT/s及以上（NFM）",
+              "1024",
+              "1167",
+              "641",
+              "378",
+              "246",
+              "246"
+            ],
+            [
+              "8.0 GT/s及以上（NFM）",
+              "2048",
+              "2191",
+              "1153",
+              "634",
+              "374",
+              "374"
+            ],
+            [
+              "8.0 GT/s及以上（NFM）",
+              "4096",
+              "4239",
+              "2177",
+              "1146",
+              "630",
+              "630"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "nfm-retry-buffer-sizing",
+        "title": "Retry Buffer容量：需要覆盖往返和调度延迟",
+        "paragraphs": [
+          "容量设计要计入ACK延迟、反向链路正在发送的包、互连/处理延迟、Retimer/SRIS以及L0s退出影响。仅以最大TLP长度乘一个拍脑袋包数，无法保证连续满速。",
+          "本段是规范的实现说明，不是统一强制字节深度。协议的序号窗口、实现存储空间和想达到的吞吐率是三种约束。",
+          "排查吞吐下降时，可以区分信用不足、Retry Buffer等待确认、重放风暴和业务层等待Completion；四者都可能停发，原因却不同。"
+        ],
+        "referenceIndices": [
+          41,
+          42
+        ]
+      },
+      {
+        "id": "nfm-rx-sequence-query",
+        "title": "接收查询：预期序号、重复/失序与NAK抑制",
+        "paragraphs": [
+          "输入12bit十六进制序号、PHY错误、nullified、CRC关系和NAK_SCHEDULED，按规范检查顺序解释该快照。CRC关系是用户提供的前置结果，不在工具里计算LCRC。",
+          "只模拟NFM接收判定；不模拟全部PHY波形、仲裁、定时器或事务层。显示“安排ACK/NAK”不承诺它在当前时刻已实际发到线上。"
+        ],
+        "referenceIndices": [
+          43,
+          44
+        ]
+      },
+      {
+        "id": "nfm-tx-ack-window-query",
+        "title": "发送查询：累计释放和NAK重放起点",
+        "paragraphs": [
+          "输入NEXT_TRANSMIT_SEQ、ACKD_SEQ与确认序号（hex），在连续未确认窗口快照中检查ACK/NAK。模距离1～2048才进入本模型；其它快照要求进一步核对，不自行宣称硬件有错。",
+          "本工具假定DLLP完整性已通过、当前没有正在进行的重放事件竞争。不模拟缓存中断、整套重放FSM或唯一错误优先级；输出的条目数不是物理缓存容量。"
+        ],
+        "referenceIndices": [
+          45,
+          46
         ]
       }
     ]

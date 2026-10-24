@@ -1,9 +1,15 @@
 {
   "nextFeatureIds": [
-    170,
-    4,
-    36,
-    17
+    141,
+    111,
+    52,
+    53,
+    54,
+    55,
+    56,
+    143,
+    146,
+    147
   ],
   "perRunTarget": "每轮围绕2～3个完整主题补缺口，按证据与复核成本控制范围；不机械递增细节条数，优先可发布、可复查。",
   "priorities": [
@@ -21,7 +27,8 @@
     "区分协议要求、产品能力与运行状态",
     "不发布商业手册原文、RTL或本地绝对路径",
     "构建与检查通过后再提交",
-    "每轮记录实际变更和仍未解决的问题"
+    "每轮记录实际变更和仍未解决的问题",
+    "按用户确认的priorityPlan推进；每4个实质常规轮次做一次阶段总结，累计计数并说明下一优先级。"
   ],
   "dailyWorkflow": [
     "先自查并记录发现的问题和未解决事项",
@@ -48,12 +55,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-24",
-    "edition": "2026-10-24-r58",
+    "edition": "2026-10-24-r59",
     "featureIds": [
-      34,
-      35
+      97
     ],
-    "nextTrack": "回PHY队列；保留全代际Prefix历史、A/B/C完整字段、PASID权限/启用的完整跨版核读。"
+    "nextTrack": "先DL_Feature/InitFC，再中断，再AXI/iATU/DMA；穿插PHY与代际。"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -201,5 +207,64 @@
     ],
     "scope": "PIPE逐信号专项；不运行常规轮次，不旋转原队列",
     "remaining": "旧修订全文逐版对照与当前表文冲突的正式勘误待核。"
+  },
+  "priorityPlan": [
+    {
+      "id": "link-reliability-init",
+      "title": "1. 传统NFM重放与链路层初始化",
+      "status": "进行中",
+      "featureIds": [
+        97,
+        141,
+        111
+      ],
+      "remaining": "R59已展开NFM发送/接收；下一步DL_Feature、InitFC、早期版本对照。"
+    },
+    {
+      "id": "interrupts",
+      "title": "2. INTx / MSI / MSI-X完整通路",
+      "status": "待推进",
+      "featureIds": [
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "remaining": "寄存器、屏蔽/待决、消息形成、软件配置和版本边界。"
+    },
+    {
+      "id": "axi-atu-dma",
+      "title": "3. AXI → iATU → TLP → DMA",
+      "status": "待推进",
+      "featureIds": [
+        143,
+        146,
+        147,
+        148
+      ],
+      "remaining": "整合既有接口报告，展开地址转换、读写返回和控制路径。"
+    },
+    {
+      "id": "cross-track",
+      "title": "4. 穿插L0p、DOE/TDISP、早期代际及PHY",
+      "status": "持续穿插",
+      "featureIds": [
+        15,
+        127,
+        129,
+        3,
+        170
+      ],
+      "remaining": "避免单一功能家族长期占用；按已有正式资料补机制和版本。"
+    }
+  ],
+  "reviewCadence": {
+    "intervalRounds": 4,
+    "baselineEdition": "2026-10-24-r58",
+    "completedSinceReview": 1,
+    "nextReviewAfterRounds": 3,
+    "firstExpectedReview": "R62（按实际完成4轮计算）",
+    "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。"
   }
 }
