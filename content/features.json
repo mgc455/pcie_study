@@ -32432,14 +32432,14 @@
     "checks": "检查前缀支持、丢弃/转发策略与应用处理；控制器支持Prefix不代表HDMA支持PASID Prefix。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
     "id": 34,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-24",
     "protocolReferences": [
       {
         "section": "2.2.10",
@@ -32462,9 +32462,756 @@
         "pdfPage": 199,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.1",
+        "page": 199,
+        "pdfPage": 199,
+        "title": "NFM Prefix的32bit组成：Fmt=100b，Type[4]区分Local与End-End",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.1",
+        "page": 248,
+        "pdfPage": 248,
+        "title": "NFM Prefix的32bit组成：Fmt=100b，Type[4]区分Local与End-End",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.1",
+        "page": 199,
+        "pdfPage": 199,
+        "title": "Prefix链的顺序与依附关系：先Local，再End-End，最后必须有TLP Header",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.1",
+        "page": 248,
+        "pdfPage": 248,
+        "title": "Prefix链的顺序与依附关系：先Local，再End-End，最后必须有TLP Header",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.20.2.1",
+        "page": 792,
+        "pdfPage": 792,
+        "title": "Prefix链的顺序与依附关系：先Local，再End-End，最后必须有TLP Header",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.20.2.1",
+        "page": 904,
+        "pdfPage": 904,
+        "title": "Prefix链的顺序与依附关系：先Local，再End-End，最后必须有TLP Header",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.2",
+        "page": 200,
+        "pdfPage": 200,
+        "title": "子类型表与数量：最多4个只针对End-End，不是全部Local+End-End合计",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.2",
+        "page": 249,
+        "pdfPage": 249,
+        "title": "子类型表与数量：最多4个只针对End-End，不是全部Local+End-End合计",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.3",
+        "page": 201,
+        "pdfPage": 201,
+        "title": "子类型表与数量：最多4个只针对End-End，不是全部Local+End-End合计",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.3",
+        "page": 250,
+        "pdfPage": 250,
+        "title": "子类型表与数量：最多4个只针对End-End，不是全部Local+End-End合计",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.4",
+        "page": 201,
+        "pdfPage": 201,
+        "title": "子类型表与数量：最多4个只针对End-End，不是全部Local+End-End合计",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.4",
+        "page": 250,
+        "pdfPage": 250,
+        "title": "子类型表与数量：最多4个只针对End-End，不是全部Local+End-End合计",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.4",
+        "page": 202,
+        "pdfPage": 202,
+        "title": "接收端数量上限与不支持类型：Root Port和其它Function不能一概而论",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.4",
+        "page": 251,
+        "pdfPage": 251,
+        "title": "接收端数量上限与不支持类型：Root Port和其它Function不能一概而论",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.4",
+        "page": 201,
+        "pdfPage": 201,
+        "title": "Egress Blocking：丢弃整个TLP；NP请求另回UR Completion",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.4",
+        "page": 250,
+        "pdfPage": 250,
+        "title": "Egress Blocking：丢弃整个TLP；NP请求另回UR Completion",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.4",
+        "page": 202,
+        "pdfPage": 202,
+        "title": "Egress Blocking：丢弃整个TLP；NP请求另回UR Completion",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.4",
+        "page": 251,
+        "pdfPage": 251,
+        "title": "Egress Blocking：丢弃整个TLP；NP请求另回UR Completion",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.4.2",
+        "page": 203,
+        "pdfPage": 203,
+        "title": "Egress Blocking：丢弃整个TLP；NP请求另回UR Completion",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.4.2",
+        "page": 252,
+        "pdfPage": 252,
+        "title": "Egress Blocking：丢弃整个TLP；NP请求另回UR Completion",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.2",
+        "page": 200,
+        "pdfPage": 200,
+        "title": "ECRC覆盖与厂商启用：Local、End-End、NFM/FM边界分别说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.2",
+        "page": 249,
+        "pdfPage": 249,
+        "title": "ECRC覆盖与厂商启用：Local、End-End、NFM/FM边界分别说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.2.1",
+        "page": 200,
+        "pdfPage": 200,
+        "title": "ECRC覆盖与厂商启用：Local、End-End、NFM/FM边界分别说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.2.1",
+        "page": 249,
+        "pdfPage": 249,
+        "title": "ECRC覆盖与厂商启用：Local、End-End、NFM/FM边界分别说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.4",
+        "page": 202,
+        "pdfPage": 202,
+        "title": "ECRC覆盖与厂商启用：Local、End-End、NFM/FM边界分别说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.4",
+        "page": 251,
+        "pdfPage": 251,
+        "title": "ECRC覆盖与厂商启用：Local、End-End、NFM/FM边界分别说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.4.1",
+        "page": 203,
+        "pdfPage": 203,
+        "title": "ECRC覆盖与厂商启用：Local、End-End、NFM/FM边界分别说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.4.1",
+        "page": 252,
+        "pdfPage": 252,
+        "title": "ECRC覆盖与厂商启用：Local、End-End、NFM/FM边界分别说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.20.2.1",
+        "page": 792,
+        "pdfPage": 792,
+        "title": "PASID Prefix逐bit图：91h、PMR/ER与20bit PASID",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.20.2.1",
+        "page": 905,
+        "pdfPage": 905,
+        "title": "PASID Prefix逐bit图：91h、PMR/ER与20bit PASID",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.20.2.2",
+        "page": 793,
+        "pdfPage": 793,
+        "title": "PASID Prefix逐bit图：91h、PMR/ER与20bit PASID",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.20.2.2",
+        "page": 905,
+        "pdfPage": 905,
+        "title": "PASID Prefix逐bit图：91h、PMR/ER与20bit PASID",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.20.2.1",
+        "page": 792,
+        "pdfPage": 792,
+        "title": "PASID到FM不搬进OHC-E：A1/A4与PV才是相应表示",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.20.2.1",
+        "page": 904,
+        "pdfPage": 904,
+        "title": "PASID到FM不搬进OHC-E：A1/A4与PV才是相应表示",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.1.2",
+        "page": 132,
+        "pdfPage": 132,
+        "title": "PASID到FM不搬进OHC-E：A1/A4与PV才是相应表示",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.1.2",
+        "page": 173,
+        "pdfPage": 173,
+        "title": "PASID到FM不搬进OHC-E：A1/A4与PV才是相应表示",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.1.2",
+        "page": 174,
+        "pdfPage": 174,
+        "title": "PASID到FM不搬进OHC-E：A1/A4与PV才是相应表示",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.11",
+        "page": 204,
+        "pdfPage": 204,
+        "title": "PASID到FM不搬进OHC-E：A1/A4与PV才是相应表示",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.11",
+        "page": 253,
+        "pdfPage": 253,
+        "title": "PASID到FM不搬进OHC-E：A1/A4与PV才是相应表示",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.1",
+        "page": 199,
+        "pdfPage": 199,
+        "title": "结构查询：Local/End-End顺序、Header存在性和PASID重复",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.1",
+        "page": 248,
+        "pdfPage": 248,
+        "title": "结构查询：Local/End-End顺序、Header存在性和PASID重复",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.3",
+        "page": 201,
+        "pdfPage": 201,
+        "title": "结构查询：Local/End-End顺序、Header存在性和PASID重复",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.3",
+        "page": 250,
+        "pdfPage": 250,
+        "title": "结构查询：Local/End-End顺序、Header存在性和PASID重复",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.4",
+        "page": 201,
+        "pdfPage": 201,
+        "title": "结构查询：Local/End-End顺序、Header存在性和PASID重复",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.4",
+        "page": 250,
+        "pdfPage": 250,
+        "title": "结构查询：Local/End-End顺序、Header存在性和PASID重复",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.20.2.1",
+        "page": 792,
+        "pdfPage": 792,
+        "title": "结构查询：Local/End-End顺序、Header存在性和PASID重复",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.20.2.1",
+        "page": 904,
+        "pdfPage": 904,
+        "title": "结构查询：Local/End-End顺序、Header存在性和PASID重复",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "R58核Base6.0/7.0 Prefix、PASID和OHC-E所列正文与关键位图；保留全代际、完整OHC族及ECN缺口。",
+    "details": [
+      {
+        "id": "prefix-nfm-first-byte",
+        "title": "NFM Prefix的32bit组成：Fmt=100b，Type[4]区分Local与End-End",
+        "paragraphs": [
+          "NFM每个Prefix为1DW，即32bit。Prefix byte0[7:5]的Fmt=100b；byte0 bit4是Type[4]，0表示Local、1表示End-End；byte0[3:0]选择该家族的子类型。其后3byte的含义由子类型定义，不是统一地址字段。",
+          "因此byte0=8Eh属于Local厂商类型，9Eh属于End-End厂商类型，91h是PASID Prefix。这里只把byte0按规范位域读出；不能将整个DWORD先按主机小端整数翻转后，再把错误的byte当Fmt。"
+        ],
+        "referenceIndices": [
+          2,
+          3
+        ]
+      },
+      {
+        "id": "prefix-chain-order-and-underlying-header",
+        "title": "Prefix链的顺序与依附关系：先Local，再End-End，最后必须有TLP Header",
+        "paragraphs": [
+          "当两类Prefix同时存在，全部Local必须排在全部End-End之前；End-End之后又出现Local属于Malformed TLP。Prefix序列不能取代基础TLP Header，只有Prefix而无其下TLP Header也属于Malformed。",
+          "每项1DW不意味着任意多个Prefix一定可发。通用规则允许重复类型，但子类型可有更严限制；例如PASID至多出现一份。图中的附加字节数只算Prefix，不是完整TLP长度。"
+        ],
+        "referenceIndices": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "id": "prefix-type-and-count-table",
+        "title": "子类型表与数量：最多4个只针对End-End，不是全部Local+End-End合计",
+        "paragraphs": [
+          "所核Base6.0/7.0的Local子类型为MR-IOV=0h、FlitModePrefix=Dh、VendPrefixL0=Eh、VendPrefixL1=Fh；其余保留。End-End子类型为TPH=0h、PASID=1h、IDE=2h、VendPrefixE0=Eh、VendPrefixE1=Fh；其余保留。",
+          "一笔TLP的End-End Prefix最多4份，支持Prefix的接收端必须检查此上限。Local的尺寸、路由与流控规则由具体类型定义，不能把4份上限直接变成所有Prefix总数的统一限制。",
+          "FlitModePrefix虽列在Local类型表里，却仅允许用于FM TLP。把它附到NFM TLP违反适用模式，MUST@FLIT接收端要按Malformed处理；不能因为它的首byte仍是8Dh就当成NFM通用扩展。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "table": {
+          "columns": [
+            "字段／条件",
+            "规则与作用",
+            "边界"
+          ],
+          "rows": [
+            [
+              "Local · L=0/D/E/F",
+              "MR-IOV / FlitModePrefix / 两种厂商Local",
+              "D仅FM；不是NFM合法用途"
+            ],
+            [
+              "End-End · E=0/1/2/E/F",
+              "TPH / PASID / IDE / 两种厂商End-End",
+              "最多4份；PASID至多1份"
+            ],
+            [
+              "其它子类型",
+              "保留",
+              "不由名字猜测用途"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "prefix-receiver-capacity-and-role",
+        "title": "接收端数量上限与不支持类型：Root Port和其它Function不能一概而论",
+        "paragraphs": [
+          "设备通过Device Capabilities 2的Max End-End TLP Prefixes表达可接收数量。Root Port允许广告少于硬件实际实现的数量，但错误处理仍按所广告值，而不是抓包者猜测的内部容量。",
+          "超过Root Port所支持数量时，Request建议按UR处理，否则必须Malformed；Completion建议按Unexpected Completion，否则必须Malformed。其它Function超过其支持数量必须Malformed。通用超过4份的结构错误与低于4份但超过接收能力要分开检查，不能合并成唯一错误优先级。",
+          "Receiver完全不支持End-End Prefix，与支持这个家族却不支持某个子类型也不同。对支持该家族的Upstream Port适用规则，目标Request的不支持类型按UR、目标Completion按Unexpected处理；本页不把它扩大成所有未知Prefix都可安全跳过。"
+        ],
+        "referenceIndices": [
+          14,
+          15
+        ]
+      },
+      {
+        "id": "prefix-egress-block-and-routing",
+        "title": "Egress Blocking：丢弃整个TLP；NP请求另回UR Completion",
+        "paragraphs": [
+          "路由元件每个Egress Port的End-End TLP Prefix Blocking决定是否允许含End-End Prefix的TLP从该出口发出。阻止时丢弃整个TLP，并报告关联Egress的TLP Prefix Blocked；若被阻止的是Non-Posted Request，还须返回UR Completion。",
+          "Prefix本身不改变其下TLP的路由方式。两个Root Port都声明End-End支持，也不保证RC任意端口对之间都支持带Prefix的P2P；不支持端口对的Request按UR、Completion按Unexpected，由发送端口报告。",
+          "支持该家族的Switch须支持最多4份End-End Prefix的转发。RC拆分P2P TLP时，必须在每份较小TLP复制原End-End Prefix；这不是允许Switch随意修改业务事务。"
+        ],
+        "referenceIndices": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ]
+      },
+      {
+        "id": "prefix-ecrc-and-vendor-enables",
+        "title": "ECRC覆盖与厂商启用：Local、End-End、NFM/FM边界分别说明",
+        "paragraphs": [
+          "即便其下TLP有ECRC，Local Prefix也不受该ECRC保护；End-End Prefix则在其下TLP受ECRC保护时一并受保护。这一条不能被简化成“所有前缀都不参与CRC”或“所有前缀都参与”。",
+          "厂商Local/End-End Prefix均须经厂商特定机制显式启用才可发送。厂商Local的支持还要求支持3bit Fmt并置Extended Fmt Field Supported；两种厂商编码可配置使用属于规范推荐，不等于每台设备都必须支持一个统一配置寄存器。",
+          "本条是NFM Prefix契约，不直接推出FM中任意Trailer/IDE组合的ECRC覆盖；这些需查对应模式定义。"
+        ],
+        "referenceIndices": [
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ]
+      },
+      {
+        "id": "pasid-prefix-bit-layout",
+        "title": "PASID Prefix逐bit图：91h、PMR/ER与20bit PASID",
+        "paragraphs": [
+          "NFM PASID Prefix固定4byte。byte0=91h；byte1 bit7为Privileged Mode Requested，bit6为Execute Requested，bit5:4保留，bit3:0为PASID[19:16]；byte2为PASID[15:8]，byte3为PASID[7:0]。",
+          "20bit宽度不表示每台Endpoint支持全部PASID；实际范围受Max PASID Width约束，使用也受PASID Enable及具体请求类型权限规则约束。PMR/ER描述请求语义，不能仅看到置位就宣称IOMMU已经授权。",
+          "一笔TLP至多一份PASID Prefix。PASID=0是一个20bit数值，不是NFM该Prefix中一个名为PV的无效标志；PV属于FM的相应OHC表示。"
+        ],
+        "referenceIndices": [
+          30,
+          31,
+          32,
+          33
+        ],
+        "packetLayouts": [
+          {
+            "id": "nfm-pasid-prefix-r58",
+            "title": "NFM PASID Prefix · 32bit",
+            "version": "Base6.0/7.0 · Prefix自身byte0～3",
+            "headerBits": 32,
+            "rows": [
+              [
+                {
+                  "label": "Fmt=100",
+                  "width": 3,
+                  "key": "fmt",
+                  "help": "byte0[7:5]"
+                },
+                {
+                  "label": "E=1",
+                  "width": 1,
+                  "key": "ee",
+                  "help": "byte0 bit4，End-End"
+                },
+                {
+                  "label": "PASID Type=1",
+                  "width": 4,
+                  "key": "type",
+                  "help": "byte0[3:0]，组合首byte91h"
+                },
+                {
+                  "label": "PMR",
+                  "width": 1,
+                  "key": "pmr",
+                  "help": "byte1 bit7"
+                },
+                {
+                  "label": "ER",
+                  "width": 1,
+                  "key": "er",
+                  "help": "byte1 bit6"
+                },
+                {
+                  "label": "R",
+                  "width": 2,
+                  "key": "r",
+                  "help": "byte1[5:4]"
+                },
+                {
+                  "label": "PASID[19:0]",
+                  "width": 20,
+                  "key": "pasid",
+                  "help": "byte1[3:0]＋byte2＋byte3"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "PASID Prefix",
+                "size": "1 DW / 4 B"
+              }
+            ],
+            "note": "仅Prefix，不含其下TLP Header、数据或链路开销；图按byte递增、byte内bit7→0。"
+          }
+        ]
+      },
+      {
+        "id": "pasid-moves-to-ohc-not-ohce",
+        "title": "PASID到FM不搬进OHC-E：A1/A4与PV才是相应表示",
+        "paragraphs": [
+          "6.20的NFM用PASID Prefix，FM用OHC-A中的PASID字段。Base6.0信息布局概述只提A1，但同版2.2.1.2的A4表和正文也列ID Routed Message的PASID；Base7.0概述明确写A1或A4，不能只抄旧概述就删掉6.0 A4的存在。",
+          "OHC-A1的PV清零时ER/PMR保留；Base7.0还明确PASID字段在PV=0时保留，A1 ER/PMR仅对Translation/Page Requests适用。Base7.0 A4的PASID在PV=0时也保留，不能沿用6.0中A4出现的PMR描述而不标版本。",
+          "OHC-E承载原End-End子类型3h～Fh范围，不承载PASID子类型1h。Prefix数、OHC-E DW数、PASID有效性和翻译/权限支持是不同层面的观察项。"
+        ],
+        "referenceIndices": [
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40
+        ]
+      },
+      {
+        "id": "prefix-sequence-query",
+        "title": "结构查询：Local/End-End顺序、Header存在性和PASID重复",
+        "paragraphs": [
+          "输入从前往后的Prefix首byte列表，选择是否确有其下TLP Header；工具标出类型、局部/端到端序列、End-End计数和PASID重复。最多16项是输入窗口限制，不是规范的Local数量上限。",
+          "查询不判断全部类型支持、设备广告能力、厂商启用、地址路由、CRC、权限或多错误优先级；没有发现所列结构冲突不表示整个包合规。8Dh仅标出FM专用，相关MUST@FLIT错误责任以能力边界读正文。"
+        ],
+        "referenceIndices": [
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48
+        ]
+      }
+    ]
   },
   {
     "name": "Gen6 OHC（Orthogonal Header Content）",
@@ -32476,14 +33223,14 @@
     "checks": "核对模式、头长度与字段有效性；旧版抓包脚本可能把OHC错误解释成Payload。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
     "id": 35,
-    "status": "已整理 · 待持续深化",
+    "status": "选定规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-24",
     "protocolReferences": [
       {
         "section": "2.2",
@@ -32495,9 +33242,489 @@
         "pdfPage": 119,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.1.2",
+        "page": 131,
+        "pdfPage": 131,
+        "title": "OHC存在位与排列：A/B/C独立，E长度是2bit编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.1.2",
+        "page": 172,
+        "pdfPage": 172,
+        "title": "OHC存在位与排列：A/B/C独立，E长度是2bit编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.1.2",
+        "page": 132,
+        "pdfPage": 132,
+        "title": "OHC存在位与排列：A/B/C独立，E长度是2bit编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.1.2",
+        "page": 173,
+        "pdfPage": 173,
+        "title": "OHC存在位与排列：A/B/C独立，E长度是2bit编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.1.2",
+        "page": 131,
+        "pdfPage": 131,
+        "title": "有些OHC必须存在：缺失的Request是UR，Completion是Unexpected",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.1.2",
+        "page": 172,
+        "pdfPage": 172,
+        "title": "有些OHC必须存在：缺失的Request是UR，Completion是Unexpected",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.1.2",
+        "page": 132,
+        "pdfPage": 132,
+        "title": "有些OHC必须存在：缺失的Request是UR，Completion是Unexpected",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.1.2",
+        "page": 173,
+        "pdfPage": 173,
+        "title": "有些OHC必须存在：缺失的Request是UR，Completion是Unexpected",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.1.2",
+        "page": 174,
+        "pdfPage": 174,
+        "title": "有些OHC必须存在：缺失的Request是UR，Completion是Unexpected",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.11",
+        "page": 253,
+        "pdfPage": 253,
+        "title": "OHC-E每DW逐bit：格式半byte与End-End子类型不能当原91h Prefix",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.4",
+        "page": 201,
+        "pdfPage": 201,
+        "title": "OHC-E每DW逐bit：格式半byte与End-End子类型不能当原91h Prefix",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.4",
+        "page": 250,
+        "pdfPage": 250,
+        "title": "OHC-E每DW逐bit：格式半byte与End-End子类型不能当原91h Prefix",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.11",
+        "page": 204,
+        "pdfPage": 204,
+        "title": "E1/E2/E4如何选：3项用E4，空项只能在末尾",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.11",
+        "page": 253,
+        "pdfPage": 253,
+        "title": "E1/E2/E4如何选：3项用E4，空项只能在末尾",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.11",
+        "page": 253,
+        "pdfPage": 253,
+        "title": "Base7.0不支持OHC-E的转发分支：按PR/NPR/CPL，不一律回UR",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.11",
+        "page": 254,
+        "pdfPage": 254,
+        "title": "Base7.0不支持OHC-E的转发分支：按PR/NPR/CPL，不一律回UR",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.10.1",
+        "page": 199,
+        "pdfPage": 199,
+        "title": "6.0/7.0对照：稳定布局与新增明确文字分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.10.1",
+        "page": 248,
+        "pdfPage": 248,
+        "title": "6.0/7.0对照：稳定布局与新增明确文字分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.11",
+        "page": 204,
+        "pdfPage": 204,
+        "title": "6.0/7.0对照：稳定布局与新增明确文字分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.11",
+        "page": 253,
+        "pdfPage": 253,
+        "title": "6.0/7.0对照：稳定布局与新增明确文字分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.11",
+        "page": 254,
+        "pdfPage": 254,
+        "title": "6.0/7.0对照：稳定布局与新增明确文字分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.20.2.1",
+        "page": 792,
+        "pdfPage": 792,
+        "title": "6.0/7.0对照：稳定布局与新增明确文字分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.20.2.1",
+        "page": 905,
+        "pdfPage": 905,
+        "title": "6.0/7.0对照：稳定布局与新增明确文字分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.1.2",
+        "page": 132,
+        "pdfPage": 132,
+        "title": "6.0/7.0对照：稳定布局与新增明确文字分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.1.2",
+        "page": 174,
+        "pdfPage": 174,
+        "title": "6.0/7.0对照：稳定布局与新增明确文字分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.11",
+        "page": 253,
+        "pdfPage": 253,
+        "title": "逐DW查询：有效内容、No Entry、连续性和最小E尺寸",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R58核读所列正式版Prefix/PASID/OHC正文；印刷页与本地PDF物理页分别核对后一致。视觉核7.0 p253/905。仅指定字段与处理分支，不代表全部代际、整章或ECN核读。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "R58核Base6.0/7.0 Prefix、PASID和OHC-E所列正文与关键位图；保留全代际、完整OHC族及ECN缺口。",
+    "details": [
+      {
+        "id": "ohc-presence-order-and-type",
+        "title": "OHC存在位与排列：A/B/C独立，E长度是2bit编码",
+        "paragraphs": [
+          "FM Header的OHC[4:0]中bit0/1/2分别指示A/B/C存在；[4:3]=00无E、01为E1、10为E2、11为E4。E4是4DW，不是某种E的“类型编号4”，也没有一个3DW长度编码。",
+          "存在的OHC跟在Header Base后，必须按A-B-C-E排列；缺项不占虚构填充DW。A内容随TLP种类解释，A1～A5不是可以同时堆叠的五份A：同一个A存在位按该TLP选择其语义。",
+          "图表中的Length、Header Base大小、OHC大小不能混算。不能把FM外套理解为NFM头原样不动、所有附加信息都挤进一个通用Prefix。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "id": "ohc-required-content-errors",
+        "title": "有些OHC必须存在：缺失的Request是UR，Completion是Unexpected",
+        "paragraphs": [
+          "OHC按需编码不表示每项永远可省略。特定TLP种类要求特定OHC，接收端必须检查：Request缺必需内容按Unsupported Request处理，Completion缺必需内容按Unexpected Completion处理。",
+          "常见语义分别为A1的BE/PASID、A2的I/O BE、A3的配置BE/Segment、A4的ID Routed Message Segment/PASID和A5的Completion状态/低地址/Segment。是否必须携带还应查具体TLP规则，不能仅凭这张语义表替代全部形成条件。",
+          "缺OHC的隐含值按具体格式定义；例如PASID有效性不能通过读取一个实际上未出现的A块来推断。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "id": "ohce-dword-format",
+        "title": "OHC-E每DW逐bit：格式半byte与End-End子类型不能当原91h Prefix",
+        "paragraphs": [
+          "Base7.0每个OHC-E DW的byte0[7:4]表示内容格式：0h=No Entry，余下位保留；1h=End-End Prefix DW；2h～Fh保留且Receiver必须按No Entry处理。",
+          "格式1h时，byte0[3:0]保留原E[3:0]，但0h～2h为保留；byte1～3保留原Prefix的对应内容。可承载范围3h～Fh不表示每个子类型已经定义：当前普通End-End类型表中，厂商Eh/Fh是已定义项，其它范围项不能被查询器擅自赋义。",
+          "例如原NFM厂商Prefix首byte9Eh转为这种OHC-E DW时首byte为1Eh；PASID首byte91h不能机械改成11h并称为合法PASID OHC-E。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12
+        ],
+        "packetLayouts": [
+          {
+            "id": "fm-ohce-dword-r58",
+            "title": "FM OHC-E中的一个有效DW · 32bit",
+            "version": "Base7.0 · OHC-E单DW内byte0～3",
+            "headerBits": 32,
+            "rows": [
+              [
+                {
+                  "label": "Format=1",
+                  "width": 4,
+                  "key": "format",
+                  "help": "byte0[7:4]；其它格式规则见正文"
+                },
+                {
+                  "label": "E subtype",
+                  "width": 4,
+                  "key": "subtype",
+                  "help": "byte0[3:0]；0～2保留"
+                },
+                {
+                  "label": "Original Prefix Content",
+                  "width": 24,
+                  "key": "content",
+                  "help": "原End-End Prefix byte1～3"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "OHC-E中的一个DW",
+                "size": "32 bit / 4 B"
+              }
+            ],
+            "note": "这是OHC-E内部一个DW；E1/E2/E4整个块可有1/2/4DW，前面另有Header Base及适用A/B/C。"
+          }
+        ]
+      },
+      {
+        "id": "ohce-minimal-packing-and-sequence",
+        "title": "E1/E2/E4如何选：3项用E4，空项只能在末尾",
+        "paragraphs": [
+          "OHC-E必须从第一个DW开始连续填充，No Entry只能放末尾；发送端必须选择能容纳内容的最小OHC-E，避免不必要No Entry。1项用E1、2项用E2、3项用E4且末尾1个No Entry、4项用E4；没有需要承载内容时不应硬加空E块。",
+          "Base7.0明确NFM与FM互译VendPrefixE0/E1时保持相对顺序，不能为了把同厂商内容聚一起而重排。E块里的No Entry不是业务Payload，也不是一个额外的有效End-End Prefix。",
+          "保留格式按No Entry接收是容错语义，不等于发送端可借此填任意洞；若用它代替中间DW后面又有有效项，仍与连续填充的形成规则冲突。"
+        ],
+        "referenceIndices": [
+          13,
+          14
+        ],
+        "table": {
+          "columns": [
+            "字段／条件",
+            "规则与作用",
+            "边界"
+          ],
+          "rows": [
+            [
+              "1 / 2个有效DW",
+              "E1 / E2",
+              "不添加更大空块"
+            ],
+            [
+              "3个有效DW",
+              "E4＋末尾No Entry",
+              "没有E3编码"
+            ],
+            [
+              "4个有效DW",
+              "E4",
+              "连续填满"
+            ],
+            [
+              "No Entry后又有有效DW",
+              "形成布局冲突",
+              "不据此自创唯一接收错误码"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "ohce-unsupported-role-fc-matrix",
+        "title": "Base7.0不支持OHC-E的转发分支：按PR/NPR/CPL，不一律回UR",
+        "paragraphs": [
+          "不支持OHC-E的Function若是被寻址目标，收到带OHC-E的Request按UR、Completion按Unexpected处理；可以在错误Header日志中丢弃OHC-E内容。支持较小E尺寸但目标包超出支持DW数时也有相应UR/Unexpected责任。",
+          "若不支持OHC-E的Switch/RP Function收到的是待转发包，则按下面入口阻止矩阵处理。PR中的UIO例外与NPR不报错必须保留，不能套用NFM Egress Blocking的“NP回UR”作为这张7.0矩阵的统一规则。",
+          "此矩阵是Base7.0 §2.2.11的具体分支，不回填为Base6.0同段早已有的逐字要求；也不覆盖所有链路失效、DPC、VC不匹配或其它更早发现的形成问题。"
+        ],
+        "referenceIndices": [
+          15,
+          16
+        ],
+        "table": {
+          "columns": [
+            "字段／条件",
+            "规则与作用",
+            "边界"
+          ],
+          "rows": [
+            [
+              "待转发PR FC Type",
+              "Ingress阻止；UIO不报告错误",
+              "非UIO为TLP Prefix Blocked"
+            ],
+            [
+              "待转发NPR FC Type",
+              "Ingress阻止，不报告错误",
+              "不能在本矩阵私自添加UR完成"
+            ],
+            [
+              "待转发CPL FC Type",
+              "Ingress阻止，TLP Prefix Blocked",
+              "不是目标Function的普通UC分支"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "prefix-ohce-six-seven-evidence",
+        "title": "6.0/7.0对照：稳定布局与新增明确文字分开",
+        "paragraphs": [
+          "所核6.0/7.0的NFM Prefix首byte划分、Local先于End-End、End-End最多4份和NFM PASID位图一致。FM的E1/E2/E4尺寸及格式高半byte同样保持可对照关系。",
+          "6.0 E图的“Vendor Defined”概括不应取代其下逐DW格式规则；7.0改用逐DW图并明确低半byte0～2保留、填充无洞、厂商相对顺序以及不支持OHC-E时的角色/FC分支。7.0 PASID与A1/A4的保留字段说明也需按该版读取。",
+          "本轮未核Gen1～5 Prefix首次引入及每份独立ECN，不把本轮读到的差异等同为功能首次出现在某个链路速率，也不把局部两版对照冒充七代全章覆盖。"
+        ],
+        "referenceIndices": [
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25
+        ]
+      },
+      {
+        "id": "ohce-packing-query",
+        "title": "逐DW查询：有效内容、No Entry、连续性和最小E尺寸",
+        "paragraphs": [
+          "输入E1/E2/E4的逐DW十六进制文本，每个8位token按byte0到byte3排列；它不是主机小端整数转储。工具识别格式、E子类型和内容，画出逐DW卡片，检查是否有洞以及是否用了最小尺寸。",
+          "本工具限定Base7.0的OHC-E内容布局，不检查Header实际OHC存在位、A/B/C顺序、目标能力、厂商启用、CRC或唯一错误处置；保留格式按No Entry解码，但不会因此把有洞的发送布局判为正确。"
+        ],
+        "referenceIndices": [
+          26
+        ]
+      }
+    ]
   },
   {
     "name": "Enumeration与BDF / Segment",
