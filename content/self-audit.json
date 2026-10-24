@@ -1,6 +1,6 @@
 {
   "date": "2026-10-25",
-  "summary": "R71：Completion生命周期、FLR旧完成与Tag别名；新阶段1/4。",
+  "summary": "R72：Poison角色、AER优先级与多Header取证；新阶段2/4。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -1386,6 +1386,26 @@
       "name": "R71构建与行为复核",
       "status": "通过",
       "detail": "构建/公开边界/双份JS语法通过；新增检查435项/2835断言，160组Completion窗口与290组Tag分区，含低8位集合不交验证；R70回归455项/9132断言。新内容27条、两查询、16bit Pending图及生命周期/Tag分区图。非完整TLP解析或硬件/平台恢复证明，部署和选定页面另记。"
+    },
+    {
+      "name": "R72初查",
+      "status": "远端R71一致",
+      "detail": "已有Poison概述和AER位表；保留既有ID/正文/引用，本轮深化日志资源、FEP与字节解释，不再复制概述。"
+    },
+    {
+      "name": "R72正文及视觉",
+      "status": "选定正式条款核读",
+      "detail": "核6.0/7.0对应正文，视觉核7.0 p793 Figure6-2和p1291 Header Log图；本地印刷页/物理页一致。仅选定规则，不以提取文件或目录当全文覆盖。"
+    },
+    {
+      "name": "R72推论边界",
+      "status": "显式区分",
+      "detail": "推荐同包优先级不当强制全部实现；Mask不参与简单重排优先级。诊断清单标为作者建议，计数与消息数量不推BER，查询限定Poison、无DPC及已检测/门控前提。"
+    },
+    {
+      "name": "R72构建与行为复核",
+      "status": "通过",
+      "detail": "新增检查458项/17830断言：2560个Poison报告组合、128个FEP边界、1024个字节位置数值；R71回归435项/2835断言通过。双份JS语法、构建及公开边界通过；28条、两查询、流程/队列/32bit布局图。选定部署和页面另记，不等于完整错误流水线或硬件验证。"
     }
   ],
   "unresolved": [
@@ -1486,7 +1506,8 @@
     "R68：6.0 TS1 DSP speed_change字段表RcvrCfg与状态机/后版RcvrLock措辞、1b/1b半部/DC Balance完整判定和中间修订待续；Modified TS/EFM/FRA/光Retimer、Gen1～5逐版OS正文及Data Stream内全部接收容错未完成。",
     "R69：XT ECN/6.x中间修订逐条差分、完整IDE Prefix/OHC-C与ATS TE位图尚未完成；MMIO表31:!6排印需正式勘误确认；非IDE等效保护、所有路径/并发/密钥与实际硬件安全未验证。",
     "R70：Preliminary SDK ref_timer+1参考时钟与PMA3.02a timer×128bit口径/实际固件换算仍待核；完整FBER分母/采样与Retimer CSR/6.0.1 ECN差分、burst统计和真实BERT/模拟验证未完成；产品正文对尚未解释的threshold/freeze/failed成员不按名称推断。",
-    "R71：中间2.x/4.x/5.x及ECN差分、3.0 IDO完整条款联核、MUST@FLIT非支持者全部可选检查、完整错误优先级和UIO恢复历史仍待核；27条与查询非完整TLP解析、平台Tag/FLR安全或硬件证明。"
+    "R71：中间2.x/4.x/5.x及ECN差分、3.0 IDO完整条款联核、MUST@FLIT非支持者全部可选检查、完整错误优先级和UIO恢复历史仍待核；27条与查询非完整TLP解析、平台Tag/FLR安全或硬件证明。",
+    "R72：早期1.x～5.x逐版Poison/AER差分、独立ECN、DPC完整日志优先/截断以及产品Trace和实际驱动采样仍待核。Header查询仅字段解释，FEP表面有效可能有历史歧义，无法证明快照原子或日志未丢。"
   ],
   "externalComparison": {
     "date": "2026-10-21",

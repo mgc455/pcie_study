@@ -68841,14 +68841,14 @@
     "checks": "核对PCIe标记到AXI/应用的映射与中断；只记录AER却继续消费结果可能仍破坏业务正确性。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 100,
-    "status": "选定规则/字段已展开 · 持续逐版完善",
+    "status": "选定Poison/AER日志与证据链已深化 · 持续核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-25",
     "protocolReferences": [
       {
         "section": "2.7",
@@ -68959,9 +68959,306 @@
         "title": "7.0最终接收者传播Poison的例子",
         "verification": "实际核读本页相关正文/字段；与本版印刷页和PDF物理页绑定，不声明整章或其他修订已核读。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.2.1",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "EP不提供坏字节定位：不能凭它只丢一个DW",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.2.1",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "EP不提供坏字节定位：不能凭它只丢一个DW",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.4.1",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "SC和Poison是不同维度：成功状态不保证数据可正常使用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4.1",
+        "page": 783,
+        "pdfPage": 783,
+        "title": "SC和Poison是不同维度：成功状态不保证数据可正常使用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.2",
+        "page": 257,
+        "pdfPage": 257,
+        "title": "SC和Poison是不同维度：成功状态不保证数据可正常使用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.2",
+        "page": 314,
+        "pdfPage": 314,
+        "title": "SC和Poison是不同维度：成功状态不保证数据可正常使用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.4.2",
+        "page": 675,
+        "pdfPage": 675,
+        "title": "同一份Poison经过多个角色：恢复责任不同，报告可以不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4.2",
+        "page": 783,
+        "pdfPage": 783,
+        "title": "同一份Poison经过多个角色：恢复责任不同，报告可以不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.4.3",
+        "page": 676,
+        "pdfPage": 676,
+        "title": "同一份Poison经过多个角色：恢复责任不同，报告可以不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4.3",
+        "page": 784,
+        "pdfPage": 784,
+        "title": "同一份Poison经过多个角色：恢复责任不同，报告可以不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.2.1",
+        "page": 258,
+        "pdfPage": 258,
+        "title": "Poison、链路重放与AER状态要分别取证",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.2.1",
+        "page": 315,
+        "pdfPage": 315,
+        "title": "Poison、链路重放与AER状态要分别取证",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.2.1",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "Switch本地目标与过路流量：同一硬件扮演两种角色",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.2.1",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "Switch本地目标与过路流量：同一硬件扮演两种角色",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.2.1",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "Poison错误分类与UR Completion分开：兼容脚注不是推荐做法",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.2.1",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "Poison错误分类与UR Completion分开：兼容脚注不是推荐做法",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.2.1",
+        "page": 258,
+        "pdfPage": 258,
+        "title": "传播格式和日志格式分开：故障后当前Link模式不等于捕获模式",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.2.1",
+        "page": 315,
+        "pdfPage": 315,
+        "title": "传播格式和日志格式分开：故障后当前Link模式不等于捕获模式",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1122,
+        "pdfPage": 1122,
+        "title": "传播格式和日志格式分开：故障后当前Link模式不等于捕获模式",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1290,
+        "pdfPage": 1290,
+        "title": "传播格式和日志格式分开：故障后当前Link模式不等于捕获模式",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.4.2",
+        "page": 675,
+        "pdfPage": 675,
+        "title": "查询：Poison的角色、ANFE屏蔽、Header资源和消息",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4.2",
+        "page": 784,
+        "pdfPage": 784,
+        "title": "查询：Poison的角色、ANFE屏蔽、Header资源和消息",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.4.3",
+        "page": 676,
+        "pdfPage": 676,
+        "title": "查询：Poison的角色、ANFE屏蔽、Header资源和消息",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4.3",
+        "page": 784,
+        "pdfPage": 784,
+        "title": "查询：Poison的角色、ANFE屏蔽、Header资源和消息",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.3",
+        "page": 682,
+        "pdfPage": 682,
+        "title": "查询：Poison的角色、ANFE屏蔽、Header资源和消息",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.3",
+        "page": 791,
+        "pdfPage": 791,
+        "title": "查询：Poison的角色、ANFE屏蔽、Header资源和消息",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.5",
+        "page": 793,
+        "pdfPage": 793,
+        "title": "查询：Poison的角色、ANFE屏蔽、Header资源和消息",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
       }
     ],
-    "referenceStatus": "新块以对应版正文/字段核读定位；旧背景入口保留，不声明全代际、整章或后续ECN完成。",
+    "referenceStatus": "R72核6.0/7.0所列Poison、AER优先级/多Header/日志格式及衍生诊断方法；不代表早期全代际或硬件排障验证。",
     "details": [
       {
         "id": "poison-known-bad-data",
@@ -69107,6 +69404,146 @@
           7,
           8,
           9
+        ]
+      },
+      {
+        "id": "poison-payload-granularity",
+        "title": "EP不提供坏字节定位：不能凭它只丢一个DW",
+        "paragraphs": [
+          "6.0/7.0的Poison规则没有定义哪几段Payload真正坏、哪几段仍好的定位机制。标志是对带数据TLP的错误告知，不是逐byte有效掩码。Byte Enable控制请求语义，也不提供Poison损坏位置。",
+          "例如一个64Byte CplD标为Poison，不能只凭EP猜最后4Byte坏并把其余60Byte作为正常结果。若平台另有更细ECC/内存Poison记录，须按那个独立机制证明粒度。"
+        ],
+        "referenceIndices": [
+          10,
+          11
+        ]
+      },
+      {
+        "id": "poison-status-orthogonality",
+        "title": "SC和Poison是不同维度：成功状态不保证数据可正常使用",
+        "paragraphs": [
+          "当返回数据已坏或可疑，Completer允许用Error Forwarding表达，而不是只能选UR/CA终止。接收方须同时检查Completion的状态、Poison及完整性/关联条件，不可只看到SC就交付为正常数据。",
+          "这个许可不允许把坏地址、错误路由或错误Header当成可控Payload损坏继续传；控制目标的禁止副作用规则同样不能被SC或报告屏蔽覆盖。"
+        ],
+        "referenceIndices": [
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "id": "poison-recipient-role-matrix",
+        "title": "同一份Poison经过多个角色：恢复责任不同，报告可以不同",
+        "paragraphs": [
+          "中间Receiver、最终Requester/Completer、RC跨Root Port转发，以及出口阻断，是四种不同上下文。不能把Switch上的ERR_COR推导为最终数据已被修复，也不能把每个代理的错误消息都当成独立损坏。"
+        ],
+        "referenceIndices": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "table": {
+          "columns": [
+            "检测位置",
+            "Non-Fatal时的关键条件",
+            "报告/动作边界"
+          ],
+          "rows": [
+            [
+              "中间Receiver",
+              "仍在转发，Poison/ECRC等已检测",
+              "通常ANFE，最终接收者另行处置"
+            ],
+            [
+              "最终接收者",
+              "保留Poison或安全消化错误，可继续操作",
+              "适用时ANFE；不能静默损坏"
+            ],
+            [
+              "最终控制目标",
+              "条款要求禁止修改的Poison请求",
+              "保持Uncorrectable，不能ANFE"
+            ],
+            [
+              "RC跨Root Port",
+              "内部fabric不能保留错误信息",
+              "不得转发，按使能ERR_NONFATAL"
+            ],
+            [
+              "出口阻断",
+              "端口能力及Enable满足",
+              "不发送；不是中间Receiver类别"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "poison-replay-independent-evidence",
+        "title": "Poison、链路重放与AER状态要分别取证",
+        "paragraphs": [
+          "Poison本身不会触发Data Link重放；只有链路传输错误满足相应检测条件才会重传。因此一份Poison包可以被链路正确接收，也可能碰巧因额外传输错误被重放。",
+          "诊断时分别记录“数据在哪个观察点已Poison”“链路CRC/序列是否另报错”“哪个代理发错误Message”。没有Replay不证明Payload健康，有Replay也不证明Poison已被清除。此为依据所引机制整理的观察方法。"
+        ],
+        "referenceIndices": [
+          20,
+          21
+        ]
+      },
+      {
+        "id": "poison-switch-local-versus-transit",
+        "title": "Switch本地目标与过路流量：同一硬件扮演两种角色",
+        "paragraphs": [
+          "Poison的受保护请求若只是穿过Switch，Switch须按未Poison时同样的路由转发，仍要考虑独立的更高优先级错误和出口阻断。若目标地址实际在Switch自身，它就是该请求的Completer，要执行禁止目标修改及适用UR完成规则。",
+          "排查时先记录地址译码和目标Function，不要看到包在Switch被接收，就默认它是最终目的地或应在那里终止事务。"
+        ],
+        "referenceIndices": [
+          22,
+          23
+        ]
+      },
+      {
+        "id": "poison-ur-compatibility-footnote",
+        "title": "Poison错误分类与UR Completion分开：兼容脚注不是推荐做法",
+        "paragraphs": [
+          "对禁止副作用的Poison请求，正文以Poisoned TLP Received作为错误，适用NP（7.0还明确UIO）再返回UR Completion；“错误类型”和“完成状态”是两项输出。",
+          "6.0脚注51/7.0脚注62因早期歧义允许组件把此错误按Unsupported Request处理，但强烈不推荐。不能把兼容许可写成推荐统一UR分类，更不能据此证明任意旧版何时首次采用该规则。"
+        ],
+        "referenceIndices": [
+          24,
+          25
+        ]
+      },
+      {
+        "id": "poison-mode-versus-logged-mode",
+        "title": "传播格式和日志格式分开：故障后当前Link模式不等于捕获模式",
+        "paragraphs": [
+          "非IDE过路Poison可在FM/NFM边界转换为相应EP表达。分析日志时应使用该记录的Logged TLP was Flit Mode及大小信息，而不是后来恢复/降速后的当前Link模式。",
+          "这是跨条款的诊断方法：捕获时的Header格式与转发后格式都可能不同；需要按每个Port/Function自己的记录解析，再关联同一业务事务。"
+        ],
+        "referenceIndices": [
+          26,
+          27,
+          28,
+          29
+        ]
+      },
+      {
+        "id": "poison-report-path-query",
+        "title": "查询：Poison的角色、ANFE屏蔽、Header资源和消息",
+        "paragraphs": [
+          "先确认包带数据、Poison已被检测、没有更高优先级错误，再选择中间/最终/控制/出口角色、有效严重度、AER及屏蔽/报告门控。结果区分CE/UE置位、Header可记录条件和消息类型。",
+          "本查询只针对Poison，DPC未触发，所选报告门控已综合Device Control及Command等适用条件；不模拟全部基线状态、UR特例、Root中断或完整AER FIFO。输出不是寄存器写脚本。"
+        ],
+        "referenceIndices": [
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36
         ]
       }
     ]
@@ -71207,14 +71644,14 @@
     "checks": "先读日志和状态再W1C；Mask影响报告及适用记录流程（ANFE还有早期门控），不能修复原始错误或保证数据未损坏。",
     "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
     "id": 103,
-    "status": "已深化 · 所引产品/规范正文已核，完整实现验证另行开展",
+    "status": "选定Poison/AER日志与证据链已深化 · 持续核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-25",
     "protocolReferences": [
       {
         "section": "6.2",
@@ -71886,9 +72323,702 @@
         "title": "纠正/报告分离",
         "verification": "已核读该版该页相关正文/字段；产品仅对应6.50a，不作为通用PCIe实现要求。公开为原创机制解释，不含产品信号/寄存器映射。",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.3",
+        "page": 673,
+        "pdfPage": 673,
+        "title": "接收同一TLP的错误优先级速查：6.0/7.0这张表一致",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.3",
+        "page": 782,
+        "pdfPage": 782,
+        "title": "接收同一TLP的错误优先级速查：6.0/7.0这张表一致",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.3",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "接收同一TLP的错误优先级速查：6.0/7.0这张表一致",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.4",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "Poison和Unexpected同时出现：先保留关联失败证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4",
+        "page": 783,
+        "pdfPage": 783,
+        "title": "Poison和Unexpected同时出现：先保留关联失败证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.3",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "Poison和Unexpected同时出现：先保留关联失败证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.3",
+        "page": 782,
+        "pdfPage": 782,
+        "title": "Poison和Unexpected同时出现：先保留关联失败证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.3",
+        "page": 673,
+        "pdfPage": 673,
+        "title": "PHY/DLL抑制的是同包派生错误，不是全局关闭上层日志",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.3",
+        "page": 782,
+        "pdfPage": 782,
+        "title": "PHY/DLL抑制的是同包派生错误，不是全局关闭上层日志",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "FEP是最老已记录错误的bit编号，不是Status中最低置位bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "FEP是最老已记录错误的bit编号，不是Status中最低置位bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2.1",
+        "page": 681,
+        "pdfPage": 681,
+        "title": "FEP是最老已记录错误的bit编号，不是Status中最低置位bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2.1",
+        "page": 790,
+        "pdfPage": 790,
+        "title": "FEP是最老已记录错误的bit编号，不是Status中最低置位bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1121,
+        "pdfPage": 1121,
+        "title": "FEP是最老已记录错误的bit编号，不是Status中最低置位bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1289,
+        "pdfPage": 1289,
+        "title": "FEP是最老已记录错误的bit编号，不是Status中最低置位bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "Status=1却没有Header：屏蔽与资源不足是两条不同原因",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "Status=1却没有Header：屏蔽与资源不足是两条不同原因",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.3",
+        "page": 682,
+        "pdfPage": 682,
+        "title": "Status=1却没有Header：屏蔽与资源不足是两条不同原因",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.3",
+        "page": 791,
+        "pdfPage": 791,
+        "title": "Status=1却没有Header：屏蔽与资源不足是两条不同原因",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "多Header能力、使能和真实深度是三个量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "多Header能力、使能和真实深度是三个量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 680,
+        "pdfPage": 680,
+        "title": "多Header能力、使能和真实深度是三个量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 789,
+        "pdfPage": 789,
+        "title": "多Header能力、使能和真实深度是三个量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1121,
+        "pdfPage": 1121,
+        "title": "多Header能力、使能和真实深度是三个量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1289,
+        "pdfPage": 1289,
+        "title": "多Header能力、使能和真实深度是三个量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "消费一条日志：先保存，再RW1C FEP指向的状态位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "消费一条日志：先保存，再RW1C FEP指向的状态位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 680,
+        "pdfPage": 680,
+        "title": "不要用全1清空代替队列遍历：两种竞态和未定义边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 789,
+        "pdfPage": 789,
+        "title": "不要用全1清空代替队列遍历：两种竞态和未定义边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2.1",
+        "page": 681,
+        "pdfPage": 681,
+        "title": "PF/VF Header存储：共享许可不能覆盖锁住的日志",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2.1",
+        "page": 790,
+        "pdfPage": 790,
+        "title": "PF/VF Header存储：共享许可不能覆盖锁住的日志",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.3",
+        "page": 682,
+        "pdfPage": 682,
+        "title": "PF/VF Header存储：共享许可不能覆盖锁住的日志",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.3",
+        "page": 791,
+        "pdfPage": 791,
+        "title": "PF/VF Header存储：共享许可不能覆盖锁住的日志",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1121,
+        "pdfPage": 1121,
+        "title": "PF/VF Header存储：共享许可不能覆盖锁住的日志",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1289,
+        "pdfPage": 1289,
+        "title": "PF/VF Header存储：共享许可不能覆盖锁住的日志",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2.1",
+        "page": 681,
+        "pdfPage": 681,
+        "title": "共享VF日志溢出：全1不是一份真实TLP Header",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2.1",
+        "page": 790,
+        "pdfPage": 790,
+        "title": "共享VF日志溢出：全1不是一份真实TLP Header",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1122,
+        "pdfPage": 1122,
+        "title": "共享VF日志溢出：全1不是一份真实TLP Header",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1289,
+        "pdfPage": 1289,
+        "title": "共享VF日志溢出：全1不是一份真实TLP Header",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1290,
+        "pdfPage": 1290,
+        "title": "共享VF日志溢出：全1不是一份真实TLP Header",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 680,
+        "pdfPage": 680,
+        "title": "多Header能力与Overflow报错支持彼此独立",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 789,
+        "pdfPage": 789,
+        "title": "多Header能力与Overflow报错支持彼此独立",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.8",
+        "page": 1122,
+        "pdfPage": 1122,
+        "title": "Header Log按DW读取：Header byte0在该DW[31:24]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.8",
+        "page": 1290,
+        "pdfPage": 1290,
+        "title": "Header Log按DW读取：Header byte0在该DW[31:24]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.8",
+        "page": 1123,
+        "pdfPage": 1123,
+        "title": "Header Log按DW读取：Header byte0在该DW[31:24]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.8",
+        "page": 1291,
+        "pdfPage": 1291,
+        "title": "Header Log按DW读取：Header byte0在该DW[31:24]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1122,
+        "pdfPage": 1122,
+        "title": "Header Log Size与Logged TLP Size：容量和本次捕获长度不能混用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1289,
+        "pdfPage": 1289,
+        "title": "Header Log Size与Logged TLP Size：容量和本次捕获长度不能混用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1290,
+        "pdfPage": 1290,
+        "title": "Header Log Size与Logged TLP Size：容量和本次捕获长度不能混用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.8",
+        "page": 1123,
+        "pdfPage": 1123,
+        "title": "FM日志按Type/OHC解析，不把固定16Byte当全部包头",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.8",
+        "page": 1290,
+        "pdfPage": 1290,
+        "title": "FM日志按Type/OHC解析，不把固定16Byte当全部包头",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1122,
+        "pdfPage": 1122,
+        "title": "FM日志按Type/OHC解析，不把固定16Byte当全部包头",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1289,
+        "pdfPage": 1289,
+        "title": "FM日志按Type/OHC解析，不把固定16Byte当全部包头",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "查询：FEP、日志长度/模式与DW字节顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "查询：FEP、日志长度/模式与DW字节顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2.1",
+        "page": 681,
+        "pdfPage": 681,
+        "title": "查询：FEP、日志长度/模式与DW字节顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2.1",
+        "page": 790,
+        "pdfPage": 790,
+        "title": "查询：FEP、日志长度/模式与DW字节顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1121,
+        "pdfPage": 1121,
+        "title": "查询：FEP、日志长度/模式与DW字节顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1289,
+        "pdfPage": 1289,
+        "title": "查询：FEP、日志长度/模式与DW字节顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1122,
+        "pdfPage": 1122,
+        "title": "查询：FEP、日志长度/模式与DW字节顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1290,
+        "pdfPage": 1290,
+        "title": "查询：FEP、日志长度/模式与DW字节顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.8",
+        "page": 1123,
+        "pdfPage": 1123,
+        "title": "查询：FEP、日志长度/模式与DW字节顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.8",
+        "page": 1291,
+        "pdfPage": 1291,
+        "title": "查询：FEP、日志长度/模式与DW字节顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
       }
     ],
-    "referenceStatus": "新块以对应版正文/字段核读定位；旧背景入口保留，不声明全代际、整章或后续ECN完成。",
+    "referenceStatus": "R72核6.0/7.0所列Poison、AER优先级/多Header/日志格式及衍生诊断方法；不代表早期全代际或硬件排障验证。",
     "details": [
       {
         "id": "aer-baseline-three-paths",
@@ -72719,6 +73849,279 @@
           51,
           58,
           59
+        ]
+      },
+      {
+        "id": "aer-received-tlp-precedence-table",
+        "title": "接收同一TLP的错误优先级速查：6.0/7.0这张表一致",
+        "paragraphs": [
+          "下表按高到低整理已核6.0/7.0 §6.2.3.2.3。对Transaction Layer检测和Uncorrectable Internal，同一收到的TLP推荐最多报告一个错误，并使用此顺序；这是“permitted and recommended”，不应改写成所有实现必须有同一内部检查流水线。",
+          "同一行列的错误互斥，无须给它们再排先后；Priority不是Severity高低，也不是跨不同包、不同时间的系统全局根因排序。Masked错误不能简单从这张表删去，再断言必报低优先级错误。"
+        ],
+        "referenceIndices": [
+          61,
+          62,
+          63
+        ],
+        "table": {
+          "columns": [
+            "推荐顺序",
+            "错误家族"
+          ],
+          "rows": [
+            [
+              "1",
+              "Uncorrectable Internal Error"
+            ],
+            [
+              "2",
+              "Receiver Overflow"
+            ],
+            [
+              "3",
+              "Malformed TLP"
+            ],
+            [
+              "4",
+              "IDE Check Failed"
+            ],
+            [
+              "5",
+              "ECRC Check Failed"
+            ],
+            [
+              "6",
+              "Misrouted IDE TLP"
+            ],
+            [
+              "7",
+              "AtomicOp / DMWr / TLP Translation Egress Blocked"
+            ],
+            [
+              "8",
+              "TLP Prefix Blocked"
+            ],
+            [
+              "9",
+              "ACS Violation"
+            ],
+            [
+              "10",
+              "MC Blocked TLP"
+            ],
+            [
+              "11",
+              "UR / CA / Unexpected Completion"
+            ],
+            [
+              "12",
+              "PCRC Check Failed"
+            ],
+            [
+              "13",
+              "Poisoned TLP Received / Egress Blocked"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "aer-poison-unexpected-precedence",
+        "title": "Poison和Unexpected同时出现：先保留关联失败证据",
+        "paragraphs": [
+          "正文直接举例：一份Unexpected Completion也可带Poison，推荐报告Unexpected Completion而不再报Poisoned TLP Received。这不会把坏Payload变好，而是避免同一包的次级日志遮住关联失败。",
+          "未收到正常Completion的原Requester可能稍后Timeout，这是不同代理/不同时间的另一个事件；不要拿这一条同包优先级抑制所有后续Timeout。"
+        ],
+        "referenceIndices": [
+          64,
+          65,
+          66,
+          67
+        ]
+      },
+      {
+        "id": "aer-layer-pollution-boundary",
+        "title": "PHY/DLL抑制的是同包派生错误，不是全局关闭上层日志",
+        "paragraphs": [
+          "PHY已检测的同包错误不再由DLL/事务层机械追加报告；DLL检测的同包错误也不再作为事务层派生错误重复上报。条文明示范围是与特定packet相关的错误。",
+          "Corrected Internal Error的影响已被组件处理，不构成这里的error pollution，应在检测时报告；不应因附近发生过Receiver Error便一并抹掉。其它独立事件仍按各次发生处理。"
+        ],
+        "referenceIndices": [
+          68,
+          69
+        ]
+      },
+      {
+        "id": "aer-fep-validity-oldest-recorded",
+        "title": "FEP是最老已记录错误的bit编号，不是Status中最低置位bit",
+        "paragraphs": [
+          "FEP[4:0]指出UE Status里的bit位置。对应Status位已置且该bit有定义时才有效；对应位未置或指向未定义位时无效。多个状态位可累积，不能仅按数值大小或Severity推导哪个错误先发生。",
+          "FEP的“最早”是本日志资源中最早记录的一项，不是整个系统物理故障时间轴。要联看Mask历史与记录条件；规范的Implementation Note还说明陈旧FEP配合后来Masked UR置位可能造成表面有效但没有新Header的歧义。"
+        ],
+        "referenceIndices": [
+          70,
+          71,
+          72,
+          73,
+          74,
+          75
+        ]
+      },
+      {
+        "id": "aer-status-without-header",
+        "title": "Status=1却没有Header：屏蔽与资源不足是两条不同原因",
+        "paragraphs": [
+          "一般UE记录路径中，错误被Mask时仍置相应UE Status，但不记录Header/FEP；未屏蔽而没有空闲记录资源时，也置Status但不记录该错误。ANFE须先过CE[13]，不直接套一般UE路径。",
+          "因此单张Status截图不能证明有包头，也不能统计同一bit曾发生几次。多个相同错误可以压在一个粘滞状态位里；只有日志队列、独立计数器或Trace才能提供更多信息。"
+        ],
+        "referenceIndices": [
+          76,
+          77,
+          78,
+          79
+        ]
+      },
+      {
+        "id": "aer-mhr-capable-enable-depth",
+        "title": "多Header能力、使能和真实深度是三个量",
+        "paragraphs": [
+          "AER至少支持记录一份所需Header；Multiple Header Recording Capable表示能记多份，Enable打开后按检测顺序记录。能力bit不编码队列深度，也不保证任何错误突发都记得下。",
+          "未启多Header且FEP有效时，再出现需记Header的错误会造成Header Log Overflow条件；启用多Header后达到实现容量也会溢出。软件应及时服务，但规范不提供通用固定服务周期。"
+        ],
+        "referenceIndices": [
+          80,
+          81,
+          82,
+          83,
+          84,
+          85
+        ]
+      },
+      {
+        "id": "aer-dismiss-one-record",
+        "title": "消费一条日志：先保存，再RW1C FEP指向的状态位",
+        "paragraphs": [
+          "软件要dismiss当前记录时，向FEP对应UE Status位写1，硬件释放相关记录资源；若还有记录，立即更新Header、Prefix、Prefix Present、FEP和UE Status到下一项。",
+          "若同类错误仍有另一记录，硬件可以保留该Status位，也允许不保留；不要把“同位仍置1”直接判成清除失败。多Header已启且FEP有效时，推荐不向其它Status位写1，已知自始屏蔽且没有Header的状态是脚注给出的例外。"
+        ],
+        "referenceIndices": [
+          86,
+          87
+        ]
+      },
+      {
+        "id": "aer-clear-race-and-disable",
+        "title": "不要用全1清空代替队列遍历：两种竞态和未定义边界",
+        "paragraphs": [
+          "FEP无效时清早先因日志溢出留下的未屏蔽Status，新错误可能在读写之间已记录；一把清除可能丢掉新记录。这是读清竞态，不等于所有设备都能原子冻结日志。",
+          "多Header已启且FEP有效时清Multiple Header Recording Enable，硬件行为未定义。规范推荐先临时Mask UE，再逐条dismiss FEP记录，待排空后改变Enable；需在驱动/平台错误管理同步下实施，网站不执行操作。"
+        ],
+        "referenceIndices": [
+          88,
+          89
+        ]
+      },
+      {
+        "id": "aer-vf-sharing-isolation",
+        "title": "PF/VF Header存储：共享许可不能覆盖锁住的日志",
+        "paragraphs": [
+          "PF的Header Log空间与其VFs独立，PF须有专用空间；同一PF所属VFs可以共享Header空间。VF的FEP有效期间，其Header条目锁住，后续错误不能覆盖它或其它VF锁住的条目。",
+          "条目解锁后可供共享该空间的任意VF再次使用。共享型VF的Multiple Header Recording Capable须硬接0，Enable为RsvdP；不能把PF的大队列能力默认套给每个VF。"
+        ],
+        "referenceIndices": [
+          90,
+          91,
+          92,
+          93,
+          94,
+          95
+        ]
+      },
+      {
+        "id": "aer-vf-allones-sentinel",
+        "title": "共享VF日志溢出：全1不是一份真实TLP Header",
+        "paragraphs": [
+          "共享VF没有空间记Header时，仍按适用规则更新状态与Advanced Control，读Header Log必须返回全1以表示未记下Header。若Flit Mode Supported=1，还要求Logged TLP Size=0；Prefix Present也须清。",
+          "解码器须先识别该上下文，而不是把FFFFFFFF当作一个正常TLP去解释Fmt/Type。反过来，仅遇到一个全1读回也不应无前提断言就是共享VF溢出；需先确认VF共享、访问有效及所列状态。"
+        ],
+        "referenceIndices": [
+          96,
+          97,
+          98,
+          99,
+          100
+        ]
+      },
+      {
+        "id": "aer-overflow-check-independent",
+        "title": "多Header能力与Overflow报错支持彼此独立",
+        "paragraphs": [
+          "Header Log Overflow检测/报告可选，Multiple Header Recording Capable也是独立可选。没有Overflow状态不能证明未丢记录，有多Header能力也不保证启用了溢出检查。",
+          "应把“触发溢出条件”“实现检测”“未屏蔽上报”“软件收到了通知”分开记录；Mask不会增加存储容量。"
+        ],
+        "referenceIndices": [
+          101,
+          102
+        ]
+      },
+      {
+        "id": "aer-header-log-byte-order",
+        "title": "Header Log按DW读取：Header byte0在该DW[31:24]",
+        "paragraphs": [
+          "AER相对+1Ch起的首个日志DW，bits31:24是Header byte0，23:16为byte1，15:8为byte2，7:0为byte3。下一DW继续byte4～7。若拿到的是CPU小端内存转储字节，必须先明确读取工具怎样显示，不能直接倒排两次。",
+          "例如寄存器DW数值4A123456h，对照规范Header顺序的四Byte是4A 12 34 56；若同一DW按小端地址字节显示则是56 34 12 4A。这是表示方式转换，不是改变TLP串行发送位序。12Byte头只有前三个DW有效，第四DW值未定义。"
+        ],
+        "referenceIndices": [
+          103,
+          104,
+          105,
+          106
+        ]
+      },
+      {
+        "id": "aer-log-mode-and-size-fields",
+        "title": "Header Log Size与Logged TLP Size：容量和本次捕获长度不能混用",
+        "paragraphs": [
+          "Advanced Control +18h[17:13] Header Log Size以DW表示实现容量；[23:19] Logged TLP Size在支持FM且FEP有效时给本次实际记录DW数；[18]给该记录是否FM。[11]若表示有效NFM End-End Prefix，须同时有有效FEP；FM记录时该位必须0。",
+          "未支持FM且Header Log Size=0是兼容编码：不支持End-End Prefix时实际4DW，支持时8DW；不是“0DW日志”。未支持FM但支持Prefix且显式非零时须至少8DW。多字段读回矛盾要保留为取证问题，不自动修正成可解析的头。"
+        ],
+        "referenceIndices": [
+          107,
+          108,
+          109
+        ]
+      },
+      {
+        "id": "aer-fm-header-extent-and-trailers",
+        "title": "FM日志按Type/OHC解析，不把固定16Byte当全部包头",
+        "paragraphs": [
+          "支持FM且捕获FM时，日志按Header Log Size扩展。解析须用Type及OHC决定结构；最小实现容量按Port支持的最大Header Base加最大OHC数量确定，各自上限7DW，不等于所有Port强制14DW。",
+          "硬件不要求记录大于其支持最大Header的格式，也不要求支持未实现OHC类型；Trailer不进Header Log，Local Prefix也不在AER此日志中。NFM的End-End Prefix另放+38h～44h重叠窗口；FM时该窗口可用于扩展Header，不能当NFM Prefix再读一次。"
+        ],
+        "referenceIndices": [
+          110,
+          111,
+          112,
+          113
+        ]
+      },
+      {
+        "id": "aer-header-snapshot-query",
+        "title": "查询：FEP、日志长度/模式与DW字节顺序",
+        "paragraphs": [
+          "输入UE Status、Advanced Control和一个日志DW的十六进制寄存器数值，检查FEP的定义有效性，列出MHR、容量/捕获长度及Header顺序Byte。另提供FM/Prefix支持和VF共享溢出上下文。",
+          "这个只读解释器不会证明寄存器采样是原子的，也不把表面有效FEP等同于新Header。它不解析完整TLP、不判断所有错误/清除优先级，不向硬件写入数据。"
+        ],
+        "referenceIndices": [
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123
         ]
       }
     ]
@@ -94877,21 +96280,362 @@
     "group": "诊断、测试与管理",
     "intro": "观察状态变化、事件发生频率和数据路径。",
     "usage": "分析长期掉链或吞吐波动，不只看一次状态快照。",
-    "mechanism": "状态Trace记录时间上的变化，计数器反映一段时间内事件数量，两者互补。单次采样可能刚好错过短暂Recovery或错误。",
+    "mechanism": "按包、检测代理和软件通知分别记录时间线；AER粘滞状态、有限Header条目、产品计数器和Trace各有边界，不能将其数量直接等同。",
     "example": "每秒掉链一次的设备可通过时间序列找到掉链前发生的速率变化、错误或反压。",
     "checks": "统一采样时间基准和计数窗口，注意清零/溢出；不能把历史累计值当作当前仍在持续发生。",
     "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
     "id": 135,
-    "status": "已整理 · 待持续深化",
+    "status": "选定Poison/AER日志与证据链已深化 · 持续核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-25",
+    "protocolReferences": [
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.3",
+        "page": 673,
+        "pdfPage": 673,
+        "title": "错误Trace至少分三条证据线：包、检测代理、软件通知",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.3",
+        "page": 782,
+        "pdfPage": 782,
+        "title": "错误Trace至少分三条证据线：包、检测代理、软件通知",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "错误Trace至少分三条证据线：包、检测代理、软件通知",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "错误Trace至少分三条证据线：包、检测代理、软件通知",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.3",
+        "page": 682,
+        "pdfPage": 682,
+        "title": "错误Trace至少分三条证据线：包、检测代理、软件通知",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.3",
+        "page": 791,
+        "pdfPage": 791,
+        "title": "错误Trace至少分三条证据线：包、检测代理、软件通知",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "Status、Header条目和ERR消息数量为什么不相等",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "Status、Header条目和ERR消息数量为什么不相等",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.3",
+        "page": 682,
+        "pdfPage": 682,
+        "title": "Status、Header条目和ERR消息数量为什么不相等",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.3",
+        "page": 791,
+        "pdfPage": 791,
+        "title": "Status、Header条目和ERR消息数量为什么不相等",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "读清前保存哪些字段：可复查的最小快照",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "读清前保存哪些字段：可复查的最小快照",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 680,
+        "pdfPage": 680,
+        "title": "读清前保存哪些字段：可复查的最小快照",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 789,
+        "pdfPage": 789,
+        "title": "读清前保存哪些字段：可复查的最小快照",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.4.7",
+        "page": 1122,
+        "pdfPage": 1122,
+        "title": "读清前保存哪些字段：可复查的最小快照",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.4.7",
+        "page": 1290,
+        "pdfPage": 1290,
+        "title": "读清前保存哪些字段：可复查的最小快照",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.4",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "Poison+Unexpected→另一路Timeout：串起时间线，但不臆造根因",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4",
+        "page": 783,
+        "pdfPage": 783,
+        "title": "Poison+Unexpected→另一路Timeout：串起时间线，但不臆造根因",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.3.2.4.5",
+        "page": 676,
+        "pdfPage": 676,
+        "title": "Poison+Unexpected→另一路Timeout：串起时间线，但不臆造根因",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.3.2.4.5",
+        "page": 785,
+        "pdfPage": 785,
+        "title": "Poison+Unexpected→另一路Timeout：串起时间线，但不臆造根因",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.2.4.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "清历史、恢复数据、恢复设备要分别判完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.4.2",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "清历史、恢复数据、恢复设备要分别判完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.7.2.1",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "清历史、恢复数据、恢复设备要分别判完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.7.2.1",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "清历史、恢复数据、恢复设备要分别判完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R72核6.0/7.0所列正式正文；视觉核7.0 Figure6-2 p793及Header Log图p1291。印刷页与本地PDF物理页一致。仅对应规则，不代表整章、早期代际或硬件验证。"
+      }
+    ],
+    "referenceStatus": "R72核6.0/7.0所列Poison、AER优先级/多Header/日志格式及衍生诊断方法；不代表早期全代际或硬件排障验证。",
+    "details": [
+      {
+        "id": "trace-three-error-ledgers",
+        "title": "错误Trace至少分三条证据线：包、检测代理、软件通知",
+        "paragraphs": [
+          "包线记RID/Tag、类型、TC、Poison和适用完整性检查；代理线记哪个Port/Function何时检测、Status/Mask/Severity、FEP/Header；通知线记ERR Message与Root/软件实际处理。三条证据不要靠一个Tag或一个ERR_COR强行合并。",
+          "这是依据PCIe日志机制整理的排障方法，不是规范强制的Trace信号命名。跨芯片时间戳可能未同步，应保留观察点和不确定时间区间。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "id": "trace-status-not-event-counter",
+        "title": "Status、Header条目和ERR消息数量为什么不相等",
+        "paragraphs": [
+          "粘滞Status可合并同类多次发生；Header受Mask、容量与Enable影响；ANFE可在CE Mask[13]处停止，也可能记录UE却由ERR_COR通知。三个数量本来就不必相等。",
+          "若产品另有错误计数器，需单独核其计数对象、位宽、饱和/回绕、清零和读一致性；AER不为所有产品计数器定义统一语义。不能从Status popcount估算BER、丢包数或受损事务数。"
+        ],
+        "referenceIndices": [
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "id": "trace-before-rw1c-capture",
+        "title": "读清前保存哪些字段：可复查的最小快照",
+        "paragraphs": [
+          "建议先保存BDF/Port角色、版本/模式、事件时间范围、UE/CE Status及Mask、UE Severity、Device Control/Command、Advanced Control、FEP对应Header及Prefix，再由负责该设备的驱动处理RW1C。需要Root侧时补Root Error Status/Source及通知上下文。",
+          "这是诊断清单，不是要求在故障设备上盲读所有地址。采样中硬件可能继续更新；多Header时保存当前条目后再按FEP逐个dismiss，避免一把清除丢证据。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "id": "trace-poison-misroute-timeout-chain",
+        "title": "Poison+Unexpected→另一路Timeout：串起时间线，但不臆造根因",
+        "paragraphs": [
+          "接收者可能先见带Poison的Unexpected Completion；同包推荐记Unexpected而不再记Poison。原Requester没有等到它自己的完成，稍后另报Timeout。这解释了一种可能的两端日志组合。",
+          "只有能核对正确的RID/Tag生命周期、路由目标、时间窗口与实际包头，才能把两个事件联系起来；不能仅靠这张示意就断定Switch误路由，Tag复用和日志缺失仍会使关联不确定。"
+        ],
+        "referenceIndices": [
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      {
+        "id": "trace-clear-versus-recovery-boundary",
+        "title": "清历史、恢复数据、恢复设备要分别判完成",
+        "paragraphs": [
+          "RW1C清日志只释放记录资源，不修复Poison数据，不取消远端在途操作，也不保证Link/设备恢复。恢复动作须依Poison接收角色、错误严重度、驱动与平台策略分别判断。",
+          "原始PDF、厂商寄存器转储与私有Trace不随站点发布；公开内容只保留本轮原创方法和版本化规则定位。真实平台恢复、DPC完整交互和跨版本历史仍待继续。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          22,
+          23
+        ]
+      }
+    ]
   },
   {
     "name": "Lane Margining at Receiver",
