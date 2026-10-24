@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-24",
-  "summary": "R69：TDISP/IDE数据面XT/T/TE、MMIO属性与ATS/P2P；新阶段3/4。",
+  "date": "2026-10-25",
+  "summary": "R70：PHY错误形态、FBER与产品BERMON有效性；完成R67～R70总结。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -1341,6 +1341,26 @@
       "name": "R69查询、保留性与构建",
       "status": "通过",
       "detail": "新检查299项/4722断言，覆盖1024访问场景、1728标记场景、无效输入、字段图Byte布局、交互更新和已有详情/引用前缀保留。R68回归400项/35442断言通过；构建、公开边界与JS语法通过。未执行真实SPDM/IDE/ATS/DMA硬件或攻击验证。"
+    },
+    {
+      "name": "R70初查与选题去重",
+      "status": "远端R69一致；保留原内容",
+      "detail": "已有RX参考tap/FOM、PRBS周期和零误码置信说明，本轮不重复概述，补FBER控制及6/7差异、SDK窗口证据和DFE预编码错误链。175实际为Rate/Width/Power，PRBS专题实际179，按真实主题维护。"
+    },
+    {
+      "name": "R70指定正文与字段图",
+      "status": "核读及视觉核表",
+      "detail": "Base6/7 FBER字段、计数及PAM4解释；3.02a BERMON和SDK1.00a_pre3选定正文。视觉核7.0 p1226与SDK p91，记录7.0 bit4废弃，SDK/PMA时钟口径不强行合并。检索定位不算全文核读。"
+    },
+    {
+      "name": "R70阶段回顾与公开边界",
+      "status": "完成阶段总结，原始资料仅本地",
+      "detail": "更新R67～R70已补/缺口/下一优先级；公开原创中文和标准字段图，不上传厂商原表、PDF、寄存器转储、API源代码。"
+    },
+    {
+      "name": "R70查询、来源映射与回归",
+      "status": "通过",
+      "detail": "新检查455项/9132断言，1024控制字场景、256证据组合、3字段图与误差时间线、93处所列来源映射及原有详情/引用前缀保留；R69回归299项/4722断言通过。构建、公开边界和JS语法通过。只验证选定规则/网页，不是PHY/硬件/安全合规验证。"
     }
   ],
   "unresolved": [
@@ -1439,7 +1459,8 @@
     "R66：DOE Async连续RESPONSE/REQUEST与仅GET响应措辞、TDISP报告RUN合法性与表11-17冲突待正式澄清；6.x/ECN差分、R69已补选定XT/T/ATS/P2P/属性/配置正文，完整并发/历史版本与封装差分未完成；没有真实SPDM/IDE/硬件验证。",
     "R67：Base7.0 FM再启用未定义与VC/SVC通用重启字段措辞、Rx_NP_MPS_Limit注中in DW单位、Shared全Zero注中相邻限定仍待勘误/中间修订核验；完整分配全局合规、UIO特例、硬件无死锁证明未完成。",
     "R68：6.0 TS1 DSP speed_change字段表RcvrCfg与状态机/后版RcvrLock措辞、1b/1b半部/DC Balance完整判定和中间修订待续；Modified TS/EFM/FRA/光Retimer、Gen1～5逐版OS正文及Data Stream内全部接收容错未完成。",
-    "R69：XT ECN/6.x中间修订逐条差分、完整IDE Prefix/OHC-C与ATS TE位图尚未完成；MMIO表31:!6排印需正式勘误确认；非IDE等效保护、所有路径/并发/密钥与实际硬件安全未验证。"
+    "R69：XT ECN/6.x中间修订逐条差分、完整IDE Prefix/OHC-C与ATS TE位图尚未完成；MMIO表31:!6排印需正式勘误确认；非IDE等效保护、所有路径/并发/密钥与实际硬件安全未验证。",
+    "R70：Preliminary SDK ref_timer+1参考时钟与PMA3.02a timer×128bit口径/实际固件换算仍待核；完整FBER分母/采样与Retimer CSR/6.0.1 ECN差分、burst统计和真实BERT/模拟验证未完成；产品正文对尚未解释的threshold/freeze/failed成员不按名称推断。"
   ],
   "externalComparison": {
     "date": "2026-10-21",

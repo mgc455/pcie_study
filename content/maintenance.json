@@ -1,14 +1,13 @@
 {
   "nextFeatureIds": [
+    102,
+    20,
+    22,
+    100,
+    135,
     173,
-    175,
-    124,
-    129,
-    4,
-    12,
-    13,
-    111,
-    114
+    179,
+    4
   ],
   "perRunTarget": "每轮围绕2～3个完整主题补缺口，按证据与复核成本控制范围；不机械递增细节条数，优先可发布、可复查。",
   "priorities": [
@@ -53,13 +52,14 @@
     "功能首次引入版本与ECN证据"
   ],
   "lastCompleted": {
-    "date": "2026-10-24",
-    "edition": "2026-10-24-r69",
+    "date": "2026-10-25",
+    "edition": "2026-10-25-r70",
     "featureIds": [
-      129,
-      125
+      173,
+      179,
+      177
     ],
-    "nextTrack": "新阶段3/4；下轮轮换PHY EQ/PRBS并做R67～R70阶段总结，保留XT ECN和完整封装差分。"
+    "nextTrack": "R67～R70总结完成；下阶段先Completion Timeout/迟到完成/Tag回收，再错误收敛、遥测及早期代际。"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -262,16 +262,95 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 11,
-    "lastReviewEdition": "2026-10-24-r66",
-    "lastReviewId": "r63-r66",
-    "nextExpectedReview": "R70（后续实际完成4轮后）"
+    "completedTotal": 12,
+    "lastReviewEdition": "2026-10-25-r70",
+    "lastReviewId": "r67-r70",
+    "nextExpectedReview": "R74（后续实际完成4轮后）"
   },
   "stageReviews": [
+    {
+      "id": "r67-r70",
+      "date": "2026-10-25",
+      "edition": "2026-10-25-r70",
+      "title": "第三阶段：FM流控 → Ordered Set → 可信数据面 → PHY错误观测",
+      "completedRounds": 4,
+      "rounds": [
+        {
+          "edition": "R67",
+          "topic": "FM最小广告、Shared与SVC",
+          "featureIds": [
+            111,
+            114
+          ],
+          "remaining": "全局分配合规、UIO与表文勘误"
+        },
+        {
+          "edition": "R68",
+          "topic": "TS/EIOS/EIEOS/FTS/SDS字段图和上下文",
+          "featureIds": [
+            12,
+            178
+          ],
+          "remaining": "Gen1～5逐版OS、Modified/EFM完整接收"
+        },
+        {
+          "edition": "R69",
+          "topic": "TDISP XT/T/TE、ATS/P2P、MMIO",
+          "featureIds": [
+            129,
+            125
+          ],
+          "remaining": "XT ECN历史、完整封装与实际安全验证"
+        },
+        {
+          "edition": "R70",
+          "topic": "FBER控制/计数、PRBS/BERMON证据及DFE错误形态",
+          "featureIds": [
+            179,
+            173,
+            177
+          ],
+          "remaining": "SDK/PMA计时差异、完整测量换算、实际BERT/BER/模拟验证"
+        }
+      ],
+      "result": "四轮从传输额度、训练序列、数据访问权限推进到PHY错误证据；已提供选定字段/规则/图与条件查询，不代表七代协议全覆盖。",
+      "nextPriorities": [
+        {
+          "title": "1. Completion Timeout、迟到完成与Tag回收",
+          "featureIds": [
+            102,
+            20,
+            22
+          ],
+          "reason": "回到NP事务闭环，连接超时前后状态、Unexpected Completion及资源复用，补易误用的异常边界。"
+        },
+        {
+          "title": "2. Poison与错误收敛、标准遥测",
+          "featureIds": [
+            100,
+            103,
+            135,
+            179
+          ],
+          "reason": "区分PHY事件、Flit/DLL错误、AER与事务后果，形成可查的跨层诊断链，保留原始口径。"
+        },
+        {
+          "title": "3. 早期代际与PHY轮换",
+          "featureIds": [
+            3,
+            4,
+            173,
+            179
+          ],
+          "reason": "核已有旧版正文与中间修订，避免只扩展6/7；PHY继续完整测试/时钟边界，按实际证据拆块。"
+        }
+      ],
+      "limitations": "未做真实设备安全会话、RTL、BERT或模拟验收；阶段完成仅表示本轮选定主题，目录/引用数量不作为覆盖率。"
+    },
     {
       "id": "r63-r66",
       "date": "2026-10-24",

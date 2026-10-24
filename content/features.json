@@ -115324,8 +115324,8 @@
     "prerequisites": "本轮核对了Gen6 RX模块职责，没有核读全部私有算法或所有tap寄存器。",
     "example": "冷启动通过而温度变化后误码增加时，应检查持续适应、校准状态和时钟/电源条件，不能仅重新跑一次LTSSM掩盖问题。",
     "checks": "记录校准完成、适应阶段、失败原因和BER；更改EQ前确认固件是否会覆盖手工设置。",
-    "status": "已深化 · 所引正文/模型已核，逐版持续完善",
-    "reviewed": "2026-10-22",
+    "status": "选定PHY错误观测与版本规则已深化 · 持续核读",
+    "reviewed": "2026-10-25",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -116586,9 +116586,152 @@
         "title": "查询：Gen5/Gen6产品评估快照能否满足所列入口",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.1.4",
+        "page": 346,
+        "pdfPage": 346,
+        "title": "DFE误差为何可能被压到两端：看e[n]+e[n−1]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1.4",
+        "page": 401,
+        "pdfPage": 401,
+        "title": "DFE误差为何可能被压到两端：看e[n]+e[n−1]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1.5",
+        "page": 402,
+        "pdfPage": 402,
+        "title": "DFE误差为何可能被压到两端：看e[n]+e[n−1]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.1.4",
+        "page": 346,
+        "pdfPage": 346,
+        "title": "原创时间线：一次起因、三UI传播、两处残差",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1.4",
+        "page": 401,
+        "pdfPage": 401,
+        "title": "原创时间线：一次起因、三UI传播、两处残差",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.1.4",
+        "page": 345,
+        "pdfPage": 345,
+        "title": "预编码的适用前提：连续±1与TS0旁路分别核",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1.4",
+        "page": 399,
+        "pdfPage": 399,
+        "title": "预编码的适用前提：连续±1与TS0旁路分别核",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.1.4",
+        "page": 346,
+        "pdfPage": 346,
+        "title": "预编码的适用前提：连续±1与TS0旁路分别核",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1.4",
+        "page": 401,
+        "pdfPage": 401,
+        "title": "预编码的适用前提：连续±1与TS0旁路分别核",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.2",
+        "page": 40,
+        "pdfPage": 40,
+        "title": "FOM排行、内部眼与错误统计：调优后还需固定测量上下文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3",
+        "page": 41,
+        "pdfPage": 41,
+        "title": "FOM排行、内部眼与错误统计：调优后还需固定测量上下文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "5.6",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "FOM排行、内部眼与错误统计：调优后还需固定测量上下文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.1.11",
+        "page": 1571,
+        "pdfPage": 1571,
+        "title": "FOM排行、内部眼与错误统计：调优后还需固定测量上下文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       }
     ],
-    "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
+    "referenceStatus": "R70核Base6/7 FBER、PAM4预编码错误解释和所标产品BERMON；SDK为Preliminary，保留计时冲突；未验证硅片/全代际。",
     "details": [
       {
         "id": "rx-calibration-vs-adaptation",
@@ -117571,6 +117714,59 @@
           111,
           112,
           113
+        ]
+      },
+      {
+        "id": "rx-precoding-error-residue-equation",
+        "title": "DFE误差为何可能被压到两端：看e[n]+e[n−1]",
+        "paragraphs": [
+          "6.0/7.0 PAM4说明用Tx T[n]=(P[n]−T[n−1]) mod4，Rx逆处理P′[n]=(R′[n]+R′[n−1]) mod4。把包括信道和DFE传播的净误差记为e，则残留为(e[n]+e[n−1]) mod4。",
+          "当连续传播误差按±1交替时，中间两项相消，开始处和传播停止后的UI留下残差。这是特定假设下的解释，不是所有DFE burst都压成固定两bit。原表续页的公式标签有排印差异，本块按正文加法关系，不悄悄混用。"
+        ],
+        "referenceIndices": [
+          114,
+          115,
+          116
+        ]
+      },
+      {
+        "id": "rx-precoding-burst-timeline",
+        "title": "原创时间线：一次起因、三UI传播、两处残差",
+        "paragraphs": [
+          "示意取净误差e=0,+1,−1,+1,0,0；一UI延迟相加得到残差0,+1,0,0,+1,0。输出事件落在burst开始和停止后一UI，而不是每个内部误判都对应一个输出bit错误。",
+          "这是模4误差代数示意，不是外部波形、电压幅度、真实器件预测或规范原表复刻。只有在相应Gray映射、±1及连续传播假设下，才能联系到所引两bit解释。"
+        ],
+        "referenceIndices": [
+          117,
+          118
+        ]
+      },
+      {
+        "id": "rx-precoding-validity-and-bypass",
+        "title": "预编码的适用前提：连续±1与TS0旁路分别核",
+        "paragraphs": [
+          "规范指出误差电平大于+1/小于−1，或DFE在不连续UI引入错误时，预编码未必有效。Gray coding的一UI至多一bit翻转解释也依赖最可能的相邻电平误差情形。",
+          "预编码只作用于两bit对齐且两bit都scrambled、并启用预编码的内容；TS0全部Symbol旁路。前一UI未扰码时，Tx历史项置00。不能对所有Ordered Set一刀切启用，也不能把TX/RX BIST处理设置当协议条件本身。"
+        ],
+        "referenceIndices": [
+          119,
+          120,
+          121,
+          122
+        ]
+      },
+      {
+        "id": "rx-eq-ranking-versus-ber-validity",
+        "title": "FOM排行、内部眼与错误统计：调优后还需固定测量上下文",
+        "paragraphs": [
+          "本地均衡/FOM评估、内部ADC/FFE/DFE观察与实际PRBS比较是不同证据。某Preset分数更高，不等于特定时间窗或压力条件下的BER已经满足目标。",
+          "建议记录评估结束、本地适应/校准状态、图样/Gray/预编码、seed与起止快照，再比较不同设置；这是测量方法建议，不新增厂商冻结寄存器或保证冻结后等同mission mode。参考DFE tap界限本身也不证明burst安全。"
+        ],
+        "referenceIndices": [
+          123,
+          124,
+          125,
+          126
         ]
       }
     ]
@@ -124749,8 +124945,8 @@
     "prerequisites": "Gen6-capable PHY仍须考虑较低速率运行，不能把64 GT/s的调制方式推广到其所有工作速率；FLIT模式还应独立判断。",
     "example": "32 Gbaud PAM4承载64 Gbit/s标称比特流，而不是128 Gbit/s。并行总线承载的是bit、symbol还是处理后的码字，要看接口定义。",
     "checks": "检查调制模式、编码归属、位序、FEC/重放统计和状态机；PAM4误码不能只用是否进入L0判定。",
-    "status": "已深化 · 所引正文/模型已核，逐版持续完善",
-    "reviewed": "2026-10-21",
+    "status": "选定PHY错误观测与版本规则已深化 · 持续核读",
+    "reviewed": "2026-10-25",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -125219,9 +125415,86 @@
         "title": "速率相关采样打包",
         "verification": "核读3.02a所引正文，仅归纳该产品的能力与测量有效性条件；不是通用PCIe寄存器/架构。厂商寄存器、原图与正文不公开复制。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "8.1",
+        "page": 1317,
+        "pdfPage": 1317,
+        "title": "6.0与7.0电气FBER：新增128GT/s，不能当post-FEC数据率",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.1",
+        "page": 1505,
+        "pdfPage": 1505,
+        "title": "6.0与7.0电气FBER：新增128GT/s，不能当post-FEC数据率",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.8.6",
+        "page": 1067,
+        "pdfPage": 1067,
+        "title": "从PMA到协议：四层证据链怎样对照",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.6",
+        "page": 1226,
+        "pdfPage": 1226,
+        "title": "从PMA到协议：四层证据链怎样对照",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "5.6",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "从PMA到协议：四层证据链怎样对照",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1.4",
+        "page": 401,
+        "pdfPage": 401,
+        "title": "从PMA到协议：四层证据链怎样对照",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.1",
+        "page": 1505,
+        "pdfPage": 1505,
+        "title": "从PMA到协议：四层证据链怎样对照",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       }
     ],
-    "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
+    "referenceStatus": "R70核Base6/7 FBER、PAM4预编码错误解释和所标产品BERMON；SDK为Preliminary，保留计时冲突；未验证硅片/全代际。",
     "details": [
       {
         "id": "signaling-rate-symbol-ui-table",
@@ -125823,6 +126096,33 @@
         "referenceIndices": [
           40,
           41
+        ]
+      },
+      {
+        "id": "pam4-fber-six-seven-electrical-context",
+        "title": "6.0与7.0电气FBER：新增128GT/s，不能当post-FEC数据率",
+        "paragraphs": [
+          "6.0电气导言列64GT/s PAM4的FBER/BER为10⁻⁶；7.0列64和128GT/s。两版这里FBER不把burst误差计入，低速NRZ的10⁻¹²也带相应说明。",
+          "这是规定测量语境的指标，不是“每百万个应用bit允许交付一个坏bit”，也不是任意PRBS窗口的自动通过阈值。接收压力、FEC、CRC和错误传播还各有约束；链路代际、编码和观测层必须一起标注。"
+        ],
+        "referenceIndices": [
+          42,
+          43
+        ]
+      },
+      {
+        "id": "pam4-measurement-evidence-chain",
+        "title": "从PMA到协议：四层证据链怎样对照",
+        "paragraphs": [
+          "建议并列看：PMA有效图样错误统计；DFE/预编码后的错误形态；FEC纠正/Invalid Flit及SKP诊断；事务/AER/应用观察。它们的观察点和单位不同，不能要求所有计数一一相等。",
+          "PAM4一UI两bit用于解释物理符号，不用于重复放大GT/s或已知比较bit数。电气压力测试、产品内建监视、标准FBER计数和应用完整性测试相互补充，任何单项都不是全链路验收替代品。"
+        ],
+        "referenceIndices": [
+          44,
+          45,
+          46,
+          47,
+          48
         ]
       }
     ]
@@ -127731,8 +128031,8 @@
     "prerequisites": "本轮只核读RX/TX功能框图确认测试职责，未核对交付全部PRBS多项式、环回寄存器及仪器流程。",
     "example": "内部数字环回通过、板外链路失败时，仍需检查未覆盖的模拟前端、封装与通道。",
     "checks": "先标出环回点和时钟源，再比较计数；PAM4的FEC前后误码统计不能混在同一口径。",
-    "status": "体系条目已整理 · 按来源范围核读",
-    "reviewed": "2026-10-21",
+    "status": "选定PHY错误观测与版本规则已深化 · 持续核读",
+    "reviewed": "2026-10-25",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -128267,9 +128567,812 @@
         "title": "捕获与清零边界",
         "verification": "核读3.02a所引正文，仅归纳该产品的能力与测量有效性条件；不是通用PCIe寄存器/架构。厂商寄存器、原图与正文不公开复制。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.8.6",
+        "page": 1067,
+        "pdfPage": 1067,
+        "title": "先分观察点：PMA BER、FBER寄存器与Flit错误计数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.6",
+        "page": 1226,
+        "pdfPage": 1226,
+        "title": "先分观察点：PMA BER、FBER寄存器与Flit错误计数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.5",
+        "page": 1225,
+        "pdfPage": 1225,
+        "title": "先分观察点：PMA BER、FBER寄存器与Flit错误计数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "5.6",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "先分观察点：PMA BER、FBER寄存器与Flit错误计数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9",
+        "page": 1219,
+        "pdfPage": 1219,
+        "title": "发现入口：扩展能力0032h，FM支持要求与当前FM分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.1",
+        "page": 1220,
+        "pdfPage": 1220,
+        "title": "发现入口：扩展能力0032h，FM支持要求与当前FM分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.8.6",
+        "page": 1067,
+        "pdfPage": 1067,
+        "title": "发现入口：扩展能力0032h，FM支持要求与当前FM分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.6",
+        "page": 1226,
+        "pdfPage": 1226,
+        "title": "发现入口：扩展能力0032h，FM支持要求与当前FM分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.8.6",
+        "page": 1067,
+        "pdfPage": 1067,
+        "title": "FBER Control +10h：Enable、Clear、Granularity与bit4逐位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.6",
+        "page": 1226,
+        "pdfPage": 1226,
+        "title": "FBER Control +10h：Enable、Clear、Granularity与bit4逐位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.8.6",
+        "page": 1067,
+        "pdfPage": 1067,
+        "title": "四种Granularity：bit、奇偶bit和SKP事件不可混算",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.6",
+        "page": 1226,
+        "pdfPage": 1226,
+        "title": "四种Granularity：bit、奇偶bit和SKP事件不可混算",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.8.6",
+        "page": 1067,
+        "pdfPage": 1067,
+        "title": "6.0→7.0明确变化：bit4不再是最长burst开关",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.6",
+        "page": 1226,
+        "pdfPage": 1226,
+        "title": "6.0→7.0明确变化：bit4不再是最长burst开关",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.8.7",
+        "page": 1067,
+        "pdfPage": 1067,
+        "title": "计数饱和与清零：16bit到FFFFh后只知道至少这么多",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.7",
+        "page": 1227,
+        "pdfPage": 1227,
+        "title": "计数饱和与清零：16bit到FFFFh后只知道至少这么多",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.8.8",
+        "page": 1068,
+        "pdfPage": 1068,
+        "title": "Status偏移与位宽：Link分母和逐Lane计数怎样配对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.8.9",
+        "page": 1069,
+        "pdfPage": 1069,
+        "title": "Status偏移与位宽：Link分母和逐Lane计数怎样配对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.8",
+        "page": 1227,
+        "pdfPage": 1227,
+        "title": "Status偏移与位宽：Link分母和逐Lane计数怎样配对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.9",
+        "page": 1228,
+        "pdfPage": 1228,
+        "title": "Status偏移与位宽：Link分母和逐Lane计数怎样配对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9",
+        "page": 1219,
+        "pdfPage": 1219,
+        "title": "Status偏移与位宽：Link分母和逐Lane计数怎样配对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.7",
+        "page": 1227,
+        "pdfPage": 1227,
+        "title": "Invalid Flit不能静默删除：纠正计数不是全部物理错误",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.8",
+        "page": 1227,
+        "pdfPage": 1227,
+        "title": "Invalid Flit不能静默删除：纠正计数不是全部物理错误",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.9",
+        "page": 1228,
+        "pdfPage": 1228,
+        "title": "Invalid Flit不能静默删除：纠正计数不是全部物理错误",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.8.6",
+        "page": 1067,
+        "pdfPage": 1067,
+        "title": "不要把Flit Counter乘2048就宣称得到精确FBER",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.6",
+        "page": 1226,
+        "pdfPage": 1226,
+        "title": "不要把Flit Counter乘2048就宣称得到精确FBER",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.9",
+        "page": 1228,
+        "pdfPage": 1228,
+        "title": "不要把Flit Counter乘2048就宣称得到精确FBER",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.1",
+        "page": 1505,
+        "pdfPage": 1505,
+        "title": "不要把Flit Counter乘2048就宣称得到精确FBER",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "3.12",
+        "page": 68,
+        "pdfPage": 68,
+        "title": "PRBS名同阶也可能不同：完整签名比“31”更重要",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.2",
+        "page": 91,
+        "pdfPage": 91,
+        "title": "PRBS名同阶也可能不同：完整签名比“31”更重要",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.2",
+        "page": 92,
+        "pdfPage": 92,
+        "title": "PRBS名同阶也可能不同：完整签名比“31”更重要",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "3.12",
+        "page": 67,
+        "pdfPage": 67,
+        "title": "TX编码和RX matcher配置：Gray与Precode不是可忽略选项",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.2",
+        "page": 91,
+        "pdfPage": 91,
+        "title": "TX编码和RX matcher配置：Gray与Precode不是可忽略选项",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.2",
+        "page": 92,
+        "pdfPage": 92,
+        "title": "TX编码和RX matcher配置：Gray与Precode不是可忽略选项",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1.4",
+        "page": 399,
+        "pdfPage": 399,
+        "title": "TX编码和RX matcher配置：Gray与Precode不是可忽略选项",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "3.12",
+        "page": 68,
+        "pdfPage": 68,
+        "title": "错误注入测的是可观测链，不保证N次注入等于N次报告",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "3.13",
+        "page": 70,
+        "pdfPage": 70,
+        "title": "错误注入测的是可观测链，不保证N次注入等于N次报告",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "3.13",
+        "page": 71,
+        "pdfPage": 71,
+        "title": "错误注入测的是可观测链，不保证N次注入等于N次报告",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "5.6",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "错误注入测的是可观测链，不保证N次注入等于N次报告",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.1",
+        "page": 90,
+        "pdfPage": 90,
+        "title": "SDK BERMON流程：窗口模式等Done，连续模式不套这个等待",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.5",
+        "page": 98,
+        "pdfPage": 98,
+        "title": "SDK BERMON流程：窗口模式等Done，连续模式不套这个等待",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.5",
+        "page": 99,
+        "pdfPage": 99,
+        "title": "SDK BERMON流程：窗口模式等Done，连续模式不套这个等待",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.4",
+        "page": 96,
+        "pdfPage": 96,
+        "title": "API成功、seed有效和窗口完成是三个不同判断",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.4",
+        "page": 97,
+        "pdfPage": 97,
+        "title": "API成功、seed有效和窗口完成是三个不同判断",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.5",
+        "page": 98,
+        "pdfPage": 98,
+        "title": "API成功、seed有效和窗口完成是三个不同判断",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.5",
+        "page": 99,
+        "pdfPage": 99,
+        "title": "API成功、seed有效和窗口完成是三个不同判断",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "5.6",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "API成功、seed有效和窗口完成是三个不同判断",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.2",
+        "page": 91,
+        "pdfPage": 91,
+        "title": "计时口径保留差异：SDK的+1参考时钟与PMA的128bit周期",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "5.6",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "计时口径保留差异：SDK的+1参考时钟与PMA的128bit周期",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.6",
+        "page": 100,
+        "pdfPage": 100,
+        "title": "报告输入保持同一配置：不是只读一个err_cnt",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.6",
+        "page": 101,
+        "pdfPage": 101,
+        "title": "报告输入保持同一配置：不是只读一个err_cnt",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.2",
+        "page": 91,
+        "pdfPage": 91,
+        "title": "报告输入保持同一配置：不是只读一个err_cnt",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.2",
+        "page": 92,
+        "pdfPage": 92,
+        "title": "报告输入保持同一配置：不是只读一个err_cnt",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "5.6",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "新快照与关闭清零：产品监视器和标准FBER各有自己的边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.6",
+        "page": 100,
+        "pdfPage": 100,
+        "title": "新快照与关闭清零：产品监视器和标准FBER各有自己的边界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.6",
+        "page": 101,
+        "pdfPage": 101,
+        "title": "新快照与关闭清零：产品监视器和标准FBER各有自己的边界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "5.6",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "无效窗口不能喂给零误码置信上界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.1",
+        "page": 90,
+        "pdfPage": 90,
+        "title": "无效窗口不能喂给零误码置信上界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.5",
+        "page": 98,
+        "pdfPage": 98,
+        "title": "无效窗口不能喂给零误码置信上界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.5",
+        "page": 99,
+        "pdfPage": 99,
+        "title": "无效窗口不能喂给零误码置信上界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.8.6",
+        "page": 1067,
+        "pdfPage": 1067,
+        "title": "查询：6.0/7.0 FBER控制字、单位与未定义分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.6",
+        "page": 1226,
+        "pdfPage": 1226,
+        "title": "查询：6.0/7.0 FBER控制字、单位与未定义分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.1",
+        "page": 90,
+        "pdfPage": 90,
+        "title": "查询：这组BERMON证据能否作为有效窗口报告",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.2",
+        "page": 91,
+        "pdfPage": 91,
+        "title": "查询：这组BERMON证据能否作为有效窗口报告",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.2",
+        "page": 92,
+        "pdfPage": 92,
+        "title": "查询：这组BERMON证据能否作为有效窗口报告",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.5",
+        "page": 98,
+        "pdfPage": 98,
+        "title": "查询：这组BERMON证据能否作为有效窗口报告",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.5",
+        "page": 99,
+        "pdfPage": 99,
+        "title": "查询：这组BERMON证据能否作为有效窗口报告",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.6",
+        "page": 100,
+        "pdfPage": 100,
+        "title": "查询：这组BERMON证据能否作为有效窗口报告",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.6",
+        "page": 101,
+        "pdfPage": 101,
+        "title": "查询：这组BERMON证据能否作为有效窗口报告",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "5.6",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "查询：这组BERMON证据能否作为有效窗口报告",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.11",
+        "page": 1229,
+        "pdfPage": 1229,
+        "title": "Status偏移与位宽：Link分母和逐Lane计数怎样配对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.14",
+        "page": 1230,
+        "pdfPage": 1230,
+        "title": "Status偏移与位宽：Link分母和逐Lane计数怎样配对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.9.16",
+        "page": 1231,
+        "pdfPage": 1231,
+        "title": "Status偏移与位宽：Link分母和逐Lane计数怎样配对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       }
     ],
-    "referenceStatus": "已核读本轮所列正文，按角色、版本、编码和测量边界展开；仅目录映射或未审计的范围在章序覆盖页和本页单独标明。",
+    "referenceStatus": "R70核Base6/7 FBER、PAM4预编码错误解释和所标产品BERMON；SDK为Preliminary，保留计时冲突；未验证硅片/全代际。",
     "details": [
       {
         "id": "test-path-placement",
@@ -129120,6 +130223,496 @@
           "出现错误时不套零错误公式；FBER/符号/FEC块事件也不冒充普通bit误差样本。规划值是数学估算，不替代规范规定的图样、压力、频点及认证流程。"
         ],
         "referenceIndices": []
+      },
+      {
+        "id": "fber-metrics-observation-domains",
+        "title": "先分观察点：PMA BER、FBER寄存器与Flit错误计数",
+        "paragraphs": [
+          "PMA图样检查器比较预期和恢复数据；Flit Logging的FBER测量计已纠正bit或Control SKP parity mismatch；Flit Error Counter还可能按控制条件增长并随时间衰减。三者的单位、分母、采样点不相同。",
+          "一个计数为0不能替其它计数作保证。先记录版本、FM/NFM、当前编码、物理Lane/逻辑Lane、图样和测量有效窗口，再讨论趋势。FBER寄存器名字本身不表示读数已是浮点错误率。"
+        ],
+        "referenceIndices": [
+          48,
+          49,
+          50,
+          51
+        ]
+      },
+      {
+        "id": "fber-discovery-fm-and-lane-domain",
+        "title": "发现入口：扩展能力0032h，FM支持要求与当前FM分开",
+        "paragraphs": [
+          "7.0 Flit Logging Extended Capability ID为0032h，Capability Version=1；按扩展能力链找到基址后再加相对偏移。不要把+10h误当整配置空间绝对地址。",
+          "支持FM的Port/RCRB必须实现；Upstream Port相关Function仅Function0实现。能力只在FM有效，在NFM无效果。支持FM与当前运行FM是两个判断，不能退到NRZ速率就认为不存在FM。",
+          "7.0强烈建议Lane计数使用Physical Lane Number，这不是强制所有实现同一种编号。结合Lane reversal/训练分配，先建立软件读数和物理通道的对应。Retimer控制另经DSP的Control SKP Margin Command，不假定能直读同一配置布局。"
+        ],
+        "referenceIndices": [
+          52,
+          53,
+          54,
+          55
+        ]
+      },
+      {
+        "id": "fber-control-bits-versioned",
+        "title": "FBER Control +10h：Enable、Clear、Granularity与bit4逐位",
+        "paragraphs": [
+          "bit0使能并启动测量，清0停止；bit1写1清FBER计数，读回恒0；bit[3:2]选逐Lane计数口径；bit4必须按规范版本解释；[31:5]保留。默认所列字段均0。",
+          "写1到Enable也会重置整组FBER统计到默认值，不能每次轮询都重写1而期望计数连续累积。bit1读0不是“本次没有发生清零”的历史证明。"
+        ],
+        "referenceIndices": [
+          56,
+          57
+        ],
+        "table": {
+          "columns": [
+            "位",
+            "功能",
+            "注意"
+          ],
+          "rows": [
+            [
+              "0",
+              "FBER Measurement Enable",
+              "1启动；0停止；写1重置相关计数"
+            ],
+            [
+              "1",
+              "Clear FBER Counters",
+              "写1清；读恒0"
+            ],
+            [
+              "3:2",
+              "Granularity",
+              "00全部纠正bit；01偶bit；10奇bit；11 Control SKP不匹配事件"
+            ],
+            [
+              "4",
+              "版本相关",
+              "6.0最长/首次burst报告选择；7.0废弃、置1未定义"
+            ],
+            [
+              "31:5",
+              "保留",
+              "不拿来推导隐含能力"
+            ]
+          ]
+        },
+        "packetLayouts": [
+          {
+            "id": "fber-control-6-0-r70",
+            "title": "FBER Control · Base6.0",
+            "version": "Base6.0",
+            "headerBits": 32,
+            "lengthLabel": "+10h相对偏移；32bit，小端Byte顺序",
+            "rowLabel": "寄存器行",
+            "rows": [
+              [
+                {
+                  "label": "R",
+                  "width": 3,
+                  "key": "r0",
+                  "help": "[7:5]保留"
+                },
+                {
+                  "label": "B",
+                  "width": 1,
+                  "key": "burst",
+                  "help": "bit4；最长/首次burst选择"
+                },
+                {
+                  "label": "G",
+                  "width": 2,
+                  "key": "gran",
+                  "help": "bit[3:2] Granularity"
+                },
+                {
+                  "label": "C",
+                  "width": 1,
+                  "key": "clear",
+                  "help": "bit1 写1清计数；读恒0"
+                },
+                {
+                  "label": "E",
+                  "width": 1,
+                  "key": "enable",
+                  "help": "bit0 使能/停止；写1重置计数"
+                },
+                {
+                  "label": "Reserved",
+                  "width": 24,
+                  "key": "r1",
+                  "help": "[31:8]保留"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "图中寄存器内容",
+                "size": "4Byte"
+              },
+              {
+                "label": "地址",
+                "size": "扩展能力基址+所标偏移"
+              }
+            ],
+            "note": "+10h相对偏移；32bit，小端Byte顺序"
+          },
+          {
+            "id": "fber-control-7-0-r70",
+            "title": "FBER Control · Base7.0",
+            "version": "Base7.0",
+            "headerBits": 32,
+            "lengthLabel": "+10h相对偏移；32bit，小端Byte顺序",
+            "rowLabel": "寄存器行",
+            "rows": [
+              [
+                {
+                  "label": "R",
+                  "width": 3,
+                  "key": "r0",
+                  "help": "[7:5]保留"
+                },
+                {
+                  "label": "B",
+                  "width": 1,
+                  "key": "burst",
+                  "help": "bit4；deprecated；置1未定义"
+                },
+                {
+                  "label": "G",
+                  "width": 2,
+                  "key": "gran",
+                  "help": "bit[3:2] Granularity"
+                },
+                {
+                  "label": "C",
+                  "width": 1,
+                  "key": "clear",
+                  "help": "bit1 写1清计数；读恒0"
+                },
+                {
+                  "label": "E",
+                  "width": 1,
+                  "key": "enable",
+                  "help": "bit0 使能/停止；写1重置计数"
+                },
+                {
+                  "label": "Reserved",
+                  "width": 24,
+                  "key": "r1",
+                  "help": "[31:8]保留"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "图中寄存器内容",
+                "size": "4Byte"
+              },
+              {
+                "label": "地址",
+                "size": "扩展能力基址+所标偏移"
+              }
+            ],
+            "note": "+10h相对偏移；32bit，小端Byte顺序"
+          }
+        ],
+        "packetReading": "从左到右Byte偏移递增，每Byte内bit7→0；图内Byte0对应能力+10h。E=Enable，C=Clear，G=Granularity，B=bit4版本相关；不是串行位序。"
+      },
+      {
+        "id": "fber-granularity-unit-and-encoding",
+        "title": "四种Granularity：bit、奇偶bit和SKP事件不可混算",
+        "paragraphs": [
+          "00累计valid Flit里FEC纠正的全部bit；01仅每UI的even bit，10仅odd bit；11仅Control SKP OS mismatch，每次作为一个correctable计数。01/10在非PAM4运行时结果未定义。",
+          "even/odd指一个PAM4 UI携带的两bit位置，不是偶数Lane/奇数Lane，也不是这次运行的第偶数个Flit。11的统计单位是parity mismatch事件，不能用它直接除Payload bit数给普通BER。"
+        ],
+        "referenceIndices": [
+          58,
+          59
+        ]
+      },
+      {
+        "id": "fber-bit4-deprecated-gen7",
+        "title": "6.0→7.0明确变化：bit4不再是最长burst开关",
+        "paragraphs": [
+          "6.0 bit4=1表示Port及Retimer按UI报告最长burst；默认0为首次burst路径。7.0该位已deprecated，置1的行为未定义。不能因两版布局图仍用旧名字就沿用旧操作。",
+          "本块只确认两份正式版之间的差异，尚未逐条核6.0.1及对应ECN首次修改点；不能把变化发生时间直接归因到128GT/s。"
+        ],
+        "referenceIndices": [
+          60,
+          61
+        ]
+      },
+      {
+        "id": "fber-counter-saturate-and-reset",
+        "title": "计数饱和与清零：16bit到FFFFh后只知道至少这么多",
+        "paragraphs": [
+          "FBER Status 1～10计数会饱和，不回到0。写1到Clear或Enable会把这些计数重置成默认值。饱和后不能做模2^w差值，也不能继续把FFFFh当精确错误总数。",
+          "一轮记录应同时保存控制字、计数、饱和可能性、窗口和操作历史；实际寄存器跨多笔读取是否提供原子快照，还需实现文档。与厂商BERMON的显式capture分开，不把后者机制倒填为标准寄存器保证。"
+        ],
+        "referenceIndices": [
+          62,
+          63
+        ]
+      },
+      {
+        "id": "fber-status-offset-width-map",
+        "title": "Status偏移与位宽：Link分母和逐Lane计数怎样配对",
+        "paragraphs": [
+          "+14h Status1是32bit Flit Counter；+18h Status2低16bit Invalid Flit Counter，高16bit保留；+1Ch～+38h的Status3～10，每寄存器低/高16bit依次对应两条Lane的correctable计数，覆盖Lane0～15。",
+          "Flit Counter每收到一个Flit加1；Invalid每无效Flit加1；逐Lane计数依Granularity计已纠正bit或SKP不匹配。7.0每Flit该纠正bit说明上限为24，不能把“24”解释为该Lane任意原始误码全部可观测。",
+          "6.0表里高半字曾排作32:16，7.0写为31:16；本图按32bit寄存器的两组16bit画，保留这处表文差异。完整尾部寄存器分别同Lane0规则，不替Retimer CSR映射。"
+        ],
+        "referenceIndices": [
+          64,
+          65,
+          66,
+          67,
+          68,
+          118,
+          119,
+          120
+        ],
+        "packetLayouts": [
+          {
+            "id": "fber-status-first-three-r70",
+            "title": "FBER Status 1～3 · Base7.0",
+            "version": "Base7.0",
+            "headerBits": 96,
+            "lengthLabel": "三组相邻32bit寄存器；共12Byte；图内Byte0对应能力+14h",
+            "rowLabel": "寄存器行",
+            "rows": [
+              [
+                {
+                  "label": "Flit Counter",
+                  "width": 32,
+                  "key": "flit",
+                  "help": "能力+14h：Link级32bit"
+                }
+              ],
+              [
+                {
+                  "label": "Invalid Flit",
+                  "width": 16,
+                  "key": "invalid",
+                  "help": "能力+18h[15:0]：Link级"
+                },
+                {
+                  "label": "R",
+                  "width": 16,
+                  "key": "r",
+                  "help": "能力+18h[31:16]保留"
+                }
+              ],
+              [
+                {
+                  "label": "Lane0",
+                  "width": 16,
+                  "key": "l0",
+                  "help": "能力+1Ch[15:0]"
+                },
+                {
+                  "label": "Lane1",
+                  "width": 16,
+                  "key": "l1",
+                  "help": "能力+1Ch[31:16]"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "图中寄存器内容",
+                "size": "12Byte"
+              },
+              {
+                "label": "地址",
+                "size": "扩展能力基址+所标偏移"
+              }
+            ],
+            "note": "三组相邻32bit寄存器；共12Byte；图内Byte0对应能力+14h"
+          }
+        ],
+        "packetReading": "按寄存器地址及小端Byte偏移递增；各整数字段占位不是线缆串行位序。低半字在前：Invalid在前，Lane0在前。"
+      },
+      {
+        "id": "fber-invalid-flits-censored-observation",
+        "title": "Invalid Flit不能静默删除：纠正计数不是全部物理错误",
+        "paragraphs": [
+          "逐Lane的FEC纠正bit统计取valid Flit；Invalid Flit是另一个Link级计数。若把无效Flit从报告去掉，却声称纠正计数覆盖全部接收bit，会产生选择性漏计。",
+          "读取Flit/Invalid/Lane计数并保存同一控制上下文。它们能描述所观测事件，不自动提供受损Flit中的原始bit错误个数；清零/饱和和Link速率/宽度变化也要单列。"
+        ],
+        "referenceIndices": [
+          69,
+          70,
+          71
+        ]
+      },
+      {
+        "id": "fber-denominator-do-not-invent",
+        "title": "不要把Flit Counter乘2048就宣称得到精确FBER",
+        "paragraphs": [
+          "本组寄存器定义计数单位和范围，但本轮所核页没有给一条无条件的“纠正数/(Flit×2048)”换算公式。不同Lane、Granularity、Invalid Flit、Control SKP和有效时间范围必须对齐。",
+          "若实验报告要给错误率，须另核实际测量算法及比较bit分母；缺分母时先报告原始统计与口径。PAM4 GT/s已含每UI两bit，不能在推分母时再额外乘2。"
+        ],
+        "referenceIndices": [
+          72,
+          73,
+          74,
+          75
+        ]
+      },
+      {
+        "id": "prbs-signature-beyond-order",
+        "title": "PRBS名同阶也可能不同：完整签名比“31”更重要",
+        "paragraphs": [
+          "Preliminary SDK同样列有标准PRBS阶数和另列多项式的同阶变体；阶数相同不能保证TX/checker参考序列一致。配置记录需要多项式/反馈约定、初值、反相、位序及处理位置。",
+          "本轮不公开厂商pattern选择码表，不据某一个产品列表推断Base要求。验证时用匹配的图样定义，不能仅以API参数都写“PRBS23”断定两端已对齐。"
+        ],
+        "referenceIndices": [
+          76,
+          77,
+          78
+        ]
+      },
+      {
+        "id": "prbs-gray-precode-matcher-boundary",
+        "title": "TX编码和RX matcher配置：Gray与Precode不是可忽略选项",
+        "paragraphs": [
+          "Preliminary SDK在发生器及BER matcher配置中分别暴露Gray/Precode选择。测试两端必须按对应观察点核对是否已编码/已逆变换，不能在一侧多做一次处理。",
+          "相同图样但Gray/预编码路径不匹配时，seed验证或误码统计可能不成立。PCIe协议哪些Symbol须旁路有自己的规则；产品BIST不自动等于完整协议数据路径。"
+        ],
+        "referenceIndices": [
+          79,
+          80,
+          81,
+          82
+        ]
+      },
+      {
+        "id": "prbs-error-injection-observability",
+        "title": "错误注入测的是可观测链，不保证N次注入等于N次报告",
+        "paragraphs": [
+          "Preliminary SDK的错误注入要求TX发生器已经启用，描述为逐个插入指定数量的错误bit。图样限制中明确JP03B与52UI jitter pattern不用于插错后的RX BER状态收集。",
+          "从注入到最终计数之间可能有编码、DFE传播、失锁、FEC纠正及统计窗口。不能以注入10次而AER/CRC不是10次就直接断言计数器坏，也不能从一次注入没告警证明无检测功能。先查测试路径与计数单位。"
+        ],
+        "referenceIndices": [
+          83,
+          84,
+          85,
+          86
+        ]
+      },
+      {
+        "id": "bermon-sdk-sequence-and-mode",
+        "title": "SDK BERMON流程：窗口模式等Done，连续模式不套这个等待",
+        "paragraphs": [
+          "1.00a_pre3给出配置→启用→seed验证→窗口Done检查→报告的顺序；Done检查明确仅用于window method。连续计数用有效的当前快照及其实际窗口，不应无限等待一个窗口结束事件。",
+          "这是Preliminary应用说明，早于3.02a手册，须核生成SDK/固件交付契约后落地；不把流程改写成适用所有PHY的APB脚本，也不执行供应商代码。"
+        ],
+        "referenceIndices": [
+          87,
+          88,
+          89
+        ]
+      },
+      {
+        "id": "bermon-api-success-not-comparison-done",
+        "title": "API成功、seed有效和窗口完成是三个不同判断",
+        "paragraphs": [
+          "API返回0仅说明该调用没有报告错误，不等于PRBS已匹配或观察窗口已完成。seed未验证时，3.02a明确不计bit错误且读回无效。",
+          "窗口模式需要本次seed和Done证据；报告要属于这一轮。沿用上轮done、只看CDR ready或只看到error_code为成功，都不能给这轮签发零误码结论。"
+        ],
+        "referenceIndices": [
+          90,
+          91,
+          92,
+          93,
+          94
+        ]
+      },
+      {
+        "id": "bermon-timer-contract-version-conflict",
+        "title": "计时口径保留差异：SDK的+1参考时钟与PMA的128bit周期",
+        "paragraphs": [
+          "Preliminary SDK §6.2描述ref_timer=0为连续，非零在(programmed_value+1)个reference clocks后停止。PMA3.02a §5.6则描述非零窗口为timer×128个监视bit、每监视周期检查128bit。",
+          "两者版本、接口层和时钟措辞不同；本轮不凭名字相近把它们合并，也不加一个+1就宣称解释了全部固件换算。实际寄存器/SDK输出分母与频率映射需交付Reference Manual和实现核验。"
+        ],
+        "referenceIndices": [
+          95,
+          96
+        ]
+      },
+      {
+        "id": "bermon-report-input-contract",
+        "title": "报告输入保持同一配置：不是只读一个err_cnt",
+        "paragraphs": [
+          "Preliminary报告接口仍接收lane、ref_timer、datarate、pattern等上下文，且ref_timer要求与配置时相同。输出含总错误、BER及even/odd相关字段；不能只取err_cnt却丢掉配置快照。",
+          "结构体中存在阈值、冻结和failed等成员，不等于该版本所核表已把每个字段的语义/单位定义齐。对未给出的行为保留待核，不按变量名推断停止条件或把它当通用强制门限。"
+        ],
+        "referenceIndices": [
+          97,
+          98,
+          99,
+          100
+        ]
+      },
+      {
+        "id": "bermon-snapshot-disable-clear-boundary",
+        "title": "新快照与关闭清零：产品监视器和标准FBER各有自己的边界",
+        "paragraphs": [
+          "3.02a手册要求先显式capture内部计数再读取；关闭监视会清内部计数、seed/完成状态和读回计数。先关再读、或先清一半后拼另一半，都可能把真实错误掩掉。",
+          "Preliminary SDK的报告函数怎样实现捕获、时钟周期和分母，不由相似字段名自动推出。公开笔记给出需要保留的证据，不搬出原寄存器转储作为可直接执行的作业单。"
+        ],
+        "referenceIndices": [
+          101,
+          102,
+          103
+        ]
+      },
+      {
+        "id": "bermon-invalid-window-no-zero-bound",
+        "title": "无效窗口不能喂给零误码置信上界",
+        "paragraphs": [
+          "若seed未通过、图样处理不匹配、窗口未完成、快照不属于本轮或比较bit分母未知，0/N统计前提尚未成立；不能把无效的0送进已有BER置信计算器。",
+          "即便快照有效，饱和计数也只是下界，突发相关错误还会破坏独立同分布假设。这里新增的是证据门控，数学置信计算继续保留在原有条目，不重复把它包装成认证工具。"
+        ],
+        "referenceIndices": [
+          104,
+          105,
+          106,
+          107
+        ]
+      },
+      {
+        "id": "fber-control-query",
+        "title": "查询：6.0/7.0 FBER控制字、单位与未定义分支",
+        "paragraphs": [
+          "输入Base版本、FM/NFM、NRZ/PAM4和32bit控制word，解释各字段及计数口径。7.0 bit4=1、非PAM4使用even/odd模式分别提示未定义；NFM明确无效果。",
+          "读回时Clear恒0，只是寄存器值，不能重建此前写1历史。工具不发配置写、不模拟所有并发寄存器操作，也不从计数名字输出未经核验的FBER数值。"
+        ],
+        "referenceIndices": [
+          108,
+          109
+        ]
+      },
+      {
+        "id": "bermon-evidence-query",
+        "title": "查询：这组BERMON证据能否作为有效窗口报告",
+        "paragraphs": [
+          "选择Preliminary SDK窗口/连续模式及seed、Done、配置匹配、新报告、调用成功、已核分母和饱和情况，按已核约束列出缺口。默认示例是seed已通过但window Done尚未完成。",
+          "“证据齐备”仅表示可继续解释该观察窗口，不等于链路健康、达到某目标BER或合规通过。它不运行任何产品API，不验证未公开的计数算法，也不替代其它产品版本。"
+        ],
+        "referenceIndices": [
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117
+        ]
       }
     ]
   },
