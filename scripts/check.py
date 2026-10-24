@@ -135,7 +135,10 @@ for d in coverage['documents']:
 assert '#coverage' in raw
 for change in coverage.get('independentChanges',[]):
     assert change['documentId'] in documents_by_id
-    assert change['status']=='selected-rules-reviewed-local-copy', 'Independent changes are not whole-Base completion'
+    assert change['status'] in {'selected-rules-reviewed-local-copy','front-matter-reviewed-only'}, 'Independent changes are not whole-Base completion'
+    if change['status']=='front-matter-reviewed-only':
+        assert change.get('remaining'), 'Front-matter review must retain body review gap'
+        assert all(features_by_id[b['featureId']]['protocolReferences'][i]['pdfPage']==1 for b in change['reviewedBlocks'] for i in b['referenceIndices']), 'Front-matter-only evidence must stay on the verified opening page'
     assert change['reviewedBlocks'] and change['note']
     for block in change['reviewedBlocks']:
         f=features_by_id[block['featureId']]

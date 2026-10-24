@@ -1,6 +1,6 @@
 {
   "date": "2026-10-24",
-  "summary": "R65：早期Recovery与L0p细节、包位图、版本化仲裁/计时查询，新阶段3/4。",
+  "summary": "R66：DOE6/7邮箱、格式与TDISP1.0管理主线；R63～R66阶段总结完成。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -1246,6 +1246,36 @@
       "name": "R65查询与覆盖回归",
       "status": "通过",
       "detail": "新检查389项/7474断言，覆盖5000个仲裁输入组合（含非法/未定义/待核）、6个版本编码预算分支、32bit包图、章节直接引用和交互更新；R64回归378项/15882断言通过。保留全部旧详情与引用前缀，非真实链路/完整并发证明。"
+    },
+    {
+      "name": "R66初查与版本事实",
+      "status": "已核指定正文",
+      "detail": "远端main与R65一致。127/129此前无details；保留旧引用。DOE6/7能力版本、Connection ID、Discovery长度、读确认、Abort/FLR与事件分别核读。"
+    },
+    {
+      "name": "R66 TDISP状态与错误边界",
+      "status": "已核管理主线",
+      "detail": "Base7.0 p1736～1745、1748～1766及1770～1771选定管理规则/字段核读；GET_REPORT在RUN的正文与错误表冲突公开保留。未将所有提取页视为全文已核。"
+    },
+    {
+      "name": "R66来源图和公开边界",
+      "status": "关键图视觉核对",
+      "detail": "视觉核7.0 p960/1743，原创DOE双版头、TDISP公共头及控制/状态/FLAGS图；原PDF、ECN正文、私有路径与提取文本不发布。"
+    },
+    {
+      "name": "R66阶段总结",
+      "status": "4/4总结完成",
+      "detail": "记录R63～R66已补与未补；下一阶段优先FC/FM初始分配/SVC、Ordered Set、TDISP/IDE与PHY轮换，未以详情数量表示协议覆盖率。"
+    },
+    {
+      "name": "R66 ECN证据边界",
+      "status": "仅首页核读",
+      "detail": "TDISP 2022-07-27 ECN首页单独引用与独立变化记录；不冒充Base6.0原版已含TDISP，也不声称ECN全文核完。"
+    },
+    {
+      "name": "R66构建与行为检查",
+      "status": "通过",
+      "detail": "新检查461项/17405断言，含384命令组合、4096 Connection ID、长度边界、图位数、引用映射及交互更新；R65回归389项/7474断言通过。非密码学、真实硬件或全部网站视觉验证。"
     }
   ],
   "unresolved": [
@@ -1340,7 +1370,8 @@
     "R62：6.50a完整DMA错误/停止/上下文字段、LL所有权发布与回收、4GB长度编码、DBI真实CPU映射及平台DMA一致性待续；两个工具为受限算式/候选规划，未做硬件验证。",
     "R63：6.50a CB/PCS时间点、Watermark LLP指向、98h/A0h地址角色、Write DATA_MWR和Read请求上限差异需生成交付/勘误澄清；完整LL位图、4GB长度编码、并发事件原子性及平台缓存/驱动/硬件验证仍未完成。",
     "R64：PIPE7.1 p63/p126 Ok撤销时点、Rate稳定时独立Width/PCLK变更和合并功耗完整波形需进一步澄清；旧PIPE逐版差异、七代Base Recovery完整条件/计时及实际PLL/CDC/硬件验证未完成。",
-    "R65：L0p首次/中间ECN、6.0双方Priority同宽及Enable与全宽恢复措辞、7.0完整并发/重发历史和通用计时容差待核；Gen1～Gen7其余全部Recovery/EQ分支未完成，未做真实链路/RTL验证。"
+    "R65：L0p首次/中间ECN、6.0双方Priority同宽及Enable与全宽恢复措辞、7.0完整并发/重发历史和通用计时容差待核；Gen1～Gen7其余全部Recovery/EQ分支未完成，未做真实链路/RTL验证。",
+    "R66：DOE Async连续RESPONSE/REQUEST与仅GET响应措辞、TDISP报告RUN合法性与表11-17冲突待正式澄清；6.x/ECN差分、XT/T/ATS/P2P/属性/配置完整分支未完成；没有真实SPDM/IDE/硬件验证。"
   ],
   "externalComparison": {
     "date": "2026-10-21",

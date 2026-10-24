@@ -1,14 +1,14 @@
 {
   "nextFeatureIds": [
-    127,
+    111,
+    141,
+    4,
+    12,
+    13,
     129,
-    3,
-    15,
-    170,
-    164,
-    174,
-    148,
-    147
+    128,
+    173,
+    175
   ],
   "perRunTarget": "每轮围绕2～3个完整主题补缺口，按证据与复核成本控制范围；不机械递增细节条数，优先可发布、可复查。",
   "priorities": [
@@ -54,12 +54,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-24",
-    "edition": "2026-10-24-r65",
+    "edition": "2026-10-24-r66",
     "featureIds": [
-      3,
-      15
+      127,
+      129
     ],
-    "nextTrack": "新阶段3/4；下轮DOE/TDISP并做R63～R66阶段总结；保留L0p完整ECN/中间版、控制差异及真实并发验证。"
+    "nextTrack": "R63～R66四轮总结完成；下一阶段先补FM初始流控/SVC，再轮换Ordered Set、TDISP/IDE数据路径和PHY EQ/PRBS。"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -262,16 +262,94 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 7,
-    "lastReviewEdition": "2026-10-24-r62",
-    "lastReviewId": "r59-r62",
-    "nextExpectedReview": "R66（按后续实际完成4轮计算）"
+    "completedTotal": 8,
+    "lastReviewEdition": "2026-10-24-r66",
+    "lastReviewId": "r63-r66",
+    "nextExpectedReview": "R70（后续实际完成4轮后）"
   },
   "stageReviews": [
+    {
+      "id": "r63-r66",
+      "date": "2026-10-24",
+      "edition": "2026-10-24-r66",
+      "title": "第二阶段：DMA安全交接 → PIPE → L0p → DOE/TDISP",
+      "completedRounds": 4,
+      "rounds": [
+        {
+          "edition": "R63",
+          "topic": "DMA停止、错误与所有权",
+          "featureIds": [
+            148,
+            147,
+            143
+          ],
+          "remaining": "CB/PCS/LLP完整编码、产品表文冲突和真实DMA验证"
+        },
+        {
+          "edition": "R64",
+          "topic": "PIPE切速、PCLK交接与RX恢复",
+          "featureIds": [
+            170,
+            164,
+            174
+          ],
+          "remaining": "旧PIPE逐版差异、模拟锁定与真实波形"
+        },
+        {
+          "edition": "R65",
+          "topic": "早期Recovery和L0p包/仲裁/计时",
+          "featureIds": [
+            3,
+            15
+          ],
+          "remaining": "中间ECN、完整并发历史与6.0平局/控制措辞"
+        },
+        {
+          "edition": "R66",
+          "topic": "DOE字段/版本、TDISP四态与管理主线",
+          "featureIds": [
+            127,
+            129
+          ],
+          "remaining": "XT/ATS/P2P完整数据矩阵、Async/报告表文冲突及ECN差分"
+        }
+      ],
+      "result": "四轮已补具体字段、对象/包图与条件查询；本轮给DOE/TDISP从概述补到管理细节。阶段完成表示计划内选定块完成，不是Gen1～7协议或第11章全面覆盖。",
+      "nextPriorities": [
+        {
+          "title": "1. FM初始流控、SVC与分配表",
+          "featureIds": [
+            111,
+            141
+          ],
+          "reason": "回到基础链路层，补已有FC主线尚未完整展开的初始分配与共享限制，避免连续偏向安全专题。"
+        },
+        {
+          "title": "2. Ordered Set跨编码速查及LTSSM关联",
+          "featureIds": [
+            4,
+            12,
+            13
+          ],
+          "reason": "把TS/SKP/EIOS/EIEOS/FTS结构、接收规则和状态使用关联，改善查协议时的入口。"
+        },
+        {
+          "title": "3. TDISP/IDE数据面及PHY均衡/测试轮换",
+          "featureIds": [
+            129,
+            128,
+            173,
+            175
+          ],
+          "reason": "管理主线之后补XT/T/ATS访问矩阵，同时保留PHY一级研究轨道，按证据拆成可复核块。"
+        }
+      ],
+      "limitations": "未验证真实安全会话、密钥、DMA硬件或模拟电路；仅选定正式版条款，现存文档尚未核读部分不记作缺资料。"
+    },
     {
       "id": "r59-r62",
       "date": "2026-10-24",

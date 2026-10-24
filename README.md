@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-24-r65`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-24-r66`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -302,3 +302,9 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [L0p包结构](https://mgc455.github.io/pcie_study/#feature/15/detail/l0p-link-management-bit-map)
 - [版本化仲裁查询](https://mgc455.github.io/pcie_study/#feature/15/detail/l0p-arbitration-query)
 - [版本化计时预算](https://mgc455.github.io/pcie_study/#feature/15/detail/l0p-timing-budget-query)
+
+## R66 DOE / TDISP与阶段总结
+
+- [DOE对象头](https://mgc455.github.io/pcie_study/#feature/127/detail/doe-object-header-bit-map)
+- [TDISP状态与命令](https://mgc455.github.io/pcie_study/#feature/129/detail/tdisp-command-state-query)
+- [阶段总结](https://mgc455.github.io/pcie_study/#updates)
