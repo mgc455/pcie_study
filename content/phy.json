@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-10-24",
-  "summary": "PHY一级体系：新增Original PIPE时钟补偿、Nominal Empty有效节奏、接收错误竞争与极性响应；保留产品启动、握手、固件及校准研究。",
+  "summary": "PHY/SerDes持续核读；R64增加PIPE7.1切速入口、握手参数、PCLK交接、RX待机与异常边界，保留产品与Base分层。",
   "groups": [
     {
       "title": "分层与资料入口",
@@ -198,7 +198,8 @@
     "R39按Gen5 2.02a与Gen6 3.02a展开FOM/方向能力、8ns/2µs/约1.3ms上下文、PPM检测与校准对象；完整收敛阈值及FOM循环勘误继续核。",
     "R42已核Gen6参考选源/重复输出、全Lane复位停钟、APB完成窗口/写字节与Rescal共享码；完整加载字节布局、watchdog寄存器和异常恢复仍待核。",
     "R46已核Gen6 3.02a §4.3/4.4/4.5与PMD中断概念；Reference Manual已有文件，具体中断原因/极性/清除、watchdog恢复、全复位保持矩阵与PVT超时继续核，未验证真实硅片。",
-    "R55已核PIPE7.1 §8.14/8.15/8.17；继续128b/130b SKP first 4N+1符号与N的完整格式联核、其它Rate/Width/PCLK有效节奏、64/128GT/s及旧修订差分；不把接口修订号当链路代际。"
+    "R55已核PIPE7.1 §8.14/8.15/8.17；继续128b/130b SKP first 4N+1符号与N的完整格式联核、其它Rate/Width/PCLK有效节奏、64/128GT/s及旧修订差分；不把接口修订号当链路代际。",
+    "R64已细化PIPE7.1 §8.4.1表8-3与参数、PCLK事件图和RxStandby边界；p63/p126 Ok撤销时点、独立Width/PCLK变更、合并功耗以及旧PIPE修订和七代Base Recovery逐版规则待续。"
   ],
   "lowPowerReferences": {
     "title": "低功耗协议与PHY握手、共享PLL及产品PG/Context恢复",
@@ -376,6 +377,21 @@
         "featureId": 169,
         "detailId": "pipe-rxerror-event-query",
         "title": "单拍错误竞争与MAC Header职责查询"
+      },
+      {
+        "featureId": 170,
+        "detailId": "pipe-rate-plan-query",
+        "title": "查询：切速入口与Ok/Ack需求"
+      },
+      {
+        "featureId": 170,
+        "detailId": "pipe-rate-trace-query",
+        "title": "查询：逐事件切速交接与完成"
+      },
+      {
+        "featureId": 174,
+        "detailId": "rxstandby-during-training-abort",
+        "title": "RxStandby变化引起校准/均衡中止"
       }
     ]
   }
