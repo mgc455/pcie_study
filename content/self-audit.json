@@ -1,6 +1,6 @@
 {
   "date": "2026-10-25",
-  "summary": "R70：PHY错误形态、FBER与产品BERMON有效性；完成R67～R70总结。",
+  "summary": "R71：Completion生命周期、FLR旧完成与Tag别名；新阶段1/4。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -1366,6 +1366,26 @@
       "name": "R70线上交互与旧概述纠正",
       "status": "已核并修正过时概述",
       "detail": "线上7.0控制11h提示bit4废弃，切换6.0解释最长burst；BERMON本轮Done前提示等待。发现179顶部prerequisites仍写早期仅看框图，已改为当前选定条款核读范围与剩余缺口。该改动不改既有详情或来源。最终部署/页面结果本地另记。"
+    },
+    {
+      "name": "R71初查与去重",
+      "status": "远端R70一致，保留旧详情",
+      "detail": "已有Timeout寄存器和恢复消息主线；本轮补FLR等待/旧完成、角色化Pending、3.0字段不符建议与MUST@FLIT差异、Tag低位分区及早期证据，未重复生成原表。"
+    },
+    {
+      "name": "R71正文与视觉核对",
+      "status": "指定正式版核读",
+      "detail": "核1.0a/3.0/6.0/7.0所引正文；视觉核3.0 p120脚注与7.0 p831等待条件。章节索引和误搜页不计全文覆盖；早期印刷页与PDF物理页已逐页核对。"
+    },
+    {
+      "name": "R71公开与推论边界",
+      "status": "原创解释和图",
+      "detail": "保留旧版CRS称呼及新区分；标准字段与软件epoch/内部资源建议分开。分区仅一个Implementation Note方法，不给通用Tag隔离时间，不公开PDF/手册/RTL。"
+    },
+    {
+      "name": "R71构建与行为复核",
+      "status": "通过",
+      "detail": "构建/公开边界/双份JS语法通过；新增检查435项/2835断言，160组Completion窗口与290组Tag分区，含低8位集合不交验证；R70回归455项/9132断言。新内容27条、两查询、16bit Pending图及生命周期/Tag分区图。非完整TLP解析或硬件/平台恢复证明，部署和选定页面另记。"
     }
   ],
   "unresolved": [
@@ -1465,7 +1485,8 @@
     "R67：Base7.0 FM再启用未定义与VC/SVC通用重启字段措辞、Rx_NP_MPS_Limit注中in DW单位、Shared全Zero注中相邻限定仍待勘误/中间修订核验；完整分配全局合规、UIO特例、硬件无死锁证明未完成。",
     "R68：6.0 TS1 DSP speed_change字段表RcvrCfg与状态机/后版RcvrLock措辞、1b/1b半部/DC Balance完整判定和中间修订待续；Modified TS/EFM/FRA/光Retimer、Gen1～5逐版OS正文及Data Stream内全部接收容错未完成。",
     "R69：XT ECN/6.x中间修订逐条差分、完整IDE Prefix/OHC-C与ATS TE位图尚未完成；MMIO表31:!6排印需正式勘误确认；非IDE等效保护、所有路径/并发/密钥与实际硬件安全未验证。",
-    "R70：Preliminary SDK ref_timer+1参考时钟与PMA3.02a timer×128bit口径/实际固件换算仍待核；完整FBER分母/采样与Retimer CSR/6.0.1 ECN差分、burst统计和真实BERT/模拟验证未完成；产品正文对尚未解释的threshold/freeze/failed成员不按名称推断。"
+    "R70：Preliminary SDK ref_timer+1参考时钟与PMA3.02a timer×128bit口径/实际固件换算仍待核；完整FBER分母/采样与Retimer CSR/6.0.1 ECN差分、burst统计和真实BERT/模拟验证未完成；产品正文对尚未解释的threshold/freeze/failed成员不按名称推断。",
+    "R71：中间2.x/4.x/5.x及ECN差分、3.0 IDO完整条款联核、MUST@FLIT非支持者全部可选检查、完整错误优先级和UIO恢复历史仍待核；27条与查询非完整TLP解析、平台Tag/FLR安全或硬件证明。"
   ],
   "externalComparison": {
     "date": "2026-10-21",

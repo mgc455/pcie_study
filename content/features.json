@@ -25845,14 +25845,14 @@
     "checks": "不能把收到第一包当整个请求完成；还应检查UR/CA、Poison、重复/异常完成和超时。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
     "id": 20,
-    "status": "已整理 · 待持续深化",
+    "status": "选定Completion生命周期与跨版规则已深化 · 持续核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-25",
     "protocolReferences": [
       {
         "section": "2.2",
@@ -26744,9 +26744,526 @@
         "title": "零长度读必须回1DW数据；flush只覆盖同设备、同TC的适用Posted写",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R50核读所列Base6.0/7.0字段、Byte Enable或FC正文；视觉核7.0 p195-197及289。所引印刷页与本地PDF物理页已核且一致。仅选定规则，非全章或Gen1～7沿革完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 219,
+        "pdfPage": 219,
+        "title": "消费Completion前的门：形式、关联、生命周期、状态、数据进度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 269,
+        "pdfPage": 269,
+        "title": "消费Completion前的门：形式、关联、生命周期、状态、数据进度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "消费Completion前的门：形式、关联、生命周期、状态、数据进度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 270,
+        "pdfPage": 270,
+        "title": "消费Completion前的门：形式、关联、生命周期、状态、数据进度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "2.3.2",
+        "page": 120,
+        "pdfPage": 120,
+        "title": "字段不匹配的跨版分类：3.0推荐与MUST@FLIT不是同一要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 219,
+        "pdfPage": 219,
+        "title": "字段不匹配的跨版分类：3.0推荐与MUST@FLIT不是同一要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 269,
+        "pdfPage": 269,
+        "title": "字段不匹配的跨版分类：3.0推荐与MUST@FLIT不是同一要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "字段不匹配的跨版分类：3.0推荐与MUST@FLIT不是同一要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "IDO不拷回不是字段不匹配：不要给每个Attr位都做相等比较",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 269,
+        "pdfPage": 269,
+        "title": "IDO不拷回不是字段不匹配：不要给每个Attr位都做相等比较",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "2.3.2",
+        "page": 120,
+        "pdfPage": 120,
+        "title": "IDO不拷回不是字段不匹配：不要给每个Attr位都做相等比较",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "FLR三个接收窗口：复位中、完成未启用、重新启用后",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 270,
+        "pdfPage": 270,
+        "title": "FLR三个接收窗口：复位中、完成未启用、重新启用后",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 727,
+        "pdfPage": 727,
+        "title": "FLR三个接收窗口：复位中、完成未启用、重新启用后",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "FLR三个接收窗口：复位中、完成未启用、重新启用后",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "2.3.2",
+        "page": 89,
+        "pdfPage": 89,
+        "title": "无匹配在途请求时丢弃：不按地址近似或邻近Tag重新认领",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "无匹配在途请求时丢弃：不按地址近似或邻近Tag重新认领",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 270,
+        "pdfPage": 270,
+        "title": "无匹配在途请求时丢弃：不按地址近似或邻近Tag重新认领",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 727,
+        "pdfPage": 727,
+        "title": "无匹配在途请求时丢弃：不按地址近似或邻近Tag重新认领",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "无匹配在途请求时丢弃：不按地址近似或邻近Tag重新认领",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 221,
+        "pdfPage": 221,
+        "title": "UR/CA、Reserved Status与配置RRS：内部资源后果分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 271,
+        "pdfPage": 271,
+        "title": "UR/CA、Reserved Status与配置RRS：内部资源后果分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "UR/CA、Reserved Status与配置RRS：内部资源后果分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 270,
+        "pdfPage": 270,
+        "title": "UR/CA、Reserved Status与配置RRS：内部资源后果分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "2.3.2",
+        "page": 121,
+        "pdfPage": 121,
+        "title": "UR/CA、Reserved Status与配置RRS：内部资源后果分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.1.1",
+        "page": 218,
+        "pdfPage": 218,
+        "title": "分片SC推进的是字节账本，不立即返还整笔Tag上下文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 267,
+        "pdfPage": 267,
+        "title": "分片SC推进的是字节账本，不立即返还整笔Tag上下文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 264,
+        "pdfPage": 264,
+        "title": "分片SC推进的是字节账本，不立即返还整笔Tag上下文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.8",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "分片SC推进的是字节账本，不立即返还整笔Tag上下文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.8",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "分片SC推进的是字节账本，不立即返还整笔Tag上下文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "三个账本：接收Credit、Completion上下文、软件所有权",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 270,
+        "pdfPage": 270,
+        "title": "三个账本：接收Credit、Completion上下文、软件所有权",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 726,
+        "pdfPage": 726,
+        "title": "三个账本：接收Credit、Completion上下文、软件所有权",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "三个账本：接收Credit、Completion上下文、软件所有权",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "Unexpected与Timeout时间线：记录接收者，不只看同一Tag",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 270,
+        "pdfPage": 270,
+        "title": "Unexpected与Timeout时间线：记录接收者，不只看同一Tag",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "2.3.2",
+        "page": 120,
+        "pdfPage": 120,
+        "title": "Unexpected与Timeout时间线：记录接收者，不只看同一Tag",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "2.3.2",
+        "page": 120,
+        "pdfPage": 120,
+        "title": "查询：收到这份Completion时，该推进、终止还是丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "2.3.2",
+        "page": 121,
+        "pdfPage": 121,
+        "title": "查询：收到这份Completion时，该推进、终止还是丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 219,
+        "pdfPage": 219,
+        "title": "查询：收到这份Completion时，该推进、终止还是丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 269,
+        "pdfPage": 269,
+        "title": "查询：收到这份Completion时，该推进、终止还是丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "查询：收到这份Completion时，该推进、终止还是丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 270,
+        "pdfPage": 270,
+        "title": "查询：收到这份Completion时，该推进、终止还是丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 221,
+        "pdfPage": 221,
+        "title": "查询：收到这份Completion时，该推进、终止还是丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 271,
+        "pdfPage": 271,
+        "title": "查询：收到这份Completion时，该推进、终止还是丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 727,
+        "pdfPage": 727,
+        "title": "查询：收到这份Completion时，该推进、终止还是丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "查询：收到这份Completion时，该推进、终止还是丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
       }
     ],
-    "referenceStatus": "已按块核读所引Base6.0/7.0正文及字段；旧Tag误配已标明，UIO/ATS等特殊机制和早期七代演进继续核读。",
+    "referenceStatus": "R71核1.0a/3.0/6.0/7.0所引Timeout、关联、FLR及Tag规则；不宣称所有中间版本/错误优先级/硬件恢复已完成。",
     "details": [
       {
         "id": "completion-request-lifecycle",
@@ -28257,6 +28774,208 @@
           79,
           80
         ]
+      },
+      {
+        "id": "completion-gates-before-consume",
+        "title": "消费Completion前的门：形式、关联、生命周期、状态、数据进度",
+        "paragraphs": [
+          "先有合法形成/数据完整性上下文，再将适用Transaction ID与在途请求关联，然后核需对应字段、复位/代次环境、Completion Status和数据账本。只匹配Tag不足以决定数据可消费。",
+          "这个分层查阅表不是新增错误优先级：Malformed、Unexpected、Poison等检测之间的严格优先级仍依AER/事务条款。查询假定包本身已形成正确，避免把未核的优先级画成强制流水。"
+        ],
+        "referenceIndices": [
+          81,
+          82,
+          83,
+          84
+        ]
+      },
+      {
+        "id": "completion-correspondence-gen3-versus-flit",
+        "title": "字段不匹配的跨版分类：3.0推荐与MUST@FLIT不是同一要求",
+        "paragraphs": [
+          "3.0 §2.3.2对Transaction ID匹配但Attributes/TC/Byte Count/Lower Address等不符，强烈推荐Malformed；若包本身形成正确，也允许Unexpected。脚注对仅Byte Count或Lower Address不符的Memory Read反而推荐Unexpected，因为可能有前片错路由。",
+          "6.0/7.0所引条款要求Receiver MUST@FLIT把相应不匹配视为Unexpected，同时保留包本身形成正确时可按Malformed处理的分支。MUST@FLIT看支持FM，不只当前Link是不是FM。",
+          "非FM支持者在6/7所核措辞下的所有可选检查，不由本工具补造完整分类；1.0a仅核基本无匹配处理，不倒填相同扩展规则。"
+        ],
+        "referenceIndices": [
+          85,
+          86,
+          87,
+          88
+        ],
+        "table": {
+          "columns": [
+            "版本/条件",
+            "对应字段不匹配",
+            "边界"
+          ],
+          "rows": [
+            [
+              "3.0一般情况",
+              "强烈推荐Malformed，形成正确可Unexpected",
+              "不是新版MUST@FLIT"
+            ],
+            [
+              "3.0仅BC/LA",
+              "脚注推荐Unexpected",
+              "可能此前片错路由"
+            ],
+            [
+              "6/7支持FM",
+              "MUST@FLIT Unexpected；形成正确可Malformed",
+              "按FM支持能力判定"
+            ],
+            [
+              "6/7不支持FM",
+              "本工具不强行补全未强制的检查",
+              "不能直接宣称正常接受"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "completion-ido-exclusion-scope",
+        "title": "IDO不拷回不是字段不匹配：不要给每个Attr位都做相等比较",
+        "paragraphs": [
+          "6.0/7.0明确Requester不得检查Completion的IDO（Attr bit2）是否与请求相同，因为Completer不要求原样复制它。只因IDO变化就报Unexpected/Malformed是错误检查。",
+          "其余需对应字段仍分别核验。3.0本轮所核Completion Handling页没有同一条显式IDO排除描述，查询不据此宣布该版IDO比较规则已完整核读，保留单独条款联核。"
+        ],
+        "referenceIndices": [
+          89,
+          90,
+          91
+        ]
+      },
+      {
+        "id": "completion-flr-three-receive-windows",
+        "title": "FLR三个接收窗口：复位中、完成未启用、重新启用后",
+        "paragraphs": [
+          "FLR进行中收到Completion：允许Unexpected处理，也允许更新Flow Control后静默丢弃。FLR完成且尚未重新获准发请求时，属于复位前请求的完成须Unexpected。",
+          "重新启用后，旧Completion可能与新在途请求字段相似；规范的unless re-enabled条件不能解释成“所有旧数据从此安全”。Implementation Note明确警告stale被误认后会破坏数据，必须结合生命周期防护。",
+          "判断包是否确属复位前，需要本地历史或抓包关联；包头没有软件epoch。不能只看FLR后的Tag数值相同就确认属于新请求，也不能在缺证据时把所有匹配包一律归为stale。"
+        ],
+        "referenceIndices": [
+          92,
+          93,
+          94,
+          95
+        ]
+      },
+      {
+        "id": "completion-no-match-never-rebind",
+        "title": "无匹配在途请求时丢弃：不按地址近似或邻近Tag重新认领",
+        "paragraphs": [
+          "从1.0a到所核6/7的基本规则一致：不对应任何在途请求的Completion属于Unexpected，由接收代理丢弃并按其Receiving Port错误路径处理。",
+          "Tag接近、地址像某个DMA缓冲、原请求刚Timeout，都不是重新挂接给另一请求的依据。若标识已被复用而完整字段也能匹配，仅凭此条不能识别代次，须另看stale防护。"
+        ],
+        "referenceIndices": [
+          96,
+          97,
+          98,
+          99,
+          100
+        ]
+      },
+      {
+        "id": "completion-terminal-status-versus-config-retry",
+        "title": "UR/CA、Reserved Status与配置RRS：内部资源后果分开",
+        "paragraphs": [
+          "普通非UIO的Read/AtomicOp/DMWr收到非SC完成即终止，不再期待附加数据完成；先前部分数据处理依实现。Reserved Completion Status按UR处理，不另造一个无限等待状态。",
+          "Configuration Request的RRS/旧称CRS是特殊配置重发路径，RC可能按软件可见性合成Vendor ID=0001h或重发新请求；不能把普通MRd收到RRS当作DMA可无条件重试。查询仅提示配置专用分支，不重做其全部流程。"
+        ],
+        "referenceIndices": [
+          101,
+          102,
+          103,
+          104,
+          105
+        ]
+      },
+      {
+        "id": "completion-partial-progress-keeps-context",
+        "title": "分片SC推进的是字节账本，不立即返还整笔Tag上下文",
+        "paragraphs": [
+          "普通Memory Read成功分片按递增地址返回，Byte Count表示包含本片在内的剩余字节；下一片预期状态由此前有效数据推进。首片完成并不释放整笔请求所需的剩余数据跟踪。",
+          "若第二片合法CA/UR为终止完成，后续不再等第三片补满。若只收了一部分但没有错误完成，则仍等待剩余或Timeout。Padding/BE、BCM/ATS例外继续按已有专题，本块不以Payload DW数替代所有有效字节规则。"
+        ],
+        "referenceIndices": [
+          106,
+          107,
+          108,
+          109,
+          110
+        ]
+      },
+      {
+        "id": "completion-three-resource-ledgers",
+        "title": "三个账本：接收Credit、Completion上下文、软件所有权",
+        "paragraphs": [
+          "Credit账本回答接收缓冲空间何时可再广告；事务账本回答哪些请求还缺完成；软件对象账本回答DMA描述符和内存何时可交回。完成接收或丢弃涉及的信用动作，不等于允许同Tag立即再发。",
+          "FLR期间静默丢弃仍更新Credit，非SC终止释放请求资源，软件是否可消费先前数据则依语义。这张原创对照表是理解职责的方法，不规定某个IP必须有三个物理FIFO。"
+        ],
+        "referenceIndices": [
+          111,
+          112,
+          113,
+          114
+        ],
+        "table": {
+          "columns": [
+            "账本",
+            "能说明",
+            "不能代替"
+          ],
+          "rows": [
+            [
+              "接收Flow Control",
+              "缓冲/信用处理",
+              "请求成功完成"
+            ],
+            [
+              "请求/Tag/重组",
+              "在途与终止",
+              "远端所有旧包消失"
+            ],
+            [
+              "软件缓冲/描述符",
+              "驱动交接与持有者",
+              "协议包合法性"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "completion-misroute-error-chain",
+        "title": "Unexpected与Timeout时间线：记录接收者，不只看同一Tag",
+        "paragraphs": [
+          "Completion错到另一个Function或Switch内部不可转发目标时，错误接收者处理Unexpected；原Requester未收到所需完成，稍后可能Timeout。两条日志的BDF、时间、检测角色不同。",
+          "建议关联RID/完整Tag、TC、Completion类型、可能Segment、路由和复位代次；错误注入或大小Tag截断也可能产生相近现象。不要从“有Unexpected”单独反推唯一坏Switch或物理Lane。"
+        ],
+        "referenceIndices": [
+          115,
+          116,
+          117
+        ]
+      },
+      {
+        "id": "completion-arrival-context-query",
+        "title": "查询：收到这份Completion时，该推进、终止还是丢弃",
+        "paragraphs": [
+          "输入所核版本、FM支持、普通/FLR窗口、是否确认复位前完成、在途ID匹配、对应字段差异、请求类型、状态与是否收齐数据。工具给出所列处置/保留条件。",
+          "前提是包本身形成正确，并已由外部判断字段差异和数据是否收齐。它不解码完整TLP、不裁决所有错误优先级；重新使能后若已知有旧完成风险，不凭同Tag自动确认新代次。UIO须用原有专用账本。"
+        ],
+        "referenceIndices": [
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ]
       }
     ]
   },
@@ -28910,14 +29629,14 @@
     "checks": "检查实际启用的Tag模式、可用Tag池、Completion资源和超时后回收规则，不能只看最大位宽。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
     "id": 22,
-    "status": "已整理 · 待持续深化",
+    "status": "选定Completion生命周期与跨版规则已深化 · 持续核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-25",
     "protocolReferences": [
       {
         "section": "6.17.2",
@@ -29292,9 +30011,240 @@
         "title": "MRRS字段与Extended Tag动态修改限制",
         "verification": "已核读本版所引对应规则/字段及所需续页；不代表整节、UIO全部机制或七代全部演进已完成。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.2",
+        "page": 153,
+        "pdfPage": 153,
+        "title": "包头没有软件epoch：同RID+Tag的新旧请求可能别名",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2",
+        "page": 198,
+        "pdfPage": 198,
+        "title": "包头没有软件epoch：同RID+Tag的新旧请求可能别名",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 727,
+        "pdfPage": 727,
+        "title": "包头没有软件epoch：同RID+Tag的新旧请求可能别名",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "包头没有软件epoch：同RID+Tag的新旧请求可能别名",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 221,
+        "pdfPage": 221,
+        "title": "Tag退休条件不是全局排空证明：终止路径与再启用分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 271,
+        "pdfPage": 271,
+        "title": "Tag退休条件不是全局排空证明：终止路径与再启用分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.8",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "Tag退休条件不是全局排空证明：终止路径与再启用分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.8",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "Tag退休条件不是全局排空证明：终止路径与再启用分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 725,
+        "pdfPage": 725,
+        "title": "Tag退休条件不是全局排空证明：终止路径与再启用分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 831,
+        "pdfPage": 831,
+        "title": "Tag退休条件不是全局排空证明：终止路径与再启用分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.2",
+        "page": 158,
+        "pdfPage": 158,
+        "title": "正常转发大Tag不等于错误返回也能保留：Switch也可能代答",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2.1",
+        "page": 205,
+        "pdfPage": 205,
+        "title": "正常转发大Tag不等于错误返回也能保留：Switch也可能代答",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2.1",
+        "page": 205,
+        "pdfPage": 205,
+        "title": "10-bit与小Tag分区：保留N个低8位，要排除3N个大Tag",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2.1",
+        "page": 205,
+        "pdfPage": 205,
+        "title": "N=16示意：16个小Tag，720个10-bit值，共736个",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.2",
+        "page": 158,
+        "pdfPage": 158,
+        "title": "Tag容量与吞吐：S×N/RTT只是受限估算",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "2.2.6.2",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "早期Tag证据：1.0a和3.0已要求在途唯一，不因新代际才开始",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "2.2.6.2",
+        "page": 72,
+        "pdfPage": 72,
+        "title": "早期Tag证据：1.0a和3.0已要求在途唯一，不因新代际才开始",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.2",
+        "page": 153,
+        "pdfPage": 153,
+        "title": "早期Tag证据：1.0a和3.0已要求在途唯一，不因新代际才开始",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2",
+        "page": 198,
+        "pdfPage": 198,
+        "title": "早期Tag证据：1.0a和3.0已要求在途唯一，不因新代际才开始",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2",
+        "page": 199,
+        "pdfPage": 199,
+        "title": "早期Tag证据：1.0a和3.0已要求在途唯一，不因新代际才开始",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2.1",
+        "page": 205,
+        "pdfPage": 205,
+        "title": "查询：小Tag保留数量怎样减少10-bit可用空间",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
       }
     ],
-    "referenceStatus": "已按块核读所引Base6.0/7.0正文及字段；旧Tag误配已标明，UIO/ATS等特殊机制和早期七代演进继续核读。",
+    "referenceStatus": "R71核1.0a/3.0/6.0/7.0所引Timeout、关联、FLR及Tag规则；不宣称所有中间版本/错误优先级/硬件恢复已完成。",
     "details": [
       {
         "id": "transaction-tag-not-steering",
@@ -29630,6 +30580,108 @@
           11,
           8,
           9
+        ]
+      },
+      {
+        "id": "tag-no-epoch-on-wire",
+        "title": "包头没有软件epoch：同RID+Tag的新旧请求可能别名",
+        "paragraphs": [
+          "Transaction ID关联线上的请求/完成；描述符generation、driver队列epoch及内部ticket不是另一个自动返回的PCIe Tag字段。FLR使旧跟踪丢失后，stale包可能撞上新请求。",
+          "可在设计中保存代次/操作号和恢复证据，但内部epoch本身不能凭空给一个线包补上它未携带的代次。需要与停止新发起、排空/复位、设备语义等配合，不能给“加个epoch计数器”当作完整解决方案。"
+        ],
+        "referenceIndices": [
+          34,
+          35,
+          36,
+          37
+        ]
+      },
+      {
+        "id": "tag-retire-not-global-drain-proof",
+        "title": "Tag退休条件不是全局排空证明：终止路径与再启用分开",
+        "paragraphs": [
+          "完整成功或错误完成可终止普通请求；Timeout也可终止等待；FLR可能清本地事务状态。这些动作能让内部上下文被释放，却不意味着所有路径中的旧Completion已经不可能到达。",
+          "复用策略要区分正常完成、超时、复位和被中止批次，保留等待/恢复依据。本轮不虚构协议统一的Tag quarantine微秒值；FLR正文给出的等待条件有明确上下文，不能挪作一般Tag定时器。"
+        ],
+        "referenceIndices": [
+          38,
+          39,
+          40,
+          41,
+          42,
+          43
+        ]
+      },
+      {
+        "id": "tag-error-completer-path-truncation",
+        "title": "正常转发大Tag不等于错误返回也能保留：Switch也可能代答",
+        "paragraphs": [
+          "6.0说明不支持10-bit Completer的NFM Switch仍可能原样转发10-bit请求与完成，因为新增位原属需保留转发的Header位；但该Switch遇错误而作为Completer回包时，可能产生无效的大Tag。",
+          "所以只验证正常P2P流量通过不足以证明错误路径安全。Requester需核目标及会代答的路径能力；不支持大Tag的目标/路径截断后，可能Unexpected，也可能低位误中另一小Tag。"
+        ],
+        "referenceIndices": [
+          44,
+          45
+        ]
+      },
+      {
+        "id": "tag-low8-partition-formula",
+        "title": "10-bit与小Tag分区：保留N个低8位，要排除3N个大Tag",
+        "paragraphs": [
+          "7.0 Implementation Note提供一种分区方法：用低8位集合中的N个值专供5/8-bit小Tag；10-bit的三个高位bank均不得使用这些低8位。因此大Tag可用数为768−3N，两类合计768−2N。",
+          "这是特定实现方法，不是强制唯一分配算法。5-bit小Tag时N最多32，8-bit时最多256；还须本地使能、目标/路径支持及硬件资源匹配，不能把计数当实际一定可并发的事务数。"
+        ],
+        "referenceIndices": [
+          46
+        ]
+      },
+      {
+        "id": "tag-low8-partition-example",
+        "title": "N=16示意：16个小Tag，720个10-bit值，共736个",
+        "paragraphs": [
+          "选低8位00h～0Fh专供小Tag，10-bit应排除100h～10Fh、200h～20Fh、300h～30Fh，共48个；可用大Tag区间分别110h～1FFh、210h～2FFh、310h～3FFh。",
+          "如果只从768里减16而得752，就漏了另外两个高bank。该例防的是大小Tag低位截断别名，不解决超时后相同完整Tag的新旧代次冲突，也不覆盖14/10/8三种尺寸混用的全部分区。"
+        ],
+        "referenceIndices": [
+          47
+        ]
+      },
+      {
+        "id": "tag-concurrency-bandwidth-limits",
+        "title": "Tag容量与吞吐：S×N/RTT只是受限估算",
+        "paragraphs": [
+          "6.0说明基本关系BW=S×N/RTT：一次事务Payload为S、可在途NP数量为N、往返时间RTT，Tag数不足可能限制持续读吞吐。所有量的单位和事务大小分布要明确。",
+          "例如64Byte×16笔/10µs约为102.4MB/s，即0.1024GB/s十进制。它不是链路原始带宽，也不是保证应用吞吐；Credit、Completion缓冲、目标服务、分片、调度和回程仍可能先成为瓶颈。"
+        ],
+        "referenceIndices": [
+          48
+        ]
+      },
+      {
+        "id": "tag-early-version-uniqueness-table",
+        "title": "早期Tag证据：1.0a和3.0已要求在途唯一，不因新代际才开始",
+        "paragraphs": [
+          "1.0a §2.2.6.2为8bit Tag，默认用低5bit最多32笔，Extended使能后最多256；唯一性要求覆盖该Requester仍未完成、需要Completion的请求。3.0仍为5/8bit体系，并明确Completer必须接收8bit值，不依自身Requester Enable。",
+          "6.0扩展到5/8/10/14bit且唯一性不因TC改变；7.0再明确普通Group I与UIO读写的不同命名空间。不能用7.0 UIO写可同ID并发，倒推早期普通MRd也可重复Tag。",
+          "所核条款不能证明每一种机制首次引入的历史点；2.x/4.x/5.x、ECN和具体旧产品兼容性仍需补证。"
+        ],
+        "referenceIndices": [
+          49,
+          50,
+          51,
+          52,
+          53
+        ]
+      },
+      {
+        "id": "tag-low8-partition-query",
+        "title": "查询：小Tag保留数量怎样减少10-bit可用空间",
+        "paragraphs": [
+          "输入小Tag档位5/8bit及保留数量N，按“前N个低8位专供小Tag”的特定分区法列出三bank区间、排除数和理论容量。N可为0，但须明确此时无小Tag池。",
+          "工具不写Tag分配器，不证明目标/路径能力或软件恢复流程安全；14-bit与UIO不纳入这个受限算式。图只画逻辑命名空间，不是TLP Header布局。"
+        ],
+        "referenceIndices": [
+          54
         ]
       }
     ]
@@ -68690,16 +69742,16 @@
     "mechanism": "Requester从请求发出检测完整完成期限；DevCap2报告合法Range组合、DevControl2选择区间/Disable；FM支持条件与当前模式分开。",
     "example": "设备发MRd后一直收不到CplD，先查地址授权、目标、路由和链路，而不是直接把超时调到最大。",
     "checks": "超时后还可能有迟到Completion；Tag回收与重用必须遵守相应规则，避免旧包匹配到新请求。",
-    "prerequisites": "先建立可保存的状态/日志和明确的错误恢复流程；区分检测、报告、纠正、丢弃、重试和隔离等不同动作。",
+    "prerequisites": "先确认Requester、配置支持、在途请求及复位状态；区分Timeout、非SC完成、Unexpected与FLR。所列版本正文已核，平台恢复/副作用和资源所有权另需实现证据。",
     "id": 102,
-    "status": "选定规则/字段已展开 · 持续逐版完善",
+    "status": "选定Completion生命周期与跨版规则已深化 · 持续核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-22",
+    "reviewed": "2026-10-25",
     "protocolReferences": [
       {
         "section": "2.8",
@@ -69118,9 +70170,416 @@
         "title": "超时原Request日志能力与建议",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "独立核读本版所引正文及必要续页；本轮关键图/表另作本地视觉核对，所引印刷页与PDF物理页一致。原创说明，只覆盖本条规则，不代表完整章节、其他修订或ECN均已核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.8",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "普通NP生命周期：全成功、错误完成、Timeout是三条终止路径",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.8",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "普通NP生命周期：全成功、错误完成、Timeout是三条终止路径",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 221,
+        "pdfPage": 221,
+        "title": "普通NP生命周期：全成功、错误完成、Timeout是三条终止路径",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 271,
+        "pdfPage": 271,
+        "title": "普通NP生命周期：全成功、错误完成、Timeout是三条终止路径",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.5",
+        "page": 1115,
+        "pdfPage": 1115,
+        "title": "Device Status[5] Transactions Pending：只看本Function等待的完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.5",
+        "page": 1116,
+        "pdfPage": 1116,
+        "title": "Device Status[5] Transactions Pending：只看本Function等待的完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 726,
+        "pdfPage": 726,
+        "title": "Device Status[5] Transactions Pending：只看本Function等待的完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 831,
+        "pdfPage": 831,
+        "title": "Device Status[5] Transactions Pending：只看本Function等待的完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 725,
+        "pdfPage": 725,
+        "title": "FLR的三个时间边界：100ms、旧Timeout等待与后续初始化",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 831,
+        "pdfPage": 831,
+        "title": "FLR的三个时间边界：100ms、旧Timeout等待与后续初始化",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 726,
+        "pdfPage": 726,
+        "title": "FLR的三个时间边界：100ms、旧Timeout等待与后续初始化",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "FLR的三个时间边界：100ms、旧Timeout等待与后续初始化",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 727,
+        "pdfPage": 727,
+        "title": "规范示例先防新访问再排空：它不是任意设备的盲写脚本",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "规范示例先防新访问再排空：它不是任意设备的盲写脚本",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 726,
+        "pdfPage": 726,
+        "title": "FLR清Pending不等于远端收到取消：本地状态可能已被丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 831,
+        "pdfPage": 831,
+        "title": "FLR清Pending不等于远端收到取消：本地状态可能已被丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 727,
+        "pdfPage": 727,
+        "title": "FLR清Pending不等于远端收到取消：本地状态可能已被丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "FLR清Pending不等于远端收到取消：本地状态可能已被丢弃",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 724,
+        "pdfPage": 724,
+        "title": "FLR不重训Link：VC0仍初始化，接收Credit不能当作同时归零",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 829,
+        "pdfPage": 829,
+        "title": "FLR不重训Link：VC0仍初始化，接收Credit不能当作同时归零",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 725,
+        "pdfPage": 725,
+        "title": "FLR不重训Link：VC0仍初始化，接收Credit不能当作同时归零",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 831,
+        "pdfPage": 831,
+        "title": "FLR不重训Link：VC0仍初始化，接收Credit不能当作同时归零",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 726,
+        "pdfPage": 726,
+        "title": "FLR不重训Link：VC0仍初始化，接收Credit不能当作同时归零",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "FLR不重训Link：VC0仍初始化，接收Credit不能当作同时归零",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "2.8",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "早期正文对照：1.0a的50µs～50ms，与3.0可编程策略分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "2.8",
+        "page": 151,
+        "pdfPage": 151,
+        "title": "早期正文对照：1.0a的50µs～50ms，与3.0可编程策略分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.8",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "早期正文对照：1.0a的50µs～50ms，与3.0可编程策略分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.8",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "早期正文对照：1.0a的50µs～50ms，与3.0可编程策略分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.8",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "普通分片读与同ID UIO序列：计时对象不能互换",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.8",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "普通分片读与同ID UIO序列：计时对象不能互换",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.8",
+        "page": 317,
+        "pdfPage": 317,
+        "title": "普通分片读与同ID UIO序列：计时对象不能互换",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.3.2",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "事务终止、Tag回收、软件缓冲释放：不要合成一个done",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.2",
+        "page": 270,
+        "pdfPage": 270,
+        "title": "事务终止、Tag回收、软件缓冲释放：不要合成一个done",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.8",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "事务终止、Tag回收、软件缓冲释放：不要合成一个done",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.8",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "事务终止、Tag回收、软件缓冲释放：不要合成一个done",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 727,
+        "pdfPage": 727,
+        "title": "事务终止、Tag回收、软件缓冲释放：不要合成一个done",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "事务终止、Tag回收、软件缓冲释放：不要合成一个done",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R71核所引1.0a/3.0/6.0/7.0正式版选定正文；视觉核3.0 p120和7.0 p831。按版本、角色和状态分别解释，不以目录检索代表全文，不证明全代际/硬件行为。"
       }
     ],
-    "referenceStatus": "新块以对应版正文/字段核读定位；旧背景入口保留，不声明全代际、整章或后续ECN完成。",
+    "referenceStatus": "R71核1.0a/3.0/6.0/7.0所引Timeout、关联、FLR及Tag规则；不宣称所有中间版本/错误优先级/硬件恢复已完成。",
     "details": [
       {
         "id": "timeout-start-and-full-completion",
@@ -69495,6 +70954,245 @@
           25,
           28,
           29
+        ]
+      },
+      {
+        "id": "timeout-lifecycle-three-terminal-paths",
+        "title": "普通NP生命周期：全成功、错误完成、Timeout是三条终止路径",
+        "paragraphs": [
+          "普通Memory Read发出后建立在途上下文；每片有效SC推进数据账本，只有全部必需完成到齐才是成功终止。中途收到合法非SC错误完成则终止，不再等其余成功数据；Timeout则处理“还缺完成”的路径。",
+          "Tag/重组缓冲、接收Flow Control信用和软件DMA对象是不同资源。终止当前事务不自动证明应用缓冲已无人使用，Credit归还也不是释放Tag的命令。图为原创逻辑流程，未把实现的内部状态名当成协议新增LTSSM。"
+        ],
+        "referenceIndices": [
+          38,
+          39,
+          40,
+          41
+        ]
+      },
+      {
+        "id": "timeout-transactions-pending-scope",
+        "title": "Device Status[5] Transactions Pending：只看本Function等待的完成",
+        "paragraphs": [
+          "7.0 PCIe Capability相对+0Ah的Device Status bit5为RO Transactions Pending。Endpoint置1表示该Function仍在期待一个或多个Completion；所发NP/UIO均完成或由Timeout终止后才能清，也必须在FLR完成时清。",
+          "Root/Switch Port只统计以自己或Shadow Function的RID代表自身发起的NP/UIO，不把单纯转发别人的请求全算进去。未自行发NP的相应Port可硬接0；不能拿它证明下游所有Endpoint的DMA都完成。",
+          "此位不是Posted写缓冲排空标志，也不是host ISR处理完、CPU缓存一致或所有外部操作完成的保证。读到0仍要知道它是正常完成、Timeout还是FLR清了本地事务状态。"
+        ],
+        "referenceIndices": [
+          42,
+          43,
+          44,
+          45
+        ],
+        "packetLayouts": [
+          {
+            "id": "pending-device-status-r71",
+            "title": "Device Status · 16bit · Base7.0",
+            "version": "Base7.0",
+            "headerBits": 16,
+            "lengthLabel": "PCIe Capability相对+0Ah；不是配置空间固定绝对地址",
+            "rowLabel": "寄存器",
+            "rows": [
+              [
+                {
+                  "label": "R",
+                  "width": 1,
+                  "key": "r0",
+                  "help": "bit7保留"
+                },
+                {
+                  "label": "E",
+                  "width": 1,
+                  "key": "e",
+                  "help": "bit6 Emergency Power Reduction Detected，具体适用条件另核"
+                },
+                {
+                  "label": "TP",
+                  "width": 1,
+                  "key": "tp",
+                  "help": "bit5 Transactions Pending，RO"
+                },
+                {
+                  "label": "A",
+                  "width": 1,
+                  "key": "aux",
+                  "help": "bit4 AUX Power Detected"
+                },
+                {
+                  "label": "U",
+                  "width": 1,
+                  "key": "ur",
+                  "help": "bit3 Unsupported Request Detected"
+                },
+                {
+                  "label": "F",
+                  "width": 1,
+                  "key": "fatal",
+                  "help": "bit2 Fatal Error Detected"
+                },
+                {
+                  "label": "N",
+                  "width": 1,
+                  "key": "nf",
+                  "help": "bit1 Non-Fatal Error Detected"
+                },
+                {
+                  "label": "C",
+                  "width": 1,
+                  "key": "corr",
+                  "help": "bit0 Correctable Error Detected"
+                },
+                {
+                  "label": "Reserved",
+                  "width": 8,
+                  "key": "r1",
+                  "help": "[15:8]保留"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Device Status",
+                "size": "2Byte"
+              },
+              {
+                "label": "其余Capability",
+                "size": "未画"
+              }
+            ],
+            "note": "TP只说明本Function/Port所核范围；其它字段仅标身份，不替代完整状态寄存器规则。"
+          }
+        ],
+        "packetReading": "从左到右为+0Ah、+0Bh两个Byte，每Byte内bit7→0；不是串行位序。TP为本块关注位，周边字段只标位置。"
+      },
+      {
+        "id": "timeout-flr-wait-three-clocks",
+        "title": "FLR的三个时间边界：100ms、旧Timeout等待与后续初始化",
+        "paragraphs": [
+          "FLR本身须在启动后100ms内完成；若启动时Transactions Pending=1，软件在初始化Function前还须允许旧Completion到达，或达到它们不会再到达的合理确信。规范推荐为此等到复位前Completion Timeout所提供的时长。",
+          "若当时Completion Timeout已禁用，这段系统相关延迟不得少于100ms。不能把“FLR完成100ms”替换所有情况下的旧请求排空条件，也不能将此段推广成每次普通Timeout后一律隔离Tag100ms。",
+          "Function专有初始化可另需时间，配置就绪通知也不等于它此前发起的请求全部完成。图表中不同等待对象要分开记录，平台还可能需要自己的更长恢复策略。"
+        ],
+        "referenceIndices": [
+          46,
+          47,
+          48,
+          49
+        ],
+        "table": {
+          "columns": [
+            "边界",
+            "规则/含义",
+            "不能推出"
+          ],
+          "rows": [
+            [
+              "FLR自身",
+              "启动后100ms内完成",
+              "所有外部旧Completion必已消失"
+            ],
+            [
+              "启动时Pending=1",
+              "初始化前留充分旧完成等待；推荐参照旧Timeout",
+              "只清软件队列即可重用资源"
+            ],
+            [
+              "旧Timeout禁用",
+              "系统相关延迟≥100ms",
+              "固定100ms必满足所有平台"
+            ],
+            [
+              "后续初始化/FRS",
+              "可重新服务配置",
+              "此前请求已完整完成"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "timeout-flr-drain-example-not-universal-script",
+        "title": "规范示例先防新访问再排空：它不是任意设备的盲写脚本",
+        "paragraphs": [
+          "6.0/7.0的Implementation Note给出一种避免stale Completion污染的算法：先同步可能访问Function的软件，再禁止新请求，轮询Transactions Pending或按平台确认旧完成不再到达，再FLR、等待、重配并启用。",
+          "示例包含清整个Command寄存器与FLR后等100ms，但它是possible algorithm，不能脱离驱动/平台上下文复制为通用寄存器作业单。只停止一个软件提交队列，不表示其它CPU、队列或设备内部请求源均已停止。"
+        ],
+        "referenceIndices": [
+          50,
+          51
+        ]
+      },
+      {
+        "id": "timeout-flr-status-clear-not-remote-cancel",
+        "title": "FLR清Pending不等于远端收到取消：本地状态可能已被丢弃",
+        "paragraphs": [
+          "收到FLR后，Function可以清全部事务状态（包括Transactions Pending），也可令Timeout回默认从而让Pending在FLR期间超时；无论采用哪条，FLR完成时Pending必须清。",
+          "因此FLR后的Pending=0不能反推出所有远端事务按成功完成返回。旧Completion仍可能迟到；规范明确指出过早重新使能后，这些包可能被误认成新请求结果而造成数据破坏。"
+        ],
+        "referenceIndices": [
+          52,
+          53,
+          54,
+          55
+        ]
+      },
+      {
+        "id": "timeout-flr-link-and-credit-continuity",
+        "title": "FLR不重训Link：VC0仍初始化，接收Credit不能当作同时归零",
+        "paragraphs": [
+          "FLR只针对指定Function，Link状态不得受影响；相关Physical/Data Link状态机不重置，VC0保持初始化。它不同于把整Link拉到Detect的复位方法。",
+          "FLR过程中允许静默丢弃收到的Request/Completion时，条文要求先更新适用Flow Control信用，再不记录/不发信号地丢弃。不能以“业务上下文删了”为理由，令接收缓冲信用永久不归还。"
+        ],
+        "referenceIndices": [
+          56,
+          57,
+          58,
+          59,
+          60,
+          61
+        ]
+      },
+      {
+        "id": "timeout-early-generations-evidence",
+        "title": "早期正文对照：1.0a的50µs～50ms，与3.0可编程策略分开",
+        "paragraphs": [
+          "1.0a §2.8明确计时不得早于50µs，并要求请求50ms内未完成则超时，强烈建议一般应用最早不小于10ms；从发出请求计时、分片读等完整返回、部分数据可保留/丢弃的主线已存在。",
+          "3.0 §2.8已描述可由软件禁用，限值由Device Control2选择；6.0/7.0在不支持编程机制时还按Flit Mode Supported规定40～50ms。不能把所有版本统一写成同一默认/使能字段。",
+          "本块仅核这四份正式版选定条款，未据此断定可编程或FLR机制首次引入的修订；1.1/2.x/4.x/5.x及ECN仍须逐版核对。"
+        ],
+        "referenceIndices": [
+          62,
+          63,
+          64,
+          65
+        ]
+      },
+      {
+        "id": "timeout-ordinary-and-uio-restart-scope",
+        "title": "普通分片读与同ID UIO序列：计时对象不能互换",
+        "paragraphs": [
+          "普通请求发出时启动其Completion Timeout；第一片SC仅为进度，不意味着整请求成功。不能把每片数据都当成一笔新请求，然后无证据地不断后移原请求期限。软件改Timeout或Disable影响在途请求的例外仍按已有条目处理。",
+          "7.0对同Transaction ID连续发出的UIO请求明确要求每发一笔重启相应Timeout机制。该条是UIO请求序列的规则，不能套给普通MRd的Completion到达事件；UIO超时也不确定操作成功/失败。"
+        ],
+        "referenceIndices": [
+          66,
+          67,
+          68
+        ]
+      },
+      {
+        "id": "timeout-context-versus-software-ownership",
+        "title": "事务终止、Tag回收、软件缓冲释放：不要合成一个done",
+        "paragraphs": [
+          "非SC错误完成要求释放该请求的Completion缓冲和其它相关内部资源；Timeout终止的是当前等待完成的请求；FLR则可能丢失全部旧跟踪。每种情况下，上层对象还有各自的持有者和同步条件。",
+          "建议把“协议上下文已终止”“Tag分配器可安全再用”“DMA描述符/缓冲可交还软件”作为独立实现证据。这里是工程检查建议，不新增通用硬件寄存器、PCIe线上的Cancel或固定Tag隔离时长。"
+        ],
+        "referenceIndices": [
+          69,
+          70,
+          71,
+          72,
+          73,
+          74
         ]
       }
     ]
