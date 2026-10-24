@@ -1,6 +1,6 @@
 {
   "date": "2026-10-24",
-  "summary": "R67：FM初始分配矩阵、有限广告基线、Shared块/账本与SVC启停边界，新阶段1/4。",
+  "summary": "R68：TS字段/连续性、EIOS/EIEOSQ与FTS/SDS结构图及上下文查询，新阶段2/4。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -1296,6 +1296,26 @@
       "name": "R67查询与回归",
       "status": "通过",
       "detail": "新检查432项/21361断言，覆盖5184有限基线输入组合、768 FM布局组合、无效值、总量上限提示及交互更新；R66回归461项/17405断言通过。3处纠错保留原段落及原引用前缀。"
+    },
+    {
+      "name": "R68初查与去重",
+      "status": "已有SKP/状态详情保留",
+      "detail": "远端R67一致。功能4已有大量状态分支，12已有SKP，故本轮集中补TS/EI/FTS/SDS结构、控制与观察点；不重复生成LTSSM概述。"
+    },
+    {
+      "name": "R68核读与版本边界",
+      "status": "选定正式正文与关键字段表核对",
+      "detail": "6/7所引TS/EI/FTS/SDS、OS Block正文核读；视觉核7.0 p486/501/511。低速TS控制bit与PAM4枚举不同；7.0 128GT/s唤醒10OS和L0→Recovery单OS分别说明。"
+    },
+    {
+      "name": "R68来源与公开范围",
+      "status": "原创字段图与直接引用",
+      "detail": "原PDF图/提取文本不上传；公开的是原创Symbol/字段图与版本定位。Symbol区、线上bit、UI、单OS和OSQ长度分别标，保留6.0 TS1 DSP speed_change表文及PAM4有效半部差异。"
+    },
+    {
+      "name": "R68查询与回归",
+      "status": "通过",
+      "detail": "398项/35442断言后补2处6.0 L0s直接来源映射；7168组TS字节输入、448组OS场景、15个原创结构图、既有详情和引用前缀保留。R67回归432项/21361断言通过。构建、JS与公开边界通过；非完整LTSSM/接收误码或真实链路验证。"
     }
   ],
   "unresolved": [
@@ -1392,7 +1412,8 @@
     "R64：PIPE7.1 p63/p126 Ok撤销时点、Rate稳定时独立Width/PCLK变更和合并功耗完整波形需进一步澄清；旧PIPE逐版差异、七代Base Recovery完整条件/计时及实际PLL/CDC/硬件验证未完成。",
     "R65：L0p首次/中间ECN、6.0双方Priority同宽及Enable与全宽恢复措辞、7.0完整并发/重发历史和通用计时容差待核；Gen1～Gen7其余全部Recovery/EQ分支未完成，未做真实链路/RTL验证。",
     "R66：DOE Async连续RESPONSE/REQUEST与仅GET响应措辞、TDISP报告RUN合法性与表11-17冲突待正式澄清；6.x/ECN差分、XT/T/ATS/P2P/属性/配置完整分支未完成；没有真实SPDM/IDE/硬件验证。",
-    "R67：Base7.0 FM再启用未定义与VC/SVC通用重启字段措辞、Rx_NP_MPS_Limit注中in DW单位、Shared全Zero注中相邻限定仍待勘误/中间修订核验；完整分配全局合规、UIO特例、硬件无死锁证明未完成。"
+    "R67：Base7.0 FM再启用未定义与VC/SVC通用重启字段措辞、Rx_NP_MPS_Limit注中in DW单位、Shared全Zero注中相邻限定仍待勘误/中间修订核验；完整分配全局合规、UIO特例、硬件无死锁证明未完成。",
+    "R68：6.0 TS1 DSP speed_change字段表RcvrCfg与状态机/后版RcvrLock措辞、1b/1b半部/DC Balance完整判定和中间修订待续；Modified TS/EFM/FRA/光Retimer、Gen1～5逐版OS正文及Data Stream内全部接收容错未完成。"
   ],
   "externalComparison": {
     "date": "2026-10-21",
