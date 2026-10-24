@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-24-r60`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-24-r61`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -271,3 +271,9 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [Feature寄存器查询](https://mgc455.github.io/pcie_study/#feature/141/detail/dl-feature-register-query)
 - [InitFC轨迹查询](https://mgc455.github.io/pcie_study/#feature/111/detail/fc-init-trace-query)
 - [阶段进度2/4](https://mgc455.github.io/pcie_study/#audit)
+
+## R61 中断查询
+
+- [MSI生成与门控](https://mgc455.github.io/pcie_study/#feature/53/detail/msi-message-query)
+- [MSI-X定位与屏蔽](https://mgc455.github.io/pcie_study/#feature/55/detail/msix-location-and-gate-query)
+- [INTx桥接映射](https://mgc455.github.io/pcie_study/#feature/52/detail/intx-bridge-swizzle)

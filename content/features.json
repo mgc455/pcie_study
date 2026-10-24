@@ -39845,14 +39845,14 @@
     "checks": "区分PCIe消息与物理中断引脚；检查Interrupt Disable、设备事件状态和Deassert路径。",
     "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
     "id": 52,
-    "status": "已整理 · 待持续深化",
+    "status": "选定中断规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-24",
     "protocolReferences": [
       {
         "section": "2.2.8.1",
@@ -39875,9 +39875,549 @@
         "pdfPage": 660,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.1",
+        "page": 659,
+        "pdfPage": 659,
+        "title": "三种机制选择：INTx电平，MSI/MSI-X边沿，工作时互斥",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.1",
+        "page": 767,
+        "pdfPage": 767,
+        "title": "三种机制选择：INTx电平，MSI/MSI-X边沿，工作时互斥",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4",
+        "page": 660,
+        "pdfPage": 660,
+        "title": "三种机制选择：INTx电平，MSI/MSI-X边沿，工作时互斥",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4",
+        "page": 768,
+        "pdfPage": 768,
+        "title": "三种机制选择：INTx电平，MSI/MSI-X边沿，工作时互斥",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.3",
+        "page": 663,
+        "pdfPage": 663,
+        "title": "三种机制选择：INTx电平，MSI/MSI-X边沿，工作时互斥",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.3",
+        "page": 771,
+        "pdfPage": 771,
+        "title": "三种机制选择：INTx电平，MSI/MSI-X边沿，工作时互斥",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.8.1",
+        "page": 172,
+        "pdfPage": 172,
+        "title": "INTx八种消息：代码、路由、TC与Requester ID限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.8.1",
+        "page": 218,
+        "pdfPage": 218,
+        "title": "INTx八种消息：代码、路由、TC与Requester ID限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.8.1",
+        "page": 173,
+        "pdfPage": 173,
+        "title": "INTx八种消息：代码、路由、TC与Requester ID限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.8.1",
+        "page": 219,
+        "pdfPage": 219,
+        "title": "INTx八种消息：代码、路由、TC与Requester ID限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.8.1",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "INTx八种消息：代码、路由、TC与Requester ID限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.8.1",
+        "page": 174,
+        "pdfPage": 174,
+        "title": "虚拟线的生命周期：重复无效，丢链清理，Switch逐端口跟踪",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.8.1",
+        "page": 220,
+        "pdfPage": 220,
+        "title": "虚拟线的生命周期：重复无效，丢链清理，Switch逐端口跟踪",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.2",
+        "page": 660,
+        "pdfPage": 660,
+        "title": "虚拟线的生命周期：重复无效，丢链清理，Switch逐端口跟踪",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.2",
+        "page": 768,
+        "pdfPage": 768,
+        "title": "虚拟线的生命周期：重复无效，丢链清理，Switch逐端口跟踪",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.8.1",
+        "page": 174,
+        "pdfPage": 174,
+        "title": "桥接INTx映射表：逐跳旋转，ARI Forwarding用Device=0",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.8.1",
+        "page": 221,
+        "pdfPage": 221,
+        "title": "桥接INTx映射表：逐跳旋转，ARI Forwarding用Device=0",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.8.1",
+        "page": 175,
+        "pdfPage": 175,
+        "title": "桥接INTx映射表：逐跳旋转，ARI Forwarding用Device=0",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.1.3",
+        "page": 920,
+        "pdfPage": 920,
+        "title": "INTx配置字段：Disable不清内部Status，Line不是消息地址",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.1.3",
+        "page": 1069,
+        "pdfPage": 1069,
+        "title": "INTx配置字段：Disable不清内部Status，Line不是消息地址",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.1.4",
+        "page": 921,
+        "pdfPage": 921,
+        "title": "INTx配置字段：Disable不清内部Status，Line不是消息地址",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.1.4",
+        "page": 1070,
+        "pdfPage": 1070,
+        "title": "INTx配置字段：Disable不清内部Status，Line不是消息地址",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.1.4",
+        "page": 1071,
+        "pdfPage": 1071,
+        "title": "INTx配置字段：Disable不清内部Status，Line不是消息地址",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.1.12",
+        "page": 926,
+        "pdfPage": 926,
+        "title": "INTx配置字段：Disable不清内部Status，Line不是消息地址",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.1.12",
+        "page": 1075,
+        "pdfPage": 1075,
+        "title": "INTx配置字段：Disable不清内部Status，Line不是消息地址",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.1.13",
+        "page": 926,
+        "pdfPage": 926,
+        "title": "INTx配置字段：Disable不清内部Status，Line不是消息地址",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.1.13",
+        "page": 1076,
+        "pdfPage": 1076,
+        "title": "INTx配置字段：Disable不清内部Status，Line不是消息地址",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.1",
+        "page": 659,
+        "pdfPage": 659,
+        "title": "Function角色限制：单Function仅INTA，VF不能实现INTx",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.1",
+        "page": 767,
+        "pdfPage": 767,
+        "title": "Function角色限制：单Function仅INTA，VF不能实现INTx",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.1.13",
+        "page": 926,
+        "pdfPage": 926,
+        "title": "Function角色限制：单Function仅INTA，VF不能实现INTx",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.1.13",
+        "page": 1076,
+        "pdfPage": 1076,
+        "title": "Function角色限制：单Function仅INTA，VF不能实现INTx",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.1.13",
+        "page": 927,
+        "pdfPage": 927,
+        "title": "Function角色限制：单Function仅INTA，VF不能实现INTx",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "R61核6.0/7.0 INTx、MSI/MSI-X字段、发送/屏蔽与事件通路；保留早期版本、ECN和产品/平台实现缺口。",
+    "details": [
+      {
+        "id": "interrupt-mechanism-selection",
+        "title": "三种机制选择：INTx电平，MSI/MSI-X边沿，工作时互斥",
+        "paragraphs": [
+          "INTx用Assert/Deassert消息维持虚拟线状态，MSI/MSI-X用DWORD Memory Write通知，属于边沿机制。支持中断的PCIe Endpoint必须实现MSI或MSI-X或两者，INTx可选；两种能力都能存在，不表示可以同时启用。",
+          "MSI Enable和MSI-X Enable默认均0；二者同时1行为未定义。任一启用时Function不能再用INTx请求服务；都关闭时也只有实现了INTx的Function才可能走INTx。",
+          "软件模型不支持设备活跃运行时任意切换中断机制，可能丢失或重复条件。控制寄存器由系统软件管理，驱动应通过平台提供的资源机制协调，网页不提供直接改写命令。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "table": {
+          "columns": [
+            "位置／条件",
+            "规则与作用",
+            "边界"
+          ],
+          "rows": [
+            [
+              "INTx",
+              "Msg，无Payload；Assert/Deassert成对",
+              "电平状态；TC0"
+            ],
+            [
+              "MSI",
+              "1DW Memory Write；同地址，Data低位选择",
+              "最多32向量，2的幂分配"
+            ],
+            [
+              "MSI-X",
+              "1DW Memory Write；每项独立Address/Data",
+              "最多2048项，表项数不要求2的幂"
+            ],
+            [
+              "MSI Enable=1 且MSI-X Enable=1",
+              "行为未定义",
+              "工具不替实现指定优先赢家"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "intx-message-codes-and-rules",
+        "title": "INTx八种消息：代码、路由、TC与Requester ID限制",
+        "paragraphs": [
+          "INTx消息的TLP Type为Msg，无数据Payload，Length保留；8个Message Code对应A/B/C/D的Assert和Deassert。其路由编码r=100b，即本Link接收端终止，不是把一份原始消息原封不动直达RC。",
+          "只有Upstream Port发起，Requester ID的Function Number必须0，ARI与非ARI的Function位宽不同。TC必须0，接收端必须检查非0TC并按Malformed处理；对于发起角色错误，规范允许接收端选择是否检查，实施检查时按Malformed。",
+          "源Function可能不是Function0，但本链路INTx报文Requester ID的Function字段仍有上述0约束。它描述该Link的发送端，不能只凭此ID恢复最初业务中断源。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "table": {
+          "columns": [
+            "位置／条件",
+            "规则与作用",
+            "边界"
+          ],
+          "rows": [
+            [
+              "20h / 24h",
+              "Assert_INTA / Deassert_INTA",
+              "r=100b；TC0；无Payload"
+            ],
+            [
+              "21h / 25h",
+              "Assert_INTB / Deassert_INTB",
+              "同上"
+            ],
+            [
+              "22h / 26h",
+              "Assert_INTC / Deassert_INTC",
+              "同上"
+            ],
+            [
+              "23h / 27h",
+              "Assert_INTD / Deassert_INTD",
+              "同上"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "intx-virtual-wire-lifecycle",
+        "title": "虚拟线的生命周期：重复无效，丢链清理，Switch逐端口跟踪",
+        "paragraphs": [
+          "Link两端跟踪四条虚拟线的逻辑状态：Assert表示变为活动，Deassert表示变为非活动。重复Assert或重复Deassert不改变状态，但不构成错误；它们不是累计“加一次/减一次”的中断计数。",
+          "Switch对每个Downstream Port分别跟踪四条线，再将合并后的状态呈现在Upstream Port。若其中一个来源撤销，另一个映射到同一线上仍活动，上游不能据单个Deassert就错误认为所有来源都撤销。",
+          "Switch某DSP进入DL_Down时，须撤销与该Port相关的线并重新计算USP状态，必要时由USP发送Deassert。RC某DSP丢链同样清该Port虚拟线并撤销相关系统中断请求；不要让移除设备留下永久活动状态。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "intx-bridge-swizzle",
+        "title": "桥接INTx映射表：逐跳旋转，ARI Forwarding用Device=0",
+        "paragraphs": [
+          "以A/B/C/D编号0/1/2/3，单次映射可按(primary pin)=(secondary pin+Device Number) mod4理解，下面给出完整四组。它在层级中的每个Switch/桥逐跳应用，不是只对最终Endpoint算一次。",
+          "该表取接收消息Requester ID[7:3]的Device Number；ARI Forwarding开启时必须改用0。Requester ID对应本Link发送者，不一定是原始中断源，不能拿原始BDF跳过中间层级映射。",
+          "RC最终把这些虚拟线映射到何种系统中断资源由平台实现定义。本表无法单独算出CPU中断号、ACPI路由或操作系统IRQ号。"
+        ],
+        "referenceIndices": [
+          17,
+          18,
+          19
+        ],
+        "table": {
+          "columns": [
+            "位置／条件",
+            "规则与作用",
+            "边界"
+          ],
+          "rows": [
+            [
+              "Device mod4=0",
+              "A→A；B→B；C→C；D→D",
+              "含ARI Forwarding强制0"
+            ],
+            [
+              "Device mod4=1",
+              "A→B；B→C；C→D；D→A",
+              "逐桥应用"
+            ],
+            [
+              "Device mod4=2",
+              "A→C；B→D；C→A；D→B",
+              "逐桥应用"
+            ],
+            [
+              "Device mod4=3",
+              "A→D；B→A；C→B；D→C",
+              "逐桥应用"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "intx-configuration-registers",
+        "title": "INTx配置字段：Disable不清内部Status，Line不是消息地址",
+        "paragraphs": [
+          "Command+04h bit10 Interrupt Disable=1会阻止该Function断言INTx，已经断言的线必须发送Deassert；默认0。Type1该位只作用于自身中断，不影响从secondary转发的中断。它不是MSI-X Function Mask。",
+          "Status+06h bit3为RO，表示本Function内部INTx条件；置Interrupt Disable不改变这个Status。桥转发的secondary中断也不体现在它里面，不能把RO状态当W1C清中断入口。",
+          "Interrupt Line+3Ch为系统架构特定路由信息，Function自身不使用该值；Interrupt Pin+3Dh为RO：0表示不用INTx，1～4对应A～D，5～FFh保留。它们都不是MSI Address/Data。",
+          "配置寄存器读数只定位门控和状态；真正如何消除中断源仍由设备寄存器/队列定义。Disable后内部仍Pending并不自相矛盾。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ]
+      },
+      {
+        "id": "intx-function-and-virtualization-boundaries",
+        "title": "Function角色限制：单Function仅INTA，VF不能实现INTx",
+        "paragraphs": [
+          "单Function设备只可使用INTA。多Function设备最多四种虚拟线，若只实现一种须A，两种须A/B，以此类推；各Function可共用同一条线，但一个Function不能同时用多种INTx消息。",
+          "SR-IOV中PF允许实现INTx，VF禁止实现；每个PF/VF有各自独立中断能力。7.0另列SIOV PF可用INTx、SDI不得实现INTx，不能把SDI与VF配置布局直接等同。",
+          "VFs的Interrupt Disable、Interrupt Status、Interrupt Line/Pin等不适用字段按对应寄存器硬连0要求处理。无INTx支持不代表设备没有中断，仍可能使用MSI/MSI-X。"
+        ],
+        "referenceIndices": [
+          29,
+          30,
+          31,
+          32,
+          33
+        ]
+      }
+    ]
   },
   {
     "name": "MSI",
@@ -39889,14 +40429,14 @@
     "checks": "确认MSI Enable、地址/数据、Function和事件来源；收到中断不能替代对实际完成条目的核对。",
     "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
     "id": 53,
-    "status": "已整理 · 待持续深化",
+    "status": "选定中断规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-24",
     "protocolReferences": [
       {
         "section": "7.7.1",
@@ -40073,9 +40613,427 @@
         "title": "MSI控制位与向量数：MMC/MME是2的幂编码，不是实际数量",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R41核读所引Base6.0/7.0的MSI/MSI-X相关正文与必要续页；关键MSI-X Control、Vector Control/PBA图表视觉核对。本副本印刷页和PDF物理页一致；仅选定规则，不代表完整中断章或七代全部修订已核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.2",
+        "page": 1013,
+        "pdfPage": 1013,
+        "title": "MSI Control逐bit图：+02h的16bit不是配置Header固定偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.2",
+        "page": 1166,
+        "pdfPage": 1166,
+        "title": "MSI Control逐bit图：+02h的16bit不是配置Header固定偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.2",
+        "page": 1014,
+        "pdfPage": 1014,
+        "title": "MSI Control逐bit图：+02h的16bit不是配置Header固定偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.2",
+        "page": 1167,
+        "pdfPage": 1167,
+        "title": "MSI Control逐bit图：+02h的16bit不是配置Header固定偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1",
+        "page": 1012,
+        "pdfPage": 1012,
+        "title": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1",
+        "page": 1165,
+        "pdfPage": 1165,
+        "title": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.5",
+        "page": 1016,
+        "pdfPage": 1016,
+        "title": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.5",
+        "page": 1168,
+        "pdfPage": 1168,
+        "title": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.6",
+        "page": 1016,
+        "pdfPage": 1016,
+        "title": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.6",
+        "page": 1169,
+        "pdfPage": 1169,
+        "title": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.7",
+        "page": 1017,
+        "pdfPage": 1017,
+        "title": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.7",
+        "page": 1169,
+        "pdfPage": 1169,
+        "title": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.4",
+        "page": 664,
+        "pdfPage": 664,
+        "title": "MSI真正写什么：地址对齐、Data低位选择与扩展高16bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.4",
+        "page": 772,
+        "pdfPage": 772,
+        "title": "MSI真正写什么：地址对齐、Data低位选择与扩展高16bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.3",
+        "page": 1015,
+        "pdfPage": 1015,
+        "title": "MSI真正写什么：地址对齐、Data低位选择与扩展高16bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.3",
+        "page": 1167,
+        "pdfPage": 1167,
+        "title": "MSI真正写什么：地址对齐、Data低位选择与扩展高16bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.4",
+        "page": 1015,
+        "pdfPage": 1015,
+        "title": "MSI真正写什么：地址对齐、Data低位选择与扩展高16bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.4",
+        "page": 1168,
+        "pdfPage": 1168,
+        "title": "MSI真正写什么：地址对齐、Data低位选择与扩展高16bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.5",
+        "page": 1016,
+        "pdfPage": 1016,
+        "title": "MSI真正写什么：地址对齐、Data低位选择与扩展高16bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.5",
+        "page": 1169,
+        "pdfPage": 1169,
+        "title": "MSI真正写什么：地址对齐、Data低位选择与扩展高16bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.6",
+        "page": 1016,
+        "pdfPage": 1016,
+        "title": "MSI真正写什么：地址对齐、Data低位选择与扩展高16bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.6",
+        "page": 1169,
+        "pdfPage": 1169,
+        "title": "MSI真正写什么：地址对齐、Data低位选择与扩展高16bit",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.1.3",
+        "page": 919,
+        "pdfPage": 919,
+        "title": "BME、MSE与Interrupt Disable：三个门控不要混用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.1.3",
+        "page": 1068,
+        "pdfPage": 1068,
+        "title": "BME、MSE与Interrupt Disable：三个门控不要混用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.1.3",
+        "page": 920,
+        "pdfPage": 920,
+        "title": "BME、MSE与Interrupt Disable：三个门控不要混用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.1.3",
+        "page": 1069,
+        "pdfPage": 1069,
+        "title": "BME、MSE与Interrupt Disable：三个门控不要混用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4",
+        "page": 661,
+        "pdfPage": 661,
+        "title": "BME、MSE与Interrupt Disable：三个门控不要混用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4",
+        "page": 769,
+        "pdfPage": 769,
+        "title": "BME、MSE与Interrupt Disable：三个门控不要混用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.2",
+        "page": 1014,
+        "pdfPage": 1014,
+        "title": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.2",
+        "page": 1167,
+        "pdfPage": 1167,
+        "title": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.5",
+        "page": 1016,
+        "pdfPage": 1016,
+        "title": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.5",
+        "page": 1169,
+        "pdfPage": 1169,
+        "title": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.4",
+        "page": 664,
+        "pdfPage": 664,
+        "title": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.4",
+        "page": 772,
+        "pdfPage": 772,
+        "title": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.7",
+        "page": 1017,
+        "pdfPage": 1017,
+        "title": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.7",
+        "page": 1169,
+        "pdfPage": 1169,
+        "title": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.1.3",
+        "page": 919,
+        "pdfPage": 919,
+        "title": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.1.3",
+        "page": 1068,
+        "pdfPage": 1068,
+        "title": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
       }
     ],
-    "referenceStatus": "R41所列Base6.0/7.0中断机制与寄存器正文已核；早期版本、平台中断重映射及全部同步分支待核",
+    "referenceStatus": "R61核6.0/7.0 INTx、MSI/MSI-X字段、发送/屏蔽与事件通路；保留早期版本、ECN和产品/平台实现缺口。",
     "details": [
       {
         "id": "msi-memory-write-not-message-tlp",
@@ -40151,6 +41109,196 @@
             ]
           ]
         }
+      },
+      {
+        "id": "msi-control-bit-diagram",
+        "title": "MSI Control逐bit图：+02h的16bit不是配置Header固定偏移",
+        "paragraphs": [
+          "此图按寄存器低byte在前、byte内bit7→0排列，逻辑bit号见字段说明。bit0 Enable、[3:1] MMC、[6:4] MME、bit7地址宽度能力、bit8 PVM、bit9/10扩展Data能力/使能，余下[15:11]保留。",
+          "MMC、地址能力、PVM及扩展Data能力为RO；Enable/MME为RW，扩展Data Enable仅在能力存在时RW，否则硬连0。MME超过MMC或MSI启用中修改MME均不能作为正常配置。",
+          "这幅图补充已有编码表，不表示可以用整DWORD写覆盖邻接字段。系统软件拥有Message Control的配置职责，具体驱动通过OS接口协调。"
+        ],
+        "referenceIndices": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "packetLayouts": [
+          {
+            "id": "msi-control-word-r61",
+            "title": "MSI Message Control · 16bit寄存器",
+            "version": "Base6.0/7.0 · 相对MSI能力+02h；不是线上TLP",
+            "headerBits": 16,
+            "rows": [
+              [
+                {
+                  "label": "64-bit",
+                  "width": 1,
+                  "key": "a64",
+                  "help": "Control bit7，RO"
+                },
+                {
+                  "label": "MME",
+                  "width": 3,
+                  "key": "mme",
+                  "help": "Control[6:4]，RW"
+                },
+                {
+                  "label": "MMC",
+                  "width": 3,
+                  "key": "mmc",
+                  "help": "Control[3:1]，RO"
+                },
+                {
+                  "label": "Enable",
+                  "width": 1,
+                  "key": "enable",
+                  "help": "bit0，RW"
+                },
+                {
+                  "label": "RsvdP",
+                  "width": 5,
+                  "key": "rsvd",
+                  "help": "Control[15:11]"
+                },
+                {
+                  "label": "Ext En",
+                  "width": 1,
+                  "key": "edmen",
+                  "help": "bit10，RW/RO"
+                },
+                {
+                  "label": "Ext Cap",
+                  "width": 1,
+                  "key": "edmcap",
+                  "help": "bit9，RO"
+                },
+                {
+                  "label": "PVM",
+                  "width": 1,
+                  "key": "pvm",
+                  "help": "bit8，RO"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Message Control",
+                "size": "2 B"
+              }
+            ],
+            "note": "左byte为Control[7:0]，右byte为[15:8]；位号是寄存器逻辑位，不是串行发送次序。"
+          }
+        ]
+      },
+      {
+        "id": "msi-four-capability-layouts",
+        "title": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移",
+        "paragraphs": [
+          "MSI Capability ID=05h，+00h为Header，+02h为Control，+04h始终是消息地址低DWORD。64-bit Address Capable决定是否存在+08h的Upper Address，从而影响后面Data的位置。",
+          "Message Data为16bit；可选Extended Data紧跟其后16bit，即Data偏移+2。没有扩展能力时，不应把这两个byte当作可随意覆写字段：无PVM布局可能已在该Capability之外，有PVM布局为RsvdP。",
+          "Mask/Pending只在PVM能力存在时按下面偏移访问。偏移全相对MSI能力起点；地址64bit能力和实际消息是否使用非零高地址是两件事。"
+        ],
+        "referenceIndices": [
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "table": {
+          "columns": [
+            "位置／条件",
+            "规则与作用",
+            "边界"
+          ],
+          "rows": [
+            [
+              "32bit地址，无PVM",
+              "Data+08h；Ext+0Ah（若支持）",
+              "无Mask/Pending"
+            ],
+            [
+              "64bit地址，无PVM",
+              "Upper+08h；Data+0Ch；Ext+0Eh（若支持）",
+              "无Mask/Pending"
+            ],
+            [
+              "32bit地址，有PVM",
+              "Data+08h；Mask+0Ch；Pending+10h",
+              "Ext+0Ah；Pending为RO"
+            ],
+            [
+              "64bit地址，有PVM",
+              "Data+0Ch；Mask+10h；Pending+14h",
+              "Ext+0Eh；Pending为RO"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "msi-address-payload-formation",
+        "title": "MSI真正写什么：地址对齐、Data低位选择与扩展高16bit",
+        "paragraphs": [
+          "低地址寄存器[31:2]来自系统指定地址，[1:0]保留且读0、写无效。64bit布局有Upper Address；该值非0形成64bit目的地址，为0则使用32bit目的地址。消息目标不是Endpoint自己的BAR。",
+          "MME=n时，在分配的2^n个向量范围内替换Data低n位；当n=0时不许改。7.0 §7.7.1.5明确：n非0时软件编程的对应基准低位必须0，否则行为未定义；6.0该字段段落未同样显式写这句话，本页保留版本证据差别。",
+          "发出的Payload仍是1DWORD且四个BE均1。扩展Data Enable=0时高16bit为0；=1且能力有效时高16bit取Extended Message Data，低16bit取已选择的Message Data。",
+          "例如基准Data=0040h、MME=2、选择索引3，低16bit为0043h；扩展使能且扩展值1234h时Payload=12340043h。索引3不是可以任意写给CPU的向量号，地址/基准数据仍由系统分配。"
+        ],
+        "referenceIndices": [
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37
+        ]
+      },
+      {
+        "id": "interrupt-command-gates-and-ordering",
+        "title": "BME、MSE与Interrupt Disable：三个门控不要混用",
+        "paragraphs": [
+          "MSI/MSI-X是Memory Write，因此Type0 Function的Bus Master Enable（Command bit2）清0会禁止它们发起。Interrupt Disable bit10控制的是INTx，不能据它置1便推断MSI-X被屏蔽。",
+          "Memory Space Enable bit1控制收到的Memory访问能否被Function解码，涉及主机访问设备MSI-X Table/PBA；它不是发送MSI地址的代替开关。VF Memory Space另由PF的VF MSE控制，不能直接照搬PF读数。",
+          "MSI/MSI-X的No Snoop、Relaxed Ordering须0，IDO须其使用已启用才可置1。非TC0也可用于消息；跨TC数据与通知必须由设备显式同步，不自动把某个TC的先后保证套到所有TC。",
+          "排障至少分清：已选中断机制、BME、有效向量/表项、Mask/Pending、业务事件以及链路信用门控。网页快照工具只检查其中所列条件，不能据“可调度”证明CPU一定进ISR。"
+        ],
+        "referenceIndices": [
+          38,
+          39,
+          40,
+          41,
+          42,
+          43
+        ]
+      },
+      {
+        "id": "msi-message-query",
+        "title": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽",
+        "paragraphs": [
+          "输入MSI Control、消息地址低/高DWORD、Data/Ext Data、Mask、向量索引和BME；查询解码布局并形成消息地址与DWORD Payload，标出保留编码、超分配、基准Data低位和屏蔽条件。",
+          "工具按7.0显式低位约束检查，6.0同值说明和差异见正文。索引为十进制，其余hex；输入是寄存器整数，不是线上byte流。没有硬件读写，不模拟INTx/模式切换、Posted Write排序、IRQ控制器或全部错误优先级。"
+        ],
+        "referenceIndices": [
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53
+        ]
       }
     ]
   },
@@ -40164,14 +41312,14 @@
     "checks": "设备事件计数/队列仍要自己维护；屏蔽位不代表业务停止，Pending位也不等于精确事件数量。",
     "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
     "id": 54,
-    "status": "已整理 · 待持续深化",
+    "status": "选定中断规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-24",
     "protocolReferences": [
       {
         "section": "7.7.1",
@@ -40293,9 +41441,97 @@
         "title": "为什么不能用中断次数统计完成数：向量合并与软件握手",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R41核读所引Base6.0/7.0的MSI/MSI-X相关正文与必要续页；关键MSI-X Control、Vector Control/PBA图表视觉核对。本副本印刷页和PDF物理页一致；仅选定规则，不代表完整中断章或七代全部修订已核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.7",
+        "page": 1017,
+        "pdfPage": 1017,
+        "title": "MSI Mask位的实现范围与分配范围：默认0不等于全部32位可用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.7",
+        "page": 1169,
+        "pdfPage": 1169,
+        "title": "MSI Mask位的实现范围与分配范围：默认0不等于全部32位可用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.8",
+        "page": 1018,
+        "pdfPage": 1018,
+        "title": "MSI Mask位的实现范围与分配范围：默认0不等于全部32位可用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.8",
+        "page": 1170,
+        "pdfPage": 1170,
+        "title": "MSI Mask位的实现范围与分配范围：默认0不等于全部32位可用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.5",
+        "page": 664,
+        "pdfPage": 664,
+        "title": "MSI Mask位的实现范围与分配范围：默认0不等于全部32位可用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.5",
+        "page": 772,
+        "pdfPage": 772,
+        "title": "MSI Mask位的实现范围与分配范围：默认0不等于全部32位可用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.2",
+        "page": 1014,
+        "pdfPage": 1014,
+        "title": "MSI Mask位的实现范围与分配范围：默认0不等于全部32位可用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.2",
+        "page": 1167,
+        "pdfPage": 1167,
+        "title": "MSI Mask位的实现范围与分配范围：默认0不等于全部32位可用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
       }
     ],
-    "referenceStatus": "R41所列Base6.0/7.0中断机制与寄存器正文已核；早期版本、平台中断重映射及全部同步分支待核",
+    "referenceStatus": "R61核6.0/7.0 INTx、MSI/MSI-X字段、发送/屏蔽与事件通路；保留早期版本、ECN和产品/平台实现缺口。",
     "details": [
       {
         "id": "msi-mask-pending-lifecycle",
@@ -40354,6 +41590,25 @@
           9,
           10
         ]
+      },
+      {
+        "id": "msi-implemented-versus-allocated-mask-bits",
+        "title": "MSI Mask位的实现范围与分配范围：默认0不等于全部32位可用",
+        "paragraphs": [
+          "MMC决定实现多少Mask/Pending位，MME决定其中当前可用多少位；已实现却未分配的位必须被硬件忽略，不得影响中断生成。未实现位为保留，不能按固定32路事件解释。",
+          "Mask为32bit RW、默认0；Pending为32bit RO、默认0，软件不通过W1C写它清事件。清底层事件所需的寄存器/队列动作是设备定义，Pending由硬件随条件维护。",
+          "软件允许长期屏蔽并轮询Pending，但硬件仍须在底层事件被服务后清Pending、有新事件时再置位。PVM对一般MSI可选，对SR-IOV中实现MSI的PF/VF强制；7.0允许SIOV PF有或没有PVM。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ]
       }
     ]
   },
@@ -40367,14 +41622,14 @@
     "checks": "MSI和MSI-X不能同时启用，同时启用行为未定义；核Table/PBA的BAR定位、屏蔽/缓存更新以及设备事件来源，不能只看Enable。",
     "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
     "id": 55,
-    "status": "已整理 · 待持续深化",
+    "status": "选定中断规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-24",
     "protocolReferences": [
       {
         "section": "6.1.4",
@@ -40639,9 +41894,361 @@
         "title": "安全更新表项：先屏蔽，再改地址/数据，解屏蔽触发缓存刷新",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R41核读所引Base6.0/7.0的MSI/MSI-X相关正文与必要续页；关键MSI-X Control、Vector Control/PBA图表视觉核对。本副本印刷页和PDF物理页一致；仅选定规则，不代表完整中断章或七代全部修订已核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2.2",
+        "page": 1022,
+        "pdfPage": 1022,
+        "title": "MSI-X Control逐bit图：N−1、Function Mask和Enable",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.2",
+        "page": 1175,
+        "pdfPage": 1175,
+        "title": "MSI-X Control逐bit图：N−1、Function Mask和Enable",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2.3",
+        "page": 1023,
+        "pdfPage": 1023,
+        "title": "MSI-X Control逐bit图：N−1、Function Mask和Enable",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.3",
+        "page": 1176,
+        "pdfPage": 1176,
+        "title": "MSI-X Control逐bit图：N−1、Function Mask和Enable",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2",
+        "page": 1020,
+        "pdfPage": 1020,
+        "title": "MSI-X资源与访问约束：Table/PBA不是任意byte可写内存",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2",
+        "page": 1173,
+        "pdfPage": 1173,
+        "title": "MSI-X资源与访问约束：Table/PBA不是任意byte可写内存",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2.3",
+        "page": 1023,
+        "pdfPage": 1023,
+        "title": "MSI-X资源与访问约束：Table/PBA不是任意byte可写内存",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.3",
+        "page": 1176,
+        "pdfPage": 1176,
+        "title": "MSI-X资源与访问约束：Table/PBA不是任意byte可写内存",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2.4",
+        "page": 1024,
+        "pdfPage": 1024,
+        "title": "MSI-X资源与访问约束：Table/PBA不是任意byte可写内存",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.4",
+        "page": 1177,
+        "pdfPage": 1177,
+        "title": "MSI-X资源与访问约束：Table/PBA不是任意byte可写内存",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2.8",
+        "page": 1026,
+        "pdfPage": 1026,
+        "title": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.8",
+        "page": 1179,
+        "pdfPage": 1179,
+        "title": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.2",
+        "page": 662,
+        "pdfPage": 662,
+        "title": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.2",
+        "page": 770,
+        "pdfPage": 770,
+        "title": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.5",
+        "page": 664,
+        "pdfPage": 664,
+        "title": "Mask/Pending判定表：按表项屏蔽，按底层事件清理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.5",
+        "page": 772,
+        "pdfPage": 772,
+        "title": "Mask/Pending判定表：按表项屏蔽，按底层事件清理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2.8",
+        "page": 1026,
+        "pdfPage": 1026,
+        "title": "Mask/Pending判定表：按表项屏蔽，按底层事件清理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.8",
+        "page": 1179,
+        "pdfPage": 1179,
+        "title": "Mask/Pending判定表：按表项屏蔽，按底层事件清理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2.9",
+        "page": 1027,
+        "pdfPage": 1027,
+        "title": "Mask/Pending判定表：按表项屏蔽，按底层事件清理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.9",
+        "page": 1180,
+        "pdfPage": 1180,
+        "title": "Mask/Pending判定表：按表项屏蔽，按底层事件清理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2",
+        "page": 1021,
+        "pdfPage": 1021,
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2",
+        "page": 1174,
+        "pdfPage": 1174,
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2.2",
+        "page": 1022,
+        "pdfPage": 1022,
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.2",
+        "page": 1175,
+        "pdfPage": 1175,
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2.3",
+        "page": 1023,
+        "pdfPage": 1023,
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.3",
+        "page": 1176,
+        "pdfPage": 1176,
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2.4",
+        "page": 1024,
+        "pdfPage": 1024,
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.4",
+        "page": 1177,
+        "pdfPage": 1177,
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.5",
+        "page": 664,
+        "pdfPage": 664,
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.5",
+        "page": 772,
+        "pdfPage": 772,
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.1.3",
+        "page": 919,
+        "pdfPage": 919,
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.1.3",
+        "page": 1068,
+        "pdfPage": 1068,
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
       }
     ],
-    "referenceStatus": "R41所列Base6.0/7.0中断机制与寄存器正文已核；早期版本、平台中断重映射及全部同步分支待核",
+    "referenceStatus": "R61核6.0/7.0 INTx、MSI/MSI-X字段、发送/屏蔽与事件通路；保留早期版本、ECN和产品/平台实现缺口。",
     "details": [
       {
         "id": "msix-capability-bar-location",
@@ -40769,6 +42376,226 @@
           22,
           23
         ]
+      },
+      {
+        "id": "msix-control-bit-diagram",
+        "title": "MSI-X Control逐bit图：N−1、Function Mask和Enable",
+        "paragraphs": [
+          "相对MSI-X能力+02h的16bit中，[10:0]为Table Size=N−1（RO）、[13:11]保留、bit14 Function Mask（RW，默认0）、bit15 Enable（RW，默认0）。最大N=2048，不要求N为2的幂。",
+          "Function Mask使全部表项表现为被屏蔽，却不改每项Mask bit。每项Mask默认1，所以Function Mask默认0不意味着上电所有表项都可发。",
+          "与MSI能力并存不代表同时使能；系统软件管理Control，驱动应使用平台接口协调。与其相邻的Table/PBA定位DWORD是RO描述，不是可随便移动表结构的运行时配置窗口。"
+        ],
+        "referenceIndices": [
+          24,
+          25,
+          26,
+          27
+        ],
+        "packetLayouts": [
+          {
+            "id": "msix-control-word-r61",
+            "title": "MSI-X Message Control · 16bit寄存器",
+            "version": "Base6.0/7.0 · 相对MSI-X能力+02h；不是线上TLP",
+            "headerBits": 16,
+            "rows": [
+              [
+                {
+                  "label": "Size[7:0]",
+                  "width": 8,
+                  "key": "size",
+                  "help": "Control[7:0]，N−1低8位"
+                },
+                {
+                  "label": "Enable",
+                  "width": 1,
+                  "key": "enable",
+                  "help": "bit15"
+                },
+                {
+                  "label": "Function Mask",
+                  "width": 1,
+                  "key": "fmask",
+                  "help": "bit14"
+                },
+                {
+                  "label": "Reserved",
+                  "width": 3,
+                  "key": "rsvd",
+                  "help": "[13:11]"
+                },
+                {
+                  "label": "Size[10:8]",
+                  "width": 3,
+                  "key": "size",
+                  "help": "N−1高3位"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Message Control",
+                "size": "2 B"
+              }
+            ],
+            "note": "低byte在前，byte内bit7→0；Table Size的两个图块是同一个11bit字段。"
+          }
+        ]
+      },
+      {
+        "id": "msix-resource-isolation-access",
+        "title": "MSI-X资源与访问约束：Table/PBA不是任意byte可写内存",
+        "paragraphs": [
+          "MSI-X Table和PBA可共用或分别使用Memory BAR，也可由匹配BEI的Enhanced Allocation资源映射；BIR必须指向64bit BAR的低DWORD。Type1头BIR2～5保留，所有头的BIR6/7保留。",
+          "Table与PBA不能重叠，可位于同一个自然对齐4KB区域；但同BAR内其它非MSI-X用途CSR不能与它们共享该4KB区域。SR-IOV时隔离按PF SR-IOV能力中的System Page Size，而不是一律4KB。",
+          "软件对Table/PBA字段访问必须是对齐完整DWORD或QWORD，否则结果未定义。Dedicated BAR或更大的8KB隔离是实现建议，不要把建议当统一强制最小值。",
+          "本轮定位工具假定输入已解析的普通Type0资源基址，不能验证BAR实际资源长度、CPU页属性、EA、VF资源分配或SR-IOV隔离。"
+        ],
+        "referenceIndices": [
+          28,
+          29,
+          30,
+          31,
+          32,
+          33
+        ]
+      },
+      {
+        "id": "msix-vector-control-bit-diagram",
+        "title": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag",
+        "paragraphs": [
+          "表项+0Ch bit0是Mask，默认1；[15:1]默认0但软件改其它位时必须保留原值。[23:16]/[31:24]不是一概保留：满足TPH条件时分别是ST Lower/ST Upper。",
+          "ST Lower需实现TPH Requester且ST Table Location=10b；ST Upper还要求Extended TPH Requester Supported。其它情况下这些域也可能可写，但必须保留已有值，不把可写误认为有通用业务含义。",
+          "表项Data和Vector Control不是CPU IRQ号与全局使能的一对寄存器。更新未屏蔽项的Address/Data/ST行为未定义；缓存刷新和安全QWORD访问顺序仍应联读已有更新流程。"
+        ],
+        "referenceIndices": [
+          34,
+          35,
+          36,
+          37
+        ],
+        "packetLayouts": [
+          {
+            "id": "msix-vector-control-r61",
+            "title": "MSI-X Vector Control · 32bit寄存器",
+            "version": "Base6.0/7.0 · 每项+0Ch，低byte→高byte",
+            "headerBits": 32,
+            "rows": [
+              [
+                {
+                  "label": "R[7:1]",
+                  "width": 7,
+                  "key": "reserved",
+                  "help": "保留原值"
+                },
+                {
+                  "label": "Mask",
+                  "width": 1,
+                  "key": "mask",
+                  "help": "bit0，默认1"
+                },
+                {
+                  "label": "R[15:8]",
+                  "width": 8,
+                  "key": "reserved",
+                  "help": "保留原值"
+                },
+                {
+                  "label": "ST Lower",
+                  "width": 8,
+                  "key": "stlow",
+                  "help": "[23:16]，须TPH/ST Location条件"
+                },
+                {
+                  "label": "ST Upper",
+                  "width": 8,
+                  "key": "sthigh",
+                  "help": "[31:24]，还需Extended TPH支持"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "Vector Control",
+                "size": "4 B"
+              }
+            ],
+            "note": "图只展开每项第四DWORD；不是完整16byte表项，也不是Memory Write Payload。"
+          }
+        ]
+      },
+      {
+        "id": "msix-mask-pending-and-aliasing",
+        "title": "Mask/Pending判定表：按表项屏蔽，按底层事件清理",
+        "paragraphs": [
+          "有效屏蔽是Function Mask OR 表项Mask。被屏蔽时不能发该项通知，原本应发送时置Pending；解除有效屏蔽且Pending=1时必须调度发送，实际发出后清Pending。",
+          "若屏蔽期间底层事件已被服务，硬件须清Pending以免稍后发虚假通知；又来事件须再置位。Pending不是事件次数，软件不写PBA，即便实现允许物理写存储，规范仍规定软件写入结果未定义。",
+          "多个表项可有相同Address/Data，即别名向量。屏蔽其中一项不屏蔽其它项；若要保证不再发这对Address/Data，须覆盖全部别名项或Function Mask。清Function Mask可能释放多份待发通知。"
+        ],
+        "referenceIndices": [
+          38,
+          39,
+          40,
+          41,
+          42,
+          43
+        ],
+        "table": {
+          "columns": [
+            "位置／条件",
+            "规则与作用",
+            "边界"
+          ],
+          "rows": [
+            [
+              "Function Mask=1",
+              "全部项有效屏蔽",
+              "不改每项Mask值"
+            ],
+            [
+              "Function Mask=0，Entry Mask=1",
+              "该项屏蔽",
+              "别名项不受影响"
+            ],
+            [
+              "有效屏蔽且应通知事件发生",
+              "置该项Pending，不发送",
+              "底层事件仍需保存"
+            ],
+            [
+              "解除有效屏蔽且Pending=1",
+              "调度发送，发出后清Pending",
+              "不保证固定CPU响应时间"
+            ],
+            [
+              "屏蔽期间底层条件已服务",
+              "清Pending；新事件可再置位",
+              "不是软件对PBA写1清除"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "msix-location-and-gate-query",
+        "title": "MSI-X查询：Table/PBA定位、索引、Pending位与门控",
+        "paragraphs": [
+          "输入Control、Table/PBA定位DWORD，以及分别已解析的资源基址；指定十进制表项索引、Vector Control、BME和该项Pending。查询计算表项地址、QWORD/DWORD两种PBA位定位及有效屏蔽。",
+          "资源基址输入为已去BAR属性位的64bit地址，不是原始BAR寄存器值；Table与PBA可用不同资源。工具限定普通Type0模型，BIR=6/7不接受；EA/VF/Type1、资源大小及完整隔离验证不在范围。",
+          "这里只定位设备内的表/PBA，不能把算出的Table地址当作MSI-X消息目的地址；消息地址与完整32bit Data来自表项内容。可调度不等于已经上线路或CPU已经进入ISR。"
+        ],
+        "referenceIndices": [
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55
+        ]
       }
     ]
   },
@@ -40782,14 +42609,14 @@
     "checks": "检查应用事件、向量号、table/PBA更新、握手与报文发送；不要只看Enable已为1。",
     "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
     "id": 56,
-    "status": "已整理 · 待持续深化",
+    "status": "选定中断规则已展开 · 持续逐版核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-24",
     "protocolReferences": [
       {
         "section": "6.1.4",
@@ -40812,9 +42639,393 @@
         "pdfPage": 662,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.4",
+        "page": 664,
+        "pdfPage": 664,
+        "title": "应用事件到通知：事件账本、向量映射、屏蔽、TLP发送四层",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.4",
+        "page": 772,
+        "pdfPage": 772,
+        "title": "应用事件到通知：事件账本、向量映射、屏蔽、TLP发送四层",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.6",
+        "page": 666,
+        "pdfPage": 666,
+        "title": "应用事件到通知：事件账本、向量映射、屏蔽、TLP发送四层",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.6",
+        "page": 774,
+        "pdfPage": 774,
+        "title": "应用事件到通知：事件账本、向量映射、屏蔽、TLP发送四层",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.2",
+        "page": 663,
+        "pdfPage": 663,
+        "title": "应用事件到通知：事件账本、向量映射、屏蔽、TLP发送四层",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.2",
+        "page": 771,
+        "pdfPage": 771,
+        "title": "应用事件到通知：事件账本、向量映射、屏蔽、TLP发送四层",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.7",
+        "page": 667,
+        "pdfPage": 667,
+        "title": "Memory Write接收、事件可见、ISR执行：三个完成点不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.7",
+        "page": 775,
+        "pdfPage": 775,
+        "title": "Memory Write接收、事件可见、ISR执行：三个完成点不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4",
+        "page": 661,
+        "pdfPage": 661,
+        "title": "Memory Write接收、事件可见、ISR执行：三个完成点不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4",
+        "page": 769,
+        "pdfPage": 769,
+        "title": "Memory Write接收、事件可见、ISR执行：三个完成点不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1",
+        "page": 1012,
+        "pdfPage": 1012,
+        "title": "Memory Write接收、事件可见、ISR执行：三个完成点不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1",
+        "page": 1165,
+        "pdfPage": 1165,
+        "title": "Memory Write接收、事件可见、ISR执行：三个完成点不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2",
+        "page": 1019,
+        "pdfPage": 1019,
+        "title": "Memory Write接收、事件可见、ISR执行：三个完成点不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2",
+        "page": 1172,
+        "pdfPage": 1172,
+        "title": "Memory Write接收、事件可见、ISR执行：三个完成点不同",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.4",
+        "page": 664,
+        "pdfPage": 664,
+        "title": "中断丢失排查：按通路检查，避免用一个Pending位下结论",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.4",
+        "page": 772,
+        "pdfPage": 772,
+        "title": "中断丢失排查：按通路检查，避免用一个Pending位下结论",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.5",
+        "page": 664,
+        "pdfPage": 664,
+        "title": "中断丢失排查：按通路检查，避免用一个Pending位下结论",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.5",
+        "page": 772,
+        "pdfPage": 772,
+        "title": "中断丢失排查：按通路检查，避免用一个Pending位下结论",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.6",
+        "page": 666,
+        "pdfPage": 666,
+        "title": "中断丢失排查：按通路检查，避免用一个Pending位下结论",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.4.6",
+        "page": 774,
+        "pdfPage": 774,
+        "title": "中断丢失排查：按通路检查，避免用一个Pending位下结论",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.1.3",
+        "page": 919,
+        "pdfPage": 919,
+        "title": "中断丢失排查：按通路检查，避免用一个Pending位下结论",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.1.3",
+        "page": 1068,
+        "pdfPage": 1068,
+        "title": "中断丢失排查：按通路检查，避免用一个Pending位下结论",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.1",
+        "page": 659,
+        "pdfPage": 659,
+        "title": "6.0/7.0核对范围：稳定字段、明确新增文字与未读版本",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.1.1",
+        "page": 767,
+        "pdfPage": 767,
+        "title": "6.0/7.0核对范围：稳定字段、明确新增文字与未读版本",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.2",
+        "page": 1014,
+        "pdfPage": 1014,
+        "title": "6.0/7.0核对范围：稳定字段、明确新增文字与未读版本",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.2",
+        "page": 1167,
+        "pdfPage": 1167,
+        "title": "6.0/7.0核对范围：稳定字段、明确新增文字与未读版本",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.1.5",
+        "page": 1016,
+        "pdfPage": 1016,
+        "title": "6.0/7.0核对范围：稳定字段、明确新增文字与未读版本",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.5",
+        "page": 1169,
+        "pdfPage": 1169,
+        "title": "6.0/7.0核对范围：稳定字段、明确新增文字与未读版本",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R61核读所列6.0/7.0中断正文/字段；视觉核7.0 p1166/1175。印刷页与本地PDF物理页一致；局部规则，非全章、七代或平台驱动实现审计。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "R61核6.0/7.0 INTx、MSI/MSI-X字段、发送/屏蔽与事件通路；保留早期版本、ECN和产品/平台实现缺口。",
+    "details": [
+      {
+        "id": "interrupt-event-to-tlp-pipeline",
+        "title": "应用事件到通知：事件账本、向量映射、屏蔽、TLP发送四层",
+        "paragraphs": [
+          "建议阅读通路：完成/错误等业务事件→设备状态或事件队列→选中通知向量/表项→检查机制使能和Mask→形成Address/Data→PCIe Memory Write→主机中断控制器→ISR收割事件。该分层是学习组织，不是Base规定厂商必须实现这些模块名或信号。",
+          "队列或状态才是事件账本；中断只是通知。需要保证每个事件被处理时，可用生产者/消费者事件队列或硬件/驱动握手，不把同向量重复通知次数当完成数。",
+          "MSI多向量修改同一基准Data的低位；MSI-X按索引读表且Data原值不变，允许多个队列通过别名表项共享一个系统向量。系统只分配少量向量时Function仍须能工作，具体队列映射由设备定义。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "id": "interrupt-ordering-is-not-isr-order",
+        "title": "Memory Write接收、事件可见、ISR执行：三个完成点不同",
+        "paragraphs": [
+          "中断写是Posted Request，在适用排序规则下不能越过该Function更早的Posted Request；系统须使该消息触发的ISR看到此前到达的Posted更新。不因此断言不同TC、平台缓存和全部DMA同步需求自动解决。",
+          "中断接收端不能等待CPU服务/确认中断后才释放该Memory Write事务的接收资源，也不能依赖另一个Requester事务先完成，否则可能形成死锁。这里“完成接收”不是发送一个MWr Completion TLP。",
+          "消息到达顺序不保证ISR执行顺序，即使来自同一设备也一样；若设备要求先服务A再服务B，必须等A确已服务后才发B。链路ACK同样不代表ISR完成。",
+          "读MSI/MSI-X的消息目的地址结果未定义；它不是可读回的普通事件邮箱。若要确认业务完成，应走设备定义的状态/队列/握手。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "id": "interrupt-debug-observation-ladder",
+        "title": "中断丢失排查：按通路检查，避免用一个Pending位下结论",
+        "paragraphs": [
+          "从事件源检查是否真的产生、是否进状态/完成队列以及是否被合并；再看向量映射与资源分配，别把MSI索引、MSI-X表索引、消息Data和OS IRQ号混为一谈。",
+          "接着看MSI/MSI-X是否互斥启用、BME、Mask/Pending；MSI还核MME≤MMC和可用Mask范围，MSI-X核表项地址/完整Data及所有别名项。若通知已形成，再区分信用不足、链路重放和真正发出。",
+          "最后检查主机路由/重映射、CPU屏蔽和ISR/队列收割。Base不定义统一的厂商事件清除寄存器、CPU地址编码、超时时间或OS API；这些须联读具体产品和平台文档。",
+          "本页不执行寄存器写、DMA或驱动实验，也不从一个快照证明所有时序无竞态。后续AXI/iATU/DMA轨道会继续把事件与数据路径接起来。"
+        ],
+        "referenceIndices": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ]
+      },
+      {
+        "id": "interrupt-six-seven-version-evidence",
+        "title": "6.0/7.0核对范围：稳定字段、明确新增文字与未读版本",
+        "paragraphs": [
+          "两版所核INTx八消息/TC0/桥映射、MSI Control及四种布局、MSI-X Control/Table/PBA与Mask/Pending核心流程一致；Extended Message Data在所核6.0已存在，不能称为首次出现在Gen7。",
+          "7.0对能中断的Endpoint范围、SIOV PF/SDI及MSI PVM条件增加明确文字，并在Message Data段明确MME所对应基准低位须0的未定义行为条件。这里只说明两版正文差别，不推断首次引入ECN。",
+          "Gen1～5逐修订、独立中断相关ECN、完整SR-IOV/SIOV路由和平台中断重映射仍待核；官方资料已存在但未逐项读完，不当作缺文档或已完成七代覆盖。"
+        ],
+        "referenceIndices": [
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ]
+      }
+    ]
   },
   {
     "name": "Message / Message with Data / Routing",
