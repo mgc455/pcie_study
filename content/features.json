@@ -147,7 +147,7 @@
     "checks": "分别读取双方的 Link Capabilities/Supported Link Speeds、目标速率及 Link Status 中的当前速率和宽度，并检查训练与均衡失败原因。不能仅看设备宣传的 Gen7 就认为当前工作在 128 GT/s；同样不能仅凭最高代际断言支持 ACS、ATS 或 SR-IOV。带宽按单向/双向、lane 数、编码和协议开销分别计算。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 3,
-    "status": "选定逐版规则/字段已展开 · 持续核读",
+    "status": "选定早期Recovery/L0p细则已展开 · 持续逐版核对",
     "sources": [
       {
         "title": "PCI-SIG Gen1～3 速率与编码 FAQ",
@@ -158,7 +158,7 @@
         "url": "https://pcisig.com/faq?field_category_value%5B%5D=pci_express_7.0"
       }
     ],
-    "reviewed": "2026-10-20",
+    "reviewed": "2026-10-24",
     "protocolReferences": [
       {
         "section": "4",
@@ -401,9 +401,119 @@
         "title": "LTSSM默认超时容差",
         "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.4",
+        "page": 186,
+        "pdfPage": 186,
+        "title": "Base1.0a Recovery只有三个子状态：不要补入后期Speed/EQ分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.4",
+        "page": 188,
+        "pdfPage": 188,
+        "title": "Base1.0a Recovery只有三个子状态：不要补入后期Speed/EQ分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.4.2",
+        "page": 217,
+        "pdfPage": 217,
+        "title": "Base1.0a Recovery只有三个子状态：不要补入后期Speed/EQ分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.4.1",
+        "page": 186,
+        "pdfPage": 186,
+        "title": "1.0a RcvrLock：全Lane连续8个、Extended Synch与24ms分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.4.2",
+        "page": 186,
+        "pdfPage": 186,
+        "title": "1.0a RcvrCfg：接收8个和发送16个是两条条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.4.3",
+        "page": 187,
+        "pdfPage": 187,
+        "title": "1.0a Recovery.Idle：正常回L0之外还有定向出口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.4.1",
+        "page": 215,
+        "pdfPage": 215,
+        "title": "2.0 RcvrLock：八个speed_change请求与通告修改窗口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.4.2",
+        "page": 218,
+        "pdfPage": 218,
+        "title": "2.0 RcvrLock：八个speed_change请求与通告修改窗口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.4.1",
+        "page": 216,
+        "pdfPage": 216,
+        "title": "2.0超时回退：首次失败降2.5，尝试新速失败回原速",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.4.2",
+        "page": 218,
+        "pdfPage": 218,
+        "title": "2.0超时回退：首次失败降2.5，尝试新速失败回原速",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
       }
     ],
-    "referenceStatus": "逐块绑定版本、正文与PDF页。Base5三阶段/三抽头细则不直接套用64/128GT/s；不标整章完成。",
+    "referenceStatus": "R65核1.0a/2.0 Recovery、6.0/7.0 L0p选定正文和字段；保留中间修订/ECN、6.0平局及软件控制表文差异。非七代整章完成。",
     "details": [
       {
         "id": "speed-supported-target-current",
@@ -741,6 +851,82 @@
           18,
           19,
           20
+        ]
+      },
+      {
+        "id": "gen1-recovery-three-substates",
+        "title": "Base1.0a Recovery只有三个子状态：不要补入后期Speed/EQ分支",
+        "paragraphs": [
+          "Base1.0a §4.2.6.4及图4-15列RcvrLock、RcvrCfg、Idle三个Recovery子状态，没有后期用于切频的Recovery.Speed或Recovery.Equalization。本版恢复锁定与重新配置不能照搬Gen2+完整状态图。",
+          "同叫Recovery并不保证各代子状态编号一致：1.0a的4.2.6.4.2是RcvrCfg，2.0的同一编号已是Speed。网页来源必须带版本，不能只给章号。",
+          "这只是核对本版Recovery结构；不据此推断所有厂商内部状态机或Gen1实现都使用同一组RTL状态名。"
+        ],
+        "referenceIndices": [
+          22,
+          23,
+          24
+        ]
+      },
+      {
+        "id": "gen1-rcvrlock-receive-send-timeout",
+        "title": "1.0a RcvrLock：全Lane连续8个、Extended Synch与24ms分支",
+        "paragraphs": [
+          "进入后在所有已配置Lane发送保留Link/Lane编号的TS1。全Lane收到连续8个、且编号与各自发送匹配的TS1或TS2，才走RcvrCfg正常出口。不能以任一Lane锁住替代全Lane条件。",
+          "Extended Synch置位时，还须发送至少1024个连续TS1后才转RcvrCfg。这是额外发送门控，不把接收8个改成接收1024个。",
+          "否则24ms超时后，若正在接收训练集的任一配置Lane曾收到至少一个匹配编号的TS1/TS2则到Configuration；其余到Detect。本版没有2.0的Speed回退出口。"
+        ],
+        "referenceIndices": [
+          25
+        ]
+      },
+      {
+        "id": "gen1-rcvrcfg-dual-count-deskew",
+        "title": "1.0a RcvrCfg：接收8个和发送16个是两条条件",
+        "paragraphs": [
+          "发送带原配置编号的TS2。正常到Idle要求全部配置Lane收到8个连续匹配TS2，并在收到一个TS2后发送16个TS2；不能把两个计数合成“总共收发24个”。",
+          "离开前完成Lane deskew，若N_FTS改变则供后续L0s使用。另一出口是任一Lane收到8个连续编号不匹配TS1，并在收到一个TS1后发送16个TS2，进入Configuration。",
+          "否则48ms超时到Detect。本文仅1.0a规则，不将其48ms外推至后期所有Recovery子状态。"
+        ],
+        "referenceIndices": [
+          26
+        ]
+      },
+      {
+        "id": "gen1-recovery-idle-outlet-priority",
+        "title": "1.0a Recovery.Idle：正常回L0之外还有定向出口",
+        "paragraphs": [
+          "正常路径发送Idle数据；全Lane收到连续8个Symbol Time的Idle，并在收到一个Idle后发送16个Idle数据Symbol，转L0；否则2ms超时可到Detect。这里计量单位是Symbol，不是TS个数。",
+          "此前还要处理定向Disabled、Hot Reset、Configuration、可选Loopback，以及训练集请求触发的出口。若已被定向其它状态，不要求先发送Idle再离开。",
+          "本版的Master/Slave回环术语与后期Lead/Follower不同，不能把名称差异当成功能首次引入证据。正常计数查询也不能覆盖这些高层控制出口。"
+        ],
+        "referenceIndices": [
+          27
+        ]
+      },
+      {
+        "id": "gen2-directed-speed-advertise-window",
+        "title": "2.0 RcvrLock：八个speed_change请求与通告修改窗口",
+        "paragraphs": [
+          "2.0中，发起方在L0/L1设置directed_speed_change；未发起方在任一配置Lane收到8个连续TS1且speed_change=1时设置该变量，发送TS1按此变量带speed_change。",
+          "可支持速率的通告只允许在从L0、L1或Recovery.Speed进入RcvrLock时改变，不能在RcvrLock或RcvrCfg中途随意修改；超过2.5GT/s的档位应仅通告能够可靠支持的速率。",
+          "successful_speed_negotiation在进入RcvrLock时清零；这与changed_speed_recovery记录本次Recovery是否已切到协商速率是不同变量。不能把三个标志当同一“切速完成”bit。"
+        ],
+        "referenceIndices": [
+          28,
+          29
+        ]
+      },
+      {
+        "id": "gen2-rcvrlock-fallback-and-revert",
+        "title": "2.0超时回退：首次失败降2.5，尝试新速失败回原速",
+        "paragraphs": [
+          "RcvrLock正常出口先检查全Lane连续8个匹配TS且speed_change与directed变量一致。Extended Synch另要求1024个连续TS1；不能直接从观察到一个speed_change跳到Speed。",
+          "24ms后仍有按顺序检查的出口。摘要而言：未在本次Recovery成功换到协商速率、当前高于2.5GT/s且其它优先条件未满足时，经Speed降到2.5；若已尝试协商新速，则经Speed返回进入本次Recovery前的速率。",
+          "还有单Lane训练证据、Configuration和Detect等出口，必须按本版完整条件判断。这些是Gen2规则，不把Base7的1b/1b回退32GT/s逻辑回填进来。"
+        ],
+        "referenceIndices": [
+          30,
+          31
         ]
       }
     ]
@@ -17305,21 +17491,21 @@
   {
     "name": "L0p动态宽度省电",
     "group": "链路与物理层",
-    "intro": "在保持活动传输的情况下动态减少/增加活动lane。",
+    "intro": "在Flit Mode保持至少一条Lane活动，通过管理DLLP及Lane训练动态改变活动宽度；版本、编码、角色与使能条件分别核对。",
     "usage": "Gen6功耗优化，区别于L1休眠和普通重训练降宽。",
     "mechanism": "L0p允许活动链路按照协议减少或恢复参与传输的lane，在负载变化时降低部分物理通路功耗。无需把它等同于整链路进入L1。",
     "example": "业务长期低负载时保持部分lane活动，突发流量来临再恢复宽度，是带宽与功耗间的动态取舍。",
     "checks": "检查双方能力、请求/确认和退出延迟；吞吐波动时结合活动宽度观察，不只看最大x8配置。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 15,
-    "status": "已整理 · 待持续深化",
+    "status": "选定早期Recovery/L0p细则已展开 · 持续逐版核对",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-24",
     "protocolReferences": [
       {
         "section": "4.2.6.7",
@@ -17342,9 +17528,1255 @@
         "pdfPage": 626,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 445,
+        "pdfPage": 445,
+        "title": "L0p属于L0、仅FM，但不等于只在64/128GT/s使用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 522,
+        "pdfPage": 522,
+        "title": "L0p属于L0、仅FM，但不等于只在64/128GT/s使用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.2",
+        "page": 626,
+        "pdfPage": 626,
+        "title": "L0p属于L0、仅FM，但不等于只在64/128GT/s使用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.2",
+        "page": 736,
+        "pdfPage": 736,
+        "title": "L0p属于L0、仅FM，但不等于只在64/128GT/s使用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 445,
+        "pdfPage": 445,
+        "title": "配置宽度、活动宽度和目标宽度：三种数值分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 522,
+        "pdfPage": 522,
+        "title": "配置宽度、活动宽度和目标宽度：三种数值分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 446,
+        "pdfPage": 446,
+        "title": "配置宽度、活动宽度和目标宽度：三种数值分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 525,
+        "pdfPage": 525,
+        "title": "配置宽度、活动宽度和目标宽度：三种数值分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7.1",
+        "page": 531,
+        "pdfPage": 531,
+        "title": "配置宽度、活动宽度和目标宽度：三种数值分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.4",
+        "page": 1237,
+        "pdfPage": 1237,
+        "title": "配置宽度、活动宽度和目标宽度：三种数值分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.3",
+        "page": 1236,
+        "pdfPage": 1236,
+        "title": "配置宽度、活动宽度和目标宽度：三种数值分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.2",
+        "page": 1073,
+        "pdfPage": 1073,
+        "title": "Device3选定位：能力、使能、目标与远端状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.2",
+        "page": 1074,
+        "pdfPage": 1074,
+        "title": "Device3选定位：能力、使能、目标与远端状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.3",
+        "page": 1076,
+        "pdfPage": 1076,
+        "title": "Device3选定位：能力、使能、目标与远端状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.1",
+        "page": 1232,
+        "pdfPage": 1232,
+        "title": "Device3选定位：能力、使能、目标与远端状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.2",
+        "page": 1233,
+        "pdfPage": 1233,
+        "title": "Device3选定位：能力、使能、目标与远端状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.3",
+        "page": 1236,
+        "pdfPage": 1236,
+        "title": "Device3选定位：能力、使能、目标与远端状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.4",
+        "page": 1237,
+        "pdfPage": 1237,
+        "title": "Device3选定位：能力、使能、目标与远端状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.4",
+        "page": 1238,
+        "pdfPage": 1238,
+        "title": "Device3选定位：能力、使能、目标与远端状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.2",
+        "page": 1074,
+        "pdfPage": 1074,
+        "title": "退出延迟取最大，不把Port与Retimer字段直接相加",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.2",
+        "page": 1233,
+        "pdfPage": 1233,
+        "title": "退出延迟取最大，不把Port与Retimer字段直接相加",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.2",
+        "page": 1234,
+        "pdfPage": 1234,
+        "title": "退出延迟取最大，不把Port与Retimer字段直接相加",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7.1",
+        "page": 530,
+        "pdfPage": 530,
+        "title": "退出延迟取最大，不把Port与Retimer字段直接相加",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7.1",
+        "page": 448,
+        "pdfPage": 448,
+        "title": "Link Management包结构：4Byte字段区与Request/Ack/Nak",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7.1",
+        "page": 529,
+        "pdfPage": 529,
+        "title": "Link Management包结构：4Byte字段区与Request/Ack/Nak",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "3.5.1",
+        "page": 285,
+        "pdfPage": 285,
+        "title": "Link Management包结构：4Byte字段区与Request/Ack/Nak",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "3.5.1",
+        "page": 344,
+        "pdfPage": 344,
+        "title": "Link Management包结构：4Byte字段区与Request/Ack/Nak",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7.1",
+        "page": 449,
+        "pdfPage": 449,
+        "title": "两套宽度编码：报文x16=0，软件目标x16=4",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7.1",
+        "page": 529,
+        "pdfPage": 529,
+        "title": "两套宽度编码：报文x16=0，软件目标x16=4",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.3",
+        "page": 1076,
+        "pdfPage": 1076,
+        "title": "两套宽度编码：报文x16=0，软件目标x16=4",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.3",
+        "page": 1236,
+        "pdfPage": 1236,
+        "title": "两套宽度编码：报文x16=0，软件目标x16=4",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 446,
+        "pdfPage": 446,
+        "title": "应答与请求等待预算：版本、编码和测量终点都要带上",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 524,
+        "pdfPage": 524,
+        "title": "应答与请求等待预算：版本、编码和测量终点都要带上",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 524,
+        "pdfPage": 524,
+        "title": "7.0重复请求与放弃判定：五个连续Flit和后续动作",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 525,
+        "pdfPage": 525,
+        "title": "7.0重复请求与放弃判定：五个连续Flit和后续动作",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 446,
+        "pdfPage": 446,
+        "title": "双方同时请求：Priority、宽度方向与DSP平局",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 525,
+        "pdfPage": 525,
+        "title": "双方同时请求：Priority、宽度方向与DSP平局",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 446,
+        "pdfPage": 446,
+        "title": "查询：版本化同时请求仲裁，保留未定义组合",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 525,
+        "pdfPage": 525,
+        "title": "查询：版本化同时请求仲裁，保留未定义组合",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 447,
+        "pdfPage": 447,
+        "title": "新请求间隔：6.0的替代条件与7.0的合取约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 526,
+        "pdfPage": 526,
+        "title": "新请求间隔：6.0的替代条件与7.0的合取约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 447,
+        "pdfPage": 447,
+        "title": "缩窄执行：在SKP边界分开活动Lane和停用Lane",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 526,
+        "pdfPage": 526,
+        "title": "缩窄执行：在SKP边界分开活动Lane和停用Lane",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 447,
+        "pdfPage": 447,
+        "title": "扩宽训练：旧Lane不停流，新Lane要完成8/16及deskew",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7.1",
+        "page": 450,
+        "pdfPage": 450,
+        "title": "扩宽训练：旧Lane不停流，新Lane要完成8/16及deskew",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 526,
+        "pdfPage": 526,
+        "title": "扩宽训练：旧Lane不停流，新Lane要完成8/16及deskew",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 527,
+        "pdfPage": 527,
+        "title": "扩宽训练：旧Lane不停流，新Lane要完成8/16及deskew",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7.1",
+        "page": 531,
+        "pdfPage": 531,
+        "title": "扩宽训练：旧Lane不停流，新Lane要完成8/16及deskew",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 447,
+        "pdfPage": 447,
+        "title": "扩宽24ms与Retimer低速风险：不是同一时间尺度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 523,
+        "pdfPage": 523,
+        "title": "扩宽24ms与Retimer低速风险：不是同一时间尺度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 524,
+        "pdfPage": 524,
+        "title": "扩宽24ms与Retimer低速风险：不是同一时间尺度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 527,
+        "pdfPage": 527,
+        "title": "扩宽24ms与Retimer低速风险：不是同一时间尺度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 525,
+        "pdfPage": 525,
+        "title": "Recovery清L0p跟踪，L1/L2协商则是另一个维度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 527,
+        "pdfPage": 527,
+        "title": "Recovery清L0p跟踪，L1/L2协商则是另一个维度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 522,
+        "pdfPage": 522,
+        "title": "Recovery清L0p跟踪，L1/L2协商则是另一个维度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.3",
+        "page": 1076,
+        "pdfPage": 1076,
+        "title": "Enable/HAWD控制：6.0与7.0不能合成一张无版本表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 524,
+        "pdfPage": 524,
+        "title": "Enable/HAWD控制：6.0与7.0不能合成一张无版本表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 525,
+        "pdfPage": 525,
+        "title": "Enable/HAWD控制：6.0与7.0不能合成一张无版本表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7.1",
+        "page": 528,
+        "pdfPage": 528,
+        "title": "Enable/HAWD控制：6.0与7.0不能合成一张无版本表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.3",
+        "page": 1236,
+        "pdfPage": 1236,
+        "title": "Enable/HAWD控制：6.0与7.0不能合成一张无版本表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 446,
+        "pdfPage": 446,
+        "title": "查询：按版本/编码列L0p预算和测量端点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 524,
+        "pdfPage": 524,
+        "title": "查询：按版本/编码列L0p预算和测量端点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 447,
+        "pdfPage": 447,
+        "title": "查询：按版本/编码列L0p预算和测量端点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 526,
+        "pdfPage": 526,
+        "title": "查询：按版本/编码列L0p预算和测量端点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 527,
+        "pdfPage": 527,
+        "title": "查询：按版本/编码列L0p预算和测量端点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 445,
+        "pdfPage": 445,
+        "title": "6.0→7.0选定差异速查：哪些仍待中间修订证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 522,
+        "pdfPage": 522,
+        "title": "6.0→7.0选定差异速查：哪些仍待中间修订证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 446,
+        "pdfPage": 446,
+        "title": "6.0→7.0选定差异速查：哪些仍待中间修订证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 524,
+        "pdfPage": 524,
+        "title": "6.0→7.0选定差异速查：哪些仍待中间修订证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 447,
+        "pdfPage": 447,
+        "title": "6.0→7.0选定差异速查：哪些仍待中间修订证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 526,
+        "pdfPage": 526,
+        "title": "6.0→7.0选定差异速查：哪些仍待中间修订证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.6.7",
+        "page": 525,
+        "pdfPage": 525,
+        "title": "6.0→7.0选定差异速查：哪些仍待中间修订证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.2",
+        "page": 1074,
+        "pdfPage": 1074,
+        "title": "6.0→7.0选定差异速查：哪些仍待中间修订证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.2",
+        "page": 1233,
+        "pdfPage": 1233,
+        "title": "6.0→7.0选定差异速查：哪些仍待中间修订证据",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R65核读1.0a/2.0早期Recovery与6.0/7.0 L0p指定正文、表和字段；各引用仅绑定本版。视觉核7.0 p344/529。选定规则非整章覆盖，首次ECN及中间修订未推定。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "R65核1.0a/2.0 Recovery、6.0/7.0 L0p选定正文和字段；保留中间修订/ECN、6.0平局及软件控制表文差异。非七代整章完成。",
+    "details": [
+      {
+        "id": "l0p-mode-and-negotiation",
+        "title": "L0p属于L0、仅FM，但不等于只在64/128GT/s使用",
+        "paragraphs": [
+          "6.0/7.0中L0p允许部分Lane保持活动，其余电气空闲，业务继续走活动Lane；它是L0的一部分，和全链路L0s/L1不同。7.0明确在Flit Mode的所有数据率可用。",
+          "Port支持为可选且强烈推荐，支持FM的Retimer伪端口须支持L0p。链路使用还要求双方支持并完成协商；支持位或当前高速本身都不等于已启用。",
+          "L0p支持只在LinkUp=0的Configuration.Complete协商。不能在已运行链路上仅写一个软件bit就宣称完成了重新协商。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "id": "l0p-configured-versus-active-width",
+        "title": "配置宽度、活动宽度和目标宽度：三种数值分别看",
+        "paragraphs": [
+          "L0p稳定目标宽度是双向对称，允许x1/x2/x4/x8/x16至已配置上限，至少每方向保留一条活动Lane。过渡中双方可短时间处在不同宽度，并非要求每个瞬间都同步切换。",
+          "被Configuration排除的Lane不能由L0p重新开回。进入Recovery则恢复最近Configuration→L0所确定的配置宽度，不能只保留当下缩窄的活动集合。",
+          "Device Status3 Initial Link Width、Link Status当前Negotiated Link Width和DeviceControl3 Target Link Width不是同一读数。Target也不是最大能力字段。"
+        ],
+        "referenceIndices": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "id": "l0p-device3-selected-fields",
+        "title": "Device3选定位：能力、使能、目标与远端状态",
+        "paragraphs": [
+          "Device3扩展能力ID为002Fh；在能力块内+04h的bit3是6.0 Receiver L0p Supported、7.0 L0p Supported，[6:4] Port退出延迟、[9:7] Retimer退出延迟。+08h bit3 L0p Enable、[6:4] Target Link Width。",
+          "7.0这些控制的有效角色限定DSP Function或USP Function0，还要L0p支持、Enable及Hardware Autonomous Width Disable等条件；不能按任意Function复制写法。字段默认/适用性应结合本版表读，不输出整DWORD覆盖值。",
+          "+0Ch bit4是Remote L0p Supported；它不是当前是否缩窄或请求是否完成。Initial Link Width[2:0]也不能当实时活动Lane数。其它Device3字段仍按其自身定义，本图不把未展开字段写成Reserved。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "table": {
+          "columns": [
+            "条件／字段",
+            "动作或含义",
+            "版本与限制"
+          ],
+          "rows": [
+            [
+              "Capabilities3 +04h bit3",
+              "本端支持，6/7命名不同",
+              "不是Enable"
+            ],
+            [
+              "Capabilities3 [6:4]/[9:7]",
+              "Port/Retimer退出延迟编码",
+              "参与本地延迟汇总"
+            ],
+            [
+              "Control3 +08h bit3/[6:4]",
+              "Enable / Target",
+              "非最大能力；角色与HAWD门控"
+            ],
+            [
+              "Status3 +0Ch bit4/[2:0]",
+              "远端支持 / Initial宽度",
+              "不是当前任务完成状态"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "l0p-exit-latency-aggregation",
+        "title": "退出延迟取最大，不把Port与Retimer字段直接相加",
+        "paragraphs": [
+          "所核6.0/7.0 Device3定义：Local=max(Port, Retimer)，链路有效退出延迟=max(Local, Remote)。这不是软件把每个字段简单求和的公式。",
+          "Port/Retimer三位编码区间依次是<1、1～<2、2～<4、4～<8、8～<16、16～<32、32～64、>64µs。区间不是固定精确延迟，不能拿编码值直接乘某个常数。",
+          "所有关联Retimer的延迟必须正确计入其归属字段；这样做不等于忽略Retimer数量。Data Link Feature相关旧表文区间差异仍保留，不把这一字段表反推成所有DLLP参数编码完全一致。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          23,
+          24
+        ]
+      },
+      {
+        "id": "l0p-link-management-bit-map",
+        "title": "Link Management包结构：4Byte字段区与Request/Ack/Nak",
+        "paragraphs": [
+          "图中Byte0为28h、Byte1为00h的L0p管理类型；Byte2[3:0] Cmd为4=Request、6=Ack、7=Nak，bit4 Priority仅Request有含义，其余三位保留。Byte3按命令解释。",
+          "Request使用Byte3低半字节表示期望宽度；Ack/Nak使用高半字节反射对应请求宽度。另一半字节在该命令下保留，不能在两处各塞一个独立宽度。",
+          "这是FM中的32bit Link Management控制负载，不附加NFM独立DLLP的CRC16来凑6Byte；Flit/DLP外层保护与位置另见DLP主题。图是原创重绘并给位数，不发布规范截图。"
+        ],
+        "referenceIndices": [
+          25,
+          26,
+          27,
+          28
+        ],
+        "packetLayouts": [
+          {
+            "id": "l0p-link-management-four-bytes",
+            "title": "L0p Link Management · 4Byte / 32bit",
+            "version": "Base6.0 / 7.0 · 字节按图中顺序",
+            "headerBits": 32,
+            "lengthLabel": "FM控制负载32bit，不是完整Flit或6Byte NFM DLLP",
+            "rowLabel": "行",
+            "rows": [
+              [
+                {
+                  "label": "28h",
+                  "width": 8,
+                  "key": "type",
+                  "help": "Byte0：Link Management类型。"
+                },
+                {
+                  "label": "00h",
+                  "width": 8,
+                  "key": "mgmt",
+                  "help": "Byte1：L0p管理类型。"
+                },
+                {
+                  "label": "Rsvd",
+                  "width": 3,
+                  "key": "reserved",
+                  "help": "Byte2[7:5]保留。"
+                },
+                {
+                  "label": "P",
+                  "width": 1,
+                  "key": "priority",
+                  "help": "Byte2[4]；仅Request Priority。"
+                },
+                {
+                  "label": "Cmd",
+                  "width": 4,
+                  "key": "cmd",
+                  "help": "Byte2[3:0]；4请求、6确认、7拒绝。"
+                },
+                {
+                  "label": "Response",
+                  "width": 4,
+                  "key": "response",
+                  "help": "Byte3[7:4]；Ack/Nak反射请求宽度，其它命令保留。"
+                },
+                {
+                  "label": "Width",
+                  "width": 4,
+                  "key": "width",
+                  "help": "Byte3[3:0]；Request目标宽度，其它命令保留。"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "类型/子类型",
+                "size": "16bit"
+              },
+              {
+                "label": "控制/宽度",
+                "size": "16bit"
+              }
+            ],
+            "note": "Byte3只有对应命令的一半字节有效。FM无独立DLLP CRC16；CRC/Flit封装另核。"
+          }
+        ]
+      },
+      {
+        "id": "l0p-two-width-encoding-tables",
+        "title": "两套宽度编码：报文x16=0，软件目标x16=4",
+        "paragraphs": [
+          "Link Management的4bit宽度是1→x1、2→x2、4→x4、8→x8、0→x16；其它值保留。x16的零编码不表示关闭全部Lane。",
+          "DeviceControl3 Target的3bit编码是0→x1、1→x2、2→x4、3→x8、4→x16、7→Dynamic；5/6保留。不要将寄存器编码原封不动复制到DLLP。",
+          "7.0将Target设成保留值或大于最近进入L0配置宽度的值，行为未定义。Dynamic让Port自治，不是一个有效报文宽度编码；后续自治或可靠性改变不被一次Target写永久锁定。"
+        ],
+        "referenceIndices": [
+          29,
+          30,
+          31,
+          32
+        ],
+        "table": {
+          "columns": [
+            "条件／字段",
+            "动作或含义",
+            "版本与限制"
+          ],
+          "rows": [
+            [
+              "x1/x2/x4/x8/x16",
+              "DLLP：1/2/4/8/0",
+              "4bit字段，按命令选高或低半字节"
+            ],
+            [
+              "同样五种宽度",
+              "Target：0/1/2/3/4",
+              "3bit软件字段"
+            ],
+            [
+              "Dynamic",
+              "Target=7",
+              "不是DLLP宽度或最大宽度能力"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "l0p-response-budgets-versioned",
+        "title": "应答与请求等待预算：版本、编码和测量终点都要带上",
+        "paragraphs": [
+          "6.0应答预算1µs，从含有效请求Flit在接收封装引脚的末bit，量到响应Flit在发送封装引脚的末bit；请求者2µs未收到响应时须重发或放弃。",
+          "7.0应答预算是8b/10b时4µs、其它编码1µs，终点改为响应Flit的首bit；请求者等待响应预算为8b/10b时8µs、其它4µs，重发须保持相同请求。",
+          "不要把响应端预算、请求者等待预算和后续Lane激活24ms混成一个超时，也不要直接用6.0的末bit量法判7.0。完整计时容差还需按对应Base通用计时规则核。"
+        ],
+        "referenceIndices": [
+          33,
+          34
+        ]
+      },
+      {
+        "id": "l0p-repeat-and-abandon-rules",
+        "title": "7.0重复请求与放弃判定：五个连续Flit和后续动作",
+        "paragraphs": [
+          "7.0允许五个连续Flit内发送至多三个相同Link Management请求；中间隔Ordered Set仍算连续Flit。接收端在此窗口内对相同请求发相同响应，不能重复请求就任意改变Ack/Nak。",
+          "Up-size放弃包含两个同时成立的缺失条件：Ack后16µs未启动扩宽，且8µs内未重发Up-size。Down-size Ack路径也结合4µs重发、16µs启动及对端EIOSQ；Nak路径有4µs未重发条件。",
+          "这是已核7.0正文，不回填成6.0明文。网页仅列条件关系，不用一个缺少事件历史的计时数自动宣布整项请求已放弃。"
+        ],
+        "referenceIndices": [
+          35,
+          36
+        ]
+      },
+      {
+        "id": "l0p-priority-and-simultaneous-requests",
+        "title": "双方同时请求：Priority、宽度方向与DSP平局",
+        "paragraphs": [
+          "普通同时请求取较宽目标；一侧Priority置位则该侧赢；两侧Priority均置位取较窄目标。7.0明确同宽时由DSP赢，包含双方Priority均置位的平局。",
+          "7.0还明确Priority设在Up-size上行为未定义；它不是所有扩宽请求的抢占按钮。温控或可靠性缩窄可使用Priority，但仍有本地Enable/HAWD及同时请求例外。",
+          "被视作同时的待发请求须安排在发送引脚100ns内出现。输方Ack赢家；7.0赢家可Nak或忽略输方请求。6.0对双方Priority同宽未在该条给出7.0那样明确平局句，工具保留待核。"
+        ],
+        "referenceIndices": [
+          37,
+          38
+        ]
+      },
+      {
+        "id": "l0p-arbitration-query",
+        "title": "查询：版本化同时请求仲裁，保留未定义组合",
+        "paragraphs": [
+          "选择6.0/7.0、已配置和当前活动宽度、DSP/USP目标与Priority，得到赢家及应答职责。工具假定请求已合法形成、满足同时窗口及使能条件；不替代完整接收状态机。",
+          "7.0的Priority Up-size输出未定义；6.0双方Priority同宽不擅自套用7.0平局规则。超配置目标、当前宽度不一致或无实际宽度改变均不进入简化仲裁。",
+          "这里的L0p Ack/Nak属于管理请求应答，不是数据链路重放Ack/Nak或TLP Completion。"
+        ],
+        "referenceIndices": [
+          39,
+          40
+        ]
+      },
+      {
+        "id": "l0p-new-request-spacing",
+        "title": "新请求间隔：6.0的替代条件与7.0的合取约束",
+        "paragraphs": [
+          "6.0不允许新宽度请求，除非三个替代条件之一满足：完成后至少1µs；自己上次请求已放弃；或对端上次请求、Ack后至少2µs且适用Up-size未见待激活Lane退出Idle等条件。",
+          "7.0改成必须满足所列组合：最近1µs（1b/1b或128b/130b）或4µs（8b/10b）没有正在进行的resize；若自己放弃上次请求，放弃后至少16µs；若Ack过对端请求则其已完成或放弃。",
+          "“重发同一请求”和“发新的宽度请求”不是同一件事。不能看到响应等待预算到期就绕过新请求间隔；本轮工具显示版本预算，不模拟完整并发历史。"
+        ],
+        "referenceIndices": [
+          41,
+          42
+        ]
+      },
+      {
+        "id": "l0p-downsize-eios-skp-flow",
+        "title": "缩窄执行：在SKP边界分开活动Lane和停用Lane",
+        "paragraphs": [
+          "Ack后各Port独立在下一次计划SKP间隔执行：将停用的Lane发送EIOSQ然后电气空闲，继续活动Lane发SKP并继续Flit；不是先把全链路停住再恢复。",
+          "若请求者未收到Ack但看见对端EIOSQ，必须将其视作Ack。去skew后，所有待停用Lane应同时收到EIOS，否则LTSSM进Recovery。",
+          "7.0明确活动Lane采用新宽度对应的SKP插入间隔；若发送EIOSQ后24ms仍未实现双向目标宽度，允许进入Recovery。此处“允许”不能改写成所有缩窄均强制24ms超时。"
+        ],
+        "referenceIndices": [
+          43,
+          44
+        ]
+      },
+      {
+        "id": "l0p-upsize-training-counts",
+        "title": "扩宽训练：旧Lane不停流，新Lane要完成8/16及deskew",
+        "paragraphs": [
+          "扩宽由请求者发起，非请求者先等待激活Lane退出Electrical Idle。原活动Lane继续传Data Stream；新Lane按要求安排SKP、TS1/TS2及EIEOS，不能用进入Recovery的整链路停流图代替。",
+          "所有待激活Lane收到8个连续TS1或TS2后改发TS2；再收8个连续TS2，并在全Lane收到一个TS2后发送至少16个TS2，达到后续SDS/SKP与deskew条件。接收和发送计数、每Lane范围分开。",
+          "8GT/s及以上在下一计划SKP之前发送SDS；2.5没有EIEOS和SDS，5有EIEOS无SDS。7.0还对Extended Synch强烈推荐先发1024个连续TS1，并细化EIEOS/SDS 256UI相邻处理。"
+        ],
+        "referenceIndices": [
+          45,
+          46,
+          47,
+          48,
+          49
+        ]
+      },
+      {
+        "id": "l0p-upsize-timeout-retimer-caution",
+        "title": "扩宽24ms与Retimer低速风险：不是同一时间尺度",
+        "paragraphs": [
+          "从开始激活计，24ms后Lane尚未加入活动集合，6.0/7.0都要求进入Recovery。这与7.0 Ack后16µs未发起扩宽的放弃判断不同。",
+          "7.0强烈推荐有Retimer且低于16GT/s时不使用缩窄，除非有实现机制确认Retimer在获得deskew前可转发所需Ordered Set；不是对全部低速链路作绝对禁止。",
+          "实现说明用多个Retimer示意SKP对齐/转发延迟可能超过16µs，引发对端放弃，最终请求方走24ms恢复。不能拿一个Retimer固定延迟乘数当所有产品的实测时延。"
+        ],
+        "referenceIndices": [
+          50,
+          51,
+          52,
+          53
+        ]
+      },
+      {
+        "id": "l0p-recovery-and-l1-orthogonality",
+        "title": "Recovery清L0p跟踪，L1/L2协商则是另一个维度",
+        "paragraphs": [
+          "7.0进入Recovery恢复配置宽度，并把L0p请求/响应、Ack/Nak后时间等跟踪状态清为无请求。不能携带旧L0p Ack到恢复后继续当作有效缩窄授权。",
+          "L0p与L1/L2正交；实现说明推荐在发起或接受L1/L2期间不再发起/续约/响应L0p，但允许并发协商，最终由具体事件顺序及功耗规则决定。推荐不等于绝对协议禁止。",
+          "FM不支持传统Link Upconfigure那条L0→Recovery→Configuration→L0的动态加宽方式；这不表示任何进入Recovery都禁止重新配置或恢复配置宽度。"
+        ],
+        "referenceIndices": [
+          54,
+          55,
+          56
+        ]
+      },
+      {
+        "id": "l0p-enable-hawd-version-boundaries",
+        "title": "Enable/HAWD控制：6.0与7.0不能合成一张无版本表",
+        "paragraphs": [
+          "7.0正文要求HAWD=1或L0p Enable=0时不请求缩窄，若非全配置宽度则请求扩到全宽；对应实现说明还区分接收普通/优先/全宽扩宽的应答。",
+          "6.0 Control3字段文字则说Enable=0不发送请求且收到请求回Nak，与后续版本及部分概述的全宽恢复措辞不能直接揉成统一结论。本页分别保留依据，不生成一个覆盖6/7的驱动写流程。",
+          "7.0表4-56作为实现说明，与规范正文的必须/推荐/允许强度分开。使能改变前推荐已在全宽，两端软件设置保持一致；这些不是“写bit后立即安全断Lane”的保证。"
+        ],
+        "referenceIndices": [
+          57,
+          58,
+          59,
+          60,
+          61
+        ]
+      },
+      {
+        "id": "l0p-timing-budget-query",
+        "title": "查询：按版本/编码列L0p预算和测量端点",
+        "paragraphs": [
+          "选择6.0或7.0及编码，查询响应预算、请求者响应等待预算、新请求间隔背景、激活24ms和7.0放弃规则摘要。输出每项的角色与起算背景，不比较不同端点的裸时间戳。",
+          "工具不判断缺少事件历史的请求是否已经放弃，也不将1µs、16µs和24ms相加成总退出延迟；新请求间隔的其它条件仍须完整满足。",
+          "这些是所选正式版本的规则，非首次引入ECN或中间修订完成声明。"
+        ],
+        "referenceIndices": [
+          62,
+          63,
+          64,
+          65,
+          66
+        ]
+      },
+      {
+        "id": "l0p-six-seven-change-index",
+        "title": "6.0→7.0选定差异速查：哪些仍待中间修订证据",
+        "paragraphs": [
+          "以下是对两版已核正文的差分，不推断每项第一次加入6.x或哪份ECN。功能首次引入与修订历史仍要单独追溯。",
+          "同一功能内部，包格式可保持而计时、软件角色、并发和异常规则发生变化。只比较GT/s或能力名会漏掉真正影响实现的差异。"
+        ],
+        "referenceIndices": [
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75
+        ],
+        "table": {
+          "columns": [
+            "条件／字段",
+            "动作或含义",
+            "版本与限制"
+          ],
+          "rows": [
+            [
+              "应答/等待",
+              "6：1/2µs；7：按编码4/8或1/4µs",
+              "响应末bit→首bit量法变化"
+            ],
+            [
+              "重复请求/放弃",
+              "7有五Flit/至多三份及4/8/16µs条件",
+              "6未据此回填"
+            ],
+            [
+              "双方Priority同宽",
+              "7明确DSP胜",
+              "6本条平局未补猜"
+            ],
+            [
+              "Priority扩宽",
+              "7明确未定义",
+              "不把它当强制抢占"
+            ],
+            [
+              "新请求间隔",
+              "6三个替代条件；7组合约束",
+              "不可只抄1µs"
+            ],
+            [
+              "支持位与角色",
+              "6 Receiver L0p；7 L0p并细化有效Function",
+              "不按名称判能力首次出现"
+            ]
+          ]
+        }
+      }
+    ]
   },
   {
     "name": "Crosslink",
