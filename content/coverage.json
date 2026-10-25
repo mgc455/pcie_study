@@ -1,6 +1,6 @@
 {
   "updated": "2026-10-25",
-  "edition": "2026-10-25-r85",
+  "edition": "2026-10-25-r86",
   "scope": "七份Base规范的主章与附录起始位置；不是全部子条款、全部独立规范和ECN已覆盖的声明。",
   "method": [
     "沿每个版本的主章及附录建立缺口清单，再将选定正文规则映射到主题，保留跨主题关联。",
@@ -187330,6 +187330,260 @@
           "referenceIndices": [
             74,
             75
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "title": "R86 Gen6产品3.02a CPU/CCM/ROM/AHB与复位保护",
+      "scope": "产品指定版本的信号/存储接口及文档差异；不是Gen6 Base或七代章节完成，未验证RTL/CPU/ECC硬件。",
+      "reviewedBlocks": [
+        {
+          "featureId": 176,
+          "detailId": "r86-ccm-byte-versus-word",
+          "referenceIndices": [
+            94,
+            95,
+            96,
+            97
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-ahb-word-only-versus-apb-strobe",
+          "referenceIndices": [
+            98,
+            99
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-ecc-build-and-static-strap",
+          "referenceIndices": [
+            100,
+            101,
+            102,
+            103
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-ecc-upper-read-versus-write",
+          "referenceIndices": [
+            104,
+            105
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-write-mask-versus-write-enable",
+          "referenceIndices": [
+            106,
+            107,
+            108,
+            109,
+            110
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-ecc-not-error-correction-proof",
+          "referenceIndices": [
+            111,
+            112,
+            113,
+            114
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-cpu-run-four-phase",
+          "referenceIndices": [
+            115,
+            116
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-cpu-halt-four-phase",
+          "referenceIndices": [
+            117,
+            118
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-cpu-ack-domain-and-status",
+          "referenceIndices": [
+            119
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-run-halt-concurrent-not-defined",
+          "referenceIndices": [
+            120,
+            121
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-run-bypass-and-unsupported-ack",
+          "referenceIndices": [
+            122,
+            123
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-rom-address-word-geometry",
+          "referenceIndices": [
+            124,
+            125,
+            126
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-boot-pin-override-order-conflict",
+          "referenceIndices": [
+            127,
+            128,
+            129,
+            130
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-boot-done-error-evidence",
+          "referenceIndices": [
+            131,
+            132,
+            133
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-ahb-ready-in-versus-out",
+          "referenceIndices": [
+            134,
+            135,
+            136,
+            137
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-ahb-response-manual-conflict",
+          "referenceIndices": [
+            138,
+            139,
+            140
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-dccm-example-address-conflict",
+          "referenceIndices": [
+            141,
+            142,
+            143
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-jtag-clock-boundary",
+          "referenceIndices": [
+            144,
+            145,
+            146,
+            147
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-iccm-update-versus-dccm-coherency",
+          "referenceIndices": [
+            148,
+            149,
+            150
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-sram-bank-select-and-address-label",
+          "referenceIndices": [
+            151,
+            152,
+            153,
+            154
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-ccm-address-geometry-query",
+          "referenceIndices": [
+            155,
+            156,
+            157,
+            158,
+            159,
+            160
+          ]
+        },
+        {
+          "featureId": 176,
+          "detailId": "r86-compiled-port-presence-not-always",
+          "referenceIndices": [
+            161,
+            162,
+            163
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "r86-reset-protect-sram-clock",
+          "referenceIndices": [
+            198,
+            199
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "r86-no-clock-needed-versus-clock-safety",
+          "referenceIndices": [
+            200,
+            201,
+            202
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "r86-cpu-gated-clock-observation",
+          "referenceIndices": [
+            203,
+            204,
+            205
+          ]
+        },
+        {
+          "featureId": 174,
+          "detailId": "r86-boot-cpu-lane-link-milestones",
+          "referenceIndices": [
+            206,
+            207,
+            208
+          ]
+        },
+        {
+          "featureId": 175,
+          "detailId": "r86-cpu-lane-pipe-handshake-layers",
+          "referenceIndices": [
+            69,
+            70,
+            71,
+            72
           ]
         }
       ]

@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r85`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r86`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -441,3 +441,11 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [8/16GT/s EIEOS图样对照](https://mgc455.github.io/pcie_study/#feature/178/detail/r85-early-eieos-eight-sixteen)
 - [低速FTS与高速FTS](https://mgc455.github.io/pcie_study/#feature/12/detail/r85-early-fts-high-pattern)
 - 当前窗口3/4；下轮PHY固件/内存并完成R86阶段总结。
+
+## R86 PHY CPU / CCM and stage review
+
+- [CCM地址与物理宽度查询](https://mgc455.github.io/pcie_study/#feature/176/detail/r86-ccm-address-geometry-query)
+- [CPU Run四相握手](https://mgc455.github.io/pcie_study/#feature/176/detail/r86-cpu-run-four-phase)
+- [Boot输入与override时序边界](https://mgc455.github.io/pcie_study/#feature/176/detail/r86-boot-pin-override-order-conflict)
+- [R83～R86阶段总结](https://mgc455.github.io/pcie_study/#updates)
+- 下一窗口依次推进流控/VC、事务排序/原子性，再轮换PHY均衡与错误取证；R90复盘。
