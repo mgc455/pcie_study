@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r77`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r78`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -382,3 +382,11 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [三/四Retimer SKP历史门槛](https://mgc455.github.io/pcie_study/#feature/11/detail/retimer-skp-history-query)
 - [PHY关联入口](https://mgc455.github.io/pcie_study/#phy)
 - 当前窗口3/4；R78优先早期代际训练差分并做四轮复盘。
+
+## R78 早期Recovery与阶段复盘
+
+- [Gen2/3/4均衡入口查询](https://mgc455.github.io/pcie_study/#feature/4/detail/r78-eq-entry-query)
+- [RcvrCfg升速与32/128份计数](https://mgc455.github.io/pcie_study/#feature/3/detail/r78-rcfg-query)
+- [Phase逐角色出口/超时表](https://mgc455.github.io/pcie_study/#feature/4/detail/r78-eq-phase-transition-table)
+- [EI推断逐状态/速率表](https://mgc455.github.io/pcie_study/#feature/12/detail/r78-ei-inference-table)
+- R75～R78四轮总结已记录；下一窗口优先早期NFM/InitFC、中断，穿插PIPE旧版和安全。

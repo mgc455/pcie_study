@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-10-25",
-  "status": "R77核6.0/7.0选定Retimer拓扑、启动窗和检测字段差分，保留七版Polling、配置及ATS成果；FRA/光能力不按链路Gen自动推断，首次引入/中间修订继续核。",
+  "status": "R78核2.0/3.0/4.0正式版选定Recovery与EQ入口、TS2计数/EI差分，保留既有Gen1～7成果；未宣称中间修订/ECN或整个物理层完成。",
   "items": [
     {
       "gen": 1,
@@ -36,7 +36,7 @@
       "encoding": "8b/10b",
       "efficiency": 0.8,
       "change": "速率提升至 5 GT/s，编码仍为 8b/10b；扣除编码后的带宽相对 Gen1 翻倍。",
-      "focus": "学习速率协商与兼容：设备支持的最高代际和当前链路速率是两个值。",
+      "focus": "学习速率协商与兼容：设备支持的最高代际和当前链路速率是两个值。 R78可对照LTSSM、速率协商和编码条目中的早期Recovery详表及两项门槛查询。",
       "sourceIds": [
         "faq3"
       ],
@@ -59,7 +59,7 @@
       "encoding": "128b/130b",
       "efficiency": 0.9846153846153847,
       "change": "改用 128b/130b。虽然速率由 5 升到 8 GT/s，编码开销降低后，带宽仍接近翻倍。",
-      "focus": "区分编码效率与真实吞吐；同时学习均衡训练，不能只提高速率配置就假定链路稳定。",
+      "focus": "区分编码效率与真实吞吐；同时学习均衡训练，不能只提高速率配置就假定链路稳定。 R78可对照LTSSM、速率协商和编码条目中的早期Recovery详表及两项门槛查询。",
       "sourceIds": [
         "faq3",
         "eq"
@@ -82,7 +82,7 @@
       "encoding": "128b/130b",
       "efficiency": 0.9846153846153847,
       "change": "速率提升至 16 GT/s，延续 NRZ 和 128b/130b；不能把速率变化误解为事务层完全重做。",
-      "focus": "在相同 lane 数下比较带宽，再核对对应版本的均衡、电气和一致性规则。",
+      "focus": "在相同 lane 数下比较带宽，再核对对应版本的均衡、电气和一致性规则。 R78可对照LTSSM、速率协商和编码条目中的早期Recovery详表及两项门槛查询。",
       "sourceIds": [
         "faq5",
         "eq"
@@ -368,6 +368,7 @@
     "R74已核七版选定Polling；继续1.1及中间修订/ECN、完整Compliance和早期其它子状态。下一阶段补配置身份/Header与ATS失效，并穿插PHY/Retimer。",
     "R75：保留Gen1～Gen5配置字段/中间修订、7.0窗口完整路由语义与VF Immediate Readiness早期属性核读；先推进ATS失效和PHY/Retimer轮换。",
     "R76保留独立ATS早期修订/ECN、Shadow/Segment身份及完整UIO排序、7.0全窗口语义；下一步PHY/Retimer/均衡职责，保持Gen1～Gen7正文核读轮换。",
-    "R77补6.0/7.0 Retimer差分；R78优先Gen2/Gen3/Gen4 Recovery与升速/均衡入口的具体条款，完成本窗口阶段复盘。"
+    "R77补6.0/7.0 Retimer差分；R78优先Gen2/Gen3/Gen4 Recovery与升速/均衡入口的具体条款，完成本窗口阶段复盘。",
+    "R78完成本窗口早期Recovery选定差分；继续中间修订、完整EQ与早期NFM/InitFC正文。两份脚注兼容行为保留，不从后版要求追溯所有旧设备。"
   ]
 }

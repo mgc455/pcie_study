@@ -1,6 +1,6 @@
 {
   "date": "2026-10-25",
-  "summary": "R77：Retimer拓扑/发现、SKP历史及分段TX/RX，阶段3/4。",
+  "summary": "R78：早期Recovery/切速/均衡/EI选定差分，完成R75～R78四轮总结。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -1506,6 +1506,26 @@
       "name": "R77构建与查询/回归",
       "status": "通过",
       "detail": "三个查询新增50345检查：4608检测快照组合、728拓扑组合、720 SKP历史/长度候选；覆盖MUST@FLIT能力、非F0、未知协商、混合未定义、第8份禁反向与1b/1b对齐待核。旧细节/来源前缀、32/16bit图及PHY关联链接保留检查通过。R76回归7198检查；构建/公开边界/JS与线上部署按最终记录复核。"
+    },
+    {
+      "name": "R78初查与远端",
+      "status": "已核",
+      "detail": "远端main为R77 2c6df979；备份本地既有内容。按队列回2.0/3.0/4.0正式版，不用6/7页码替代早期正文；原ID和来源索引前缀保留。"
+    },
+    {
+      "name": "R78正文及表格",
+      "status": "选定正文核读",
+      "detail": "核所引Recovery、Phase和EI正文/续页；视觉核3.0 p236表4-11与4.0 p331脚注58。区分all/any、首收发送计数、第8份EQ后的1ms、32/128份、4ms与4680UI、Complete/Successful和两脚注兼容例外。"
+    },
+    {
+      "name": "R78角色和版本限制",
+      "status": "已注明",
+      "detail": "记录2.0与3/4 Selectable De-emphasis方向文字差分，不猜首次修正ECN。4.0的16GT Retimer Extend门槛单列；EIOSQ不固定两份，8b/10b 4Symbol为40码组bit。查询只判选定入口/升速门槛，不判完整状态机或模拟能力。"
+    },
+    {
+      "name": "R78构建、查询与保留检查",
+      "status": "通过",
+      "detail": "新增1215项检查，含108组接收/发送/1ms边界组合、角色入口、无对齐/来源排除/发送上限及事件接线；R77回归50345检查。旧细节及来源前缀、23新块表格/章序映射、阶段计数通过；构建与公开边界通过。部署/浏览器以实际另记，不等同全LTSSM或硬件。"
     }
   ],
   "unresolved": [
@@ -1612,7 +1632,8 @@
     "R74：1.1原版未直接核读，只有后期对早期集合政策的注释；1.0a已有零散PAD接收却未满足8/1024的某些组合未由本轮所引段完整列出。全部Compliance/中间ECN/同拍时序及实物连续性仍待核，不给出全协议覆盖率。",
     "R75：Gen1～Gen5及中间修订的身份/Header逐字段差分、7.0 64-bit Memory窗口完整路由和先前Prefetchable模型的交互、完整SR-IOV/VI生命周期与平台并发配置访问仍待核；6.0 Immediate Readiness表未如7.0明列VF ROZ。下轮先推进ATS失效闭环，不把已展开块等同整章完成。",
     "R76：Gen1～5及独立ATS修订/ECN未逐页对照；Shadow身份与10.3.3 Requester ID措辞的完整关联、跨Segment匹配、非2次幂N的snoop详细规则、UIO全排序与平台IOMMU/页回收实现仍待核。不将SIOV/TEE等完整体系视为本轮已完成。下一轮转PHY/Retimer。",
-    "R77：早期Retimer/独立ECN首次引入、FRA/非FRA混合互操作、完整EI/切速与Execution复杂分支、FRA Margining映射、光内部建立/保持和全部状态时限仍待核；7.0个别TS0/TS1表述与继承规则须结合完整状态继续。R78回早期版本Recovery/升速差分并做四轮复盘。"
+    "R77：早期Retimer/独立ECN首次引入、FRA/非FRA混合互操作、完整EI/切速与Execution复杂分支、FRA Margining映射、光内部建立/保持和全部状态时限仍待核；7.0个别TS0/TS1表述与继承规则须结合完整状态继续。R78回早期版本Recovery/升速差分并做四轮复盘。",
+    "R78：Base1.1/2.x中间修订、角色措辞变化首次ECN、完整EQ请求/回应及全部并发异常、LTSSM通用容差与同拍优先、T_COMMONMODE参数/L1SS完整交互仍待核；已存在资料尚未读不记作缺文件。下一窗口优先早期NFM重放/InitFC、中断跨版，穿插PIPE与安全。"
   ],
   "externalComparison": {
     "date": "2026-10-21",
