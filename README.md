@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r79`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r80`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -398,3 +398,11 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [FC_INIT2发送权限历史差异](https://mgc455.github.io/pcie_study/#feature/111/detail/r79-fi2-gate-version)
 - [4.0 Feature交换与旧端兼容](https://mgc455.github.io/pcie_study/#feature/141/detail/r79-feature-four-handshake)
 - 新阶段1/4；下一轮优先早期INTx/MSI/MSI-X角色与使能差分，保留PHY/安全轮换。
+
+## R80 中断版本与状态
+
+- [INTx逐端口汇聚查询](https://mgc455.github.io/pcie_study/#feature/52/detail/r80-intx-collapse-query)
+- [MSI-X Pending/缓存更新轨迹](https://mgc455.github.io/pcie_study/#feature/55/detail/r80-msix-mask-trace-query)
+- [4.0 MSI字段与位图](https://mgc455.github.io/pcie_study/#feature/53/detail/r80-msi4-control-fields)
+- [4.0 MSI-X Control来源偏移冲突](https://mgc455.github.io/pcie_study/#feature/55/detail/r80-msix4-offset-conflict)
+- 当前阶段2/4，下一轮PHY/PIPE旧修订；R82四轮总结。
