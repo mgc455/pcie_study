@@ -1,6 +1,6 @@
 {
   "date": "2026-10-25",
-  "summary": "R75：配置身份、两类Header、Command/Status及访问属性，阶段1/4。",
+  "summary": "R76：ATS失效包图、完成账本、在途范围及DMA隔离边界，阶段2/4。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -1466,6 +1466,26 @@
       "name": "R75构建与行为检查",
       "status": "通过",
       "detail": "新增6154检查，360个身份快照组合、960个角色/方向门控组合，旧细节/来源前缀保持、字段图32bit及来源映射通过；R74回归935检查/3181断言，含七版Polling。Type1自身发起查询明确只检查Upstream。构建与公开边界/JS通过，部署及选定浏览器复核另记。"
+    },
+    {
+      "name": "R76初查与远端",
+      "status": "已核",
+      "detail": "远端main与R75最终33a72ccd一致，保留旧细节/来源。现有ATS已覆盖基本流程，故深化报文字段、CC/Vector、在途边界和原无细节的DMA隔离主题，不重复基础概述。"
+    },
+    {
+      "name": "R76正文和图位序",
+      "status": "选定条款核读",
+      "detail": "核6.0/7.0 ATS失效、Length、范围/在途snoop、PASID与ACS Downstream选定段；视觉核7.0 p1713负载和p1714 FM完成图。明确Body与Header byte偏移、配置寄存器小端与包字段布局不同。期限容差非最早响应时间。"
+    },
+    {
+      "name": "R76查询边界",
+      "status": "已注明",
+      "detail": "CC账本按一个已确认ATC/TA、每TC一份副本模型；重复TC保留观察歧义，不当协议统一判错。范围查询按N为2次幂的选定模型，未知小范围策略/PASID上下文不猜测，高地址用BigInt，计数齐不证明内存可回收。"
+    },
+    {
+      "name": "R76构建、行为及回归",
+      "status": "通过",
+      "detail": "新增7198检查：220个CC/Vector副本组合、1440个区间组合，两幅图逐行32bit及Body S/Global、FM CC/Vector位置检查通过；旧细节/来源前缀保持。R75回归6156检查，R74回归935检查/3181断言，构建、公开边界及双份JS通过。部署与浏览器实测另记。"
     }
   ],
   "unresolved": [
@@ -1570,7 +1590,8 @@
     "R72：早期1.x～5.x逐版Poison/AER差分、独立ECN、DPC完整日志优先/截断以及产品Trace和实际驱动采样仍待核。Header查询仅字段解释，FEP表面有效可能有历史歧义，无法证明快照原子或日志未丢。",
     "R73：PIPE7.1图8-5/8-6 MacCLKRate[3:0]与表6-17 [4:0]待官方勘误；PCLK输入复位、产品具体复位/SSC/RxCLK数值、旧PIPE修订及各代Base全对照、真实CDC/clock gating仍待核。本轮24条和3查询不证明完整PHY启动。",
     "R74：1.1原版未直接核读，只有后期对早期集合政策的注释；1.0a已有零散PAD接收却未满足8/1024的某些组合未由本轮所引段完整列出。全部Compliance/中间ECN/同拍时序及实物连续性仍待核，不给出全协议覆盖率。",
-    "R75：Gen1～Gen5及中间修订的身份/Header逐字段差分、7.0 64-bit Memory窗口完整路由和先前Prefetchable模型的交互、完整SR-IOV/VI生命周期与平台并发配置访问仍待核；6.0 Immediate Readiness表未如7.0明列VF ROZ。下轮先推进ATS失效闭环，不把已展开块等同整章完成。"
+    "R75：Gen1～Gen5及中间修订的身份/Header逐字段差分、7.0 64-bit Memory窗口完整路由和先前Prefetchable模型的交互、完整SR-IOV/VI生命周期与平台并发配置访问仍待核；6.0 Immediate Readiness表未如7.0明列VF ROZ。下轮先推进ATS失效闭环，不把已展开块等同整章完成。",
+    "R76：Gen1～5及独立ATS修订/ECN未逐页对照；Shadow身份与10.3.3 Requester ID措辞的完整关联、跨Segment匹配、非2次幂N的snoop详细规则、UIO全排序与平台IOMMU/页回收实现仍待核。不将SIOV/TEE等完整体系视为本轮已完成。下一轮转PHY/Retimer。"
   ],
   "externalComparison": {
     "date": "2026-10-21",
