@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-10-25",
-  "summary": "PHY/SerDes持续核读；R70新增DFE/预编码错误链、Base6/7 FBER字段差异、PRBS/BERMON有效窗口和Preliminary SDK版本边界。",
+  "summary": "PHY/SerDes持续核读；R73补PIPE7.1复位前提、MacCLK独立复位/事件、SRIS能力限定及RxValid撤销后RxCLK尾窗，保留产品与接口/代际边界。",
   "groups": [
     {
       "title": "分层与资料入口",
@@ -200,7 +200,8 @@
     "R46已核Gen6 3.02a §4.3/4.4/4.5与PMD中断概念；Reference Manual已有文件，具体中断原因/极性/清除、watchdog恢复、全复位保持矩阵与PVT超时继续核，未验证真实硅片。",
     "R55已核PIPE7.1 §8.14/8.15/8.17；继续128b/130b SKP first 4N+1符号与N的完整格式联核、其它Rate/Width/PCLK有效节奏、64/128GT/s及旧修订差分；不把接口修订号当链路代际。",
     "R64已细化PIPE7.1 §8.4.1表8-3与参数、PCLK事件图和RxStandby边界；p63/p126 Ok撤销时点、独立Width/PCLK变更、合并功耗以及旧PIPE修订和七代Base Recovery逐版规则待续。",
-    "R70已补FBER控制/计数与SDK1.00a_pre3窗口证据；继续SDK/PMA计时映射、FBER精确测量算法、Retimer/ECN和各代压力/认证测试。原表/RTL/CDL和产品API原文不公开。"
+    "R70已补FBER控制/计数与SDK1.00a_pre3窗口证据；继续SDK/PMA计时映射、FBER精确测量算法、Retimer/ECN和各代压力/认证测试。原表/RTL/CDL和产品API原文不公开。",
+    "R73核PIPE7.1 Reset/MacCLK/SRIS/RxCLK选定契约；图中MacCLKRate四位与信号表五位的官方澄清、PCLK输入复位完成、旧PIPE修订、产品复位/频率/SSC参数及真实CDC/门控仍待继续。"
   ],
   "lowPowerReferences": {
     "title": "低功耗协议与PHY握手、共享PLL及产品PG/Context恢复",
@@ -394,6 +395,31 @@
         "featureId": 174,
         "detailId": "rxstandby-during-training-abort",
         "title": "RxStandby变化引起校准/均衡中止"
+      },
+      {
+        "featureId": 174,
+        "detailId": "reset-release-preflight-query",
+        "title": "查询：PIPE复位前提与输出PCLK完成证据"
+      },
+      {
+        "featureId": 170,
+        "detailId": "sris-gen6-training-one-way-exception",
+        "title": "PIPE7.1的版本限定：Gen6-capable起可在Configuration中由1撤为0"
+      },
+      {
+        "featureId": 170,
+        "detailId": "macclk-signal-contract-table",
+        "title": "MacCLK信号表：位宽、驱动方、复位和运行期窗口"
+      },
+      {
+        "featureId": 170,
+        "detailId": "macclk-event-trace-query",
+        "title": "查询：MacCLK独立复位、Rate请求与四相闭环"
+      },
+      {
+        "featureId": 169,
+        "detailId": "rxguard-cycle-budget-query",
+        "title": "查询：RxValid撤销后的周期预算与频率证据"
       }
     ]
   }

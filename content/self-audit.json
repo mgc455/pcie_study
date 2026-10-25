@@ -1,6 +1,6 @@
 {
   "date": "2026-10-25",
-  "summary": "R72：Poison角色、AER优先级与多Header取证；新阶段2/4。",
+  "summary": "R73：PIPE复位/独立MacCLK与RxCLK尾窗；新阶段3/4。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -1406,6 +1406,26 @@
       "name": "R72构建与行为复核",
       "status": "通过",
       "detail": "新增检查458项/17830断言：2560个Poison报告组合、128个FEP边界、1024个字节位置数值；R71回归435项/2835断言通过。双份JS语法、构建及公开边界通过；28条、两查询、流程/队列/32bit布局图。选定部署和页面另记，不等于完整错误流水线或硬件验证。"
+    },
+    {
+      "name": "R73初查去重",
+      "status": "远端R72一致",
+      "detail": "已有P2、切速、深睡及产品启动；本轮补静态配置生命周期、MacCLK域/Rate图表差异、SRIS例外及尾窗证据，保留旧ID和来源。"
+    },
+    {
+      "name": "R73正文和视觉",
+      "status": "所列PIPE7.1核读",
+      "detail": "核通用信号、SerDes、复位/时钟与datasheet参数正文；视觉核p115/116。所引本地印刷/物理页一致；190页本地副本不假定等同189页官网副本。"
+    },
+    {
+      "name": "R73规则与推论",
+      "status": "已区分",
+      "detail": "复位must条件与should初值分开；Ack低不等于时钟已停，8/fmax不当超时，SRIS例外不当L0任意切换；MacCLKRate表5bit/图4bit保留差异。"
+    },
+    {
+      "name": "R73构建与行为复核",
+      "status": "通过",
+      "detail": "新增检查419项/3888断言：1024复位组合、90事件扩展、176尾窗组合，含两种Ack/停钟收尾次序；R72回归458项/17830断言。构建、公开边界、双份JS通过；实际加入24条、三查询、复位/5bit字段/尾窗图。PIPE参数归8.22已按当前正文标题校准；线上另记，非硬件证明。"
     }
   ],
   "unresolved": [
@@ -1507,7 +1527,8 @@
     "R69：XT ECN/6.x中间修订逐条差分、完整IDE Prefix/OHC-C与ATS TE位图尚未完成；MMIO表31:!6排印需正式勘误确认；非IDE等效保护、所有路径/并发/密钥与实际硬件安全未验证。",
     "R70：Preliminary SDK ref_timer+1参考时钟与PMA3.02a timer×128bit口径/实际固件换算仍待核；完整FBER分母/采样与Retimer CSR/6.0.1 ECN差分、burst统计和真实BERT/模拟验证未完成；产品正文对尚未解释的threshold/freeze/failed成员不按名称推断。",
     "R71：中间2.x/4.x/5.x及ECN差分、3.0 IDO完整条款联核、MUST@FLIT非支持者全部可选检查、完整错误优先级和UIO恢复历史仍待核；27条与查询非完整TLP解析、平台Tag/FLR安全或硬件证明。",
-    "R72：早期1.x～5.x逐版Poison/AER差分、独立ECN、DPC完整日志优先/截断以及产品Trace和实际驱动采样仍待核。Header查询仅字段解释，FEP表面有效可能有历史歧义，无法证明快照原子或日志未丢。"
+    "R72：早期1.x～5.x逐版Poison/AER差分、独立ECN、DPC完整日志优先/截断以及产品Trace和实际驱动采样仍待核。Header查询仅字段解释，FEP表面有效可能有历史歧义，无法证明快照原子或日志未丢。",
+    "R73：PIPE7.1图8-5/8-6 MacCLKRate[3:0]与表6-17 [4:0]待官方勘误；PCLK输入复位、产品具体复位/SSC/RxCLK数值、旧PIPE修订及各代Base全对照、真实CDC/clock gating仍待核。本轮24条和3查询不证明完整PHY启动。"
   ],
   "externalComparison": {
     "date": "2026-10-21",

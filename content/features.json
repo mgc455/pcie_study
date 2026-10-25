@@ -110479,8 +110479,8 @@
     "prerequisites": "RxValid的语义要看对应PIPE架构和产品版本；不能把某个数字信号当成模拟误码率证明。",
     "example": "PLL锁定但RX无有效数据时，检查输入信号、接收使能、CDR、恢复时钟及对齐，而不是只看PLL lock。",
     "checks": "按signal present → RX使能 → 时钟/CDR → valid → 协议对齐 → LTSSM逐层定位，丢信号后的恢复流程按手册核对。",
-    "status": "选定规则已展开 · 持续逐版核读",
-    "reviewed": "2026-10-24",
+    "status": "PIPE复位/独立时钟与接收尾窗已深化 · 持续核读",
+    "reviewed": "2026-10-25",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -111631,9 +111631,163 @@
         "title": "PCIe Nominal Empty不报普通Underflow：必须以RxDataValid表示空拍",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
         "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6",
+        "page": 45,
+        "pdfPage": 45,
+        "title": "失去RxValid后：RxCLK域数据、有效性和控制采样不能混用",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "失去RxValid后：RxCLK域数据、有效性和控制采样不能混用",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.1",
+        "page": 69,
+        "pdfPage": 69,
+        "title": "失去RxValid后：RxCLK域数据、有效性和控制采样不能混用",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 72,
+        "pdfPage": 72,
+        "title": "失去RxValid后：RxCLK域数据、有效性和控制采样不能混用",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.1",
+        "page": 69,
+        "pdfPage": 69,
+        "title": "8周期是保留时钟数量；8/fmax只是理想下限，不能当超时",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 152,
+        "pdfPage": 152,
+        "title": "8周期是保留时钟数量；8/fmax只是理想下限，不能当超时",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.1",
+        "page": 69,
+        "pdfPage": 69,
+        "title": "RxValid低时仍受MaxRxClkFrequency约束，PLL失锁不等于频率无限制",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 152,
+        "pdfPage": 152,
+        "title": "RxValid低时仍受MaxRxClkFrequency约束，PLL失锁不等于频率无限制",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "继续供时的尾窗为了采到valid撤销，不是继续处理8拍业务数据",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.1",
+        "page": 69,
+        "pdfPage": 69,
+        "title": "继续供时的尾窗为了采到valid撤销，不是继续处理8拍业务数据",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.1",
+        "page": 69,
+        "pdfPage": 69,
+        "title": "满8周期后不要求立刻停钟，重新变有效也是独立事件",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.1",
+        "page": 69,
+        "pdfPage": 69,
+        "title": "查询：RxValid撤销后的周期预算与频率证据",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "查询：RxValid撤销后的周期预算与频率证据",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 152,
+        "pdfPage": 152,
+        "title": "查询：RxValid撤销后的周期预算与频率证据",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
       }
     ],
-    "referenceStatus": "所引Base6.0/7.0 RX对齐、极性、编码与SKP条款及PIPE7.1接口已按块核读；早期逐版演进、FM数据流完整调度和产品实现仍待核。",
+    "referenceStatus": "R73核PIPE7.1所列复位、MacCLK/SRIS及RxCLK正文与关键波形；本地与官网PDF分开定位，不声明所有旧修订/Gen1～7或产品硅片已验证。",
     "details": [
       {
         "id": "rx-readiness-layers",
@@ -112724,6 +112878,109 @@
           101,
           102
         ]
+      },
+      {
+        "id": "rxguard-clock-domain-table",
+        "title": "失去RxValid后：RxCLK域数据、有效性和控制采样不能混用",
+        "paragraphs": [
+          "SerDes架构RxData使用RxCLK，RxValid也同步于RxCLK并表示恢复时钟稳定；一般并行侧以PCLK为基准，需按每信号例外解释。MacCLKAck或PhyStatus不是RxCLK稳定性的替代信号。",
+          "下表是由接口时钟域整理的集成观察表，不新增一根通用PLL/CDR锁定引脚。跨域消费必须核自身数据/控制协议，不能仅对一根valid加同步器就假设整组数据已一致。"
+        ],
+        "referenceIndices": [
+          104,
+          105,
+          106,
+          107
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "所核时钟/语义",
+            "不能推出"
+          ],
+          "rows": [
+            [
+              "SerDes RxData",
+              "RxCLK同步数据",
+              "RxValid低时仍可交付业务数据"
+            ],
+            [
+              "SerDes RxValid",
+              "RxCLK同步，表示RxCLK稳定",
+              "已完成Symbol/Block/Flit对齐"
+            ],
+            [
+              "RxCLK尾窗",
+              "撤RxValid后至少8个周期",
+              "八个PCLK或八ns"
+            ],
+            [
+              "MacCLKAck",
+              "独立异步时钟lane应答",
+              "RX恢复时钟/链路已就绪"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "rxguard-cycles-and-walltime",
+        "title": "8周期是保留时钟数量；8/fmax只是理想下限，不能当超时",
+        "paragraphs": [
+          "当RxValid撤销，PHY继续RxCLK至少8周期给MAC采到撤销。若只知道MaxRxClkFrequency=500MHz，8/fmax=16ns只是按最大频率计算的最短理想累计时间；实际尾部时钟更慢时会更长。",
+          "固定等待16ns不能证明真的出现8个有效周期，也不是规范允许超时上界。查询以已确认的完整RxCLK周期数为输入，不猜RxValid边沿同拍是否计入，不把旧失锁窗口的周期累加到新一轮。"
+        ],
+        "referenceIndices": [
+          108,
+          109
+        ]
+      },
+      {
+        "id": "rxguard-max-frequency-invalid-still-binds",
+        "title": "RxValid低时仍受MaxRxClkFrequency约束，PLL失锁不等于频率无限制",
+        "paragraphs": [
+          "PHY必须公布MaxRxClkFrequency，并保证即使RxValid撤销也不超过它。这个参数针对RxCLK接口频率，不是串行比特率、PCLK最大频率或CDR模拟环路带宽。",
+          "因此尾窗够8周期和未超过频率上限是两项独立检查；满足前者不能抵消后者。频率上限未提供或观测带宽不足时只能列未核，不能按链路GT/s直接补一个值。"
+        ],
+        "referenceIndices": [
+          110,
+          111
+        ]
+      },
+      {
+        "id": "rxguard-tail-not-data-permission",
+        "title": "继续供时的尾窗为了采到valid撤销，不是继续处理8拍业务数据",
+        "paragraphs": [
+          "RxValid低在SerDes语义下说明恢复时钟不稳定，保留尾窗使MAC能锁存该变化；不能把“还在跳的RxCLK”当成RxData仍可直接交付的许可。",
+          "重新置RxValid后，MAC可以开始Symbol/Block lock，并非自动继承上一次对齐结果。具体数据丢弃、重新训练和跨域排空仍要结合MAC协议状态，而不是一个8拍固定延时替代。"
+        ],
+        "referenceIndices": [
+          112,
+          113
+        ]
+      },
+      {
+        "id": "rxguard-minimum-not-stop-command",
+        "title": "满8周期后不要求立刻停钟，重新变有效也是独立事件",
+        "paragraphs": [
+          "至少8周期是下限，不是第8周期必须关RxCLK的命令。PHY可以继续提供时钟，继续多久及失锁后的实现行为应查产品；没有通用“8周期后必静止”的波形要求。",
+          "排查时分别记录RxValid撤销、本窗口有效周期数、是否实际停钟、最高观测频率及下一次RxValid建立。仅凭时间拉长不能把缺周期变成通过。"
+        ],
+        "referenceIndices": [
+          114
+        ]
+      },
+      {
+        "id": "rxguard-cycle-budget-query",
+        "title": "查询：RxValid撤销后的周期预算与频率证据",
+        "paragraphs": [
+          "输入本次撤销后已确认完整周期数、是否已停、PHY公布频率上限和实际观察峰值，判断不足8周期、还在等待或满足所选检查。以8/fmax辅助显示理想最短时间，明确不是等待超时。",
+          "查询固定在RxValid当前仍低的SerDes上下文，不推定重新锁定、不评价所有抖动/占空比/模拟信号质量。未知参数保留未核，也不能证明MAC已经成功采到了撤销。"
+        ],
+        "referenceIndices": [
+          115,
+          116,
+          117
+        ]
       }
     ]
   },
@@ -112737,8 +112994,8 @@
     "prerequisites": "PCLK as PHY Input/Output从PHY视角命名。PIPE 7.1正文对PCIe5及以后不支持PCLK输出模式；旧产品手册描述的可生成模式不应不加限定外推。",
     "example": "两条同link lane频率相同不代表相位关系满足要求；各自的RX时钟也不能当成一个普通同相时钟。",
     "checks": "列出频率、来源、启动条件、是否停钟及domain；跨域使用同步器/FIFO/握手，不能只按时钟名字相同就设为同步。",
-    "status": "选定正文与接口细节已展开 · 持续核对",
-    "reviewed": "2026-10-24",
+    "status": "PIPE复位/独立时钟与接收尾窗已深化 · 持续核读",
+    "reviewed": "2026-10-25",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -114087,9 +114344,339 @@
         "title": "查询与原创图：逐事件检查切速许可、稳定、完成和收尾",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
         "verification": "R64核读所列正文；PIPE7.1本地副本印刷/物理页按本文件定位，保留官网189页与本地190页差异，未声称逐页同版。Gen6 3.02a仅产品规则；无RTL/模拟/硅片验证。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 70,
+        "pdfPage": 70,
+        "title": "MacCLKReset#域独立：复位中不依赖有效电平，释放时Req/Ack默认0",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 71,
+        "pdfPage": 71,
+        "title": "MacCLKReset#域独立：复位中不依赖有效电平，释放时Req/Ack默认0",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 72,
+        "pdfPage": 72,
+        "title": "MacCLKReset#域独立：复位中不依赖有效电平，释放时Req/Ack默认0",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 114,
+        "pdfPage": 114,
+        "title": "MacCLKReset#域独立：复位中不依赖有效电平，释放时Req/Ack默认0",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 115,
+        "pdfPage": 115,
+        "title": "MacCLKReset#域独立：复位中不依赖有效电平，释放时Req/Ack默认0",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 71,
+        "pdfPage": 71,
+        "title": "MacCLKRate位宽：表6-17为[4:0]，图8-5/8-6标注[3:0]",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 115,
+        "pdfPage": 115,
+        "title": "MacCLKRate位宽：表6-17为[4:0]，图8-5/8-6标注[3:0]",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 71,
+        "pdfPage": 71,
+        "title": "MacCLKRate=31不是最高频率值，而是厂商覆盖选择",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 72,
+        "pdfPage": 72,
+        "title": "MacCLKRate=31不是最高频率值，而是厂商覆盖选择",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 114,
+        "pdfPage": 114,
+        "title": "MacCLKRate=31不是最高频率值，而是厂商覆盖选择",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 115,
+        "pdfPage": 115,
+        "title": "MacCLKRate=31不是最高频率值，而是厂商覆盖选择",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 71,
+        "pdfPage": 71,
+        "title": "Rate空闲修改与Req上升沿采样：提交值和完成值要分别记录",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 72,
+        "pdfPage": 72,
+        "title": "Rate空闲修改与Req上升沿采样：提交值和完成值要分别记录",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 115,
+        "pdfPage": 115,
+        "title": "Rate空闲修改与Req上升沿采样：提交值和完成值要分别记录",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 71,
+        "pdfPage": 71,
+        "title": "SSC可动态变，但MaxSSCEnableDisableTime仍须来自PHY",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 115,
+        "pdfPage": 115,
+        "title": "SSC可动态变，但MaxSSCEnableDisableTime仍须来自PHY",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 152,
+        "pdfPage": 152,
+        "title": "SSC可动态变，但MaxSSCEnableDisableTime仍须来自PHY",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 49,
+        "pdfPage": 49,
+        "title": "SRISEnable在首次Receiver Detect前有效，PHY还要门控P0退出准备",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 49,
+        "pdfPage": 49,
+        "title": "PIPE7.1的版本限定：Gen6-capable起可在Configuration中由1撤为0",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 70,
+        "pdfPage": 70,
+        "title": "MacCLK信号表：位宽、驱动方、复位和运行期窗口",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 71,
+        "pdfPage": 71,
+        "title": "MacCLK信号表：位宽、驱动方、复位和运行期窗口",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 72,
+        "pdfPage": 72,
+        "title": "MacCLK信号表：位宽、驱动方、复位和运行期窗口",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 152,
+        "pdfPage": 152,
+        "title": "MacCLK信号表：位宽、驱动方、复位和运行期窗口",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 71,
+        "pdfPage": 71,
+        "title": "Ack下降与真正停钟不是同一事件：消费者关口单独核",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 72,
+        "pdfPage": 72,
+        "title": "Ack下降与真正停钟不是同一事件：消费者关口单独核",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 114,
+        "pdfPage": 114,
+        "title": "Ack下降与真正停钟不是同一事件：消费者关口单独核",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 70,
+        "pdfPage": 70,
+        "title": "查询：MacCLK独立复位、Rate请求与四相闭环",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 71,
+        "pdfPage": 71,
+        "title": "查询：MacCLK独立复位、Rate请求与四相闭环",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 72,
+        "pdfPage": 72,
+        "title": "查询：MacCLK独立复位、Rate请求与四相闭环",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 115,
+        "pdfPage": 115,
+        "title": "查询：MacCLK独立复位、Rate请求与四相闭环",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
       }
     ],
-    "referenceStatus": "R64核PIPE7.1切速/时钟/待机相关选定正文与Gen6 3.02a下层边界；保留p63/p126边沿及副本页数差异。非七代Recovery整章或硬件验证。",
+    "referenceStatus": "R73核PIPE7.1所列复位、MacCLK/SRIS及RxCLK正文与关键波形；本地与官网PDF分开定位，不声明所有旧修订/Gen1～7或产品硅片已验证。",
     "details": [
       {
         "title": "从clk_rst出发的时钟清单",
@@ -115211,6 +115798,179 @@
           119,
           120,
           121
+        ]
+      },
+      {
+        "id": "macclk-reset-domain-defaults",
+        "title": "MacCLKReset#域独立：复位中不依赖有效电平，释放时Req/Ack默认0",
+        "paragraphs": [
+          "MacCLK是可选、独立于数据lane的时钟通路；各MacCLK lane信号属于MacCLKReset#域。复位断言期间双方不能依赖这些信号始终有效；若定义了默认值，驱动方须在复位撤销时使它稳定到该值。",
+          "MacCLKReq由MAC驱动、MacCLKAck由PHY驱动，释放时都默认0。PHYMode、Rate、SSCEnable也须在撤销时有效。不能只等数据lane Reset#释放，就当这个独立时钟lane也已完成自己的复位契约。"
+        ],
+        "referenceIndices": [
+          122,
+          123,
+          124,
+          125,
+          126
+        ]
+      },
+      {
+        "id": "macclk-rate-width-table-versus-figure",
+        "title": "MacCLKRate位宽：表6-17为[4:0]，图8-5/8-6标注[3:0]",
+        "paragraphs": [
+          "本地PIPE7.1信号表把MacCLKRate列成5bit并定义编码31；概念图8-5/8-6却标成[3:0]。本页按正式信号表解释5bit，保留图文差异，不能把图标注默默改成另一套四bit编码。",
+          "编码0～30按PCLK Rate对应编码解释，31为厂商指定频率机制的覆盖选择。本条只是当前修订图表差异核对，不宣称已获得官方勘误或证明某旧修订何时扩位。"
+        ],
+        "referenceIndices": [
+          127,
+          128
+        ]
+      },
+      {
+        "id": "macclk-vendor-override-is-selector",
+        "title": "MacCLKRate=31不是最高频率值，而是厂商覆盖选择",
+        "paragraphs": [
+          "31表示用vendor-specific机制指定MacCLK频率；它本身不是31MHz或一档可统一换算的频率。要核厂商访问机制、配置值、实际时钟及Req/Ack时序，不能只解码这个字段就计算工作时钟。",
+          "同样，MacCLK lane存在不保证一条数据lane对应一个MacCLK。某实现可建立相关关系，PIPE只说明这是实现选择。"
+        ],
+        "referenceIndices": [
+          129,
+          130,
+          131,
+          132
+        ]
+      },
+      {
+        "id": "macclk-frequency-latch-and-change-window",
+        "title": "Rate空闲修改与Req上升沿采样：提交值和完成值要分别记录",
+        "paragraphs": [
+          "影响频率的控制在MacCLKReq上升沿采样。运行期MacCLKRate只有Req/Ack均撤销时才可改，并须在置Req前稳定。Ack高才表达时钟有效且已在所需频率运行。",
+          "例如Req=1等待Ack时改Rate，不能用“最终采到一个Ack”证明这次被允许；请求时已锁定的配置、随后禁止变化的窗口，以及实际完成证据要分开记录。"
+        ],
+        "referenceIndices": [
+          133,
+          134,
+          135
+        ]
+      },
+      {
+        "id": "macclk-ssc-transition-parameter",
+        "title": "SSC可动态变，但MaxSSCEnableDisableTime仍须来自PHY",
+        "paragraphs": [
+          "MacCLKSSCEnable允许在MacCLK运行时动态置/撤；它不是MacCLKPHYMode的复位期固定规则，也不把Rate的Req/Ack空闲修改窗口取消。PHY须公布SSC使能/禁用的最大完成时间MaxSSCEnableDisableTime。",
+          "本轮不填一个通用ns值，也不把MacCLKAck保持高看成独立SSC切换Done。记录SSC请求、datasheet上界和观测结果；模式/频率/调制是不同轴。"
+        ],
+        "referenceIndices": [
+          136,
+          137,
+          138
+        ]
+      },
+      {
+        "id": "sris-before-detect-and-p0-gate",
+        "title": "SRISEnable在首次Receiver Detect前有效，PHY还要门控P0退出准备",
+        "paragraphs": [
+          "SRISEnable通知PHY支持PCIe Separate Refclk with Independent SSC。MAC必须在首次Receiver Detect前设置；若为1，PHY内部完成SRIS设置后才允许进入P0。",
+          "PHY可能要求更早稳定，例如PLL配置之前。这是产品可附加的提前量，不能一律等到Receiver Detect前一拍才改；也不能以TX PLL频率看似正常代替SRIS准备完成证据。"
+        ],
+        "referenceIndices": [
+          139
+        ]
+      },
+      {
+        "id": "sris-gen6-training-one-way-exception",
+        "title": "PIPE7.1的版本限定：Gen6-capable起可在Configuration中由1撤为0",
+        "paragraphs": [
+          "对PCIe Rev5.0及更早MAC，SRISEnable在所需早期配置点之后不能改变。对Rev6.0-capable及更新MAC，正文许可训练的Configuration LTSSM期间改变，并明确给出的行为是先断言、训练期间再撤销。",
+          "不能从这一许可推导L0任意切SRIS，也不能推导同一次Configuration里可反复0→1→0切换。该差异来自PIPE7.1当前正文对MAC能力的限定，不是直接核过Gen1～Gen7所有Base修订。"
+        ],
+        "referenceIndices": [
+          140
+        ]
+      },
+      {
+        "id": "macclk-signal-contract-table",
+        "title": "MacCLK信号表：位宽、驱动方、复位和运行期窗口",
+        "paragraphs": [
+          "下表从PHY视角的Input/Output转成实际驱动方；异步表示需要适用CDC/控制域实现，不等于任何组合毛刺都能忽略。具体复位最小脉宽由MinimumMacCLKReset#AssertionPulse给出。"
+        ],
+        "referenceIndices": [
+          141,
+          142,
+          143,
+          144
+        ],
+        "table": {
+          "columns": [
+            "信号",
+            "位宽 / 驱动方",
+            "关键契约"
+          ],
+          "rows": [
+            [
+              "MacCLKReset#",
+              "1 / MAC→PHY",
+              "低有效、异步，可任何PHY状态断言"
+            ],
+            [
+              "MacCLKPHYMode",
+              "4 / MAC→PHY",
+              "撤复位时有效；运行期不改"
+            ],
+            [
+              "MacCLKRate",
+              "5 / MAC→PHY",
+              "0～30同PCLK Rate；31厂商覆盖；Req/Ack均0才改"
+            ],
+            [
+              "MacCLKReq",
+              "1 / MAC→PHY",
+              "默认0；1请求运行，0请求停"
+            ],
+            [
+              "MacCLKAck",
+              "1 / PHY→MAC",
+              "默认0；1为所需频率有效；0为已停或正在停"
+            ],
+            [
+              "MacCLKSSCEnable",
+              "1 / MAC→PHY",
+              "撤复位时有效；运行时可变，时限查参数"
+            ],
+            [
+              "MacCLK",
+              "时钟 / PHY→MAC",
+              "Ack高时有效运行，不据此证明数据lane RX就绪"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "macclk-isolation-and-stop-observation",
+        "title": "Ack下降与真正停钟不是同一事件：消费者关口单独核",
+        "paragraphs": [
+          "MAC撤Req后，PHY可在MacCLK真正停止之前或之后撤Ack；Ack=0表示已停或正在停。因此完成控制四相闭环，并不证明最后一个时钟边沿已经过去。",
+          "独立控制逻辑应能在目标时钟停止后继续观察Ack，不把自己也关到等待的时钟域里。下游复位、隔离和gate何时安全属于产品集成约束；本页不规定所有实现必须用同一同步器或模拟停钟检测器。"
+        ],
+        "referenceIndices": [
+          145,
+          146,
+          147
+        ]
+      },
+      {
+        "id": "macclk-event-trace-query",
+        "title": "查询：MacCLK独立复位、Rate请求与四相闭环",
+        "paragraphs": [
+          "用事件序列检查配置→释放复位→Rate→Req→有效时钟→Ack→停钟请求的所选顺序。允许Ack先撤后停钟或先停钟后撤Ack；Req/Ack未均0时改Rate、运行期改Mode等会提示冲突。",
+          "逻辑示意不设定具体频率/复位脉宽/SSC延时；观察到clock-valid须由用户已有测量或产品状态支持。它不验证CDC、PLL、门控电路或数据lane状态。"
+        ],
+        "referenceIndices": [
+          148,
+          149,
+          150,
+          151
         ]
       }
     ]
@@ -121223,8 +121983,8 @@
     "prerequisites": "异步置位复位可以不依赖工作时钟，但同步释放和握手需要目标域时钟恢复。每种复位保留哪些寄存器和固件状态取决于具体IP。",
     "example": "数字复位已释放却一直不ready，可能是固件未启动、参考时钟未启用、lane reset还在阻塞状态机或校准等待条件未满足。",
     "checks": "给每个阶段设置可观察状态与超时，先找最早未完成的依赖，不要用固定延时替代全部握手。",
-    "status": "选定正文与接口细节已展开 · 持续核对",
-    "reviewed": "2026-10-24",
+    "status": "PIPE复位/独立时钟与接收尾窗已深化 · 持续核读",
+    "reviewed": "2026-10-25",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -122958,9 +123718,207 @@
         "title": "切速现场观察表：每个证据能说明什么",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R64核读所列正文；PIPE7.1本地副本印刷/物理页按本文件定位，保留官网189页与本地190页差异，未声称逐页同版。Gen6 3.02a仅产品规则；无RTL/模拟/硅片验证。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 50,
+        "pdfPage": 50,
+        "title": "Reset#断言覆盖其它PIPE控制；释放配置P1是另一时段",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.2",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "Reset#断言覆盖其它PIPE控制；释放配置P1是另一时段",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.2",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "复位前提与推荐初值逐项表：must和should不合并",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 49,
+        "pdfPage": 49,
+        "title": "复位前提与推荐初值逐项表：must和should不合并",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 50,
+        "pdfPage": 50,
+        "title": "复位前提与推荐初值逐项表：must和should不合并",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 49,
+        "pdfPage": 49,
+        "title": "PHY mode与SerDesArch是复位期选择，不是运行时恢复开关",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6",
+        "page": 45,
+        "pdfPage": 45,
+        "title": "PHY mode与SerDesArch是复位期选择，不是运行时恢复开关",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 55,
+        "pdfPage": 55,
+        "title": "ShortChannelPowerControl[1:0]：复位前稳定，直到下一次复位",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.2",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "PCLK输出复位完成：目标频率至少运行一个周期，不是见到边沿即可",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "PhyStatus必须绑定当前操作：复位撤销与正常高脉冲方向不同",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.2",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "PhyStatus必须绑定当前操作：复位撤销与正常高脉冲方向不同",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 117,
+        "pdfPage": 117,
+        "title": "PhyStatus必须绑定当前操作：复位撤销与正常高脉冲方向不同",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "初始化配置检查通过，只能进入下一步，不能宣布Link Up",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.2",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "初始化配置检查通过，只能进入下一步，不能宣布Link Up",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.2",
+        "page": 116,
+        "pdfPage": 116,
+        "title": "查询：PIPE复位前提与输出PCLK完成证据",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.1",
+        "page": 110,
+        "pdfPage": 110,
+        "title": "查询：PIPE复位前提与输出PCLK完成证据",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 49,
+        "pdfPage": 49,
+        "title": "查询：PIPE复位前提与输出PCLK完成证据",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 50,
+        "pdfPage": 50,
+        "title": "查询：PIPE复位前提与输出PCLK完成证据",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R73核本地PIPE7.1所列正文，视觉核p115/116；所引本地印刷页与物理页一致。本地190页副本与官网189页不视为相同文件，不把当前修订当Gen1～7逐版证明；仅发布原创说明/图。"
       }
     ],
-    "referenceStatus": "R64核PIPE7.1切速/时钟/待机相关选定正文与Gen6 3.02a下层边界；保留p63/p126边沿及副本页数差异。非七代Recovery整章或硬件验证。",
+    "referenceStatus": "R73核PIPE7.1所列复位、MacCLK/SRIS及RxCLK正文与关键波形；本地与官网PDF分开定位，不声明所有旧修订/Gen1～7或产品硅片已验证。",
     "details": [
       {
         "title": "启动检查顺序",
@@ -124589,6 +125547,157 @@
             ]
           ]
         }
+      },
+      {
+        "id": "reset-lowest-state-versus-release-p1",
+        "title": "Reset#断言覆盖其它PIPE控制；释放配置P1是另一时段",
+        "paragraphs": [
+          "Reset#低有效、异步，允许在任何PHY状态断言，复位TX/RX；断言期间该lane必须处于其最低功耗状态，不受其它PIPE控制值改变。不要把复位期PowerDown=P1推荐初值解释成PHY内部此时必须维持普通P1全部行为。",
+          "释放阶段才结合供电/CLK稳定、协议模式/架构和初始控制值建立下一阶段。此接口lane复位也不是PCIe PERST#、Hot Reset或芯片全部电源域复位的同义信号。"
+        ],
+        "referenceIndices": [
+          157,
+          158
+        ]
+      },
+      {
+        "id": "reset-control-contract-table",
+        "title": "复位前提与推荐初值逐项表：must和should不合并",
+        "paragraphs": [
+          "§8.2要求MAC保持PHY复位直到供电和CLK稳定；对复位断言期间的控制初值使用should表述。下表保留这个强度差别；具体PHY可以有更严格的datasheet时序，不能从这张表推出通用复位脉宽。"
+        ],
+        "referenceIndices": [
+          159,
+          160,
+          161
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "PCIe初始化值/条件",
+            "规则边界"
+          ],
+          "rows": [
+            [
+              "供电与CLK",
+              "稳定后才结束保持复位",
+              "must，电气稳定由产品/板级证据确认"
+            ],
+            [
+              "TxDetectRx/Loopback",
+              "撤销",
+              "§8.2 should；不是开始Receiver Detect"
+            ],
+            [
+              "TxElecIdle",
+              "断言",
+              "§8.2 should；正常翻转还受TxDataValid限定"
+            ],
+            [
+              "TxCompliance",
+              "撤销",
+              "§8.2 should"
+            ],
+            [
+              "PowerDown",
+              "P1",
+              "PCIe模式；USB的P2不要移植"
+            ],
+            [
+              "Rate",
+              "2.5GT/s",
+              "PCIe初始化，不按最高代际直接跳高速"
+            ],
+            [
+              "PHY mode[3:0]",
+              "0=PCIe",
+              "多协议PHY；仅Reset#断言期可改变"
+            ],
+            [
+              "SerDesArch",
+              "按所选架构配置",
+              "仅Reset#断言期可改变"
+            ],
+            [
+              "TxSwing",
+              "实现相关",
+              "不能统一指定所有PHY复位值"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "reset-static-mode-and-architecture",
+        "title": "PHY mode与SerDesArch是复位期选择，不是运行时恢复开关",
+        "paragraphs": [
+          "PHY mode[3:0]选PCIe/USB/SATA/DP/USB4；PCIe为0，单协议PHY可以不实现该引脚。SerDesArch指示是否启用SerDes架构。这两者均异步，MAC仅可在Reset#断言期间改变。",
+          "发生失锁或Recovery时不能直接运行期翻SerDesArch，把RX对齐从PHY临时迁移到MAC。双架构PHY须实现两种架构所需信号；只支持SerDes的PHY不需要仅Original使用的信号，按产品能力配置。"
+        ],
+        "referenceIndices": [
+          162,
+          163
+        ]
+      },
+      {
+        "id": "reset-short-channel-static-policy",
+        "title": "ShortChannelPowerControl[1:0]：复位前稳定，直到下一次复位",
+        "paragraphs": [
+          "该可选输入用于短通道/多芯片封装省电。必须在Reset#撤销前稳定，并保持到下一次Reset#断言；它不是可在L0逐包改变的动态发射摆幅控制。",
+          "00为普通工作；若实现该信号，01对应最积极的MCP省电档且需支持；10/11为可选档。实际设置含义查ShortChannelPowerControlSettingsSupported，不把两bit编码推成统一模拟参数。MCP相关档还强烈建议采用§2.7的Receiver Detect bypass，但本轮不重新定义该完整检测策略。"
+        ],
+        "referenceIndices": [
+          164
+        ]
+      },
+      {
+        "id": "reset-output-completion-clock-proof",
+        "title": "PCLK输出复位完成：目标频率至少运行一个周期，不是见到边沿即可",
+        "paragraphs": [
+          "§8.2的PCLK为PHY输出分支，在Reset#释放后由PhyStatus撤销表示相应PCLK/MAX PCLK有效且PHY已在指定功耗状态；相关时钟须已按工作频率运行至少一个周期。图中等待期可先运行不高于最终工作频率的PCLK。",
+          "因此复位释放后的任意一个毛刺/低频边沿不构成完成。MAC不得在返回本次复位完成前开始操作；但“一个周期”也不是PLL、校准、固件或链路训练总延时。PCLK输入实现需核适用接口/产品完成契约，不照抄该输出波形。"
+        ],
+        "referenceIndices": [
+          165
+        ]
+      },
+      {
+        "id": "reset-completion-context-not-pulse",
+        "title": "PhyStatus必须绑定当前操作：复位撤销与正常高脉冲方向不同",
+        "paragraphs": [
+          "同一PhyStatus复用复位、功耗、切速和检测完成。复位输出时钟示例关注本次Reset#释放后的撤销；PCLK运行时的普通功耗转换通常以单周期高表示成功。缺少操作上下文，单个0/1快照不能确定完成哪一件事。",
+          "日志应保存本次请求/复位释放、时钟方向、当前功耗转换和新完成事件，不能借用上一次切速留下的Status来放行复位。这里是基于接口复用整理的观察建议，不规定厂商内部状态机。"
+        ],
+        "referenceIndices": [
+          166,
+          167,
+          168
+        ]
+      },
+      {
+        "id": "reset-init-config-not-link-ready",
+        "title": "初始化配置检查通过，只能进入下一步，不能宣布Link Up",
+        "paragraphs": [
+          "Reset前提、配置有效、时钟工作和PHY完成各有证据；即使所列条件都成立，后续Receiver Detect、RX锁定/对齐、LTSSM和Data Link初始化仍是独立过程。",
+          "若完成事件一直不来，PIPE允许MAC采取自身错误恢复措施；没有这里通用固定µs超时或自动重置次数。必须查具体PHY完成时间/电源时序，不能用16周期EB Reset或8周期RxCLK尾窗替代。"
+        ],
+        "referenceIndices": [
+          169,
+          170
+        ]
+      },
+      {
+        "id": "reset-release-preflight-query",
+        "title": "查询：PIPE复位前提与输出PCLK完成证据",
+        "paragraphs": [
+          "输入供电/CLK稳定、Reset是否仍断言、静态配置、推荐初值、PCLK方向以及是否观察到本次完成。输出区分不能释放、仍在复位、等待完成和所选证据通过。",
+          "仅检查PIPE7.1所列条件；PCLK输出按legacy复位波形，输入分支保留产品契约。若某项产品要求更严格，以产品为准。查询不会拉复位，也不证明硅片复位完成或Link Up。"
+        ],
+        "referenceIndices": [
+          171,
+          172,
+          173,
+          174
+        ]
       }
     ]
   },
