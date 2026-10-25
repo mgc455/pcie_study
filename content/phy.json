@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-10-25",
-  "summary": "PHY/SerDes持续核读；R73补PIPE7.1复位前提、MacCLK独立复位/事件、SRIS能力限定及RxValid撤销后RxCLK尾窗，保留产品与接口/代际边界。",
+  "summary": "PHY/SerDes持续核读：R77补Retimer普通电气/光边界、FRA拓扑、检测字段、SKP历史及分段TX/RX职责；保留已有PIPE时钟复位、产品启动/校准和接收评估资料的版本边界。",
   "groups": [
     {
       "title": "分层与资料入口",
@@ -201,7 +201,8 @@
     "R55已核PIPE7.1 §8.14/8.15/8.17；继续128b/130b SKP first 4N+1符号与N的完整格式联核、其它Rate/Width/PCLK有效节奏、64/128GT/s及旧修订差分；不把接口修订号当链路代际。",
     "R64已细化PIPE7.1 §8.4.1表8-3与参数、PCLK事件图和RxStandby边界；p63/p126 Ok撤销时点、独立Width/PCLK变更、合并功耗以及旧PIPE修订和七代Base Recovery逐版规则待续。",
     "R70已补FBER控制/计数与SDK1.00a_pre3窗口证据；继续SDK/PMA计时映射、FBER精确测量算法、Retimer/ECN和各代压力/认证测试。原表/RTL/CDL和产品API原文不公开。",
-    "R73核PIPE7.1 Reset/MacCLK/SRIS/RxCLK选定契约；图中MacCLKRate四位与信号表五位的官方澄清、PCLK输入复位完成、旧PIPE修订、产品复位/频率/SSC参数及真实CDC/门控仍待继续。"
+    "R73核PIPE7.1 Reset/MacCLK/SRIS/RxCLK选定契约；图中MacCLKRate四位与信号表五位的官方澄清、PCLK输入复位完成、旧PIPE修订、产品复位/频率/SSC参数及真实CDC/门控仍待继续。",
+    "R77：继续完整Retimer EI/切速/Execution状态、FRA Margining映射与旧版/ECN；光内部实现与实测不由本轮拓扑/寄存器查询推断。下一轮回早期代际训练差分并做阶段总结。"
   ],
   "lowPowerReferences": {
     "title": "低功耗协议与PHY握手、共享PLL及产品PG/Context恢复",
@@ -420,6 +421,36 @@
         "featureId": 169,
         "detailId": "rxguard-cycle-budget-query",
         "title": "查询：RxValid撤销后的周期预算与频率证据"
+      }
+    ]
+  },
+  "retimerReferences": {
+    "title": "Retimer与分段通道：拓扑、发现和局部均衡",
+    "links": [
+      {
+        "featureId": 11,
+        "detailId": "retimer-topology-query",
+        "title": "查询：2/4颗、FRA组合与电气分段图"
+      },
+      {
+        "featureId": 11,
+        "detailId": "retimer-presence-snapshot-query",
+        "title": "查询：能力与最近协商的检测状态"
+      },
+      {
+        "featureId": 11,
+        "detailId": "retimer-skp-history-query",
+        "title": "查询：三颗以上的SKP增删历史"
+      },
+      {
+        "featureId": 172,
+        "detailId": "tx-retimer-local-fs-lf-coefficients",
+        "title": "TX：FS/LF与系数属于哪一段"
+      },
+      {
+        "featureId": 173,
+        "detailId": "rx-retimer-equalization-is-segment-local",
+        "title": "RX：局部适应与端到端证据分开"
       }
     ]
   }

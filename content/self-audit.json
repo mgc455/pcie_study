@@ -1,6 +1,6 @@
 {
   "date": "2026-10-25",
-  "summary": "R76：ATS失效包图、完成账本、在途范围及DMA隔离边界，阶段2/4。",
+  "summary": "R77：Retimer拓扑/发现、SKP历史及分段TX/RX，阶段3/4。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -1486,6 +1486,26 @@
       "name": "R76构建、行为及回归",
       "status": "通过",
       "detail": "新增7198检查：220个CC/Vector副本组合、1440个区间组合，两幅图逐行32bit及Body S/Global、FM CC/Vector位置检查通过；旧细节/来源前缀保持。R75回归6156检查，R74回归935检查/3181断言，构建、公开边界及双份JS通过。部署与浏览器实测另记。"
+    },
+    {
+      "name": "R77初查与远端",
+      "status": "已核",
+      "detail": "远端main与R76 390e0afc一致，保留原细节和来源前缀。Retimer仅有8个以EQ为主的块，优先补拓扑、发现、阻抗/切模式和每段观察点，未重写已有正确系数表。"
+    },
+    {
+      "name": "R77版本与图位",
+      "status": "选定正文核读",
+      "detail": "核6.0/7.0所引Retimer选定段及7.0 SKP长度/历史；视觉核7.0 p664拓扑及p1150能力图。区分6.0两颗/7.0全FRA四颗、混合未定义、20/100ms启动检测窗、ROS与RW1C、能力与最近协商状态。"
+    },
+    {
+      "name": "R77边界自查",
+      "status": "已注明",
+      "detail": "FRA能力不等于实际四颗；普通电气图不直接计光方案组件；MUST@FLIT按能力，不按当前FM状态。SKP历史需包含Standard/Control，部分历史不自动放行增删；三个查询都不证明完整链路或模拟SI通过。"
+    },
+    {
+      "name": "R77构建与查询/回归",
+      "status": "通过",
+      "detail": "三个查询新增50345检查：4608检测快照组合、728拓扑组合、720 SKP历史/长度候选；覆盖MUST@FLIT能力、非F0、未知协商、混合未定义、第8份禁反向与1b/1b对齐待核。旧细节/来源前缀、32/16bit图及PHY关联链接保留检查通过。R76回归7198检查；构建/公开边界/JS与线上部署按最终记录复核。"
     }
   ],
   "unresolved": [
@@ -1591,7 +1611,8 @@
     "R73：PIPE7.1图8-5/8-6 MacCLKRate[3:0]与表6-17 [4:0]待官方勘误；PCLK输入复位、产品具体复位/SSC/RxCLK数值、旧PIPE修订及各代Base全对照、真实CDC/clock gating仍待核。本轮24条和3查询不证明完整PHY启动。",
     "R74：1.1原版未直接核读，只有后期对早期集合政策的注释；1.0a已有零散PAD接收却未满足8/1024的某些组合未由本轮所引段完整列出。全部Compliance/中间ECN/同拍时序及实物连续性仍待核，不给出全协议覆盖率。",
     "R75：Gen1～Gen5及中间修订的身份/Header逐字段差分、7.0 64-bit Memory窗口完整路由和先前Prefetchable模型的交互、完整SR-IOV/VI生命周期与平台并发配置访问仍待核；6.0 Immediate Readiness表未如7.0明列VF ROZ。下轮先推进ATS失效闭环，不把已展开块等同整章完成。",
-    "R76：Gen1～5及独立ATS修订/ECN未逐页对照；Shadow身份与10.3.3 Requester ID措辞的完整关联、跨Segment匹配、非2次幂N的snoop详细规则、UIO全排序与平台IOMMU/页回收实现仍待核。不将SIOV/TEE等完整体系视为本轮已完成。下一轮转PHY/Retimer。"
+    "R76：Gen1～5及独立ATS修订/ECN未逐页对照；Shadow身份与10.3.3 Requester ID措辞的完整关联、跨Segment匹配、非2次幂N的snoop详细规则、UIO全排序与平台IOMMU/页回收实现仍待核。不将SIOV/TEE等完整体系视为本轮已完成。下一轮转PHY/Retimer。",
+    "R77：早期Retimer/独立ECN首次引入、FRA/非FRA混合互操作、完整EI/切速与Execution复杂分支、FRA Margining映射、光内部建立/保持和全部状态时限仍待核；7.0个别TS0/TS1表述与继承规则须结合完整状态继续。R78回早期版本Recovery/升速差分并做四轮复盘。"
   ],
   "externalComparison": {
     "date": "2026-10-21",
