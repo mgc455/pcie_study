@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r87`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-26-r88`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -456,3 +456,10 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [Optimized_Update_FC上下文解码](https://mgc455.github.io/pcie_study/#feature/13/detail/r87-optimized-context-query)
 - [四种FC计时规则对照](https://mgc455.github.io/pcie_study/#feature/141/detail/r87-four-fc-timers)
 - 本窗口1/4；下一轮事务排序/原子性，R90阶段复盘。
+
+## R88 ordering revision and identity
+
+- [1.0a/2.0五类事务排序查询](https://mgc455.github.io/pcie_study/#feature/27/detail/r88-early-pair-query)
+- [Request IDO身份跨版查询](https://mgc455.github.io/pcie_study/#feature/29/detail/r88-ido-request-identity-query)
+- [AtomicOp与后续依赖请求](https://mgc455.github.io/pcie_study/#feature/31/detail/r88-atomic-dependent-request-flow)
+- 本窗口2/4；接着轮换PHY均衡/适应和错误取证，R90复盘。
