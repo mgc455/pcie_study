@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r81`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r82`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -413,3 +413,10 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [Receiver Detect事件轨迹](https://mgc455.github.io/pcie_study/#feature/174/detail/r81-detect-trace-query)
 - [PHY静态参数与能力](https://mgc455.github.io/pcie_study/#feature/170/detail/r81-static-mode-support-fields)
 - 阶段3/4；下一轮安全条款并做R79～R82总结。
+
+## R82 DOE / TDI report and stage review
+
+- [DOE状态下一步查询](https://mgc455.github.io/pcie_study/#feature/127/detail/r82-doe-service-query)
+- [TDI报告分片接续](https://mgc455.github.io/pcie_study/#feature/129/detail/r82-report-fragment-query)
+- [MMIO页号/属性换算](https://mgc455.github.io/pcie_study/#feature/129/detail/r82-report-range-query)
+- R79～R82阶段总结已更新；下一窗口优先AXI/iATU/HDMA未解字段与异常，穿插CMA/SPDM和早期OS/PHY。
