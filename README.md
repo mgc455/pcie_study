@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r82`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r83`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -420,3 +420,10 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [TDI报告分片接续](https://mgc455.github.io/pcie_study/#feature/129/detail/r82-report-fragment-query)
 - [MMIO页号/属性换算](https://mgc455.github.io/pcie_study/#feature/129/detail/r82-report-range-query)
 - R79～R82阶段总结已更新；下一窗口优先AXI/iATU/HDMA未解字段与异常，穿插CMA/SPDM和早期OS/PHY。
+
+## R83 HDMA descriptor and prefetch contracts
+
+- [六DWORD描述符解析](https://mgc455.github.io/pcie_study/#feature/147/detail/r83-descriptor-query)
+- [预取容量与配置窗口](https://mgc455.github.io/pcie_study/#feature/147/detail/r83-prefetch-plan-query)
+- [32bit长度与4GiB边界](https://mgc455.github.io/pcie_study/#feature/147/detail/r83-transfer-length-query)
+- 新窗口1/4；下一轮CMA/SPDM，保留OS与PHY轮换，R86总结。

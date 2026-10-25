@@ -1,6 +1,6 @@
 {
   "updated": "2026-10-25",
-  "edition": "2026-10-25-r82",
+  "edition": "2026-10-25-r83",
   "scope": "七份Base规范的主章与附录起始位置；不是全部子条款、全部独立规范和ECN已覆盖的声明。",
   "method": [
     "沿每个版本的主章及附录建立缺口清单，再将选定正文规则映射到主题，保留跨主题关联。",
@@ -185329,6 +185329,251 @@
           "referenceIndices": [
             124,
             125
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "title": "R83 HDMA6.50a描述符/预取/普通长度与AXI/iATU字段",
+      "scope": "产品指定版本及所列角色；不是七代Base章节完成，未核高位编码和手册矛盾保留。",
+      "reviewedBlocks": [
+        {
+          "featureId": 147,
+          "detailId": "r83-data-six-dwords",
+          "referenceIndices": [
+            47,
+            48
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-data-control-bits",
+          "referenceIndices": [
+            49,
+            50,
+            51,
+            52,
+            53,
+            54
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-link-type-overload",
+          "referenceIndices": [
+            55,
+            56,
+            57
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-link-prefetch-encoding-boundary",
+          "referenceIndices": [
+            58,
+            59,
+            60,
+            61
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-ctr-role-and-encoding",
+          "referenceIndices": [
+            62,
+            63,
+            64,
+            65
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-descriptor-query",
+          "referenceIndices": [
+            66,
+            67,
+            68,
+            69
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-length-four-gib-ambiguity",
+          "referenceIndices": [
+            70,
+            71,
+            72
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-transfer-length-query",
+          "referenceIndices": [
+            73,
+            74,
+            75
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-prefetch-two-plus-one",
+          "referenceIndices": [
+            76,
+            77,
+            78
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-prefetch-allocation-formula",
+          "referenceIndices": [
+            79,
+            80,
+            81
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-prefetch-config-lifecycle",
+          "referenceIndices": [
+            82,
+            83,
+            84
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-prefetch-channel-index",
+          "referenceIndices": [
+            85,
+            86
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-prefetch-restart-block",
+          "referenceIndices": [
+            87,
+            88
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-descriptor-fetch-mtu",
+          "referenceIndices": [
+            89,
+            90
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-prefetch-plan-query",
+          "referenceIndices": [
+            91,
+            92,
+            93,
+            94
+          ]
+        },
+        {
+          "featureId": 147,
+          "detailId": "r83-qos-weight-is-requests",
+          "referenceIndices": [
+            95,
+            96
+          ]
+        },
+        {
+          "featureId": 143,
+          "detailId": "r83-write-control1-field-map",
+          "referenceIndices": [
+            27,
+            28,
+            29,
+            30,
+            31
+          ]
+        },
+        {
+          "featureId": 143,
+          "detailId": "r83-source-destination-no-snoop",
+          "referenceIndices": [
+            32,
+            33
+          ]
+        },
+        {
+          "featureId": 143,
+          "detailId": "r83-memtype-descriptor-override",
+          "referenceIndices": [
+            34,
+            35
+          ]
+        },
+        {
+          "featureId": 143,
+          "detailId": "r83-channel-function-id",
+          "referenceIndices": [
+            36,
+            37,
+            38,
+            39
+          ]
+        },
+        {
+          "featureId": 146,
+          "detailId": "r83-atu-bypass-bit-conflict",
+          "referenceIndices": [
+            33,
+            34
+          ]
+        },
+        {
+          "featureId": 146,
+          "detailId": "r83-iatu-path-and-address-epoch",
+          "referenceIndices": [
+            35,
+            36,
+            37
+          ]
+        },
+        {
+          "featureId": 148,
+          "detailId": "r83-xfersize-request-versus-completion",
+          "referenceIndices": [
+            62,
+            63,
+            64,
+            65
+          ]
+        },
+        {
+          "featureId": 148,
+          "detailId": "r83-context-snapshot-is-not-atomic",
+          "referenceIndices": [
+            66,
+            67,
+            68,
+            69
+          ]
+        },
+        {
+          "featureId": 148,
+          "detailId": "r83-enable-pending-gate",
+          "referenceIndices": [
+            70,
+            71,
+            72,
+            73
+          ]
+        },
+        {
+          "featureId": 148,
+          "detailId": "r83-imwr-msix-document-conflict",
+          "referenceIndices": [
+            74,
+            75
           ]
         }
       ]
