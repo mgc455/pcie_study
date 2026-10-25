@@ -941,14 +941,14 @@
     "checks": "先记录停住的完整子状态，再看哪个方向、哪些Lane未满足进入下一状态的条件。PhyStatus、RxValid、LinkUp、DL_Active表示不同层次。表中是Base 6.0主要普通端口规则；Crosslink、Retimer及一致性测试的组合分支另标范围，不声称已经成为所有版本全部条件的可执行模型。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 4,
-    "status": "选定规则已展开 · 持续逐版核读",
+    "status": "选定Polling七版及早期TS字段已深化 · 持续核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-24",
+    "reviewed": "2026-10-25",
     "protocolReferences": [
       {
         "section": "4.2.6",
@@ -6141,9 +6141,361 @@
         "title": "LTSSM默认超时容差",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R56补核七版LTSSM描述开头的默认超时−0/+50%及显式例外条款；印刷页与本地PDF物理页相同。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.2.1",
+        "page": 173,
+        "pdfPage": 173,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.2.1",
+        "page": 196,
+        "pdfPage": 196,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.2.1",
+        "page": 197,
+        "pdfPage": 197,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.6.2.1",
+        "page": 251,
+        "pdfPage": 251,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.6.2.1",
+        "page": 252,
+        "pdfPage": 252,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.2.1",
+        "page": 290,
+        "pdfPage": 290,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.2.1",
+        "page": 291,
+        "pdfPage": 291,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.2.1",
+        "page": 292,
+        "pdfPage": 292,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.2.1",
+        "page": 319,
+        "pdfPage": 319,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.2.1",
+        "page": 320,
+        "pdfPage": 320,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.1",
+        "page": 457,
+        "pdfPage": 457,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.1",
+        "page": 458,
+        "pdfPage": 458,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.1",
+        "page": 538,
+        "pdfPage": 538,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.1",
+        "page": 539,
+        "pdfPage": 539,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.2.3",
+        "page": 174,
+        "pdfPage": 174,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.2.3",
+        "page": 200,
+        "pdfPage": 200,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.6.2.3",
+        "page": 258,
+        "pdfPage": 258,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.2.3",
+        "page": 300,
+        "pdfPage": 300,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.2.3",
+        "page": 324,
+        "pdfPage": 324,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.2.3",
+        "page": 325,
+        "pdfPage": 325,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.3",
+        "page": 463,
+        "pdfPage": 463,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.3",
+        "page": 544,
+        "pdfPage": 544,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.3",
+        "page": 545,
+        "pdfPage": 545,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.2.4",
+        "page": 174,
+        "pdfPage": 174,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.2.4",
+        "page": 201,
+        "pdfPage": 201,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.6.2.4",
+        "page": 259,
+        "pdfPage": 259,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.2.4",
+        "page": 301,
+        "pdfPage": 301,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.2.4",
+        "page": 325,
+        "pdfPage": 325,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.4",
+        "page": 463,
+        "pdfPage": 463,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.4",
+        "page": 545,
+        "pdfPage": 545,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.4.1",
+        "page": 160,
+        "pdfPage": 160,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.4.1",
+        "page": 161,
+        "pdfPage": 161,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
       }
     ],
-    "referenceStatus": "所引Base6.0/7.0 Recovery、Speed及改宽入口正文已核读；早期修订/全部角色/后续ECN及整章覆盖仍待继续。",
+    "referenceStatus": "R74核七份正式版所引Polling、1.0a/2.0/3.0选定TS字段及状态边界；非整章、所有中间修订或真实链路验证。",
     "details": [
       {
         "title": "阅读状态表之前：角色、计数、超时和覆盖范围",
@@ -6249,7 +6601,7 @@
             ],
             [
               "超时／其他出口",
-              "Enter Compliance=1可立即进Polling.Compliance。24 ms到期：至少一Lane满足连续8个TS、收首个TS后又发≥1024个TS1且预定Lane集合均曾退出EI → Polling.Configuration；预定集合有Lane未退出EI，或合格的Compliance Receive=1/Loopback=0请求 → Polling.Compliance；否则Detect。"
+              "Enter Compliance=1可立即进Polling.Compliance。24ms到期：任一Lane有连续8份合格TS、收首份TS1或TS2后再发≥1024份TS1（旧TS1锚点仍许可），且预定Lane集合均曾退出EI → Polling.Configuration；否则按所列Compliance条件，再Detect。见新增逐版表与计数锚点细节。"
             ]
           ]
         },
@@ -9614,6 +9966,412 @@
           469,
           470,
           471
+        ]
+      },
+      {
+        "id": "polling-seven-revision-locators",
+        "title": "七份正式版定位表：Polling.Active、Configuration与Speed",
+        "paragraphs": [
+          "本表绑定具体版本，不能把章节相同就认为页码或规则相同。1.0a～5.0的对应前缀是4.2.6.2，6.0/7.0为4.2.7.2；各细节的来源按钮可与本地PDF对照。",
+          "本轮核的是所引子状态和必要续页，没有核完全部Polling.Compliance档位，也未把每一代其它条款/ECN一并标完成。"
+        ],
+        "referenceIndices": [
+          472,
+          473,
+          474,
+          475,
+          476,
+          477,
+          478,
+          479,
+          480,
+          481,
+          482,
+          483,
+          484,
+          485,
+          486,
+          487,
+          488,
+          489,
+          490,
+          491,
+          492,
+          493,
+          494,
+          495,
+          496,
+          497,
+          498,
+          499,
+          500,
+          501
+        ],
+        "table": {
+          "columns": [
+            "正式版本",
+            "Active印刷/PDF页",
+            "Configuration印刷/PDF页",
+            "Speed印刷/PDF页"
+          ],
+          "rows": [
+            [
+              "1.0a",
+              "173",
+              "174",
+              "174"
+            ],
+            [
+              "2.0",
+              "196,197",
+              "200",
+              "201"
+            ],
+            [
+              "3.0",
+              "251,252",
+              "258",
+              "259"
+            ],
+            [
+              "4.0",
+              "290,291,292",
+              "300",
+              "301"
+            ],
+            [
+              "5.0",
+              "319,320",
+              "324,325",
+              "325"
+            ],
+            [
+              "6.0",
+              "457,458",
+              "463",
+              "463"
+            ],
+            [
+              "7.0",
+              "538,539",
+              "544,545",
+              "545"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "polling-active-normal-all-detected",
+        "title": "Active普通出口：D中每Lane连续8份，加本状态至少1024份发送",
+        "paragraphs": [
+          "令D为本次Detect检出Receiver的Lane集合。所核七版普通出口都要求D中所有Lane有连续8份合格训练序列，并且本端至少发送1024份TS1，随后进Polling.Configuration。不是“任一Lane够8份”就能走普通出口。",
+          "合格字段与连续性按版本解释；TS1/TS2的反相接收也在所列入口条件中。1024是本端发送计数，8是每Lane接收连续计数，不能只对一条双向总计数器比较。"
+        ],
+        "referenceIndices": [
+          472,
+          473,
+          474,
+          475,
+          476,
+          477,
+          478,
+          479,
+          480,
+          481,
+          482,
+          483,
+          484,
+          485
+        ]
+      },
+      {
+        "id": "polling-active-qualifiers-by-revision",
+        "title": "合格接收序列逐版：1.0a与2.0之后的Compliance限定分开",
+        "paragraphs": [
+          "1.0a的已核Active段以Link/Lane均PAD的TS1/TS2或其反相作为训练证据，不能把后期Compliance Receive字段倒填到其保留位。2.0增加该位和Loopback限定；3.0起正文更明确分三项列出。",
+          "3.0～6.0为：PAD/PAD TS1且Compliance Receive=0，或PAD/PAD TS1且Loopback=1，或PAD/PAD TS2。7.0改用Compliance_Receive_Request/Loopback_Request名称表达。各Lane计数仍须先经过本版TS有效/连续规则。"
+        ],
+        "referenceIndices": [
+          472,
+          473,
+          474,
+          475,
+          476,
+          482,
+          483,
+          484,
+          485
+        ]
+      },
+      {
+        "id": "polling-active-timeout-policy-evolution",
+        "title": "24ms容错分支的Lane条件：全部、预定数量、预定集合",
+        "paragraphs": [
+          "若普通出口未满足而计时到期，容错的Configuration出口只需D中任一Lane取得连续8份合格证据，但还需本端首收之后的1024份发送，以及版本指定的EI退出资格。后面才判断Compliance/Detect。",
+          "1.0a要求D全部曾退出EI；2.0允许实现定义的预定Lane数量N；3.0～7.0要求实现定义的预定Lane集合S全部曾退出EI。数量相等不证明覆盖了指定成员。后期说明提到1.1之前要求全体，但本轮未直接核1.1，不能冒充逐页读过该版本。"
+        ],
+        "referenceIndices": [
+          472,
+          473,
+          474,
+          475,
+          476,
+          477,
+          478,
+          479,
+          480,
+          481,
+          482,
+          483,
+          484,
+          485
+        ],
+        "table": {
+          "columns": [
+            "版本",
+            "EI退出条件",
+            "实现信息"
+          ],
+          "rows": [
+            [
+              "1.0a",
+              "D的全部Lane",
+              "不从后期容错集合改写本版"
+            ],
+            [
+              "2.0",
+              "D中曾退出EI的数量≥预定N",
+              "N依实现"
+            ],
+            [
+              "3.0～7.0",
+              "预定集合S内所有Lane均曾退出EI",
+              "S依实现；不是只数个数"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "polling-active-count-versus-members-example",
+        "title": "同为两条Lane退出EI：2.0数量规则与3.0集合规则可能给不同结果",
+        "paragraphs": [
+          "教学例：D={0,1,2,3}，已有合格连续8份的Lane为{0}，本端首收后发送1024份，曾退出EI的是{0,3}。2.0若预定N=2，则数量条件满足；3.0若预定S={0,1}，Lane1没退出，集合条件不满足。",
+          "这不是同一实物只改网页版本就应该表现不同；实物使用自己的规范修订与实现参数。示例的目的，是防止日志只存一个“退出Lane计数”而丢掉后期必须知道的成员身份。"
+        ],
+        "referenceIndices": [
+          473,
+          474,
+          475,
+          476
+        ]
+      },
+      {
+        "id": "polling-active-transmit-anchor-compatibility",
+        "title": "超时分支首收计数锚点：4.0～7.0的TS1或TS2与兼容脚注",
+        "paragraphs": [
+          "1.0a/2.0/3.0所核段要求收到一份TS1后再发送至少1024份TS1。4.0～7.0正文改成收到一份TS1或TS2后；4.0脚注55、5.0脚注67、6.0脚注74、7.0脚注91同时允许旧TS1起算行为，并认为新行为更稳健。",
+          "不能把后者的许可写成旧实现必错，也不能把当前正文简化成“随便收到任意包后”。该1024份全为本端TS1发送数，锚点是收到的指定训练序列。网页旧概述的“首个TS”在本轮补明确。"
+        ],
+        "referenceIndices": [
+          472,
+          473,
+          474,
+          475,
+          476,
+          477,
+          478,
+          479,
+          480,
+          481,
+          482,
+          483,
+          484,
+          485
+        ]
+      },
+      {
+        "id": "polling-active-ordered-timeout-fallback",
+        "title": "超时后的else顺序：先容错Configuration，再Compliance，再Detect",
+        "paragraphs": [
+          "2.0～7.0所核正文先检查容错Configuration；不成立时，若EI退出资格不足，或任一D中Lane有8个连续PAD/PAD TS1且请求Compliance、未请求Loopback，则进Polling.Compliance；还不成立才Detect。",
+          "不要因为别的Lane报告了Compliance就跳过前一个已成立的Configuration分支。1.0a旧文本的Detect项只明确“没有收到任何PAD TS1/TS2”等条件；若已有零散接收却没有8份/发送资格，工具保留历史文字未覆盖组合，不替它补后期通用else。"
+        ],
+        "referenceIndices": [
+          472,
+          473,
+          474,
+          475,
+          476,
+          477,
+          478,
+          479,
+          480,
+          481,
+          482,
+          483,
+          484,
+          485
+        ]
+      },
+      {
+        "id": "polling-active-enter-compliance-on-entry",
+        "title": "Enter Compliance进入前已置位：2.0～7.0不先凑1024份",
+        "paragraphs": [
+          "2.0～7.0所核Active条款规定，Link Control2 Enter Compliance在进入之前已经为1时，应立即进Polling.Compliance，不发送TS1。不是先等24ms，也不是先发满1024再转。",
+          "本轮未从1.0a段找到同一配置位入口，因此查询对1.0a选择该入口会提示版本范围。运行期软件写入恰逢其它出口的同拍优先级不由这个“进入前已置位”示例推定。"
+        ],
+        "referenceIndices": [
+          473,
+          474,
+          475,
+          476,
+          477,
+          478,
+          479,
+          480,
+          481,
+          482,
+          483,
+          484,
+          485
+        ]
+      },
+      {
+        "id": "polling-active-count-origins",
+        "title": "两个1024计数起点不能合并，接收8份也不是全Link共用",
+        "paragraphs": [
+          "普通出口的1024从本状态内发送累计；超时容错出口的1024还要从首次合格锚点接收之后计算。若先发1000份、再收首份、又发24份，普通发送总数已达1024，但容错首收后只有24。",
+          "同样，每条Lane的连续8份须独立取证。SKP间隔、反相、序列种类及字段有效性应在本版接收规则中先处理，再给本页查询合格集合，不能把任意8次RxValid当TS计数。"
+        ],
+        "referenceIndices": [
+          472,
+          475,
+          476,
+          477,
+          478,
+          479,
+          482,
+          483,
+          484,
+          485
+        ]
+      },
+      {
+        "id": "polling-configuration-entry-actions",
+        "title": "Configuration入口：修正RX极性、发PAD TS2，后期还有Margin及档位状态",
+        "paragraphs": [
+          "七版对应段均要求必要时修正接收极性，在D中Lane发送Link/Lane均PAD的TS2。2.0起所核段要求Transmit Margin字段清000b；4.0～7.0还列出必要时更新Polling.Compliance序列档位。",
+          "3.0～6.0在此广告全部支持速率；7.0限制在2.5～32GT/s之间的支持速率，并禁止在本状态广告更高值。该广告边界与链路当前2.5GT/s速率、最终可支持更高速率是不同量。"
+        ],
+        "referenceIndices": [
+          486,
+          487,
+          488,
+          489,
+          490,
+          491,
+          492,
+          493,
+          494
+        ]
+      },
+      {
+        "id": "polling-configuration-independent-eight-sixteen",
+        "title": "Configuration出口的8收与16发：16份从第一份TS2之后起算",
+        "paragraphs": [
+          "在D中任一Lane收到8个连续PAD/PAD TS2，并且收到一份TS2之后已发16份TS2，才满足向Configuration的训练计数门槛。不能用进入状态之前发出的TS2抵账，也不是必须等收完第8份才开始发16份。",
+          "1.0a还根据同组Lane是否共同广告更高速率分Configuration/Polling.Speed；2.0～7.0不再在这里选Polling.Speed。否则名义48ms到期回Detect，实际到期事件须按适用容差/实现定时器确认。"
+        ],
+        "referenceIndices": [
+          486,
+          487,
+          488,
+          489,
+          490,
+          491,
+          492,
+          493,
+          494
+        ]
+      },
+      {
+        "id": "polling-speed-historical-scope",
+        "title": "1.0a Polling.Speed的历史正文不代表Gen1已经定义5GT/s",
+        "paragraphs": [
+          "1.0a §4.2.6.2.3/.4确实保留共同更高速率时进入Polling.Speed、先EI、切共同最高速再回Active的机制描述。但同版p160脚注19明示只定义一种速率，p161的Data Rate Identifier仅bit1=2.5有效。",
+          "因此应把这段当作当时保留的协商机制文字，不能据此宣称Gen1有标准5GT/s。2.0～7.0对应Speed段明确不可达：初次L0只在2.5建立，之后从L0经Recovery升速。"
+        ],
+        "referenceIndices": [
+          495,
+          496,
+          497,
+          498,
+          499,
+          500,
+          501,
+          502,
+          503
+        ]
+      },
+      {
+        "id": "polling-initial-rate-versus-capability",
+        "title": "高速Port初次训练也看低速Polling，不能拿最高GT/s直接解释这段波形",
+        "paragraphs": [
+          "2.0～7.0的所核说明明确：即使两端支持更高速率，也先在2.5GT/s进入L0；Configuration.Complete登记对端速率能力，然后任一端可从L0进入Recovery发起升速。",
+          "所以看到2.5GT/s TS并不证明设备只有Gen1能力，也不等于FM最终不能协商。能力、当前速率、当前子状态及本条款版本需要一并记录；本页不覆盖所有特殊启动/测试入口。"
+        ],
+        "referenceIndices": [
+          496,
+          497,
+          498,
+          499,
+          500,
+          501
+        ]
+      },
+      {
+        "id": "polling-active-version-gate-query",
+        "title": "查询：七版Polling.Active的普通出口与超时Lane政策",
+        "paragraphs": [
+          "输入D、已有连续8份合格TS的G、曾退出EI的E三个Lane掩码，再给预定集合S或数量N、本端发送总数/首收后数、计数锚点和实际计时器到期事件。掩码bit对应观察Lane编号，不把物理总宽度当D。",
+          "仅检查已列门槛，合格序列判定由使用者先按对应版本完成。查询保留1.0a未明确的组合、4.0起兼容计数路径以及普通成功与超时同拍的时序待核，不声称实现完整LTSSM。"
+        ],
+        "referenceIndices": [
+          472,
+          473,
+          474,
+          475,
+          476,
+          477,
+          478,
+          479,
+          480,
+          481,
+          482,
+          483,
+          484,
+          485
+        ]
+      },
+      {
+        "id": "polling-configuration-counter-query",
+        "title": "查询与原创时序：连续8份TS2、首收后16份发送与版本出口",
+        "paragraphs": [
+          "输入合格TS2连续数、是否已经收到首份、本端在首收后发送数量和实际超时事件，观察8/16两个门槛。1.0a的“共同更高速率”输入只演示历史条文假设，不能授予Gen1额外速率能力。",
+          "2.0～7.0相同门槛满足后进入Configuration.Linkwidth.Start。到期与门槛恰好同拍时保留待核先后；名义48ms不是本工具替硬件选择的精确截止。"
+        ],
+        "referenceIndices": [
+          486,
+          487,
+          488,
+          489,
+          490,
+          491,
+          492,
+          493,
+          494,
+          495,
+          496
         ]
       }
     ]
@@ -14322,14 +15080,14 @@
     "checks": "不要简单用GT/s乘lane数就宣称应用带宽；PAM4是调制方式，不是PCIe事务类型。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 12,
-    "status": "选定OS结构与识别规则已深化 · 持续逐版核对",
+    "status": "选定Polling七版及早期TS字段已深化 · 持续核读",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-24",
+    "reviewed": "2026-10-25",
     "protocolReferences": [
       {
         "section": "4",
@@ -16002,9 +16760,207 @@
         "title": "L0s仅适用于NFM且没有Retimer",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R68直接核Base6.0 p623正文与Implementation Note；FM与Retimer不支持L0s。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.4.1",
+        "page": 160,
+        "pdfPage": 160,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.4.1",
+        "page": 161,
+        "pdfPage": 161,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.4.1",
+        "page": 178,
+        "pdfPage": 178,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.4.1",
+        "page": 180,
+        "pdfPage": 180,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.4.1",
+        "page": 229,
+        "pdfPage": 229,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.4.1",
+        "page": 179,
+        "pdfPage": 179,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.4.1",
+        "page": 181,
+        "pdfPage": 181,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.4.1",
+        "page": 228,
+        "pdfPage": 228,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.4.1",
+        "page": 227,
+        "pdfPage": 227,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.4.1",
+        "page": 230,
+        "pdfPage": 230,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.2.1",
+        "page": 173,
+        "pdfPage": 173,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.2.3",
+        "page": 174,
+        "pdfPage": 174,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.1",
+        "page": 457,
+        "pdfPage": 457,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.2.1",
+        "page": 458,
+        "pdfPage": 458,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.1",
+        "page": 538,
+        "pdfPage": 538,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.1",
+        "page": 539,
+        "pdfPage": 539,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.3",
+        "page": 544,
+        "pdfPage": 544,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.3",
+        "page": 545,
+        "pdfPage": 545,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
       }
     ],
-    "referenceStatus": "R68核6/7训练序列、EI/FTS/SDS选定正文及字段；原始/Modified/EQ/EFM与Data Stream识别上下文分开，不声称七代全章覆盖。",
+    "referenceStatus": "R74核七份正式版所引Polling、1.0a/2.0/3.0选定TS字段及状态边界；非整章、所有中间修订或真实链路验证。",
     "details": [
       {
         "id": "encoding-rate-mode-matrix",
@@ -17812,6 +18768,254 @@
           149,
           150,
           151
+        ]
+      },
+      {
+        "id": "early-ts1-sixteen-symbol-map",
+        "title": "1.0a TS1逐Symbol图：16个解码Symbol不是16个线上bit",
+        "paragraphs": [
+          "在所核1.0a格式中，S0是COM(K28.5)，S1/S2是Link/Lane，S3为N_FTS，S4为Data Rate Identifier，S5为Training Control，S6～S15为D10.2的TS1标识。训练序列不扰码但进行8b/10b编码。",
+          "图画128bit解码Symbol值区，每个符号还须区分D/K类型；线上是16×10=160bit。不要把COM的解码值或图中文字顺序直接作为串行10bit码组。"
+        ],
+        "referenceIndices": [
+          152,
+          153
+        ],
+        "packetLayouts": [
+          {
+            "id": "early-ts1-1a-r74",
+            "title": "Base1.0a TS1 · 16个解码Symbol",
+            "version": "Base1.0a · 8b/10b",
+            "headerBits": 128,
+            "lengthLabel": "128bit解码Symbol区，另有D/K属性；线上160bit，不是TLP头",
+            "rowLabel": "解码符号组",
+            "rows": [
+              [
+                {
+                  "label": "COM",
+                  "width": 8,
+                  "key": "s0",
+                  "help": "S0，K28.5，D/K属性必须一并保留"
+                },
+                {
+                  "label": "Link",
+                  "width": 8,
+                  "key": "s1",
+                  "help": "S1：本Active使用PAD"
+                },
+                {
+                  "label": "Lane",
+                  "width": 8,
+                  "key": "s2",
+                  "help": "S2：本Active使用PAD"
+                },
+                {
+                  "label": "N_FTS",
+                  "width": 8,
+                  "key": "s3",
+                  "help": "S3：对端所需FTS数，不是本状态1024计数"
+                }
+              ],
+              [
+                {
+                  "label": "Rate",
+                  "width": 8,
+                  "key": "s4",
+                  "help": "S4：1.0a只有bit1广告2.5"
+                },
+                {
+                  "label": "Ctrl",
+                  "width": 8,
+                  "key": "s5",
+                  "help": "S5：Hot Reset/Disable/Loopback/Disable Scrambling，[7:4]保留"
+                },
+                {
+                  "label": "TS1 ID",
+                  "width": 8,
+                  "key": "id",
+                  "help": "S6～15，每个为D10.2"
+                },
+                {
+                  "label": "TS1 ID",
+                  "width": 8,
+                  "key": "id",
+                  "help": "S6～15，每个为D10.2"
+                }
+              ],
+              [
+                {
+                  "label": "TS1 ID",
+                  "width": 8,
+                  "key": "id",
+                  "help": "S6～15，每个为D10.2"
+                },
+                {
+                  "label": "TS1 ID",
+                  "width": 8,
+                  "key": "id",
+                  "help": "S6～15，每个为D10.2"
+                },
+                {
+                  "label": "TS1 ID",
+                  "width": 8,
+                  "key": "id",
+                  "help": "S6～15，每个为D10.2"
+                },
+                {
+                  "label": "TS1 ID",
+                  "width": 8,
+                  "key": "id",
+                  "help": "S6～15，每个为D10.2"
+                }
+              ],
+              [
+                {
+                  "label": "TS1 ID",
+                  "width": 8,
+                  "key": "id",
+                  "help": "S6～15，每个为D10.2"
+                },
+                {
+                  "label": "TS1 ID",
+                  "width": 8,
+                  "key": "id",
+                  "help": "S6～15，每个为D10.2"
+                },
+                {
+                  "label": "TS1 ID",
+                  "width": 8,
+                  "key": "id",
+                  "help": "S6～15，每个为D10.2"
+                },
+                {
+                  "label": "TS1 ID",
+                  "width": 8,
+                  "key": "id",
+                  "help": "S6～15，每个为D10.2"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "解码Symbol区",
+                "size": "16×8=128bit"
+              },
+              {
+                "label": "8b/10b编码后",
+                "size": "16×10=160wire bit"
+              }
+            ],
+            "note": "每行四个Symbol；Symbol编号等于图中byte偏移。图画解码值，不提供串行10bit码组或Running Disparity。"
+          }
+        ],
+        "packetReading": "从左到右按S0～S15；每Symbol画8bit解码值，D/K类型另见说明。不把本通用图组件的“Header”标签解释成TLP。"
+      },
+      {
+        "id": "early-training-rate-bit-evolution",
+        "title": "1.0a、2.0、3.0的S4：支持位与保留位逐版改变",
+        "paragraphs": [
+          "1.0a仅bit1表示2.5，其余速率位保留；2.0增加bit2=5且广告5须同时广告2.5；3.0增加bit3=8，bit3置1须bit2也置1，bit1必须1。不能将后期32/64/128字段直接叠到早期字节。",
+          "bit6/7也并非普通速率位：2.0/3.0按角色/子状态用于自主改变、去加重及speed_change，不能在Polling.Active随意置speed_change来跳过初始训练。"
+        ],
+        "referenceIndices": [
+          153,
+          154,
+          155,
+          156
+        ],
+        "table": {
+          "columns": [
+            "本版TS1 S4",
+            "支持位",
+            "其它边界"
+          ],
+          "rows": [
+            [
+              "1.0a",
+              "bit1：2.5",
+              "bit0、[7:2]保留"
+            ],
+            [
+              "2.0",
+              "bit1：2.5；bit2：5",
+              "bit0、[5:3]保留；bit6/7依上下文"
+            ],
+            [
+              "3.0",
+              "bit1：2.5；bit2：5；bit3：8",
+              "bit0、[5:4]保留；bit6/7依上下文"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "early-training-control-bit4",
+        "title": "同为S5 bit4：1.0a保留，2.0/3.0 TS1为Compliance Receive",
+        "paragraphs": [
+          "1.0a TS1的S5[7:4]保留；2.0 TS1 bit4成为Compliance Receive，支持5GT/s的组件须实现，只有2.5的接收者可选且未实现时按0接收。3.0相应规则扩展到支持5及以上。",
+          "2.0 TS2的bit4仍保留，不能看到同一个Symbol号就照抄TS1含义。Hot Reset、Disable Link、Loopback三控制位互斥；多位同时置位的行为不能由网页编造优先级。"
+        ],
+        "referenceIndices": [
+          152,
+          153,
+          157,
+          158,
+          159,
+          156
+        ]
+      },
+      {
+        "id": "early-consecutive-ts-is-not-arbitrary-eight",
+        "title": "连续8份不能是任意8个训练包：3.0已按编码区分匹配对象",
+        "paragraphs": [
+          "3.0明确8b/10b TS1/TS2连续性要求Symbol6匹配上一份；128b/130b则比较S6～S9，并按保留位规则处理。它们是接收预处理条件，不是仅统计8次“识别到某种TS”。",
+          "本轮Polling查询只接收已经确认连续8份的Lane集合，不解析真实波形。不能将8b/10b的S6标识直接套到8GT/s均衡字段，也不能因S6不同仍简单把TS1与TS2混计。"
+        ],
+        "referenceIndices": [
+          160,
+          156,
+          161
+        ]
+      },
+      {
+        "id": "early-receive-reserved-parity-boundary",
+        "title": "早期3.0已区分保留位发送0与接收不判无效，校验仍用实收值",
+        "paragraphs": [
+          "3.0要求发送端为Reserved发0；接收端不得只因保留位实收值判断TS无效。若它位于校验范围，仍使用实收值计算；明确要求相同的Symbol中，接收端可选择比较其中保留位以判断连续性。",
+          "这不是任意功能控制可忽略：非保留的PAD、请求位、有效性及状态条件仍须满足。也不能把已收到的保留位强制改0后再算校验，制造假的“通过”。"
+        ],
+        "referenceIndices": [
+          160
+        ]
+      },
+      {
+        "id": "polling-training-count-time-units",
+        "title": "计数换时间只算纯序列：2.5GT/s时1024份TS为65.536µs",
+        "paragraphs": [
+          "以16Symbol、8b/10b编码的训练序列为例，单份160wire bit，在2.5GT/s单Lane占64ns；8份为512ns，16份为1.024µs，1024份为65.536µs。这里不是协议有效载荷带宽，也不乘Lane数来缩短同Lane计数时间。",
+          "这些纯发送时间不含SKP插入、等待首收、发送/接收相位、电气稳定或状态定时器，因此不能把24ms/48ms替换成这些数值。查询保留计数与到期事件为独立输入。"
+        ],
+        "referenceIndices": [
+          152,
+          153,
+          162,
+          163
+        ]
+      },
+      {
+        "id": "polling-gen7-advertisement-ceiling",
+        "title": "7.0 Polling广告上限32GT/s：不能把Compliance特殊接收编码当常规广播",
+        "paragraphs": [
+          "6.0 Active广告本端支持速率，并注释FM支持可能意味着FM协商后支持更高速度。7.0 Active与Configuration则明确只广告2.5～32之间本端支持的速率，不得在这两个状态广告更高速度。",
+          "7.0另说明具64或以上能力端口在Compliance请求上下文可收到FM支持=1且Supported Link Speeds为10111b或10011b的特殊组合。特殊接收/测试请求不等于正常Polling发射可任意广播128GT/s。"
+        ],
+        "referenceIndices": [
+          164,
+          165,
+          166,
+          167,
+          168,
+          169
         ]
       }
     ]
@@ -130688,8 +131892,8 @@
     "prerequisites": "每个检测机制的触发条件、阈值、过滤和功耗状态依接口与产品；不能把LOS取反就当成完整Link Up。",
     "example": "端口能检测到终端但没有训练序列时，Detect可以通过而Polling失败；有噪声也可能看到signal detect但没有有效数据。",
     "checks": "按终端 → 波形/idle → CDR/valid → 训练序列分段观察；模型的检测行为是否真实模拟需确认。",
-    "status": "选定OS结构与识别规则已深化 · 持续逐版核对",
-    "reviewed": "2026-10-24",
+    "status": "选定Polling七版及早期TS字段已深化 · 持续核读",
+    "reviewed": "2026-10-25",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -131235,9 +132439,163 @@
         "title": "排查OS识别：先记录观察点，再判接收条件",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R68核正式6.0/7.0选定TS、EIOS/EIEOS、FTS/SDS格式与接收条件；视觉核7.0 p486/501/511。各块绑定本版，不代表全章、全部代际或模拟链路验证。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.2.1",
+        "page": 173,
+        "pdfPage": 173,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.2.1",
+        "page": 196,
+        "pdfPage": 196,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.2.1",
+        "page": 197,
+        "pdfPage": 197,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.6.2.1",
+        "page": 251,
+        "pdfPage": 251,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.6.2.1",
+        "page": 252,
+        "pdfPage": 252,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.1",
+        "page": 538,
+        "pdfPage": 538,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.1",
+        "page": 539,
+        "pdfPage": 539,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.2.1",
+        "page": 290,
+        "pdfPage": 290,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.2.1",
+        "page": 291,
+        "pdfPage": 291,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.2.1",
+        "page": 292,
+        "pdfPage": 292,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.2.3",
+        "page": 174,
+        "pdfPage": 174,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.6.2.3",
+        "page": 258,
+        "pdfPage": 258,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.3",
+        "page": 544,
+        "pdfPage": 544,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.2.3",
+        "page": 545,
+        "pdfPage": 545,
+        "title": "R74 Polling与早期训练选定正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R74逐版核1.0a/2.0/3.0/4.0/5.0/6.0/7.0所引Polling或早期TS正文；视觉核1.0a p174及4.0 p291脚注。所引本地印刷/物理页一致。仅选定条款，不代表整章、所有中间修订或硬件已核。"
       }
     ],
-    "referenceStatus": "R68核6/7训练序列、EI/FTS/SDS选定正文及字段；原始/Modified/EQ/EFM与Data Stream识别上下文分开，不声称七代全章覆盖。",
+    "referenceStatus": "R74核七份正式版所引Polling、1.0a/2.0/3.0选定TS字段及状态边界；非整章、所有中间修订或真实链路验证。",
     "details": [
       {
         "title": "Receiver Detect握手与RxStatus解释",
@@ -132568,6 +133926,76 @@
           46,
           47,
           48
+        ]
+      },
+      {
+        "id": "detect-result-set-not-linkwidth",
+        "title": "Receiver Detect的D集合不是已协商Link宽度",
+        "paragraphs": [
+          "Polling在本次Detect检出Receiver的Lane上发送训练序列；D不代表所有物理Lane，也不是Configuration之后已经选好的Link宽度。成功的容错出口可继续在Configuration完成后续训练。",
+          "故障日志最好保存各Lane的检测结果与后续TS证据，不只保留“x4 capable”或“当前x1”两个宽度值。此为按状态职责整理的观察方法。"
+        ],
+        "referenceIndices": [
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55
+        ]
+      },
+      {
+        "id": "polling-ei-observation-lifetime",
+        "title": "曾退出EI是自进入Active以来的历史，不是当前RxElecIdle电平",
+        "paragraphs": [
+          "超时容错条件问Lane自进入Polling.Active后是否至少一次退出EI。它不是在超时采样瞬间看谁当前仍不空闲，也不能沿用前一轮Active留下的历史标记。",
+          "接收器存在、退出EI、已得连续合格TS与最终数据可用是不同层证据。一个Lane曾退出EI但后来没有连续TS，仍可能只满足其中一项。"
+        ],
+        "referenceIndices": [
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55
+        ]
+      },
+      {
+        "id": "polling-predetermined-policy-is-platform-evidence",
+        "title": "预定数量/集合必须有实现证据，不按看到哪条好Lane临时挑选",
+        "paragraphs": [
+          "2.0预定N、3.0起预定S均为实现相关；诊断者若不知道值，应该保留“实现政策待核”。不能为让结果通过，看到Lane0和3有信号就倒推S={0,3}。",
+          "本轮Lane图让D/G/E/S并列显示，2.0另外使用N；这是教学记录方式，不要求厂商RTL必须使用这些内部信号名或位向量。"
+        ],
+        "referenceIndices": [
+          50,
+          51,
+          52,
+          53,
+          56,
+          57,
+          58,
+          54,
+          55
+        ]
+      },
+      {
+        "id": "polling-complement-versus-polarity-versus-reversal",
+        "title": "反相TS、RX极性修正、Lane编号不是同一个动作",
+        "paragraphs": [
+          "Active允许接收训练序列或其complement；Configuration要求必要时修正Receiver极性。不能把“接收反相符号”解释成任意交换Lane编号，也不能用Lane reversal设置代替电气极性处理。",
+          "本轮仅核对应Polling动作；完整Lane reversal/deskew与后续Configuration编号规则仍由各自条目继续核读。查询里的Lane掩码描述观察编号，不执行任何反转。"
+        ],
+        "referenceIndices": [
+          49,
+          52,
+          53,
+          59,
+          60,
+          61,
+          62
         ]
       }
     ]

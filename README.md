@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r73`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r74`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -350,3 +350,10 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [复位前提查询](https://mgc455.github.io/pcie_study/#feature/174/detail/reset-release-preflight-query)
 - [MacCLK事件序列](https://mgc455.github.io/pcie_study/#feature/170/detail/macclk-event-trace-query)
 - [RxCLK尾窗查询](https://mgc455.github.io/pcie_study/#feature/169/detail/rxguard-cycle-budget-query)
+
+## R74 Polling and fourth-stage review
+
+- [七版Polling.Active查询](https://mgc455.github.io/pcie_study/#feature/4/detail/polling-active-version-gate-query)
+- [Polling.Configuration计数查询](https://mgc455.github.io/pcie_study/#feature/4/detail/polling-configuration-counter-query)
+- [七版正文定位表](https://mgc455.github.io/pcie_study/#feature/4/detail/polling-seven-revision-locators)
+- R71～R74阶段回顾见首页当前优先级：配置身份/Header → 翻译失效 → PHY/Retimer轮换。
