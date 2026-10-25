@@ -356,4 +356,4 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [七版Polling.Active查询](https://mgc455.github.io/pcie_study/#feature/4/detail/polling-active-version-gate-query)
 - [Polling.Configuration计数查询](https://mgc455.github.io/pcie_study/#feature/4/detail/polling-configuration-counter-query)
 - [七版正文定位表](https://mgc455.github.io/pcie_study/#feature/4/detail/polling-seven-revision-locators)
-- R71～R74阶段回顾见首页当前优先级：配置身份/Header → 翻译失效 → PHY/Retimer轮换。
+- [R71～R74阶段回顾与当前优先级](https://mgc455.github.io/pcie_study/#updates)：配置身份/Header → 翻译失效 → PHY/Retimer轮换。
