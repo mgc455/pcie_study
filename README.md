@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r83`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-25-r84`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -427,3 +427,10 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [预取容量与配置窗口](https://mgc455.github.io/pcie_study/#feature/147/detail/r83-prefetch-plan-query)
 - [32bit长度与4GiB边界](https://mgc455.github.io/pcie_study/#feature/147/detail/r83-transfer-length-query)
 - 新窗口1/4；下一轮CMA/SPDM，保留OS与PHY轮换，R86总结。
+
+## R84 CMA / SPDM identity and measurements
+
+- [证书请求字段与位图](https://mgc455.github.io/pcie_study/#feature/128/detail/r84-get-certificate-request)
+- [测量请求字段与位图](https://mgc455.github.io/pcie_study/#feature/128/detail/r84-measurement-request-map)
+- [测量签名覆盖范围](https://mgc455.github.io/pcie_study/#feature/128/detail/r84-measurement-signature-log)
+- 当前窗口2/4；下轮早期Ordered Sets，再与PHY固件/内存轮换，R86总结。
