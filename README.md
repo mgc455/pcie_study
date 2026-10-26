@@ -507,3 +507,7 @@ R92将117条历史记录归并为固定24项验收任务，并登记37项来源�
 ## R98 四轮总结与中断验收
 
 [四轮总结](https://mgc455.github.io/pcie_study/#updates) · [MSI与EMD版本地图](https://mgc455.github.io/pcie_study/#feature/53/detail/r98-msi-revision-and-emd-map) · [PVM角色矩阵](https://mgc455.github.io/pcie_study/#feature/54/detail/r98-pvm-role-and-version-matrix)。本轮52/53/54/56通过，累计完整功能8/183，验收维度129/1464；剩175项。R95～R98平均2项/轮，剩40轮需4.375项/轮，当前速度不支持R138完成保证；不自动延期。R99收消息分组，R102总结；每日任务暂停。
+
+## R99 消息分组批验
+
+[VDM包图与字段](https://mgc455.github.io/pcie_study/#feature/58/detail/r99-vdm-header-fields) · [错误消息/ECS](https://mgc455.github.io/pcie_study/#feature/60/detail/r99-err-message-fields) · [就绪通知字段](https://mgc455.github.io/pcie_study/#feature/61/detail/r99-drs-control-frs-queue)。57/58/60完整通过，累计11/183、157维度；61版本/RTR示例差异保留。R98队列60/61名称错位已在本轮纠正，余39轮为预算，R102总结；每日任务暂停。
