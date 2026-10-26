@@ -158,3 +158,31 @@ for relative in public_files:
     assert not re.search(r'/(?:Users|home)/[^\s\"\x27<>/]+/',text), f'Home directory in publication file: {relative}'
 assert len(public_files)==28
 print(f'PASS: {len(features)} features, Gen1–Gen7, source links, public-content boundary, local-only PDF reader, static assets, JSON and HTML structure.')
+
+# V1 scope is frozen; acceptance requires evidence, never a note-count threshold.
+m=json.loads((ROOT/'content/maintenance.json').read_text(encoding='utf-8'))
+if 'releasePlan' in m:
+    plan=m['releasePlan'];units=plan['units'];keys={x['id'] for x in plan['criteria']}
+    assert len(keys)==8 and len(units)==183
+    assert plan['scopeFeatureIds']==[u['featureId'] for u in units]==[f['id'] for f in features]
+    assert len({u['id'] for u in units})==len(units)
+    assert sum(p['budget'] for p in plan['phases'])==plan['targetRounds']==48
+    assert plan['targetRound']-plan['firstRound']+1==48
+    assert plan['remainingPlannedRounds']==max(0,48-plan['completedRounds'])
+    assert plan['completedRounds']==len(plan['roundLedger'])
+    assert len({r['round'] for r in plan['roundLedger']})==len(plan['roundLedger'])
+    assert plan['nextReviewRound']%4==2 and plan['nextReviewRound']>=plan['nextRound']
+    for u in units:
+        assert set(u['criterionReviews'])==keys
+        assert u['status'] in {'awaiting-acceptance','blocked','accepted','merged-accepted'}
+        for review in u['criterionReviews'].values():
+            assert review['status'] in {'pending','passed','not-applicable','blocked'}
+            if review['status'] in {'passed','not-applicable'}:
+                assert review['evidence'] and review['note'], 'Acceptance needs explicit evidence/reason'
+        if u['status'] in {'accepted','merged-accepted'}:
+            assert all(r['status'] in {'passed','not-applicable'} for r in u['criterionReviews'].values())
+        if u['status']=='merged-accepted':assert u.get('mergeTargets') and u.get('uniqueSemanticsReviewed')
+        if u['status']=='blocked':assert u.get('blockers')
+    for r in plan['reuseGroups']:assert set(r['featureIds'])<=set(plan['scopeFeatureIds'])
+    assert '#completion' in raw and 'function renderCompletion(' in raw
+    print('PASS: fixed V1 acceptance scope, evidence gates and round budget.')
