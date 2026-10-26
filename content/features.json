@@ -129067,7 +129067,7 @@
     "example": "相同链路在某一实现中由MAC完成编码，在另一种接口架构中由PHY侧PCS完成。定位错误时先确定Original/SerDes PIPE，再追数据。",
     "checks": "先确认采用的PIPE版本、接口架构、运行速率和产品版本；再标出数据、时钟、复位、控制四类接口。不能以文件名含PCS就推断其承担所有编码。",
     "status": "体系条目已整理 · 按来源范围核读",
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-26",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -129107,6 +129107,50 @@
         "title": "PCIe PHY Layer",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。PIPE 7.1仅用于该版本接口规则，不反推旧产品已实现全部新功能。",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2",
+        "page": 17,
+        "pdfPage": 17,
+        "title": "接口规范不固定内部结构及Base优先级",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2.6",
+        "page": 23,
+        "pdfPage": 23,
+        "title": "SerDes与低引脚数接口两个轴",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2.6",
+        "page": 24,
+        "pdfPage": 24,
+        "title": "表2-1能力限定",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.1",
+        "page": 28,
+        "pdfPage": 28,
+        "title": "本产品只支持SerDes及输入PCLK",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
       }
     ],
     "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。",
@@ -129149,6 +129193,58 @@
           ]
         },
         "id": "block-1"
+      },
+      {
+        "id": "r96-three-boundary-contracts",
+        "title": "先分三份契约：线上的PCIe、MAC/PHY间的PIPE、厂商内部结构",
+        "paragraphs": [
+          "PCIe Base规定链路对端可观察的协议与电气行为；PIPE规定控制器与PHY之间的数据、时钟、控制/状态接口；uPCS、Raw PCS、PMD和CM则用于阅读特定交付的内部职责。三个层次互相关联，却不是同一张层级树的固定模块名。",
+          "PIPE7.1明确保留内部实现自由度；它给LTSSM的接口使用说明也可能只是实现指导。遇到Base与PIPE冲突，按对应规范优先关系处理；不能用某张内部RTL框图覆盖线上协议要求。",
+          "Original/SerDes是数据路径架构，legacy/low-pin-count是控制接口组织，PCLK输入/输出是时钟拓扑。PIPE7.1要求SerDes配低引脚数接口；其Gen6-capable及以后按能力静态选择，不是降速到Gen1便动态改回Original。本轮不把7.1后期规则倒推到所有早期交付。",
+          "例如当前Gen6 PCS1.75a明确只支持SerDes和PCLK输入；代码中的通用Original注释或未使用分支不能推翻产品支持声明。这里只收口分层含义，完整Gen1～Gen7 Base物理层演进和全部中间PIPE修订仍见各自条目。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "观察边界",
+            "应查询的契约",
+            "常见误判"
+          ],
+          "rows": [
+            [
+              "PCIe链路",
+              "TLP/FLIT、训练、链路状态及电气规则",
+              "LTSSM L0不由一个内部done直接代替"
+            ],
+            [
+              "PIPE边界",
+              "Data/Valid、接口时钟和本次控制操作",
+              "Message Bus应答不等于Link Up"
+            ],
+            [
+              "产品内部",
+              "uPCS适配、管理软宏、PMA硬宏与固件",
+              "内部模块名和代码目录不是标准必选清单"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 164,
+            "detailId": "pipe-signal-architecture",
+            "label": "PIPE架构与能力矩阵"
+          },
+          {
+            "featureId": 174,
+            "detailId": "phy-rate-pma-handshake-not-pipe-ack",
+            "label": "产品Req/Ack与PIPE握手分开"
+          }
+        ]
       }
     ]
   },
@@ -129224,7 +129320,7 @@
         "pdfPage": 28,
         "title": "Gen6 PCS的PIPE架构",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pipe-7.1",
@@ -130895,7 +130991,7 @@
         "page": 55,
         "pdfPage": 55,
         "title": "SerDes切速有TX/RX两条宽度路径，RxCLK不是PCLK许可线",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R64核读所列正文；PIPE7.1本地副本印刷/物理页按本文件定位，保留官网189页与本地190页差异，未声称逐页同版。Gen6 3.02a仅产品规则；无RTL/模拟/硅片验证。"
       },
       {
@@ -133412,7 +133508,7 @@
     "example": "PIPE输入数据正常但PMA侧数据错位时，应先检查位序、宽度、valid、旁路和时钟关系，不能直接怀疑模拟眼图。",
     "checks": "分别画出每个接口的位宽、有效条件和时钟；核对同一link的lane配置一致性。",
     "status": "体系条目已整理 · 按来源范围核读",
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-26",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -133429,7 +133525,7 @@
         "pdfPage": 30,
         "title": "uPCS时钟职责",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pcs-1.75",
@@ -133440,10 +133536,152 @@
         "pdfPage": 33,
         "title": "Lane TX/RX数据通路",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.3.1",
+        "page": 30,
+        "pdfPage": 30,
+        "title": "PCLK输入、参考控制与同Link相位",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.3.2",
+        "page": 32,
+        "pdfPage": 32,
+        "title": "数据节流示例及恢复时钟",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.4",
+        "page": 33,
+        "pdfPage": 33,
+        "title": "每Lane收发数据适配及旁路",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "1.2.3",
+        "page": 18,
+        "pdfPage": 18,
+        "title": "所支持宽度与RX/TX约束",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.1",
+        "page": 28,
+        "pdfPage": 28,
+        "title": "SerDes架构产品范围",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。",
+    "details": [
+      {
+        "id": "r96-upcs-clock-data-map",
+        "title": "uPCS不是第二套协议栈：数据适配、时钟协调和控制面分开",
+        "paragraphs": [
+          "本节限定PCS1.75a配PHY3.02a。uPCS位于控制器PIPE与产品PHY并行边界之间，组织每Lane发送/接收适配以及速率、电源和时钟控制；不能因为名称含PCS，就默认它完成全部PCIe编码、扰码、deskew或LTSSM。",
+          "本产品PCLK由MAC侧提供，每Lane的PCLK对应PIPE输入时钟，同Link输入须相位同步。RX还提供每Lane恢复相关RxCLK；参考时钟服务速率/功耗控制。PCLK、RX恢复域和管理参考域各司其职，不可只凭频率相同把所有域直接合网。",
+          "正常分析先确认生成模式、Rate/Width及输入PCLK，再确定该Lane实际使能的适配分支；控制请求在控制域推进，数据在对应TX/RX域传输。完成/valid/对齐分别观察，原理和既有控制条目复用，不新增另一套握手定义。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "路径",
+            "核读重点",
+            "不能替代的证据"
+          ],
+          "rows": [
+            [
+              "TX并行入口",
+              "数据、有效节奏和目标位宽一起解释",
+              "只看Data跳变无法证明每拍可消费"
+            ],
+            [
+              "RX并行出口",
+              "恢复时钟、有效及MAC对齐分别检查",
+              "RxValid不是完整Link就绪证明"
+            ],
+            [
+              "管理控制",
+              "参考域保持速率/功耗流程推进",
+              "数据时钟停了不等于所有控制均可停"
+            ],
+            [
+              "同Link多Lane",
+              "核PCLK相位与配置一致性",
+              "每Lane实例化不等于每Lane可任意选择"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 170,
+            "detailId": "product-clock-domain-boundary",
+            "label": "产品PLL与输入PCLK时钟域"
+          },
+          {
+            "featureId": 174,
+            "detailId": "g6-lane-config-four-phase",
+            "label": "复用Lane配置四相闭环"
+          }
+        ]
+      },
+      {
+        "id": "r96-upcs-valid-and-bypass",
+        "title": "重排、节流和旁路：框图里有模块，不等于该数据经过它",
+        "paragraphs": [
+          "PCS1.75a每Lane发送图包含有效节奏适配、位序重排和可旁路路径；FreqStep在本版图中明确标unused。不能看到代码或图中存在一个名字，就声明频率转换块必然工作，也不能把“宽度控制”理解成任意Rate/Width组合可用。",
+          "所核固定PCLK节流表中，低速模式并不是每个PCLK都承载一个新的有效并行字；需要根据支持配置核有效拍间隔。上游valid和下游数据使能要沿实际路径对应，不能仅比较两端总线数值就判断丢字。",
+          "本产品限制RX Width与TX Width保持相同，且交付仅支持指定宽度组合。PIPE接口可描述的组合、RTL可生成的组合和这款交付承诺的组合是三份证据；后两者不能靠修改一个参数名称凭空扩大。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 164,
+            "detailId": "pipe-rate-serdes-tx-rx-width-separation",
+            "label": "区分PIPE TX/RX宽度规则"
+          },
+          {
+            "featureId": 170,
+            "detailId": "r81-static-mode-support-fields",
+            "label": "支持组合与静态模式边界"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": 166,
@@ -133451,12 +133689,12 @@
     "group": "PHY与SerDes",
     "intro": "这些是产品实现分层：校准、寄存器仲裁、状态机或固件，不等于PCIe协议包处理。",
     "usage": "理解为什么只有PMA硬宏仍不能直接工作，以及为何RTL、固件与内存都参与PHY上电时使用。",
-    "mechanism": "提供的Gen5样本用Raw PCS组织每lane状态机、校准/适应控制、寄存器仲裁与程序存储；Gen6样本的PMD组织数字控制、微控制器、寄存器访问和与PMA的数据/控制接口。两者职责有交集，但不是简单改名，也不能逐文件机械对应。",
+    "mechanism": "Gen5 2.02a Raw PCS用Lane FSM执行校准/适应并仲裁寄存器访问；Gen6 3.02a使用含MCU、数据接口、寄存器和仲裁的PMD软宏。Gen6手册也把整套软宏加PMA硬宏称作PMD，须先看上下文，不能将二者简单改名对应。",
     "prerequisites": "Raw PCS和PMD在不同厂商和产品中的含义可能不同；先依据文档和实际实例关系定位。",
     "example": "APB能读寄存器并不代表固件已运行；固件未加载或握手未完成，PLL/收发器可能还未进入目标工作状态。",
     "checks": "看复位、boot、SRAM、仲裁、lane状态和校准完成信息；不要拿通用协议规则替代芯片启动流程。",
-    "status": "体系条目已整理 · 按来源范围核读",
-    "reviewed": "2026-10-19",
+    "status": "一期已验收：所列Gen5/Gen6产品分层职责与实现边界；不推广为其它交付通用参数",
+    "reviewed": "2026-10-26",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -133473,7 +133711,7 @@
         "pdfPage": 164,
         "title": "Raw PCS功能及控制",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "phy5-pma-2.02",
@@ -133484,7 +133722,7 @@
         "pdfPage": 165,
         "title": "Raw PCS组成",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -133495,10 +133733,170 @@
         "pdfPage": 35,
         "title": "PMD组成",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.3",
+        "page": 164,
+        "pdfPage": 164,
+        "title": "Gen5 Raw PCS校准、适应与仲裁",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.3",
+        "page": 165,
+        "pdfPage": 165,
+        "title": "Gen5 Lane FSM与程序存储",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.3",
+        "page": 166,
+        "pdfPage": 166,
+        "title": "Gen5外部寄存器访问归属",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.1",
+        "page": 34,
+        "pdfPage": 34,
+        "title": "PMD整套PHY与PMD软宏的命名层次",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.2",
+        "page": 35,
+        "pdfPage": 35,
+        "title": "Gen6管理软宏、MCU、数据与寄存器访问",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2",
+        "page": 17,
+        "pdfPage": 17,
+        "title": "不强制厂商内部实现",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。",
+    "details": [
+      {
+        "id": "r96-pmd-two-meanings",
+        "title": "PMD有整体和软宏两种上下文：先问这次说的是哪一层",
+        "paragraphs": [
+          "Gen6 PHY3.02a §3.1把整套PHY称为PMD，组成是PMA硬宏加PMD软宏；§3.2再单独描述软宏。读到PMD不能自动理解为“PMA前面仅有一个数字小模块”，更不能据名称推断芯片中存在两个互斥的PHY。",
+          "软宏一面连接收发数据，一面通过MCU、控制状态、仲裁和外部访问管理PMA。APB/JTAG访问的是管理面，不是PCIe用户Payload经MCU逐字转发。外部存储、固件加载、CPU运行和Lane配置是管理依赖，不因数据端口连好就自动满足。",
+          "这一名称澄清是所列产品的实现说明，不是给Gen1～Gen7统一新增一个PMD标准子层。实际端口/固件/存储契约继续按相同产品版本的详细条目核对，不复制寄存器原表或私有RTL。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 176,
+            "detailId": "fw-management-versus-payload",
+            "label": "MCU管理面与Payload数据面"
+          },
+          {
+            "featureId": 176,
+            "detailId": "fw-iccm-dccm-purpose",
+            "label": "ICCM和DCCM职责"
+          },
+          {
+            "featureId": 174,
+            "detailId": "g6-clock-firmware-calibration-dependency-table",
+            "label": "启动依赖取证表"
+          }
+        ]
+      },
+      {
+        "id": "r96-rawpcs-pmd-comparison",
+        "title": "Gen5 Raw PCS与Gen6 PMD软宏：相似职责不代表可直接替换",
+        "paragraphs": [
+          "Gen5 2.02a的Lane FSM执行上电/运行期校准和适应算法；算法存储与装载、寄存器仲裁负责让多Lane控制和外部访问共享资源。Gen6 3.02a则使用MCU管理，包含外部SRAM集成契约。固件这一词在两套结构中不保证同一种指令执行模型。",
+          "管理资源争用与用户数据吞吐必须分开：寄存器访问等候可能来自内部校准/恢复占用，不能未经证据判为PCIe流控信用耗尽。Gen5所核JTAG与CR Parallel访问存在互斥选择，Gen6外部管理路径由其仲裁处理，不能移植旧版互斥和轮询假设。",
+          "本条比较两套已核产品版本，并明确Raw PCS/PMD不是Base强制固定模块名；因此不为Gen1～4、Gen7编造相同内部结构。产品内部具体寄存器、全部启动时序和存储接口分别由174/176等独立主题承载，本条的分层与职责已可独立查询。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "table": {
+          "columns": [
+            "比较项",
+            "Raw PCS样本",
+            "PMD软宏样本"
+          ],
+          "rows": [
+            [
+              "交付例",
+              "Gen5 PHY2.02a",
+              "Gen6 PHY3.02a"
+            ],
+            [
+              "管理执行",
+              "每Lane算法FSM与程序存储/装载",
+              "MCU及代码/数据存储契约"
+            ],
+            [
+              "共有问题",
+              "校准、适应、共享寄存器归属",
+              "校准、适应、共享寄存器归属"
+            ],
+            [
+              "不可直接搬用",
+              "固件模型、仲裁例外和外部访问限制",
+              "存储接口、CPU生命周期和配置规则"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 176,
+            "detailId": "fw-product-architecture",
+            "label": "FSM与MCU的既有详细比较"
+          },
+          {
+            "featureId": 176,
+            "detailId": "context-three-restore-mechanisms",
+            "label": "静态配置、动态校准与PIPE恢复分开"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": 167,
@@ -133510,8 +133908,8 @@
     "prerequisites": "共享几个PLL、支持几lane、供电和布局限制属于具体实现，不由PCIe Gen编号唯一决定。",
     "example": "公共PLL异常可能同时影响多个lane；单lane AFE或接收锁定异常则可能只影响一条lane。先区分共享资源和局部资源。",
     "checks": "检查公共时钟、偏置/电源、校准以及单lane状态；不要由CDL里的模块名直接推导性能。",
-    "status": "体系条目已整理 · 按来源范围核读",
-    "reviewed": "2026-10-19",
+    "status": "一期已验收：所列Gen5/Gen6产品分层职责与实现边界；不推广为其它交付通用参数",
+    "reviewed": "2026-10-26",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -133528,7 +133926,7 @@
         "pdfPage": 149,
         "title": "Gen5 PMA组成",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -133539,10 +133937,160 @@
         "pdfPage": 36,
         "title": "Gen6 PMA与Common Module",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.2",
+        "page": 149,
+        "pdfPage": 149,
+        "title": "Gen5 PMA Lane与Support分工",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.2.4",
+        "page": 159,
+        "pdfPage": 159,
+        "title": "Gen5共享Support职责",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3",
+        "page": 36,
+        "pdfPage": 36,
+        "title": "Gen6 CM与Lane、数字/模拟组件",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.2",
+        "page": 40,
+        "pdfPage": 40,
+        "title": "TX数字处理在PMA内部",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.1.1",
+        "page": 38,
+        "pdfPage": 38,
+        "title": "活动Lane复位和公共时钟依赖",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2",
+        "page": 17,
+        "pdfPage": 17,
+        "title": "内部架构自由度",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。",
+    "details": [
+      {
+        "id": "r96-pma-common-lane-map",
+        "title": "PMA包含数字处理：Common与每Lane TX/RX看资源归属",
+        "paragraphs": [
+          "Gen5 2.02a把每Lane全双工收发器和共享Support功能纳入PMA；Gen6 3.02a按CM、TX、RX描述，且明确每个逻辑模块都有数字和模拟组成。硬宏描述的是交付/实现形态，不等于其中全是模拟电路。",
+          "CM/Support提供参考、PLL、偏置和校准等共享资源；TX把并行内容转换为输出波形，RX完成输入采样和相应恢复处理。产品顶层对某Lane发操作时，还须考虑它依赖的CM/PLL，不应把每Lane复位误当完全独立的物理岛。",
+          "例如Gen6手册说明全部活动Lane复位可能让公共输出时钟停止；消费这些时钟的逻辑若仍等待其产生完成事件，就可能形成依赖环。这里只说明排查原因，具体force、停钟和复位流程复用已核170/174，不生成覆盖所有产品的门控方案。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "职责",
+            "边界"
+          ],
+          "rows": [
+            [
+              "共享CM/Support",
+              "参考处理、PLL、偏置/校准和输出时钟",
+              "共享资源状态不能由某一Lane状态代替"
+            ],
+            [
+              "TX Lane",
+              "数字组织/编码/均衡与串行化/驱动",
+              "并行数据输入不等于引脚立即有效"
+            ],
+            [
+              "RX Lane",
+              "前端采样、CDR/均衡及并行恢复",
+              "锁定、valid、对齐分别取证"
+            ],
+            [
+              "交付边界",
+              "硬宏中仍可包含数字组件",
+              "RTL目录缺少某逻辑不表示它不存在"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 170,
+            "detailId": "g6-all-lanes-reset-clock-dependency",
+            "label": "全部活动Lane复位与停钟依赖"
+          }
+        ]
+      },
+      {
+        "id": "r96-pma-version-scope",
+        "title": "共享几个PLL、几个Lane：产品配置不是PCIe代际定理",
+        "paragraphs": [
+          "在所核Gen6 PHY3.02a中，CM可按配置服务1/2/4个Lane，并含两套PLL；Gen5 2.02a的Support与每Lane时钟选择又有自己的组织。这是两套产品结构的比较，不能推出“所有Gen6固定两个PLL”或“每四Lane必须一个CM”。",
+          "一个Link如何跨硬宏、可否并行支持不同速率、哪些资源能独立关闭，须综合生成配置、参考时钟和同Link约束。支持多种运行点不等于同一Link内Lane可随意选择互不相干的速率。",
+          "Gen1～Gen7是线上能力/规则版本；本主题不把厂商特定结构附会成逐代必选模块。这里所比较的Gen5/Gen6产品分层与版本边界已核，未审计的其它工艺/交付不能沿用其PLL数量、参数或模拟性能。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 174,
+            "detailId": "g6-link-captured-config-coherence",
+            "label": "同Link配置一致性"
+          },
+          {
+            "featureId": 170,
+            "detailId": "clock-product-multilane-phase",
+            "label": "同Link输入PCLK的产品约束"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": 168,
@@ -133555,7 +134103,7 @@
     "example": "理想连续32 Gbit/s二进制数据若接口每拍承载32个有效bit，需要1 GHz有效节拍。这只是守恒示例，不是任意PIPE配置的规定频率。",
     "checks": "核对每拍有效bit、时钟边沿、数据使能、位序、gearbox延迟和TX功耗状态；单位是bit还是PAM4 symbol必须写清。",
     "status": "体系条目已整理 · 按来源范围核读",
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-26",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -133572,7 +134120,7 @@
         "pdfPage": 33,
         "title": "uPCS TX数据适配",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -133583,7 +134131,7 @@
         "pdfPage": 40,
         "title": "TX数字/模拟边界与发送通路",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -133594,10 +134142,154 @@
         "pdfPage": 75,
         "title": "TX数据使能",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.4",
+        "page": 33,
+        "pdfPage": 33,
+        "title": "uPCS重排/节流/旁路与数据有效",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.2.1",
+        "page": 40,
+        "pdfPage": 40,
+        "title": "符号、DAC码与串行化边界",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.2.4",
+        "page": 41,
+        "pdfPage": 41,
+        "title": "本产品四tap与控制归属",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.12.1",
+        "page": 75,
+        "pdfPage": 75,
+        "title": "TX有效捕获与前后无效位",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.12.3",
+        "page": 76,
+        "pdfPage": 76,
+        "title": "并行宽度与延迟测量边界",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "R96核本地所列版本正文/表/图及必要续页；产品描述仅适用所列交付，不作PCIe通用强制分层。PIPE本地副本页序与官网副本差异保留。外链是来源入口，不承诺提供同修订直接下载。"
       }
     ],
-    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。"
+    "referenceStatus": "已核读所列相关页；产品手册仅作版本明确的实现示例，未开展硬件验证。",
+    "details": [
+      {
+        "id": "r96-tx-representation-boundaries",
+        "title": "TX每段传的不是同一种表示：并行字、符号、驱动码和串行波形",
+        "paragraphs": [
+          "从PIPE输入到uPCS适配，再到PMA TX并行入口、数字处理和串行驱动，是一条学习上的数据路径；实际旁路和位置按所列产品核对，不能拿通用流程图推导每个时钟域固定延迟。",
+          "Gen6 PHY3.02a的TX数字部分含FIFO/Gearbox、图案生成、Gray/预编码及FFE；数字/模拟交界传递的是每个发送符号对应的DAC码，再由串行化和驱动形成输出。协议字节、PAM4符号和驱动码的位数不同，不能把图中的16符号边界直接叫作16字节TLP片段。",
+          "Gearbox改变并行组织/消费节奏，不负责应用层TLP语义；Serializer按约定节奏串行化，FFE调整发射符号影响以补偿信道。编码到底由MAC还是PHY执行，须沿实际架构确认，尤其要避免Gray/预编码重复处理。",
+          "本轮只说明数据表示和职责；所有系数编码、合法区间、更新握手与协议均衡逐版本规则复用172，而非从“本产品四tap”推导所有Gen1～Gen7都采用同一硬件。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "table": {
+          "columns": [
+            "观察位置",
+            "数据表示",
+            "不要混同"
+          ],
+          "rows": [
+            [
+              "PIPE/适配边界",
+              "并行数据、有效和接口时钟",
+              "总线宽不直接等于TLP有效载荷吞吐"
+            ],
+            [
+              "PMA TX数字",
+              "FIFO/Gearbox、编码与均衡后的驱动表示",
+              "不能用字节数替代符号数或DAC码宽"
+            ],
+            [
+              "串行输出",
+              "按符号率形成引脚波形",
+              "时钟有跳变不证明数据/训练可用"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 165,
+            "detailId": "r96-upcs-valid-and-bypass",
+            "label": "先查uPCS实际分支"
+          },
+          {
+            "featureId": 164,
+            "detailId": "pipe-signal-tx-eq",
+            "label": "PIPE TX均衡和摆幅控制"
+          }
+        ]
+      },
+      {
+        "id": "r96-tx-valid-not-electrical-idle",
+        "title": "P0、Data Enable、Electrical Idle与Link Up分别判断",
+        "paragraphs": [
+          "按PHY3.02a §4.12.1，TX数据通路活动条件是该TX Lane处于产品P0且数据使能有效，并在符号时钟上升沿捕获有效并行数据。这里的产品P0不是LTSSM L0，也不表示Data Link或Function已经准备好。",
+          "手册明确首个有效字之前、最后有效字之后可能存在无效dribble位。因此不能把数据使能窗口不加延迟地当成引脚上逐bit有效窗口；排查首尾丢字时，要同时记录入口采样与输出观察点。",
+          "数据使能撤销仅能按本接口含义解释，不能直接断言驱动已进入Electrical Idle、供电已关闭、PIPE切换完成或Link已停止。反过来，PLL锁定也不证明数据有效、序列正确、对端已完成训练。",
+          "出现TX无输出时，先查目标P-state与本次配置闭环、所选时钟/宽度、实际有效节奏和编码归属，再查串行和板级证据；不因内部数字查询通过就声称BER或电气合规通过。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 174,
+            "detailId": "g6-lane-config-four-phase",
+            "label": "产品P-state配置完成闭环"
+          },
+          {
+            "featureId": 164,
+            "detailId": "r81-serdes-idle-nibble",
+            "label": "SerDes Electrical Idle控制边界"
+          },
+          {
+            "featureId": 170,
+            "detailId": "clock-domain-purpose-table",
+            "label": "各时钟职责与观察点"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": 169,
@@ -133627,7 +134319,7 @@
         "pdfPage": 179,
         "title": "Gen5 RX与valid条件",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -133638,7 +134330,7 @@
         "pdfPage": 75,
         "title": "Gen6 RX数据与CDR有效条件",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pipe-7.1",
@@ -133703,7 +134395,7 @@
         "title": "Gen5切速与CDR恢复",
         "page": 180,
         "pdfPage": 180,
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "本轮核读所列正文页，中文按条件与职责重新组织；并非整章全部规则审计。"
       },
       {
@@ -134231,7 +134923,7 @@
         "page": 179,
         "pdfPage": 179,
         "title": "定时器与内部valid",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
       },
       {
@@ -134242,7 +134934,7 @@
         "page": 75,
         "pdfPage": 75,
         "title": "CDR bit lock与内部valid",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
       },
       {
@@ -134253,7 +134945,7 @@
         "page": 179,
         "pdfPage": 179,
         "title": "参考跟踪与内部覆盖",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
       },
       {
@@ -134264,7 +134956,7 @@
         "page": 179,
         "pdfPage": 179,
         "title": "丢信号恢复",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
       },
       {
@@ -134275,7 +134967,7 @@
         "page": 75,
         "pdfPage": 75,
         "title": "丢信号后禁用/重新启用",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
       },
       {
@@ -134286,7 +134978,7 @@
         "page": 179,
         "pdfPage": 179,
         "title": "图5-8计量边界",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
       },
       {
@@ -134297,7 +134989,7 @@
         "page": 180,
         "pdfPage": 180,
         "title": "表5-2 SSC与non-SSC锁定",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
       },
       {
@@ -134308,7 +135000,7 @@
         "page": 180,
         "pdfPage": 180,
         "title": "切速关闭/恢复及无效数据恢复建议",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "核读对应产品版本所引正文；仅为该交付的行为，不推广为所有Gen5/Gen6的PCIe要求。不公开手册原图、内部控制清单或寄存器转储。"
       },
       {
@@ -134539,7 +135231,7 @@
         "page": 159,
         "pdfPage": 159,
         "title": "RxLaneReady同名近似不等于PCIe RxReady：先看协议列",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R36核读所引相关正文及必要续页，关键图页本地视觉核对。Base7.0所引页与物理页一致；PIPE按本地文本页号/物理页定位，部分页脚有水印遮挡，本地190页与官网189页副本不假定同页。不是整章/七代或硬件验证。"
       },
       {
@@ -136291,7 +136983,7 @@
         "pdfPage": 30,
         "title": "PIPE输入时钟及RxClk",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -136302,7 +136994,7 @@
         "pdfPage": 47,
         "title": "CM/TX与RX时钟体系",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pipe-7.1",
@@ -136379,7 +137071,7 @@
         "pdfPage": 47,
         "title": "TX/PLL与RX时钟",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -136390,7 +137082,7 @@
         "pdfPage": 48,
         "title": "RX分频与CDR图",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pcs-1.75",
@@ -136401,7 +137093,7 @@
         "pdfPage": 30,
         "title": "同link PCLK",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -136412,7 +137104,7 @@
         "pdfPage": 60,
         "title": "PLL配置时机",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -136423,7 +137115,7 @@
         "pdfPage": 83,
         "title": "APB最坏延迟",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -136434,7 +137126,7 @@
         "pdfPage": 45,
         "title": "独立CPU时钟与JTAG",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -136445,7 +137137,7 @@
         "pdfPage": 53,
         "title": "复位输出时钟毛刺",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-sdk-1.00pre3",
@@ -136950,7 +137642,7 @@
         "page": 37,
         "pdfPage": 37,
         "title": "Gen6产品：PLL参考选源与参考重复输出选源要分别检查",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -136961,7 +137653,7 @@
         "page": 47,
         "pdfPage": 47,
         "title": "Gen6产品：PLL参考选源与参考重复输出选源要分别检查",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -136972,7 +137664,7 @@
         "page": 38,
         "pdfPage": 38,
         "title": "Gen6产品：全部活动Lane复位时可能停输出时钟，先核依赖再等待",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -136983,7 +137675,7 @@
         "page": 58,
         "pdfPage": 58,
         "title": "进入P0的时钟资格：TX符号时钟须在撤Req之前有效",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -136994,7 +137686,7 @@
         "page": 47,
         "pdfPage": 47,
         "title": "进入P0的时钟资格：TX符号时钟须在撤Req之前有效",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -137005,7 +137697,7 @@
         "page": 55,
         "pdfPage": 55,
         "title": "同Link符号时钟的400ps是产品边界条件，不能换算成串行Lane deskew结论",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -137016,7 +137708,7 @@
         "page": 57,
         "pdfPage": 57,
         "title": "撤参考许可前同时核PLL命令与实际状态，不能只等一根控制线",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -137027,7 +137719,7 @@
         "page": 60,
         "pdfPage": 60,
         "title": "撤参考许可前同时核PLL命令与实际状态，不能只等一根控制线",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -137038,7 +137730,7 @@
         "page": 38,
         "pdfPage": 38,
         "title": "撤参考许可前同时核PLL命令与实际状态，不能只等一根控制线",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -139667,7 +140359,7 @@
         "pdfPage": 41,
         "title": "RX结构图",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -139678,7 +140370,7 @@
         "pdfPage": 42,
         "title": "AFE组成与作用",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -139689,7 +140381,7 @@
         "pdfPage": 42,
         "title": "产品AFE功能",
         "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -139700,7 +140392,7 @@
         "pdfPage": 43,
         "title": "产品ADC与校准",
         "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -139711,7 +140403,7 @@
         "pdfPage": 41,
         "title": "产品RX结构边界",
         "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-7.0",
@@ -139733,7 +140425,7 @@
         "pdfPage": 43,
         "title": "产品耦合模式说明",
         "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-6.0",
@@ -139898,7 +140590,7 @@
         "pdfPage": 42,
         "title": "Gen6产品AFE职责",
         "verification": "已核读本版本该页所引正文/公式；产品条目仅对应3.02a实现，不是PCIe强制架构，不标整章完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-6.0",
@@ -140074,7 +140766,7 @@
         "pdfPage": 43,
         "title": "Gen6产品耦合与BLWC边界",
         "verification": "已核读本版本该页所引正文/公式；产品条目仅对应3.02a实现，不是PCIe强制架构，不标整章完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -140085,7 +140777,7 @@
         "pdfPage": 43,
         "title": "Gen6产品启动及连续校准",
         "verification": "已核读本版本该页所引正文/公式；产品条目仅对应3.02a实现，不是PCIe强制架构，不标整章完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -140096,7 +140788,7 @@
         "pdfPage": 44,
         "title": "Gen6产品启动及连续适应",
         "verification": "已核读本版本该页所引正文/公式；产品条目仅对应3.02a实现，不是PCIe强制架构，不标整章完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-6.0",
@@ -140139,7 +140831,7 @@
         "page": 154,
         "pdfPage": 154,
         "title": "Gen5启动校准：AFE偏置之后，还校准DFE数据/相位/错误判决器",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140150,7 +140842,7 @@
         "page": 43,
         "pdfPage": 43,
         "title": "Gen6子ADC要校增益、偏置、采样相位，三个误差维度不能合一",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140161,7 +140853,7 @@
         "page": 154,
         "pdfPage": 154,
         "title": "两版启动校准入口文字不同：旧版明确有效数据/CDR，新版写复位到active",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140172,7 +140864,7 @@
         "page": 43,
         "pdfPage": 43,
         "title": "两版启动校准入口文字不同：旧版明确有效数据/CDR，新版写复位到active",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140183,7 +140875,7 @@
         "page": 154,
         "pdfPage": 154,
         "title": "Gen5幅度与频响使用不同统计：平均眼开度调ATT/VGA，相关性调CTLE",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140194,7 +140886,7 @@
         "page": 154,
         "pdfPage": 154,
         "title": "旧版先AFE后DFE，新版幅度工作点后联合调节，不能复制一套调参次序",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140205,7 +140897,7 @@
         "page": 44,
         "pdfPage": 44,
         "title": "旧版先AFE后DFE，新版幅度工作点后联合调节，不能复制一套调参次序",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140216,7 +140908,7 @@
         "page": 152,
         "pdfPage": 152,
         "title": "Gen5串联两级VGA，Gen6在ADC前调幅；VGA不等同CTLE boost",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140227,7 +140919,7 @@
         "page": 42,
         "pdfPage": 42,
         "title": "Gen5串联两级VGA，Gen6在ADC前调幅；VGA不等同CTLE boost",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140238,7 +140930,7 @@
         "page": 153,
         "pdfPage": 153,
         "title": "Gen5 CDR有比例与积分路径，锁定过程中增益可动态改变",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140249,7 +140941,7 @@
         "page": 43,
         "pdfPage": 43,
         "title": "Gen6常规模块PLL加PI/MMCDR，低速另推荐Bang-Bang CDR",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140260,7 +140952,7 @@
         "page": 153,
         "pdfPage": 153,
         "title": "Gen5的fixed/floating DFE tap描述时间位置，不是Lane或Preset编号",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140271,7 +140963,7 @@
         "page": 153,
         "pdfPage": 153,
         "title": "产品层次对照：偏置校准、均衡适配、CDR锁定分别观察什么",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140282,7 +140974,7 @@
         "page": 154,
         "pdfPage": 154,
         "title": "产品层次对照：偏置校准、均衡适配、CDR锁定分别观察什么",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140293,7 +140985,7 @@
         "page": 43,
         "pdfPage": 43,
         "title": "产品层次对照：偏置校准、均衡适配、CDR锁定分别观察什么",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140304,7 +140996,7 @@
         "page": 43,
         "pdfPage": 43,
         "title": "产品层次对照：偏置校准、均衡适配、CDR锁定分别观察什么",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -140315,7 +141007,7 @@
         "page": 44,
         "pdfPage": 44,
         "title": "产品层次对照：偏置校准、均衡适配、CDR锁定分别观察什么",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       }
     ],
@@ -140943,7 +141635,7 @@
         "pdfPage": 201,
         "title": "TX EQ与系数映射",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -140954,7 +141646,7 @@
         "pdfPage": 41,
         "title": "TX FFE结构",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -140965,7 +141657,7 @@
         "pdfPage": 64,
         "title": "TX EQ接口与Preset范围",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-3.0",
@@ -141075,7 +141767,7 @@
         "pdfPage": 64,
         "title": "产品4-tap接口与swing映射边界",
         "verification": "核读3.02a相关正文及映射表，仅归纳边界；不公开厂商表/寄存器转储，不推广到所有PHY。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-5.0",
@@ -143361,7 +144053,7 @@
         "pdfPage": 41,
         "title": "RX均衡和训练/适应模块",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -143372,7 +144064,7 @@
         "pdfPage": 42,
         "title": "RX数字处理职责",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy5-pma-2.02",
@@ -143383,7 +144075,7 @@
         "pdfPage": 164,
         "title": "Raw PCS校准/适应管理",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -143394,7 +144086,7 @@
         "pdfPage": 44,
         "title": "产品RX均衡与适配",
         "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -143405,7 +144097,7 @@
         "pdfPage": 43,
         "title": "产品启动与持续校准",
         "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-7.0",
@@ -143438,7 +144130,7 @@
         "pdfPage": 44,
         "title": "产品Internal Eye Monitor",
         "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-6.0",
@@ -143570,7 +144262,7 @@
         "pdfPage": 44,
         "title": "Gen6产品启动及连续适应",
         "verification": "已核读本版本该页所引正文/公式；产品条目仅对应3.02a实现，不是PCIe强制架构，不标整章完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -143581,7 +144273,7 @@
         "pdfPage": 43,
         "title": "Gen6产品启动及连续校准",
         "verification": "已核读本版本该页所引正文/公式；产品条目仅对应3.02a实现，不是PCIe强制架构，不标整章完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -143592,7 +144284,7 @@
         "pdfPage": 44,
         "title": "Gen6产品内部eye monitor",
         "verification": "已核读本版本该页所引正文/公式；产品条目仅对应3.02a实现，不是PCIe强制架构，不标整章完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-6.0",
@@ -143625,7 +144317,7 @@
         "pdfPage": 42,
         "title": "Gen6产品AFE职责",
         "verification": "已核读本版本该页所引正文/公式；产品条目仅对应3.02a实现，不是PCIe强制架构，不标整章完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-6.0",
@@ -144097,7 +144789,7 @@
         "page": 61,
         "pdfPage": 61,
         "title": "Gen6产品一次RX评估的前提：P0、出EI、数据使能和CDR有效",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -144108,7 +144800,7 @@
         "page": 61,
         "pdfPage": 61,
         "title": "Ack有效才采本次FOM/方向，不能读旧寄存器值当新结果",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -144119,7 +144811,7 @@
         "page": 160,
         "pdfPage": 160,
         "title": "Ack有效才采本次FOM/方向，不能读旧寄存器值当新结果",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -144141,7 +144833,7 @@
         "page": 62,
         "pdfPage": 62,
         "title": "评估进行时不要重叠普通RX配置请求",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -144152,7 +144844,7 @@
         "page": 160,
         "pdfPage": 160,
         "title": "MAC中止与PMA中止有不同后果，不能跨接口解释ABORT",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -144163,7 +144855,7 @@
         "page": 62,
         "pdfPage": 62,
         "title": "MAC中止与PMA中止有不同后果，不能跨接口解释ABORT",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -144185,7 +144877,7 @@
         "page": 62,
         "pdfPage": 62,
         "title": "直接中断PMA评估可能留下较差接收设置",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -144196,7 +144888,7 @@
         "page": 61,
         "pdfPage": 61,
         "title": "相邻评估之间可能需要重新建立接收工作点",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -144207,7 +144899,7 @@
         "page": 61,
         "pdfPage": 61,
         "title": "评估时长依赖baud与参考频率，不能借用6µs对齐监测",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -144218,7 +144910,7 @@
         "page": 159,
         "pdfPage": 159,
         "title": "评估时长依赖baud与参考频率，不能借用6µs对齐监测",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -144229,7 +144921,7 @@
         "page": 62,
         "pdfPage": 62,
         "title": "产品FOM示例计数有歧义：不要直接照抄成统一遍历算法",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -144240,7 +144932,7 @@
         "page": 63,
         "pdfPage": 63,
         "title": "产品FOM示例计数有歧义：不要直接照抄成统一遍历算法",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -144251,7 +144943,7 @@
         "page": 207,
         "pdfPage": 207,
         "title": "产品反馈能力对照：Gen5交付仅FOM，Gen6交付还给方向建议",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144262,7 +144954,7 @@
         "page": 61,
         "pdfPage": 61,
         "title": "产品反馈能力对照：Gen5交付仅FOM，Gen6交付还给方向建议",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144273,7 +144965,7 @@
         "page": 208,
         "pdfPage": 208,
         "title": "Gen5发评估请求前，DFE bypass必须为0",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144284,7 +144976,7 @@
         "page": 61,
         "pdfPage": 61,
         "title": "Gen5发评估请求前，DFE bypass必须为0",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144295,7 +144987,7 @@
         "page": 207,
         "pdfPage": 207,
         "title": "Gen5的in-progress包住整个评估准备到完成，不等同单次request",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144306,7 +144998,7 @@
         "page": 208,
         "pdfPage": 208,
         "title": "Gen5的in-progress包住整个评估准备到完成，不等同单次request",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144317,7 +145009,7 @@
         "page": 61,
         "pdfPage": 61,
         "title": "Gen5的in-progress包住整个评估准备到完成，不等同单次request",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144328,7 +145020,7 @@
         "page": 207,
         "pdfPage": 207,
         "title": "两份产品都推荐评估间RX复位至少8ns，限定对象是RX而非全PHY",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144339,7 +145031,7 @@
         "page": 61,
         "pdfPage": 61,
         "title": "两份产品都推荐评估间RX复位至少8ns，限定对象是RX而非全PHY",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144350,7 +145042,7 @@
         "page": 207,
         "pdfPage": 207,
         "title": "普通lane Ack等撤销，评估Ack等断言：完成极性必须按操作分开",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144361,7 +145053,7 @@
         "page": 208,
         "pdfPage": 208,
         "title": "普通lane Ack等撤销，评估Ack等断言：完成极性必须按操作分开",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144372,7 +145064,7 @@
         "page": 61,
         "pdfPage": 61,
         "title": "普通lane Ack等撤销，评估Ack等断言：完成极性必须按操作分开",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144383,7 +145075,7 @@
         "page": 208,
         "pdfPage": 208,
         "title": "Gen5评估时外部PPM检测也须关闭，不能把刻意训练误判为漂移故障",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144394,7 +145086,7 @@
         "page": 208,
         "pdfPage": 208,
         "title": "评估进行中不重叠普通RX配置，两个产品接口都给出排他要求",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144405,7 +145097,7 @@
         "page": 62,
         "pdfPage": 62,
         "title": "评估进行中不重叠普通RX配置，两个产品接口都给出排他要求",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144416,7 +145108,7 @@
         "page": 208,
         "pdfPage": 208,
         "title": "等远端应用Preset的2µs，与RX复位8ns不是同一个计时起点",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144427,7 +145119,7 @@
         "page": 62,
         "pdfPage": 62,
         "title": "等远端应用Preset的2µs，与RX复位8ns不是同一个计时起点",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144438,7 +145130,7 @@
         "page": 208,
         "pdfPage": 208,
         "title": "Gen5约1.3ms评估示例带100MHz REFCLK条件，不能移给Gen6",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144449,7 +145141,7 @@
         "page": 62,
         "pdfPage": 62,
         "title": "Gen5约1.3ms评估示例带100MHz REFCLK条件，不能移给Gen6",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144460,7 +145152,7 @@
         "page": 208,
         "pdfPage": 208,
         "title": "12×1.3ms只是15.6ms评估小计，不证明整个24ms阶段已满足",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144471,7 +145163,7 @@
         "page": 209,
         "pdfPage": 209,
         "title": "12×1.3ms只是15.6ms评估小计，不证明整个24ms阶段已满足",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144482,7 +145174,7 @@
         "page": 209,
         "pdfPage": 209,
         "title": "远端改Preset或RX评估中，恢复数据可有大量错误",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144493,7 +145185,7 @@
         "page": 63,
         "pdfPage": 63,
         "title": "远端改Preset或RX评估中，恢复数据可有大量错误",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144504,7 +145196,7 @@
         "page": 209,
         "pdfPage": 209,
         "title": "FOM示例只在严格更大时更新best，相同分数不自动覆盖",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144515,7 +145207,7 @@
         "page": 62,
         "pdfPage": 62,
         "title": "FOM示例只在严格更大时更新best，相同分数不自动覆盖",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144526,7 +145218,7 @@
         "page": 208,
         "pdfPage": 208,
         "title": "Gen5的10/11/12描述与索引循环也不一致，不能照抄生成状态机",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144537,7 +145229,7 @@
         "page": 209,
         "pdfPage": 209,
         "title": "Gen5的10/11/12描述与索引循环也不一致，不能照抄生成状态机",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144548,7 +145240,7 @@
         "page": 62,
         "pdfPage": 62,
         "title": "Gen5的10/11/12描述与索引循环也不一致，不能照抄生成状态机",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144559,7 +145251,7 @@
         "page": 63,
         "pdfPage": 63,
         "title": "Gen5的10/11/12描述与索引循环也不一致，不能照抄生成状态机",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144570,7 +145262,7 @@
         "page": 207,
         "pdfPage": 207,
         "title": "查询：Gen5/Gen6产品评估快照能否满足所列入口",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144581,7 +145273,7 @@
         "page": 208,
         "pdfPage": 208,
         "title": "查询：Gen5/Gen6产品评估快照能否满足所列入口",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144592,7 +145284,7 @@
         "page": 61,
         "pdfPage": 61,
         "title": "查询：Gen5/Gen6产品评估快照能否满足所列入口",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144603,7 +145295,7 @@
         "page": 62,
         "pdfPage": 62,
         "title": "查询：Gen5/Gen6产品评估快照能否满足所列入口",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
       },
       {
@@ -144713,7 +145405,7 @@
         "page": 40,
         "pdfPage": 40,
         "title": "FOM排行、内部眼与错误统计：调优后还需固定测量上下文",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       },
       {
@@ -144724,7 +145416,7 @@
         "page": 41,
         "pdfPage": 41,
         "title": "FOM排行、内部眼与错误统计：调优后还需固定测量上下文",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       },
       {
@@ -144735,7 +145427,7 @@
         "page": 119,
         "pdfPage": 119,
         "title": "FOM排行、内部眼与错误统计：调优后还需固定测量上下文",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       },
       {
@@ -144911,7 +145603,7 @@
         "page": 43,
         "pdfPage": 43,
         "title": "产品CDR跨模拟与数字：CM PLL、PI与MMCDR各管一段",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       },
       {
@@ -144922,7 +145614,7 @@
         "page": 43,
         "pdfPage": 43,
         "title": "Bang-Bang CDR与MMCDR：产品的低速建议不是协议统一切换阈值",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       },
       {
@@ -144933,7 +145625,7 @@
         "page": 43,
         "pdfPage": 43,
         "title": "64个子ADC需要分别校准：offset、gain、采样相位不是一个tap",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       },
       {
@@ -144944,7 +145636,7 @@
         "page": 43,
         "pdfPage": 43,
         "title": "64个子ADC需要分别校准：offset、gain、采样相位不是一个tap",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       },
       {
@@ -144955,7 +145647,7 @@
         "page": 43,
         "pdfPage": 43,
         "title": "启动关系图：先校准，再幅度工作点，再联合均衡",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       },
       {
@@ -144966,7 +145658,7 @@
         "page": 44,
         "pdfPage": 44,
         "title": "启动关系图：先校准，再幅度工作点，再联合均衡",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       },
       {
@@ -144977,7 +145669,7 @@
         "page": 43,
         "pdfPage": 43,
         "title": "mission mode比较结果前，记录哪两类跟踪仍在运行",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       },
       {
@@ -144988,7 +145680,7 @@
         "page": 44,
         "pdfPage": 44,
         "title": "mission mode比较结果前，记录哪两类跟踪仍在运行",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       },
       {
@@ -145241,7 +145933,7 @@
         "page": 61,
         "pdfPage": 61,
         "title": "查询：lock、检测旁路、评估反馈与误码证据分别说明什么",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       },
       {
@@ -145252,7 +145944,7 @@
         "page": 44,
         "pdfPage": 44,
         "title": "查询：lock、检测旁路、评估反馈与误码证据分别说明什么",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       }
     ],
@@ -146570,7 +147262,7 @@
         "pdfPage": 29,
         "title": "全局/每lane复位边界",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -146581,7 +147273,7 @@
         "pdfPage": 53,
         "title": "启动条件与时序",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -146592,7 +147284,7 @@
         "pdfPage": 54,
         "title": "固件、校准和Ready顺序",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy5-pma-2.02",
@@ -146603,7 +147295,7 @@
         "pdfPage": 169,
         "title": "Gen5启动依赖",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "pipe-7.1",
@@ -146658,7 +147350,7 @@
         "pdfPage": 52,
         "title": "供电与未知初态",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -146669,7 +147361,7 @@
         "pdfPage": 53,
         "title": "复位图和lane应答",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -146680,7 +147372,7 @@
         "pdfPage": 54,
         "title": "CPU与lane启动阶段",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pcs-1.75",
@@ -146691,7 +147383,7 @@
         "pdfPage": 29,
         "title": "PCS复位覆盖与补丁重载",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy5-pma-2.02",
@@ -146702,7 +147394,7 @@
         "pdfPage": 169,
         "title": "Gen5仿真等待与复位",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "phy5-pma-2.02",
@@ -146713,7 +147405,7 @@
         "pdfPage": 171,
         "title": "Gen5正式步骤与POR时长",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "phy6-sdk-1.00pre3",
@@ -147394,7 +148086,7 @@
         "page": 228,
         "pdfPage": 228,
         "title": "Gen5外部开关、stable门槛与共享参考限制",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147405,7 +148097,7 @@
         "page": 230,
         "pdfPage": 230,
         "title": "Gen5掉电准备与图5-35",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147416,7 +148108,7 @@
         "page": 47,
         "pdfPage": 47,
         "title": "PG模式/开关请求/稳定反馈",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147427,7 +148119,7 @@
         "page": 231,
         "pdfPage": 231,
         "title": "Gen5恢复续页",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147438,7 +148130,7 @@
         "page": 231,
         "pdfPage": 231,
         "title": "未使用PHY的共享资源例外",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147449,7 +148141,7 @@
         "page": 90,
         "pdfPage": 90,
         "title": "电压域转换与隔离",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147460,7 +148152,7 @@
         "page": 91,
         "pdfPage": 91,
         "title": "隔离作用边界示意",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147471,7 +148163,7 @@
         "page": 90,
         "pdfPage": 90,
         "title": "PMA隔离时序要求",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147482,7 +148174,7 @@
         "page": 94,
         "pdfPage": 94,
         "title": "PCS隔离端口推荐措辞",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147493,7 +148185,7 @@
         "page": 52,
         "pdfPage": 52,
         "title": "供电及ramp要求",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147504,7 +148196,7 @@
         "page": 138,
         "pdfPage": 138,
         "title": "PCS图5-1复位标注",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147515,7 +148207,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "PMA正文复位最小值",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147526,7 +148218,7 @@
         "page": 139,
         "pdfPage": 139,
         "title": "寄存器访问前复位窗口",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -147537,7 +148229,7 @@
         "page": 194,
         "pdfPage": 194,
         "title": "Gen5强制MPLL重校准要看到请求间的低→高，不是长期保持1",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -147548,7 +148240,7 @@
         "page": 194,
         "pdfPage": 194,
         "title": "共享MPLL的并发复位/请求限制，需按原版逐项核对",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -147559,7 +148251,7 @@
         "page": 159,
         "pdfPage": 159,
         "title": "PCS 6µs监测只属于SerDes架构启用的本产品路径",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -147570,7 +148262,7 @@
         "page": 159,
         "pdfPage": 159,
         "title": "PHY有效→MAC对齐：两层证据之间才是6µs观察窗口",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -147581,7 +148273,7 @@
         "page": 159,
         "pdfPage": 159,
         "title": "禁用6µs监测只移除该超时判定，不修复对齐问题",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -147592,7 +148284,7 @@
         "page": 185,
         "pdfPage": 185,
         "title": "保持证据表：供电域、存储和完成事件分别记录",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -147603,7 +148295,7 @@
         "page": 86,
         "pdfPage": 86,
         "title": "保持证据表：供电域、存储和完成事件分别记录",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -147636,7 +148328,7 @@
         "page": 159,
         "pdfPage": 159,
         "title": "查询：6µs对齐观察窗口与未知边界",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -147647,7 +148339,7 @@
         "page": 185,
         "pdfPage": 185,
         "title": "原创图：保存配置、匹配校准、接收有效与协议对齐是不同关口",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -147658,7 +148350,7 @@
         "page": 234,
         "pdfPage": 234,
         "title": "原创图：保存配置、匹配校准、接收有效与协议对齐是不同关口",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -147669,7 +148361,7 @@
         "page": 159,
         "pdfPage": 159,
         "title": "原创图：保存配置、匹配校准、接收有效与协议对齐是不同关口",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -147691,7 +148383,7 @@
         "page": 38,
         "pdfPage": 38,
         "title": "Gen6电阻校准：共享的是数字校准码，不能并接多个REFRES",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147702,7 +148394,7 @@
         "page": 73,
         "pdfPage": 73,
         "title": "Gen6电阻校准：共享的是数字校准码，不能并接多个REFRES",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147713,7 +148405,7 @@
         "page": 74,
         "pdfPage": 74,
         "title": "Gen6电阻校准：共享的是数字校准码，不能并接多个REFRES",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147724,7 +148416,7 @@
         "page": 38,
         "pdfPage": 38,
         "title": "Gen6启动等待：follower可先启动固件，但必须等校准码Valid",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147735,7 +148427,7 @@
         "page": 73,
         "pdfPage": 73,
         "title": "Gen6启动等待：follower可先启动固件，但必须等校准码Valid",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147746,7 +148438,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "Gen6启动等待：follower可先启动固件，但必须等校准码Valid",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147757,7 +148449,7 @@
         "page": 39,
         "pdfPage": 39,
         "title": "Gen6校准耗时与物理范围：约200µs不是整PHY启动上限",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147768,7 +148460,7 @@
         "page": 53,
         "pdfPage": 53,
         "title": "Gen6校准耗时与物理范围：约200µs不是整PHY启动上限",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147779,7 +148471,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "Gen6校准耗时与物理范围：约200µs不是整PHY启动上限",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147790,7 +148482,7 @@
         "page": 37,
         "pdfPage": 37,
         "title": "启动依赖对照：供钟、镜像、CPU、Rescal与Lane握手分别取证",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147801,7 +148493,7 @@
         "page": 38,
         "pdfPage": 38,
         "title": "启动依赖对照：供钟、镜像、CPU、Rescal与Lane握手分别取证",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147812,7 +148504,7 @@
         "page": 53,
         "pdfPage": 53,
         "title": "启动依赖对照：供钟、镜像、CPU、Rescal与Lane握手分别取证",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147823,7 +148515,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "启动依赖对照：供钟、镜像、CPU、Rescal与Lane握手分别取证",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147834,7 +148526,7 @@
         "page": 81,
         "pdfPage": 81,
         "title": "启动依赖对照：供钟、镜像、CPU、Rescal与Lane握手分别取证",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -147845,7 +148537,7 @@
         "page": 55,
         "pdfPage": 55,
         "title": "Gen6产品Lane配置：Req↑→Ack↑→Req↓→Ack↓才走完本次转换",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147856,7 +148548,7 @@
         "page": 53,
         "pdfPage": 53,
         "title": "Gen6产品Lane配置：Req↑→Ack↑→Req↓→Ack↓才走完本次转换",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147867,7 +148559,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "Gen6产品Lane配置：Req↑→Ack↑→Req↓→Ack↓才走完本次转换",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147878,7 +148570,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "独立TX/RX控制与同Link一致性同时成立：不是每Lane任意配速率",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147889,7 +148581,7 @@
         "page": 55,
         "pdfPage": 55,
         "title": "独立TX/RX控制与同Link一致性同时成立：不是每Lane任意配速率",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147900,7 +148592,7 @@
         "page": 57,
         "pdfPage": 57,
         "title": "先完成P1转换，再断言TX/RX disable：不能只看目标值已写P1",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147911,7 +148603,7 @@
         "page": 55,
         "pdfPage": 55,
         "title": "先完成P1转换，再断言TX/RX disable：不能只看目标值已写P1",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147922,7 +148614,7 @@
         "page": 57,
         "pdfPage": 57,
         "title": "P1.1/P1.2不是新增的pstate编码：需联合PLL、disable与参考许可解释",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147933,7 +148625,7 @@
         "page": 58,
         "pdfPage": 58,
         "title": "P1.1/P1.2不是新增的pstate编码：需联合PLL、disable与参考许可解释",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147944,7 +148636,7 @@
         "page": 59,
         "pdfPage": 59,
         "title": "P1.1/P1.2不是新增的pstate编码：需联合PLL、disable与参考许可解释",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147955,7 +148647,7 @@
         "page": 57,
         "pdfPage": 57,
         "title": "产品RX P0s会停恢复时钟，不能与PIPE的TX侧P0s概念混用",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147966,7 +148658,7 @@
         "page": 58,
         "pdfPage": 58,
         "title": "产品RX P0s会停恢复时钟，不能与PIPE的TX侧P0s概念混用",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147977,7 +148669,7 @@
         "page": 59,
         "pdfPage": 59,
         "title": "产品RX P0s会停恢复时钟，不能与PIPE的TX侧P0s概念混用",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147988,7 +148680,7 @@
         "page": 56,
         "pdfPage": 56,
         "title": "P2到P0/P0s示例经过P1：按本Link分两次握手完成",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -147999,7 +148691,7 @@
         "page": 58,
         "pdfPage": 58,
         "title": "P2到P0/P0s示例经过P1：按本Link分两次握手完成",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -148010,7 +148702,7 @@
         "page": 55,
         "pdfPage": 55,
         "title": "查询与原创图：检查本次Lane四相序列和P0时钟资格",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -148021,7 +148713,7 @@
         "page": 58,
         "pdfPage": 58,
         "title": "查询与原创图：检查本次Lane四相序列和P0时钟资格",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -148032,7 +148724,7 @@
         "page": 53,
         "pdfPage": 53,
         "title": "查询与原创图：检查本次Lane四相序列和P0时钟资格",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -148219,7 +148911,7 @@
         "page": 55,
         "pdfPage": 55,
         "title": "Gen6产品PMA Req/Ack与PIPE Ok/Ack：两层握手不能硬接",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R64核读所列正文；PIPE7.1本地副本印刷/物理页按本文件定位，保留官网189页与本地190页差异，未声称逐页同版。Gen6 3.02a仅产品规则；无RTL/模拟/硅片验证。"
       },
       {
@@ -148230,7 +148922,7 @@
         "page": 56,
         "pdfPage": 56,
         "title": "Gen6产品PMA Req/Ack与PIPE Ok/Ack：两层握手不能硬接",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R64核读所列正文；PIPE7.1本地副本印刷/物理页按本文件定位，保留官网189页与本地190页差异，未声称逐页同版。Gen6 3.02a仅产品规则；无RTL/模拟/硅片验证。"
       },
       {
@@ -148241,7 +148933,7 @@
         "page": 58,
         "pdfPage": 58,
         "title": "Gen6产品PMA Req/Ack与PIPE Ok/Ack：两层握手不能硬接",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R64核读所列正文；PIPE7.1本地副本印刷/物理页按本文件定位，保留官网189页与本地190页差异，未声称逐页同版。Gen6 3.02a仅产品规则；无RTL/模拟/硅片验证。"
       },
       {
@@ -148285,7 +148977,7 @@
         "page": 55,
         "pdfPage": 55,
         "title": "切速现场观察表：每个证据能说明什么",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R64核读所列正文；PIPE7.1本地副本印刷/物理页按本文件定位，保留官网189页与本地190页差异，未声称逐页同版。Gen6 3.02a仅产品规则；无RTL/模拟/硅片验证。"
       },
       {
@@ -148758,7 +149450,7 @@
         "page": 53,
         "pdfPage": 53,
         "title": "phy_reset前保护SRAM时钟：异步复位可能让派生时钟出毛刺",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -148769,7 +149461,7 @@
         "page": 53,
         "pdfPage": 53,
         "title": "“进入reset不需要时钟”不等于“活动时钟无须保护”",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -148780,7 +149472,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "“进入reset不需要时钟”不等于“活动时钟无须保护”",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -148813,7 +149505,7 @@
         "page": 78,
         "pdfPage": 78,
         "title": "SRAM派生时钟停住不等于CPU已坏：要关联暂停与bootload阶段",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -148824,7 +149516,7 @@
         "page": 85,
         "pdfPage": 85,
         "title": "SRAM派生时钟停住不等于CPU已坏：要关联暂停与bootload阶段",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -148835,7 +149527,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "四个完成点重新对齐：镜像装好→CPU运行→Lane配置→Link训练",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -150957,7 +151649,7 @@
         "pdfPage": 30,
         "title": "速率/功耗控制与时钟关系",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -150968,7 +151660,7 @@
         "pdfPage": 54,
         "title": "Ready后状态转换的依赖",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pipe-7.1",
@@ -151418,7 +152110,7 @@
         "page": 57,
         "pdfPage": 57,
         "title": "PMD映射与关断前提",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151429,7 +152121,7 @@
         "page": 151,
         "pdfPage": 151,
         "title": "产品操作组合和P2时钟",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151440,7 +152132,7 @@
         "page": 55,
         "pdfPage": 55,
         "title": "Lane配置四相握手",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151451,7 +152143,7 @@
         "page": 58,
         "pdfPage": 58,
         "title": "TX P0/P0s/P1/P2及共享PLL",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151462,7 +152154,7 @@
         "page": 59,
         "pdfPage": 59,
         "title": "RX各状态停用层次",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151473,7 +152165,7 @@
         "page": 16,
         "pdfPage": 16,
         "title": "PCS P0s与RX Standby",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151484,7 +152176,7 @@
         "page": 60,
         "pdfPage": 60,
         "title": "默认PLL汇聚与配置更新",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151495,7 +152187,7 @@
         "page": 58,
         "pdfPage": 58,
         "title": "RX P0定义",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151506,7 +152198,7 @@
         "page": 156,
         "pdfPage": 156,
         "title": "PLL作PCLK源的入低功耗",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151517,7 +152209,7 @@
         "page": 157,
         "pdfPage": 157,
         "title": "先恢复PLL/PCLK再改PowerDown",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151528,7 +152220,7 @@
         "page": 157,
         "pdfPage": 157,
         "title": "退出先Force后PowerDown",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151539,7 +152231,7 @@
         "page": 158,
         "pdfPage": 158,
         "title": "PCLK先有效与转换时间",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151550,7 +152242,7 @@
         "page": 158,
         "pdfPage": 158,
         "title": "转换时间依赖",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151561,7 +152253,7 @@
         "page": 199,
         "pdfPage": 199,
         "title": "Gen5表格假设",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -151715,7 +152407,7 @@
         "page": 45,
         "pdfPage": 45,
         "title": "CPU、Lane与PIPE的ack不能互换，也不共用一个Done",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -151726,7 +152418,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "CPU、Lane与PIPE的ack不能互换，也不共用一个Done",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -152680,7 +153372,7 @@
         "pdfPage": 165,
         "title": "固件与ROM/SRAM路径",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152691,7 +153383,7 @@
         "pdfPage": 45,
         "title": "MCU与外部内存",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152702,7 +153394,7 @@
         "pdfPage": 54,
         "title": "镜像加载与CPU运行顺序",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152713,7 +153405,7 @@
         "pdfPage": 45,
         "title": "MCU与外置CCM",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152724,7 +153416,7 @@
         "pdfPage": 46,
         "title": "Watchdog与可选ECC",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152735,7 +153427,7 @@
         "pdfPage": 78,
         "title": "控制及存储器接口",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152746,7 +153438,7 @@
         "pdfPage": 79,
         "title": "CCM接口访问边界",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152757,7 +153449,7 @@
         "pdfPage": 80,
         "title": "RiW与Override回读",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152768,7 +153460,7 @@
         "pdfPage": 81,
         "title": "APB写入/字节使能",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152779,7 +153471,7 @@
         "pdfPage": 82,
         "title": "APB读取/完成",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152790,7 +153482,7 @@
         "pdfPage": 83,
         "title": "APB访问错误",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152801,7 +153493,7 @@
         "pdfPage": 84,
         "title": "CCM装载先决条件与burst",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152812,7 +153504,7 @@
         "pdfPage": 85,
         "title": "ROM与跨存储器访问",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152823,7 +153515,7 @@
         "pdfPage": 86,
         "title": "SRAM尺寸和同步语义",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152834,7 +153526,7 @@
         "pdfPage": 87,
         "title": "SRAM读写使能和保持",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -152845,7 +153537,7 @@
         "pdfPage": 88,
         "title": "多bank组合示例",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-sdk-1.00pre3",
@@ -152988,7 +153680,7 @@
         "pdfPage": 165,
         "title": "Gen5算法FSM与程序装载",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "phy5-pma-2.02",
@@ -152999,7 +153691,7 @@
         "pdfPage": 166,
         "title": "Gen5外部控制口互斥",
         "verification": "核读所引页相关正文；产品实现或接口标准分开标注。SDK为Preliminary，不作3.02a兼容保证，不代表整章/全部版本完成。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "phy5-pma-2.02",
@@ -153009,7 +153701,7 @@
         "page": 234,
         "pdfPage": 234,
         "title": "静态配置Context Restore及引擎",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153020,7 +153712,7 @@
         "page": 45,
         "pdfPage": 45,
         "title": "Gen6 MCU职责",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153031,7 +153723,7 @@
         "page": 237,
         "pdfPage": 237,
         "title": "镜像配置目录",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153042,7 +153734,7 @@
         "page": 240,
         "pdfPage": 240,
         "title": "生成ID与支持组合限制",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153053,7 +153745,7 @@
         "page": 235,
         "pdfPage": 235,
         "title": "Context选择/使能捕获和稳定",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153064,7 +153756,7 @@
         "page": 236,
         "pdfPage": 236,
         "title": "Restore后固件前调试暂停",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153075,7 +153767,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "Gen6 CPU与Lane完成步骤",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153086,7 +153778,7 @@
         "page": 238,
         "pdfPage": 238,
         "title": "仅支持附录所列组合",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153097,7 +153789,7 @@
         "page": 86,
         "pdfPage": 86,
         "title": "SRAM接口保持语义",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153108,7 +153800,7 @@
         "page": 45,
         "pdfPage": 45,
         "title": "外部ICCM/DCCM",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153119,7 +153811,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "初始化装载",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153130,7 +153822,7 @@
         "page": 230,
         "pdfPage": 230,
         "title": "Gen5掉电准备与图5-35",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153141,7 +153833,7 @@
         "page": 86,
         "pdfPage": 86,
         "title": "SRAM接口",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153152,7 +153844,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "初始化",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "独立核读所引产品版本正文及所需续页，相关关键图另作本地视觉核对；本处印刷页与PDF物理页相同。原创中文解释，不是厂商原表/原图，不作Gen1～Gen7通用规范或跨产品兼容承诺。仅覆盖所述规则。"
       },
       {
@@ -153163,7 +153855,7 @@
         "page": 185,
         "pdfPage": 185,
         "title": "动态Context：缓存校准结果，避免每次切速重新测一遍",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153174,7 +153866,7 @@
         "page": 185,
         "pdfPage": 185,
         "title": "Bank不是Gen编号：识别完整时钟配置，而不是只看速率",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153185,7 +153877,7 @@
         "page": 192,
         "pdfPage": 192,
         "title": "Bank不是Gen编号：识别完整时钟配置，而不是只看速率",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153196,7 +153888,7 @@
         "page": 185,
         "pdfPage": 185,
         "title": "MPLL、TX和RX各有Bank，不能用一个全局编号代替",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153207,7 +153899,7 @@
         "page": 186,
         "pdfPage": 186,
         "title": "初始校准按目标Bank首次使用判定，不只是整机第一次上电",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153218,7 +153910,7 @@
         "page": 186,
         "pdfPage": 186,
         "title": "初始校准的外部入口先进入P1，再完成PLL与Lane配置握手",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153229,7 +153921,7 @@
         "page": 188,
         "pdfPage": 188,
         "title": "初始校准的外部入口先进入P1，再完成PLL与Lane配置握手",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153240,7 +153932,7 @@
         "page": 187,
         "pdfPage": 187,
         "title": "为什么初始校准更慢：先测全速/半速，再恢复目标工作点",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153251,7 +153943,7 @@
         "page": 188,
         "pdfPage": 188,
         "title": "为什么初始校准更慢：先测全速/半速，再恢复目标工作点",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153262,7 +153954,7 @@
         "page": 189,
         "pdfPage": 189,
         "title": "为什么初始校准更慢：先测全速/半速，再恢复目标工作点",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153273,7 +153965,7 @@
         "page": 190,
         "pdfPage": 190,
         "title": "跨Bank且目标已校准：仍需配置切换，省掉的是重新测量",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153284,7 +153976,7 @@
         "page": 191,
         "pdfPage": 191,
         "title": "跨Bank且目标已校准：仍需配置切换，省掉的是重新测量",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153295,7 +153987,7 @@
         "page": 192,
         "pdfPage": 192,
         "title": "同Bank切速：本路径无需MPLL停开，但仍要P1与TX/RX握手",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153306,7 +153998,7 @@
         "page": 193,
         "pdfPage": 193,
         "title": "同Bank切速：本路径无需MPLL停开，但仍要P1与TX/RX握手",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153317,7 +154009,7 @@
         "page": 186,
         "pdfPage": 186,
         "title": "Force与Skip改变默认选择；Skip不创建从未求得的结果",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153328,7 +154020,7 @@
         "page": 194,
         "pdfPage": 194,
         "title": "强制TX/RX校准结果只对应当次Bank与rate组合",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153339,7 +154031,7 @@
         "page": 196,
         "pdfPage": 196,
         "title": "强制TX/RX校准结果只对应当次Bank与rate组合",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153350,7 +154042,7 @@
         "page": 195,
         "pdfPage": 195,
         "title": "MPLL设置改变或重校准后，还要处理依赖它的TX校准",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153361,7 +154053,7 @@
         "page": 185,
         "pdfPage": 185,
         "title": "AON只是保留域边界：域失电后不能继续相信旧校准标记",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153372,7 +154064,7 @@
         "page": 185,
         "pdfPage": 185,
         "title": "重装静态Context不能证明动态校准缓存有效",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153383,7 +154075,7 @@
         "page": 234,
         "pdfPage": 234,
         "title": "重装静态Context不能证明动态校准缓存有效",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153394,7 +154086,7 @@
         "page": 186,
         "pdfPage": 186,
         "title": "动态切换分支表：首次、同Bank、跨Bank和强制校准",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153405,7 +154097,7 @@
         "page": 190,
         "pdfPage": 190,
         "title": "动态切换分支表：首次、同Bank、跨Bank和强制校准",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153416,7 +154108,7 @@
         "page": 192,
         "pdfPage": 192,
         "title": "动态切换分支表：首次、同Bank、跨Bank和强制校准",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153427,7 +154119,7 @@
         "page": 194,
         "pdfPage": 194,
         "title": "动态切换分支表：首次、同Bank、跨Bank和强制校准",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153438,7 +154130,7 @@
         "page": 185,
         "pdfPage": 185,
         "title": "查询：目标校准结果是否可复用，需走哪个产品分支",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153449,7 +154141,7 @@
         "page": 186,
         "pdfPage": 186,
         "title": "查询：目标校准结果是否可复用，需走哪个产品分支",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153460,7 +154152,7 @@
         "page": 190,
         "pdfPage": 190,
         "title": "查询：目标校准结果是否可复用，需走哪个产品分支",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153471,7 +154163,7 @@
         "page": 192,
         "pdfPage": 192,
         "title": "查询：目标校准结果是否可复用，需走哪个产品分支",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153482,7 +154174,7 @@
         "page": 195,
         "pdfPage": 195,
         "title": "查询：目标校准结果是否可复用，需走哪个产品分支",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153493,7 +154185,7 @@
         "page": 185,
         "pdfPage": 185,
         "title": "Gen5 Bank与Gen6 MCU：共同问题可以比较，实现不能互换",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153504,7 +154196,7 @@
         "page": 45,
         "pdfPage": 45,
         "title": "Gen5 Bank与Gen6 MCU：共同问题可以比较，实现不能互换",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153515,7 +154207,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "Gen5 Bank与Gen6 MCU：共同问题可以比较，实现不能互换",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R34核读所引版本相关正文；关键图/页另作本地视觉核对。所引产品页印刷页与物理页一致；PIPE本地190页与官网189页副本差异保留，不推断全份页码相同。原创解释仅适用于所述范围，产品实现不当作通用PCIe要求。"
       },
       {
@@ -153526,7 +154218,7 @@
         "page": 81,
         "pdfPage": 81,
         "title": "Gen6产品APB时序：下一笔仍需Setup，不能把PENABLE长期拉高",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153537,7 +154229,7 @@
         "page": 82,
         "pdfPage": 82,
         "title": "Gen6产品APB时序：下一笔仍需Setup，不能把PENABLE长期拉高",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153548,7 +154240,7 @@
         "page": 83,
         "pdfPage": 83,
         "title": "Gen6产品APB时序：下一笔仍需Setup，不能把PENABLE长期拉高",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153559,7 +154251,7 @@
         "page": 81,
         "pdfPage": 81,
         "title": "Gen6产品：PRDATA与PSLVERR随完成窗口采样，不按常驻状态轮询",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153570,7 +154262,7 @@
         "page": 82,
         "pdfPage": 82,
         "title": "Gen6产品：PRDATA与PSLVERR随完成窗口采样，不按常驻状态轮询",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153581,7 +154273,7 @@
         "page": 83,
         "pdfPage": 83,
         "title": "Gen6产品：PRDATA与PSLVERR随完成窗口采样，不按常驻状态轮询",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153592,7 +154284,7 @@
         "page": 81,
         "pdfPage": 81,
         "title": "Gen6产品：PSTRB控制写字节，读仍返回完整32bit",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153603,7 +154295,7 @@
         "page": 82,
         "pdfPage": 82,
         "title": "Gen6产品：PSTRB控制写字节，读仍返回完整32bit",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153614,7 +154306,7 @@
         "page": 83,
         "pdfPage": 83,
         "title": "Gen6产品：PSTRB控制写字节，读仍返回完整32bit",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153625,7 +154317,7 @@
         "page": 45,
         "pdfPage": 45,
         "title": "Gen6固件集成：大端MCU、独立CPU时钟与活性证据分别核对",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153636,7 +154328,7 @@
         "page": 45,
         "pdfPage": 45,
         "title": "Gen6固件集成：大端MCU、独立CPU时钟与活性证据分别核对",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153647,7 +154339,7 @@
         "page": 46,
         "pdfPage": 46,
         "title": "Gen6固件集成：大端MCU、独立CPU时钟与活性证据分别核对",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153658,7 +154350,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "Gen6固件集成：大端MCU、独立CPU时钟与活性证据分别核对",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153669,7 +154361,7 @@
         "page": 86,
         "pdfPage": 86,
         "title": "Gen6固件集成：大端MCU、独立CPU时钟与活性证据分别核对",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R42核读Gen6 PHY 3.02a所列产品正文及相关续页，参考校准与APB时序关键页视觉核对；本副本印刷页与PDF物理页一致。产品集成说明，不是所有Gen6 PHY或PCIe Base的通用要求；未公开原文、寄存器转储或电路图。"
       },
       {
@@ -153680,7 +154372,7 @@
         "page": 89,
         "pdfPage": 89,
         "title": "PMD的intr输出属于PHY管理面，不是一个天然生成MSI-X的PCIe功能",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -153691,7 +154383,7 @@
         "page": 45,
         "pdfPage": 45,
         "title": "PMD的intr输出属于PHY管理面，不是一个天然生成MSI-X的PCIe功能",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -153702,7 +154394,7 @@
         "page": 89,
         "pdfPage": 89,
         "title": "Sticky状态、Mask与Clear分工：先保存原因，不猜测字段极性和清除写法",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R46核读Gen6 PHY 3.02a所列产品正文；p55/56/57握手图及功耗约束视觉核对，印刷页与本地PDF物理页一致。仅为该产品集成解释，不推广到PIPE/Base或全部Gen6 PHY；原手册图、源码、寄存器转储不公开。"
       },
       {
@@ -153746,7 +154438,7 @@
         "page": 79,
         "pdfPage": 79,
         "title": "CCM有两种地址坐标：20bit AHB字节地址与14bit SRAM word索引",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -153768,7 +154460,7 @@
         "page": 81,
         "pdfPage": 81,
         "title": "CCM AHB只支持32bit访问，不能把APB的PSTRB搬过来",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -153812,7 +154504,7 @@
         "page": 45,
         "pdfPage": 45,
         "title": "ECC分三层：生成支持、静态tie-off、实际SRAM接线",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -153889,7 +154581,7 @@
         "page": 87,
         "pdfPage": 87,
         "title": "WE是总写使能，WEM才是字节mask；Databook措辞需交叉核对",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -153900,7 +154592,7 @@
         "page": 46,
         "pdfPage": 46,
         "title": "多出8bit不等于已证实SECDED、scrub或自动错误恢复",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -153911,7 +154603,7 @@
         "page": 86,
         "pdfPage": 86,
         "title": "多出8bit不等于已证实SECDED、scrub或自动错误恢复",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -153955,7 +154647,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "CPU Run四相：请求保持到ack，再撤请求等待ack撤销",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -153977,7 +154669,7 @@
         "page": 84,
         "pdfPage": 84,
         "title": "CPU Halt四相：halt_req不是已经暂停，ack也不是存储保持保证",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154032,7 +154724,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "自动Run触发与外部接管是两条路径；mb_ack在本版不支持",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154054,7 +154746,7 @@
         "page": 85,
         "pdfPage": 85,
         "title": "ROM地址15bit，ICCM/DCCM各14bit：对应不同容量坐标",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154065,7 +154757,7 @@
         "page": 86,
         "pdfPage": 86,
         "title": "ROM地址15bit，ICCM/DCCM各14bit：对应不同容量坐标",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154098,7 +154790,7 @@
         "page": 85,
         "pdfPage": 85,
         "title": "Bootloader使能时序：输入脚复位前稳定与override复位后启动要区分",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154109,7 +154801,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "Bootloader使能时序：输入脚复位前稳定与override复位后启动要区分",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154131,7 +154823,7 @@
         "page": 85,
         "pdfPage": 85,
         "title": "Boot Done与Error分开读：完成不是自动成功，也不是已启动CPU",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154142,7 +154834,7 @@
         "page": 54,
         "pdfPage": 54,
         "title": "Boot Done与Error分开读：完成不是自动成功，也不是已启动CPU",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154186,7 +154878,7 @@
         "page": 85,
         "pdfPage": 85,
         "title": "HREADY输入与HREADY响应输出：一个看总线前笔，一个表本端完成",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154197,7 +154889,7 @@
         "page": 83,
         "pdfPage": 83,
         "title": "AHB错误返回存在手册差异：Databook说Error，Reference写RSRVD",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154230,7 +154922,7 @@
         "page": 79,
         "pdfPage": 79,
         "title": "18000h读取示例与DCCM基址不一致：不把例图当地址映射",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154241,7 +154933,7 @@
         "page": 85,
         "pdfPage": 85,
         "title": "18000h读取示例与DCCM基址不一致：不把例图当地址映射",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154263,7 +154955,7 @@
         "page": 45,
         "pdfPage": 45,
         "title": "CPU JTAG与CPU时钟比例：严格小于和最大值的文字不完全相同",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154307,7 +154999,7 @@
         "page": 84,
         "pdfPage": 84,
         "title": "ICCM更新必须暂停CPU；允许读运行中CCM不保证一致快照",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154318,7 +155010,7 @@
         "page": 45,
         "pdfPage": 45,
         "title": "ICCM更新必须暂停CPU；允许读运行中CCM不保证一致快照",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154329,7 +155021,7 @@
         "page": 86,
         "pdfPage": 86,
         "title": "ICCM更新必须暂停CPU；允许读运行中CCM不保证一致快照",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154362,7 +155054,7 @@
         "page": 87,
         "pdfPage": 87,
         "title": "SRAM拼Bank时用word索引；图中的addr标签不能替代信号表",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154373,7 +155065,7 @@
         "page": 88,
         "pdfPage": 88,
         "title": "SRAM拼Bank时用word索引；图中的addr标签不能替代信号表",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -154439,7 +155131,7 @@
         "page": 86,
         "pdfPage": 86,
         "title": "查询：CCM字节偏移、SRAM word索引与32/40bit物理宽度",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R86核同一3.02a产品的Databook/Reference所列信号和正文；视觉核Reference p62/p71与Databook p79。页码逐文档绑定；保留boot/reset、地址示例、HRESP/字节使能等表文差异，不作为通用PCIe/所有PHY或真实硅片验证。"
       },
       {
@@ -155956,7 +156648,7 @@
         "pdfPage": 40,
         "title": "Gen6 TX编码/串行化实现示例",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pipe-7.1",
@@ -156022,7 +156714,7 @@
         "pdfPage": 41,
         "title": "产品PLL与符号率关系仅限交付",
         "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-6.0",
@@ -156396,7 +157088,7 @@
         "pdfPage": 120,
         "title": "不同RX DSP观察点",
         "verification": "核读3.02a所引正文，仅归纳该产品的能力与测量有效性条件；不是通用PCIe寄存器/架构。厂商寄存器、原图与正文不公开复制。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -156407,7 +157099,7 @@
         "pdfPage": 122,
         "title": "速率相关采样打包",
         "verification": "核读3.02a所引正文，仅归纳该产品的能力与测量有效性条件；不是通用PCIe寄存器/架构。厂商寄存器、原图与正文不公开复制。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-6.0",
@@ -156461,7 +157153,7 @@
         "page": 119,
         "pdfPage": 119,
         "title": "从PMA到协议：四层证据链怎样对照",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       },
       {
@@ -156494,7 +157186,7 @@
         "page": 43,
         "pdfPage": 43,
         "title": "ADC计数时钟、符号率与64-symbol并行输出不等同",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       },
       {
@@ -156505,7 +157197,7 @@
         "page": 44,
         "pdfPage": 44,
         "title": "ADC计数时钟、符号率与64-symbol并行输出不等同",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       },
       {
@@ -156560,7 +157252,7 @@
         "page": 44,
         "pdfPage": 44,
         "title": "从lock到性能：锁定检测、FOM/内部眼与错误测量是不同证据",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       },
       {
@@ -156571,7 +157263,7 @@
         "page": 61,
         "pdfPage": 61,
         "title": "从lock到性能：锁定检测、FOM/内部眼与错误测量是不同证据",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
       }
     ],
@@ -157275,7 +157967,7 @@
         "pdfPage": 75,
         "title": "RX信号存在与数据有效",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy5-pma-2.02",
@@ -157286,7 +157978,7 @@
         "pdfPage": 179,
         "title": "RX检测和恢复条件",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns"
       },
       {
         "documentId": "pipe-7.1",
@@ -157329,7 +158021,7 @@
         "page": 69,
         "pdfPage": 69,
         "title": "Receiver Detect从本端TX探测对端接收终端，不是在本端RX解码TS",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R37核读本条相关正文及续页，关键角色分区/时序图本地视觉核对；仅所列规则，不代表整章、七代全部版本或硬件验证。Base6/7所引页与物理页一致。PIPE按本地文本/物理页定位，保留本地190页与官网189页副本差异。产品资料只描述所标版本。"
       },
       {
@@ -157351,7 +158043,7 @@
         "page": 69,
         "pdfPage": 69,
         "title": "检测允许状态要按协议列：PCIe P1与可选P2，不套USB P3",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R37核读本条相关正文及续页，关键角色分区/时序图本地视觉核对；仅所列规则，不代表整章、七代全部版本或硬件验证。Base6/7所引页与物理页一致。PIPE按本地文本/物理页定位，保留本地190页与官网189页副本差异。产品资料只描述所标版本。"
       },
       {
@@ -157406,7 +158098,7 @@
         "page": 69,
         "pdfPage": 69,
         "title": "产品检测结果只在Ack有效时可信，1-bit结果不能当PIPE的011",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R37核读本条相关正文及续页，关键角色分区/时序图本地视觉核对；仅所列规则，不代表整章、七代全部版本或硬件验证。Base6/7所引页与物理页一致。PIPE按本地文本/物理页定位，保留本地190页与官网189页副本差异。产品资料只描述所标版本。"
       },
       {
@@ -157428,7 +158120,7 @@
         "page": 69,
         "pdfPage": 69,
         "title": "检测会改变TX共模，P0/P0s必须撤销产品检测请求",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R37核读本条相关正文及续页，关键角色分区/时序图本地视觉核对；仅所列规则，不代表整章、七代全部版本或硬件验证。Base6/7所引页与物理页一致。PIPE按本地文本/物理页定位，保留本地190页与官网189页副本差异。产品资料只描述所标版本。"
       },
       {
@@ -157439,7 +158131,7 @@
         "page": 69,
         "pdfPage": 69,
         "title": "产品的1µs是Lane之间检测耗时差异，不是检测总超时",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R37核读本条相关正文及续页，关键角色分区/时序图本地视觉核对；仅所列规则，不代表整章、七代全部版本或硬件验证。Base6/7所引页与物理页一致。PIPE按本地文本/物理页定位，保留本地190页与官网189页副本差异。产品资料只描述所标版本。"
       },
       {
@@ -157472,7 +158164,7 @@
         "page": 69,
         "pdfPage": 69,
         "title": "查询与时序图：检测完成证据、结果编码和适用状态",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R37核读本条相关正文及续页，关键角色分区/时序图本地视觉核对；仅所列规则，不代表整章、七代全部版本或硬件验证。Base6/7所引页与物理页一致。PIPE按本地文本/物理页定位，保留本地190页与官网189页副本差异。产品资料只描述所标版本。"
       },
       {
@@ -160241,7 +160933,7 @@
         "pdfPage": 40,
         "title": "TX测试图样模块",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -160252,7 +160944,7 @@
         "pdfPage": 41,
         "title": "RX PRBS Checker与环回边界",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-6.0",
@@ -160351,7 +161043,7 @@
         "pdfPage": 19,
         "title": "产品BIST/图样能力",
         "verification": "核读3.02a所引正文，仅归纳该产品的能力与测量有效性条件；不是通用PCIe寄存器/架构。厂商寄存器、原图与正文不公开复制。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pipe-7.1",
@@ -160725,7 +161417,7 @@
         "pdfPage": 19,
         "title": "PRBS与自定义图样能力",
         "verification": "核读3.02a所引正文，仅归纳该产品的能力与测量有效性条件；不是通用PCIe寄存器/架构。厂商寄存器、原图与正文不公开复制。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -160736,7 +161428,7 @@
         "pdfPage": 119,
         "title": "BERMON seed有效性",
         "verification": "核读3.02a所引正文，仅归纳该产品的能力与测量有效性条件；不是通用PCIe寄存器/架构。厂商寄存器、原图与正文不公开复制。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -160747,7 +161439,7 @@
         "pdfPage": 119,
         "title": "监视器128bit及窗口",
         "verification": "核读3.02a所引正文，仅归纳该产品的能力与测量有效性条件；不是通用PCIe寄存器/架构。厂商寄存器、原图与正文不公开复制。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "phy6-pma-3.02",
@@ -160758,7 +161450,7 @@
         "pdfPage": 119,
         "title": "捕获与清零边界",
         "verification": "核读3.02a所引正文，仅归纳该产品的能力与测量有效性条件；不是通用PCIe寄存器/架构。厂商寄存器、原图与正文不公开复制。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-6.0",
@@ -160801,7 +161493,7 @@
         "page": 119,
         "pdfPage": 119,
         "title": "先分观察点：PMA BER、FBER寄存器与Flit错误计数",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       },
       {
@@ -161186,7 +161878,7 @@
         "page": 119,
         "pdfPage": 119,
         "title": "错误注入测的是可观测链，不保证N次注入等于N次报告",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       },
       {
@@ -161274,7 +161966,7 @@
         "page": 119,
         "pdfPage": 119,
         "title": "API成功、seed有效和窗口完成是三个不同判断",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       },
       {
@@ -161296,7 +161988,7 @@
         "page": 119,
         "pdfPage": 119,
         "title": "计时口径保留差异：SDK的+1参考时钟与PMA的128bit周期",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       },
       {
@@ -161351,7 +162043,7 @@
         "page": 119,
         "pdfPage": 119,
         "title": "新快照与关闭清零：产品监视器和标准FBER各有自己的边界",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       },
       {
@@ -161384,7 +162076,7 @@
         "page": 119,
         "pdfPage": 119,
         "title": "无效窗口不能喂给零误码置信上界",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       },
       {
@@ -161527,7 +162219,7 @@
         "page": 119,
         "pdfPage": 119,
         "title": "查询：这组BERMON证据能否作为有效窗口报告",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R70核所列正式Base6.0/7.0或标明版本产品正文；关键字段表另作视觉核对。SDK1.00a_pre3为Preliminary，不推断与3.02a交付兼容。原创说明，未公开手册原表、寄存器转储或代码；局部规则非整章/硬件验证。"
       },
       {
@@ -162936,7 +163628,7 @@
         "pdfPage": 42,
         "title": "接收AFE对通道损耗的处理",
         "verification": "已核读本地对应页的相关正文/图示；仅覆盖本条所述范围。产品实现示例，不作为通用PCIe强制要求。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pcie-base-7.0",
@@ -163002,7 +163694,7 @@
         "pdfPage": 44,
         "title": "产品内部Eye Monitor边界",
         "verification": "核读该版该页所引正文/字段，原创建议与协议要求分开；不是整章或其他版本已通读。",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns"
       },
       {
         "documentId": "pipe-7.1",

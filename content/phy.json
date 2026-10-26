@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-10-26",
-  "summary": "R81补PIPE1.00/7.1选定差分：Original字节/K位、控制解码、Receiver Detect请求释放、旧Lane停用与产品参数/延迟；保留已有PHY与产品研究。",
+  "summary": "R96补PHY三份契约、uPCS实际分支、Raw PCS/PMD职责、PMA数字/模拟边界和TX有效观察；166/167按所列产品分层完成验收。",
   "groups": [
     {
       "title": "分层与资料入口",
@@ -181,9 +181,11 @@
     "CDL已完成结构统计，未做LVS、SPICE或晶体管级功能/性能证明；RTL也未进行完整宏展开、编译和全量仿真。",
     "PHY寄存器地址、固件参数、PLL频率及模拟性能不直接推广成PCIe通用规则。",
     "SDK应用说明1.00a_pre3为2024 Preliminary，未证明与2025 PHY3.02a完全兼容；Future Enhancements不作已实现能力。",
-    "R16参考CTLE/DFE/FFE及压力眼目标不是硅实现要求或实际BER/错误突发安全证明；未运行AMI/SPICE/BERT或标准后处理工具。"
+    "R16参考CTLE/DFE/FFE及压力眼目标不是硅实现要求或实际BER/错误突发安全证明；未运行AMI/SPICE/BERT或标准后处理工具。",
+    "R96核Gen5 2.02a/Gen6 3.02a与PCS1.75a产品边界；厂商目录当前新版不替代本地旧版依据，未宣称其兼容。"
   ],
   "next": [
+    "R96后：163/165/168的版本/全范围交叉核对仍待完成；166/167分层职责已收口，不为凑轮次重复扩写，不把硬件签核纳入一期必需验收。",
     "逐主题深化PLL/CDR与EQ的完整状态流程及版本化寄存器",
     "按实际filelist展开关键通路和生成宏，并补充可复现数字仿真",
     "核读PIPE速率/宽度切换、Message Bus和低功耗握手完整条款",
@@ -475,6 +477,56 @@
         "featureId": 173,
         "detailId": "rx-retimer-equalization-is-segment-local",
         "title": "RX：局部适应与端到端证据分开"
+      }
+    ]
+  },
+  "partitionReferences": {
+    "title": "分层与TX路径：先分边界再看完成证据",
+    "links": [
+      {
+        "featureId": 163,
+        "detailId": "r96-three-boundary-contracts",
+        "title": "先分三份契约：线上的PCIe、MAC/PHY间的PIPE、厂商内部结构"
+      },
+      {
+        "featureId": 165,
+        "detailId": "r96-upcs-clock-data-map",
+        "title": "uPCS不是第二套协议栈：数据适配、时钟协调和控制面分开"
+      },
+      {
+        "featureId": 165,
+        "detailId": "r96-upcs-valid-and-bypass",
+        "title": "重排、节流和旁路：框图里有模块，不等于该数据经过它"
+      },
+      {
+        "featureId": 166,
+        "detailId": "r96-pmd-two-meanings",
+        "title": "PMD有整体和软宏两种上下文：先问这次说的是哪一层"
+      },
+      {
+        "featureId": 166,
+        "detailId": "r96-rawpcs-pmd-comparison",
+        "title": "Gen5 Raw PCS与Gen6 PMD软宏：相似职责不代表可直接替换"
+      },
+      {
+        "featureId": 167,
+        "detailId": "r96-pma-common-lane-map",
+        "title": "PMA包含数字处理：Common与每Lane TX/RX看资源归属"
+      },
+      {
+        "featureId": 167,
+        "detailId": "r96-pma-version-scope",
+        "title": "共享几个PLL、几个Lane：产品配置不是PCIe代际定理"
+      },
+      {
+        "featureId": 168,
+        "detailId": "r96-tx-representation-boundaries",
+        "title": "TX每段传的不是同一种表示：并行字、符号、驱动码和串行波形"
+      },
+      {
+        "featureId": 168,
+        "detailId": "r96-tx-valid-not-electrical-idle",
+        "title": "P0、Data Enable、Electrical Idle与Link Up分别判断"
       }
     ]
   }

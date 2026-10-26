@@ -495,3 +495,7 @@ R92将117条历史记录归并为固定24项验收任务，并登记37项来源�
 ## R95枚举与资源批验
 
 [ECAM七版对照](https://mgc455.github.io/pcie_study/#feature/48/detail/r95-ecam-version-matrix) · [一期验收](https://mgc455.github.io/pcie_study/#completion/48)。本轮30维度、累计53；ECAM完整通过，1/183；来源问题14按正式版本上下文澄清。余43轮仍为预算，R96转PHY分层/TX，R98总结。
+
+## R96 PHY分层与TX
+
+[PHY三份契约](https://mgc455.github.io/pcie_study/#feature/163/detail/r96-three-boundary-contracts) · [TX表示边界](https://mgc455.github.io/pcie_study/#feature/168/detail/r96-tx-representation-boundaries)。本轮34维度、累计87；166/167分层职责验收通过，完整功能3/183。余42轮为预算，R97转中断、R98总结，自动任务保持暂停。

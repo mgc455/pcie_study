@@ -17,6 +17,9 @@ for f in features:
     for detail in f.get('details',[]):
         assert detail.get('title') and (detail.get('paragraphs') or detail.get('table'))
         assert all(isinstance(i,int) and 0<=i<len(f.get('protocolReferences',[])) for i in detail.get('referenceIndices',[])), 'Invalid detail source index'
+        for related in detail.get('relatedDetails',[]):
+            target=next((x for x in features if x['id']==related.get('featureId')),None)
+            assert target and related.get('label') and any(d.get('id')==related.get('detailId') for d in target.get('details',[])), 'Dead related-detail link'
         if 'table' in detail:
             table=detail['table']
             assert table['columns'] and table['rows']
@@ -72,6 +75,10 @@ for x in g['items']:
 assert all(x['efficiency'] is None for x in g['items'][-2:]), 'FLIT overhead is not 128/130'
 assert '#generations' in raw and '#audit' in raw
 phy=json.loads((ROOT/'content/phy.json').read_text(encoding='utf-8'))
+if 'partitionReferences' in phy:
+    for link in phy['partitionReferences']['links']:
+        target=next((f for f in features if f['id']==link['featureId']),None)
+        assert target and link['title'] and any(d.get('id')==link['detailId'] for d in target.get('details',[])), 'Dead PHY partition entry'
 phy_ids=[id for group in phy['groups'] for id in group['ids']]
 assert len(phy_ids)==len(set(phy_ids))==20
 if 'marginReferences' in phy:
