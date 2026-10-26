@@ -503,3 +503,7 @@ R92将117条历史记录归并为固定24项验收任务，并登记37项来源�
 ## R97 中断结构验收
 
 [MSI-X七代来源地图](https://mgc455.github.io/pcie_study/#feature/55/detail/r97-msix-seven-version-map) · [B42正式勘误](https://mgc455.github.io/pcie_study/#feature/55/detail/r80-msix4-offset-conflict) · [中断各层门控](https://mgc455.github.io/pcie_study/#feature/56/detail/r97-interrupt-gates-not-one-enable)。34新维度累计121；55收口，完整功能4/183，余41轮预算。R98总结R95～R98进度，自动任务保持暂停。
+
+## R98 四轮总结与中断验收
+
+[四轮总结](https://mgc455.github.io/pcie_study/#updates) · [MSI与EMD版本地图](https://mgc455.github.io/pcie_study/#feature/53/detail/r98-msi-revision-and-emd-map) · [PVM角色矩阵](https://mgc455.github.io/pcie_study/#feature/54/detail/r98-pvm-role-and-version-matrix)。本轮52/53/54/56通过，累计完整功能8/183，验收维度129/1464；剩175项。R95～R98平均2项/轮，剩40轮需4.375项/轮，当前速度不支持R138完成保证；不自动延期。R99收消息分组，R102总结；每日任务暂停。

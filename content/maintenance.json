@@ -1,9 +1,9 @@
 {
   "nextFeatureIds": [
-    52,
-    53,
-    54,
-    56
+    57,
+    58,
+    60,
+    61
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -50,16 +50,14 @@
   ],
   "lastCompleted": {
     "date": "2026-10-26",
-    "edition": "2026-10-26-r97",
+    "edition": "2026-10-26-r98",
     "featureIds": [
       52,
       53,
       54,
-      55,
-      56,
-      57
+      56
     ],
-    "nextTrack": "R98中断剩余验收与四轮总结"
+    "nextTrack": "R99消息分组批验，R102四轮复盘"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -349,16 +347,108 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 39,
-    "lastReviewEdition": "2026-10-26-r94",
-    "lastReviewId": "r91-r94",
-    "nextExpectedReview": "R98（R95～R98收尾进展总结）"
+    "completedTotal": 40,
+    "lastReviewEdition": "2026-10-26-r98",
+    "lastReviewId": "r95-r98",
+    "nextExpectedReview": "R102（R99～R102四轮总结）"
   },
   "stageReviews": [
+    {
+      "id": "r95-r98",
+      "date": "2026-10-26",
+      "edition": "2026-10-26-r98",
+      "title": "一期收尾第二窗口：ECAM、PHY分层与中断收口；工期偏差明确",
+      "completedRounds": 4,
+      "rounds": [
+        {
+          "edition": "R95",
+          "topic": "枚举/资源批验，ECAM48通过；30个新维度",
+          "featureIds": [
+            36,
+            38,
+            39,
+            41,
+            43,
+            47,
+            48
+          ],
+          "remaining": "枚举、BAR、ROM/VPD/EA及DBI2其余维度未全收口"
+        },
+        {
+          "edition": "R96",
+          "topic": "PHY分层/TX批验，166/167通过；34个新维度",
+          "featureIds": [
+            163,
+            165,
+            166,
+            167,
+            168
+          ],
+          "remaining": "163/165/168版本一致性、完整PIPE及其它PHY主题仍待验"
+        },
+        {
+          "edition": "R97",
+          "topic": "中断机制/结构批验，55通过；正式B42裁决问题33；34个新维度",
+          "featureIds": [
+            52,
+            53,
+            54,
+            55,
+            56,
+            57
+          ],
+          "remaining": "当时52/53/54/56版本一致性仍待验，消息四项仍未完成"
+        },
+        {
+          "edition": "R98",
+          "topic": "核EMD与SR-IOV独立规范，52/53/54/56通过；8个新维度及四轮总结",
+          "featureIds": [
+            52,
+            53,
+            54,
+            56
+          ],
+          "remaining": "中断分组余57/58/60/61，其它分组和36来源问题按账本推进"
+        }
+      ],
+      "result": "本窗口完整功能新增8项、验收维度新增106；累计完整功能8/183、验收维度129/1464，未验完整功能175。0/24分组任务关闭，38来源问题中2项已裁决、36仍待；不把已有大量正文理解成空白，也不把局部维度当完整功能。",
+      "nextPriorities": [
+        {
+          "title": "1. 收口消息分组",
+          "featureIds": [
+            57,
+            58,
+            60,
+            61
+          ],
+          "reason": "复用已成熟路由与就绪字段，保留VDM/DRS/FRS独有语义，优先争取首个分组真正关闭。"
+        },
+        {
+          "title": "2. 已具备核心内容的版本/一致性批验",
+          "featureIds": [
+            41,
+            47,
+            87,
+            88,
+            89,
+            163,
+            165,
+            168
+          ],
+          "reason": "集中共享正式版本和独立ECN核读，按剩余验收缺口推进；不为凑数量重写正确正文。"
+        },
+        {
+          "title": "3. 必需来源问题与其它分组",
+          "featureIds": [],
+          "reason": "36问题仍保留在固定24任务内，真正缺资料列具体文件，已有资料继续读；不额外加36轮。"
+        }
+      ],
+      "limitations": "R95～R98新增106个验收维度、完成8个完整功能，累计129维度及8/183，固定任务仍0/24关闭；尚余175完整功能。窗口平均2项/轮，要在剩40轮内完成需4.375项/轮（约4.4），当前实绩不支持R138完成保证。若机械按本窗口速度外推，功能验收约需88轮，且未计共享收尾；这只是风险外推，不是自动延期或新承诺。 R138保留为原预算目标并标记进度风险，不静默延长。下一窗口先批验成熟功能组并集中复用版本证据，停止为每条必添新工具/固定段数；R99先收消息分组。R102按完整关闭量重估，达到预算需下一窗口接近18项完整验收；这是所需速度对照，不是承诺或强行通过配额。 每日自动任务保持暂停，仅手动推进。"
+    },
     {
       "id": "r91-r94",
       "date": "2026-10-26",
@@ -1109,10 +1199,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 7,
-    "remainingPlannedRounds": 41,
-    "nextRound": 98,
-    "nextReviewRound": 98,
+    "completedRounds": 8,
+    "remainingPlannedRounds": 40,
+    "nextRound": 99,
+    "nextReviewRound": 102,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -4881,7 +4971,7 @@
         "featureId": 52,
         "group": "中断与消息",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -4960,9 +5050,15 @@
             "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
+            "status": "passed",
+            "reviewedRound": 98,
+            "evidence": [
+              {
+                "href": "#feature/52/detail/r98-intx-seven-version-contract",
+                "label": "INTx七版核对：相同虚拟线语义，不同身份文字与角色边界"
+              }
+            ],
+            "note": "R98逐版核所列Base正文及其委托来源，复用R80/R97既有字段/位图/查询；核独立2003/2016 ECN、SR-IOV1.0/1.1中断章及后续Base，修正已过时待核文字，未按速度推断可选能力。 Function保留/0、ARI映射、DL_Down/Disable及VF/SDI限制分版本和角色；不编造ARI中间ECN首发日期。"
           },
           "sources": {
             "status": "passed",
@@ -5003,9 +5099,15 @@
             "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
+            "status": "passed",
+            "reviewedRound": 98,
+            "evidence": [
+              {
+                "href": "#feature/52/detail/r98-intx-seven-version-contract",
+                "label": "INTx七版核对：相同虚拟线语义，不同身份文字与角色边界"
+              }
+            ],
+            "note": "R98逐版核所列Base正文及其委托来源，复用R80/R97既有字段/位图/查询；核独立2003/2016 ECN、SR-IOV1.0/1.1中断章及后续Base，修正已过时待核文字，未按速度推断可选能力。 Function保留/0、ARI映射、DL_Down/Disable及VF/SDI限制分版本和角色；不编造ARI中间ECN首发日期。"
           }
         },
         "baseline": {
@@ -5014,21 +5116,22 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R97按实际已核维度验收；旧工具/位图复用。55本主题收口，其他条目未通过维度继续保留。",
+        "reviewNote": "R97六核心维度与R98版本/一致性复核合并完成；范围限于本功能查询契约，不同步宣布平台中断/完整虚拟化/设备驱动或RTL时序已验收。",
         "taskId": "v1-task-06",
         "requiredTaskIds": [
           "v1-task-06",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 98
       },
       {
         "id": "v1-feature-53",
         "featureId": 53,
         "group": "中断与消息",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -5123,9 +5226,15 @@
             "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
+            "status": "passed",
+            "reviewedRound": 98,
+            "evidence": [
+              {
+                "href": "#feature/53/detail/r98-msi-revision-and-emd-map",
+                "label": "MSI七版与2016 EMD ECN：字段扩展不跟随协商速率开关"
+              }
+            ],
+            "note": "R98逐版核所列Base正文及其委托来源，复用R80/R97既有字段/位图/查询；核独立2003/2016 ECN、SR-IOV1.0/1.1中断章及后续Base，修正已过时待核文字，未按速度推断可选能力。 EMD2016-05-10受影响Base3.1而非3.0；6/7 MUST@FLIT、7.0基准Data低位与SIOV规则分别标注，不倒灌旧查询。"
           },
           "sources": {
             "status": "passed",
@@ -5174,9 +5283,15 @@
             "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
+            "status": "passed",
+            "reviewedRound": 98,
+            "evidence": [
+              {
+                "href": "#feature/53/detail/r98-msi-revision-and-emd-map",
+                "label": "MSI七版与2016 EMD ECN：字段扩展不跟随协商速率开关"
+              }
+            ],
+            "note": "R98逐版核所列Base正文及其委托来源，复用R80/R97既有字段/位图/查询；核独立2003/2016 ECN、SR-IOV1.0/1.1中断章及后续Base，修正已过时待核文字，未按速度推断可选能力。 EMD2016-05-10受影响Base3.1而非3.0；6/7 MUST@FLIT、7.0基准Data低位与SIOV规则分别标注，不倒灌旧查询。"
           }
         },
         "baseline": {
@@ -5185,21 +5300,22 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R97按实际已核维度验收；旧工具/位图复用。55本主题收口，其他条目未通过维度继续保留。",
+        "reviewNote": "R97六核心维度与R98版本/一致性复核合并完成；范围限于本功能查询契约，不同步宣布平台中断/完整虚拟化/设备驱动或RTL时序已验收。",
         "taskId": "v1-task-06",
         "requiredTaskIds": [
           "v1-task-06",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 98
       },
       {
         "id": "v1-feature-54",
         "featureId": 54,
         "group": "中断与消息",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -5278,9 +5394,15 @@
             "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
+            "status": "passed",
+            "reviewedRound": 98,
+            "evidence": [
+              {
+                "href": "#feature/54/detail/r98-pvm-role-and-version-matrix",
+                "label": "PVM按规范版本和Function角色判定：2007年的PF/VF要求不是Gen4新增"
+              }
+            ],
+            "note": "R98逐版核所列Base正文及其委托来源，复用R80/R97既有字段/位图/查询；核独立2003/2016 ECN、SR-IOV1.0/1.1中断章及后续Base，修正已过时待核文字，未按速度推断可选能力。 普通MSI可选与2007/2010 SR-IOV MSI强制交叉验证；SIOV PF明确可选，6/7未分配实现位要求与旧版文字分开。"
           },
           "sources": {
             "status": "passed",
@@ -5321,9 +5443,15 @@
             "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
+            "status": "passed",
+            "reviewedRound": 98,
+            "evidence": [
+              {
+                "href": "#feature/54/detail/r98-pvm-role-and-version-matrix",
+                "label": "PVM按规范版本和Function角色判定：2007年的PF/VF要求不是Gen4新增"
+              }
+            ],
+            "note": "R98逐版核所列Base正文及其委托来源，复用R80/R97既有字段/位图/查询；核独立2003/2016 ECN、SR-IOV1.0/1.1中断章及后续Base，修正已过时待核文字，未按速度推断可选能力。 普通MSI可选与2007/2010 SR-IOV MSI强制交叉验证；SIOV PF明确可选，6/7未分配实现位要求与旧版文字分开。"
           }
         },
         "baseline": {
@@ -5332,14 +5460,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R97按实际已核维度验收；旧工具/位图复用。55本主题收口，其他条目未通过维度继续保留。",
+        "reviewNote": "R97六核心维度与R98版本/一致性复核合并完成；范围限于本功能查询契约，不同步宣布平台中断/完整虚拟化/设备驱动或RTL时序已验收。",
         "taskId": "v1-task-06",
         "requiredTaskIds": [
           "v1-task-06",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 98
       },
       {
         "id": "v1-feature-55",
@@ -5650,7 +5779,7 @@
         "featureId": 56,
         "group": "中断与消息",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -5729,9 +5858,15 @@
             "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
+            "status": "passed",
+            "reviewedRound": 98,
+            "evidence": [
+              {
+                "href": "#feature/56/detail/r98-event-notification-version-contract",
+                "label": "事件、通知与ISR的七版查询边界：软件账本不会被更快链路替代"
+              }
+            ],
+            "note": "R98逐版核所列Base正文及其委托来源，复用R80/R97既有字段/位图/查询；核独立2003/2016 ECN、SR-IOV1.0/1.1中断章及后续Base，修正已过时待核文字，未按速度推断可选能力。 早期ECN与4/5/6/7正文交叉验证工作记录、通知和ISR；不把Memory Write接收误作Cpl或CPU完成。"
           },
           "sources": {
             "status": "passed",
@@ -5772,9 +5907,15 @@
             "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
+            "status": "passed",
+            "reviewedRound": 98,
+            "evidence": [
+              {
+                "href": "#feature/56/detail/r98-event-notification-version-contract",
+                "label": "事件、通知与ISR的七版查询边界：软件账本不会被更快链路替代"
+              }
+            ],
+            "note": "R98逐版核所列Base正文及其委托来源，复用R80/R97既有字段/位图/查询；核独立2003/2016 ECN、SR-IOV1.0/1.1中断章及后续Base，修正已过时待核文字，未按速度推断可选能力。 早期ECN与4/5/6/7正文交叉验证工作记录、通知和ISR；不把Memory Write接收误作Cpl或CPU完成。"
           }
         },
         "baseline": {
@@ -5783,14 +5924,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R97按实际已核维度验收；旧工具/位图复用。55本主题收口，其他条目未通过维度继续保留。",
+        "reviewNote": "R97六核心维度与R98版本/一致性复核合并完成；范围限于本功能查询契约，不同步宣布平台中断/完整虚拟化/设备驱动或RTL时序已验收。",
         "taskId": "v1-task-06",
         "requiredTaskIds": [
           "v1-task-06",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 98
       },
       {
         "id": "v1-feature-57",
@@ -15213,6 +15355,65 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "R98复核本组未验版本与一致性，按约定总结R95～R98关闭量和预算；不能把34维度当34完整功能。",
         "publication": "本地构建和发布结果以实际记录为准。"
+      },
+      {
+        "round": 98,
+        "kind": "interrupt-version-closure-and-four-round-review",
+        "deliverables": [
+          "补4个七版/独立规范对照块，修正5个旧细节的过时或未限定文字",
+          "52/53/54/56补齐版本及一致性8维度，累计129维度、完整功能8/183",
+          "完成R95～R98四轮总结，量化当前2项/轮与目标所需4.375项/轮差距"
+        ],
+        "closedDeliverableIds": [
+          "intx-v1-accepted",
+          "msi-v1-accepted",
+          "msi-pvm-v1-accepted",
+          "interrupt-event-pipeline-v1-accepted",
+          "review-r95-r98"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 52,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 52,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 53,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 53,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 54,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 54,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 56,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 56,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          52,
+          53,
+          54,
+          56
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "中断任务06仍余57/58/60/61；下轮批验这些成熟消息主题。固定183项范围不增加；R102再按实际完整关闭量复盘，40轮只是预算。",
+        "publication": "构建/发布和页面复核以本地实际记录为准。"
       }
     ],
     "backlog": [
@@ -15440,12 +15641,16 @@
         "evidence": [],
         "closedRound": null,
         "progress": {
-          "round": 97,
-          "newPassedCriteria": 34,
+          "round": 98,
+          "newPassedCriteria": 8,
           "acceptedUnitIds": [
-            55
+            52,
+            53,
+            54,
+            55,
+            56
           ],
-          "remaining": "52/53/54/56版本与交叉核对、57其余维度、58/60/61仍待完整验收；任务未关闭。"
+          "remaining": "57 Message、58 VDM、60 DRS、61 FRS未完整验收；不因中断五项通过而关闭整个分组。"
         }
       },
       {
@@ -18444,32 +18649,35 @@
       }
     ],
     "nextExecution": {
-      "round": 98,
+      "round": 99,
       "taskId": "v1-task-06",
       "featureIds": [
-        52,
-        53,
-        54,
-        56
+        57,
+        58,
+        60,
+        61
       ],
-      "goal": "优先复核本组剩余版本/一致性与独立ECN例外，复用成熟内容；完成R95～R98四轮总结，报告完整功能关闭量、源问题与剩余预算，不增加范围。",
-      "reviewRound": 98
+      "goal": "批验成熟Message/VDM/DRS/FRS，优先共享版本核读、保留各自路由/就绪独有语义；仅补真实缺口，满足全部维度才关闭任务06。",
+      "reviewRound": 102
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
-      "status": "needs-calibration",
-      "assessedRound": 97,
-      "reestimateRound": 98,
-      "assessment": "R97累计121个维度通过、4个完整功能、0分组任务关闭。其余179项仍须实际验收；41轮是预算，尚不足以作为完成保证。",
-      "action": "R98按约定复盘四轮完整功能关闭速度，若预算明显不足直接报告，不自动扩写、降标准或延长。",
+      "status": "at-risk",
+      "assessedRound": 98,
+      "reestimateRound": 102,
+      "assessment": "R95～R98新增106个验收维度、完成8个完整功能，累计129维度及8/183，固定任务仍0/24关闭；尚余175完整功能。窗口平均2项/轮，要在剩40轮内完成需4.375项/轮（约4.4），当前实绩不支持R138完成保证。若机械按本窗口速度外推，功能验收约需88轮，且未计共享收尾；这只是风险外推，不是自动延期或新承诺。",
+      "action": "R138保留为原预算目标并标记进度风险，不静默延长。下一窗口先批验成熟功能组并集中复用版本证据，停止为每条必添新工具/固定段数；R99先收消息分组。R102按完整关闭量重估，达到预算需下一窗口接近18项完整验收；这是所需速度对照，不是承诺或强行通过配额。",
       "latestProgress": {
-        "round": 97,
-        "newAcceptedUnits": 1,
-        "cumulativeAcceptedUnits": 4,
-        "newPassedCriteria": 34,
-        "cumulativePassedCriteria": 121,
-        "remainingPlannedRounds": 41
-      }
+        "round": 98,
+        "newAcceptedUnits": 4,
+        "cumulativeAcceptedUnits": 8,
+        "newPassedCriteria": 8,
+        "cumulativePassedCriteria": 129,
+        "remainingPlannedRounds": 40
+      },
+      "observedAcceptedUnitsPerRound": 2,
+      "requiredAcceptedUnitsPerRemainingRound": 4.375,
+      "linearExtrapolationRounds": 88
     },
     "reviewWindows": [
       {
@@ -18496,6 +18704,59 @@
           87,
           88,
           89
+        ]
+      },
+      {
+        "id": "r95-r98",
+        "firstRound": 95,
+        "lastRound": 98,
+        "completedPlanRounds": 4,
+        "closedFeatureUnits": [
+          48,
+          52,
+          53,
+          54,
+          55,
+          56,
+          166,
+          167
+        ],
+        "newPassedCriteria": 106,
+        "cumulativePassedCriteria": 129,
+        "remainingFeatureUnits": 175,
+        "remainingRequiredTasks": 24,
+        "sourceQuestions": 38,
+        "resolvedSourceQuestions": 2,
+        "remainingSourceQuestions": 36,
+        "remainingPlannedRounds": 40,
+        "targetRound": 138,
+        "forecast": {
+          "status": "at-risk",
+          "assessedRound": 98,
+          "reestimateRound": 102,
+          "assessment": "R95～R98新增106个验收维度、完成8个完整功能，累计129维度及8/183，固定任务仍0/24关闭；尚余175完整功能。窗口平均2项/轮，要在剩40轮内完成需4.375项/轮（约4.4），当前实绩不支持R138完成保证。若机械按本窗口速度外推，功能验收约需88轮，且未计共享收尾；这只是风险外推，不是自动延期或新承诺。",
+          "action": "R138保留为原预算目标并标记进度风险，不静默延长。下一窗口先批验成熟功能组并集中复用版本证据，停止为每条必添新工具/固定段数；R99先收消息分组。R102按完整关闭量重估，达到预算需下一窗口接近18项完整验收；这是所需速度对照，不是承诺或强行通过配额。",
+          "latestProgress": {
+            "round": 98,
+            "newAcceptedUnits": 4,
+            "cumulativeAcceptedUnits": 8,
+            "newPassedCriteria": 8,
+            "cumulativePassedCriteria": 129,
+            "remainingPlannedRounds": 40
+          },
+          "observedAcceptedUnitsPerRound": 2,
+          "requiredAcceptedUnitsPerRemainingRound": 4.375,
+          "linearExtrapolationRounds": 88
+        },
+        "coreReadyUnitIds": [
+          41,
+          47,
+          87,
+          88,
+          89,
+          163,
+          165,
+          168
         ]
       }
     ]
