@@ -88,3 +88,9 @@ R102 review:93/94/95 accepted, first functional task11 closed.24 new criteria,21
 R103: accepted[41, 47, 163, 165, 168], new criteria10, cumulative25/183 and227 criteria;158 units/35 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR104[97, 98, 105]; R106 review, daily paused. User authorized two rounds103/104, independent content/check records, combined final publicationR104.
 
 R104: accepted[97, 98, 105], new criteria24, cumulative28/183 and251 criteria;155 units/34 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR105[42, 43, 44, 45, 46]; R106 review, daily paused. User authorized two rounds103/104, independent content/check records, combined final publicationR104.
+
+R105: accepted[42, 44, 45], new criteria24, cumulative31/183 and275 criteria;152 units/33 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR106[43, 46]; R106 review, daily paused. User authorized two rounds105/106, independent content/check records, combined final publicationR106.
+
+R106: accepted[43, 46], new criteria12, cumulative33/183 and287 criteria;150 units/32 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR107[36, 38, 39, 37, 40]; R106 review, daily paused. User authorized two rounds105/106, independent content/check records, combined final publicationR106.
+
+R106 review complete: R103-R106 accepted13 units/70 criteria, cumulative33/183 and287;150 units/32 budget rounds remain,23 tasks open. Observed3.25/round vs4.6875 required; mechanical47-round extrapolation is risk only. NextR107 mature36/38/39/37/40; next reviewR110, daily paused. Original117 history/38 questions retained.

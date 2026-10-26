@@ -50284,14 +50284,14 @@
     "checks": "区分6.0字段语义、7.0兼容建议与平台MMIO属性；不要把bit3当CPU缓存使能，不凭低位决定所有版本的桥窗口策略。",
     "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
     "id": 42,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R105按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "7.5",
@@ -50369,6 +50369,83 @@
         "title": "MMIO访问属性分块建议",
         "verification": "已核读所引版本具体正文；未外推其他修订。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "ecn-prefetch-ecn",
+        "document": "Removing Prefetchable Terminology ECN",
+        "version": "Updated 2024-04-05; referenced Base6.2",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "2024术语调整所引用版本",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-prefetch-ecn",
+        "document": "Removing Prefetchable Terminology ECN",
+        "version": "Updated 2024-04-05; referenced Base6.2",
+        "section": "7.5.1.2.1",
+        "page": 6,
+        "pdfPage": 6,
+        "title": "bit3弃用变更标记已视觉核",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "7.5.2.1",
+        "page": 326,
+        "pdfPage": 326,
+        "title": "历史BAR属性正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "7.5.2.1",
+        "page": 433,
+        "pdfPage": 433,
+        "title": "历史BAR属性正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "7.5.2.1",
+        "page": 595,
+        "pdfPage": 595,
+        "title": "历史BAR属性正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.5.1.2.1",
+        "page": 702,
+        "pdfPage": 702,
+        "title": "历史BAR属性正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.5.1.2.1",
+        "page": 697,
+        "pdfPage": 697,
+        "title": "历史BAR属性正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "已展开所引Base6.0/7.0规则及版本差异；其他修订和交叉分支继续核读。",
@@ -50421,6 +50498,70 @@
           3,
           4
         ]
+      },
+      {
+        "id": "r105-prefetch-version-and-attribute-map",
+        "title": "bit3逐版与访问属性：2024 ECN已在Gen7之前提出调整",
+        "paragraphs": [
+          "历史Memory BAR bit3用来表达Prefetchable属性；它不是CPU页表Cache Enable，也不是Switch后台预读开关。带读清零、FIFO弹出等副作用的寄存器，应明确驱动访问宽度、Byte Enable和读取次数要求，不能仅因需要大BAR而把访问当普通RAM。",
+          "本轮核到2024-04-05 Removing Prefetchable Terminology ECN，其引用文件是Base6.2；该ECN的§7.5.1.2.1已经把旧bit3定义删除并增加未定义/旧软件兼容建议。正式7.0也采用这套文字，因此不能叫作128GT/s才出现的功能。未用ECN发布日期代替每个6.x正式修订的合入证明。",
+          "ECN PDF仍有变更标记：划掉的“可预取”图标和条件不是新增要求，文件名clean不保证没有删除线。对应旧版正式规范的属性约束仍按其版本解释；新版兼容置位也不授权CPU推测读、写合并或改变设备编程模型。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "table": {
+          "columns": [
+            "版本/层面",
+            "含义",
+            "何时用与限制"
+          ],
+          "rows": [
+            [
+              "1.0a/2.0/3.0/4.0/5.0及6.0所引正文",
+              "历史bit3 Prefetchable语义",
+              "按读副作用、返回字节及合并容忍条件判断，不能代替平台访问属性"
+            ],
+            [
+              "2024 ECN，引用Base6.2",
+              "删除旧语义；推荐64bit BAR置1、32bit清0以兼容旧软件",
+              "不等于bit3被重定义成强制位宽位"
+            ],
+            [
+              "正式7.0",
+              "bit3未定义；兼容建议保留",
+              "Host Bridge写合并另受系统保护条件约束"
+            ],
+            [
+              "软件使用",
+              "核BAR资源→核每段MMIO编程模型→选择平台访问属性",
+              "bit3、CPU缓存策略、PCIe排序属性分别判断"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 41,
+            "detailId": "bar-memory-bit-table",
+            "label": "普通BAR位定义"
+          },
+          {
+            "featureId": 42,
+            "detailId": "bar-mmio-attributes-base7",
+            "label": "新版MMIO分块建议"
+          },
+          {
+            "featureId": 47,
+            "detailId": "r103-bridge-version-contract",
+            "label": "桥窗口逐版"
+          }
+        ]
       }
     ]
   },
@@ -50434,14 +50575,14 @@
     "checks": "避免在驱动使用资源时自行改变容量/掩码；核对软件资源长度与硬件实际译码范围。",
     "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
     "id": 43,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R106按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-26",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "7.5",
@@ -50497,6 +50638,61 @@
         "title": "BAR位与类型/大小",
         "verification": "已核读本版所引正文/表；不是整章、全部模式或逐代演进完成声明。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "1",
+        "page": 223,
+        "pdfPage": 223,
+        "title": "6.50a三种Sizing配置",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "1",
+        "page": 224,
+        "pdfPage": 224,
+        "title": "6.50a本地Mask含义",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "2.42",
+        "page": 1513,
+        "pdfPage": 1513,
+        "title": "直接DBI的额外选择信号",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.2.1",
+        "page": 930,
+        "pdfPage": 930,
+        "title": "标准可见容量与对齐",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.2.1",
+        "page": 1080,
+        "pdfPage": 1080,
+        "title": "标准BAR边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "已展开所引Base6.0/7.0规则及版本差异；其他修订和交叉分支继续核读。",
@@ -50532,7 +50728,7 @@
         "title": "标准Sizing与本地Mask：只复用能证明的部分",
         "paragraphs": [
           "标准可观察行为是BAR类型、地址位、全1探测回读和自然对齐。当前分配基址、申请容量、实际背后实现的寄存器字节数是三个量；不能用正常BAR基址取反推容量，也不能把1MiB aperture当成1MiB SRAM。",
-          "DBI2 Mask/生成参数/本地初始化属于具体控制器实现。Base6.0/7.0所引BAR条款不能证明某IP的DBI2偏移、bit编码、访问时序或运行期改容量许可；没有匹配产品版本依据就不输出这些写值。本条不将实现部分标成完整通过。",
+          "DBI2 Mask/生成参数/本地初始化属于控制器实现。R106已核6.50a Reference Manual的Sizing配置与直接DBI路径，见本页产品契约；仍不输出通用DBI2偏移、拷贝RTL适配结论或运行期热改许可。",
           "标准字段表、64bit成对探测、公式、异常输入和查询器复用41对应详细块；本项保留DBI2与标准Sizing的职责区别，而非复制一份可能漂移的公式。"
         ],
         "referenceIndices": [
@@ -50540,6 +50736,81 @@
           2,
           3,
           4
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 43,
+            "detailId": "r106-dbi2-mask-product-contract",
+            "label": "已核6.50a边界"
+          }
+        ]
+      },
+      {
+        "id": "r106-dbi2-mask-product-contract",
+        "title": "DBI2与BAR容量：6.50a实现侧设置和主机标准探测分开",
+        "paragraphs": [
+          "标准BAR回答主机“资源放在哪里、需要多大窗口”；本地Mask是控制器实现用来决定哪些BAR地址位允许主机改写的机制。它不是PCIe配置头新增的通用DBI2寄存器，也不是在正常BAR地址上再加一次取反。",
+          "所核Controller Reference Manual 6.50a（2026-01）区分固定Mask、本地可编程Mask和标准Resizable BAR三条配置路径。固定方式不能在运行中随意改变；可编程方式需要生成时选择相应支持；标准RBAR则按0015h能力及其规范流程由软件选择广告支持的尺寸。不能只凭手册有某寄存器名就认定当前生成配置实现了它。",
+          "对该版直接DBI接口，额外片选dbi_cs2与主片选共同选中Mask写入路径；这是接口条件，不是所有SoC通用的地址偏移或可照抄的软件命令。共享DBI或其它封装有不同存在条件，必须查本配置的接口。详细寄存器清单/源码匹配证据保留本地，不公开厂商寄存器转储。",
+          "本页针对6.50a产品契约验收，不声称拷贝RTL的生成参数已经与它匹配，也不承诺Gen1～Gen7控制器都用同一DBI2地址或bit定义。标准尺寸/对齐公式及七版差异复用已验收的41；产品版本与PCIe链路速率分别标注。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "table": {
+          "columns": [
+            "观察面",
+            "含义",
+            "限制"
+          ],
+          "rows": [
+            [
+              "主机分配基址",
+              "普通BAR的可写地址位",
+              "改变位置，不凭空改变申请容量"
+            ],
+            [
+              "主机Sizing回读",
+              "当前译码关闭等合法前提下探测",
+              "屏蔽类型位，64bit成对；普通Mask工具不套VF/EA/RBAR"
+            ],
+            [
+              "实现侧Mask",
+              "决定BAR可写/只读边界，依生成配置",
+              "不把容量当背后SRAM的实际字节数"
+            ],
+            [
+              "固定/可编程/标准RBAR",
+              "6.50a明确区分三路径",
+              "不能把可编程Mask当标准在线resize握手"
+            ],
+            [
+              "初始化检查顺序",
+              "核配置与版本→核主机探测长度→核基址对齐→核桥窗口与本地译码",
+              "运行期改动还需停使用者、处理在途请求/映射；不是写后自动完成"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 41,
+            "detailId": "bar-mask-query",
+            "label": "普通Memory BAR查询"
+          },
+          {
+            "featureId": 44,
+            "detailId": "rbar-resize-memory-enable-sequence",
+            "label": "标准RBAR改尺寸"
+          },
+          {
+            "featureId": 43,
+            "detailId": "bar-size-is-not-address-field",
+            "label": "基址与大小"
+          }
         ]
       }
     ]
@@ -50554,14 +50825,14 @@
     "checks": "容量切换前停业务、处理映射和驱动资源；不要在旧映射仍被访问时在线随意改变窗口。",
     "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
     "id": 44,
-    "status": "选定规则已展开 · 持续逐版核读",
+    "status": "一期已验收：R105按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-24",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "7.8.6",
@@ -51442,6 +51713,94 @@
         "title": "离线查询：解码支持尺寸、当前选择、条目偏移与BAR目标",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R57核读所列正式版对应Resizable BAR、VF Resizable BAR或VF映射正文；印刷页与本地PDF物理页已分别核对一致。视觉核3.0 p761和7.0 p1309/1314。只证明所列字段/规则，不代表全章、全部代际或ECN沿革完成。"
+      },
+      {
+        "documentId": "ecn-rbar-ecn",
+        "document": "Resizable BAR Capability ECN",
+        "version": "PWG approved 2008-04-24",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "原始RBAR针对Base2.0",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-rbar-ecn",
+        "document": "Resizable BAR Capability ECN",
+        "version": "PWG approved 2008-04-24",
+        "section": "7.xx.2",
+        "page": 6,
+        "pdfPage": 6,
+        "title": "原始尺寸支持位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-rbar-ecn",
+        "document": "Resizable BAR Capability ECN",
+        "version": "PWG approved 2008-04-24",
+        "section": "7.xx.3",
+        "page": 8,
+        "pdfPage": 8,
+        "title": "原始Size字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-expanded-ecn",
+        "document": "Expanded Resizable BARs ECN",
+        "version": "2016-04-18",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "扩展ECN针对3.1",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-expanded-ecn",
+        "document": "Expanded Resizable BARs ECN",
+        "version": "2016-04-18",
+        "section": "7.22.3",
+        "page": 6,
+        "pdfPage": 6,
+        "title": "扩展字段表与未更新图",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.8.6",
+        "page": 881,
+        "pdfPage": 881,
+        "title": "4.0尺寸与改写前提",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.8.6.2",
+        "page": 884,
+        "pdfPage": 884,
+        "title": "4.0能力支持位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.8.6.3",
+        "page": 886,
+        "pdfPage": 886,
+        "title": "4.0六位Size与扩展支持",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "已核Base6.0/7.0所列RBAR字段及VF页面/映射正文；普通RBAR另核3.0/5.0差异。其它修订和完整ECN沿革待继续，不把目录定位当整章核读。",
@@ -51853,7 +52212,7 @@
         "paragraphs": [
           "Base3.0 §7.22.2/7.22.3给出20种支持尺寸，Capability[23:4]、Control BAR Size[12:8]，可选编码0～19；Capability[31:24]及Control高位不承担后来扩展尺寸的意义。",
           "本轮实际核读Base5.0、6.0、7.0：Capability[31:4]和Control[31:16]共同声明k=0～43，Size扩大到[13:8]，Header ID仍0015h、Version仍1。由Version=1不能单独识别到底实现了哪些扩展尺寸，仍应按所适用规范和只读能力位解析。",
-          "Base4.0资料已存在但这轮未核对应正文，不能据3→5的观察指定扩展恰在某个Gen或ECN首次引入。Gen1/2及所有中间修订、独立ECN历史也未由本轮证明；链路当前速率不会自动重定义配置寄存器布局。"
+          "R105补核正式4.0 p881～887以及2008/2016两份ECN：4.0已为扩展布局，详见本页演进补充；旧3.0/5.0/6.0/7.0定位保留。不能从当前Link速率或Header Version1独立推导字段含义。"
         ],
         "referenceIndices": [
           58,
@@ -51896,7 +52255,14 @@
               "不是Gen7独有能力"
             ]
           ]
-        }
+        },
+        "relatedDetails": [
+          {
+            "featureId": 44,
+            "detailId": "r105-rbar-ecn-four-version-map",
+            "label": "已补4.0和ECN"
+          }
+        ]
       },
       {
         "id": "rbar-register-snapshot-query",
@@ -51918,6 +52284,72 @@
           78,
           79
         ]
+      },
+      {
+        "id": "r105-rbar-ecn-four-version-map",
+        "title": "RBAR演进补齐：2.0的2008 ECN到4.0扩展布局",
+        "paragraphs": [
+          "原始Resizable BAR ECN于2008-04-24获PWG批准，针对Base2.0；它广告1MiB～512GiB共20种尺寸，Size为[12:8]。本页既有正式3.0来源与之对应，不能把RBAR说成Gen3或更高速率才有。",
+          "Expanded Resizable BARs ECN日期2016-04-18、针对Base3.1。正式4.0 §7.8.6已可核到与后续5/6/7所列相同的扩展位图：Capability[31:4]和Control[31:16]合计44位，Size[13:8]编码0～43。头部仍0015h/Version1，因此Version1本身不能识别完整布局。",
+          "扩展ECN p6明确提示旧图尚待编辑同步；图仍画[12:8]，表已经改为[13:8]。本页采用字段表并以正式4.0再核，不从旧图推导5bit上限。后续正式版“后来增加16种”的历史说明不能替代实际44位支持表；此历史措辞仍保留说明边界，不假称找到官方勘误。",
+          "复用本页字段图、全部尺寸表和查询器：选择Size不是写one-hot支持位；改写前清MSE，随后重写地址，再按资源分配结果恢复MSE。硬件能力、选中尺寸、默认值、主机可分配空间是四个不同量。"
+        ],
+        "referenceIndices": [
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87
+        ],
+        "table": {
+          "columns": [
+            "修订线",
+            "字段",
+            "边界"
+          ],
+          "rows": [
+            [
+              "2008 ECN / 正式3.0",
+              "20种，k0～19；Size[12:8]",
+              "原始能力0015h，当前链路速率不决定布局"
+            ],
+            [
+              "2016 Expanded ECN / 正式4.0",
+              "44种，k0～43；Size[13:8]",
+              "旧图可能未同步；依字段表和正式版"
+            ],
+            [
+              "正式5.0/6.0/7.0所引字段",
+              "同一扩展支持布局",
+              "不是保证每设备支持所有尺寸；默认兼容范围另读"
+            ],
+            [
+              "Gen1/Gen2速率运行的后代设备",
+              "先按规范契约发现能力",
+              "不能看到低速就把扩展位当保留，也不能反向宣称原始1.0a有此能力"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 44,
+            "detailId": "rbar-register-fields",
+            "label": "逐bit图与表"
+          },
+          {
+            "featureId": 44,
+            "detailId": "rbar-resize-memory-enable-sequence",
+            "label": "调整顺序"
+          },
+          {
+            "featureId": 44,
+            "detailId": "rbar-register-snapshot-query",
+            "label": "已有查询器"
+          }
+        ]
       }
     ]
   },
@@ -51931,14 +52363,14 @@
     "checks": "同时评估VF总数、各BAR容量、资源对齐和上游桥窗口，不单看一个VF能否枚举。",
     "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
     "id": 45,
-    "status": "选定规则已展开 · 持续逐版核读",
+    "status": "一期已验收：R105按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-24",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "7.8.7",
@@ -52654,6 +53086,61 @@
         "title": "离线查询与窗口图：页面下限、NumVFs资源量和第i个VF地址",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R57核读所列正式版对应Resizable BAR、VF Resizable BAR或VF映射正文；印刷页与本地PDF物理页已分别核对一致。视觉核3.0 p761和7.0 p1309/1314。只证明所列字段/规则，不代表全章、全部代际或ECN沿革完成。"
+      },
+      {
+        "documentId": "ecn-vfrbar-ecn",
+        "document": "VF Resizable BARs ECN",
+        "version": "2016-07-06",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "VF RBAR独立ECN影响SRIOV1.1",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-vfrbar-ecn",
+        "document": "VF Resizable BARs ECN",
+        "version": "2016-07-06",
+        "section": "Part II",
+        "page": 3,
+        "pdfPage": 3,
+        "title": "PF归属及独立能力（ECN编辑占位条款3.7.x4）",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-vfrbar-ecn",
+        "document": "VF Resizable BARs ECN",
+        "version": "2016-07-06",
+        "section": "Part II",
+        "page": 7,
+        "pdfPage": 7,
+        "title": "VF Size字段（ECN编辑占位条款3.7.x4.3）",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.7",
+        "page": 1143,
+        "pdfPage": 1143,
+        "title": "页面下限与重分配",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.7",
+        "page": 1312,
+        "pdfPage": 1312,
+        "title": "页面下限与重分配",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "已核Base6.0/7.0所列RBAR字段及VF页面/映射正文；普通RBAR另核3.0/5.0差异。其它修订和完整ECN沿革待继续，不把目录定位当整章核读。",
@@ -52873,6 +53360,73 @@
           63,
           64
         ]
+      },
+      {
+        "id": "r105-vf-rbar-ecn-contract",
+        "title": "VF RBAR独立版本线：不能套PF的MSE或普通BAR编号",
+        "paragraphs": [
+          "2016-07-06 VF Resizable BARs ECN影响SR-IOV1.1及Code and ID Assignment1.7，并以普通/扩展RBAR ECN为基础。它不是简单在每个VF加一份普通0015h能力；0024h放在实现VF BAR的PF中，改变的是SR-IOV能力里的VF BAR资源。",
+          "正式6.0/7.0继承PF归属、页面下限、尺寸改写及重新分配规则。早期Base修订与独立SR-IOV/ECN应分开查；本轮不凭4.0/5.0正文检索未命中断言这些代际的产品不能实现VF RBAR。Gen1～Gen5速率同样不能替代该PF的能力发现。",
+          "规范前提与平台安全流程要分开：写VF Size要求VF MSE=0；写System Page Size要求VF Enable=0。真实热改还须停使用者、处理在途事务和映射，不提供一键在线写值。单VF实际窗口取Size与页面的较大值，再乘NumVFs，不用VF Stride算字节地址。"
+        ],
+        "referenceIndices": [
+          65,
+          66,
+          67,
+          68,
+          69
+        ],
+        "table": {
+          "columns": [
+            "检查面",
+            "规则",
+            "易错边界"
+          ],
+          "rows": [
+            [
+              "能力位置",
+              "PF中的0024h；PF普通0015h独立",
+              "目标VF BAR Index相对SR-IOV结构+24h起"
+            ],
+            [
+              "Size字段",
+              "VF Control[13:8]，支持k0～43",
+              "仅写受支持编码；改后地址未定义"
+            ],
+            [
+              "页面字段",
+              "SR-IOV Supported/System Page Size是位图",
+              "System只选一个受支持位；它可扩大实际窗口"
+            ],
+            [
+              "使能",
+              "VF Enable与VF MSE是SR-IOV Control位",
+              "清PF Command.MSE不替代VF MSE"
+            ],
+            [
+              "资源分配",
+              "实际单VF窗口×NumVFs",
+              "TotalVFs预留是平台策略；非普通总BAR幂次探测"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 45,
+            "detailId": "vf-rbar-register-fields",
+            "label": "全部VF字段"
+          },
+          {
+            "featureId": 45,
+            "detailId": "vf-system-page-size-onehot",
+            "label": "页面位图"
+          },
+          {
+            "featureId": 45,
+            "detailId": "vf-rbar-aperture-query",
+            "label": "已有地址查询"
+          }
+        ]
       }
     ]
   },
@@ -52881,19 +53435,19 @@
     "group": "枚举、寻址与资源",
     "intro": "提供启动固件映射及相关验证能力。",
     "usage": "设备启动/固件场景，普通DMA不需要。",
-    "mechanism": "Expansion ROM是可映射的启动固件资源，Validation检查机制服务于相应启动信任/有效性流程。具体固件格式另有要求。",
+    "mechanism": "区分ROM的32bit映射资源/访问双门控和可选硬件验证结果；Status/Details按规范修订及EA路径解释，内容格式与平台信任策略另查PCI Firmware/平台规范。",
     "example": "网卡或存储控制器提供预启动功能时会涉及ROM；纯数据采集EP不必为了能DMA而提供ROM。",
     "checks": "ROM BAR、使能、内容与平台启动支持分别验证；不能把ROM存在等同固件已通过可信认证。",
     "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
     "id": 46,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R106按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "7.5",
@@ -52905,9 +53459,491 @@
         "pdfPage": 915,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pci-local-2.3",
+        "document": "PCI Local Bus Specification",
+        "version": "2.3",
+        "section": "6.2.5.2",
+        "page": 208,
+        "pdfPage": 222,
+        "title": "早期ROM地址机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pci-local-2.3",
+        "document": "PCI Local Bus Specification",
+        "version": "2.3",
+        "section": "6.2.5.2",
+        "page": 209,
+        "pdfPage": 223,
+        "title": "早期使能及共享译码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pci-local-3.0",
+        "document": "PCI Local Bus Specification",
+        "version": "3.0",
+        "section": "6.2.5.2",
+        "page": 227,
+        "pdfPage": 227,
+        "title": "PCI3.0 ROM资源",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pci-local-3.0",
+        "document": "PCI Local Bus Specification",
+        "version": "3.0",
+        "section": "6.2.5.2",
+        "page": 228,
+        "pdfPage": 228,
+        "title": "PCI3.0继承与Firmware规范分工",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.5.1.2.4",
+        "page": 706,
+        "pdfPage": 706,
+        "title": "4.0 ROM基址字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.5.1.2.4",
+        "page": 707,
+        "pdfPage": 707,
+        "title": "4.0双使能与共享译码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.2.4",
+        "page": 932,
+        "pdfPage": 932,
+        "title": "6.0 ROM及EA关系",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.2.4",
+        "page": 933,
+        "pdfPage": 933,
+        "title": "6.0字段图/位表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.2.4",
+        "page": 1083,
+        "pdfPage": 1083,
+        "title": "7.0字段图/位表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-rom-ecn",
+        "document": "Expansion ROM Validation ECN",
+        "version": "Approved 2017-07-20",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "验证机制为可选且仅报告",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-rom-ecn",
+        "document": "Expansion ROM Validation ECN",
+        "version": "Approved 2017-07-20",
+        "section": "Part II",
+        "page": 5,
+        "pdfPage": 5,
+        "title": "状态完整编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-rom-ecn",
+        "document": "Expansion ROM Validation ECN",
+        "version": "Approved 2017-07-20",
+        "section": "Part II",
+        "page": 6,
+        "pdfPage": 6,
+        "title": "一分钟/复位及Details",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.5.1.2.4",
+        "page": 702,
+        "pdfPage": 702,
+        "title": "5.0状态与Details",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.2.4",
+        "page": 934,
+        "pdfPage": 934,
+        "title": "6.0状态与复位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.2.4",
+        "page": 1084,
+        "pdfPage": 1084,
+        "title": "7.0状态与复位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "7.5.2",
+        "page": 326,
+        "pdfPage": 326,
+        "title": "1.0a Type0头继承PCI2.3",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "7.5.2",
+        "page": 433,
+        "pdfPage": 433,
+        "title": "2.0 Type0头继承PCI3.0",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "7.5.2",
+        "page": 595,
+        "pdfPage": 595,
+        "title": "3.0 Type0头继承PCI3.0",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.5.1.2.4",
+        "page": 706,
+        "pdfPage": 706,
+        "title": "4.0所核原图未列验证位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-rom-ecn",
+        "document": "Expansion ROM Validation ECN",
+        "version": "Approved 2017-07-20",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "2017批准ECN针对4.0r0.9",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.5.1.2.4",
+        "page": 701,
+        "pdfPage": 701,
+        "title": "5.0正式字段已纳入",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.2.4",
+        "page": 933,
+        "pdfPage": 933,
+        "title": "6.0字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.2.4",
+        "page": 1083,
+        "pdfPage": 1083,
+        "title": "7.0字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已核早期PCI继承、七版选定配置头及2017 ECN/5～7字段正文；不宣称整章、固件规范或签名实现已完成。",
+    "details": [
+      {
+        "id": "r106-rom-bar-field-map",
+        "title": "Expansion ROM BAR位图速查：资源、使能和验证状态不是一件事",
+        "paragraphs": [
+          "Expansion ROM为设备预启动固件提供可映射资源，普通DMA并不要求设备提供ROM。本主题解释PCIe配置接口；ROM镜像格式、CPU固件加载及平台Secure Boot策略另属PCI Firmware/平台规范，不由一个PCIe状态位替代。",
+          "Type0头的ROM寄存器在配置偏移30h，Type1头的ROM槽在38h，应先认Header Type；下表按所核5/6/7的Type0字段解释。ROM地址是32bit资源，软件取基址时清低11位，不能把普通Memory BAR的低4位掩码直接照搬。自然对齐还由真实窗口大小决定，清低11位不是保证64KiB窗口已对齐。",
+          "传统ROM BAR访问需要Command.MSE及ROM Enable同时为1。启用解码不等于验证通过，验证结果也不自动禁止或允许地址访问。ROM资源最多请求16MiB；Sizing只向地址字段写探测值，不因低位状态有1就把它算成地址。",
+          "EA映射ROM与传统ROM BAR机制不能同时提供同一ROM；采用EA ROM条目时传统地址/Enable硬连0，验证字段仍按规范提供。共享译码的普通Function在ROM使能期间可能不能访问其它BAR；PF和EA ROM情形有禁止共享的规则，不能一概套用。VF自身ROM BAR硬连0，VI可仿真访问关联PF的ROM。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "table": {
+          "columns": [
+            "bit/字段",
+            "名称",
+            "规则与使用"
+          ],
+          "rows": [
+            [
+              "31:11",
+              "Expansion ROM Base Address",
+              "地址上21位，RW/RO；低位硬连0决定容量/对齐，基址只32bit"
+            ],
+            [
+              "10:8",
+              "RsvdP",
+              "保留；不当控制位"
+            ],
+            [
+              "7:4",
+              "Validation Details",
+              "可选实现相关信息；非通用错误码或百分比"
+            ],
+            [
+              "3:1",
+              "Validation Status",
+              "硬件验证状态；含义见完整8编码表"
+            ],
+            [
+              "0",
+              "Expansion ROM Enable",
+              "传统ROM BAR译码使能，默认0；EA/未实现时可能RO0"
+            ],
+            [
+              "Command.MSE",
+              "寄存器外的总门控",
+              "只有它和ROM Enable同时置位才认领传统ROM访问"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 46,
+            "detailId": "r106-rom-validation-status",
+            "label": "8种验证状态"
+          },
+          {
+            "featureId": 46,
+            "detailId": "r106-rom-revision-and-use",
+            "label": "版本与读取顺序"
+          },
+          {
+            "featureId": 41,
+            "detailId": "bar-memory-bit-table",
+            "label": "与普通BAR比较"
+          }
+        ]
+      },
+      {
+        "id": "r106-rom-validation-status",
+        "title": "Validation Status全部8种编码与Details：何时等待、记录或拒用",
+        "paragraphs": [
+          "Validation Status反映实现特定的完整性检查，可选信任检查及警告。硬件验证必须覆盖ROM内容，可额外覆盖内部固件，但不包括VPD；它没有统一规定签名算法、根证书或平台执行策略。软件是否使用ROM仍需自己的安全策略。",
+          "不支持验证时Status=000；支持且未走EA的普通路径，初始为001，完成后在010～111。EA路径的状态为HwInit且应在010～111；不要对其等待普通异步001流程。011/101/110/111这些结果的实现支持是可选的，不要求每个设备实际都返回全部八种值。",
+          "非EA路径Status和适用Details为Read Only Sticky，只受Fundamental Reset复位，Hot Reset或FLR不自动重新开始验证。若Fundamental Reset解除后已过1分钟仍为001，软件被允许认为验证不会完成；这是软件判定许可，不是硬件必须恰在60秒结束的定时器。",
+          "Details[7:4]不支持验证时保留；支持而未实现时为0。非零可表示实现相关进度或完成信息，不通用解码为“数值×百分比”；完成后不能再变，报告验证结果时建议同时记录它。即使状态含trusted，也不等同于当前OS/UEFI已经认可并执行。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "table": {
+          "columns": [
+            "Status[3:1]编码",
+            "含义",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "000",
+              "不支持验证",
+              "不能解释为失败或通过；平台另查ROM策略"
+            ],
+            [
+              "001",
+              "验证进行中",
+              "仅在适用路径等待；记录Fundamental Reset解除时间"
+            ],
+            [
+              "010",
+              "完整性有效，未做信任测试",
+              "不能写成已trusted"
+            ],
+            [
+              "011",
+              "内容有效且通过实现特定信任测试",
+              "仍按平台信任/执行策略处理"
+            ],
+            [
+              "100",
+              "完整性无效",
+              "失败状态，保存Details及平台日志"
+            ],
+            [
+              "101",
+              "完整性有效但信任测试不通过",
+              "与内容损坏不同，例如证书过期/撤销类原因需实现解释"
+            ],
+            [
+              "110",
+              "有效但有实现相关警告，未做信任测试",
+              "警告不等于trusted"
+            ],
+            [
+              "111",
+              "有效、trusted且有实现相关警告",
+              "保留警告，不能当作无条件完美通过"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 46,
+            "detailId": "r106-rom-bar-field-map",
+            "label": "字段及访问门控"
+          },
+          {
+            "featureId": 46,
+            "detailId": "r106-rom-revision-and-use",
+            "label": "版本与顺序"
+          }
+        ]
+      },
+      {
+        "id": "r106-rom-revision-and-use",
+        "title": "从Gen1～Gen7查ROM：早期继承、2017 ECN与正式版字段边界",
+        "paragraphs": [
+          "1.0a/2.0/3.0的配置头将ROM槽定义在继承PCI布局中：早期普通地址/Enable行为要回PCI2.3或3.0，不应拿后版验证位回填早期保留位。PCI2.3所核印刷208/209页对应本地PDF物理222/223页，页面跳转使用物理页；PCI修订号3.0不等于PCIe Gen3。",
+          "Expansion ROM Validation ECN在2017-07-20批准，受影响文档写Base4.0 Revision0.9。这里ECN是正式变更文件，其提及Draft不意味着本页用草案替代正式Base；所核正式4.0 p706原图仍将10:1列保留，正式5.0 p701～702已明确验证字段，6/7也有。4.0设备是否采用该ECN必须看它的适用契约，不能一句“Gen4全有验证”概括。",
+          "学习/排查时先确认Header、ROM映射路径和能力契约；保存基址、Enable、MSE及验证Status/Details快照，再按平台资源和固件流程访问。001可按适用等待规则处理；完成状态要区分完整性、信任和警告。若ROM读不到，先查双使能、地址和共享译码，不把它直接归因于验证失败。",
+          "例0x80010001在传统路径表示ROM Enable=1、验证Status=000，地址0x80010000；只能得知验证未支持，不能叫做“已验证”。MSE若为0仍不应认领访问。这里不执行ROM映射、探测或固件代码，也不把可读取内容自动当成可信启动镜像。"
+        ],
+        "referenceIndices": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "table": {
+          "columns": [
+            "版本",
+            "查哪里",
+            "边界"
+          ],
+          "rows": [
+            [
+              "PCIe1.0a",
+              "Type0头→PCI2.3 §6.2.5.2",
+              "普通地址/Enable；无后代验证位推断"
+            ],
+            [
+              "PCIe2.0/3.0",
+              "Type0头→PCI3.0 §6.2.5.2",
+              "ROM内容分工转PCI Firmware规范"
+            ],
+            [
+              "正式4.0 + 2017独立ECN",
+              "分别对照正式旧图与已批准ECN",
+              "是否应用ECN不能从链路16GT/s推出"
+            ],
+            [
+              "正式5.0/6.0/7.0",
+              "所核字段图和完整状态表",
+              "验证可选；低速运行不会改变当前实现契约"
+            ],
+            [
+              "适用性边界",
+              "配置资源/状态是本条范围",
+              "镜像格式、签名算法和平台安全启动完整流程不是由此字段定义"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 46,
+            "detailId": "r106-rom-validation-status",
+            "label": "完整状态编码"
+          },
+          {
+            "featureId": 46,
+            "detailId": "r106-rom-bar-field-map",
+            "label": "地址与使能"
+          },
+          {
+            "featureId": 95,
+            "detailId": "flr-scope-guarantee",
+            "label": "FLR边界"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "桥Bus号与Memory / I/O窗口",
