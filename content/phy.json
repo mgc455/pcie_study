@@ -1,5 +1,5 @@
 {
-  "reviewed": "2026-10-26",
+  "reviewed": "2026-10-27",
   "summary": "R96补PHY三份契约、uPCS实际分支、Raw PCS/PMD职责、PMA数字/模拟边界和TX有效观察；166/167按所列产品分层完成验收。",
   "groups": [
     {
@@ -127,6 +127,11 @@
         "软件可见性",
         "能力、当前速率和内部PHY状态分开观察",
         "同样分开观察，不能仅凭Gen6能力位推断当前模式"
+      ],
+      [
+        "所核PCS交付",
+        "PCS1.46_2为Preliminary，架构/时钟有多种组织",
+        "PCS1.75a/PHY3.02a仅SerDes和PCLK输入，降速不改交付范围"
       ]
     ]
   },
@@ -527,6 +532,21 @@
         "featureId": 168,
         "detailId": "r96-tx-valid-not-electrical-idle",
         "title": "P0、Data Enable、Electrical Idle与Link Up分别判断"
+      },
+      {
+        "featureId": 163,
+        "detailId": "r103-phy-layer-version-contract",
+        "title": "Gen1～Gen7的共同PHY职责，不等于固定uPCS/PMA模块树"
+      },
+      {
+        "featureId": 165,
+        "detailId": "r103-upcs-product-version-contract",
+        "title": "uPCS产品对照：Gen5两种接口架构，不能照搬到Gen6"
+      },
+      {
+        "featureId": 168,
+        "detailId": "r103-tx-representation-version-contract",
+        "title": "TX通路版本契约：8b/10b并行字、SerDes符号与驱动码分层"
       }
     ]
   }

@@ -1,10 +1,10 @@
 {
   "nextFeatureIds": [
-    41,
-    47,
-    163,
-    165,
-    168
+    42,
+    43,
+    44,
+    45,
+    46
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -51,13 +51,13 @@
   ],
   "lastCompleted": {
     "date": "2026-10-27",
-    "edition": "2026-10-27-r102",
+    "edition": "2026-10-27-r104",
     "featureIds": [
-      93,
-      94,
-      95
+      97,
+      98,
+      105
     ],
-    "nextTrack": "R103核心齐备项批验；R106总结"
+    "nextTrack": "R105按队列；R106总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -347,11 +347,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 2,
+    "nextReviewAfterRounds": 2,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 44,
+    "completedTotal": 46,
     "lastReviewEdition": "2026-10-27-r102",
     "lastReviewId": "r99-r102",
     "nextExpectedReview": "R106（R103～R106四轮总结）"
@@ -1288,9 +1288,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 12,
-    "remainingPlannedRounds": 36,
-    "nextRound": 103,
+    "completedRounds": 14,
+    "remainingPlannedRounds": 34,
+    "nextRound": 105,
     "nextReviewRound": 106,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -4146,7 +4146,7 @@
         "featureId": 41,
         "group": "枚举、寻址与资源",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -4205,9 +4205,15 @@
             "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 103,
+            "evidence": [
+              {
+                "href": "#feature/41/detail/r103-bar-version-contract",
+                "label": "BAR版本契约：Prefetchable历史位、64bit建议和真实地址权限"
+              }
+            ],
+            "note": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。"
           },
           "sources": {
             "status": "passed",
@@ -4236,9 +4242,15 @@
             "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 103,
+            "evidence": [
+              {
+                "href": "#feature/41/detail/r103-bar-version-contract",
+                "label": "BAR版本契约：Prefetchable历史位、64bit建议和真实地址权限"
+              }
+            ],
+            "note": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。"
           }
         },
         "baseline": {
@@ -4247,14 +4259,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R95批量验收所列维度，独有语义和未通过维度保留；未因段落或引用数量认定完成。",
+        "reviewNote": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 103
       },
       {
         "id": "v1-feature-42",
@@ -4612,7 +4625,7 @@
         "featureId": 47,
         "group": "枚举、寻址与资源",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -4675,9 +4688,15 @@
             "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 103,
+            "evidence": [
+              {
+                "href": "#feature/47/detail/r103-bridge-version-contract",
+                "label": "桥窗口逐版：早期继承字段、64bit要求和7.0命名变化"
+              }
+            ],
+            "note": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。"
           },
           "sources": {
             "status": "passed",
@@ -4706,9 +4725,15 @@
             "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 103,
+            "evidence": [
+              {
+                "href": "#feature/47/detail/r103-bridge-version-contract",
+                "label": "桥窗口逐版：早期继承字段、64bit要求和7.0命名变化"
+              }
+            ],
+            "note": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。"
           }
         },
         "baseline": {
@@ -4717,14 +4742,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R95批量验收所列维度，独有语义和未通过维度保留；未因段落或引用数量认定完成。",
+        "reviewNote": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 103
       },
       {
         "id": "v1-feature-48",
@@ -10118,47 +10144,119 @@
         "featureId": 97,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/97/detail/r104-nfm-revision-contract",
+                "label": "逐版速查：5.0仍是2bit，不能套6.0/7.0的计数器"
+              },
+              {
+                "href": "#feature/97/detail/basics-ack-versus-completion",
+                "label": "链路ACK、事务Completion、应用完成是三个观察点"
+              }
+            ],
+            "note": "核1.0a/2/3/4既有正文与本轮正式5.0补桥及6/7NFM选段；图、序号窗口、累计确认、计数/计时、Nullify、FC复用和错误边界分项复核。非事务完成保证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/97/detail/r104-nfm-revision-contract",
+                "label": "逐版速查：5.0仍是2bit，不能套6.0/7.0的计数器"
+              },
+              {
+                "href": "#feature/97/detail/nfm-replay-order",
+                "label": "重放触发与顺序：最旧未确认包先发，不重新申请信用"
+              }
+            ],
+            "note": "核1.0a/2/3/4既有正文与本轮正式5.0补桥及6/7NFM选段；图、序号窗口、累计确认、计数/计时、Nullify、FC复用和错误边界分项复核。非事务完成保证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/97/detail/r104-nfm-revision-contract",
+                "label": "逐版速查：5.0仍是2bit，不能套6.0/7.0的计数器"
+              },
+              {
+                "href": "#feature/97/detail/dllp-packet-bit-layout",
+                "label": "包结构图：DLLP本体、Ack/Nak与FM承载"
+              }
+            ],
+            "note": "核1.0a/2/3/4既有正文与本轮正式5.0补桥及6/7NFM选段；图、序号窗口、累计确认、计数/计时、Nullify、FC复用和错误边界分项复核。非事务完成保证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/97/detail/r104-nfm-revision-contract",
+                "label": "逐版速查：5.0仍是2bit，不能套6.0/7.0的计数器"
+              },
+              {
+                "href": "#feature/97/detail/nfm-nullification",
+                "label": "Nullify：主动作废与传输损坏的区别"
+              }
+            ],
+            "note": "核1.0a/2/3/4既有正文与本轮正式5.0补桥及6/7NFM选段；图、序号窗口、累计确认、计数/计时、Nullify、FC复用和错误边界分项复核。非事务完成保证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/97/detail/r104-nfm-revision-contract",
+                "label": "逐版速查：5.0仍是2bit，不能套6.0/7.0的计数器"
+              }
+            ],
+            "note": "核1.0a/2/3/4既有正文与本轮正式5.0补桥及6/7NFM选段；图、序号窗口、累计确认、计数/计时、Nullify、FC复用和错误边界分项复核。非事务完成保证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/97/detail/r104-nfm-revision-contract",
+                "label": "逐版速查：5.0仍是2bit，不能套6.0/7.0的计数器"
+              },
+              {
+                "href": "#feature/97/detail/r104-nfm-revision-contract",
+                "label": "逐版速查：5.0仍是2bit，不能套6.0/7.0的计数器"
+              }
+            ],
+            "note": "核1.0a/2/3/4既有正文与本轮正式5.0补桥及6/7NFM选段；图、序号窗口、累计确认、计数/计时、Nullify、FC复用和错误边界分项复核。非事务完成保证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/97/detail/r104-nfm-revision-contract",
+                "label": "逐版速查：5.0仍是2bit，不能套6.0/7.0的计数器"
+              },
+              {
+                "href": "#feature/97/detail/nfm-rx-sequence-query",
+                "label": "接收查询：预期序号、重复/失序与NAK抑制"
+              }
+            ],
+            "note": "核1.0a/2/3/4既有正文与本轮正式5.0补桥及6/7NFM选段；图、序号窗口、累计确认、计数/计时、Nullify、FC复用和错误边界分项复核。非事务完成保证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/97/detail/r104-nfm-revision-contract",
+                "label": "逐版速查：5.0仍是2bit，不能套6.0/7.0的计数器"
+              }
+            ],
+            "note": "核1.0a/2/3/4既有正文与本轮正式5.0补桥及6/7NFM选段；图、序号窗口、累计确认、计数/计时、Nullify、FC复用和错误边界分项复核。非事务完成保证。"
           }
         },
         "baseline": {
@@ -10167,61 +10265,134 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核1.0a/2/3/4既有正文与本轮正式5.0补桥及6/7NFM选段；图、序号窗口、累计确认、计数/计时、Nullify、FC复用和错误边界分项复核。非事务完成保证。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 104
       },
       {
         "id": "v1-feature-98",
         "featureId": 98,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/98/detail/r104-replay-rule2-reconciled",
+                "label": "Rule2版本对照：N+1在正式6.1已出现，不是Gen7才变化"
+              },
+              {
+                "href": "#feature/98/detail/retry-purpose-and-boundaries",
+                "label": "Flit Retry解决哪一段可靠性，为什么需要两个缓冲"
+              }
+            ],
+            "note": "核6/7 FM正文与正式6.1/6.4 Rule2中间修订；9/3与512/256握手、511窗口、1500发送计数、重放阈值/旧许可均保留版本。N与N+1冲突按正式修订条件消歧，不宣称改写6.0。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/98/detail/r104-replay-rule2-reconciled",
+                "label": "Rule2版本对照：N+1在正式6.1已出现，不是Gen7才变化"
+              },
+              {
+                "href": "#feature/98/detail/retry-phase-map",
+                "label": "三阶段：IDLE握手、序号握手、正常交换"
+              }
+            ],
+            "note": "核6/7 FM正文与正式6.1/6.4 Rule2中间修订；9/3与512/256握手、511窗口、1500发送计数、重放阈值/旧许可均保留版本。N与N+1冲突按正式修订条件消歧，不宣称改写6.0。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/98/detail/r104-replay-rule2-reconciled",
+                "label": "Rule2版本对照：N+1在正式6.1已出现，不是Gen7才变化"
+              },
+              {
+                "href": "#feature/98/detail/retry-sequence-ring",
+                "label": "序号环是1～1023；0留给IDLE，NOP不消耗序号"
+              }
+            ],
+            "note": "核6/7 FM正文与正式6.1/6.4 Rule2中间修订；9/3与512/256握手、511窗口、1500发送计数、重放阈值/旧许可均保留版本。N与N+1冲突按正式修订条件消歧，不宣称改写6.0。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/98/detail/r104-replay-rule2-reconciled",
+                "label": "Rule2版本对照：N+1在正式6.1已出现，不是Gen7才变化"
+              },
+              {
+                "href": "#feature/98/detail/selective-buffer-overflow",
+                "label": "选择性重放等到RX缓冲满：可以升级Standard"
+              }
+            ],
+            "note": "核6/7 FM正文与正式6.1/6.4 Rule2中间修订；9/3与512/256握手、511窗口、1500发送计数、重放阈值/旧许可均保留版本。N与N+1冲突按正式修订条件消歧，不宣称改写6.0。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/98/detail/r104-replay-rule2-reconciled",
+                "label": "Rule2版本对照：N+1在正式6.1已出现，不是Gen7才变化"
+              }
+            ],
+            "note": "核6/7 FM正文与正式6.1/6.4 Rule2中间修订；9/3与512/256握手、511窗口、1500发送计数、重放阈值/旧许可均保留版本。N与N+1冲突按正式修订条件消歧，不宣称改写6.0。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/98/detail/r104-replay-rule2-reconciled",
+                "label": "Rule2版本对照：N+1在正式6.1已出现，不是Gen7才变化"
+              },
+              {
+                "href": "#feature/98/detail/r104-replay-rule2-reconciled",
+                "label": "Rule2版本对照：N+1在正式6.1已出现，不是Gen7才变化"
+              }
+            ],
+            "note": "核6/7 FM正文与正式6.1/6.4 Rule2中间修订；9/3与512/256握手、511窗口、1500发送计数、重放阈值/旧许可均保留版本。N与N+1冲突按正式修订条件消歧，不宣称改写6.0。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/98/detail/r104-replay-rule2-reconciled",
+                "label": "Rule2版本对照：N+1在正式6.1已出现，不是Gen7才变化"
+              },
+              {
+                "href": "#feature/98/detail/sequence-window-explorer",
+                "label": "序号窗口查询：回卷时别用普通整数比较"
+              }
+            ],
+            "note": "核6/7 FM正文与正式6.1/6.4 Rule2中间修订；9/3与512/256握手、511窗口、1500发送计数、重放阈值/旧许可均保留版本。N与N+1冲突按正式修订条件消歧，不宣称改写6.0。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/98/detail/r104-replay-rule2-reconciled",
+                "label": "Rule2版本对照：N+1在正式6.1已出现，不是Gen7才变化"
+              }
+            ],
+            "note": "核6/7 FM正文与正式6.1/6.4 Rule2中间修订；9/3与512/256握手、511窗口、1500发送计数、重放阈值/旧许可均保留版本。N与N+1冲突按正式修订条件消歧，不宣称改写6.0。"
           }
         },
         "baseline": {
@@ -10230,14 +10401,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核6/7 FM正文与正式6.1/6.4 Rule2中间修订；9/3与512/256握手、511窗口、1500发送计数、重放阈值/旧许可均保留版本。N与N+1冲突按正式修订条件消歧，不宣称改写6.0。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 104
       },
       {
         "id": "v1-feature-99",
@@ -10626,47 +10798,151 @@
         "featureId": 105,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/105/detail/r104-dpc-version-contract",
+                "label": "DPC从哪来：2012 ECN、3.1纳入和6/7模式扩展"
+              },
+              {
+                "href": "#feature/105/detail/r104-rppio-bit-register-map",
+                "label": "RP PIO寄存器/bit速查：Mask、Severity、SysError和Exception各管什么"
+              },
+              {
+                "href": "#feature/105/detail/dpc-port-scope",
+                "label": "DPC只属于Root Port或Switch DSP，不是Endpoint通用开关"
+              }
+            ],
+            "note": "核DPC/eDPC正式ECN、3.1机制/位表、4/5已有来源、6/7寄存器与RP PIO正文；角色、触发来源、恢复门槛、9事件位与日志、异常/通知能力分别解释。不是平台通用恢复脚本。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/105/detail/r104-dpc-version-contract",
+                "label": "DPC从哪来：2012 ECN、3.1纳入和6/7模式扩展"
+              },
+              {
+                "href": "#feature/105/detail/r104-rppio-bit-register-map",
+                "label": "RP PIO寄存器/bit速查：Mask、Severity、SysError和Exception各管什么"
+              },
+              {
+                "href": "#feature/105/detail/dpc-trigger-enable-table",
+                "label": "Trigger Enable表：01与10的差别是接收NONFATAL消息"
+              }
+            ],
+            "note": "核DPC/eDPC正式ECN、3.1机制/位表、4/5已有来源、6/7寄存器与RP PIO正文；角色、触发来源、恢复门槛、9事件位与日志、异常/通知能力分别解释。不是平台通用恢复脚本。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/105/detail/r104-dpc-version-contract",
+                "label": "DPC从哪来：2012 ECN、3.1纳入和6/7模式扩展"
+              },
+              {
+                "href": "#feature/105/detail/r104-rppio-bit-register-map",
+                "label": "RP PIO寄存器/bit速查：Mask、Severity、SysError和Exception各管什么"
+              },
+              {
+                "href": "#feature/105/detail/r104-rppio-bit-register-map",
+                "label": "RP PIO寄存器/bit速查：Mask、Severity、SysError和Exception各管什么"
+              }
+            ],
+            "note": "核DPC/eDPC正式ECN、3.1机制/位表、4/5已有来源、6/7寄存器与RP PIO正文；角色、触发来源、恢复门槛、9事件位与日志、异常/通知能力分别解释。不是平台通用恢复脚本。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/105/detail/r104-dpc-version-contract",
+                "label": "DPC从哪来：2012 ECN、3.1纳入和6/7模式扩展"
+              },
+              {
+                "href": "#feature/105/detail/r104-rppio-bit-register-map",
+                "label": "RP PIO寄存器/bit速查：Mask、Severity、SysError和Exception各管什么"
+              },
+              {
+                "href": "#feature/105/detail/dpc-release-link-down-gate",
+                "label": "解除隔离前必须读到DLL Link Active=0"
+              }
+            ],
+            "note": "核DPC/eDPC正式ECN、3.1机制/位表、4/5已有来源、6/7寄存器与RP PIO正文；角色、触发来源、恢复门槛、9事件位与日志、异常/通知能力分别解释。不是平台通用恢复脚本。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/105/detail/r104-dpc-version-contract",
+                "label": "DPC从哪来：2012 ECN、3.1纳入和6/7模式扩展"
+              },
+              {
+                "href": "#feature/105/detail/r104-rppio-bit-register-map",
+                "label": "RP PIO寄存器/bit速查：Mask、Severity、SysError和Exception各管什么"
+              }
+            ],
+            "note": "核DPC/eDPC正式ECN、3.1机制/位表、4/5已有来源、6/7寄存器与RP PIO正文；角色、触发来源、恢复门槛、9事件位与日志、异常/通知能力分别解释。不是平台通用恢复脚本。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/105/detail/r104-dpc-version-contract",
+                "label": "DPC从哪来：2012 ECN、3.1纳入和6/7模式扩展"
+              },
+              {
+                "href": "#feature/105/detail/r104-rppio-bit-register-map",
+                "label": "RP PIO寄存器/bit速查：Mask、Severity、SysError和Exception各管什么"
+              },
+              {
+                "href": "#feature/105/detail/r104-dpc-version-contract",
+                "label": "DPC从哪来：2012 ECN、3.1纳入和6/7模式扩展"
+              }
+            ],
+            "note": "核DPC/eDPC正式ECN、3.1机制/位表、4/5已有来源、6/7寄存器与RP PIO正文；角色、触发来源、恢复门槛、9事件位与日志、异常/通知能力分别解释。不是平台通用恢复脚本。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/105/detail/r104-dpc-version-contract",
+                "label": "DPC从哪来：2012 ECN、3.1纳入和6/7模式扩展"
+              },
+              {
+                "href": "#feature/105/detail/r104-rppio-bit-register-map",
+                "label": "RP PIO寄存器/bit速查：Mask、Severity、SysError和Exception各管什么"
+              },
+              {
+                "href": "#feature/105/detail/dpc-register-explorer",
+                "label": "查询：DPC Capability／Control／Status与释放前提"
+              }
+            ],
+            "note": "核DPC/eDPC正式ECN、3.1机制/位表、4/5已有来源、6/7寄存器与RP PIO正文；角色、触发来源、恢复门槛、9事件位与日志、异常/通知能力分别解释。不是平台通用恢复脚本。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 104,
+            "evidence": [
+              {
+                "href": "#feature/105/detail/r104-dpc-version-contract",
+                "label": "DPC从哪来：2012 ECN、3.1纳入和6/7模式扩展"
+              },
+              {
+                "href": "#feature/105/detail/r104-rppio-bit-register-map",
+                "label": "RP PIO寄存器/bit速查：Mask、Severity、SysError和Exception各管什么"
+              }
+            ],
+            "note": "核DPC/eDPC正式ECN、3.1机制/位表、4/5已有来源、6/7寄存器与RP PIO正文；角色、触发来源、恢复门槛、9事件位与日志、异常/通知能力分别解释。不是平台通用恢复脚本。"
           }
         },
         "baseline": {
@@ -10675,14 +10951,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核DPC/eDPC正式ECN、3.1机制/位表、4/5已有来源、6/7寄存器与RP PIO正文；角色、触发来源、恢复门槛、9事件位与日志、异常/通知能力分别解释。不是平台通用恢复脚本。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 104
       },
       {
         "id": "v1-feature-106",
@@ -14308,7 +14585,7 @@
         "featureId": 163,
         "group": "PHY与SerDes",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -14355,9 +14632,15 @@
             "note": "R96核本条所引正文/图与原创职责表，按真实路径和版本限定验收；关联链接指向同库稳定细节。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "仍待核：本轮限定PIPE7.1与所列产品路径，完整早期/中间接口演进及全范围交叉复核不因局部已读而通过。"
+            "status": "passed",
+            "reviewedRound": 103,
+            "evidence": [
+              {
+                "href": "#feature/163/detail/r103-phy-layer-version-contract",
+                "label": "Gen1～Gen7的共同PHY职责，不等于固定uPCS/PMA模块树"
+              }
+            ],
+            "note": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。 明确Base职责/PIPE接口/产品交付边界，早期PIPE1.00与7.1、Gen5 Preliminary和Gen6产品分别用证据；本主题不是逐个PIPE信号的完整演进（该范围保留于164），不将Gen7未知产品实现当已核。"
           },
           "sources": {
             "status": "passed",
@@ -14382,9 +14665,15 @@
             "note": "R96核本条所引正文/图与原创职责表，按真实路径和版本限定验收；关联链接指向同库稳定细节。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "仍待核：本轮限定PIPE7.1与所列产品路径，完整早期/中间接口演进及全范围交叉复核不因局部已读而通过。"
+            "status": "passed",
+            "reviewedRound": 103,
+            "evidence": [
+              {
+                "href": "#feature/163/detail/r103-phy-layer-version-contract",
+                "label": "Gen1～Gen7的共同PHY职责，不等于固定uPCS/PMA模块树"
+              }
+            ],
+            "note": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。 明确Base职责/PIPE接口/产品交付边界，早期PIPE1.00与7.1、Gen5 Preliminary和Gen6产品分别用证据；本主题不是逐个PIPE信号的完整演进（该范围保留于164），不将Gen7未知产品实现当已核。"
           }
         },
         "baseline": {
@@ -14395,14 +14684,15 @@
           "phy-layers"
         ],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "R96核产品分层/路径，复用专门时钟、固件、启动和EQ条目；未要求重复抄录实现寄存器或做模拟签核。",
+        "reviewNote": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。 明确Base职责/PIPE接口/产品交付边界，早期PIPE1.00与7.1、Gen5 Preliminary和Gen6产品分别用证据；本主题不是逐个PIPE信号的完整演进（该范围保留于164），不将Gen7未知产品实现当已核。",
         "taskId": "v1-task-19",
         "requiredTaskIds": [
           "v1-task-19",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 103
       },
       {
         "id": "v1-feature-164",
@@ -14474,7 +14764,7 @@
         "featureId": 165,
         "group": "PHY与SerDes",
         "scope": "implementation",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -14537,9 +14827,15 @@
             "note": "R96核本条所引正文/图与原创职责表，按真实路径和版本限定验收；关联链接指向同库稳定细节。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "仍待核：本轮限定PIPE7.1与所列产品路径，完整早期/中间接口演进及全范围交叉复核不因局部已读而通过。"
+            "status": "passed",
+            "reviewedRound": 103,
+            "evidence": [
+              {
+                "href": "#feature/165/detail/r103-upcs-product-version-contract",
+                "label": "uPCS产品对照：Gen5两种接口架构，不能照搬到Gen6"
+              }
+            ],
+            "note": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。 明确Base职责/PIPE接口/产品交付边界，早期PIPE1.00与7.1、Gen5 Preliminary和Gen6产品分别用证据；本主题不是逐个PIPE信号的完整演进（该范围保留于164），不将Gen7未知产品实现当已核。"
           },
           "sources": {
             "status": "passed",
@@ -14572,9 +14868,15 @@
             "note": "R96核本条所引正文/图与原创职责表，按真实路径和版本限定验收；关联链接指向同库稳定细节。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "仍待核：本轮限定PIPE7.1与所列产品路径，完整早期/中间接口演进及全范围交叉复核不因局部已读而通过。"
+            "status": "passed",
+            "reviewedRound": 103,
+            "evidence": [
+              {
+                "href": "#feature/165/detail/r103-upcs-product-version-contract",
+                "label": "uPCS产品对照：Gen5两种接口架构，不能照搬到Gen6"
+              }
+            ],
+            "note": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。 明确Base职责/PIPE接口/产品交付边界，早期PIPE1.00与7.1、Gen5 Preliminary和Gen6产品分别用证据；本主题不是逐个PIPE信号的完整演进（该范围保留于164），不将Gen7未知产品实现当已核。"
           }
         },
         "baseline": {
@@ -14585,14 +14887,15 @@
           "phy-layers"
         ],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "R96核产品分层/路径，复用专门时钟、固件、启动和EQ条目；未要求重复抄录实现寄存器或做模拟签核。",
+        "reviewNote": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。 明确Base职责/PIPE接口/产品交付边界，早期PIPE1.00与7.1、Gen5 Preliminary和Gen6产品分别用证据；本主题不是逐个PIPE信号的完整演进（该范围保留于164），不将Gen7未知产品实现当已核。",
         "taskId": "v1-task-19",
         "requiredTaskIds": [
           "v1-task-19",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 103
       },
       {
         "id": "v1-feature-166",
@@ -14891,7 +15194,7 @@
         "featureId": 168,
         "group": "PHY与SerDes",
         "scope": "implementation",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -14954,9 +15257,15 @@
             "note": "R96核本条所引正文/图与原创职责表，按真实路径和版本限定验收；关联链接指向同库稳定细节。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "仍待核：本轮限定PIPE7.1与所列产品路径，完整早期/中间接口演进及全范围交叉复核不因局部已读而通过。"
+            "status": "passed",
+            "reviewedRound": 103,
+            "evidence": [
+              {
+                "href": "#feature/168/detail/r103-tx-representation-version-contract",
+                "label": "TX通路版本契约：8b/10b并行字、SerDes符号与驱动码分层"
+              }
+            ],
+            "note": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。 明确Base职责/PIPE接口/产品交付边界，早期PIPE1.00与7.1、Gen5 Preliminary和Gen6产品分别用证据；本主题不是逐个PIPE信号的完整演进（该范围保留于164），不将Gen7未知产品实现当已核。"
           },
           "sources": {
             "status": "passed",
@@ -14989,9 +15298,15 @@
             "note": "R96核本条所引正文/图与原创职责表，按真实路径和版本限定验收；关联链接指向同库稳定细节。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "仍待核：本轮限定PIPE7.1与所列产品路径，完整早期/中间接口演进及全范围交叉复核不因局部已读而通过。"
+            "status": "passed",
+            "reviewedRound": 103,
+            "evidence": [
+              {
+                "href": "#feature/168/detail/r103-tx-representation-version-contract",
+                "label": "TX通路版本契约：8b/10b并行字、SerDes符号与驱动码分层"
+              }
+            ],
+            "note": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。 明确Base职责/PIPE接口/产品交付边界，早期PIPE1.00与7.1、Gen5 Preliminary和Gen6产品分别用证据；本主题不是逐个PIPE信号的完整演进（该范围保留于164），不将Gen7未知产品实现当已核。"
           }
         },
         "baseline": {
@@ -15002,14 +15317,15 @@
           "phy-layers"
         ],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "R96核产品分层/路径，复用专门时钟、固件、启动和EQ条目；未要求重复抄录实现寄存器或做模拟签核。",
+        "reviewNote": "R103按新增版本契约及已充分机制交叉核对；版本/一致性通过。 明确Base职责/PIPE接口/产品交付边界，早期PIPE1.00与7.1、Gen5 Preliminary和Gen6产品分别用证据；本主题不是逐个PIPE信号的完整演进（该范围保留于164），不将Gen7未知产品实现当已核。",
         "taskId": "v1-task-19",
         "requiredTaskIds": [
           "v1-task-19",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 103
       },
       {
         "id": "v1-feature-169",
@@ -17193,6 +17509,190 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "163功能及23分组/共享任务仍待验收；R103批验41/47/163/165/168核心已齐项，61/89定向来源问题保留，R106再总结。",
         "publication": "R101补传已完成且CI/Pages通过；R102发布/视觉结果见实际记录。"
+      },
+      {
+        "round": 103,
+        "kind": "R103：BAR/桥资源与PHY分层、uPCS、TX五项收口",
+        "deliverables": [
+          "R103五项通过：累计25/183、227维度；新增10维度，剩158功能和35预算轮。产品版本/架构/链路代际分开，R104转NFM/FM重放与DPC，R106总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-41-v1-accepted",
+          "feature-47-v1-accepted",
+          "feature-163-v1-accepted",
+          "feature-165-v1-accepted",
+          "feature-168-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 41,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 41,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 47,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 47,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 163,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 163,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 165,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 165,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 168,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 168,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          41,
+          47,
+          163,
+          165,
+          168
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有158功能；61/89来源疑点保留，R106总结。",
+        "publication": "用户本次授权连续两轮；分别构建验收，最后统一发布R104，发布结果单列。"
+      },
+      {
+        "round": 104,
+        "kind": "R104：NFM/FM重放与DPC版本和RP PIO收口",
+        "deliverables": [
+          "R104三项通过，新增24验收维度；两轮合计8项/34维度，累计28/183与251维度，剩155功能和34预算轮。Rule2按正式6.1/6.4核定版本条件，DPC补2012 ECN及RP PIO位表。下轮沿既定配置/事务队列，R106四轮总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-97-v1-accepted",
+          "feature-98-v1-accepted",
+          "feature-105-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 97,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 97,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 97,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 97,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 97,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 97,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 97,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 97,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 98,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 98,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 98,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 98,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 98,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 98,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 98,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 98,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 105,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 105,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 105,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 105,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 105,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 105,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 105,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 105,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          97,
+          98,
+          105
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有155功能；61/89来源疑点保留，R106总结。",
+        "publication": "用户本次授权连续两轮；分别构建验收，最后统一发布R104，发布结果单列。"
       }
     ],
     "backlog": [
@@ -18089,10 +18589,17 @@
         "legacyRecordIndices": [
           15
         ],
-        "status": "needs-corroboration",
+        "status": "resolved",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "历史记录保留；未来若出现新的官方裁决再更新，不为此重开整项。",
+        "evidence": [
+          {
+            "href": "#feature/98/detail/r104-replay-rule2-reconciled",
+            "label": "正式中间修订核读与条件示例"
+          }
+        ],
+        "resolvedRound": 104,
+        "resolution": "正式6.1 p412及6.4 p436均已写N+1，7.0 p438一致；6.0 p379仍写N。按修订分开查询，原6.0不覆盖；不声称独立勘误或首次修正文件已找到。"
       },
       {
         "id": "v1-conflict-03",
@@ -20473,35 +20980,35 @@
       }
     ],
     "nextExecution": {
-      "round": 103,
-      "taskId": "v1-task-22",
+      "round": 105,
+      "taskId": "v1-task-05",
       "featureIds": [
-        41,
-        47,
-        163,
-        165,
-        168
+        42,
+        43,
+        44,
+        45,
+        46
       ],
-      "goal": "优先关闭六核心已齐条目的版本/一致性：BAR/桥资源与PHY分层/uPCS/TX；复用正式资料与产品边界，只有实际缺口才补正文。61/89保持定向来源队列，不全轮重复。R106总结。",
+      "goal": "按固定收尾队列批验成熟条目，真实缺口才补正文，不为数量添工具；R106四轮总结。",
       "reviewRound": 106
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 102,
+      "assessedRound": 104,
       "reestimateRound": 106,
-      "assessment": "R99-R102新增12完整功能和88维度；累计20/183、217维度，1/24分组关闭。窗口实绩3项/轮，剩163项需在36轮内约4.528项/轮，当前速度不支持R138完成保证。按本窗口速度仅功能验收机械外推约55轮，未计共享收尾；不是新承诺或自动延期。",
+      "assessment": "R104新增3完整功能、24维度，累计28/183与251维度；剩155功能/34预算轮。上一四轮实绩3项/轮，目标仍有风险，R106再评估。",
       "action": "R103先批验41/47/163/165/168六核心齐备项，再集中成熟错误/事务主题；无实际缺口不添工具或重复扩写。下一四轮所需速度对照约18完整项，但不按配额强行验收，R106复盘。",
       "latestProgress": {
-        "round": 102,
+        "round": 104,
         "newAcceptedUnits": 3,
-        "cumulativeAcceptedUnits": 20,
+        "cumulativeAcceptedUnits": 28,
         "newPassedCriteria": 24,
-        "cumulativePassedCriteria": 217,
-        "remainingPlannedRounds": 36
+        "cumulativePassedCriteria": 251,
+        "remainingPlannedRounds": 34
       },
       "observedAcceptedUnitsPerRound": 3,
-      "requiredAcceptedUnitsPerRemainingRound": 4.527777777777778,
+      "requiredAcceptedUnitsPerRemainingRound": 4.5588235294117645,
       "linearExtrapolationRounds": 55
     },
     "reviewWindows": [
