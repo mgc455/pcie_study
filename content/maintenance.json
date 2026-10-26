@@ -1,8 +1,10 @@
 {
   "nextFeatureIds": [
-    93,
-    94,
-    95
+    41,
+    47,
+    163,
+    165,
+    168
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,15 +50,14 @@
     "功能首次引入版本与ECN证据"
   ],
   "lastCompleted": {
-    "date": "2026-10-26",
-    "edition": "2026-10-26-r101",
+    "date": "2026-10-27",
+    "edition": "2026-10-27-r102",
     "featureIds": [
-      84,
-      85,
-      86,
-      90
+      93,
+      94,
+      95
     ],
-    "nextTrack": "R102复位分组批验与四轮总结"
+    "nextTrack": "R103核心齐备项批验；R106总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -346,16 +347,105 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 43,
-    "lastReviewEdition": "2026-10-26-r98",
-    "lastReviewId": "r95-r98",
-    "nextExpectedReview": "R102（R99～R102四轮总结）"
+    "completedTotal": 44,
+    "lastReviewEdition": "2026-10-27-r102",
+    "lastReviewId": "r99-r102",
+    "nextExpectedReview": "R106（R103～R106四轮总结）"
   },
   "stageReviews": [
+    {
+      "id": "r99-r102",
+      "date": "2026-10-27",
+      "edition": "2026-10-27-r102",
+      "title": "R99～R102收尾总结：12项验收、复位分组关闭、工期仍有风险",
+      "completedRounds": 4,
+      "rounds": [
+        {
+          "edition": "R99",
+          "topic": "Message/VDM/ERR三项验收；RN核心字段补齐",
+          "featureIds": [
+            57,
+            58,
+            60,
+            61
+          ],
+          "remaining": "61 RTR数值一致性待官方澄清"
+        },
+        {
+          "edition": "R100",
+          "topic": "L1SS/Clock PM验收；RN/LTR版本补齐",
+          "featureIds": [
+            87,
+            88,
+            61,
+            89
+          ],
+          "remaining": "89 LTR ECN位号来源链仍未裁决"
+        },
+        {
+          "edition": "R101",
+          "topic": "D-state/Link power/ASPM/OBFF四项验收",
+          "featureIds": [
+            84,
+            85,
+            86,
+            90
+          ],
+          "remaining": "本轮前补传完成；其它功耗条目和分组仍开放"
+        },
+        {
+          "edition": "R102",
+          "topic": "Fundamental/Hot Reset/FLR三项验收，分组11关闭",
+          "featureIds": [
+            93,
+            94,
+            95
+          ],
+          "remaining": "其它功能/共享收尾按固定队列继续，不冒充整部规范通读"
+        }
+      ],
+      "result": "四轮新增12完整功能、88验收维度；累计20/183、217维度，首次关闭1/24固定分组，仍有163功能和23分组/共享任务。38历史来源问题保持2已解/36待核，61 RTR另作为既有任务内发现保留。剩36轮是原预算；本窗口3项/轮，目标所需约4.53项/轮，R138仍不能保证。",
+      "nextPriorities": [
+        {
+          "title": "1. R103先关闭六核心已齐项",
+          "featureIds": [
+            41,
+            47,
+            163,
+            165,
+            168
+          ],
+          "reason": "BAR/桥资源和PHY分层/uPCS/TX已有成熟机制；集中补版本与一致性更有利于真实收尾，不重复造工具。"
+        },
+        {
+          "title": "2. 随后批验成熟错误与事务通路",
+          "featureIds": [
+            97,
+            98,
+            103,
+            105,
+            17,
+            20,
+            21,
+            22
+          ],
+          "reason": "重放/AER/DPC及TLP/Completion已有较充分细节，按同源正式条款复用后逐项验收；具体先后随真实缺口调整。"
+        },
+        {
+          "title": "3. 来源疑点定向核查，不拖住其它批验",
+          "featureIds": [
+            61,
+            89
+          ],
+          "reason": "RTR数值和LTR ECN位号仅剩明确一致性问题；不因找到类似版本就强行通过，也不反复重写整套机制。"
+        }
+      ],
+      "limitations": "完整验收针对固定功能契约，目录/整章覆盖仍独立记录；R106再总结，不降低标准、不自动延长R138，日常自动任务保持暂停。"
+    },
     {
       "id": "r95-r98",
       "date": "2026-10-26",
@@ -1189,7 +1279,7 @@
     "id": "v1-r91-r138",
     "title": "一期收尾：从持续扩写转为逐项验收",
     "baselineEdition": "2026-10-26-r90",
-    "updated": "2026-10-26",
+    "updated": "2026-10-27",
     "targetRounds": 48,
     "estimateRange": [
       40,
@@ -1198,10 +1288,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 11,
-    "remainingPlannedRounds": 37,
-    "nextRound": 102,
-    "nextReviewRound": 102,
+    "completedRounds": 12,
+    "remainingPlannedRounds": 36,
+    "nextRound": 103,
+    "nextReviewRound": 106,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -9499,47 +9589,127 @@
         "featureId": 93,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/93/detail/r102-reset-version-timing",
+                "label": "复位时序逐版：80ms、20ms、100ms分别约束什么"
+              },
+              {
+                "href": "#feature/93/detail/reset-taxonomy",
+                "label": "Cold、Warm、Hot与FLR：先把术语分开"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/93/detail/r102-reset-version-timing",
+                "label": "复位时序逐版：80ms、20ms、100ms分别约束什么"
+              },
+              {
+                "href": "#feature/93/detail/reset-taxonomy",
+                "label": "Cold、Warm、Hot与FLR：先把术语分开"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/93/detail/r102-reset-version-timing",
+                "label": "复位时序逐版：80ms、20ms、100ms分别约束什么"
+              },
+              {
+                "href": "#feature/93/detail/reset-taxonomy",
+                "label": "Cold、Warm、Hot与FLR：先把术语分开"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/93/detail/r102-reset-version-timing",
+                "label": "复位时序逐版：80ms、20ms、100ms分别约束什么"
+              },
+              {
+                "href": "#feature/93/detail/reset-taxonomy",
+                "label": "Cold、Warm、Hot与FLR：先把术语分开"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/93/detail/r102-reset-version-timing",
+                "label": "复位时序逐版：80ms、20ms、100ms分别约束什么"
+              },
+              {
+                "href": "#feature/93/detail/reset-taxonomy",
+                "label": "Cold、Warm、Hot与FLR：先把术语分开"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 FLR1.1相关2006 ECN与2.0正式正文分开；80/20/100ms按所引正式版，不臆造未核中间ECN日期。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/93/detail/r102-reset-version-timing",
+                "label": "复位时序逐版：80ms、20ms、100ms分别约束什么"
+              },
+              {
+                "href": "#feature/93/detail/reset-taxonomy",
+                "label": "Cold、Warm、Hot与FLR：先把术语分开"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/93/detail/r102-reset-version-timing",
+                "label": "复位时序逐版：80ms、20ms、100ms分别约束什么"
+              },
+              {
+                "href": "#feature/93/detail/reset-taxonomy",
+                "label": "Cold、Warm、Hot与FLR：先把术语分开"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/93/detail/r102-reset-version-timing",
+                "label": "复位时序逐版：80ms、20ms、100ms分别约束什么"
+              },
+              {
+                "href": "#feature/93/detail/reset-taxonomy",
+                "label": "Cold、Warm、Hot与FLR：先把术语分开"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 对照独立变更记录与其它正式版本，保留已有61 RTR及89 ECN问题；本条7.0按正式能力条件解释，不借本轮裁决未核ECN位号。"
           }
         },
         "baseline": {
@@ -9550,61 +9720,142 @@
           "clock-reset"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R102固定三种复位主题完成八维验收；既有LTSSM/EQ全部异常与板级/模拟实现仍由相应独立任务处理，不将全文通读作为假完成。",
         "taskId": "v1-task-11",
         "requiredTaskIds": [
           "v1-task-11",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 102
       },
       {
         "id": "v1-feature-94",
         "featureId": 94,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/94/detail/r102-hotreset-control-contract",
+                "label": "Hot Reset跨版控制契约：SBR保持、TS1接收与恢复等待分别验"
+              },
+              {
+                "href": "#feature/94/detail/sbr-propagation",
+                "label": "SBR触发在哪里，影响怎样沿Switch向下传播"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/94/detail/r102-hotreset-control-contract",
+                "label": "Hot Reset跨版控制契约：SBR保持、TS1接收与恢复等待分别验"
+              },
+              {
+                "href": "#feature/94/detail/sbr-propagation",
+                "label": "SBR触发在哪里，影响怎样沿Switch向下传播"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/94/detail/r102-hotreset-control-contract",
+                "label": "Hot Reset跨版控制契约：SBR保持、TS1接收与恢复等待分别验"
+              },
+              {
+                "href": "#feature/94/detail/sbr-propagation",
+                "label": "SBR触发在哪里，影响怎样沿Switch向下传播"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/94/detail/r102-hotreset-control-contract",
+                "label": "Hot Reset跨版控制契约：SBR保持、TS1接收与恢复等待分别验"
+              },
+              {
+                "href": "#feature/94/detail/sbr-propagation",
+                "label": "SBR触发在哪里，影响怎样沿Switch向下传播"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/94/detail/r102-hotreset-control-contract",
+                "label": "Hot Reset跨版控制契约：SBR保持、TS1接收与恢复等待分别验"
+              },
+              {
+                "href": "#feature/94/detail/sbr-propagation",
+                "label": "SBR触发在哪里，影响怎样沿Switch向下传播"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 FLR1.1相关2006 ECN与2.0正式正文分开；80/20/100ms按所引正式版，不臆造未核中间ECN日期。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/94/detail/r102-hotreset-control-contract",
+                "label": "Hot Reset跨版控制契约：SBR保持、TS1接收与恢复等待分别验"
+              },
+              {
+                "href": "#feature/94/detail/sbr-propagation",
+                "label": "SBR触发在哪里，影响怎样沿Switch向下传播"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/94/detail/r102-hotreset-control-contract",
+                "label": "Hot Reset跨版控制契约：SBR保持、TS1接收与恢复等待分别验"
+              },
+              {
+                "href": "#feature/94/detail/sbr-propagation",
+                "label": "SBR触发在哪里，影响怎样沿Switch向下传播"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/94/detail/r102-hotreset-control-contract",
+                "label": "Hot Reset跨版控制契约：SBR保持、TS1接收与恢复等待分别验"
+              },
+              {
+                "href": "#feature/94/detail/sbr-propagation",
+                "label": "SBR触发在哪里，影响怎样沿Switch向下传播"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 对照独立变更记录与其它正式版本，保留已有61 RTR及89 ECN问题；本条7.0按正式能力条件解释，不借本轮裁决未核ECN位号。"
           }
         },
         "baseline": {
@@ -9613,61 +9864,174 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R102固定三种复位主题完成八维验收；既有LTSSM/EQ全部异常与板级/模拟实现仍由相应独立任务处理，不将全文通读作为假完成。",
         "taskId": "v1-task-11",
         "requiredTaskIds": [
           "v1-task-11",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 102
       },
       {
         "id": "v1-feature-95",
         "featureId": 95,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/95/detail/r102-flr-capability-and-trigger",
+                "label": "如何发起FLR：C+04h[28]看能力，C+08h[15]触发，读0不是完成"
+              },
+              {
+                "href": "#feature/95/detail/r102-flr-version-preservation",
+                "label": "FLR版本与保留地图：2006 ECN到7.0，不能用统一全清零表"
+              },
+              {
+                "href": "#feature/95/detail/flr-scope-guarantee",
+                "label": "FLR的保证：一个Function回到可重新配置状态，Link不复位"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/95/detail/r102-flr-capability-and-trigger",
+                "label": "如何发起FLR：C+04h[28]看能力，C+08h[15]触发，读0不是完成"
+              },
+              {
+                "href": "#feature/95/detail/r102-flr-version-preservation",
+                "label": "FLR版本与保留地图：2006 ECN到7.0，不能用统一全清零表"
+              },
+              {
+                "href": "#feature/95/detail/flr-scope-guarantee",
+                "label": "FLR的保证：一个Function回到可重新配置状态，Link不复位"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/95/detail/r102-flr-capability-and-trigger",
+                "label": "如何发起FLR：C+04h[28]看能力，C+08h[15]触发，读0不是完成"
+              },
+              {
+                "href": "#feature/95/detail/r102-flr-version-preservation",
+                "label": "FLR版本与保留地图：2006 ECN到7.0，不能用统一全清零表"
+              },
+              {
+                "href": "#feature/95/detail/flr-scope-guarantee",
+                "label": "FLR的保证：一个Function回到可重新配置状态，Link不复位"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/95/detail/r102-flr-capability-and-trigger",
+                "label": "如何发起FLR：C+04h[28]看能力，C+08h[15]触发，读0不是完成"
+              },
+              {
+                "href": "#feature/95/detail/r102-flr-version-preservation",
+                "label": "FLR版本与保留地图：2006 ECN到7.0，不能用统一全清零表"
+              },
+              {
+                "href": "#feature/95/detail/flr-scope-guarantee",
+                "label": "FLR的保证：一个Function回到可重新配置状态，Link不复位"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/95/detail/r102-flr-capability-and-trigger",
+                "label": "如何发起FLR：C+04h[28]看能力，C+08h[15]触发，读0不是完成"
+              },
+              {
+                "href": "#feature/95/detail/r102-flr-version-preservation",
+                "label": "FLR版本与保留地图：2006 ECN到7.0，不能用统一全清零表"
+              },
+              {
+                "href": "#feature/95/detail/flr-scope-guarantee",
+                "label": "FLR的保证：一个Function回到可重新配置状态，Link不复位"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 FLR1.1相关2006 ECN与2.0正式正文分开；80/20/100ms按所引正式版，不臆造未核中间ECN日期。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/95/detail/r102-flr-capability-and-trigger",
+                "label": "如何发起FLR：C+04h[28]看能力，C+08h[15]触发，读0不是完成"
+              },
+              {
+                "href": "#feature/95/detail/r102-flr-version-preservation",
+                "label": "FLR版本与保留地图：2006 ECN到7.0，不能用统一全清零表"
+              },
+              {
+                "href": "#feature/95/detail/flr-scope-guarantee",
+                "label": "FLR的保证：一个Function回到可重新配置状态，Link不复位"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/95/detail/r102-flr-capability-and-trigger",
+                "label": "如何发起FLR：C+04h[28]看能力，C+08h[15]触发，读0不是完成"
+              },
+              {
+                "href": "#feature/95/detail/r102-flr-version-preservation",
+                "label": "FLR版本与保留地图：2006 ECN到7.0，不能用统一全清零表"
+              },
+              {
+                "href": "#feature/95/detail/flr-scope-guarantee",
+                "label": "FLR的保证：一个Function回到可重新配置状态，Link不复位"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 不把字段读回或配置写完成当全部复位/业务恢复。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 102,
+            "evidence": [
+              {
+                "href": "#feature/95/detail/r102-flr-capability-and-trigger",
+                "label": "如何发起FLR：C+04h[28]看能力，C+08h[15]触发，读0不是完成"
+              },
+              {
+                "href": "#feature/95/detail/r102-flr-version-preservation",
+                "label": "FLR版本与保留地图：2006 ECN到7.0，不能用统一全清零表"
+              },
+              {
+                "href": "#feature/95/detail/flr-scope-guarantee",
+                "label": "FLR的保证：一个Function回到可重新配置状态，Link不复位"
+              }
+            ],
+            "note": "R102复核本主题用途/机制/字段/角色/恢复与七版选定正式正文，复用已有细节；补FLR能力/触发/保留地图与PF关联资源例外、Detect版本计时。 对照独立变更记录与其它正式版本，保留已有61 RTR及89 ECN问题；本条7.0按正式能力条件解释，不借本轮裁决未核ECN位号。"
           }
         },
         "baseline": {
@@ -9676,14 +10040,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R102固定三种复位主题完成八维验收；既有LTSSM/EQ全部异常与板级/模拟实现仍由相应独立任务处理，不将全文通读作为假完成。",
         "taskId": "v1-task-11",
         "requiredTaskIds": [
           "v1-task-11",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 102
       },
       {
         "id": "v1-feature-96",
@@ -16706,6 +17071,128 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "61 RTR数值和89 ECN位号仍定向待核；功耗组其它条目未关闭。R102批验93/94/95复位并做R99-R102四轮总结，不追加必需范围。",
         "publication": "以实际上传/部署/线上记录为准。"
+      },
+      {
+        "round": 102,
+        "kind": "reset-group-acceptance-and-r99-r102-review",
+        "deliverables": [
+          "补复位版本计时、Hot Reset控制契约、FLR操作位与逐版保留地图",
+          "修FLR可选性/PF影响范围，93/94/95八维通过，首个固定功能分组11关闭",
+          "完成R99-R102总结：12完整功能、88新维度，累计20/183和217维度，余36轮仅预算"
+        ],
+        "closedDeliverableIds": [
+          "fundamental-reset-v1-accepted",
+          "hot-reset-v1-accepted",
+          "flr-v1-accepted",
+          "v1-task-11-closed",
+          "r99-r102-review"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 93,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 93,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 93,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 93,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 93,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 93,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 93,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 93,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 94,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 94,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 94,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 94,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 94,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 94,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 94,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 94,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 95,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 95,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 95,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 95,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 95,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 95,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 95,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 95,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          93,
+          94,
+          95
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "163功能及23分组/共享任务仍待验收；R103批验41/47/163/165/168核心已齐项，61/89定向来源问题保留，R106再总结。",
+        "publication": "R101补传已完成且CI/Pages通过；R102发布/视觉结果见实际记录。"
       }
     ],
     "backlog": [
@@ -17099,15 +17586,38 @@
           95
         ],
         "phase": "core",
-        "status": "open",
+        "status": "closed",
         "focus": "触发/作用域/时序/保持状态、在途请求处理及各版/角色例外。",
         "exit": "所列条目八维验收的适用项逐一有证据通过；可复用既有正文，独有语义、版本限制及相关冲突不可遗漏。",
         "legacyRecordIndices": [
           13,
           104
         ],
-        "evidence": [],
-        "closedRound": null
+        "evidence": [
+          {
+            "href": "#feature/93",
+            "label": "Fundamental Reset：Cold / Warm / PERST#"
+          },
+          {
+            "href": "#feature/94",
+            "label": "Hot Reset / Secondary Bus Reset"
+          },
+          {
+            "href": "#feature/95",
+            "label": "Function Level Reset（FLR）"
+          }
+        ],
+        "closedRound": 102,
+        "progress": {
+          "round": 102,
+          "newPassedCriteria": 24,
+          "acceptedUnitIds": [
+            93,
+            94,
+            95
+          ],
+          "remaining": "所列三项均八维通过；独立LTSSM/EQ/板级实现仍按其它任务范围，不扩大本组。"
+        }
       },
       {
         "id": "v1-task-12",
@@ -19963,34 +20473,36 @@
       }
     ],
     "nextExecution": {
-      "round": 102,
-      "taskId": "v1-task-11",
+      "round": 103,
+      "taskId": "v1-task-22",
       "featureIds": [
-        93,
-        94,
-        95
+        41,
+        47,
+        163,
+        165,
+        168
       ],
-      "goal": "批验已有Fundamental/Hot Reset/FLR正文、版本和真实缺口，争取关闭完整复位分组；必须完成R99-R102四轮总结，按实际关闭量更新剩余缺口与优先级，不扩大固定范围或自动延长目标。",
-      "reviewRound": 102
+      "goal": "优先关闭六核心已齐条目的版本/一致性：BAR/桥资源与PHY分层/uPCS/TX；复用正式资料与产品边界，只有实际缺口才补正文。61/89保持定向来源队列，不全轮重复。R106总结。",
+      "reviewRound": 106
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 101,
-      "reestimateRound": 102,
-      "assessment": "R101完整功能新增4项累计17/183，30新维度累计193；剩166项/37轮预算，需约4.486项/轮。本轮虽提高关闭量，R138仍有风险；R102按四轮实际结果复盘。",
-      "action": "R102批验93/94/95完整复位分组并总结R99-R102；成熟内容优先验收，已限定来源问题定向保留，不重复扩写。",
+      "assessedRound": 102,
+      "reestimateRound": 106,
+      "assessment": "R99-R102新增12完整功能和88维度；累计20/183、217维度，1/24分组关闭。窗口实绩3项/轮，剩163项需在36轮内约4.528项/轮，当前速度不支持R138完成保证。按本窗口速度仅功能验收机械外推约55轮，未计共享收尾；不是新承诺或自动延期。",
+      "action": "R103先批验41/47/163/165/168六核心齐备项，再集中成熟错误/事务主题；无实际缺口不添工具或重复扩写。下一四轮所需速度对照约18完整项，但不按配额强行验收，R106复盘。",
       "latestProgress": {
-        "round": 101,
-        "newAcceptedUnits": 4,
-        "cumulativeAcceptedUnits": 17,
-        "newPassedCriteria": 30,
-        "cumulativePassedCriteria": 193,
-        "remainingPlannedRounds": 37
+        "round": 102,
+        "newAcceptedUnits": 3,
+        "cumulativeAcceptedUnits": 20,
+        "newPassedCriteria": 24,
+        "cumulativePassedCriteria": 217,
+        "remainingPlannedRounds": 36
       },
-      "observedAcceptedUnitsPerRound": 2,
-      "requiredAcceptedUnitsPerRemainingRound": 4.486486486486487,
-      "linearExtrapolationRounds": 88
+      "observedAcceptedUnitsPerRound": 3,
+      "requiredAcceptedUnitsPerRemainingRound": 4.527777777777778,
+      "linearExtrapolationRounds": 55
     },
     "reviewWindows": [
       {
@@ -20066,6 +20578,65 @@
           47,
           87,
           88,
+          89,
+          163,
+          165,
+          168
+        ]
+      },
+      {
+        "id": "r99-r102",
+        "firstRound": 99,
+        "lastRound": 102,
+        "completedPlanRounds": 4,
+        "closedFeatureUnits": [
+          57,
+          58,
+          60,
+          87,
+          88,
+          84,
+          85,
+          86,
+          90,
+          93,
+          94,
+          95
+        ],
+        "newPassedCriteria": 88,
+        "cumulativePassedCriteria": 217,
+        "remainingFeatureUnits": 163,
+        "remainingRequiredTasks": 23,
+        "closedTaskIds": [
+          "v1-task-11"
+        ],
+        "sourceQuestions": 38,
+        "resolvedSourceQuestions": 2,
+        "remainingSourceQuestions": 36,
+        "remainingPlannedRounds": 36,
+        "targetRound": 138,
+        "forecast": {
+          "status": "at-risk",
+          "assessedRound": 102,
+          "reestimateRound": 106,
+          "assessment": "R99-R102新增12完整功能和88维度；累计20/183、217维度，1/24分组关闭。窗口实绩3项/轮，剩163项需在36轮内约4.528项/轮，当前速度不支持R138完成保证。按本窗口速度仅功能验收机械外推约55轮，未计共享收尾；不是新承诺或自动延期。",
+          "action": "R103先批验41/47/163/165/168六核心齐备项，再集中成熟错误/事务主题；无实际缺口不添工具或重复扩写。下一四轮所需速度对照约18完整项，但不按配额强行验收，R106复盘。",
+          "latestProgress": {
+            "round": 102,
+            "newAcceptedUnits": 3,
+            "cumulativeAcceptedUnits": 20,
+            "newPassedCriteria": 24,
+            "cumulativePassedCriteria": 217,
+            "remainingPlannedRounds": 36
+          },
+          "observedAcceptedUnitsPerRound": 3,
+          "requiredAcceptedUnitsPerRemainingRound": 4.527777777777778,
+          "linearExtrapolationRounds": 55
+        },
+        "coreReadyUnitIds": [
+          41,
+          47,
+          61,
           89,
           163,
           165,

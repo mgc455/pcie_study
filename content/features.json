@@ -84788,14 +84788,14 @@
     "checks": "区分复位来源与同步释放时钟；不要只延迟几个固定周期就假设所有PHY/业务资源已稳定。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 93,
-    "status": "选定规则已展开 · 持续逐版核读",
+    "status": "一期已验收：本复位主题八维通过；按版本/角色判断范围、寄存器和恢复条件",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "6.6",
@@ -84895,9 +84895,163 @@
         "title": "PERST#平台时序参数",
         "verification": "本轮核读所列正文页的相关规则；不表示整章、全部图表或全部后续修订已审计。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "6.6",
+        "page": 289,
+        "pdfPage": 289,
+        "title": "早期Fundamental Reset术语",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "6.6",
+        "page": 290,
+        "pdfPage": 290,
+        "title": "原始80ms进入初始训练状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "6.6",
+        "page": 291,
+        "pdfPage": 291,
+        "title": "早期1s及Switch传播",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "ecn-reset-limit-20030717",
+        "document": "Reset Limit Adjustment ECN（归档变更记录）",
+        "version": "2003-07-17",
+        "section": "1.6",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "80ms到20ms沿革及PERST文字调整",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "ecn-reset-limit-20030717",
+        "document": "Reset Limit Adjustment ECN（归档变更记录）",
+        "version": "2003-07-17",
+        "section": "1.6",
+        "page": 2,
+        "pdfPage": 2,
+        "title": "删除旧PLL等待实现注释",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "6.6.1",
+        "page": 379,
+        "pdfPage": 379,
+        "title": "2.0 Detect20ms",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "6.6.1",
+        "page": 380,
+        "pdfPage": 380,
+        "title": "2.0系统100ms访问等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.6.1",
+        "page": 508,
+        "pdfPage": 508,
+        "title": "3.0 Detect20ms和按速度区分访问起点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "6.6.1",
+        "page": 556,
+        "pdfPage": 556,
+        "title": "4.0 Detect20ms及RN例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.6.1",
+        "page": 553,
+        "pdfPage": 553,
+        "title": "5.0 Detect20ms及RN例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.1",
+        "page": 722,
+        "pdfPage": 722,
+        "title": "6.0 Detect20/100ms",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.1",
+        "page": 827,
+        "pdfPage": 827,
+        "title": "7.0器件训练/配置就绪期限",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.1",
+        "page": 828,
+        "pdfPage": 828,
+        "title": "系统访问起点与RN/RTR例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.1",
+        "page": 829,
+        "pdfPage": 829,
+        "title": "PERST电气/板型参数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
       }
     ],
-    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
+    "referenceStatus": "R102核七版选定复位正文、FLR字段及归档变更；复用既有Hot Reset版本表，不代表全文所有中间修订完成",
     "details": [
       {
         "id": "reset-taxonomy",
@@ -85031,6 +85185,89 @@
           3,
           4
         ]
+      },
+      {
+        "id": "r102-reset-version-timing",
+        "title": "复位时序逐版：80ms、20ms、100ms分别约束什么",
+        "paragraphs": [
+          "1.0a原始§6.6要求在本端Fundamental Reset结束后80ms内进入初始训练状态；2003-07-17 Reset Limit Adjustment归档变更记录提出改为20ms并调整PERST#表述。2.0正式正文已规定20ms，3/4/5所核正式版继续如此。变更记录用于追踪沿革，不能脱离正式版本把任意实现统一定为80ms或20ms。",
+          "6.0/7.0正式正文又明确：支持最高速率大于5GT/s的组件在100ms内进入Detect，其余20ms；这是支持能力边界，不是当前正训练到2.5GT/s就可以改用另一计时。起点是每个组件从自己视角退出Fundamental Reset，不是等全系统其他端口也复位结束才开始。",
+          "系统“何时允许第一次配置访问”是另一套约束。2.0按Conventional Reset结束后至少100ms；3/4/5以及6/7对支持>5GT/s的DSP，默认100ms从训练完成起算。器件进入Detect的期限、系统等待、设备配置就绪的约1s要求不能合成一个sleep常数，也不能用训练完成重新开始器件就绪时钟。",
+          "4/5已有RN/RTR交叉例外，6/7还明确Immediate Readiness、DRS收到状态、较短Reset Time及系统已知设备要求等适用路径。使用RN且系统支持时就绪时间可短于、也可长于默认1s；这不是设备任意返回RRS的无限免责。保留61 RTR数值旁注问题，按事件和明确字段使用其它无争议的许可。",
+          "归档变更记录删除了1.0a“可等I/O PLL锁定才视为退出Fundamental Reset”的旧实现注释。不能再援引该旧注释任意延后计时起点；当前PERST#的供电、Refclk稳定、最小保持及释放slew仍须按适用正式Base/板型核对。50mV/ns是所引6/7默认释放沿要求，不能据此虚构通用PERST脉宽。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22
+        ],
+        "table": {
+          "columns": [
+            "正式修订/来源",
+            "定位",
+            "时序对象与限制"
+          ],
+          "rows": [
+            [
+              "1.0a原始版",
+              "§6.6 p289～292",
+              "80ms进初始训练；不能当后版限值"
+            ],
+            [
+              "2003归档变更 / 正式2.0",
+              "变更p1～2；2.0 p379～380",
+              "80→20ms沿革；正式2.0用20ms"
+            ],
+            [
+              "3.0 / 4.0 / 5.0",
+              "p508 / p556 / p553",
+              "Detect仍20ms；>5GT/s DSP的访问等待起点另行区分"
+            ],
+            [
+              "6.0 / 7.0",
+              "p722 / p827～828",
+              "支持>5GT/s组件100ms进Detect，其余20ms"
+            ],
+            [
+              "所有所核版共同区分",
+              "器件 / 系统 / Function就绪",
+              "进入Detect≠训练完成≠配置就绪≠业务已恢复"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 93,
+            "detailId": "reset-readiness-timers",
+            "label": "现有6/7起算点表"
+          },
+          {
+            "featureId": 93,
+            "detailId": "perst-timing-parameters",
+            "label": "PERST参数表"
+          },
+          {
+            "featureId": 61,
+            "detailId": "r100-rn-version-contract",
+            "label": "RN/RTR条件"
+          },
+          {
+            "featureId": 93,
+            "detailId": "reset-bringup-layers",
+            "label": "恢复分层排查"
+          }
+        ]
       }
     ]
   },
@@ -85044,14 +85281,14 @@
     "checks": "复位前停止相关业务并处理在途事务；恢复后重新确认链路、资源、驱动和应用上下文。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 94,
-    "status": "选定规则已展开 · 持续逐版核读",
+    "status": "一期已验收：本复位主题八维通过；按版本/角色判断范围、寄存器和恢复条件",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-24",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "6.6",
@@ -85448,9 +85685,152 @@
         "title": "控制路径对照：Disable、Retrain、SBR与恢复可访问不是同一个完成点",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R56核读对应正式版所列Hot Reset、Disabled或控制寄存器正文；印刷页与本地PDF物理页分别核对后一致。视觉核1.0a p196/199和7.0 p610。仅所列规则，不代表整章、全部中间修订或ECN核读。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "6.6",
+        "page": 291,
+        "pdfPage": 291,
+        "title": "早期SBR/Switch传播",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "6.6.1",
+        "page": 380,
+        "pdfPage": 380,
+        "title": "2.0 SBR传播",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.6.1",
+        "page": 509,
+        "pdfPage": 509,
+        "title": ">5GT/s Switch上游DL_Down不保持Hot Reset",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "6.6.1",
+        "page": 557,
+        "pdfPage": 557,
+        "title": "4.0传播规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.6.1",
+        "page": 554,
+        "pdfPage": 554,
+        "title": "5.0传播规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.1",
+        "page": 723,
+        "pdfPage": 723,
+        "title": "6.0传播/就绪",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.1",
+        "page": 828,
+        "pdfPage": 828,
+        "title": "7.0传播/就绪",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.1.3.13",
+        "page": 944,
+        "pdfPage": 944,
+        "title": "SBR最小Trst",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.3.13",
+        "page": 1093,
+        "pdfPage": 1093,
+        "title": "SBR软件最小1ms",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.11",
+        "page": 529,
+        "pdfPage": 529,
+        "title": "Hot Reset发起与2ms",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.11",
+        "page": 530,
+        "pdfPage": 530,
+        "title": "接收TS1与2ms重新计时",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.11",
+        "page": 618,
+        "pdfPage": 618,
+        "title": "Hot_Reset_Request及发起",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.11",
+        "page": 619,
+        "pdfPage": 619,
+        "title": "Switch传播/接收计时",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
       }
     ],
-    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
+    "referenceStatus": "R102核七版选定复位正文、FLR字段及归档变更；复用既有Hot Reset版本表，不代表全文所有中间修订完成",
     "details": [
       {
         "id": "sbr-propagation",
@@ -85593,6 +85973,87 @@
             ]
           ]
         }
+      },
+      {
+        "id": "r102-hotreset-control-contract",
+        "title": "Hot Reset跨版控制契约：SBR保持、TS1接收与恢复等待分别验",
+        "paragraphs": [
+          "1.0a的SBR/Switch传播规则与后版共享基本方向，TS1接收门槛差异则保留在原逐版表：早期a training sequence与2.0～7.0明确连续两组TS1不能混写。软件写某个DSP的SBR影响其secondary侧子树；Switch USP的相关事件会向其下行端口传播，不是按当前业务BDF只选一个Function。",
+          "3.0以及4/5/6/7所核Conventional Reset正文，对支持>5GT/s Switch的上游DL_Down明确要求指示各DSP进入Hot Reset但不能保持住，以允许每个DSP本地完成后开始训练；对其它Switch为建议。不能将上游down电平直接作为整个子树永久reset保持条件。",
+          "SBR是Type1固定Bridge Control+3Eh bit6；6.0用Trst描述软件最小保持，7.0直接写至少1ms并对应PCI的Trst。Hot Reset状态中的2ms是发起/接收分支使用的LTSSM timeout，接收侧持续收到规定TS1时会重新计时。不能因为看到2ms就把软件SBR脉宽、每次TS1间隔和整个重新枚举总时间都定成2ms。",
+          "Link Disable、Retrain、SBR和PF/VF FLR不是同一个作用域。SBR不应重写发起Port自己的配置寄存器，允许规定的状态更新；下游则须遵守Conventional Reset后的初始化与首次访问规则。读回SBR或Link Disable的写值，也不能证明下游已Detect、DL_Active或配置就绪。"
+        ],
+        "referenceIndices": [
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48
+        ],
+        "table": {
+          "columns": [
+            "条件",
+            "控制/观测",
+            "边界"
+          ],
+          "rows": [
+            [
+              "SBR置位",
+              "Type1固定3Eh bit6",
+              "触发secondary侧Hot Reset；按适用Trst/1ms保持"
+            ],
+            [
+              "带内Hot Reset接收",
+              "TS1/Hot_Reset_Request；见逐版表",
+              "1.0a与2～7门槛差异保留，不套用一个阈值"
+            ],
+            [
+              "Hot Reset LTSSM2ms",
+              "发起/接收分支自己的计时",
+              "不是软件SBR最小1ms的替代物"
+            ],
+            [
+              "Switch USP DL_Down",
+              ">5GT/s Switch要求进入但不扣住DSP",
+              "与收到TS1的触发条件分开"
+            ],
+            [
+              "后续访问",
+              "训练、VC0、§6.6.1与就绪机制",
+              "不是寄存器写Completion后即可访问"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 94,
+            "detailId": "hotreset-switch-propagation-revisions",
+            "label": "七版TS1传播依据"
+          },
+          {
+            "featureId": 94,
+            "detailId": "sbr-fixed-bit-minimum-duration",
+            "label": "固定偏移与最小保持"
+          },
+          {
+            "featureId": 94,
+            "detailId": "hotreset-controls-are-not-ready",
+            "label": "Disable/Retrain/SBR对照"
+          },
+          {
+            "featureId": 93,
+            "detailId": "r102-reset-version-timing",
+            "label": "恢复计时版本表"
+          }
+        ]
       }
     ]
   },
@@ -85606,14 +86067,14 @@
     "checks": "不要认为FLR会自动安全停止所有DMA；检查所属通道、未完成请求、旧Completion和Tag复用处理。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 95,
-    "status": "选定规则已展开 · 持续逐版核读",
+    "status": "一期已验收：本复位主题八维通过；按版本/角色判断范围、寄存器和恢复条件",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "6.6.2",
@@ -85724,22 +86185,310 @@
         "title": "Gen7 FLR保留能力与Flit Mode额外保留块",
         "verification": "本轮核读该页正文的列举范围；未转录完整寄存器清单。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "ecn-flr-20060627",
+        "document": "Function Level Reset (FLR) ECN",
+        "version": "2006-06-27",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "FLR日期/批准与受影响1.1",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "ecn-flr-20060627",
+        "document": "Function Level Reset (FLR) ECN",
+        "version": "2006-06-27",
+        "section": "6.6.2",
+        "page": 6,
+        "pdfPage": 6,
+        "title": "FLR独立Function和可选能力",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "ecn-flr-20060627",
+        "document": "Function Level Reset (FLR) ECN",
+        "version": "2006-06-27",
+        "section": "6.6.2",
+        "page": 7,
+        "pdfPage": 7,
+        "title": "早期保留列表与100ms",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "ecn-flr-20060627",
+        "document": "Function Level Reset (FLR) ECN",
+        "version": "2006-06-27",
+        "section": "6.6.2",
+        "page": 8,
+        "pdfPage": 8,
+        "title": "FLR行为和后续初始化",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "6.6.2",
+        "page": 381,
+        "pdfPage": 381,
+        "title": "2.0 FLR共同要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "6.6.2",
+        "page": 382,
+        "pdfPage": 382,
+        "title": "2.0保留列表/在途事务",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "6.6.2",
+        "page": 383,
+        "pdfPage": 383,
+        "title": "2.0Completion先返回/初始化",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.6.2",
+        "page": 510,
+        "pdfPage": 510,
+        "title": "3.0保留列表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.6.2",
+        "page": 511,
+        "pdfPage": 511,
+        "title": "3.0 EQ/VC与在途事务",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "6.6.2",
+        "page": 558,
+        "pdfPage": 558,
+        "title": "4.0 FLR保留列表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "6.6.2",
+        "page": 559,
+        "pdfPage": 559,
+        "title": "4.0数据链路/16GT/s/FRS",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.6.2",
+        "page": 555,
+        "pdfPage": 555,
+        "title": "5.0 SKP/32GT/s/保留列表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.6.2",
+        "page": 556,
+        "pdfPage": 556,
+        "title": "5.0 ARI/L1SS/LTR/PTM强烈建议",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.6.2",
+        "page": 725,
+        "pdfPage": 725,
+        "title": "6.0 MUST@FLIT与保留状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 830,
+        "pdfPage": 830,
+        "title": "7.0 LTR条件/SVC/128GT/s/安全会话",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 831,
+        "pdfPage": 831,
+        "title": "7.0 FLR/FRS与Completion",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.6.2",
+        "page": 832,
+        "pdfPage": 832,
+        "title": "UIO和stale Completion建议",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "7.8.3",
+        "page": 449,
+        "pdfPage": 449,
+        "title": "FLR Capability bit28",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "7.8.4",
+        "page": 453,
+        "pdfPage": 453,
+        "title": "FLR Initiate bit15/桥复用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.3",
+        "page": 958,
+        "pdfPage": 958,
+        "title": "6.0 PF/VF强制支持",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.4",
+        "page": 962,
+        "pdfPage": 962,
+        "title": "6.0PF FLR清VF Enable",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.5",
+        "page": 966,
+        "pdfPage": 966,
+        "title": "6.0Transactions Pending",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.3",
+        "page": 1107,
+        "pdfPage": 1107,
+        "title": "7.0FLR Capability",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.4",
+        "page": 1111,
+        "pdfPage": 1111,
+        "title": "7.0PF/VF/SDI及Initiate",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.5",
+        "page": 1116,
+        "pdfPage": 1116,
+        "title": "7.0Transactions Pending含UIO",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R102核所列正式版复位正文/字段及独立变更记录；复用成熟细节，版本/角色/时序对象分别判断，非整章通读。"
       }
     ],
-    "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
+    "referenceStatus": "R102核七版选定复位正文、FLR字段及归档变更；复用既有Hot Reset版本表，不代表全文所有中间修订完成",
     "details": [
       {
         "id": "flr-scope-guarantee",
         "title": "FLR的保证：一个Function回到可重新配置状态，Link不复位",
         "paragraphs": [
-          "FLR按Function执行，Link状态必须不受影响；Physical/Data Link中的Port状态机不复位，VC0仍初始化。是否实现FLR要按能力发现；不能假定所有Function都具备。",
+          "FLR按Function执行，Link状态必须不受影响，Physical/Data Link中的Port状态机不复位、VC0仍初始化。但PF FLR会使关联VF不再存在，7.0还明确关联SDI禁用，不能把“单Function”理解成关联虚拟资源无影响。普通Endpoint按能力发现，6/7的PF/VF则必须支持；见新增能力表。",
           "功能私有的外部I/O应停止表现为一个已被主机初始化的适配器；内部软件可读的旧秘密状态须消除，且不能由Function去改写分配的主机内存来完成清理。它不是“所有寄存器一律清零”。"
         ],
         "referenceIndices": [
           1,
           2,
           5,
-          6
+          6,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 95,
+            "detailId": "r102-flr-capability-and-trigger",
+            "label": "FLR触发与PF作用域例外"
+          }
         ]
       },
       {
@@ -85840,6 +86589,205 @@
         "referenceIndices": [
           7,
           8
+        ]
+      },
+      {
+        "id": "r102-flr-capability-and-trigger",
+        "title": "如何发起FLR：C+04h[28]看能力，C+08h[15]触发，读0不是完成",
+        "paragraphs": [
+          "C是PCI Express Capability基址，不是配置空间固定0、不是BAR。Device Capabilities DWORD在C+04h，其bit28为FLR Capability；Device Control WORD在C+08h，其bit15对FLR-capable Endpoint才表示Initiate FLR，写1触发、软件读始终0。不要照抄某台设备的Capability绝对地址，也不能轮询这个0判断复位完成。",
+          "同一Device Control bit15在PCIe-to-PCI/PCI-X Bridge表示Bridge Configuration Retry Enable；其它不适用类型保留。类型与能力必须一起判。2.0已有Endpoint可选FLR；6/7明确PF和VF必须支持并置能力位，不能把“FLR通常可选”套到所有PF/VF。",
+          "触发前通常需要协调访问者、阻止新Request并处理在途事务，见原软件流程。Device Status C+0Ah[5] Transactions Pending是RO观察，不是写1清；6.0描述未完成NP，7.0还包含UIO和所列对等事务拥有者相关请求。读到0不证明互连里不存在可能被误接收的stale Completion。",
+          "写Device Control要保留同WORD其它有效配置，不把所有Error Reporting、MPS或MRRS一并误改。目标Function必须先返回触发配置写的Completion再开始FLR；这份Completion只是控制请求被接受，后续FRS、100ms及必要初始化分别判。",
+          "PF是关键作用域例外：6/7明确PF FLR清VF Enable，其VF在FLR完成后不再存在；7.0对带Scalable IOV能力的PF还明确清SDI Enabled并禁用关联SDI。FLR不复位Link，也不等于关联虚拟资源完全不受影响。VF FLR和PF FLR必须分开安排驱动、映射和资源生命周期。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34
+        ],
+        "table": {
+          "columns": [
+            "位置/观察",
+            "字段/动作",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "C+04h DWORD[28]",
+              "FLR Capability，RO",
+              "Endpoint能力；6/7 PF/VF必须为1"
+            ],
+            [
+              "C+08h WORD[15]",
+              "Initiate FLR，写1、读0",
+              "只在具备能力的Endpoint；桥有其它语义"
+            ],
+            [
+              "C+0Ah WORD[5]",
+              "Transactions Pending，RO",
+              "不是可写完成位；6/7请求范围有版本差异"
+            ],
+            [
+              "配置写Completion",
+              "先完成该配置写，再启动FLR",
+              "不是DMA已排空或软件可立即恢复业务"
+            ],
+            [
+              "PF的关联资源",
+              "VF Enable / SDI Enabled等变化",
+              "不是“只复位PF所以VF必定完全保留”"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 95,
+            "detailId": "flr-software-sequence",
+            "label": "原软件顺序"
+          },
+          {
+            "featureId": 95,
+            "detailId": "flr-pending-completions",
+            "label": "FRS与stale Completion区别"
+          },
+          {
+            "featureId": 95,
+            "detailId": "r102-flr-version-preservation",
+            "label": "逐版保留契约"
+          },
+          {
+            "featureId": 61,
+            "detailId": "r99-readiness-message-fields",
+            "label": "FRS事件与Reason"
+          }
+        ]
+      },
+      {
+        "id": "r102-flr-version-preservation",
+        "title": "FLR版本与保留地图：2006 ECN到7.0，不能用统一全清零表",
+        "paragraphs": [
+          "FLR ECN封面标2005-07-12并注明2006-06-27批准，受影响Base1.1；它定义可选独立Function复位及Conventional Reset与FLR的术语分隔。2.0正式正文已有完整FLR规则，不把FLR说成Gen3/Gen4新增，也不对1.0a原始字段回填后来能力。",
+          "2.0共同保留项包括sticky/HwInit、Captured Slot Power Limit Value/Scale、MPS、ASPM Control、RCB、Common Clock、Extended Synch、Clock PM Enable、硬件自主宽度/速度禁止以及VC/MFVC寄存器块；Physical/Data Link Port状态机和VC0初始化不复位。BME、MSI等发起使能会清除，不能把保留Port状态等同保留全部Function授权。",
+          "3.0增加8GT/s链路均衡相关保留项；4.0列16GT/s均衡、Data Link Feature、Physical Layer16GT/s和Rx Lane Margining；5.0又列Lower SKP Generation Vector、32GT/s能力等。所列是按正式版保留表归类，字段的bit及具体能力结构复用其专题，不用一版清单推断所有前后版。",
+          "5.0对ARI Control、L1SS、LTR能力块、PTM能力块是强烈建议保留；6/7将所列这些保留要求标为MUST@FLIT。这里的LTR能力块保留与LTR Mechanism Enable是否跨FLR保留不是同一个字段问题；后者在7.0正式表中受LTR Enable Preserved Across FLR能力条件限制，89的2025 ECN位号来源链仍未裁决。",
+          "7.0还列SVC、Physical Layer128GT/s、NOP Flit及CMA-SPDM session state等保留项目，对NPEM保留为强烈建议；不要把建议当必须或把CMA-SPDM会话留存解读成旧租户所有可读秘密都可保留。Function仍须满足正常重配置可用、外部I/O不表现为已初始化主机、去除可能含旧使用秘密的可读私有状态等要求。",
+          "FRS只能说明适用Function配置就绪，不保证旧发起事务已完成；FLR本身100ms完成上限与其后可继续的专用初始化分开。6/7 RRS与早期CRS术语按对应版看。7.0的软件实施说明扩到UIO stale Completion，旧Tag复用前仍需恰当排空/隔离，不用“Transactions Pending被FLR清0”证明旧Completion绝不会到。"
+        ],
+        "referenceIndices": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34
+        ],
+        "table": {
+          "columns": [
+            "正式来源",
+            "定位",
+            "保留/行为差别"
+          ],
+          "rows": [
+            [
+              "1.1相关ECN / 正式2.0",
+              "ECN p1、6～8；2.0 p381～384",
+              "独立Function、100ms、控制写先完成、基本保留及stale Completion规则"
+            ],
+            [
+              "3.0",
+              "§6.6.2 p510～513",
+              "8GT/s Link Equalization Request/Control加入所列保留"
+            ],
+            [
+              "4.0",
+              "§6.6.2 p558～561",
+              "16GT/s、Data Link Feature、Rx Margining及FRS边界"
+            ],
+            [
+              "5.0",
+              "§6.6.2 p555～558",
+              "32GT/s/Lower SKP等；ARI/L1SS/LTR/PTM为强烈建议"
+            ],
+            [
+              "6.0",
+              "§6.6.2 p724～727",
+              "64GT/s/Flit相关块；所列ARI/L1SS/LTR/PTM MUST@FLIT"
+            ],
+            [
+              "7.0",
+              "§6.6.2 p829～832",
+              "128GT/s/SVC/NOP/CMA-SPDM及条件LTR Enable；NPEM仍为建议"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 95,
+            "detailId": "flr-preserved-state",
+            "label": "原保留分类表"
+          },
+          {
+            "featureId": 95,
+            "detailId": "r102-flr-capability-and-trigger",
+            "label": "能力与触发位"
+          },
+          {
+            "featureId": 89,
+            "detailId": "r93-ltr-flr-version-map",
+            "label": "LTR位号来源问题"
+          },
+          {
+            "featureId": 95,
+            "detailId": "flr-completion-and-timeout",
+            "label": "100ms与初始化"
+          },
+          {
+            "featureId": 95,
+            "detailId": "flr-in-progress-requests",
+            "label": "FLR期间到达包的处理"
+          }
         ]
       }
     ]

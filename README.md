@@ -519,3 +519,7 @@ R92将117条历史记录归并为固定24项验收任务，并登记37项来源�
 ## R101 功耗四项验收
 
 [D-state恢复访问](https://mgc455.github.io/pcie_study/#feature/84/detail/r101-resume-access-decision) · [ASPM可选化来源链](https://mgc455.github.io/pcie_study/#feature/86/detail/r101-aspm-optionality-contract) · [OBFF版本契约](https://mgc455.github.io/pcie_study/#feature/90/detail/r101-obff-revision-contract)。84/85/86/90通过，累计17/183、193维度；61/89问题保留，功耗组尚未整体关闭。余37轮为预算，R102总结，每日仍暂停。
+
+## R102 复位收口与四轮总结
+
+[FLR能力/触发入口](https://mgc455.github.io/pcie_study/#feature/95/detail/r102-flr-capability-and-trigger) · [复位版本计时](https://mgc455.github.io/pcie_study/#feature/93/detail/r102-reset-version-timing) · [站内阶段总结](https://mgc455.github.io/pcie_study/#updates)。93/94/95通过，分组11关闭；四轮新增12完整功能、88维度，累计20/183和217维度。剩163功能、23分组/共享任务、36预算轮；窗口实绩3项/轮低于所需约4.53，R138仍有风险。R103先批验41/47/163/165/168；61/89来源问题保留，R106总结，每日仍暂停。
