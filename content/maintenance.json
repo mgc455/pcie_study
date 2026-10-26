@@ -1,12 +1,5 @@
 {
   "nextFeatureIds": [
-    36,
-    38,
-    39,
-    41,
-    43,
-    47,
-    48,
     163,
     165,
     166,
@@ -58,14 +51,17 @@
   ],
   "lastCompleted": {
     "date": "2026-10-26",
-    "edition": "2026-10-26-r94",
+    "edition": "2026-10-26-r95",
     "featureIds": [
-      87,
-      88,
-      85,
-      59
+      36,
+      38,
+      39,
+      41,
+      43,
+      47,
+      48
     ],
-    "nextTrack": "R95枚举/配置/BAR批量验收；R98总结。"
+    "nextTrack": "R96 PHY分层/TX成熟内容验收；R98总结。"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -355,11 +351,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 1,
+    "nextReviewAfterRounds": 3,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 36,
+    "completedTotal": 37,
     "lastReviewEdition": "2026-10-26-r94",
     "lastReviewId": "r91-r94",
     "nextExpectedReview": "R98（R95～R98收尾进展总结）"
@@ -1115,9 +1111,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 4,
-    "remainingPlannedRounds": 44,
-    "nextRound": 95,
+    "completedRounds": 5,
+    "remainingPlannedRounds": 43,
+    "nextRound": 96,
     "nextReviewRound": 98,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -3609,9 +3605,19 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/36/detail/enum-observation-stages",
+                "label": "枚举到可用：把观察点分成六步"
+              },
+              {
+                "href": "#feature/36/detail/enum-resource-failure-chain",
+                "label": "看得见设备但MMIO不通，沿配置链逐项定位"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "mechanism": {
             "status": "pending",
@@ -3639,9 +3645,19 @@
             "note": "待逐项验收；适用性须人工确认。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/36/detail/enum-resource-failure-chain",
+                "label": "看得见设备但MMIO不通，沿配置链逐项定位"
+              },
+              {
+                "href": "#feature/36/detail/enum-ari-discovery-order",
+                "label": "ARI发现顺序：先确认直接下游，再启用上游转发，最后走非VF链"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "consistency": {
             "status": "pending",
@@ -3655,7 +3671,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R95批量验收所列维度，独有语义和未通过维度保留；未因段落或引用数量认定完成。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
@@ -3735,9 +3751,15 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/38/detail/basics-config-size-not-bdf",
+                "label": "配置空间大小、BDF和BAR空间要分别理解"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "mechanism": {
             "status": "pending",
@@ -3765,9 +3787,19 @@
             "note": "待逐项验收；适用性须人工确认。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/38/detail/config-command-status-write-hazard",
+                "label": "04h DWORD读改写陷阱：低16bit Command，高16bit RW1C Status"
+              },
+              {
+                "href": "#feature/38/detail/pcie-capability-version-is-not-generation",
+                "label": "跨版核对：Base1.0a的PCIe能力版本为1，2.0/6.0/7.0仍不等于代际"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "consistency": {
             "status": "pending",
@@ -3781,7 +3813,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R95批量验收所列维度，独有语义和未通过维度保留；未因段落或引用数量认定完成。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
@@ -3798,9 +3830,15 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/39/detail/cap-two-list-entry-points",
+                "label": "先分两条链：传统能力从34h找入口，扩展能力从100h开始"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "mechanism": {
             "status": "pending",
@@ -3828,9 +3866,19 @@
             "note": "待逐项验收；适用性须人工确认。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/39/detail/cap-three-chains-diagram",
+                "label": "原创对照图：Capability偏移链、ARI编号链、VF算术映射"
+              },
+              {
+                "href": "#feature/39/detail/cap-chain-snapshot-query",
+                "label": "离线查询：逐步遍历Capability头与Extended Header"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "consistency": {
             "status": "pending",
@@ -3844,7 +3892,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R95批量验收所列维度，独有语义和未通过维度保留；未因段落或引用数量认定完成。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
@@ -3924,24 +3972,60 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/41/detail/bar-bus-address-not-cpu-pointer",
+                "label": "BAR值属于资源映射，CPU虚拟地址是另一层"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/41/detail/bar-pair-consumes-two-slots",
+                "label": "64bit BAR占两个槽，不能把高DWORD当新BAR"
+              },
+              {
+                "href": "#feature/41/detail/bar-sizing-observation-sequence",
+                "label": "Sizing的保存、禁解码、探测与恢复"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/41/detail/bar-memory-bit-table",
+                "label": "Memory BAR的地址位与属性位"
+              },
+              {
+                "href": "#feature/41/detail/bar-sizing-mask-math",
+                "label": "掩码求大小：先去属性，再按完整位宽求补码"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/41/detail/bar-vf-and-rbar-boundaries",
+                "label": "普通BAR算法的VF、EA与Resizable BAR边界"
+              },
+              {
+                "href": "#feature/41/detail/bar-aperture-versus-backed",
+                "label": "BAR申请窗口不等于每个字节都有寄存器"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "versions": {
             "status": "pending",
@@ -3949,14 +4033,30 @@
             "note": "待逐项验收；适用性须人工确认。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/41/detail/bar-memory-bit-table",
+                "label": "Memory BAR的地址位与属性位"
+              },
+              {
+                "href": "#feature/41/detail/bar-sizing-observation-sequence",
+                "label": "Sizing的保存、禁解码、探测与恢复"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/41/detail/bar-mask-query",
+                "label": "查询：Memory BAR基址、掩码与对齐"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "consistency": {
             "status": "pending",
@@ -3970,7 +4070,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R95批量验收所列维度，独有语义和未通过维度保留；未因段落或引用数量认定完成。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
@@ -4050,9 +4150,19 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/43/detail/bar-size-is-not-address-field",
+                "label": "当前BAR基址与Sizing回读是不同数据"
+              },
+              {
+                "href": "#feature/43/detail/r95-bar-size-standard-versus-local-mask",
+                "label": "标准Sizing与本地Mask：只复用能证明的部分"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "mechanism": {
             "status": "pending",
@@ -4060,14 +4170,30 @@
             "note": "待逐项验收；适用性须人工确认。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/43/detail/bar-size-is-not-address-field",
+                "label": "当前BAR基址与Sizing回读是不同数据"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/43/detail/bar-probe-missing-and-width",
+                "label": "零掩码、截断高DWORD和保留类型须停下判断"
+              },
+              {
+                "href": "#feature/43/detail/r95-bar-size-standard-versus-local-mask",
+                "label": "标准Sizing与本地Mask：只复用能证明的部分"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "versions": {
             "status": "pending",
@@ -4080,9 +4206,19 @@
             "note": "待逐项验收；适用性须人工确认。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/43/detail/r95-bar-size-standard-versus-local-mask",
+                "label": "标准Sizing与本地Mask：只复用能证明的部分"
+              },
+              {
+                "href": "#feature/41/detail/bar-mask-query",
+                "label": "复用41的普通Memory BAR标准查询"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "consistency": {
             "status": "pending",
@@ -4096,7 +4232,7 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R95批量验收所列维度，独有语义和未通过维度保留；未因段落或引用数量认定完成。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
@@ -4302,24 +4438,64 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/47/detail/bridge-bus-register-table",
+                "label": "18h～1Ah：Primary、Secondary、Subordinate"
+              },
+              {
+                "href": "#feature/47/detail/bridge-end-to-end-window-fit",
+                "label": "下游BAR可达性要检查整条路径的包含关系"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/47/detail/bridge-memory-window-formula",
+                "label": "20h/22h Memory窗口：1MiB粒度与含尾地址"
+              },
+              {
+                "href": "#feature/47/detail/bridge-wide-window-version",
+                "label": "24h/26h窗口：6.0 Prefetchable与7.0 64-bit Memory"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/47/detail/bridge-bus-register-table",
+                "label": "18h～1Ah：Primary、Secondary、Subordinate"
+              },
+              {
+                "href": "#feature/47/detail/bridge-io-window-granularity",
+                "label": "I/O窗口：4KiB粒度与16/32bit寻址能力"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/47/detail/bridge-window-closed-not-size-zero",
+                "label": "Base大于Limit表示关闭范围，不是减法回卷"
+              },
+              {
+                "href": "#feature/47/detail/r95-bridge-wide-window-reconciled",
+                "label": "已核澄清：6.0的通用编码表不取消PCIe桥64bit要求"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "versions": {
             "status": "pending",
@@ -4327,14 +4503,30 @@
             "note": "待逐项验收；适用性须人工确认。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/47/detail/r95-bridge-wide-window-reconciled",
+                "label": "已核澄清：6.0的通用编码表不取消PCIe桥64bit要求"
+              },
+              {
+                "href": "#feature/47/detail/bridge-memory-window-formula",
+                "label": "20h/22h Memory窗口：1MiB粒度与含尾地址"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/47/detail/bridge-window-query",
+                "label": "查询：按版本解码32bit与宽Memory窗口"
+              }
+            ],
+            "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "consistency": {
             "status": "pending",
@@ -4348,7 +4540,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R95批量验收所列维度，独有语义和未通过维度保留；未因段落或引用数量认定完成。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
@@ -4362,47 +4554,123 @@
         "featureId": 48,
         "group": "枚举、寻址与资源",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/48/detail/r95-ecam-platform-contract",
+                "label": "谁必须提供ECAM，Host Bridge与Endpoint分别做什么"
+              },
+              {
+                "href": "#feature/48/detail/r95-ecam-segment-and-enumeration",
+                "label": "先选配置域，再算ECAM：Segment与BDF、BAR、DBI的边界"
+              }
+            ],
+            "note": "R95按Base1.0a～7.0所列正式版ECAM本主题正文、位映射、平台职责与访问边界逐项核验；修正Segment/枚举前提，交叉复核38/41/43/47与既有地址工具。平台专用API/ACPI不是通用ECAM位映射，未冒充其审计。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/48/detail/ecam-base-bus-zero-definition",
+                "label": "ECAM基址公式：先声明基址对应Bus0"
+              },
+              {
+                "href": "#feature/48/detail/r95-ecam-platform-contract",
+                "label": "谁必须提供ECAM，Host Bridge与Endpoint分别做什么"
+              }
+            ],
+            "note": "R95按Base1.0a～7.0所列正式版ECAM本主题正文、位映射、平台职责与访问边界逐项核验；修正Segment/枚举前提，交叉复核38/41/43/47与既有地址工具。平台专用API/ACPI不是通用ECAM位映射，未冒充其审计。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/48/detail/ecam-field-map",
+                "label": "ECAM位映射与每级占用大小"
+              },
+              {
+                "href": "#feature/48/detail/r95-ecam-version-matrix",
+                "label": "逐版对照：1.0a固定8位Bus，2.0～7.0使用n位Bus"
+              }
+            ],
+            "note": "R95按Base1.0a～7.0所列正式版ECAM本主题正文、位映射、平台职责与访问边界逐项核验；修正Segment/枚举前提，交叉复核38/41/43/47与既有地址工具。平台专用API/ACPI不是通用ECAM位映射，未冒充其审计。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/48/detail/ecam-ordering-and-cross-dword",
+                "label": "ECAM访问边界与写后使用BAR"
+              },
+              {
+                "href": "#feature/48/detail/r95-ecam-segment-and-enumeration",
+                "label": "先选配置域，再算ECAM：Segment与BDF、BAR、DBI的边界"
+              }
+            ],
+            "note": "R95按Base1.0a～7.0所列正式版ECAM本主题正文、位映射、平台职责与访问边界逐项核验；修正Segment/枚举前提，交叉复核38/41/43/47与既有地址工具。平台专用API/ACPI不是通用ECAM位映射，未冒充其审计。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/48/detail/r95-ecam-version-matrix",
+                "label": "逐版对照：1.0a固定8位Bus，2.0～7.0使用n位Bus"
+              }
+            ],
+            "note": "R95按Base1.0a～7.0所列正式版ECAM本主题正文、位映射、平台职责与访问边界逐项核验；修正Segment/枚举前提，交叉复核38/41/43/47与既有地址工具。平台专用API/ACPI不是通用ECAM位映射，未冒充其审计。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/48/detail/r95-ecam-version-matrix",
+                "label": "逐版对照：1.0a固定8位Bus，2.0～7.0使用n位Bus"
+              },
+              {
+                "href": "#feature/48/detail/r95-ecam-platform-contract",
+                "label": "谁必须提供ECAM，Host Bridge与Endpoint分别做什么"
+              }
+            ],
+            "note": "R95按Base1.0a～7.0所列正式版ECAM本主题正文、位映射、平台职责与访问边界逐项核验；修正Segment/枚举前提，交叉复核38/41/43/47与既有地址工具。平台专用API/ACPI不是通用ECAM位映射，未冒充其审计。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/48/detail/ecam-address-query",
+                "label": "查询：普通ECAM地址、范围与对齐"
+              },
+              {
+                "href": "#feature/48/detail/r95-ecam-segment-and-enumeration",
+                "label": "先选配置域，再算ECAM：Segment与BDF、BAR、DBI的边界"
+              }
+            ],
+            "note": "R95按Base1.0a～7.0所列正式版ECAM本主题正文、位映射、平台职责与访问边界逐项核验；修正Segment/枚举前提，交叉复核38/41/43/47与既有地址工具。平台专用API/ACPI不是通用ECAM位映射，未冒充其审计。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 95,
+            "evidence": [
+              {
+                "href": "#feature/48/detail/r95-ecam-version-matrix",
+                "label": "逐版对照：1.0a固定8位Bus，2.0～7.0使用n位Bus"
+              },
+              {
+                "href": "#feature/48/detail/r95-ecam-segment-and-enumeration",
+                "label": "先选配置域，再算ECAM：Segment与BDF、BAR、DBI的边界"
+              }
+            ],
+            "note": "R95按Base1.0a～7.0所列正式版ECAM本主题正文、位映射、平台职责与访问边界逐项核验；修正Segment/枚举前提，交叉复核38/41/43/47与既有地址工具。平台专用API/ACPI不是通用ECAM位映射，未冒充其审计。"
           }
         },
         "baseline": {
@@ -4411,14 +4679,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "ECAM本主题八维逐项通过；逐版差异有正式正文证据，平台专用规范边界已明确。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 95
       },
       {
         "id": "v1-feature-49",
@@ -13550,6 +13819,147 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "R95转枚举/配置/BAR成熟条目批量验收，补真正薄弱字段。早期版本和交叉核对仍需集中推进；R98按实际关闭量再校准工期。",
         "publication": "构建/检查/发布与线上抽查按实际证据记录，不重复计轮。"
+      },
+      {
+        "round": 95,
+        "kind": "batch-acceptance-enumeration-and-ecam",
+        "deliverables": [
+          "批验7项成熟正文，通过30个验收维度",
+          "ECAM按七版正式正文完成八维验收，新增版本/平台/Segment说明并修正2处顶层表述",
+          "澄清桥宽窗口来源问题14；DBI2实现边界单列，复用BAR工具"
+        ],
+        "closedDeliverableIds": [
+          "ecam-v1-accepted",
+          "bridge-question-14-context"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 36,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 36,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 38,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 38,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 39,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 39,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 41,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 41,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 41,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 41,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 41,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 41,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 43,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 43,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 43,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 43,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 47,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 47,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 47,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 47,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 47,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 47,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 48,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 48,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 48,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 48,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 48,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 48,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 48,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 48,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          48
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "下一轮推进PHY薄弱分层163/165/166/167/168，优先正文与产品边界验收；枚举组其余版本/一致性、ROM/VPD/EA和DBI2实现仍保留。R98汇总实际关闭速度。",
+        "publication": "构建/检查/远端发布和线上抽查以本地实际记录为准。"
       }
     ],
     "backlog": [
@@ -13739,7 +14149,18 @@
           101
         ],
         "evidence": [],
-        "closedRound": null
+        "closedRound": null,
+        "progress": {
+          "round": 95,
+          "acceptedUnitIds": [
+            48
+          ],
+          "newPassedCriteria": 30,
+          "resolvedQuestionIds": [
+            "v1-conflict-14"
+          ],
+          "remaining": "整个任务仍未关闭：其它15个功能及共享验收、来源问题30和实现侧DBI2等未完成。"
+        }
       },
       {
         "id": "v1-task-06",
@@ -14513,10 +14934,17 @@
         "legacyRecordIndices": [
           63
         ],
-        "status": "needs-corroboration",
+        "status": "resolved-version-context",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "该具体疑问已澄清；桥条目剩余版本/全范围一致性按原固定任务验收。",
+        "evidence": [
+          {
+            "href": "#feature/47/detail/r95-bridge-wide-window-reconciled",
+            "label": "正式6.0/7.0上下文与页码对照"
+          }
+        ],
+        "resolvedRound": 95,
+        "resolution": "6.0 p940对实现的Prefetchable窗口明确要求64bit，p941通用编码不取消该要求；7.0 p1090/1091是另一版定义。原始记录保留，未外推旧版或关闭整个桥主题。"
       },
       {
         "id": "v1-conflict-15",
@@ -16739,27 +17167,34 @@
       }
     ],
     "nextExecution": {
-      "round": 95,
-      "taskId": "v1-task-05",
+      "round": 96,
+      "taskId": "v1-task-19",
       "featureIds": [
-        36,
-        38,
-        39,
-        41,
-        43,
-        47,
-        48
+        163,
+        165,
+        166,
+        167,
+        168
       ],
-      "goal": "批量验收枚举/配置/BAR成熟正文与准确来源，先复用已有字段/算式/窗口查询，补实际薄弱项；不先设计新计算器。",
+      "goal": "PHY薄弱分层与TX路径：复核已有uPCS/PMD/PMA/TX职责、产品版本和引用，复用成熟内容，补真正薄弱处；不强制新增计算器。",
       "reviewRound": 98
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "needs-calibration",
-      "assessedRound": 94,
+      "assessedRound": 95,
       "reestimateRound": 98,
-      "assessment": "R91～R92基线阶段按两轮完成，R93～R94完成两轮正文验收；累计23个验收维度通过、0个完整功能和0项分组任务关闭。版本与跨页一致性仍待验收，不能据此证明余44轮一定足够，也不能用引用/段落数证明完成比例。",
-      "action": "R138目标暂不变，不静默延期。R95～R98优先批量复核已成熟条目，只有真实缺口才新增正文或查询；把版本核对集中复用。R98报告实绩与偏差，若不足支撑目标则明确给出剩余工作与调整依据。"
+      "assessment": "R95首次完整验收ECAM，累计53个维度通过、1个完整功能、0项分组任务关闭。其余182项仍需按证据验收；余43轮是预算，当前数据尚不能证明足够。",
+      "action": "R138目标不变，R96转PHY薄弱分层/TX；R98按完整功能关闭量、来源问题和剩余工作校准，不静默延期或降低验收标准。",
+      "latestProgress": {
+        "round": 95,
+        "newAcceptedUnits": 1,
+        "cumulativeAcceptedUnits": 1,
+        "newPassedCriteria": 30,
+        "cumulativePassedCriteria": 53,
+        "remainingPlannedRounds": 43,
+        "note": "首次完整条目收口，仍不足以保证43轮足够；目标R138和R98校准点不变。"
+      }
     },
     "reviewWindows": [
       {

@@ -50268,7 +50268,7 @@
     "group": "枚举、寻址与资源",
     "intro": "BAR容量决定地址对齐与可解码范围。",
     "usage": "IP生成/本地初始化与主机资源分配；普通BAR地址不决定容量。",
-    "mechanism": "容量掩码决定BAR可解码范围和对齐；主机探测后分配基址，生成时或允许的DBI2机制决定容量能力。",
+    "mechanism": "标准BAR的可写地址位/回读掩码体现容量和自然对齐，主机据适用资源发现机制分配基址；DBI2是实现侧命名，不是Base定义的通用寄存器。",
     "example": "64KB BAR要求相应地址对齐；只把普通BAR写成更低的地址不会把它扩成1MB。",
     "checks": "避免在驱动使用资源时自行改变容量/掩码；核对软件资源长度与硬件实际译码范围。",
     "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
@@ -50280,7 +50280,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "7.5",
@@ -50364,6 +50364,21 @@
           4,
           1,
           2
+        ]
+      },
+      {
+        "id": "r95-bar-size-standard-versus-local-mask",
+        "title": "标准Sizing与本地Mask：只复用能证明的部分",
+        "paragraphs": [
+          "标准可观察行为是BAR类型、地址位、全1探测回读和自然对齐。当前分配基址、申请容量、实际背后实现的寄存器字节数是三个量；不能用正常BAR基址取反推容量，也不能把1MiB aperture当成1MiB SRAM。",
+          "DBI2 Mask/生成参数/本地初始化属于具体控制器实现。Base6.0/7.0所引BAR条款不能证明某IP的DBI2偏移、bit编码、访问时序或运行期改容量许可；没有匹配产品版本依据就不输出这些写值。本条不将实现部分标成完整通过。",
+          "标准字段表、64bit成对探测、公式、异常输入和查询器复用41对应详细块；本项保留DBI2与标准Sizing的职责区别，而非复制一份可能漂移的公式。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4
         ]
       }
     ]
@@ -52750,7 +52765,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "7.5",
@@ -53079,6 +53094,21 @@
           9,
           10
         ]
+      },
+      {
+        "id": "r95-bridge-wide-window-reconciled",
+        "title": "已核澄清：6.0的通用编码表不取消PCIe桥64bit要求",
+        "paragraphs": [
+          "Base6.0 §7.5.1.3.9在p940明确要求：若实现Prefetchable Memory Base/Limit，必须指示支持64bit；p941仍解释通用0h/1h编码。对本版PCIe桥，不能只摘后页的0h解释，就宣称已实现窗口可任选32bit；未实现寄存器读0又是另一种情况。",
+          "Base7.0对应寄存器改称64-bit Memory窗口，p1090～1091独立规定低四位0h时忽略Upper32并按0，1h时采用Upper32，其它保留。保留准确版本后，两版描述可并存；不能把7.0语义倒写入6.0或反过来。",
+          "已在本次交叉复核中收口历史问题14，原始自查记录保留。这里只澄清6.0/7.0此条上下文；旧版逐代窗口演变、完整桥转发例外和其它字段仍按剩余验收继续。"
+        ],
+        "referenceIndices": [
+          15,
+          9,
+          16,
+          10
+        ]
       }
     ]
   },
@@ -53087,19 +53117,19 @@
     "group": "枚举、寻址与资源",
     "intro": "用内存映射方式访问BDF配置空间的主机侧机制。",
     "usage": "固件/操作系统配置访问；不同于EP BAR与本地DBI。",
-    "mechanism": "ECAM将Segment/Bus/Device/Function/寄存器号编码到主机配置访问的映射中，由平台规定基址与范围。",
+    "mechanism": "平台先选择配置域/Host Bridge及其窗口，ECAM地址再按Bus、Device、Function和配置字节偏移映射为Configuration Request；Segment不是表7-1中的独立地址位域。",
     "example": "固件或内核读取设备能力时使用平台配置机制，而不是拿设备BAR地址直接加配置偏移。",
-    "checks": "区分ECAM主机窗口、EP配置空间和本地DBI；本地CPU物理地址与PCIe地址不能直接混用。",
-    "prerequisites": "由平台/主机完成合法枚举和资源分配；区分配置空间、BAR、主机物理/虚拟/DMA地址和本地总线地址。",
+    "checks": "先核平台窗口/Bus0基址约定与访问结果，再查BDF、4KiB范围、单DW边界及配置写完成；ECAM不是BAR、DBI或任意CPU指针。",
+    "prerequisites": "平台已提供可用的配置访问服务，使用其公布的配置域、Bus范围和ECAM基址；它用于枚举，不以BAR已分配或MSE/BME已置位为前提。具体请求仍须具备可用路由与目标就绪条件。",
     "id": 48,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：Base ECAM机制/逐版位映射与访问边界；平台专用接口另行适用",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "7.2.2",
@@ -53177,9 +53207,372 @@
         "title": "ECAM配置写完成与访问边界",
         "verification": "已核读本版所引正文/表；不是整章、全部模式或逐代演进完成声明。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "7.2.2",
+        "page": 314,
+        "pdfPage": 314,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "7.2.2.1",
+        "page": 315,
+        "pdfPage": 315,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "7.2.2",
+        "page": 416,
+        "pdfPage": 416,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "7.2.2",
+        "page": 417,
+        "pdfPage": 417,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "7.2.2",
+        "page": 418,
+        "pdfPage": 418,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "7.2.2.1",
+        "page": 419,
+        "pdfPage": 419,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "7.2.2",
+        "page": 578,
+        "pdfPage": 578,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "7.2.2",
+        "page": 579,
+        "pdfPage": 579,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "7.2.2",
+        "page": 580,
+        "pdfPage": 580,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "7.2.2.1",
+        "page": 581,
+        "pdfPage": 581,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.2.2",
+        "page": 678,
+        "pdfPage": 678,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.2.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.2.2",
+        "page": 680,
+        "pdfPage": 680,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.2.2.1",
+        "page": 681,
+        "pdfPage": 681,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.2.2",
+        "page": 676,
+        "pdfPage": 676,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.2.2",
+        "page": 677,
+        "pdfPage": 677,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.2.2",
+        "page": 678,
+        "pdfPage": 678,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.2.2.1",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.2.2",
+        "page": 906,
+        "pdfPage": 906,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.2.2",
+        "page": 907,
+        "pdfPage": 907,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.2.2",
+        "page": 908,
+        "pdfPage": 908,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.2.2.1",
+        "page": 909,
+        "pdfPage": 909,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.2.2",
+        "page": 1056,
+        "pdfPage": 1056,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.2.2",
+        "page": 1057,
+        "pdfPage": 1057,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.2.2",
+        "page": 1058,
+        "pdfPage": 1058,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.2.2.1",
+        "page": 1059,
+        "pdfPage": 1059,
+        "title": "ECAM逐版正文：地址表、平台适用性与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "7.2.2.2",
+        "page": 315,
+        "pdfPage": 315,
+        "title": "设备须解码Extended Register Address[3:0]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "7.2.2.2",
+        "page": 419,
+        "pdfPage": 419,
+        "title": "设备须解码Extended Register Address[3:0]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "7.2.2.2",
+        "page": 581,
+        "pdfPage": 581,
+        "title": "设备须解码Extended Register Address[3:0]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.2.2.2",
+        "page": 681,
+        "pdfPage": 681,
+        "title": "设备须解码Extended Register Address[3:0]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.2.2.2",
+        "page": 679,
+        "pdfPage": 679,
+        "title": "设备须解码Extended Register Address[3:0]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.2.2.2",
+        "page": 909,
+        "pdfPage": 909,
+        "title": "设备须解码Extended Register Address[3:0]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.2.2.2",
+        "page": 1059,
+        "pdfPage": 1059,
+        "title": "设备须解码Extended Register Address[3:0]",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R95核读所列正式版正文/表及必要续页；本地副本印刷页与PDF物理页一致。仅本条主题，非整章审计；不以速率推断能力，未核中间ECN不主张首次引入。"
       }
     ],
-    "referenceStatus": "已展开所引Base6.0/7.0规则及版本差异；其他修订和交叉分支继续核读。",
+    "referenceStatus": "R95核七版ECAM正文与表7-1，已按本主题完成一期八维验收；非整个配置章、ACPI或所有中间ECN审计。",
     "details": [
       {
         "id": "ecam-field-map",
@@ -53190,7 +53583,8 @@
         ],
         "referenceIndices": [
           1,
-          2
+          2,
+          5
         ],
         "table": {
           "columns": [
@@ -53221,12 +53615,45 @@
         "id": "ecam-base-bus-zero-definition",
         "title": "ECAM基址公式：先声明基址对应Bus0",
         "paragraphs": [
-          "本页数学例子采用规范位映射的Bus0基址B：地址=B+(Bus<<20)+(Device<<15)+(Function<<12)+Offset。n位Bus对应窗口大小2^(20+n)，B须按此大小对齐。",
+          "本页2.0～7.0数学例子采用规范位映射的Bus0基址B：地址=B+(Bus<<20)+(Device<<15)+(Function<<12)+Offset。n位Bus对应窗口大小2^(20+n)，B须按此大小对齐；1.0a固定8bit Bus，按n=8对照。",
           "不要不加说明就在公式里减StartBus。若平台API给的是已偏移到某起始Bus的子窗口指针，须先弄清其定义，再使用Bus-StartBus；ACPI MCFG和所有架构的固件描述本轮没有完整核读。"
         ],
         "referenceIndices": [
           1,
-          2
+          2,
+          7,
+          8,
+          33,
+          9,
+          10,
+          11,
+          12,
+          34,
+          13,
+          14,
+          15,
+          16,
+          35,
+          17,
+          18,
+          19,
+          20,
+          36,
+          21,
+          22,
+          23,
+          24,
+          37,
+          25,
+          26,
+          27,
+          28,
+          38,
+          29,
+          30,
+          31,
+          32,
+          39
         ]
       },
       {
@@ -53240,7 +53667,8 @@
           1,
           2,
           3,
-          4
+          4,
+          5
         ]
       },
       {
@@ -53260,13 +53688,233 @@
         "title": "查询：普通ECAM地址、范围与对齐",
         "paragraphs": [
           "输入Bus0 ECAM基址、n、Bus/Device/Function、配置偏移和1/2/4字节访问大小，计算完整64bit地址。检查Bus位数范围、基址对齐、配置范围及本工具支持的自然对齐单DW访问。",
-          "它不推断Segment到固件窗口的关系、不访问设备、不输出地址解引用命令。访问大小限制是本工具范围，不声称RC不得支持其他扩展访问。"
+          "它不推断Segment到固件窗口的关系、不访问设备、不输出地址解引用命令。访问大小限制是本工具范围，不声称RC不得支持其他扩展访问。",
+          "版本范围：n=1～8对应所核Base2.0～7.0定义；对照Base1.0a固定选n=8。此处复用同一地址工具，不新增独立计算器。"
         ],
         "referenceIndices": [
           1,
           2,
           5,
-          6
+          6,
+          7,
+          8,
+          33,
+          9,
+          10,
+          11,
+          12,
+          34,
+          13,
+          14,
+          15,
+          16,
+          35,
+          17,
+          18,
+          19,
+          20,
+          36,
+          21,
+          22,
+          23,
+          24,
+          37,
+          25,
+          26,
+          27,
+          28,
+          38,
+          29,
+          30,
+          31,
+          32,
+          39
+        ]
+      },
+      {
+        "id": "r95-ecam-version-matrix",
+        "title": "逐版对照：1.0a固定8位Bus，2.0～7.0使用n位Bus",
+        "paragraphs": [
+          "这里对照Base1.0a、2.0、3.0、4.0 v1.0、5.0 v1.0、6.0、7.0正式版的ECAM正文，不是把当前链路速率当成配置访问机制的版本。各版普通布局的Device[19:15]、Function[14:12]和每Function 4KiB保持一致。",
+          "1.0a表7-1固定A[27:20]作为8bit Bus、A[63:28]为基址，对应256MiB窗口；不能把后版n=1～8的选择倒写为1.0a原文。2.0以后所核各版允许n=1～8，窗口2^(20+n)字节，Bus编号0～2^n−1，基址按窗口大小对齐，未映射的Bus高位为0。",
+          "3.0～7.0所核地址表明确ARI目标A[19:12]作为8bit Function；1.0a和2.0这张地址表没有该注。表注的有无不能用来判定ARI最初引入版本，2.0的ARI能力/ECN沿革也不能由本表缺注推断为不存在。",
+          "2.0～7.0正文明确要求平台提供确认ECAM写已由Completer完成的方法，并解释配置写与后续BAR访问的顺序风险；1.0a本条没有同样的明示句，不据此宣称早期可以乱序。所有所核版本均不要求RC转换跨DW或locked访问。当前普通地址查询器的n=1～8来自2.0～7.0模型；对照1.0a时固定选n=8。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          33,
+          9,
+          10,
+          11,
+          12,
+          34,
+          13,
+          14,
+          15,
+          16,
+          35,
+          17,
+          18,
+          19,
+          20,
+          36,
+          21,
+          22,
+          23,
+          24,
+          37,
+          25,
+          26,
+          27,
+          28,
+          38,
+          29,
+          30,
+          31,
+          32,
+          39
+        ],
+        "table": {
+          "columns": [
+            "正式Base版本",
+            "印刷/PDF页",
+            "Bus位数与窗口",
+            "独立核读结果"
+          ],
+          "rows": [
+            [
+              "1.0a",
+              "314～315",
+              "固定8；256MiB",
+              "本表无ARI注；本节无后版同样的写完成句"
+            ],
+            [
+              "2.0",
+              "416～419",
+              "1～8；2～256MiB",
+              "本表无ARI注；明确平台写完成方法"
+            ],
+            [
+              "3.0",
+              "578～581",
+              "1～8；2～256MiB",
+              "表7-1有ARI注；明确平台写完成方法"
+            ],
+            [
+              "4.0 v1.0",
+              "678～681",
+              "1～8；2～256MiB",
+              "表7-1有ARI注；明确平台写完成方法"
+            ],
+            [
+              "5.0 v1.0",
+              "676～679",
+              "1～8；2～256MiB",
+              "表7-1有ARI注；明确平台写完成方法"
+            ],
+            [
+              "6.0",
+              "906～909",
+              "1～8；2～256MiB",
+              "表跨907/908页；ARI与写完成继续适用"
+            ],
+            [
+              "7.0",
+              "1056～1059",
+              "1～8；2～256MiB",
+              "表1057页；未因FM/PAM4改成更大Function窗口"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "r95-ecam-platform-contract",
+        "title": "谁必须提供ECAM，Host Bridge与Endpoint分别做什么",
+        "paragraphs": [
+          "2.0～7.0所核正文要求PC兼容系统，或没有架构专用配置访问固件标准接口的系统，提供本节ECAM；有相应标准固件接口的系统可由OS走该接口，不要求同样的硬件ECAM机制。驱动应优先使用OS配置API，不能把“所有驱动必须直接映射ECAM”当通用规则。",
+          "提供ECAM的平台负责把CPU侧访问转换为配置事务、报告基址与范围并提供写完成保证。目标设备负责解码配置请求的Extended Register Address[3:0]；Endpoint不需要实现主机的ECAM窗口，也不靠打开Memory Space Enable才允许配置发现。",
+          "完整ACPI MCFG、每种CPU屏障和厂商DBI编程是独立平台/实现契约，不属于本条Base ECAM位映射的结论；保留相关边界不影响已核ECAM机制本身的验收。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          33,
+          9,
+          10,
+          11,
+          12,
+          34,
+          13,
+          14,
+          15,
+          16,
+          35,
+          17,
+          18,
+          19,
+          20,
+          36,
+          21,
+          22,
+          23,
+          24,
+          37,
+          25,
+          26,
+          27,
+          28,
+          38,
+          29,
+          30,
+          31,
+          32,
+          39
+        ]
+      },
+      {
+        "id": "r95-ecam-segment-and-enumeration",
+        "title": "先选配置域，再算ECAM：Segment与BDF、BAR、DBI的边界",
+        "paragraphs": [
+          "表7-1只给Bus、Device、Function、Extended Register、Register和Byte Enable来源，没有一个叫Segment的通用地址切片。先由平台接口选择正确配置域/Host Bridge窗口，再在该窗口按BDF和偏移访问；两个域可以存在相同BDF，不是给ECAM低位简单再拼一个Segment。",
+          "ECAM是发现Function、读取能力和配置BAR的通路。BAR未分配不能阻止固件使用配置服务发现设备，MSE/BME也不是ECAM映射成立的总开关；但某个具体BDF仍可能因链路、路由、目标就绪或访问失败不可达。不可达与“需要先完成枚举”是不同问题。",
+          "例：Bus0基址E0000000h、n=8，访问Bus2/Device0/Function0的100h，得到E0200100h；100h是该Function配置空间的扩展区起点，不是BAR内部偏移100h。这个地址只在已选平台窗口及定义成立时有效，不能直接当进程指针。",
+          "相关正文可沿本项字段表与查询器对照；36讲身份与枚举，38讲配置空间和BAR空间区别，39讲两条能力链，41讲BAR属性/探测，43区分容量与分配基址，47讲桥Bus号和地址窗口。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          33,
+          9,
+          10,
+          11,
+          12,
+          34,
+          13,
+          14,
+          15,
+          16,
+          35,
+          17,
+          18,
+          19,
+          20,
+          36,
+          21,
+          22,
+          23,
+          24,
+          37,
+          25,
+          26,
+          27,
+          28,
+          38,
+          29,
+          30,
+          31,
+          32,
+          39
         ]
       }
     ]

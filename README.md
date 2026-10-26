@@ -491,3 +491,7 @@ R92将117条历史记录归并为固定24项验收任务，并登记37项来源�
 ## R94收尾进展复盘
 
 [字段改写条件查询](https://mgc455.github.io/pcie_study/#feature/87/detail/r94-config-write-guard-query) · [R91～R94四轮总结](https://mgc455.github.io/pcie_study/#updates)。本轮通过15个验收维度，累计23，整项0/183；剩余44轮为预算，目标R138在R98按批量验收实绩再校准。
+
+## R95枚举与资源批验
+
+[ECAM七版对照](https://mgc455.github.io/pcie_study/#feature/48/detail/r95-ecam-version-matrix) · [一期验收](https://mgc455.github.io/pcie_study/#completion/48)。本轮30维度、累计53；ECAM完整通过，1/183；来源问题14按正式版本上下文澄清。余43轮仍为预算，R96转PHY分层/TX，R98总结。
