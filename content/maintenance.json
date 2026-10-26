@@ -1,16 +1,19 @@
 {
   "nextFeatureIds": [
-    87,
-    88,
-    89,
-    59,
-    85,
     36,
     38,
+    39,
     41,
-    48
+    43,
+    47,
+    48,
+    163,
+    165,
+    166,
+    167,
+    168
   ],
-  "perRunTarget": "一期收尾：从固定验收清单关闭缺口，复用已充分内容；不再要求每轮条数或工作量递增。计划/复核轮不强制新增协议段落。",
+  "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
     "修正事实错误",
     "补充可靠来源",
@@ -55,12 +58,14 @@
   ],
   "lastCompleted": {
     "date": "2026-10-26",
-    "edition": "2026-10-26-r93",
+    "edition": "2026-10-26-r94",
     "featureIds": [
-      89,
+      87,
+      88,
+      85,
       59
     ],
-    "nextTrack": "R94：功耗关联验收与四轮收尾总结。"
+    "nextTrack": "R95枚举/配置/BAR批量验收；R98总结。"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -326,21 +331,120 @@
         114
       ],
       "remaining": "按本轮nextPriorities推进，4个实质轮次后R94总结；不重复计算上传重试。"
+    },
+    {
+      "title": "一期收尾R95～R98：成熟内容批验、枚举资源与PHY薄弱分层",
+      "status": "按固定任务执行，不扩大范围",
+      "featureIds": [
+        36,
+        38,
+        39,
+        41,
+        43,
+        47,
+        48,
+        163,
+        165,
+        166,
+        167,
+        168
+      ],
+      "remaining": "目标R138保留但余44轮足够性待校准；不以段落/引用数代替通过的验收项，R98报告偏差。"
     }
   ],
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 35,
-    "lastReviewEdition": "2026-10-26-r90",
-    "lastReviewId": "r87-r90",
-    "nextExpectedReview": "R94（R91～R94收尾进展总结）"
+    "completedTotal": 36,
+    "lastReviewEdition": "2026-10-26-r94",
+    "lastReviewId": "r91-r94",
+    "nextExpectedReview": "R98（R95～R98收尾进展总结）"
   },
   "stageReviews": [
+    {
+      "id": "r91-r94",
+      "date": "2026-10-26",
+      "edition": "2026-10-26-r94",
+      "title": "一期收尾第一窗口：固定范围 → 归并缺口 → LTR → 功耗依赖",
+      "completedRounds": 4,
+      "rounds": [
+        {
+          "edition": "R91",
+          "topic": "冻结183项、8维验收与48轮预算，建立收尾入口",
+          "featureIds": [],
+          "remaining": "当时尚未逐项验收；不能把计划建立当功能完成"
+        },
+        {
+          "edition": "R92",
+          "topic": "117条旧记录归并为24项任务，登记37项待核来源问题",
+          "featureIds": [],
+          "remaining": "归并不解决协议问题；14条仅保留验证/公开边界"
+        },
+        {
+          "edition": "R93",
+          "topic": "LTR字段/聚合/版本来源与PME控制链；8维度通过",
+          "featureIds": [
+            89,
+            59
+          ],
+          "remaining": "LTR早期完整机制/版本和本地ECN位号链待核；来源问题现38项，仍属原24任务"
+        },
+        {
+          "edition": "R94",
+          "topic": "L1SS/LTR/CLKREQ#/PME依赖、字段改写条件；15维度通过",
+          "featureIds": [
+            87,
+            88,
+            85,
+            59
+          ],
+          "remaining": "早期版本/交叉验收仍待完成，未将6/7局部规则视为全部版本或完整功能"
+        }
+      ],
+      "result": "两轮基线交付完成，两轮正文验收累计通过23个具体维度；LTR/L1SS/Clock PM三项的六个核心维度已齐备，但完整功能通过0/183，固定验收任务关闭0/24，源问题38项仍保留。R94补6个依赖块、1项受限查询并修正3处泛化前提。下一次R98总结，剩余计划44轮，目标R138。",
+      "nextPriorities": [
+        {
+          "title": "1. 枚举、配置与BAR：先批量验收成熟条目",
+          "featureIds": [
+            36,
+            38,
+            39,
+            41,
+            43,
+            47,
+            48
+          ],
+          "reason": "先核现有资源形成/能力链/窗口说明及精确来源，只有真实缺口才补写；避免把每轮变成新增计算器。"
+        },
+        {
+          "title": "2. 版本与一致性：集中复用，不能只堆细节",
+          "featureIds": [
+            85,
+            87,
+            88,
+            89,
+            59
+          ],
+          "reason": "保留早期修订与来源问题，形成可复用版本核对记录；不因当前速率或已读6/7规则认定旧版相同。"
+        },
+        {
+          "title": "3. PHY薄弱分层与TX路径",
+          "featureIds": [
+            163,
+            165,
+            166,
+            167,
+            168
+          ],
+          "reason": "批量复核uPCS/PMD/PMA/TX等现有分层说明；产品边界清楚即可收口相应验收项，避免继续只深挖CDR。"
+        }
+      ],
+      "limitations": "R91～R92基线阶段按两轮完成，R93～R94完成两轮正文验收；累计23个验收维度通过、0个完整功能和0项分组任务关闭。版本与跨页一致性仍待验收，不能据此证明余44轮一定足够，也不能用引用/段落数证明完成比例。 R138目标暂不变，不静默延期。R95～R98优先批量复核已成熟条目，只有真实缺口才新增正文或查询；把版本核对集中复用。R98报告实绩与偏差，若不足支撑目标则明确给出剩余工作与调整依据。 未做硬件/RTL/模拟签核；这些不作为一期的额外必需工作。"
+    },
     {
       "id": "r87-r90",
       "date": "2026-10-26",
@@ -1011,10 +1115,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 3,
-    "remainingPlannedRounds": 45,
-    "nextRound": 94,
-    "nextReviewRound": 94,
+    "completedRounds": 4,
+    "remainingPlannedRounds": 44,
+    "nextRound": 95,
+    "nextReviewRound": 98,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -4974,9 +5078,23 @@
             "note": "待逐项验收；适用性须人工确认。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/59/detail/pme-root-status-bit-table",
+                "label": "Root Status +20h逐bit：Requester ID、Status和Pending"
+              },
+              {
+                "href": "#feature/59/detail/pme-state-transition-table",
+                "label": "四态逐事件转移表：动作与前提一起查"
+              },
+              {
+                "href": "#feature/59/detail/r94-pme-versus-aspm-resume",
+                "label": "普通ASPM退出、PME唤醒与TurnOff围栏是三条不同路径"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "exceptions": {
             "status": "pending",
@@ -4986,7 +5104,7 @@
           "versions": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
           },
           "sources": {
             "status": "pending",
@@ -5015,7 +5133,7 @@
           "consistency": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
           }
         },
         "baseline": {
@@ -5024,7 +5142,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R93复核用途与导航2项；其余维度保留待核，已有32个详细块不重写。",
+        "reviewNote": "R94以复用旧正文完成所列验收维度；剩余维度见本项台账，未自动接受整项。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
@@ -6630,9 +6748,19 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/85/detail/link-power-resource-table",
+                "label": "Link状态表：电源、Refclk、PLL和TLP传输分别看"
+              },
+              {
+                "href": "#feature/85/detail/pm-negotiation-not-ltssm-one-to-one",
+                "label": "功耗协商与LTSSM不是一套同名状态机"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "mechanism": {
             "status": "pending",
@@ -6652,7 +6780,7 @@
           "versions": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
           },
           "sources": {
             "status": "pending",
@@ -6660,14 +6788,24 @@
             "note": "待逐项验收；适用性须人工确认。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/85/detail/turnoff-conditions-table",
+                "label": "关机观察表：已收Ack、可发代理、Ready与平台推进分别判断"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-gather-query",
+                "label": "查询：Switch聚合计分板、Ready和100ns/超时分支"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "consistency": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
           }
         },
         "baseline": {
@@ -6676,7 +6814,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R94以复用旧正文完成所列验收维度；剩余维度见本项台账，未自动接受整项。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
@@ -6756,44 +6894,132 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/87/detail/l1ss-state-resource-roles",
+                "label": "L1.0、L1.1、L1.2：资源要求与入口来源分开"
+              },
+              {
+                "href": "#feature/87/detail/r94-power-dependency-map",
+                "label": "先区分入口来源，再查门控：这些Enable不是一串总开关"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/87/detail/l1ss-aspm-entry-two-ltr",
+                "label": "ASPM路径：两个LTR都满足≥阈值，才进入L1.2"
+              },
+              {
+                "href": "#feature/87/detail/l12-entry-actions-race",
+                "label": "L1.2.Entry：保持共模，处理CLKREQ#采样边界"
+              },
+              {
+                "href": "#feature/87/detail/l12-exit-power-commonmode",
+                "label": "L1.2.Exit：先上电等待，不能直接开始TS1"
+              },
+              {
+                "href": "#feature/87/detail/l1ss-programming-sequence",
+                "label": "配置顺序：DSP先开、USP后开，关闭反向"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/87/detail/l1ss-capability-bits",
+                "label": "Capabilities逐bit：四种支持与Port恢复时间"
+              },
+              {
+                "href": "#feature/87/detail/l1ss-control1-bits",
+                "label": "Control1逐bit：运行使能、Link Activation和LTR阈值"
+              },
+              {
+                "href": "#feature/87/detail/l1ss-control2-and-status",
+                "label": "Control2与Status：5bit时间值，状态是RW1C不是实时L状态"
+              },
+              {
+                "href": "#feature/87/detail/r94-time-direction-and-budget",
+                "label": "三种时间不是同一个量：对端等待要求、本端等待配置与DSP共模计时"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/87/detail/l1ss-field-update-guards",
+                "label": "运行中哪些时间字段不能直接改"
+              },
+              {
+                "href": "#feature/87/detail/l1ss-clkreq-observation-versus-drive",
+                "label": "Entry中读到asserted与本端在Entry中新assert是两件事"
+              },
+              {
+                "href": "#feature/87/detail/r94-config-write-guard-query",
+                "label": "查询：修改Common Mode、T_POWER_ON或LTR阈值前，要先清哪些Enable？"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "versions": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/87/detail/l1ss-version-comparison",
+                "label": "6.0与7.0所核条款一致，不凭页码变化制造功能变化"
+              },
+              {
+                "href": "#feature/87/detail/r94-config-write-guard-query",
+                "label": "查询：修改Common Mode、T_POWER_ON或LTR阈值前，要先清哪些Enable？"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/87/detail/l1ss-entry-explorer",
+                "label": "入口条件查询：L1.0下一步是L1.1、L1.2.Entry还是保持"
+              },
+              {
+                "href": "#feature/87/detail/l1ss-register-decoder",
+                "label": "L1SS寄存器解码：时间、门限、角色和版本分开显示"
+              },
+              {
+                "href": "#feature/87/detail/l1ss-exit-timing-query",
+                "label": "查询：L1.2唤醒采样、主动驱动和DSP共模TS1保持窗口"
+              },
+              {
+                "href": "#feature/87/detail/r94-config-write-guard-query",
+                "label": "查询：修改Common Mode、T_POWER_ON或LTR阈值前，要先清哪些Enable？"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "consistency": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
           }
         },
         "baseline": {
@@ -6802,7 +7028,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R94以复用旧正文完成所列验收维度；剩余维度见本项台账，未自动接受整项。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
@@ -6819,44 +7045,112 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/88/detail/clkreq-open-drain",
+                "label": "CLKREQ#低为assert，高为双方释放后的deassert"
+              },
+              {
+                "href": "#feature/88/detail/r94-clkreq-control-domains",
+                "label": "CLKREQ#可以由不同机制约束：Clock PM关了，不代表L1SS失效"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/88/detail/clock-pm-function-scope",
+                "label": "Clock PM的非ARI全Function条件与ARI Function0规则"
+              },
+              {
+                "href": "#feature/88/detail/clock-common-software-sequence",
+                "label": "共同参考配置顺序：双方一致、Function聚合、DSP重训后重新评估延迟"
+              },
+              {
+                "href": "#feature/88/detail/r94-common-clock-readiness-chain",
+                "label": "共同参考时钟配置不是锁定信号：设置双方、重训、再核延迟"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/88/detail/r94-clkreq-control-domains",
+                "label": "CLKREQ#可以由不同机制约束：Clock PM关了，不代表L1SS失效"
+              },
+              {
+                "href": "#feature/88/detail/clock-slot-versus-ccc",
+                "label": "Slot Clock Configuration是硬件事实，Common Clock Configuration是软件配置"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/88/detail/sris-l1ss-clock-relation",
+                "label": "SRIS下CLKREQ#仍参与L1SS，但不定义本地时钟开关关系"
+              },
+              {
+                "href": "#feature/88/detail/clkreq-shared-pll",
+                "label": "一条Link睡了，不代表共享PLL可以关"
+              },
+              {
+                "href": "#feature/88/detail/clock-pm-independent-l1ss",
+                "label": "Clock PM bit8关闭，不代表L1SS也必须保持CLKREQ#低"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "versions": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/88/detail/r94-clkreq-control-domains",
+                "label": "CLKREQ#可以由不同机制约束：Clock PM关了，不代表L1SS失效"
+              },
+              {
+                "href": "#feature/88/detail/r94-common-clock-readiness-chain",
+                "label": "共同参考时钟配置不是锁定信号：设置双方、重训、再核延迟"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 94,
+            "evidence": [
+              {
+                "href": "#feature/88/detail/r94-clkreq-control-domains",
+                "label": "CLKREQ#可以由不同机制约束：Clock PM关了，不代表L1SS失效"
+              },
+              {
+                "href": "#feature/88/detail/r94-common-clock-readiness-chain",
+                "label": "共同参考时钟配置不是锁定信号：设置双方、重训、再核延迟"
+              }
+            ],
+            "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "consistency": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
           }
         },
         "baseline": {
@@ -6867,7 +7161,7 @@
           "clock-reset"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R94以复用旧正文完成所列验收维度；剩余维度见本项台账，未自动接受整项。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
@@ -13176,6 +13470,86 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "R94继续任务10的L1SS/LTR/PME恢复与预算依赖，并完成R91～R94四轮总结；不把新发现位号差异另计一轮。",
         "publication": "构建/测试/发布与线上抽查另记证据。"
+      },
+      {
+        "round": 94,
+        "kind": "dependency-acceptance-and-review",
+        "deliverables": [
+          "复用L1SS/Clock PM已有状态与字段，补6个跨功能依赖块",
+          "增加字段改写条件查询、修正3处泛化前提",
+          "通过15个新验收维度，完成R91～R94总结与工期风险校准"
+        ],
+        "closedDeliverableIds": [
+          "power-dependency-bridge",
+          "l1ss-field-write-guard",
+          "review-r91-r94"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 87,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 87,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 87,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 87,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 87,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 87,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 88,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 88,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 88,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 88,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 88,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 88,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 85,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 85,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 59,
+            "criterionId": "structure"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "R95转枚举/配置/BAR成熟条目批量验收，补真正薄弱字段。早期版本和交叉核对仍需集中推进；R98按实际关闭量再校准工期。",
+        "publication": "构建/检查/发布与线上抽查按实际证据记录，不重复计轮。"
       }
     ],
     "backlog": [
@@ -13509,42 +13883,10 @@
         "evidence": [],
         "closedRound": null,
         "progress": {
-          "round": 93,
-          "passedCriteria": [
-            {
-              "featureId": 89,
-              "criterionId": "purpose"
-            },
-            {
-              "featureId": 89,
-              "criterionId": "mechanism"
-            },
-            {
-              "featureId": 89,
-              "criterionId": "structure"
-            },
-            {
-              "featureId": 89,
-              "criterionId": "exceptions"
-            },
-            {
-              "featureId": 89,
-              "criterionId": "sources"
-            },
-            {
-              "featureId": 89,
-              "criterionId": "navigation"
-            },
-            {
-              "featureId": 59,
-              "criterionId": "purpose"
-            },
-            {
-              "featureId": 59,
-              "criterionId": "navigation"
-            }
-          ],
-          "remaining": "LTR版本/交叉核对，以及任务10其它功能的验收仍待完成；R94继续L1SS/LTR/PME的恢复依赖。"
+          "round": 94,
+          "passedCriteriaThisRound": 15,
+          "cumulativeWindowCriteria": 23,
+          "remaining": "功耗组的版本/全范围交叉核对及其它条目仍待验收；成熟机制/字段先复用。任务10未因阶段总结关闭。"
         }
       },
       {
@@ -16397,18 +16739,55 @@
       }
     ],
     "nextExecution": {
-      "round": 94,
-      "taskId": "v1-task-10",
+      "round": 95,
+      "taskId": "v1-task-05",
       "featureIds": [
-        87,
-        88,
-        89,
-        59,
-        85
+        36,
+        38,
+        39,
+        41,
+        43,
+        47,
+        48
       ],
-      "goal": "验收L1SS/LTR/PME之间的使能、撤钟和恢复预算依赖，优先复用已有正文；完成R91～R94四轮收尾总结。",
-      "reviewRound": 94
+      "goal": "批量验收枚举/配置/BAR成熟正文与准确来源，先复用已有字段/算式/窗口查询，补实际薄弱项；不先设计新计算器。",
+      "reviewRound": 98
     },
-    "initialConflictQuestionCount": 37
+    "initialConflictQuestionCount": 37,
+    "forecast": {
+      "status": "needs-calibration",
+      "assessedRound": 94,
+      "reestimateRound": 98,
+      "assessment": "R91～R92基线阶段按两轮完成，R93～R94完成两轮正文验收；累计23个验收维度通过、0个完整功能和0项分组任务关闭。版本与跨页一致性仍待验收，不能据此证明余44轮一定足够，也不能用引用/段落数证明完成比例。",
+      "action": "R138目标暂不变，不静默延期。R95～R98优先批量复核已成熟条目，只有真实缺口才新增正文或查询；把版本核对集中复用。R98报告实绩与偏差，若不足支撑目标则明确给出剩余工作与调整依据。"
+    },
+    "reviewWindows": [
+      {
+        "id": "r91-r94",
+        "firstRound": 91,
+        "lastRound": 94,
+        "completedPlanRounds": 4,
+        "closedFeatureUnits": [],
+        "newPassedCriteria": 23,
+        "cumulativePassedCriteria": 23,
+        "remainingFeatureUnits": 183,
+        "remainingRequiredTasks": 24,
+        "sourceQuestions": 38,
+        "remainingPlannedRounds": 44,
+        "targetRound": 138,
+        "forecast": {
+          "status": "needs-calibration",
+          "assessedRound": 94,
+          "reestimateRound": 98,
+          "assessment": "R91～R92基线阶段按两轮完成，R93～R94完成两轮正文验收；累计23个验收维度通过、0个完整功能和0项分组任务关闭。版本与跨页一致性仍待验收，不能据此证明余44轮一定足够，也不能用引用/段落数证明完成比例。",
+          "action": "R138目标暂不变，不静默延期。R95～R98优先批量复核已成熟条目，只有真实缺口才新增正文或查询；把版本核对集中复用。R98报告实绩与偏差，若不足支撑目标则明确给出剩余工作与调整依据。"
+        },
+        "coreReadyUnitIds": [
+          87,
+          88,
+          89
+        ]
+      }
+    ]
   }
 }

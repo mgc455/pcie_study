@@ -60780,6 +60780,72 @@
         "title": "LTR容忍度用途",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.3.2.1",
+        "page": 727,
+        "pdfPage": 727,
+        "title": "TurnOff围栏与Ack",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.3.2.1",
+        "page": 728,
+        "pdfPage": 728,
+        "title": "Ready/超时与100ns",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.3.3",
+        "page": 728,
+        "pdfPage": 728,
+        "title": "PM_PME前先回L0",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.3.5",
+        "page": 730,
+        "pdfPage": 730,
+        "title": "PME通信/非通信状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.3.5",
+        "page": 731,
+        "pdfPage": 731,
+        "title": "Reactivation恢复到可事务态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1",
+        "page": 731,
+        "pdfPage": 731,
+        "title": "D0中ASPM硬件自治",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
       }
     ],
     "referenceStatus": "6.0/7.0所引PM消息、同步/四态和Native报告字段正文已核读；旧章目录引用保留为背景，非整章完成。",
@@ -61329,6 +61395,22 @@
           6,
           30,
           16
+        ]
+      },
+      {
+        "id": "r94-pme-versus-aspm-resume",
+        "title": "普通ASPM退出、PME唤醒与TurnOff围栏是三条不同路径",
+        "paragraphs": [
+          "ASPM允许D0设备在空闲时自治降低Link功耗；并不是每次从L1恢复都要先产生PME。若确实存在PME报告责任，设备也须先恢复到可事务状态，并在上行Link回L0后发送PM_PME。",
+          "PME_Turn_Off/TO_Ack是移除主电源和参考时钟前的围栏，后面还有L2/L3 Ready等条件；不能把收到TO_Ack当作普通ASPM L1.2退出已完成，也不能把LTR预算值当作这套围栏的超时。"
+        ],
+        "referenceIndices": [
+          41,
+          42,
+          43,
+          44,
+          45,
+          46
         ]
       }
     ]
@@ -71651,7 +71733,7 @@
     "mechanism": "链路L状态与设备D状态、PHY电源状态分别描述不同对象。进入低功耗涉及双方握手、空闲条件和时钟管理。",
     "example": "一个功能仍在D0时，链路可因空闲进入ASPM节能状态，说明D0与始终L0并不等价。",
     "checks": "一起观察设备、链路、PHY三个状态域；不要把关时钟、断电、进入L1当成同一操作。",
-    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "prerequisites": "先区分Link状态、Function D-state和实际供电。ASPM可在D0自治运行；计划移除主电源时按适用TurnOff/Ready流程处理，不能把先停止全部DMA当成所有L-state转换的统一前提。",
     "id": 85,
     "status": "选定规则/字段已展开 · 持续逐版完善",
     "sources": [
@@ -71660,7 +71742,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-22",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "5",
@@ -72928,16 +73010,16 @@
     "mechanism": "从ASPM或PCI-PM L1.0按对应Enable和CLKREQ#进入更深子状态；ASPM L1.2分别检查两类LTR。L1.2经Entry/Idle/Exit，退出需恢复电源、共模与协议状态。",
     "example": "低功耗终端长时间空闲时有价值；恢复延迟敏感的实时任务则要评估能否接受。",
     "checks": "确认CLKREQ#、退出时序和状态保持；缺少板级连接或clk_rst支持时只写使能不能可靠工作。",
-    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "prerequisites": "区分ASPM与PCI-PM入口，核双端支持和CLKREQ#拓扑；配置时分别禁ASPM L1或保持两端D0，先编程适用时间/阈值。运行时按协议自治，不把先停止全部DMA当成统一前提。",
     "id": 87,
-    "status": "选定规则/字段已展开 · 持续逐版完善",
+    "status": "一期验收进行中：现有机制/字段复核，早期版本与全范围交叉核对待收口",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-22",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "4.3.10",
@@ -73642,6 +73724,182 @@
         "title": "L1.2状态保持与恢复等价要求",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "独立核读本版所引正文及必要续页；本轮关键图/表另作本地视觉核对，所引印刷页与PDF物理页一致。原创说明，只覆盖本条规则，不代表完整章节、其他修订或ECN均已核读。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.1",
+        "page": 644,
+        "pdfPage": 644,
+        "title": "ASPM/PCI-PM不同入口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.1",
+        "page": 752,
+        "pdfPage": 752,
+        "title": "两类LTR独立门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5.4",
+        "page": 650,
+        "pdfPage": 650,
+        "title": "配置顺序与环境",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.4",
+        "page": 758,
+        "pdfPage": 758,
+        "title": "双端编程前提",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.2",
+        "page": 1106,
+        "pdfPage": 1106,
+        "title": "Port T_POWER_ON对端等待含义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.2",
+        "page": 1272,
+        "pdfPage": 1272,
+        "title": "能力时间作用方向",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.4",
+        "page": 1108,
+        "pdfPage": 1108,
+        "title": "本端实际等待值",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.4",
+        "page": 1274,
+        "pdfPage": 1274,
+        "title": "Control2本端等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.3.3.1",
+        "page": 757,
+        "pdfPage": 757,
+        "title": "共模双条件计时",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5.5",
+        "page": 759,
+        "pdfPage": 759,
+        "title": "计时表Min/Max",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.3",
+        "page": 1107,
+        "pdfPage": 1107,
+        "title": "时间/门限修改禁区",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.3",
+        "page": 1108,
+        "pdfPage": 1108,
+        "title": "门限Scale与续页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.3.4",
+        "page": 1108,
+        "pdfPage": 1108,
+        "title": "Control2修改禁区",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.3",
+        "page": 1273,
+        "pdfPage": 1273,
+        "title": "CommonMode与Threshold要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.3",
+        "page": 1274,
+        "pdfPage": 1274,
+        "title": "Threshold续页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.3.4",
+        "page": 1274,
+        "pdfPage": 1274,
+        "title": "T_POWER_ON修改前提",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
       }
     ],
     "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
@@ -74236,6 +74494,81 @@
           60,
           61
         ]
+      },
+      {
+        "id": "r94-power-dependency-map",
+        "title": "先区分入口来源，再查门控：这些Enable不是一串总开关",
+        "paragraphs": [
+          "进入L1.0后，ASPM路径使用ASPM L1.1/L1.2 Enable；PCI-PM路径使用另一组Enable。只有ASPM L1.2入口明确比较最新snoop与no-snoop LTR各自的预算，或该类没有要求。不能把两类取平均，也不能把此比较额外加到PCI-PM入口。",
+          "配置阶段与运行阶段分开：设置ASPM子状态时两端禁用ASPM L1，设置PCI-PM子状态时两端在D0。它们不是说实际进入PCI-PM L1.2时必须始终D0。已有逐子状态规则和寄存器表继续复用。"
+        ],
+        "referenceIndices": [
+          64,
+          65,
+          66,
+          67
+        ],
+        "table": {
+          "columns": [
+            "层次",
+            "检查什么",
+            "不应混用的结论"
+          ],
+          "rows": [
+            [
+              "路径支持",
+              "双端对应Supported与L1SS Supported",
+              "有能力不等于已配置或已处子状态"
+            ],
+            [
+              "配置环境",
+              "ASPM配置禁ASPM L1；PCI-PM配置时两端D0",
+              "不能把配置前提写成整个运行期约束"
+            ],
+            [
+              "运行入口",
+              "已处对应L1.0且CLKREQ# deasserted；查该路径Enable",
+              "ASPM的LTR门限不套到PCI-PM"
+            ],
+            [
+              "进入后",
+              "Entry/Idle/Exit各自时序与恢复要求",
+              "Entry判定不等于Idle，更不等于完成电源移除"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "r94-time-direction-and-budget",
+        "title": "三种时间不是同一个量：对端等待要求、本端等待配置与DSP共模计时",
+        "paragraphs": [
+          "Port T_POWER_ON能力说明本端要求对端等待多久；Control2配置本端实际等待多久。两个端口不能只各自读取本端能力后原样回写，就假定已考虑连接器件与AC耦合电容。具体配置值需要实现和板级依据。",
+          "DSP的TCOMMONMODE则在已经开始发送TS1、并检测到配置Link任意Lane退出EI后计时。它不是直接从CLKREQ#拉低起算。表5-11的TPOWER_OFF最大2μs、TL1.2最小4μs和其它配置时间不能无条件相加成一个统一退出延迟。"
+        ],
+        "referenceIndices": [
+          68,
+          69,
+          70,
+          71,
+          72,
+          73
+        ]
+      },
+      {
+        "id": "r94-config-write-guard-query",
+        "title": "查询：修改Common Mode、T_POWER_ON或LTR阈值前，要先清哪些Enable？",
+        "paragraphs": [
+          "选择字段、端口角色、当前两种L1.2 Enable和是否真的修改，查询本条字段改写条件。它检查本端字段的使能禁区，不生成配置写操作，也不替代双端配置顺序和ASPM/D0环境检查。",
+          "Common_Mode_Restore_Time只适用DSP；修改它或Control2时间字段时，两种L1.2 Enable都须清。Threshold字段只要求ASPM L1.2 Enable清，不能误加PCI-PM Enable必须清的同一限制。"
+        ],
+        "referenceIndices": [
+          74,
+          75,
+          76,
+          77,
+          78,
+          79
+        ]
       }
     ]
   },
@@ -74247,16 +74580,16 @@
     "mechanism": "CLKREQ#是板级时钟请求及L1SS协调信号；普通Clock PM与L1SS的使能独立，共享PLL/SRIS以及PIPE的PCLK握手须分层检查。",
     "example": "深度休眠后首次访问失败时，应检查时钟恢复、复位释放和链路退出序列，而不只重写BAR。",
     "checks": "区分参考时钟、PIPE/core/aux时钟；不能用门控前信号的假设去读取已经停掉的时钟域。",
-    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "prerequisites": "核Clock PM能力、CLKREQ#形态与接线、MFD/ARI作用域及共享时钟消费者；区分L1SS独立控制。修改共同参考配置需双端一致并按规定重训，再评估退出延迟。",
     "id": 88,
-    "status": "选定规则/字段已展开 · 持续逐版完善",
+    "status": "一期验收进行中：现有机制/字段复核，早期版本与全范围交叉核对待收口",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "5",
@@ -74499,6 +74832,138 @@
         "title": "共同参考配置顺序：双方一致、Function聚合、DSP重训后重新评估延迟",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R51核对应正式版所列正文、字段或表；6.0 p1030、7.0 p1183/1215/1629关键表已视觉核对。所引印刷页与本地PDF物理页一致；并非整章或Gen1～7历史沿革完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.6",
+        "page": 969,
+        "pdfPage": 969,
+        "title": "Clock PM能力与L1SS独立",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.6",
+        "page": 1119,
+        "pdfPage": 1119,
+        "title": "各Function能力",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.7",
+        "page": 973,
+        "pdfPage": 973,
+        "title": "Clock PM使能和ARI规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1123,
+        "pdfPage": 1123,
+        "title": "Clock PM bit8不控制L1SS",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.5",
+        "page": 640,
+        "pdfPage": 640,
+        "title": "SRIS本地时钟边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5",
+        "page": 748,
+        "pdfPage": 748,
+        "title": "SRIS与L1SS",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5",
+        "page": 751,
+        "pdfPage": 751,
+        "title": "共享PLL消费者",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.7",
+        "page": 973,
+        "pdfPage": 973,
+        "title": "Common Clock配置与重训",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1123,
+        "pdfPage": 1123,
+        "title": "双方修改与DSP重训",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.8",
+        "page": 979,
+        "pdfPage": 979,
+        "title": "Slot Clock硬件事实",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.8",
+        "page": 1129,
+        "pdfPage": 1129,
+        "title": "Slot Clock与状态边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.5",
+        "page": 748,
+        "pdfPage": 748,
+        "title": "退出时延重新评估",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R94核本版相关正文/表和必要续页，复用已核的状态与字段解释；原图只在本地核对。仅本块，不声明早期全部版本或硬件验证完成。"
       }
     ],
     "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
@@ -74637,6 +75102,67 @@
           19,
           20,
           21
+        ]
+      },
+      {
+        "id": "r94-clkreq-control-domains",
+        "title": "CLKREQ#可以由不同机制约束：Clock PM关了，不代表L1SS失效",
+        "paragraphs": [
+          "Link Capabilities[18]宣告Clock PM能力，Link Control[8]是该机制的使能。它们适用USP和支持CLKREQ#的形态，DSP不拿这个bit当成通用时钟使能。L1SS对CLKREQ#的控制独立于Clock PM bit8。",
+          "非ARI MFD需要所有相关Function支持且使能Clock PM；ARI按F0决定。SRIS下CLKREQ#仍用于L1SS协议，但不定义与本地时钟的固定开关关系；共享PLL还要等全部相关Port及内部消费者都不需要时钟。一个Link进入L1.2不是关闭整个共享PLL的充分证据。"
+        ],
+        "referenceIndices": [
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "table": {
+          "columns": [
+            "控制域",
+            "需要查看",
+            "不能据此断言"
+          ],
+          "rows": [
+            [
+              "Clock PM",
+              "支持位、Enable、形态与Function作用域",
+              "bit8清零不等于禁用L1SS控制"
+            ],
+            [
+              "L1SS",
+              "双向开漏连接、子状态与保持时序",
+              "CLKREQ#低不等于Refclk已有效"
+            ],
+            [
+              "SRIS本地时钟",
+              "产品实现定义",
+              "不能由CLKREQ#电平推固定本地时钟动作"
+            ],
+            [
+              "共享PLL",
+              "其它Port与内部消费者需求",
+              "不能只凭一个Port的状态关PLL"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "r94-common-clock-readiness-chain",
+        "title": "共同参考时钟配置不是锁定信号：设置双方、重训、再核延迟",
+        "paragraphs": [
+          "Slot Clock Configuration是硬件报告使用连接器物理参考时钟的事实；Common Clock Configuration是软件对Link两端时钟关系的配置。前者不是软件随意置位的使能，也不能只改后者就改变实际接线。",
+          "软件修改双方Common Clock配置后，要由DSP触发Retrain，再按新配置反映的退出延迟评估ASPM。这个链条与L1SS退出中等待TPOWER_ON、共模恢复或PHY PLL锁定不是同一完成事件。"
+        ],
+        "referenceIndices": [
+          29,
+          30,
+          31,
+          32,
+          33
         ]
       }
     ]

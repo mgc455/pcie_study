@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-26-r93`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-26-r94`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -480,10 +480,14 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 
 ## 一期收尾计划
 
-[查看固定验收清单与剩余轮次](https://mgc455.github.io/pcie_study/#completion)。R91～R138计划48轮，R91～R92完成规划与缺口归并，R93开始正文验收、剩余45轮；每四轮总结，首次R94。183项依适用标准逐项验收，数量不代表覆盖率。
+[查看固定验收清单与剩余轮次](https://mgc455.github.io/pcie_study/#completion)。R91～R138计划48轮，R91～R92完成规划与缺口归并，R93～R94开始正文验收、剩余44轮；每四轮总结，首次R94。183项依适用标准逐项验收，数量不代表覆盖率。
 
 R92将117条历史记录归并为固定24项验收任务，并登记37项来源冲突。查看[任务与冲突](https://mgc455.github.io/pcie_study/#completion/work-v1-task-10)。归并不代表问题已经解决。
 
 ## R93 LTR验收
 
 [LTR字段解码](https://mgc455.github.io/pcie_study/#feature/89/detail/r93-ltr-field-query) · [LTR预算聚合](https://mgc455.github.io/pcie_study/#feature/89/detail/r93-ltr-aggregate-query)。8个验收维度通过，功能整项仍待收口；计划剩余45轮，R94总结。
+
+## R94收尾进展复盘
+
+[字段改写条件查询](https://mgc455.github.io/pcie_study/#feature/87/detail/r94-config-write-guard-query) · [R91～R94四轮总结](https://mgc455.github.io/pcie_study/#updates)。本轮通过15个验收维度，累计23，整项0/183；剩余44轮为预算，目标R138在R98按批量验收实绩再校准。
