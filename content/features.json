@@ -75946,14 +75946,14 @@
     "checks": "D1/D2并非所有设备支持；D0不保证链路已训练或队列已初始化，不能只改一个状态bit就恢复业务。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 84,
-    "status": "选定规则/字段已展开 · 持续逐版完善",
+    "status": "一期已验收：本主题用途、机制、字段、异常、版本和交叉复核通过；不等于平台电源或模拟实现已验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "5.3.1.1",
@@ -76229,9 +76229,207 @@
         "title": "Base7.0桥行为要求",
         "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "5.3.1",
+        "page": 227,
+        "pdfPage": 227,
+        "title": "D0/D1/D2/D3支持及D0active",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "5.3.1.4",
+        "page": 228,
+        "pdfPage": 228,
+        "title": "早期D3上下文与10ms",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "7.6.2",
+        "page": 333,
+        "pdfPage": 333,
+        "title": "早期PMCSR字段表，不含No_Soft_Reset",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "5.3.1",
+        "page": 299,
+        "pdfPage": 299,
+        "title": "2.0 D-state/桥前提",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "5.3.1.4",
+        "page": 301,
+        "pdfPage": 301,
+        "title": "2.0 No_Soft_Reset与恢复",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "5.3.1.4.2",
+        "page": 302,
+        "pdfPage": 302,
+        "title": "2.0 D3Cold",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "5.3.1",
+        "page": 419,
+        "pdfPage": 419,
+        "title": "3.0 D-state/虚拟桥说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "5.3.1.4",
+        "page": 421,
+        "pdfPage": 421,
+        "title": "3.0 D3上下文与10ms",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "5.3.1",
+        "page": 431,
+        "pdfPage": 431,
+        "title": "4.0 D-state共同规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "5.3.1.4",
+        "page": 433,
+        "pdfPage": 433,
+        "title": "4.0 Immediate Readiness/RTR交叉定位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "5.3.1.3",
+        "page": 446,
+        "pdfPage": 446,
+        "title": "5.0 D2与D3恢复",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "5.3.1.4.2",
+        "page": 448,
+        "pdfPage": 448,
+        "title": "5.0 D3Cold/多Function影响",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.3.1.4",
+        "page": 606,
+        "pdfPage": 606,
+        "title": "6.0 D3恢复/No_Soft_Reset",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.2.2",
+        "page": 948,
+        "pdfPage": 948,
+        "title": "6.0 No_Soft_Reset MUST@FLIT",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.1.4",
+        "page": 718,
+        "pdfPage": 718,
+        "title": "7.0 D3恢复",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.2.2",
+        "page": 1098,
+        "pdfPage": 1098,
+        "title": "7.0 PMCSR字段/角色",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.16",
+        "page": 1437,
+        "pdfPage": 1437,
+        "title": "RTR允许的最早访问路径",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.22.2",
+        "page": 922,
+        "pdfPage": 922,
+        "title": "FRS D3Hot到D0完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
       }
     ],
-    "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
+    "referenceStatus": "R101七版选定功耗正文及独立ECN/勘误核对；复用充分机制，版本/模式边界明确，非整章完成",
     "details": [
       {
         "id": "d-state-vs-link-state",
@@ -76279,14 +76477,23 @@
         "id": "d-state-return-delays",
         "title": "D2→D0的200μs与D3Hot→D0的10ms不是同一个计时",
         "paragraphs": [
-          "D2写回D0后，到下一笔针对Function的请求至少留200μs；窗口内请求行为未定义。D3Hot→D0通常至少等10ms，除非PCI-PM能力宣告Immediate Readiness on Return to D0。",
-          "10ms恢复窗口也包括配置访问；不要把L1退出的微秒级预算、FLR等待或PHY锁定时间替换成这里的等待。平台仍需按实际能力和初始化流程处理。"
+          "D2写回D0后，默认恢复规则要求到下一笔针对Function的请求至少留200µs；窗口内请求行为未定义。D3Hot→D0默认至少10ms；除适用的Immediate Readiness外，后版还允许按本次事件的FRS、有效RTR或平台等价机制，在满足前提的更早时点访问，见关联判定表。",
+          "恢复窗口包括配置访问，但不同事件的计时不能互换。RTR没有D2专用时间字段；不要把L1退出、FLR或PHY锁定时间当D2/D3Hot默认等待。配置就绪也不表示应用DMA和队列已经初始化。"
         ],
         "referenceIndices": [
           5,
           6,
           7,
-          8
+          8,
+          41,
+          42
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 84,
+            "detailId": "r101-resume-access-decision",
+            "label": "按本次事件判断默认与早就绪路径"
+          }
         ]
       },
       {
@@ -76388,6 +76595,179 @@
           23,
           24
         ]
+      },
+      {
+        "id": "r101-dstate-revision-contract",
+        "title": "D-state版本契约：早期重初始化、No_Soft_Reset与后版就绪捷径",
+        "paragraphs": [
+          "1.0a到7.0所核§5.3.1都保留Function D-state与Link L-state分离、D0/D3必备且D1/D2可选的模型；PowerState的00/01/10/11不是五个物理供电档位。D3Cold没有独立PMCSR编码，移除主电源、保留PME上下文与重新上电后的配置流程应分别判断。",
+          "1.0a §5.3.1.4要求D3→D0后重新初始化，其PMCSR表没有现代No_Soft_Reset字段。2.0/3.0已明确PMCSR No_Soft_Reset：置位时D3Hot→D0保留上下文，否则软件须重初始化；此处确认2.0已存在，不把它冒充首次引入的独立ECN日期。4/5又明确为0不保证内部状态被清零，软件不能依赖“睡一次就擦干净”。",
+          "6/7的No_Soft_Reset bit3标为MUST@FLIT，按支持Flit Mode的能力判断；Fundamental Reset、D3Cold或经过L2/L3 Ready引起的重新初始化有独立要求，不能用该位绕过。多Function共享配置还可能受某一Function软复位影响，既有字段和恢复边界继续复用。",
+          "1.0a/2.0/3.0所核D3段给默认10ms；4/5/6/7段明确Immediate_Readiness_on_Return_to_D0并交叉指向RTR。后版§7.9.16还允许收到适用RN、等待有效RTR或平台等价时间等途径中最早满足前提的时点访问。旧页面把10ms的例外只写成Immediate Readiness，遗漏了这些独立许可，本轮已修。",
+          "7.0将相关虚拟桥的非D0转发行为列为正文要求，早期2/3及6.0存在实现说明形式。普通Endpoint只接收哪些请求与桥对跨桥流量的处理不能混套；D0active、配置就绪、链路L0和应用DMA已运行也不是同一谓词。"
+        ],
+        "referenceIndices": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ],
+        "table": {
+          "columns": [
+            "正式版本/范围",
+            "定位",
+            "实际使用差别"
+          ],
+          "rows": [
+            [
+              "1.0a",
+              "§5.3.1 p227～229；PMCSR p333",
+              "早期D3后重初始化，不能回套现代bit3"
+            ],
+            [
+              "2.0 / 3.0",
+              "§5.3.1 p299～302 / p419～423",
+              "已明确No_Soft_Reset保留路径；D3Cold仍重初始化"
+            ],
+            [
+              "4.0 / 5.0",
+              "D3段p433 / p446",
+              "Immediate Readiness和RTR交叉规则；状态不保证清零"
+            ],
+            [
+              "6.0 / 7.0",
+              "PMCSR p948 / p1098",
+              "No_Soft_Reset MUST@FLIT；Fundamental Reset/VF规则独立"
+            ],
+            [
+              "后版就绪机制",
+              "7.0 §7.9.16 p1437",
+              "FRS/RTR是有前提的提早访问许可，不改变全部供电/业务状态"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 84,
+            "detailId": "pmcsr-bit-table",
+            "label": "PMCSR逐bit"
+          },
+          {
+            "featureId": 84,
+            "detailId": "r101-resume-access-decision",
+            "label": "恢复访问判定表"
+          },
+          {
+            "featureId": 84,
+            "detailId": "non-d0-bridge-behavior",
+            "label": "虚拟桥例外"
+          },
+          {
+            "featureId": 61,
+            "detailId": "r100-rn-version-contract",
+            "label": "RN/RTR版本边界"
+          }
+        ]
+      },
+      {
+        "id": "r101-resume-access-decision",
+        "title": "恢复后何时能访问：默认等待、通知、有效时间和上下文分开",
+        "paragraphs": [
+          "先确认实际事件：软件从D3Hot写回D0、D2回D0、Fundamental Reset、FLR或重新供电的起算点不同。再判断Function是否支持该事件对应的早就绪机制；不能把某次DRS、历史FRS或旧设备缓存的RTR直接挪用到另一个事件。",
+          "D3Hot→D0时默认按D3段等待；Immediate Readiness适用时走对应立即就绪规则；实现并使用FRS时，只有本Function对应D3Hot→D0完成的Reason2才匹配；使用RTR时要先检查Valid、D3Hot→D0字段适用性及正确起算点。本站RTR数值旁注争议仍单列，不能用错误换算偷偷缩短等待。",
+          "普通RTR没有一个“D2→D0 Time”字段。不能把其FLR Time、DL_Up Time或D3Hot→D0 Time当D2的200µs替代值；有额外平台许可时需独立证据。No_Soft_Reset决定上下文是否保留，也不是所有访问等待的总开关。",
+          "配置可访问只是软件继续初始化的前提。准备进入D1/D2/D3Hot前，仍要按驱动流程收束在途事务；退出后Memory/I/O/Bus Master权限、队列和软件状态仍分别确认。一个有效的FRS并不宣告旧DMA已安全完成或新业务队列已建好。"
+        ],
+        "referenceIndices": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ],
+        "table": {
+          "columns": [
+            "事件/观察对象",
+            "如何判定",
+            "不能混用"
+          ],
+          "rows": [
+            [
+              "D2→D0",
+              "D2段200µs默认恢复间隔",
+              "RTR无D2专用字段，不套用其它时间"
+            ],
+            [
+              "D3Hot→D0",
+              "10ms默认；可用适用立即就绪/FRS/RTR等机制",
+              "FRS Reason2、RTR Valid/字段/本次事件一起核"
+            ],
+            [
+              "D3Hot→D0上下文",
+              "No_Soft_Reset决定保留路径",
+              "不把上下文保留等同无需全部时序判断"
+            ],
+            [
+              "主电源移除后恢复",
+              "Cold Reset及完整初始化",
+              "不是向不存在的PMCSR写“D3Cold退出”"
+            ],
+            [
+              "FLR / DL_Down→DL_Up",
+              "分别使用其事件的规则",
+              "FRS Reason3 / DRS不能无条件替代Reason2"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 61,
+            "detailId": "r99-rtr-time-fields",
+            "label": "RTR字段与起算点"
+          },
+          {
+            "featureId": 61,
+            "detailId": "r100-rtr-errata-boundary",
+            "label": "未裁决数值边界"
+          },
+          {
+            "featureId": 95,
+            "detailId": "flr-pending-completions",
+            "label": "FLR与在途Completion"
+          },
+          {
+            "featureId": 84,
+            "detailId": "d3hot-no-soft-reset",
+            "label": "上下文/复位边界"
+          }
+        ]
       }
     ]
   },
@@ -76401,7 +76781,7 @@
     "checks": "一起观察设备、链路、PHY三个状态域；不要把关时钟、断电、进入L1当成同一操作。",
     "prerequisites": "先区分Link状态、Function D-state和实际供电。ASPM可在D0自治运行；计划移除主电源时按适用TurnOff/Ready流程处理，不能把先停止全部DMA当成所有L-state转换的统一前提。",
     "id": 85,
-    "status": "选定规则/字段已展开 · 持续逐版完善",
+    "status": "一期已验收：本主题用途、机制、字段、异常、版本和交叉复核通过；不等于平台电源或模拟实现已验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
@@ -76827,9 +77207,207 @@
         "title": "功耗协商中断后的idle/重新发起",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "独立核读本版功耗协商被LTSSM状态变化中断后的控制规则，不等同完整LTSSM小状态机。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "5.2",
+        "page": 223,
+        "pdfPage": 223,
+        "title": "早期L0s/L1资源与Ready",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "5.3.2",
+        "page": 230,
+        "pdfPage": 230,
+        "title": "早期D-state与Link允许状态表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "5.2",
+        "page": 294,
+        "pdfPage": 294,
+        "title": "2.0 Link状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "5.3.2",
+        "page": 303,
+        "pdfPage": 303,
+        "title": "任意D-state参与TurnOff",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "5.2",
+        "page": 414,
+        "pdfPage": 414,
+        "title": "3.0 Link状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "5.3.2",
+        "page": 424,
+        "pdfPage": 424,
+        "title": "3.0 D/L关系",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "5.2",
+        "page": 425,
+        "pdfPage": 425,
+        "title": "4.0 Link状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "5.3.2",
+        "page": 436,
+        "pdfPage": 436,
+        "title": "4.0 D/L关系",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "5.2",
+        "page": 440,
+        "pdfPage": 440,
+        "title": "5.0 Link状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "5.3.2",
+        "page": 449,
+        "pdfPage": 449,
+        "title": "5.0 D/L关系",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.2",
+        "page": 600,
+        "pdfPage": 600,
+        "title": "6.0 L0包含L0p",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.2",
+        "page": 601,
+        "pdfPage": 601,
+        "title": "6.0 Ready与LTSSM/供电区别",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.2",
+        "page": 712,
+        "pdfPage": 712,
+        "title": "7.0 Link状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.3.2.1",
+        "page": 727,
+        "pdfPage": 727,
+        "title": "7.0 TurnOff聚合/重置",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.3.3.2.1",
+        "page": 728,
+        "pdfPage": 728,
+        "title": "Ready次序、100ns与超时",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-aspm-optionality-20090820",
+        "document": "ASPM Optionality ECN",
+        "version": "2009-08-20",
+        "section": "5.2",
+        "page": 3,
+        "pdfPage": 3,
+        "title": "L0s支持要求改为可选",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-aspm-optionality-20090820",
+        "document": "ASPM Optionality ECN",
+        "version": "2009-08-20",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "L0s可选化与进入建议",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "Revision History",
+        "page": 2,
+        "pdfPage": 2,
+        "title": "可选化ECN合入",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
       }
     ],
-    "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
+    "referenceStatus": "R101七版选定功耗正文及独立ECN/勘误核对；复用充分机制，版本/模式边界明确，非整章完成",
     "details": [
       {
         "id": "link-power-resource-table",
@@ -76922,13 +77500,22 @@
         "title": "早期与新版的差异：1.0a要求L0s，6.0/7.0有可选和模式限制",
         "paragraphs": [
           "已核读1.0a §5.1.1/5.2：ASPM至少L0s是所有组件的要求。6.0/7.0正文则说明L0s可选，除非形态规范明确要求，且FM和Retimer不支持L0s。",
-          "这是一组有依据的跨版对照，不表示已找出从必选转可选的首次修订。Gen2～Gen5各版及ECN链仍需逐项核读，不能把旧驱动的“总有L0s”假设沿用到全部新设备。"
+          "R101已核ASPM Optionality ECN：2009-08-20批准、作用于Base2.1，并由Base3.0修订历史确认合入。支持从必选改为可选、实际进入从要求改为建议是两项变化；详见ASPM来源链。不能再将首次变化记为未知，也不按Gen2/Gen3速度给可选能力分界。"
         ],
         "referenceIndices": [
           12,
           13,
           14,
-          15
+          15,
+          54,
+          55
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 86,
+            "detailId": "r101-aspm-optionality-contract",
+            "label": "已补2009 ECN来源链"
+          }
         ]
       },
       {
@@ -77157,6 +77744,96 @@
           28,
           29
         ]
+      },
+      {
+        "id": "r101-link-power-revision-contract",
+        "title": "Link电源状态版本表：D-state耦合、L0s可选化、L0p与Ready各有边界",
+        "paragraphs": [
+          "七个所核Base修订均有L0、L0s、L1、L2/L3 Ready及电源移除后的L2/L3模型，名字连续不等于资源要求和适用模式完全相同。L0s按方向停止TX传输，L1停止整个Link的TLP/DLLP传输；PLL、Refclk、共模、电源要按对应版本和能力分别判断。",
+          "1.0a表5-2在较紧的D-state/Link关系下描述掉电过程；2.0表5-2及其正文已明确D0/D1/D2/D3Hot都应答TurnOff，并允许各自路径到L2/L3 Ready。现代“必须先全部D3Hot才能TurnOff”的推论不成立。所有Function非D0触发PCI-PM L1，是另一个入口，不能拿来限制TurnOff围栏。",
+          "1.0a/2.0基础版要求最低L0s；2009 ASPM Optionality ECN将其改为可选并受板型规范约束，3.0修订历史列明合入。后续4/5/6/7所核状态模型保留这一原则。具体能力、Retimer及NFM/FM限制在ASPM版本表中逐项展开。",
+          "6/7把L0p作为L0内的活动子状态列出：减宽时仍可传输，不是L1或传统TX L0s的另一个名字。L1.1/L1.2的共模与时钟控制复用已验收L1SS；不凭L1这个公共名称假定早期Base自带后来ECN扩展。",
+          "Ready说明已经为移除主电源/参考时钟做好协议准备，还不等于已经断电。6/7的PM pseudo-state说明指向LTSSM L2；这不使断电后的PM L2与LTSSM L2.Idle、或一切Ready观测完全等价。等待Ack汇聚、各级Link Ready及最终断电仍是独立阶段，既有TurnOff查询继续复用。"
+        ],
+        "referenceIndices": [
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53
+        ],
+        "table": {
+          "columns": [
+            "正式版本",
+            "定位",
+            "使用差别"
+          ],
+          "rows": [
+            [
+              "1.0a",
+              "§5.2 p223；§5.3.2 p230",
+              "L0s最低要求；早期D/L对应表须带版本"
+            ],
+            [
+              "2.0",
+              "§5.3.2 p303",
+              "任意所列D-state接受/回应TurnOff，Ready不是只给D3Hot"
+            ],
+            [
+              "3.0",
+              "§5.2 p414起",
+              "已合入ASPM Optionality，不能沿用旧“必有L0s”假设"
+            ],
+            [
+              "4.0 / 5.0",
+              "§5.2 p425起 / p440起",
+              "L1SS/Clock PM条件影响资源可关范围"
+            ],
+            [
+              "6.0 / 7.0",
+              "§5.2 p600起 / p712起",
+              "L0包含L0p；FM/Retimer排除L0s，Ready与掉电分开"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 85,
+            "detailId": "link-power-resource-table",
+            "label": "电源/时钟/业务资源表"
+          },
+          {
+            "featureId": 85,
+            "detailId": "turnoff-gather-query",
+            "label": "TurnOff汇聚查询"
+          },
+          {
+            "featureId": 85,
+            "detailId": "turnoff-normal-hundred-ns",
+            "label": "正常路径最少100ns"
+          },
+          {
+            "featureId": 85,
+            "detailId": "turnoff-timeout-hundred-ns-exception",
+            "label": "超时分支例外"
+          },
+          {
+            "featureId": 86,
+            "detailId": "r101-aspm-optionality-contract",
+            "label": "L0s可选化来源链"
+          }
+        ]
       }
     ]
   },
@@ -77170,14 +77847,14 @@
     "checks": "核对双方Capability/Control及平台策略；当前显示未启用不一定是设备不支持，也可能是固件/OS选择。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 86,
-    "status": "选定规则/字段已展开 · 持续逐版完善",
+    "status": "一期已验收：本主题用途、机制、字段、异常、版本和交叉复核通过；不等于平台电源或模拟实现已验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "5.4.1",
@@ -77475,9 +78152,262 @@
         "title": "拒绝轮次歧义实施说明",
         "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "5.1.1",
+        "page": 222,
+        "pdfPage": 222,
+        "title": "最低ASPM L0s要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "5.4.1",
+        "page": 243,
+        "pdfPage": 243,
+        "title": "早期ASPM机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "5.4.1",
+        "page": 315,
+        "pdfPage": 315,
+        "title": "2.0最低要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "5.4.1",
+        "page": 316,
+        "pdfPage": 316,
+        "title": "2.0多Function策略",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-aspm-optionality-20090820",
+        "document": "ASPM Optionality ECN",
+        "version": "2009-08-20",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "2009可选性/支持与进入要求拆分",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-aspm-optionality-20090820",
+        "document": "ASPM Optionality ECN",
+        "version": "2009-08-20",
+        "section": "5.2",
+        "page": 3,
+        "pdfPage": 3,
+        "title": "L0s必选到可选修订",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-aspm-optionality-20090820",
+        "document": "ASPM Optionality ECN",
+        "version": "2009-08-20",
+        "section": "5.4.1.1.1",
+        "page": 6,
+        "pdfPage": 6,
+        "title": "双端支持、非强制进入",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-aspm-optionality-20090820",
+        "document": "ASPM Optionality ECN",
+        "version": "2009-08-20",
+        "section": "5.4.1.3",
+        "page": 8,
+        "pdfPage": 8,
+        "title": "ASPM支持编码00/10",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-aspm-optionality-20090820",
+        "document": "ASPM Optionality ECN",
+        "version": "2009-08-20",
+        "section": "7.8.6",
+        "page": 9,
+        "pdfPage": 9,
+        "title": "Optionality Compliance bit22",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "Revision History",
+        "page": 2,
+        "pdfPage": 2,
+        "title": "ECN合入记录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "5.4.1",
+        "page": 436,
+        "pdfPage": 436,
+        "title": "3.0 ASPM机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "5.4.1",
+        "page": 437,
+        "pdfPage": 437,
+        "title": "3.0可选性和ARI策略",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "5.4.1",
+        "page": 448,
+        "pdfPage": 448,
+        "title": "4.0 ASPM机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "5.4.1",
+        "page": 449,
+        "pdfPage": 449,
+        "title": "4.0可选性/策略",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "5.4.1",
+        "page": 460,
+        "pdfPage": 460,
+        "title": "5.0 ASPM机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "5.4.1",
+        "page": 461,
+        "pdfPage": 461,
+        "title": "5.0可选性",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.1",
+        "page": 623,
+        "pdfPage": 623,
+        "title": "L0s只适用于无Retimer NFM",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "5.4.1.3.1",
+        "page": 628,
+        "pdfPage": 628,
+        "title": "NFM/FM Credit/确认条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1",
+        "page": 732,
+        "pdfPage": 732,
+        "title": "L0p扩宽与L1 Exit Latency",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.1",
+        "page": 733,
+        "pdfPage": 733,
+        "title": "FM/Retimer禁用L0s",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.3.1",
+        "page": 738,
+        "pdfPage": 738,
+        "title": "L1入口Dedicated/Shared/确认",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "5.4.1.3.1",
+        "page": 741,
+        "pdfPage": 741,
+        "title": "计时器和已接受协商",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1121,
+        "pdfPage": 1121,
+        "title": "ASPM Control位定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
       }
     ],
-    "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
+    "referenceStatus": "R101七版选定功耗正文及独立ECN/勘误核对；复用充分机制，版本/模式边界明确，非整章完成",
     "details": [
       {
         "id": "aspm-d0-hardware-policy",
@@ -77664,6 +78594,109 @@
           10,
           11,
           12
+        ]
+      },
+      {
+        "id": "r101-aspm-optionality-contract",
+        "title": "ASPM来源链：支持可选、进入可选、使能与模式不能混为一谈",
+        "paragraphs": [
+          "2009-08-20批准的ASPM Optionality ECN作用于Base2.1，封面也标请求日期2009-06-19；它改变了两件事：L0s硬件支持从普遍要求变为板型约束下可选，已使能TX进入L0s也由原来的要求放宽为建议，并明确永远不强制一次实际L0s进入。Base3.0修订历史列明合入，不再把这个变化留成未知首次修订。",
+          "ECN把ASPM Support C+0Ch[11:10]的00/10由旧保留编码定义为无支持/仅L1，01/11仍是L0s/二者支持；软件不能因旧代码只认01/11而乱开对端L0s。C+0Ch[22] ASPM Optionality Compliance按ECN须置1，可辅助软件判定/合规测试，但它不是ASPM使能位；控制仍在C+10h[1:0]。",
+          "双端都支持L0s才能开启任一方向；开启本端TX不强迫反向TX同步休眠。ASPM L1仍是空闲Link协议，支持和双端Enable不足以证明已经睡眠；入口需Credit、已发包确认、Request/Ack或NAK及EI收尾。非ARI的D0 Function聚合与ARI Function0规则复用现有正文。",
+          "6/7的FM不支持L0s、Retimer也不支持L0s；FM Link Control bit0被忽略。6/7的ASPM L1还按Dedicated/Shared初始化和TLP/Flit确认区分入口条件，不能拿NFM Retry Buffer排空这一句话代替所有FM分支。L0p另有控制与宽度协商，不能由bit0开启。",
+          "7.0正文还明确L1 Exit Latency用于L0p扩宽所需时间，扩宽期间Link仍工作但带宽较低；不要把该时间理解为L0p期间完全停止业务，或凭退出延迟推断完整的分宽度可容忍预算。本站只按已发布正文解释，不把对未来可能机制的注释当现行字段。",
+          "Completion Timeout在L1继续计时，FC Update计时冻结；NAK后下游10µs重试分隔与上游9.5µs辨识窗口也属于不同条件。原有精确握手/计时说明复用，版本表不重新复制整套状态机。"
+        ],
+        "referenceIndices": [
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49
+        ],
+        "table": {
+          "columns": [
+            "版本/模式",
+            "实际规则",
+            "软件/波形使用边界"
+          ],
+          "rows": [
+            [
+              "1.0a / 2.0",
+              "最低L0s要求，旧支持编码有保留值",
+              "不能据早期假设所有后版设备有L0s"
+            ],
+            [
+              "2009 ECN / Base3.0合入",
+              "支持可选、实际进入仅建议；新增bit22",
+              "双端支持后再使能；bit22不是Enable"
+            ],
+            [
+              "4.0 / 5.0",
+              "保留可选性及ARI/非ARI策略",
+              "按具体拓扑、延迟和端口能力配置"
+            ],
+            [
+              "6.0 / 7.0 NFM",
+              "无Retimer时才讨论L0s路径",
+              "NFM仍需双端支持；不是所有Gen6/7都处于FM"
+            ],
+            [
+              "6.0 / 7.0 FM",
+              "无L0s，bit0忽略；L1有Shared/Dedicated条件",
+              "L0p是活动减宽，不套TX L0s握手"
+            ],
+            [
+              "7.0 L0p相关延迟",
+              "L1 Exit Latency也描述扩宽时间",
+              "仍可运行，不能推导未来预算字段"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 86,
+            "detailId": "aspm-control-bit-encodings",
+            "label": "Control四编码"
+          },
+          {
+            "featureId": 86,
+            "detailId": "aspm-l1-entry-credits",
+            "label": "L1 Credit条件"
+          },
+          {
+            "featureId": 86,
+            "detailId": "aspm-l1-nak-separation",
+            "label": "10µs/9.5µs"
+          },
+          {
+            "featureId": 86,
+            "detailId": "aspm-timers-and-enable-order",
+            "label": "计时与使能顺序"
+          },
+          {
+            "featureId": 87,
+            "detailId": "r100-l1ss-revision-contract",
+            "label": "L1SS独立版本契约"
+          }
         ]
       }
     ]
@@ -81556,14 +82589,14 @@
     "checks": "平台与应用都要支持并正确解释提示；",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 90,
-    "status": "选定规则/字段已展开 · 持续逐版完善",
+    "status": "一期已验收：本主题用途、机制、字段、异常、版本和交叉复核通过；不等于平台电源或模拟实现已验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-20",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "2.2.8.9",
@@ -81839,9 +82872,240 @@
         "title": "7.0接收条件",
         "verification": "核读该页相关正文/字段；非整章或其他修订已完成。保留原文不一致与待核ECN。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "ecn-obff-20090430",
+        "document": "Optimized Buffer Flush/Fill ECN",
+        "version": "2009-04-30",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "OBFF来源日期/受影响规范/提示语义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-obff-20090430",
+        "document": "Optimized Buffer Flush/Fill ECN",
+        "version": "2009-04-30",
+        "section": "Part I",
+        "page": 2,
+        "pdfPage": 2,
+        "title": "硬件软件可选性",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-obff-20090430",
+        "document": "Optimized Buffer Flush/Fill ECN",
+        "version": "2009-04-30",
+        "section": "2.2.8.x",
+        "page": 3,
+        "pdfPage": 3,
+        "title": "OBFF Message12h/TC0/r100",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-obff-20090430",
+        "document": "Optimized Buffer Flush/Fill ECN",
+        "version": "2009-04-30",
+        "section": "Part II",
+        "page": 5,
+        "pdfPage": 5,
+        "title": "Reserved Code与UR",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-obff-20090430",
+        "document": "Optimized Buffer Flush/Fill ECN",
+        "version": "2009-04-30",
+        "section": "Part II",
+        "page": 7,
+        "pdfPage": 7,
+        "title": "Variation A/B与初始状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-obff-20090430",
+        "document": "Optimized Buffer Flush/Fill ECN",
+        "version": "2009-04-30",
+        "section": "Part II",
+        "page": 8,
+        "pdfPage": 8,
+        "title": "OBFF Supported字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "ecn-obff-20090430",
+        "document": "Optimized Buffer Flush/Fill ECN",
+        "version": "2009-04-30",
+        "section": "Part II",
+        "page": 9,
+        "pdfPage": 9,
+        "title": "OBFF Enable字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "Revision History",
+        "page": 2,
+        "pdfPage": 2,
+        "title": "OBFF ECN合入记录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.19",
+        "page": 570,
+        "pdfPage": 570,
+        "title": "3.0 OBFF用途/路由/Code",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.19",
+        "page": 571,
+        "pdfPage": 571,
+        "title": "3.0未使能UR/窗口建议",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.19",
+        "page": 573,
+        "pdfPage": 573,
+        "title": "3.0 Variation/初始状态/配置顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "7.8.15",
+        "page": 652,
+        "pdfPage": 652,
+        "title": "3.0 OBFF Supported",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "7.8.16",
+        "page": 657,
+        "pdfPage": 657,
+        "title": "3.0 OBFF Enable",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "errata-base31a-20171213",
+        "document": "Errata for PCI Express Base Specification Rev. 3.1a",
+        "version": "2017-12-13",
+        "section": "6.19",
+        "page": 17,
+        "pdfPage": 17,
+        "title": "B234接收Port错误/WAKE模式冲突",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "6.19",
+        "page": 620,
+        "pdfPage": 620,
+        "title": "4.0 OBFF机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "6.19",
+        "page": 621,
+        "pdfPage": 621,
+        "title": "4.0 Reserved/UR/未定义边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.19",
+        "page": 614,
+        "pdfPage": 614,
+        "title": "5.0 OBFF机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.19",
+        "page": 615,
+        "pdfPage": 615,
+        "title": "5.0接收处理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.19",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "6.0接收处理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.19",
+        "page": 901,
+        "pdfPage": 901,
+        "title": "7.0路由/Code/接收处理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.19",
+        "page": 903,
+        "pdfPage": 903,
+        "title": "7.0 A/B与初始状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R101核所列正式版/ECN/勘误选定正文与字段，复用已成熟细节；保留角色、模式和强制性差别，不以目录或引用数当整章完成。"
       }
     ],
-    "referenceStatus": "按版正文/字段定位；未核中间修订/ECN、形态规范或整章不标完成。",
+    "referenceStatus": "R101七版选定功耗正文及独立ECN/勘误核对；复用充分机制，版本/模式边界明确，非整章完成",
     "details": [
       {
         "id": "obff-platform-window-hint",
@@ -82144,6 +83408,101 @@
           2,
           3,
           24
+        ]
+      },
+      {
+        "id": "r101-obff-revision-contract",
+        "title": "OBFF不是Gen3才可实现：2009 ECN、报文Code与后续接收处理勘误",
+        "paragraphs": [
+          "OBFF ECN封面标原始请求2008-02-08、更新2009-04-30，受影响Base2.0/2.1以及CEM/Mini CEM；Base3.0修订历史列明合入。因此早期2.x实现可能叠加ECN，不能把OBFF强行绑定8GT/s；反过来，Gen3～Gen7也不保证实现这一可选能力。1.0a等更早基础版不应被套上后来OBFF字段。",
+          "ECN已经区分协议的Message Code=12h与内部OBFF Code四位。Msg无Payload、TC0、r=100、本端发送Port作为Requester，向下单Link终止；其中1111/0001/0000才是CPU Active/OBFF/Idle提示。不能把0001写成TLP Message Code，或把平台窗口当设备总线主授权。",
+          "从2009 ECN到3.0及4/5/6/7所核机制，Message A/B、WAKE#、Supported[19:18]与Enable[14:13]编码的关键契约持续存在。Variation A可以丢掉睡眠Link期间的提示，B需回L0再发；两者都不是事务完成通知。FM无L0s时不创造一个虚构Tx_L0s状态，仍按可适用的Link状态读规则。",
+          "3.0已规定OBFF使能时的Reserved Code按CPU Active，以及不支持/未使能收到Message按UR。3.1a正式Errata B234进一步明确这是接收Port的错误，并补已选WAKE#却收到Message时行为未定义；4/5/6/7正文可直接交叉确认后两个限制。旧版只写UR，不能自动推导后续全部错误归属/未定义组合。",
+          "WAKE#实际电气脉宽来自对应CEM/板型规范，不在本主题按PCIe链路代际自行给一个通用ns数字。已有查询只解码能力、使能和消息接收边界；共享线拓扑、提示可能合并以及10µs只是平台建议的限制继续复用。"
+        ],
+        "referenceIndices": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "table": {
+          "columns": [
+            "正式来源/范围",
+            "定位",
+            "已核契约与差别"
+          ],
+          "rows": [
+            [
+              "2009 ECN（影响2.0/2.1）",
+              "p1～3、7～9",
+              "可选机制；12h Message与4bit提示Code分开"
+            ],
+            [
+              "Base3.0",
+              "§6.19 p570～574；寄存器p652/p657",
+              "已合入ECN；A/B、WAKE#及Function0控制"
+            ],
+            [
+              "3.1a Errata B234",
+              "§6.19修订，p17",
+              "UR归属接收Port；WAKE方式收到Message未定义"
+            ],
+            [
+              "4.0 / 5.0",
+              "§6.19 p620～624 / p614～618",
+              "正式正文保留上述接收边界与平台提示机制"
+            ],
+            [
+              "6.0 / 7.0",
+              "§6.19 p787～790 / p900～903",
+              "共同语义继续；NFM/FM报文格式分别使用相应图"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 90,
+            "detailId": "obff-code-table",
+            "label": "三种内部提示编码"
+          },
+          {
+            "featureId": 90,
+            "detailId": "obff-register-explorer",
+            "label": "能力/使能/接收查询"
+          },
+          {
+            "featureId": 90,
+            "detailId": "obff-reserved-unsupported-reception",
+            "label": "三种接收处理"
+          },
+          {
+            "featureId": 90,
+            "detailId": "obff-variation-a",
+            "label": "Variation A"
+          },
+          {
+            "featureId": 90,
+            "detailId": "obff-variation-b",
+            "label": "Variation B"
+          }
         ]
       }
     ]

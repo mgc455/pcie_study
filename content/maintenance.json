@@ -1,9 +1,8 @@
 {
   "nextFeatureIds": [
-    84,
-    85,
-    86,
-    90
+    93,
+    94,
+    95
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -50,14 +49,14 @@
   ],
   "lastCompleted": {
     "date": "2026-10-26",
-    "edition": "2026-10-26-r100",
+    "edition": "2026-10-26-r101",
     "featureIds": [
-      61,
-      87,
-      88,
-      89
+      84,
+      85,
+      86,
+      90
     ],
-    "nextTrack": "R101功耗成熟条目批验；R102总结"
+    "nextTrack": "R102复位分组批验与四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -347,11 +346,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 42,
+    "completedTotal": 43,
     "lastReviewEdition": "2026-10-26-r98",
     "lastReviewId": "r95-r98",
     "nextExpectedReview": "R102（R99～R102四轮总结）"
@@ -1199,9 +1198,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 10,
-    "remainingPlannedRounds": 38,
-    "nextRound": 101,
+    "completedRounds": 11,
+    "remainingPlannedRounds": 37,
+    "nextRound": 102,
     "nextReviewRound": 102,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -8037,47 +8036,223 @@
         "featureId": 84,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/84/detail/r101-dstate-revision-contract",
+                "label": "D-state版本契约：早期重初始化、No_Soft_Reset与后版就绪捷径"
+              },
+              {
+                "href": "#feature/84/detail/r101-resume-access-decision",
+                "label": "恢复后何时能访问：默认等待、通知、有效时间和上下文分开"
+              },
+              {
+                "href": "#feature/84/detail/pmcsr-bit-table",
+                "label": "PMCSR逐bit：PowerState、No_Soft_Reset与PME分开使用"
+              },
+              {
+                "href": "#feature/84/detail/d-state-vs-link-state",
+                "label": "D是Function状态，L是Link状态，P是PIPE内部电源状态"
+              },
+              {
+                "href": "#feature/84/detail/non-d0-bridge-behavior",
+                "label": "端口虚拟桥在非D0时，不是所有TLP都一律丢弃"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/84/detail/r101-dstate-revision-contract",
+                "label": "D-state版本契约：早期重初始化、No_Soft_Reset与后版就绪捷径"
+              },
+              {
+                "href": "#feature/84/detail/r101-resume-access-decision",
+                "label": "恢复后何时能访问：默认等待、通知、有效时间和上下文分开"
+              },
+              {
+                "href": "#feature/84/detail/pmcsr-bit-table",
+                "label": "PMCSR逐bit：PowerState、No_Soft_Reset与PME分开使用"
+              },
+              {
+                "href": "#feature/84/detail/d-state-vs-link-state",
+                "label": "D是Function状态，L是Link状态，P是PIPE内部电源状态"
+              },
+              {
+                "href": "#feature/84/detail/non-d0-bridge-behavior",
+                "label": "端口虚拟桥在非D0时，不是所有TLP都一律丢弃"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/84/detail/r101-dstate-revision-contract",
+                "label": "D-state版本契约：早期重初始化、No_Soft_Reset与后版就绪捷径"
+              },
+              {
+                "href": "#feature/84/detail/r101-resume-access-decision",
+                "label": "恢复后何时能访问：默认等待、通知、有效时间和上下文分开"
+              },
+              {
+                "href": "#feature/84/detail/pmcsr-bit-table",
+                "label": "PMCSR逐bit：PowerState、No_Soft_Reset与PME分开使用"
+              },
+              {
+                "href": "#feature/84/detail/d-state-vs-link-state",
+                "label": "D是Function状态，L是Link状态，P是PIPE内部电源状态"
+              },
+              {
+                "href": "#feature/84/detail/non-d0-bridge-behavior",
+                "label": "端口虚拟桥在非D0时，不是所有TLP都一律丢弃"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/84/detail/r101-dstate-revision-contract",
+                "label": "D-state版本契约：早期重初始化、No_Soft_Reset与后版就绪捷径"
+              },
+              {
+                "href": "#feature/84/detail/r101-resume-access-decision",
+                "label": "恢复后何时能访问：默认等待、通知、有效时间和上下文分开"
+              },
+              {
+                "href": "#feature/84/detail/pmcsr-bit-table",
+                "label": "PMCSR逐bit：PowerState、No_Soft_Reset与PME分开使用"
+              },
+              {
+                "href": "#feature/84/detail/d-state-vs-link-state",
+                "label": "D是Function状态，L是Link状态，P是PIPE内部电源状态"
+              },
+              {
+                "href": "#feature/84/detail/non-d0-bridge-behavior",
+                "label": "端口虚拟桥在非D0时，不是所有TLP都一律丢弃"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/84/detail/r101-dstate-revision-contract",
+                "label": "D-state版本契约：早期重初始化、No_Soft_Reset与后版就绪捷径"
+              },
+              {
+                "href": "#feature/84/detail/r101-resume-access-decision",
+                "label": "恢复后何时能访问：默认等待、通知、有效时间和上下文分开"
+              },
+              {
+                "href": "#feature/84/detail/pmcsr-bit-table",
+                "label": "PMCSR逐bit：PowerState、No_Soft_Reset与PME分开使用"
+              },
+              {
+                "href": "#feature/84/detail/d-state-vs-link-state",
+                "label": "D是Function状态，L是Link状态，P是PIPE内部电源状态"
+              },
+              {
+                "href": "#feature/84/detail/non-d0-bridge-behavior",
+                "label": "端口虚拟桥在非D0时，不是所有TLP都一律丢弃"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。 核2009 ECN及Base沿革，分清早期要求、后版能力和模式；不按Gen号推可选特性。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/84/detail/r101-dstate-revision-contract",
+                "label": "D-state版本契约：早期重初始化、No_Soft_Reset与后版就绪捷径"
+              },
+              {
+                "href": "#feature/84/detail/r101-resume-access-decision",
+                "label": "恢复后何时能访问：默认等待、通知、有效时间和上下文分开"
+              },
+              {
+                "href": "#feature/84/detail/pmcsr-bit-table",
+                "label": "PMCSR逐bit：PowerState、No_Soft_Reset与PME分开使用"
+              },
+              {
+                "href": "#feature/84/detail/d-state-vs-link-state",
+                "label": "D是Function状态，L是Link状态，P是PIPE内部电源状态"
+              },
+              {
+                "href": "#feature/84/detail/non-d0-bridge-behavior",
+                "label": "端口虚拟桥在非D0时，不是所有TLP都一律丢弃"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/84/detail/r101-dstate-revision-contract",
+                "label": "D-state版本契约：早期重初始化、No_Soft_Reset与后版就绪捷径"
+              },
+              {
+                "href": "#feature/84/detail/r101-resume-access-decision",
+                "label": "恢复后何时能访问：默认等待、通知、有效时间和上下文分开"
+              },
+              {
+                "href": "#feature/84/detail/pmcsr-bit-table",
+                "label": "PMCSR逐bit：PowerState、No_Soft_Reset与PME分开使用"
+              },
+              {
+                "href": "#feature/84/detail/d-state-vs-link-state",
+                "label": "D是Function状态，L是Link状态，P是PIPE内部电源状态"
+              },
+              {
+                "href": "#feature/84/detail/non-d0-bridge-behavior",
+                "label": "端口虚拟桥在非D0时，不是所有TLP都一律丢弃"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/84/detail/r101-dstate-revision-contract",
+                "label": "D-state版本契约：早期重初始化、No_Soft_Reset与后版就绪捷径"
+              },
+              {
+                "href": "#feature/84/detail/r101-resume-access-decision",
+                "label": "恢复后何时能访问：默认等待、通知、有效时间和上下文分开"
+              },
+              {
+                "href": "#feature/84/detail/pmcsr-bit-table",
+                "label": "PMCSR逐bit：PowerState、No_Soft_Reset与PME分开使用"
+              },
+              {
+                "href": "#feature/84/detail/d-state-vs-link-state",
+                "label": "D是Function状态，L是Link状态，P是PIPE内部电源状态"
+              },
+              {
+                "href": "#feature/84/detail/non-d0-bridge-behavior",
+                "label": "端口虚拟桥在非D0时，不是所有TLP都一律丢弃"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。 对照同版相关条款和其它正式修订/ECN/勘误：修D3恢复默认10ms遗漏早就绪许可、补L0s可选化链；保留既有61/89未决项不混验。"
           }
         },
         "baseline": {
@@ -8086,21 +8261,22 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R101七版选定正文与2009 ECN/B234交叉核对，复用现有字段/时序/查询完成验收；独立平台实现不在本条验收范围。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 101
       },
       {
         "id": "v1-feature-85",
         "featureId": 85,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -8118,29 +8294,119 @@
             "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/85/detail/r101-link-power-revision-contract",
+                "label": "Link电源状态版本表：D-state耦合、L0s可选化、L0p与Ready各有边界"
+              },
+              {
+                "href": "#feature/85/detail/link-power-resource-table",
+                "label": "Link状态表：电源、Refclk、PLL和TLP传输分别看"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-gather-query",
+                "label": "查询：Switch聚合计分板、Ready和100ns/超时分支"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-timeout-hundred-ns-exception",
+                "label": "电源管理超时触发时，正常Ready后的100ns要求不适用"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/85/detail/r101-link-power-revision-contract",
+                "label": "Link电源状态版本表：D-state耦合、L0s可选化、L0p与Ready各有边界"
+              },
+              {
+                "href": "#feature/85/detail/link-power-resource-table",
+                "label": "Link状态表：电源、Refclk、PLL和TLP传输分别看"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-gather-query",
+                "label": "查询：Switch聚合计分板、Ready和100ns/超时分支"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-timeout-hundred-ns-exception",
+                "label": "电源管理超时触发时，正常Ready后的100ns要求不适用"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/85/detail/r101-link-power-revision-contract",
+                "label": "Link电源状态版本表：D-state耦合、L0s可选化、L0p与Ready各有边界"
+              },
+              {
+                "href": "#feature/85/detail/link-power-resource-table",
+                "label": "Link状态表：电源、Refclk、PLL和TLP传输分别看"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-gather-query",
+                "label": "查询：Switch聚合计分板、Ready和100ns/超时分支"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-timeout-hundred-ns-exception",
+                "label": "电源管理超时触发时，正常Ready后的100ns要求不适用"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/85/detail/r101-link-power-revision-contract",
+                "label": "Link电源状态版本表：D-state耦合、L0s可选化、L0p与Ready各有边界"
+              },
+              {
+                "href": "#feature/85/detail/link-power-resource-table",
+                "label": "Link状态表：电源、Refclk、PLL和TLP传输分别看"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-gather-query",
+                "label": "查询：Switch聚合计分板、Ready和100ns/超时分支"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-timeout-hundred-ns-exception",
+                "label": "电源管理超时触发时，正常Ready后的100ns要求不适用"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。 核2009 ECN及Base沿革，分清早期要求、后版能力和模式；不按Gen号推可选特性。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/85/detail/r101-link-power-revision-contract",
+                "label": "Link电源状态版本表：D-state耦合、L0s可选化、L0p与Ready各有边界"
+              },
+              {
+                "href": "#feature/85/detail/link-power-resource-table",
+                "label": "Link状态表：电源、Refclk、PLL和TLP传输分别看"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-gather-query",
+                "label": "查询：Switch聚合计分板、Ready和100ns/超时分支"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-timeout-hundred-ns-exception",
+                "label": "电源管理超时触发时，正常Ready后的100ns要求不适用"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "navigation": {
             "status": "passed",
@@ -8158,9 +8424,27 @@
             "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/85/detail/r101-link-power-revision-contract",
+                "label": "Link电源状态版本表：D-state耦合、L0s可选化、L0p与Ready各有边界"
+              },
+              {
+                "href": "#feature/85/detail/link-power-resource-table",
+                "label": "Link状态表：电源、Refclk、PLL和TLP传输分别看"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-gather-query",
+                "label": "查询：Switch聚合计分板、Ready和100ns/超时分支"
+              },
+              {
+                "href": "#feature/85/detail/turnoff-timeout-hundred-ns-exception",
+                "label": "电源管理超时触发时，正常Ready后的100ns要求不适用"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。 对照同版相关条款和其它正式修订/ECN/勘误：修D3恢复默认10ms遗漏早就绪许可、补L0s可选化链；保留既有61/89未决项不混验。"
           }
         },
         "baseline": {
@@ -8169,61 +8453,206 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R94以复用旧正文完成所列验收维度；剩余维度见本项台账，未自动接受整项。",
+        "reviewNote": "R101七版选定正文与2009 ECN/B234交叉核对，复用现有字段/时序/查询完成验收；独立平台实现不在本条验收范围。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 101
       },
       {
         "id": "v1-feature-86",
         "featureId": 86,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/86/detail/r101-aspm-optionality-contract",
+                "label": "ASPM来源链：支持可选、进入可选、使能与模式不能混为一谈"
+              },
+              {
+                "href": "#feature/86/detail/aspm-control-bit-encodings",
+                "label": "PCIe Link Control[1:0]四种编码与FM的忽略规则"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-entry-credits",
+                "label": "ASPM L1入口前的Credit前提：NFM、Dedicated和Shared分开"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-nak-separation",
+                "label": "拒绝后的10μs与9.5μs：分别是谁的条件"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/86/detail/r101-aspm-optionality-contract",
+                "label": "ASPM来源链：支持可选、进入可选、使能与模式不能混为一谈"
+              },
+              {
+                "href": "#feature/86/detail/aspm-control-bit-encodings",
+                "label": "PCIe Link Control[1:0]四种编码与FM的忽略规则"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-entry-credits",
+                "label": "ASPM L1入口前的Credit前提：NFM、Dedicated和Shared分开"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-nak-separation",
+                "label": "拒绝后的10μs与9.5μs：分别是谁的条件"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/86/detail/r101-aspm-optionality-contract",
+                "label": "ASPM来源链：支持可选、进入可选、使能与模式不能混为一谈"
+              },
+              {
+                "href": "#feature/86/detail/aspm-control-bit-encodings",
+                "label": "PCIe Link Control[1:0]四种编码与FM的忽略规则"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-entry-credits",
+                "label": "ASPM L1入口前的Credit前提：NFM、Dedicated和Shared分开"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-nak-separation",
+                "label": "拒绝后的10μs与9.5μs：分别是谁的条件"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/86/detail/r101-aspm-optionality-contract",
+                "label": "ASPM来源链：支持可选、进入可选、使能与模式不能混为一谈"
+              },
+              {
+                "href": "#feature/86/detail/aspm-control-bit-encodings",
+                "label": "PCIe Link Control[1:0]四种编码与FM的忽略规则"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-entry-credits",
+                "label": "ASPM L1入口前的Credit前提：NFM、Dedicated和Shared分开"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-nak-separation",
+                "label": "拒绝后的10μs与9.5μs：分别是谁的条件"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/86/detail/r101-aspm-optionality-contract",
+                "label": "ASPM来源链：支持可选、进入可选、使能与模式不能混为一谈"
+              },
+              {
+                "href": "#feature/86/detail/aspm-control-bit-encodings",
+                "label": "PCIe Link Control[1:0]四种编码与FM的忽略规则"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-entry-credits",
+                "label": "ASPM L1入口前的Credit前提：NFM、Dedicated和Shared分开"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-nak-separation",
+                "label": "拒绝后的10μs与9.5μs：分别是谁的条件"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。 核2009 ECN及Base沿革，分清早期要求、后版能力和模式；不按Gen号推可选特性。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/86/detail/r101-aspm-optionality-contract",
+                "label": "ASPM来源链：支持可选、进入可选、使能与模式不能混为一谈"
+              },
+              {
+                "href": "#feature/86/detail/aspm-control-bit-encodings",
+                "label": "PCIe Link Control[1:0]四种编码与FM的忽略规则"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-entry-credits",
+                "label": "ASPM L1入口前的Credit前提：NFM、Dedicated和Shared分开"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-nak-separation",
+                "label": "拒绝后的10μs与9.5μs：分别是谁的条件"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/86/detail/r101-aspm-optionality-contract",
+                "label": "ASPM来源链：支持可选、进入可选、使能与模式不能混为一谈"
+              },
+              {
+                "href": "#feature/86/detail/aspm-control-bit-encodings",
+                "label": "PCIe Link Control[1:0]四种编码与FM的忽略规则"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-entry-credits",
+                "label": "ASPM L1入口前的Credit前提：NFM、Dedicated和Shared分开"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-nak-separation",
+                "label": "拒绝后的10μs与9.5μs：分别是谁的条件"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/86/detail/r101-aspm-optionality-contract",
+                "label": "ASPM来源链：支持可选、进入可选、使能与模式不能混为一谈"
+              },
+              {
+                "href": "#feature/86/detail/aspm-control-bit-encodings",
+                "label": "PCIe Link Control[1:0]四种编码与FM的忽略规则"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-entry-credits",
+                "label": "ASPM L1入口前的Credit前提：NFM、Dedicated和Shared分开"
+              },
+              {
+                "href": "#feature/86/detail/aspm-l1-nak-separation",
+                "label": "拒绝后的10μs与9.5μs：分别是谁的条件"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。 对照同版相关条款和其它正式修订/ECN/勘误：修D3恢复默认10ms遗漏早就绪许可、补L0s可选化链；保留既有61/89未决项不混验。"
           }
         },
         "baseline": {
@@ -8232,14 +8661,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R101七版选定正文与2009 ECN/B234交叉核对，复用现有字段/时序/查询完成验收；独立平台实现不在本条验收范围。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 101
       },
       {
         "id": "v1-feature-87",
@@ -8701,47 +9131,223 @@
         "featureId": 90,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/90/detail/r101-obff-revision-contract",
+                "label": "OBFF不是Gen3才可实现：2009 ECN、报文Code与后续接收处理勘误"
+              },
+              {
+                "href": "#feature/90/detail/obff-register-explorer",
+                "label": "查询：OBFF能力/Enable与Message接收处理"
+              },
+              {
+                "href": "#feature/90/detail/obff-supported-field-table",
+                "label": "DevCap2[19:18]报告信令支持，不是Enable编码"
+              },
+              {
+                "href": "#feature/90/detail/obff-enable-field-table",
+                "label": "DevControl2[14:13]选择A／B／WAKE#，不是能力bitmap"
+              },
+              {
+                "href": "#feature/90/detail/obff-reserved-unsupported-reception",
+                "label": "保留Code、未使能和传输模式冲突，三种处理不同"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/90/detail/r101-obff-revision-contract",
+                "label": "OBFF不是Gen3才可实现：2009 ECN、报文Code与后续接收处理勘误"
+              },
+              {
+                "href": "#feature/90/detail/obff-register-explorer",
+                "label": "查询：OBFF能力/Enable与Message接收处理"
+              },
+              {
+                "href": "#feature/90/detail/obff-supported-field-table",
+                "label": "DevCap2[19:18]报告信令支持，不是Enable编码"
+              },
+              {
+                "href": "#feature/90/detail/obff-enable-field-table",
+                "label": "DevControl2[14:13]选择A／B／WAKE#，不是能力bitmap"
+              },
+              {
+                "href": "#feature/90/detail/obff-reserved-unsupported-reception",
+                "label": "保留Code、未使能和传输模式冲突，三种处理不同"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/90/detail/r101-obff-revision-contract",
+                "label": "OBFF不是Gen3才可实现：2009 ECN、报文Code与后续接收处理勘误"
+              },
+              {
+                "href": "#feature/90/detail/obff-register-explorer",
+                "label": "查询：OBFF能力/Enable与Message接收处理"
+              },
+              {
+                "href": "#feature/90/detail/obff-supported-field-table",
+                "label": "DevCap2[19:18]报告信令支持，不是Enable编码"
+              },
+              {
+                "href": "#feature/90/detail/obff-enable-field-table",
+                "label": "DevControl2[14:13]选择A／B／WAKE#，不是能力bitmap"
+              },
+              {
+                "href": "#feature/90/detail/obff-reserved-unsupported-reception",
+                "label": "保留Code、未使能和传输模式冲突，三种处理不同"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/90/detail/r101-obff-revision-contract",
+                "label": "OBFF不是Gen3才可实现：2009 ECN、报文Code与后续接收处理勘误"
+              },
+              {
+                "href": "#feature/90/detail/obff-register-explorer",
+                "label": "查询：OBFF能力/Enable与Message接收处理"
+              },
+              {
+                "href": "#feature/90/detail/obff-supported-field-table",
+                "label": "DevCap2[19:18]报告信令支持，不是Enable编码"
+              },
+              {
+                "href": "#feature/90/detail/obff-enable-field-table",
+                "label": "DevControl2[14:13]选择A／B／WAKE#，不是能力bitmap"
+              },
+              {
+                "href": "#feature/90/detail/obff-reserved-unsupported-reception",
+                "label": "保留Code、未使能和传输模式冲突，三种处理不同"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/90/detail/r101-obff-revision-contract",
+                "label": "OBFF不是Gen3才可实现：2009 ECN、报文Code与后续接收处理勘误"
+              },
+              {
+                "href": "#feature/90/detail/obff-register-explorer",
+                "label": "查询：OBFF能力/Enable与Message接收处理"
+              },
+              {
+                "href": "#feature/90/detail/obff-supported-field-table",
+                "label": "DevCap2[19:18]报告信令支持，不是Enable编码"
+              },
+              {
+                "href": "#feature/90/detail/obff-enable-field-table",
+                "label": "DevControl2[14:13]选择A／B／WAKE#，不是能力bitmap"
+              },
+              {
+                "href": "#feature/90/detail/obff-reserved-unsupported-reception",
+                "label": "保留Code、未使能和传输模式冲突，三种处理不同"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。 核2009 ECN及Base沿革，分清早期要求、后版能力和模式；不按Gen号推可选特性。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/90/detail/r101-obff-revision-contract",
+                "label": "OBFF不是Gen3才可实现：2009 ECN、报文Code与后续接收处理勘误"
+              },
+              {
+                "href": "#feature/90/detail/obff-register-explorer",
+                "label": "查询：OBFF能力/Enable与Message接收处理"
+              },
+              {
+                "href": "#feature/90/detail/obff-supported-field-table",
+                "label": "DevCap2[19:18]报告信令支持，不是Enable编码"
+              },
+              {
+                "href": "#feature/90/detail/obff-enable-field-table",
+                "label": "DevControl2[14:13]选择A／B／WAKE#，不是能力bitmap"
+              },
+              {
+                "href": "#feature/90/detail/obff-reserved-unsupported-reception",
+                "label": "保留Code、未使能和传输模式冲突，三种处理不同"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/90/detail/r101-obff-revision-contract",
+                "label": "OBFF不是Gen3才可实现：2009 ECN、报文Code与后续接收处理勘误"
+              },
+              {
+                "href": "#feature/90/detail/obff-register-explorer",
+                "label": "查询：OBFF能力/Enable与Message接收处理"
+              },
+              {
+                "href": "#feature/90/detail/obff-supported-field-table",
+                "label": "DevCap2[19:18]报告信令支持，不是Enable编码"
+              },
+              {
+                "href": "#feature/90/detail/obff-enable-field-table",
+                "label": "DevControl2[14:13]选择A／B／WAKE#，不是能力bitmap"
+              },
+              {
+                "href": "#feature/90/detail/obff-reserved-unsupported-reception",
+                "label": "保留Code、未使能和传输模式冲突，三种处理不同"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 101,
+            "evidence": [
+              {
+                "href": "#feature/90/detail/r101-obff-revision-contract",
+                "label": "OBFF不是Gen3才可实现：2009 ECN、报文Code与后续接收处理勘误"
+              },
+              {
+                "href": "#feature/90/detail/obff-register-explorer",
+                "label": "查询：OBFF能力/Enable与Message接收处理"
+              },
+              {
+                "href": "#feature/90/detail/obff-supported-field-table",
+                "label": "DevCap2[19:18]报告信令支持，不是Enable编码"
+              },
+              {
+                "href": "#feature/90/detail/obff-enable-field-table",
+                "label": "DevControl2[14:13]选择A／B／WAKE#，不是能力bitmap"
+              },
+              {
+                "href": "#feature/90/detail/obff-reserved-unsupported-reception",
+                "label": "保留Code、未使能和传输模式冲突，三种处理不同"
+              }
+            ],
+            "note": "R101复核本主题实际用途/机制/字段/异常及所列逐版本正文与ECN，不以段落数量验收；复用既有稳定细节、表与查询。 对照同版相关条款和其它正式修订/ECN/勘误：修D3恢复默认10ms遗漏早就绪许可、补L0s可选化链；保留既有61/89未决项不混验。"
           }
         },
         "baseline": {
@@ -8750,14 +9356,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R101七版选定正文与2009 ECN/B234交叉核对，复用现有字段/时序/查询完成验收；独立平台实现不在本条验收范围。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 101
       },
       {
         "id": "v1-feature-91",
@@ -15953,6 +16560,152 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "61 RTR数值及89 LTR ECN位号继续定向核查；不阻塞其它成熟功能批验。R101推进84/85/86/90，R102总结，固定范围不扩大。",
         "publication": "以实际发布记录为准；不将本地检查当线上发布成功。"
+      },
+      {
+        "round": 101,
+        "kind": "dstate-link-state-aspm-obff-batch-acceptance",
+        "deliverables": [
+          "补五个版本/恢复判定块，修D3Hot默认等待说明",
+          "核2009 ASPM Optionality与OBFF ECN、3.1a B234及七版选定功耗正文",
+          "84/85/86/90四项通过，新增30维度累计193，完整17/183"
+        ],
+        "closedDeliverableIds": [
+          "dstate-v1-accepted",
+          "link-power-v1-accepted",
+          "aspm-v1-accepted",
+          "obff-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 84,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 84,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 84,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 84,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 84,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 84,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 84,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 84,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 85,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 85,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 85,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 85,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 85,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 85,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 86,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 86,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 86,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 86,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 86,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 86,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 86,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 86,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 90,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 90,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 90,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 90,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 90,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 90,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 90,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 90,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          84,
+          85,
+          86,
+          90
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "61 RTR数值和89 ECN位号仍定向待核；功耗组其它条目未关闭。R102批验93/94/95复位并做R99-R102四轮总结，不追加必需范围。",
+        "publication": "以实际上传/部署/线上记录为准。"
       }
     ],
     "backlog": [
@@ -16324,13 +17077,17 @@
         "evidence": [],
         "closedRound": null,
         "progress": {
-          "round": 100,
-          "newPassedCriteria": 5,
+          "round": 101,
+          "newPassedCriteria": 30,
           "acceptedUnitIds": [
+            84,
+            85,
+            86,
             87,
-            88
+            88,
+            90
           ],
-          "remaining": "89仅余2025 ECN位号来源链；其它功耗条目继续批验，任务分组尚未关闭。"
+          "remaining": "功耗分组仍有10/15/59/89/91/92/96/183；89仅剩既有ECN位号来源链，不能据本轮关闭全组。"
         }
       },
       {
@@ -19206,34 +19963,33 @@
       }
     ],
     "nextExecution": {
-      "round": 101,
-      "taskId": "v1-task-10",
+      "round": 102,
+      "taskId": "v1-task-11",
       "featureIds": [
-        84,
-        85,
-        86,
-        90
+        93,
+        94,
+        95
       ],
-      "goal": "复用成熟84 D-state、85 Link states、86 ASPM、90 OBFF，批验版本/一致性与真实缺口；61/89定向来源问题保留，不整轮重复。R102做四轮总结。",
+      "goal": "批验已有Fundamental/Hot Reset/FLR正文、版本和真实缺口，争取关闭完整复位分组；必须完成R99-R102四轮总结，按实际关闭量更新剩余缺口与优先级，不扩大固定范围或自动延长目标。",
       "reviewRound": 102
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 100,
+      "assessedRound": 101,
       "reestimateRound": 102,
-      "assessment": "R100新增完整87/88两项，累计13/183；新6维度累计163，余170项/38轮预算。当前关闭速度仍低于目标所需，R138有风险；保留61/89来源问题而不重复扩写。",
-      "action": "R101优先批验成熟功耗条目；R102按实际完整关闭量调整优先级，不自动扩范围或延长目标。",
+      "assessment": "R101完整功能新增4项累计17/183，30新维度累计193；剩166项/37轮预算，需约4.486项/轮。本轮虽提高关闭量，R138仍有风险；R102按四轮实际结果复盘。",
+      "action": "R102批验93/94/95完整复位分组并总结R99-R102；成熟内容优先验收，已限定来源问题定向保留，不重复扩写。",
       "latestProgress": {
-        "round": 100,
-        "newAcceptedUnits": 2,
-        "cumulativeAcceptedUnits": 13,
-        "newPassedCriteria": 6,
-        "cumulativePassedCriteria": 163,
-        "remainingPlannedRounds": 38
+        "round": 101,
+        "newAcceptedUnits": 4,
+        "cumulativeAcceptedUnits": 17,
+        "newPassedCriteria": 30,
+        "cumulativePassedCriteria": 193,
+        "remainingPlannedRounds": 37
       },
       "observedAcceptedUnitsPerRound": 2,
-      "requiredAcceptedUnitsPerRemainingRound": 4.473684210526316,
+      "requiredAcceptedUnitsPerRemainingRound": 4.486486486486487,
       "linearExtrapolationRounds": 88
     },
     "reviewWindows": [

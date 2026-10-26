@@ -515,3 +515,7 @@ R92将117条历史记录归并为固定24项验收任务，并登记37项来源�
 ## R100 功耗版本批验
 
 [L1SS版本表](https://mgc455.github.io/pcie_study/#feature/87/detail/r100-l1ss-revision-contract) · [Clock PM版本表](https://mgc455.github.io/pcie_study/#feature/88/detail/r100-clockpm-revision-contract) · [RTR勘误边界](https://mgc455.github.io/pcie_study/#feature/61/detail/r100-rtr-errata-boundary)。87/88验收，累计13/183、163维度；61/89各剩一项来源一致性问题。余38轮仍为预算，R102总结，每日任务暂停。
+
+## R101 功耗四项验收
+
+[D-state恢复访问](https://mgc455.github.io/pcie_study/#feature/84/detail/r101-resume-access-decision) · [ASPM可选化来源链](https://mgc455.github.io/pcie_study/#feature/86/detail/r101-aspm-optionality-contract) · [OBFF版本契约](https://mgc455.github.io/pcie_study/#feature/90/detail/r101-obff-revision-contract)。84/85/86/90通过，累计17/183、193维度；61/89问题保留，功耗组尚未整体关闭。余37轮为预算，R102总结，每日仍暂停。
