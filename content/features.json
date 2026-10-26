@@ -60328,7 +60328,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-22",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "5",
@@ -60758,6 +60758,28 @@
         "title": "TurnOff围栏与Switch汇聚",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "独立核读本版对应正文/表及所需续页；所用副本印刷页与PDF物理页一致。仅覆盖本块，不表示整章、七代所有版本或后续ECN已完成。中文解释和示意为原创。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.16",
+        "page": 1148,
+        "pdfPage": 1148,
+        "title": "LTR Enable与PME不是同一开关",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.18",
+        "page": 895,
+        "pdfPage": 895,
+        "title": "LTR容忍度用途",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
       }
     ],
     "referenceStatus": "6.0/7.0所引PM消息、同步/四态和Native报告字段正文已核读；旧章目录引用保留为背景，非整章完成。",
@@ -61291,6 +61313,21 @@
           23,
           24,
           15,
+          16
+        ]
+      },
+      {
+        "id": "r93-pme-ltr-enable-domains",
+        "title": "LTR Enable、来源PME_En与Root中断使能属于三条不同控制链",
+        "paragraphs": [
+          "LTR报告服务延迟容忍度，不是唤醒请求；PCIe Cap+28h[10]不会替来源打开PME。来源PME_En是PM Capability中的PMCSR[8]，PME_Status[15]的置位不受该Enable门控。",
+          "Root Control的PME Interrupt Enable（PCIe Cap+1Ch[3]）控制Root通知，Root Status的[16]及[17]分别记录Status与Pending；清Root状态不等于服务完来源。已有四态和TurnOff流程继续复用，不新增另一套重复状态机。"
+        ],
+        "referenceIndices": [
+          39,
+          40,
+          6,
+          30,
           16
         ]
       }
@@ -74612,16 +74649,16 @@
     "mechanism": "LTR报告设备能容忍的服务延迟，平台结合这些约束选择相应电源策略。它描述容忍度，不直接测量真实往返延迟。",
     "example": "缓冲快满的设备可比空闲设备需要更及时的服务；延迟需求有变化时相关报告应与实际业务一致。",
     "checks": "核对报告值的单位/编码、有效位与主机支持；不要把LTR值设大只为省电而忽略缓冲会溢出。",
-    "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
+    "prerequisites": "确认RC和沿途Switch的LTR支持，发现正确能力基址及控制Function；按平台上限设置Max预算，再按Root到叶端顺序使能。无需把打开LTR误当成先停止全部DMA或切换D-state。",
     "id": 89,
-    "status": "选定规则/字段已展开 · 持续逐版完善",
+    "status": "一期验收进行中：字段/机制已补齐，历史版本与交叉核对待收口",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "2.2.8.8",
@@ -74677,9 +74714,548 @@
         "title": "MFD/Switch聚合规则",
         "verification": "本轮核读该页相关正文/字段，并按版绑定印刷页与PDF页；不是整章、全版本或硬件合规完成声明。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "ecn-ltr-20080814",
+        "document": "Latency Tolerance Reporting ECN（本地正文副本）",
+        "version": "2008-08-14",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "LTR可选机制与影响Base2.0",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/LatencyToleranceReporting",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。本地ECN副本与官网条目日期/最终下载件区别见来源元数据；不将占位章节冒充正式Base章节。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "Revision History",
+        "page": 2,
+        "pdfPage": 2,
+        "title": "修订历史记录2.1合入LTR ECN",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.15",
+        "page": 991,
+        "pdfPage": 991,
+        "title": "LTR Supported bit11",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.16",
+        "page": 996,
+        "pdfPage": 996,
+        "title": "LTR Enable bit10",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1142,
+        "pdfPage": 1142,
+        "title": "LTR Supported及续页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1143,
+        "pdfPage": 1143,
+        "title": "MFD Supported一致性续页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.16",
+        "page": 1148,
+        "pdfPage": 1148,
+        "title": "LTR Enable与F0控制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.18",
+        "page": 895,
+        "pdfPage": 895,
+        "title": "LTR路径支持与Root向下使能",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.2",
+        "page": 1101,
+        "pdfPage": 1101,
+        "title": "LTR能力适用角色",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.2.1",
+        "page": 1102,
+        "pdfPage": 1102,
+        "title": "LTR能力头",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.2.2",
+        "page": 1102,
+        "pdfPage": 1102,
+        "title": "Max Snoop字段及续页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.2.3",
+        "page": 1103,
+        "pdfPage": 1103,
+        "title": "Max No-Snoop字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.2",
+        "page": 1266,
+        "pdfPage": 1266,
+        "title": "LTR能力角色及RCiEP续页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.2",
+        "page": 1267,
+        "pdfPage": 1267,
+        "title": "RCiEP MFD例外与结构",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.2.1",
+        "page": 1267,
+        "pdfPage": 1267,
+        "title": "LTR能力版本",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.2.2",
+        "page": 1268,
+        "pdfPage": 1268,
+        "title": "Max Snoop",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.2.3",
+        "page": 1269,
+        "pdfPage": 1269,
+        "title": "Max No-Snoop续页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.18",
+        "page": 781,
+        "pdfPage": 781,
+        "title": "消息16bit字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.18",
+        "page": 895,
+        "pdfPage": 895,
+        "title": "Requirement与Scale",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.2.2",
+        "page": 1268,
+        "pdfPage": 1268,
+        "title": "Max高位保留",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.8.8",
+        "page": 187,
+        "pdfPage": 187,
+        "title": "LTR消息属性",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.8.8",
+        "page": 188,
+        "pdfPage": 188,
+        "title": "6.0两种包头图",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.8.8",
+        "page": 234,
+        "pdfPage": 234,
+        "title": "7.0 Code/r/TC0",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.8.8",
+        "page": 235,
+        "pdfPage": 235,
+        "title": "7.0 NFM/FM位图",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "7.25.2",
+        "page": 770,
+        "pdfPage": 770,
+        "title": "早期Max字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.8.2.2",
+        "page": 849,
+        "pdfPage": 849,
+        "title": "Max更新1ms强烈建议",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.8.2.2",
+        "page": 834,
+        "pdfPage": 834,
+        "title": "Max Snoop",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.8.2.3",
+        "page": 835,
+        "pdfPage": 835,
+        "title": "Max No-Snoop",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.2.2",
+        "page": 1103,
+        "pdfPage": 1103,
+        "title": "Scale字段续页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.2.3",
+        "page": 1269,
+        "pdfPage": 1269,
+        "title": "Max寄存器限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.18",
+        "page": 610,
+        "pdfPage": 610,
+        "title": "服务延迟定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.18",
+        "page": 782,
+        "pdfPage": 782,
+        "title": "NP与Posted测量端点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.18",
+        "page": 896,
+        "pdfPage": 896,
+        "title": "服务延迟和CLKREQ等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.18",
+        "page": 610,
+        "pdfPage": 610,
+        "title": "MFD两类流量分别最小",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.18",
+        "page": 611,
+        "pdfPage": 611,
+        "title": "Switch计算和限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.18",
+        "page": 783,
+        "pdfPage": 783,
+        "title": "Switch聚合",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.18",
+        "page": 897,
+        "pdfPage": 897,
+        "title": "MFD/USP及聚合更新",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.18",
+        "page": 610,
+        "pdfPage": 610,
+        "title": "PMCSR/Enable撤销",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.18",
+        "page": 782,
+        "pdfPage": 782,
+        "title": "FLR门和DL_Down",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.18",
+        "page": 896,
+        "pdfPage": 896,
+        "title": "回D0建议恢复报告",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.18",
+        "page": 897,
+        "pdfPage": 897,
+        "title": "端口失效导致合成变化",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "ecn-ltr-mfd-20250529-local",
+        "document": "LTR Enhancements for MFD ECN（本地2025-05-29变更标记副本）",
+        "version": "2025-05-29（官网条目2025-06-11）",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "增强能力目的与版本底本",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。本地ECN副本与官网条目日期/最终下载件区别见来源元数据；不将占位章节冒充正式Base章节。"
+      },
+      {
+        "documentId": "ecn-ltr-mfd-20250529-local",
+        "document": "LTR Enhancements for MFD ECN（本地2025-05-29变更标记副本）",
+        "version": "2025-05-29（官网条目2025-06-11）",
+        "section": "7.8.2.4",
+        "page": 4,
+        "pdfPage": 4,
+        "title": "本地ECN保留位bit0",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。本地ECN副本与官网条目日期/最终下载件区别见来源元数据；不将占位章节冒充正式Base章节。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.2.1",
+        "page": 1267,
+        "pdfPage": 1267,
+        "title": "版本2发现",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.2.4",
+        "page": 1269,
+        "pdfPage": 1269,
+        "title": "正式7.0保留位bit1",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.18",
+        "page": 610,
+        "pdfPage": 610,
+        "title": "2/500µs与例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.18",
+        "page": 782,
+        "pdfPage": 782,
+        "title": "消息频度和接收者要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.18",
+        "page": 896,
+        "pdfPage": 896,
+        "title": "消息频度与需求变化",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.18",
+        "page": 898,
+        "pdfPage": 898,
+        "title": "RC预算更新时间续页",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R93独立核读本版所引正文及所需续页；原图仅作本地核对，公开为原创归纳。仅所列规则，不代表整章或七代全文。"
       }
     ],
-    "referenceStatus": "新块按对应版本正文/表独立定位；旧目录入口保留，未声明全部代际或整章已审计。",
+    "referenceStatus": "R93核2008 ECN、3/4选定能力字段、5/6/7本组LTR机制与寄存器；本地2025 ECN和正式7.0位号差异显式保留，未声明七代全部条款完成。",
     "details": [
       {
         "id": "ltr-scale-requirement-table",
@@ -74754,6 +75330,311 @@
           2,
           3,
           4
+        ]
+      },
+      {
+        "id": "r93-ltr-origin",
+        "title": "LTR不是“Gen3起才有”：2008 ECN与Base2.1合入记录",
+        "paragraphs": [
+          "官网LTR ECN条目列2008-08-14、影响Base2.0；本地正文记1月22日并在8月14日更新。Base3.0修订历史把LTR列在2.1合入项，日期2009-03-04。这是明确的机制来源链，不把当前Link速度当能力出现时间。",
+          "Gen1～Gen7是速率代际；运行2.5或5GT/s的设备是否支持LTR仍看实际规范修订和能力。本轮未逐页核1.x/2.x全部历史正文，不能据此认定任一旧设备必定支持或禁止LTR。"
+        ],
+        "referenceIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "r93-ltr-discovery-enable",
+        "title": "先发现路径支持，再从Root向下使能：Supported与Enable分开",
+        "paragraphs": [
+          "Device Capabilities2在PCIe Capability基址+24h，[11]为只读LTR Mechanism Supported；Device Control2在该基址+28h，[10]为LTR Mechanism Enable，默认0。上行Port的Enable允许发送，下行Port的Enable允许处理收到的LTR。",
+          "软件必须先确认RC和沿途Switch支持，靠Root的节点先使能，再到叶端。不是所有Endpoint都必须支持；收到LTR的下行Port不支持或未使能时按UR处理。支持位存在不表示路径已经配置。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "table": {
+          "columns": [
+            "位置/字段",
+            "作用/限制"
+          ],
+          "rows": [
+            [
+              "PCIe Cap+24h[11]",
+              "RO；报告机制支持；关联同一USP的MFD各Function一致"
+            ],
+            [
+              "PCIe Cap+28h[10]",
+              "RW/RsvdP；同一USP的MFD由F0控制，其余Function为RsvdP"
+            ],
+            [
+              "DSP DL_Down",
+              "Enable回默认0；上次记录的预算也失效"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "r93-ltr-capability-map",
+        "title": "扩展能力0018h：Max寄存器在+04h/+06h，RP不必有这张表",
+        "paragraphs": [
+          "沿Extended Capability链发现ID0018h，偏移均相对该能力基址。支持机制的Endpoint和Switch USP需要该结构；不适用于RP、桥和Switch DSP。因此，不能因RP没有0018h就判断它不支持LTR。",
+          "关联同一USP的MFD通常只有F0实现此能力并代表所有Function控制Link；RCiEP MFD在已核6.0/7.0中允许多个Function实现，不能机械套用“永远只F0”。"
+        ],
+        "referenceIndices": [
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        "table": {
+          "columns": [
+            "相对偏移",
+            "宽度/字段",
+            "属性与用途"
+          ],
+          "rows": [
+            [
+              "+00h",
+              "32bit：[15:0] ID0018h、[19:16] Version、[31:20] Next",
+              "RO；版本1不含+08h寄存器"
+            ],
+            [
+              "+04h",
+              "16bit Max Snoop：Value[9:0]、Scale[12:10]、RsvdP[15:13]",
+              "RW字段默认0；平台允许请求的最大snoop预算"
+            ],
+            [
+              "+06h",
+              "16bit Max No-Snoop；同样字段布局",
+              "RW字段默认0；另一类流量的最大预算"
+            ],
+            [
+              "+08h",
+              "32bit LTR Capabilities，仅版本≥2",
+              "不能对版本1假设该地址属于LTR"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "r93-ltr-message-versus-max-bits",
+        "title": "两种16bit字段：消息有Requirement，Max寄存器没有",
+        "paragraphs": [
+          "消息的[15]为Requirement，[14:13]保留，[12:10]为Scale，[9:0]为Value；Requirement=0时Value/Scale忽略，表示本类无要求，不能解释成0ns。",
+          "Max寄存器[15:13]都是RsvdP，只有Value/Scale表示最大允许预算。把消息0x8000直接当Max寄存器值会碰保留位；本站只解码，不生成写寄存器命令。Scale6/7不允许写入Max字段，硬件行为未定义。"
+        ],
+        "referenceIndices": [
+          22,
+          23,
+          24
+        ]
+      },
+      {
+        "id": "r93-ltr-packet-position",
+        "title": "LTR是无Payload的Msg：16Byte基础布局中的最后两个半字",
+        "paragraphs": [
+          "Code=0x10，隐式上行路由r=100b，必须TC0且不携带数据Payload。Length是Reserved，不能把两个Latency半字当成Length=1DW的数据负载。实现LTR的接收者必须检查TC，违反TC0按Malformed TLP报告。",
+          "已视觉核7.0图2-63/2-64：基础布局Byte12～13是No-Snoop Latency，Byte14～15是Snoop Latency。NFM与FM外层字段不同；6.0与7.0图中的Tag/Reserved及FM Byte8区域也有差别，不发布可跨版直接套用的完整头模板。这里的16bit查询输入是字段数值，不是CPU内存端序转储。"
+        ],
+        "referenceIndices": [
+          25,
+          26,
+          27,
+          28
+        ]
+      },
+      {
+        "id": "r93-ltr-max-programming",
+        "title": "Max值限制设备可请求预算；1ms是更新反映的强烈建议",
+        "paragraphs": [
+          "软件应将Max设为平台支持的最大延迟或更小；它不是一条LTR消息，也不自动证明RC按这个时间响应。设备对外报告的预算应受这两项平台上限约束。",
+          "已核4.0、5.0、6.0、7.0字段对更新Value/Scale在1ms内反映到LTR消息使用强烈建议，而不是一项额外硬性响应超时。3.0所核Max字段已存在，未把后期新增建议倒写进旧正文。"
+        ],
+        "referenceIndices": [
+          29,
+          30,
+          31,
+          32,
+          33,
+          34
+        ]
+      },
+      {
+        "id": "r93-ltr-service-latency",
+        "title": "Read等待Completion，Posted背压等待信用：LTR不是同一个计时器",
+        "paragraphs": [
+          "已核定义中，NP请求从请求最后符号发出到首个Completion的首符号到达；Posted流量只有因FC背压无法继续时，按前一Posted包最后符号到使其可继续的返还信用DLLP首符号计。它们不是应用完成时间或DMA总耗时。",
+          "Clock PM使用时，assert CLKREQ#到有效时钟的等待也是平台需考虑的部分。Endpoint内部准备和Link恢复不能被错误当成平台承诺；LTR表达容忍度，RC被强烈鼓励满足，不是无条件的最坏延迟保证。"
+        ],
+        "referenceIndices": [
+          35,
+          36,
+          37
+        ]
+      },
+      {
+        "id": "r93-ltr-aggregation-equations",
+        "title": "MFD取最紧预算，Switch再扣自身延迟；两类流量独立计算",
+        "paragraphs": [
+          "MFD对每类流量分别取各Function要求的最小值，snoop与no-snoop最小值可以来自不同Function。完全无要求的一类应清Requirement；内部变化使合成值改变时需重新报告。",
+          "Switch只收集已使能端口的当前预算。记最小有效下行预算为Lmin，自身引入延迟为Lswitch，则上行预算为max(Lmin−Lswitch,0)；结果为0时Value和Scale都归0。不是把所有预算相加，也不是简单转发最后到达者。"
+        ],
+        "referenceIndices": [
+          38,
+          39,
+          40,
+          41
+        ]
+      },
+      {
+        "id": "r93-ltr-invalid-and-mode-limits",
+        "title": "Switch最小值中的∞、0与动态20%限制必须分清",
+        "paragraphs": [
+          "Switch计算Lmin时，Requirement=0或Scale不允许的字段按∞处理；Requirement=1且Value=0则为0，不论Scale的数值。对非法Scale的接收处理规则不是允许Endpoint主动发送非法编码。",
+          "动态运行模式引入的Lswitch不得超过Lmin的20%，最低延迟模式本身仍更大时使用最低延迟状态。本站聚合查询只演示固定输入的算式，不判断真实模式可用性；全部候选都非法时保留无法形成有效输出的提示，不擅自生成包。"
+        ],
+        "referenceIndices": [
+          38,
+          39,
+          40,
+          41
+        ]
+      },
+      {
+        "id": "r93-ltr-retire-reestablish",
+        "title": "预算也有生命周期：进非D0撤销、DL_Down失效、回D0重建",
+        "paragraphs": [
+          "在本次DL_Down→DL_Up周期内，若最后报告任一Requirement=1，PMCSR写入要求进入非D0前须先发两项Requirement均清零的LTR。软件配置写清Enable也有撤销要求；不能只停止发包却让上游永远保留旧预算。",
+          "DSP DL_Down使旧记录失效，Enable也回0；DSP清Enable同样使其记录失效。由此改变合成预算时Switch需更新上行报告。7.0还建议设备回到D0后重新报告，并建议需求改变时更新；这些恢复建议不要误写成重新训练链路的充分条件。"
+        ],
+        "referenceIndices": [
+          42,
+          43,
+          44,
+          45
+        ]
+      },
+      {
+        "id": "r93-ltr-flr-strength-version",
+        "title": "FLR撤销要求逐版有强度差异；先确认Enable到底有没有被清",
+        "paragraphs": [
+          "5.0所核6.18对FLR清Enable后的撤销报告使用强烈建议；6.0/7.0使用MUST@FLIT。此标记按规范的Flit支持能力条件理解，不以当前链路速率或此刻是否FM来替代。",
+          "若实现了有效的跨FLR保留能力，F0 FLR不清Enable，不能继续机械套用“Enable被FLR清零”这个前提。保留Enable也不代表保留任意Function/DMA状态，更不是FLR不发生。"
+        ],
+        "referenceIndices": [
+          42,
+          43,
+          44,
+          45
+        ]
+      },
+      {
+        "id": "r93-ltr-flr-version-map",
+        "title": "版本2能力与跨FLR位：Base7.0是+08h[1]，本地ECN副本是[0]",
+        "paragraphs": [
+          "正式Base7.0要求实现LTR Capabilities时Header Version=2，否则为1；版本≥2才有+08h。7.0表7-141和图7-158均将LTR Enable Preserved Across FLR定义在bit1，bit0保留；该位为HwInit，FLR Capability=0时为RsvdP。",
+          "该位为1时F0的LTR Enable不受F0 FLR影响；为0或寄存器不存在时受FLR影响。本地2025-05-29 ECN副本表/图却使用bit0，官网列2025-06-11且底本6.3。两份不能混用；本轮没有取得官网最终下载件或勘误链，因此不宣称本地bit0适用于正式7.0。"
+        ],
+        "referenceIndices": [
+          46,
+          47,
+          48,
+          49
+        ],
+        "table": {
+          "columns": [
+            "来源",
+            "发现/位号",
+            "本轮可下的结论"
+          ],
+          "rows": [
+            [
+              "Base6.0",
+              "Version1；无LTR+08h",
+              "不得从相邻扩展能力读出保留标志"
+            ],
+            [
+              "Base7.0",
+              "Version≥2有+08h；bit1",
+              "按本版图/表解释；bit0为保留"
+            ],
+            [
+              "本地2025-05-29 ECN",
+              "增设版本2；bit0",
+              "仅作差异证据；不代替官网最终版或Base7.0"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "r93-ltr-update-ordering",
+        "title": "2条/500μs不是丢包许可；RC何时采用新预算也有边界",
+        "paragraphs": [
+          "Endpoint在任意500μs内不超过两条LTR是强烈建议，并有规范要求发送的例外。接收者不得仅因超出这个频度报错，而且必须处理所有LTR，不能把建议实现成强制丢弃。",
+          "已核5.0/6.0/7.0规则要求RC在服务后续请求前理解更新，且新值生效不晚于旧预算给出的时间；允许更早生效。与Max寄存器更新在1ms内反映的强烈建议是两件事。"
+        ],
+        "referenceIndices": [
+          50,
+          51,
+          52,
+          53
+        ]
+      },
+      {
+        "id": "r93-ltr-field-query",
+        "title": "查询：同一个16bit数值作为消息或Max寄存器有什么不同？",
+        "paragraphs": [
+          "输入十六进制16bit字段并选择消息/Max。工具列Value、Scale、Requirement是否存在、保留位和纳秒换算；不会生成寄存器写值或判断实际平台服务是否满足预算。"
+        ],
+        "referenceIndices": [
+          22,
+          23,
+          24,
+          15,
+          16
+        ]
+      },
+      {
+        "id": "r93-ltr-aggregate-query",
+        "title": "查询：两Function或两下行端口怎样合成snoop/no-snoop预算？",
+        "paragraphs": [
+          "输入A/B两组消息字段和固定Switch延迟。MFD不接受所选Requirement=1且Scale非法的贡献者；Switch单独展示∞忽略规则。两种模式分开，结果是数值预算，未量化成可发送字段，也未模拟端口Enable/失效状态机。"
+        ],
+        "referenceIndices": [
+          38,
+          39,
+          40,
+          41
+        ]
+      },
+      {
+        "id": "r93-ltr-version-summary",
+        "title": "本轮版本核读边界与后续验收项",
+        "paragraphs": [
+          "2008 ECN及3.0修订历史可定位起源/2.1合入；3.0和4.0核选定能力头与Max字段，5.0～7.0核本组机制和字段。尚未逐项比较1.x/2.x正文和3.0/4.0完整机制，不把版本表空白写成“行为相同”。",
+          "LTR与L1.2/CLKREQ的依赖复用功能87/88的已有正文；下一轮继续核功耗关联。2025 ECN本地副本与Base7.0位号不同的接受/合入链仍待核，但当前页面按正式7.0提供明确解码，不输出混合版本的编程建议。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          29,
+          30,
+          46,
+          47,
+          48,
+          49
         ]
       }
     ]

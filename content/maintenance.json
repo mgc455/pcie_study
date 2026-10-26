@@ -1,8 +1,9 @@
 {
   "nextFeatureIds": [
+    87,
+    88,
     89,
     59,
-    87,
     85,
     36,
     38,
@@ -54,9 +55,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-26",
-    "edition": "2026-10-26-r92",
-    "featureIds": [],
-    "nextTrack": "R93：固定任务10中的LTR/PME验收与补缺；R94按收尾计划总结。"
+    "edition": "2026-10-26-r93",
+    "featureIds": [
+      89,
+      59
+    ],
+    "nextTrack": "R94：功耗关联验收与四轮收尾总结。"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -327,11 +331,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 34,
+    "completedTotal": 35,
     "lastReviewEdition": "2026-10-26-r90",
     "lastReviewId": "r87-r90",
     "nextExpectedReview": "R94（R91～R94收尾进展总结）"
@@ -1007,9 +1011,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 2,
-    "remainingPlannedRounds": 46,
-    "nextRound": 93,
+    "completedRounds": 3,
+    "remainingPlannedRounds": 45,
+    "nextRound": 94,
     "nextReviewRound": 94,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -4950,9 +4954,19 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 93,
+            "evidence": [
+              {
+                "href": "#feature/59/detail/pme-wakeup-versus-message",
+                "label": "唤醒资源与报告来源分两步：WAKE#/Beacon不是PM_PME包"
+              },
+              {
+                "href": "#feature/59/detail/r93-pme-ltr-enable-domains",
+                "label": "LTR Enable、来源PME_En与Root中断使能属于三条不同控制链"
+              }
+            ],
+            "note": "复用已有PME用途/状态/通知解释和稳定查询入口，核来源PMCSR、Root通知及新增LTR对照；未因此接受早期全版本或全部状态语义。"
           },
           "mechanism": {
             "status": "pending",
@@ -4980,9 +4994,23 @@
             "note": "待逐项验收；适用性须人工确认。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 93,
+            "evidence": [
+              {
+                "href": "#feature/59/detail/pme-delivery-state-query",
+                "label": "原创图与查询：按当前态/事件查看PME传递动作"
+              },
+              {
+                "href": "#feature/59/detail/pme-native-register-query",
+                "label": "查询：来源与Root状态解码、INTx电平和MSI组合边沿"
+              },
+              {
+                "href": "#feature/59/detail/r93-pme-ltr-enable-domains",
+                "label": "LTR Enable、来源PME_En与Root中断使能属于三条不同控制链"
+              }
+            ],
+            "note": "复用已有PME用途/状态/通知解释和稳定查询入口，核来源PMCSR、Root通知及新增LTR对照；未因此接受早期全版本或全部状态语义。"
           },
           "consistency": {
             "status": "pending",
@@ -4996,7 +5024,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R93复核用途与导航2项；其余维度保留待核，已有32个详细块不重写。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
@@ -6856,44 +6884,120 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 93,
+            "evidence": [
+              {
+                "href": "#feature/89/detail/r93-ltr-origin",
+                "label": "LTR不是“Gen3起才有”：2008 ECN与Base2.1合入记录"
+              },
+              {
+                "href": "#feature/89/detail/r93-ltr-service-latency",
+                "label": "Read等待Completion，Posted背压等待信用：LTR不是同一个计时器"
+              }
+            ],
+            "note": "R93按所列原创正文/位表与直接来源核对本项要求；不将此维度通过推成七代全部条款完成。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 93,
+            "evidence": [
+              {
+                "href": "#feature/89/detail/r93-ltr-discovery-enable",
+                "label": "先发现路径支持，再从Root向下使能：Supported与Enable分开"
+              },
+              {
+                "href": "#feature/89/detail/r93-ltr-aggregation-equations",
+                "label": "MFD取最紧预算，Switch再扣自身延迟；两类流量独立计算"
+              },
+              {
+                "href": "#feature/89/detail/r93-ltr-retire-reestablish",
+                "label": "预算也有生命周期：进非D0撤销、DL_Down失效、回D0重建"
+              }
+            ],
+            "note": "R93按所列原创正文/位表与直接来源核对本项要求；不将此维度通过推成七代全部条款完成。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 93,
+            "evidence": [
+              {
+                "href": "#feature/89/detail/r93-ltr-capability-map",
+                "label": "扩展能力0018h：Max寄存器在+04h/+06h，RP不必有这张表"
+              },
+              {
+                "href": "#feature/89/detail/r93-ltr-message-versus-max-bits",
+                "label": "两种16bit字段：消息有Requirement，Max寄存器没有"
+              },
+              {
+                "href": "#feature/89/detail/r93-ltr-packet-position",
+                "label": "LTR是无Payload的Msg：16Byte基础布局中的最后两个半字"
+              }
+            ],
+            "note": "R93按所列原创正文/位表与直接来源核对本项要求；不将此维度通过推成七代全部条款完成。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 93,
+            "evidence": [
+              {
+                "href": "#feature/89/detail/r93-ltr-invalid-and-mode-limits",
+                "label": "Switch最小值中的∞、0与动态20%限制必须分清"
+              },
+              {
+                "href": "#feature/89/detail/r93-ltr-flr-strength-version",
+                "label": "FLR撤销要求逐版有强度差异；先确认Enable到底有没有被清"
+              },
+              {
+                "href": "#feature/89/detail/r93-ltr-update-ordering",
+                "label": "2条/500μs不是丢包许可；RC何时采用新预算也有边界"
+              }
+            ],
+            "note": "R93按所列原创正文/位表与直接来源核对本项要求；不将此维度通过推成七代全部条款完成。"
           },
           "versions": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "保留待核：本轮已证实2008ECN/2.1合入和3/4能力字段、5/6/7本组机制，但1.x/2.x正文及3/4完整机制未逐项对照，不能宣告所有适用版本通过。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 93,
+            "evidence": [
+              {
+                "href": "#feature/89/detail/r93-ltr-origin",
+                "label": "LTR不是“Gen3起才有”：2008 ECN与Base2.1合入记录"
+              },
+              {
+                "href": "#feature/89/detail/r93-ltr-flr-version-map",
+                "label": "版本2能力与跨FLR位：Base7.0是+08h[1]，本地ECN副本是[0]"
+              }
+            ],
+            "note": "R93按所列原创正文/位表与直接来源核对本项要求；不将此维度通过推成七代全部条款完成。字段按正式Base6/7，本地ECN差异另列。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 93,
+            "evidence": [
+              {
+                "href": "#feature/89/detail/r93-ltr-field-query",
+                "label": "查询：同一个16bit数值作为消息或Max寄存器有什么不同？"
+              },
+              {
+                "href": "#feature/89/detail/r93-ltr-aggregate-query",
+                "label": "查询：两Function或两下行端口怎样合成snoop/no-snoop预算？"
+              },
+              {
+                "href": "#feature/89/detail/r93-ltr-version-summary",
+                "label": "本轮版本核读边界与后续验收项"
+              }
+            ],
+            "note": "R93按所列原创正文/位表与直接来源核对本项要求；不将此维度通过推成七代全部条款完成。"
           },
           "consistency": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "保留待核：本地2025-05-29 ECN bit0与正式7.0 bit1已明确分开；官网最终下载件/接受或勘误链未取得。7.0页面按正式bit1，不混用。"
           }
         },
         "baseline": {
@@ -6902,7 +7006,7 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R93已有6个适用验收维度通过；版本和交叉核对仍待完成，功能未整项验收。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
@@ -13021,6 +13125,57 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "R93先执行v1-task-10中的LTR/PME具体字段与使能路径，R94继续功耗依赖并总结。24项任务均未因归类而通过；183项继续按八维证据验收。",
         "publication": "构建/检查/发布与线上抽查另记证据。"
+      },
+      {
+        "round": 93,
+        "kind": "content-acceptance",
+        "deliverables": [
+          "补LTR机制/字段/包位置/生命周期及版本来源，保留旧ID",
+          "新增2项只读查询和3张原创字段位图",
+          "LTR6项、PME2项验收维度通过；版本/交叉核对未假定完成"
+        ],
+        "closedDeliverableIds": [
+          "ltr-core-fields-and-mechanism",
+          "ltr-read-only-queries"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 89,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 89,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 89,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 89,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 89,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 89,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 59,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 59,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "R94继续任务10的L1SS/LTR/PME恢复与预算依赖，并完成R91～R94四轮总结；不把新发现位号差异另计一轮。",
+        "publication": "构建/测试/发布与线上抽查另记证据。"
       }
     ],
     "backlog": [
@@ -13051,7 +13206,7 @@
       "status": "triaged-r92",
       "triagedCount": 117,
       "requiredTaskCount": 24,
-      "conflictQuestionCount": 37,
+      "conflictQuestionCount": 38,
       "boundaryOnlyCount": 14,
       "classificationCounts": {
         "required-gap": 102,
@@ -13059,7 +13214,7 @@
         "process-guardrail": 4,
         "partially-superseded": 1
       },
-      "note": "117条历史记录全部保留并可回溯；归并成24项固定验收任务（21个功能分组完整划分183项，另3项跨版本/来源/最终复核）。37项冲突是其中待核问题，不额外扩成37轮。归类不等于协议问题已解决。"
+      "note": "R92原37项疑点保留，R93在既有LTR版本/FLR缺口内补充1项有正文证据的位号差异，现38项。仍属固定24项任务，不自动增加轮次。"
     },
     "requiredTasks": [
       {
@@ -13352,7 +13507,45 @@
           91
         ],
         "evidence": [],
-        "closedRound": null
+        "closedRound": null,
+        "progress": {
+          "round": 93,
+          "passedCriteria": [
+            {
+              "featureId": 89,
+              "criterionId": "purpose"
+            },
+            {
+              "featureId": 89,
+              "criterionId": "mechanism"
+            },
+            {
+              "featureId": 89,
+              "criterionId": "structure"
+            },
+            {
+              "featureId": 89,
+              "criterionId": "exceptions"
+            },
+            {
+              "featureId": 89,
+              "criterionId": "sources"
+            },
+            {
+              "featureId": 89,
+              "criterionId": "navigation"
+            },
+            {
+              "featureId": 59,
+              "criterionId": "purpose"
+            },
+            {
+              "featureId": 59,
+              "criterionId": "navigation"
+            }
+          ],
+          "remaining": "LTR版本/交叉核对，以及任务10其它功能的验收仍待完成；R94继续L1SS/LTR/PME的恢复依赖。"
+        }
       },
       {
         "id": "v1-task-11",
@@ -14260,6 +14453,24 @@
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
         "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
         "evidence": []
+      },
+      {
+        "id": "v1-conflict-38",
+        "title": "LTR保留跨FLR位：本地2025 ECN bit0与正式Base7.0 bit1",
+        "taskId": "v1-task-23",
+        "legacyRecordIndices": [
+          24
+        ],
+        "status": "needs-corroboration",
+        "raisedRound": 93,
+        "impact": "正式Base7.0图/表均为bit1，页面已按其解释；本地May29副本bit0不适用于该版。最终ECN副本及接受/勘误链仍待确认，保持版本/交叉验收未通过。",
+        "nextAction": "在后续来源核对任务取得官网最终ECN正文，或有明确版本说明的官方发布/勘误；不根据FINAL文件名或目录日期裁定bit0/bit1变更原因。",
+        "evidence": [
+          {
+            "href": "#feature/89/detail/r93-ltr-flr-version-map",
+            "label": "逐版本位号与来源边界"
+          }
+        ]
       }
     ],
     "legacyTriage": [
@@ -14644,7 +14855,9 @@
         "contextTaskIds": [
           "v1-task-10"
         ],
-        "conflictIds": [],
+        "conflictIds": [
+          "v1-conflict-38"
+        ],
         "disposition": "提取所列任务中的必需内容/版本/来源问题；原记录内实机验证和有限模型说明另作边界，不把整条记录当成单一未完成任务。"
       },
       {
@@ -16184,16 +16397,18 @@
       }
     ],
     "nextExecution": {
-      "round": 93,
+      "round": 94,
       "taskId": "v1-task-10",
       "featureIds": [
+        87,
+        88,
         89,
         59,
-        87,
         85
       ],
-      "goal": "先验收既有LTR/PME正文并补必需字段/聚合/通知前提；不重写已充分的L1SS路径。",
+      "goal": "验收L1SS/LTR/PME之间的使能、撤钟和恢复预算依赖，优先复用已有正文；完成R91～R94四轮收尾总结。",
       "reviewRound": 94
-    }
+    },
+    "initialConflictQuestionCount": 37
   }
 }

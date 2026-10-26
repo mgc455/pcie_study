@@ -26,7 +26,7 @@ for f in features:
         doc=documents_by_id[ref['documentId']]
         assert ref['version']==doc['version'] and 1<=ref['pdfPage']<=doc['pages']
         assert isinstance(ref['page'],int) and ref['page']>=1
-        assert re.fullmatch(r'(?:\d+(?:\.\d+)*|Glossary|Revision History)',ref['section'])
+        assert re.fullmatch(r'(?:\d+(?:\.\d+)*|Glossary|Revision History)',ref['section']) or doc.get('kind')=='ecn' and re.fullmatch(r'(?:Part I|Part II|(?:\d+|x+)(?:\.(?:\d+|x+))*)',ref['section']), 'Use actual ECN headings without inventing Base sections'
         assert ref['url']==doc['url']
 # Packet figures must account for every depicted bit, including short final rows.
 packet_ids=set()
@@ -179,6 +179,11 @@ if 'releasePlan' in m:
             assert review['status'] in {'pending','passed','not-applicable','blocked'}
             if review['status'] in {'passed','not-applicable'}:
                 assert review['evidence'] and review['note'], 'Acceptance needs explicit evidence/reason'
+                for e in review['evidence']:
+                    assert isinstance(e,dict) and e.get('href') and e.get('label'), 'Acceptance evidence must be navigable'
+                    if e['href'].startswith('#feature/'):
+                        parts=e['href'].split('/');target=features_by_id[int(parts[1])]
+                        if len(parts)>3:assert any(d.get('id')==parts[3] for d in target.get('details',[])), 'Dead acceptance evidence link'
         if u['status'] in {'accepted','merged-accepted'}:
             assert all(r['status'] in {'passed','not-applicable'} for r in u['criterionReviews'].values())
         if u['status']=='merged-accepted':assert u.get('mergeTargets') and u.get('uniqueSemanticsReviewed')
@@ -206,7 +211,9 @@ if 'releasePlan' in m:
         assert len(plan['legacyTriage'])==len(history)==117
         assert sorted(r['sourceIndex'] for r in plan['legacyTriage'])==list(range(len(history)))
         conflictIds={x['id'] for x in plan['conflictRegister']}
-        assert len(conflictIds)==len(plan['conflictRegister'])==37
+        assert len(conflictIds)==len(plan['conflictRegister'])>=plan.get('initialConflictQuestionCount',37)
+        assert {f'v1-conflict-{i:02d}' for i in range(1,38)}<=conflictIds, 'Keep all R92 source questions'
+        assert plan['auditMigration']['conflictQuestionCount']==len(conflictIds)
         for r in plan['legacyTriage']:
             assert r['sourceSha256']==hashlib.sha256(history[r['sourceIndex']].encode()).hexdigest(), 'Lost or rewritten legacy gap'
             assert set(r['taskIds']+r['contextTaskIds'])<=taskIds and r['contextTaskIds'] and r['disposition']
