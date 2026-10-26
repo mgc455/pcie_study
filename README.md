@@ -511,3 +511,7 @@ R92将117条历史记录归并为固定24项验收任务，并登记37项来源�
 ## R99 消息分组批验
 
 [VDM包图与字段](https://mgc455.github.io/pcie_study/#feature/58/detail/r99-vdm-header-fields) · [错误消息/ECS](https://mgc455.github.io/pcie_study/#feature/60/detail/r99-err-message-fields) · [就绪通知字段](https://mgc455.github.io/pcie_study/#feature/61/detail/r99-drs-control-frs-queue)。57/58/60完整通过，累计11/183、157维度；61版本/RTR示例差异保留。R98队列60/61名称错位已在本轮纠正，余39轮为预算，R102总结；每日任务暂停。
+
+## R100 功耗版本批验
+
+[L1SS版本表](https://mgc455.github.io/pcie_study/#feature/87/detail/r100-l1ss-revision-contract) · [Clock PM版本表](https://mgc455.github.io/pcie_study/#feature/88/detail/r100-clockpm-revision-contract) · [RTR勘误边界](https://mgc455.github.io/pcie_study/#feature/61/detail/r100-rtr-errata-boundary)。87/88验收，累计13/183、163维度；61/89各剩一项来源一致性问题。余38轮仍为预算，R102总结，每日任务暂停。

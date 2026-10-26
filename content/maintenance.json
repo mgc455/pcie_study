@@ -1,9 +1,9 @@
 {
   "nextFeatureIds": [
-    61,
-    87,
-    88,
-    89
+    84,
+    85,
+    86,
+    90
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -50,14 +50,14 @@
   ],
   "lastCompleted": {
     "date": "2026-10-26",
-    "edition": "2026-10-26-r99",
+    "edition": "2026-10-26-r100",
     "featureIds": [
-      57,
-      58,
-      60,
-      61
+      61,
+      87,
+      88,
+      89
     ],
-    "nextTrack": "R100先核61剩余，然后功耗；R102总结"
+    "nextTrack": "R101功耗成熟条目批验；R102总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -347,11 +347,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 1,
-    "nextReviewAfterRounds": 3,
+    "completedSinceReview": 2,
+    "nextReviewAfterRounds": 2,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 41,
+    "completedTotal": 42,
     "lastReviewEdition": "2026-10-26-r98",
     "lastReviewId": "r95-r98",
     "nextExpectedReview": "R102（R99～R102四轮总结）"
@@ -1199,9 +1199,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 9,
-    "remainingPlannedRounds": 39,
-    "nextRound": 100,
+    "completedRounds": 10,
+    "remainingPlannedRounds": 38,
+    "nextRound": 101,
     "nextReviewRound": 102,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -6561,9 +6561,19 @@
             "note": "R99核本条所列正式正文/图表，复用相应路由、AER和复位专章，补消息独有字段与必须/可选边界；不把目录、段落数或上层私有协议当验收依据。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "R99待核：3.1/3.1a及4/5/7完整RN/RTR正文与FRS角色/字段差异；6.0 80Ah示例与Value×32^Scale ns公式不一致，必须回图并核其它正式版/勘误，不因已补字段就通过。"
+            "status": "passed",
+            "reviewedRound": 100,
+            "evidence": [
+              {
+                "href": "#feature/61/detail/r100-rn-version-contract",
+                "label": "RN逐版契约：3.1合入、6/7的MUST@FLIT、勘误与VF限制"
+              },
+              {
+                "href": "#feature/61/detail/r100-rtr-errata-boundary",
+                "label": "RTR数值复核：B235修正编码，80Ah的毫秒示例仍不自洽"
+              }
+            ],
+            "note": "R100按所列正式修订正文/ECN/勘误核对版本契约，复用现有充分的字段和机制；未按链路速率推断能力，未宣告未读独立修订全部相同。"
           },
           "sources": {
             "status": "passed",
@@ -6606,7 +6616,7 @@
           "consistency": {
             "status": "pending",
             "evidence": [],
-            "note": "R99待核：3.1/3.1a及4/5/7完整RN/RTR正文与FRS角色/字段差异；6.0 80Ah示例与Value×32^Scale ns公式不一致，必须回图并核其它正式版/勘误，不因已补字段就通过。"
+            "note": "R100版本维度已通过；仅保留RTR80Ah旁注与倍率表不一致，B235未解决毫秒数。后续定向核官方澄清，不重复核整个RN。"
           }
         },
         "baseline": {
@@ -6615,7 +6625,7 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "核心六维通过；所列6/7选段不是完整逐版验收，RTR公式与80Ah示例不一致仍待正式交叉证据。",
+        "reviewNote": "R100核心与版本7维已通过，仅RTR示例数值一致性待官方澄清；任务06仍开放。",
         "taskId": "v1-task-06",
         "requiredTaskIds": [
           "v1-task-06",
@@ -8236,7 +8246,7 @@
         "featureId": 87,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -8319,9 +8329,15 @@
             "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
+            "status": "passed",
+            "reviewedRound": 100,
+            "evidence": [
+              {
+                "href": "#feature/87/detail/r100-l1ss-revision-contract",
+                "label": "L1SS不是“Gen4起才有”：ECN、Version1/2与旧时序表对照"
+              }
+            ],
+            "note": "R100按所列正式修订正文/ECN/勘误核对版本契约，复用现有充分的字段和机制；未按链路速率推断能力，未宣告未读独立修订全部相同。"
           },
           "sources": {
             "status": "passed",
@@ -8362,9 +8378,15 @@
             "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
+            "status": "passed",
+            "reviewedRound": 100,
+            "evidence": [
+              {
+                "href": "#feature/87/detail/r100-l1ss-revision-contract",
+                "label": "L1SS不是“Gen4起才有”：ECN、Version1/2与旧时序表对照"
+              }
+            ],
+            "note": "R100对照早期ECN、正式3.1/4/5与已核6/7，区分Version1/2、CLKREQ#独立控制和ARI规则；已检查相关旧说明，所列范围未发现尚未解释的冲突。"
           }
         },
         "baseline": {
@@ -8373,21 +8395,22 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R94以复用旧正文完成所列验收维度；剩余维度见本项台账，未自动接受整项。",
+        "reviewNote": "R100完成剩余版本/一致性；机制与精确时序复用已有稳定块，不重复扩写。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 100
       },
       {
         "id": "v1-feature-88",
         "featureId": 88,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -8458,9 +8481,15 @@
             "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
+            "status": "passed",
+            "reviewedRound": 100,
+            "evidence": [
+              {
+                "href": "#feature/88/detail/r100-clockpm-revision-contract",
+                "label": "Clock PM逐版：1.0a保留位、2.0已有bit18/bit8、ARI和L1SS独立控制"
+              }
+            ],
+            "note": "R100按所列正式修订正文/ECN/勘误核对版本契约，复用现有充分的字段和机制；未按链路速率推断能力，未宣告未读独立修订全部相同。"
           },
           "sources": {
             "status": "passed",
@@ -8493,9 +8522,15 @@
             "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
+            "status": "passed",
+            "reviewedRound": 100,
+            "evidence": [
+              {
+                "href": "#feature/88/detail/r100-clockpm-revision-contract",
+                "label": "Clock PM逐版：1.0a保留位、2.0已有bit18/bit8、ARI和L1SS独立控制"
+              }
+            ],
+            "note": "R100对照早期ECN、正式3.1/4/5与已核6/7，区分Version1/2、CLKREQ#独立控制和ARI规则；已检查相关旧说明，所列范围未发现尚未解释的冲突。"
           }
         },
         "baseline": {
@@ -8506,14 +8541,15 @@
           "clock-reset"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R94以复用旧正文完成所列验收维度；剩余维度见本项台账，未自动接受整项。",
+        "reviewNote": "R100完成剩余版本/一致性；机制与精确时序复用已有稳定块，不重复扩写。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 100
       },
       {
         "id": "v1-feature-89",
@@ -8595,9 +8631,15 @@
             "note": "R93按所列原创正文/位表与直接来源核对本项要求；不将此维度通过推成七代全部条款完成。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "保留待核：本轮已证实2008ECN/2.1合入和3/4能力字段、5/6/7本组机制，但1.x/2.x正文及3/4完整机制未逐项对照，不能宣告所有适用版本通过。"
+            "status": "passed",
+            "reviewedRound": 100,
+            "evidence": [
+              {
+                "href": "#feature/89/detail/r100-ltr-early-version-contract",
+                "label": "LTR旧版正文对照：服务延迟与FLR撤销措辞已有演进"
+              }
+            ],
+            "note": "R100按所列正式修订正文/ECN/勘误核对版本契约，复用现有充分的字段和机制；未按链路速率推断能力，未宣告未读独立修订全部相同。"
           },
           "sources": {
             "status": "passed",
@@ -8636,7 +8678,7 @@
           "consistency": {
             "status": "pending",
             "evidence": [],
-            "note": "保留待核：本地2025-05-29 ECN bit0与正式7.0 bit1已明确分开；官网最终下载件/接受或勘误链未取得。7.0页面按正式bit1，不混用。"
+            "note": "R100旧版机制与版本维度通过；2025 ECN bit0与正式7.0 bit1来源链仍待官方裁决，不降低验收标准。"
           }
         },
         "baseline": {
@@ -8645,7 +8687,7 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "R93已有6个适用验收维度通过；版本和交叉核对仍待完成，功能未整项验收。",
+        "reviewNote": "R100核心与版本7维通过，仅2025 ECN与正式7.0 FLR位号来源链阻塞一致性；未完整验收。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
@@ -15865,6 +15907,52 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "任务06仍余61的版本/一致性，含RTR公式与80Ah示例差异。R100优先核已有正式版本和勘误，再批验功耗成熟条目；R102总结，固定范围不扩。",
         "publication": "发布、线上版本与视觉结果以实际记录为准。"
+      },
+      {
+        "round": 100,
+        "kind": "readiness-errata-and-power-version-acceptance",
+        "deliverables": [
+          "回看RTR原图与3.1a B235/B276，完成RN版本表但保留数值矛盾",
+          "L1SS/Clock PM版本契约及交叉核对；87/88验收",
+          "补LTR旧版机制演进；61/89各仅剩一致性"
+        ],
+        "closedDeliverableIds": [
+          "l1ss-v1-accepted",
+          "clockpm-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 61,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 87,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 87,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 88,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 88,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 89,
+            "criterionId": "versions"
+          }
+        ],
+        "acceptedUnitIds": [
+          87,
+          88
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "61 RTR数值及89 LTR ECN位号继续定向核查；不阻塞其它成熟功能批验。R101推进84/85/86/90，R102总结，固定范围不扩大。",
+        "publication": "以实际发布记录为准；不将本地检查当线上发布成功。"
       }
     ],
     "backlog": [
@@ -16092,8 +16180,8 @@
         "evidence": [],
         "closedRound": null,
         "progress": {
-          "round": 99,
-          "newPassedCriteria": 28,
+          "round": 100,
+          "newPassedCriteria": 1,
           "acceptedUnitIds": [
             52,
             53,
@@ -16104,7 +16192,7 @@
             58,
             60
           ],
-          "remaining": "61版本/一致性及RTR数值示例差异待核，分组尚未关闭。"
+          "remaining": "仅61 RTR数值一致性待官方澄清；RN版本已核，不重复整套机制。"
         },
         "reviewFindings": [
           {
@@ -16112,11 +16200,10 @@
             "featureId": 61,
             "status": "needs-corroboration",
             "blockingCriteria": [
-              "versions",
               "consistency"
             ],
-            "href": "#feature/61/detail/r99-rtr-time-fields",
-            "note": "新发现的RTR公式/示例差异归入既有功能61验收，不新增功能或额外轮次；38条历史来源问题登记保持原样。"
+            "href": "#feature/61/detail/r100-rtr-errata-boundary",
+            "note": "B235确认40Ah改80Ah，但后续正式版仍保留与编码表不符的毫秒旁注；未裁决，不新增范围。"
           }
         ]
       },
@@ -16237,10 +16324,13 @@
         "evidence": [],
         "closedRound": null,
         "progress": {
-          "round": 94,
-          "passedCriteriaThisRound": 15,
-          "cumulativeWindowCriteria": 23,
-          "remaining": "功耗组的版本/全范围交叉核对及其它条目仍待验收；成熟机制/字段先复用。任务10未因阶段总结关闭。"
+          "round": 100,
+          "newPassedCriteria": 5,
+          "acceptedUnitIds": [
+            87,
+            88
+          ],
+          "remaining": "89仅余2025 ECN位号来源链；其它功耗条目继续批验，任务分组尚未关闭。"
         }
       },
       {
@@ -19116,34 +19206,34 @@
       }
     ],
     "nextExecution": {
-      "round": 100,
-      "taskId": "v1-task-06",
+      "round": 101,
+      "taskId": "v1-task-10",
       "featureIds": [
-        61,
-        87,
-        88,
-        89
+        84,
+        85,
+        86,
+        90
       ],
-      "goal": "先核61正式RN/RTR版本与80Ah示例矛盾，若证据齐备关闭消息任务06；再集中批验已有功耗87/88/89的剩余版本/一致性，缺口留在原任务内。",
+      "goal": "复用成熟84 D-state、85 Link states、86 ASPM、90 OBFF，批验版本/一致性与真实缺口；61/89定向来源问题保留，不整轮重复。R102做四轮总结。",
       "reviewRound": 102
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 99,
+      "assessedRound": 100,
       "reestimateRound": 102,
-      "assessment": "R99完整功能新增3项累计11/183，剩172项；28新维度累计157。39轮仍是预算，本轮3项低于当前所需约4.41项/轮，R138仍有风险；不把61核心补写当完整收口。",
-      "action": "R100先补消息分组唯一未验项61，再集中功耗成熟条目；来源共享、只有实际缺口才补正文。R102按完整关闭量总结，不自动延长目标。",
+      "assessment": "R100新增完整87/88两项，累计13/183；新6维度累计163，余170项/38轮预算。当前关闭速度仍低于目标所需，R138有风险；保留61/89来源问题而不重复扩写。",
+      "action": "R101优先批验成熟功耗条目；R102按实际完整关闭量调整优先级，不自动扩范围或延长目标。",
       "latestProgress": {
-        "round": 99,
-        "newAcceptedUnits": 3,
-        "cumulativeAcceptedUnits": 11,
-        "newPassedCriteria": 28,
-        "cumulativePassedCriteria": 157,
-        "remainingPlannedRounds": 39
+        "round": 100,
+        "newAcceptedUnits": 2,
+        "cumulativeAcceptedUnits": 13,
+        "newPassedCriteria": 6,
+        "cumulativePassedCriteria": 163,
+        "remainingPlannedRounds": 38
       },
       "observedAcceptedUnitsPerRound": 2,
-      "requiredAcceptedUnitsPerRemainingRound": 4.410256410256411,
+      "requiredAcceptedUnitsPerRemainingRound": 4.473684210526316,
       "linearExtrapolationRounds": 88
     },
     "reviewWindows": [
