@@ -1,17 +1,19 @@
 {
   "nextFeatureIds": [
-    103,
-    104,
-    177,
+    87,
+    89,
+    59,
+    85,
+    36,
+    38,
+    41,
+    48,
+    172,
+    170,
     114,
-    111,
-    141,
-    33,
-    173,
-    27,
-    28,
-    29,
-    31
+    177,
+    103,
+    104
   ],
   "perRunTarget": "每轮围绕2～3个完整主题补缺口，按证据与复核成本控制范围；不机械递增细节条数，优先可发布、可复查。",
   "priorities": [
@@ -57,13 +59,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-26",
-    "edition": "2026-10-26-r89",
+    "edition": "2026-10-26-r90",
     "featureIds": [
-      173,
-      174,
-      177
+      103,
+      104
     ],
-    "nextTrack": "窗口3/4：产品CDR、持续校准/适应与锁定来源/时间坐标；下一轮错误取证并做R90阶段汇总。"
+    "nextTrack": "R87～R90完成并阶段复盘；下一窗口L1SS/LTR/PME → 枚举/BAR → PHY训练轮换，R94复盘。"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -294,7 +295,7 @@
     },
     {
       "title": "7. R87～R90：FC/VC → 事务排序/原子性 → PHY均衡/错误轮换",
-      "status": "R87 FC、R88排序/IDO、R89产品CDR证据完成，窗口3/4",
+      "status": "R87～R90选定主题完成并复盘",
       "featureIds": [
         111,
         114,
@@ -309,22 +310,124 @@
         103,
         104
       ],
-      "remaining": "R90错误取证与阶段复盘；保留PHY完整锁定状态机、真实配置/模拟结果及前轮协议复杂分支。"
+      "remaining": "本窗口所有未解分支保留在stageReviews/self-audit，不因阶段完成视作整章完成。"
+    },
+    {
+      "title": "8. R91～R94：L1SS/LTR/PME → 枚举/BAR → PHY训练轮换",
+      "status": "待推进",
+      "featureIds": [
+        87,
+        89,
+        59,
+        85,
+        36,
+        38,
+        41,
+        48,
+        172,
+        170,
+        177,
+        114
+      ],
+      "remaining": "按本轮nextPriorities推进，4个实质轮次后R94总结；不重复计算上传重试。"
     }
   ],
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 31,
-    "lastReviewEdition": "2026-10-25-r86",
-    "lastReviewId": "r83-r86",
-    "nextExpectedReview": "R90（下一窗口实际完成4轮后）"
+    "completedTotal": 32,
+    "lastReviewEdition": "2026-10-26-r90",
+    "lastReviewId": "r87-r90",
+    "nextExpectedReview": "R94（下一窗口实际完成4轮后）"
   },
   "stageReviews": [
+    {
+      "id": "r87-r90",
+      "date": "2026-10-26",
+      "edition": "2026-10-26-r90",
+      "title": "第八阶段：FC返还 → 排序身份 → CDR证据 → AER取证",
+      "completedRounds": 4,
+      "rounds": [
+        {
+          "edition": "R87",
+          "topic": "FC返还事件/定时、Optimized上下文与载体",
+          "featureIds": [
+            111,
+            13,
+            141
+          ],
+          "remaining": "早期更新差分/中间ECN、真实缓冲池与并发回卷、全性能矩阵"
+        },
+        {
+          "edition": "R88",
+          "topic": "早期五类排序、IDO/PASID跨版与AtomicOp依赖",
+          "featureIds": [
+            27,
+            28,
+            29,
+            31
+          ],
+          "remaining": "中间ECN首次引入、全部Message/IDE例外、CPU内存模型及硬件原子恢复"
+        },
+        {
+          "edition": "R89",
+          "topic": "产品CDR/校准适应、lock来源与ADC窗口",
+          "featureIds": [
+            173,
+            174,
+            177
+          ],
+          "remaining": "完整检测/覆盖状态机、实际计数时钟、模拟稳定性与真实错误统计"
+        },
+        {
+          "edition": "R90",
+          "topic": "AER本端/转发/Root分层、MFD合并与早期多Header取证",
+          "featureIds": [
+            103,
+            104
+          ],
+          "remaining": "全错误优先级、SR-IOV/SIOV完整归属、异步日志竞态、平台DPC恢复与全部版本差分"
+        }
+      ],
+      "result": "四轮把传输前进、排序身份、接收观察和错误记录连接成可查询链条；新增只读查询与原创表图，具体来源逐块绑定。窗口完成只表示所列规则深化，不表示七代规范全文完成。",
+      "nextPriorities": [
+        {
+          "title": "1. L1SS / LTR / PME：连接低功耗与时钟恢复",
+          "featureIds": [
+            87,
+            89,
+            59,
+            85
+          ],
+          "reason": "本窗口偏传输和错误，应轮换到功耗；优先细化进入/退出条件、能力/使能、时间单位与角色例外，避免只更新概述。"
+        },
+        {
+          "title": "2. 枚举与BAR：从发现到资源路由",
+          "featureIds": [
+            36,
+            38,
+            41,
+            48
+          ],
+          "reason": "补配置/资源形成的具体步骤及跨版限制，让已有寄存器和地址查询有可对照的前提；保留RC/桥/Function分层。"
+        },
+        {
+          "title": "3. PHY训练与版本轮换",
+          "featureIds": [
+            172,
+            170,
+            177,
+            114
+          ],
+          "reason": "持续PHY一级主线，选未核TX训练/PIPE握手或128GT/s边界；穿插VC/版本缺口，不长期停留于同一CDR产品页。"
+        }
+      ],
+      "limitations": "细节数/测试数不作覆盖率。未核资料不叫缺文件；未做硬件注错、DMA/CPU运行、模拟签核、完整系统死锁/安全或合规验证。"
+    },
     {
       "id": "r83-r86",
       "date": "2026-10-25",

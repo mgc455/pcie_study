@@ -2,7 +2,7 @@
 
 逐项说明 PCIe 功能原理、使用前提、职责边界和检查方法，并定位到明确版本的规范章节。例子只放在功能块中辅助理解。
 
-在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-26-r89`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
+在线阅读：[PCIe Study](https://mgc455.github.io/pcie_study/)（公开访问，无需登录）。2026-10-22已确认仓库恢复公开、GitHub Pages启用，首页和站点数据可正常访问，本次内容版本为 `2026-10-26-r90`，线上版本以网站首页显示为准。后续内容更新继续通过GitHub Pages发布。Cloudflare Pages + Access暂缓，保留[备用部署说明](deployment/cloudflare-pages.md)。
 
 ## 内容
 
@@ -470,3 +470,10 @@ ECN本地9/18变更副本与官网10/7发布目录分别标注；未证明与会
 - [lock/评估/错误测量证据检查](https://mgc455.github.io/pcie_study/#feature/173/detail/r89-lock-evidence-query)
 - [相位覆盖装载与使能](https://mgc455.github.io/pcie_study/#feature/174/detail/r89-phase-override-load-versus-enable)
 - 产品3.02a限定；窗口3/4，R90错误取证与阶段汇总。
+
+## R90 error evidence and stage review
+
+- [AER本端报告门控查询](https://mgc455.github.io/pcie_study/#feature/103/detail/r90-local-report-query)
+- [普通MFD通知合并](https://mgc455.github.io/pcie_study/#feature/103/detail/r90-mfd-message-query)
+- [R87～R90阶段总结](https://mgc455.github.io/pcie_study/#updates)
+- 下一窗口先L1SS/LTR/PME，再枚举/BAR，穿插PHY训练；R94复盘。
