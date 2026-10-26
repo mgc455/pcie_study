@@ -186,3 +186,34 @@ if 'releasePlan' in m:
     for r in plan['reuseGroups']:assert set(r['featureIds'])<=set(plan['scopeFeatureIds'])
     assert '#completion' in raw and 'function renderCompletion(' in raw
     print('PASS: fixed V1 acceptance scope, evidence gates and round budget.')
+
+    if 'requiredTasks' in plan:
+        tasks=plan['requiredTasks'];taskIds={t['id'] for t in tasks};unitById={u['featureId']:u for u in units}
+        assert len(tasks)==len(taskIds)==24
+        partitions=[i for t in tasks[:21] for i in t['featureIds']]
+        assert sorted(partitions)==plan['scopeFeatureIds'] and len(partitions)==len(set(partitions))
+        assert all(u['taskId'] in taskIds and set(u['requiredTaskIds'])<=taskIds for u in units)
+        for t in tasks:
+            assert t['status'] in {'open','blocked','closed'} and t['focus'] and t['exit']
+            assert set(t['legacyRecordIndices'])<=set(range(len(json.loads((ROOT/'content/self-audit.json').read_text(encoding='utf-8'))['unresolved'])))
+            if t['status']=='closed':
+                assert t['evidence'] and t['closedRound']
+                if t['id']=='v1-task-22':assert all(u['criterionReviews']['versions']['status'] in {'passed','not-applicable'} for u in units)
+                if t['id']=='v1-task-23':assert all(u['criterionReviews']['sources']['status'] in {'passed','not-applicable'} for u in units)
+                if t['id']=='v1-task-24':assert all(u['status'] in {'accepted','merged-accepted'} for u in units)
+                assert all(unitById[i]['status'] in {'accepted','merged-accepted'} for i in t['featureIds'])
+        history=json.loads((ROOT/'content/self-audit.json').read_text(encoding='utf-8'))['unresolved']
+        assert len(plan['legacyTriage'])==len(history)==117
+        assert sorted(r['sourceIndex'] for r in plan['legacyTriage'])==list(range(len(history)))
+        conflictIds={x['id'] for x in plan['conflictRegister']}
+        assert len(conflictIds)==len(plan['conflictRegister'])==37
+        for r in plan['legacyTriage']:
+            assert r['sourceSha256']==hashlib.sha256(history[r['sourceIndex']].encode()).hexdigest(), 'Lost or rewritten legacy gap'
+            assert set(r['taskIds']+r['contextTaskIds'])<=taskIds and r['contextTaskIds'] and r['disposition']
+            assert set(r['conflictIds'])<=conflictIds
+            if not r['taskIds']:assert r['classification'] in {'validation-boundary','process-guardrail'}
+        for c in plan['conflictRegister']:
+            assert c['taskId'] in taskIds and c['legacyRecordIndices'] and c['impact'] and c['nextAction']
+            if c['status']!='needs-corroboration':assert c['evidence'] and c.get('resolution'), 'Conflict resolution needs evidence'
+        assert plan['auditMigration']['triagedCount']==117 and plan['auditMigration']['requiredTaskCount']==24
+        print('PASS: legacy triage completeness, feature partition and conflict provenance.')
