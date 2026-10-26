@@ -3,9 +3,7 @@
     52,
     53,
     54,
-    55,
-    56,
-    57
+    56
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -52,15 +50,16 @@
   ],
   "lastCompleted": {
     "date": "2026-10-26",
-    "edition": "2026-10-26-r96",
+    "edition": "2026-10-26-r97",
     "featureIds": [
-      163,
-      165,
-      166,
-      167,
-      168
+      52,
+      53,
+      54,
+      55,
+      56,
+      57
     ],
-    "nextTrack": "R97中断成熟内容批验，R98总结。"
+    "nextTrack": "R98中断剩余验收与四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -350,11 +349,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 38,
+    "completedTotal": 39,
     "lastReviewEdition": "2026-10-26-r94",
     "lastReviewId": "r91-r94",
     "nextExpectedReview": "R98（R95～R98收尾进展总结）"
@@ -1110,9 +1109,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 6,
-    "remainingPlannedRounds": 42,
-    "nextRound": 97,
+    "completedRounds": 7,
+    "remainingPlannedRounds": 41,
+    "nextRound": 98,
     "nextReviewRound": 98,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -4885,44 +4884,128 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/52/detail/r97-interrupt-origin-and-selection",
+                "label": "先选机制再读寄存器：MSI-X来自1.0a时代的独立ECN"
+              },
+              {
+                "href": "#feature/52/detail/r80-intx-collapse-query",
+                "label": "离线查询：逐端口四线快照、DL_Down与上游Assert/Deassert"
+              },
+              {
+                "href": "#feature/52/detail/r80-intx-state-duplicates",
+                "label": "INTx是状态迁移：Assert/Deassert重复无效，Interrupt Disable要撤销活动线"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/52/detail/r97-interrupt-origin-and-selection",
+                "label": "先选机制再读寄存器：MSI-X来自1.0a时代的独立ECN"
+              },
+              {
+                "href": "#feature/52/detail/r80-intx-collapse-query",
+                "label": "离线查询：逐端口四线快照、DL_Down与上游Assert/Deassert"
+              },
+              {
+                "href": "#feature/52/detail/r80-intx-state-duplicates",
+                "label": "INTx是状态迁移：Assert/Deassert重复无效，Interrupt Disable要撤销活动线"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/52/detail/r97-interrupt-origin-and-selection",
+                "label": "先选机制再读寄存器：MSI-X来自1.0a时代的独立ECN"
+              },
+              {
+                "href": "#feature/52/detail/r80-intx-collapse-query",
+                "label": "离线查询：逐端口四线快照、DL_Down与上游Assert/Deassert"
+              },
+              {
+                "href": "#feature/52/detail/r80-intx-state-duplicates",
+                "label": "INTx是状态迁移：Assert/Deassert重复无效，Interrupt Disable要撤销活动线"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/52/detail/r97-interrupt-origin-and-selection",
+                "label": "先选机制再读寄存器：MSI-X来自1.0a时代的独立ECN"
+              },
+              {
+                "href": "#feature/52/detail/r80-intx-collapse-query",
+                "label": "离线查询：逐端口四线快照、DL_Down与上游Assert/Deassert"
+              },
+              {
+                "href": "#feature/52/detail/r80-intx-state-duplicates",
+                "label": "INTx是状态迁移：Assert/Deassert重复无效，Interrupt Disable要撤销活动线"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "versions": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/52/detail/r97-interrupt-origin-and-selection",
+                "label": "先选机制再读寄存器：MSI-X来自1.0a时代的独立ECN"
+              },
+              {
+                "href": "#feature/52/detail/r80-intx-collapse-query",
+                "label": "离线查询：逐端口四线快照、DL_Down与上游Assert/Deassert"
+              },
+              {
+                "href": "#feature/52/detail/r80-intx-state-duplicates",
+                "label": "INTx是状态迁移：Assert/Deassert重复无效，Interrupt Disable要撤销活动线"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/52/detail/r97-interrupt-origin-and-selection",
+                "label": "先选机制再读寄存器：MSI-X来自1.0a时代的独立ECN"
+              },
+              {
+                "href": "#feature/52/detail/r80-intx-collapse-query",
+                "label": "离线查询：逐端口四线快照、DL_Down与上游Assert/Deassert"
+              },
+              {
+                "href": "#feature/52/detail/r80-intx-state-duplicates",
+                "label": "INTx是状态迁移：Assert/Deassert重复无效，Interrupt Disable要撤销活动线"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "consistency": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           }
         },
         "baseline": {
@@ -4931,7 +5014,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R97按实际已核维度验收；旧工具/位图复用。55本主题收口，其他条目未通过维度继续保留。",
         "taskId": "v1-task-06",
         "requiredTaskIds": [
           "v1-task-06",
@@ -4948,44 +5031,152 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/53/detail/r97-msi-control-errata-b38",
+                "label": "4.0勘误B38：图里漏画EMD，不表示bit9/10无效"
+              },
+              {
+                "href": "#feature/53/detail/msi-control-bit-diagram",
+                "label": "MSI Control逐bit图：+02h的16bit不是配置Header固定偏移"
+              },
+              {
+                "href": "#feature/53/detail/msi-four-capability-layouts",
+                "label": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移"
+              },
+              {
+                "href": "#feature/53/detail/msi-message-query",
+                "label": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/53/detail/r97-msi-control-errata-b38",
+                "label": "4.0勘误B38：图里漏画EMD，不表示bit9/10无效"
+              },
+              {
+                "href": "#feature/53/detail/msi-control-bit-diagram",
+                "label": "MSI Control逐bit图：+02h的16bit不是配置Header固定偏移"
+              },
+              {
+                "href": "#feature/53/detail/msi-four-capability-layouts",
+                "label": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移"
+              },
+              {
+                "href": "#feature/53/detail/msi-message-query",
+                "label": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/53/detail/r97-msi-control-errata-b38",
+                "label": "4.0勘误B38：图里漏画EMD，不表示bit9/10无效"
+              },
+              {
+                "href": "#feature/53/detail/msi-control-bit-diagram",
+                "label": "MSI Control逐bit图：+02h的16bit不是配置Header固定偏移"
+              },
+              {
+                "href": "#feature/53/detail/msi-four-capability-layouts",
+                "label": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移"
+              },
+              {
+                "href": "#feature/53/detail/msi-message-query",
+                "label": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/53/detail/r97-msi-control-errata-b38",
+                "label": "4.0勘误B38：图里漏画EMD，不表示bit9/10无效"
+              },
+              {
+                "href": "#feature/53/detail/msi-control-bit-diagram",
+                "label": "MSI Control逐bit图：+02h的16bit不是配置Header固定偏移"
+              },
+              {
+                "href": "#feature/53/detail/msi-four-capability-layouts",
+                "label": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移"
+              },
+              {
+                "href": "#feature/53/detail/msi-message-query",
+                "label": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "versions": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/53/detail/r97-msi-control-errata-b38",
+                "label": "4.0勘误B38：图里漏画EMD，不表示bit9/10无效"
+              },
+              {
+                "href": "#feature/53/detail/msi-control-bit-diagram",
+                "label": "MSI Control逐bit图：+02h的16bit不是配置Header固定偏移"
+              },
+              {
+                "href": "#feature/53/detail/msi-four-capability-layouts",
+                "label": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移"
+              },
+              {
+                "href": "#feature/53/detail/msi-message-query",
+                "label": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/53/detail/r97-msi-control-errata-b38",
+                "label": "4.0勘误B38：图里漏画EMD，不表示bit9/10无效"
+              },
+              {
+                "href": "#feature/53/detail/msi-control-bit-diagram",
+                "label": "MSI Control逐bit图：+02h的16bit不是配置Header固定偏移"
+              },
+              {
+                "href": "#feature/53/detail/msi-four-capability-layouts",
+                "label": "MSI四种布局：地址宽度/PVM改变Data和Mask偏移"
+              },
+              {
+                "href": "#feature/53/detail/msi-message-query",
+                "label": "MSI生成查询：Control布局、索引、32bit Payload与屏蔽"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "consistency": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           }
         },
         "baseline": {
@@ -4994,7 +5185,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R97按实际已核维度验收；旧工具/位图复用。55本主题收口，其他条目未通过维度继续保留。",
         "taskId": "v1-task-06",
         "requiredTaskIds": [
           "v1-task-06",
@@ -5011,44 +5202,128 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/54/detail/r97-pvm-source-and-lifecycle",
+                "label": "PVM来源与三条清除路径：发送完成、事件已满足、下一次事件重新置位"
+              },
+              {
+                "href": "#feature/54/detail/r80-pvm-role-exception",
+                "label": "PVM“可选”有角色例外：4.0 SR-IOV设备内MSI的PF/VF必须支持"
+              },
+              {
+                "href": "#feature/54/detail/r80-msi4-implemented-pending",
+                "label": "4.0 MSI Mask/Pending：MMC决定实现位，MME决定本次分配位"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/54/detail/r97-pvm-source-and-lifecycle",
+                "label": "PVM来源与三条清除路径：发送完成、事件已满足、下一次事件重新置位"
+              },
+              {
+                "href": "#feature/54/detail/r80-pvm-role-exception",
+                "label": "PVM“可选”有角色例外：4.0 SR-IOV设备内MSI的PF/VF必须支持"
+              },
+              {
+                "href": "#feature/54/detail/r80-msi4-implemented-pending",
+                "label": "4.0 MSI Mask/Pending：MMC决定实现位，MME决定本次分配位"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/54/detail/r97-pvm-source-and-lifecycle",
+                "label": "PVM来源与三条清除路径：发送完成、事件已满足、下一次事件重新置位"
+              },
+              {
+                "href": "#feature/54/detail/r80-pvm-role-exception",
+                "label": "PVM“可选”有角色例外：4.0 SR-IOV设备内MSI的PF/VF必须支持"
+              },
+              {
+                "href": "#feature/54/detail/r80-msi4-implemented-pending",
+                "label": "4.0 MSI Mask/Pending：MMC决定实现位，MME决定本次分配位"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/54/detail/r97-pvm-source-and-lifecycle",
+                "label": "PVM来源与三条清除路径：发送完成、事件已满足、下一次事件重新置位"
+              },
+              {
+                "href": "#feature/54/detail/r80-pvm-role-exception",
+                "label": "PVM“可选”有角色例外：4.0 SR-IOV设备内MSI的PF/VF必须支持"
+              },
+              {
+                "href": "#feature/54/detail/r80-msi4-implemented-pending",
+                "label": "4.0 MSI Mask/Pending：MMC决定实现位，MME决定本次分配位"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "versions": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/54/detail/r97-pvm-source-and-lifecycle",
+                "label": "PVM来源与三条清除路径：发送完成、事件已满足、下一次事件重新置位"
+              },
+              {
+                "href": "#feature/54/detail/r80-pvm-role-exception",
+                "label": "PVM“可选”有角色例外：4.0 SR-IOV设备内MSI的PF/VF必须支持"
+              },
+              {
+                "href": "#feature/54/detail/r80-msi4-implemented-pending",
+                "label": "4.0 MSI Mask/Pending：MMC决定实现位，MME决定本次分配位"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/54/detail/r97-pvm-source-and-lifecycle",
+                "label": "PVM来源与三条清除路径：发送完成、事件已满足、下一次事件重新置位"
+              },
+              {
+                "href": "#feature/54/detail/r80-pvm-role-exception",
+                "label": "PVM“可选”有角色例外：4.0 SR-IOV设备内MSI的PF/VF必须支持"
+              },
+              {
+                "href": "#feature/54/detail/r80-msi4-implemented-pending",
+                "label": "4.0 MSI Mask/Pending：MMC决定实现位，MME决定本次分配位"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "consistency": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           }
         },
         "baseline": {
@@ -5057,7 +5332,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R97按实际已核维度验收；旧工具/位图复用。55本主题收口，其他条目未通过维度继续保留。",
         "taskId": "v1-task-06",
         "requiredTaskIds": [
           "v1-task-06",
@@ -5071,47 +5346,287 @@
         "featureId": 55,
         "group": "中断与消息",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/55/detail/r97-msix-seven-version-map",
+                "label": "Gen1～Gen7查询地图：公共布局复用，ECN、ST、资源和勘误分开"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-offset-conflict",
+                "label": "4.0偏移疑问已裁决：正式勘误B42将Message Control标题改为+02h"
+              },
+              {
+                "href": "#feature/55/detail/msix-control-bit-diagram",
+                "label": "MSI-X Control逐bit图：N−1、Function Mask和Enable"
+              },
+              {
+                "href": "#feature/55/detail/msix-vector-control-bit-diagram",
+                "label": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag"
+              },
+              {
+                "href": "#feature/55/detail/msix-location-and-gate-query",
+                "label": "MSI-X查询：Table/PBA定位、索引、Pending位与门控"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-isolation-required-recommended",
+                "label": "MSI-X地址隔离：4KB不共页是要求，8KB与独立BAR是建议"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix-mask-trace-query",
+                "label": "离线轨迹查询：Pending、屏蔽、改表、刷新与实际发送"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/55/detail/r97-msix-seven-version-map",
+                "label": "Gen1～Gen7查询地图：公共布局复用，ECN、ST、资源和勘误分开"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-offset-conflict",
+                "label": "4.0偏移疑问已裁决：正式勘误B42将Message Control标题改为+02h"
+              },
+              {
+                "href": "#feature/55/detail/msix-control-bit-diagram",
+                "label": "MSI-X Control逐bit图：N−1、Function Mask和Enable"
+              },
+              {
+                "href": "#feature/55/detail/msix-vector-control-bit-diagram",
+                "label": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag"
+              },
+              {
+                "href": "#feature/55/detail/msix-location-and-gate-query",
+                "label": "MSI-X查询：Table/PBA定位、索引、Pending位与门控"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-isolation-required-recommended",
+                "label": "MSI-X地址隔离：4KB不共页是要求，8KB与独立BAR是建议"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix-mask-trace-query",
+                "label": "离线轨迹查询：Pending、屏蔽、改表、刷新与实际发送"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/55/detail/r97-msix-seven-version-map",
+                "label": "Gen1～Gen7查询地图：公共布局复用，ECN、ST、资源和勘误分开"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-offset-conflict",
+                "label": "4.0偏移疑问已裁决：正式勘误B42将Message Control标题改为+02h"
+              },
+              {
+                "href": "#feature/55/detail/msix-control-bit-diagram",
+                "label": "MSI-X Control逐bit图：N−1、Function Mask和Enable"
+              },
+              {
+                "href": "#feature/55/detail/msix-vector-control-bit-diagram",
+                "label": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag"
+              },
+              {
+                "href": "#feature/55/detail/msix-location-and-gate-query",
+                "label": "MSI-X查询：Table/PBA定位、索引、Pending位与门控"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-isolation-required-recommended",
+                "label": "MSI-X地址隔离：4KB不共页是要求，8KB与独立BAR是建议"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix-mask-trace-query",
+                "label": "离线轨迹查询：Pending、屏蔽、改表、刷新与实际发送"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/55/detail/r97-msix-seven-version-map",
+                "label": "Gen1～Gen7查询地图：公共布局复用，ECN、ST、资源和勘误分开"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-offset-conflict",
+                "label": "4.0偏移疑问已裁决：正式勘误B42将Message Control标题改为+02h"
+              },
+              {
+                "href": "#feature/55/detail/msix-control-bit-diagram",
+                "label": "MSI-X Control逐bit图：N−1、Function Mask和Enable"
+              },
+              {
+                "href": "#feature/55/detail/msix-vector-control-bit-diagram",
+                "label": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag"
+              },
+              {
+                "href": "#feature/55/detail/msix-location-and-gate-query",
+                "label": "MSI-X查询：Table/PBA定位、索引、Pending位与门控"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-isolation-required-recommended",
+                "label": "MSI-X地址隔离：4KB不共页是要求，8KB与独立BAR是建议"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix-mask-trace-query",
+                "label": "离线轨迹查询：Pending、屏蔽、改表、刷新与实际发送"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/55/detail/r97-msix-seven-version-map",
+                "label": "Gen1～Gen7查询地图：公共布局复用，ECN、ST、资源和勘误分开"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-offset-conflict",
+                "label": "4.0偏移疑问已裁决：正式勘误B42将Message Control标题改为+02h"
+              },
+              {
+                "href": "#feature/55/detail/msix-control-bit-diagram",
+                "label": "MSI-X Control逐bit图：N−1、Function Mask和Enable"
+              },
+              {
+                "href": "#feature/55/detail/msix-vector-control-bit-diagram",
+                "label": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag"
+              },
+              {
+                "href": "#feature/55/detail/msix-location-and-gate-query",
+                "label": "MSI-X查询：Table/PBA定位、索引、Pending位与门控"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-isolation-required-recommended",
+                "label": "MSI-X地址隔离：4KB不共页是要求，8KB与独立BAR是建议"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix-mask-trace-query",
+                "label": "离线轨迹查询：Pending、屏蔽、改表、刷新与实际发送"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。 七代逐版给出Base/ECN定位；Base1.0a与2003ECN分开，2/3委托定义、3可选ST、4正式B42、5/6/7字段与资源约束逐一核对。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/55/detail/r97-msix-seven-version-map",
+                "label": "Gen1～Gen7查询地图：公共布局复用，ECN、ST、资源和勘误分开"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-offset-conflict",
+                "label": "4.0偏移疑问已裁决：正式勘误B42将Message Control标题改为+02h"
+              },
+              {
+                "href": "#feature/55/detail/msix-control-bit-diagram",
+                "label": "MSI-X Control逐bit图：N−1、Function Mask和Enable"
+              },
+              {
+                "href": "#feature/55/detail/msix-vector-control-bit-diagram",
+                "label": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag"
+              },
+              {
+                "href": "#feature/55/detail/msix-location-and-gate-query",
+                "label": "MSI-X查询：Table/PBA定位、索引、Pending位与门控"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-isolation-required-recommended",
+                "label": "MSI-X地址隔离：4KB不共页是要求，8KB与独立BAR是建议"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix-mask-trace-query",
+                "label": "离线轨迹查询：Pending、屏蔽、改表、刷新与实际发送"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/55/detail/r97-msix-seven-version-map",
+                "label": "Gen1～Gen7查询地图：公共布局复用，ECN、ST、资源和勘误分开"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-offset-conflict",
+                "label": "4.0偏移疑问已裁决：正式勘误B42将Message Control标题改为+02h"
+              },
+              {
+                "href": "#feature/55/detail/msix-control-bit-diagram",
+                "label": "MSI-X Control逐bit图：N−1、Function Mask和Enable"
+              },
+              {
+                "href": "#feature/55/detail/msix-vector-control-bit-diagram",
+                "label": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag"
+              },
+              {
+                "href": "#feature/55/detail/msix-location-and-gate-query",
+                "label": "MSI-X查询：Table/PBA定位、索引、Pending位与门控"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-isolation-required-recommended",
+                "label": "MSI-X地址隔离：4KB不共页是要求，8KB与独立BAR是建议"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix-mask-trace-query",
+                "label": "离线轨迹查询：Pending、屏蔽、改表、刷新与实际发送"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/55/detail/r97-msix-seven-version-map",
+                "label": "Gen1～Gen7查询地图：公共布局复用，ECN、ST、资源和勘误分开"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-offset-conflict",
+                "label": "4.0偏移疑问已裁决：正式勘误B42将Message Control标题改为+02h"
+              },
+              {
+                "href": "#feature/55/detail/msix-control-bit-diagram",
+                "label": "MSI-X Control逐bit图：N−1、Function Mask和Enable"
+              },
+              {
+                "href": "#feature/55/detail/msix-vector-control-bit-diagram",
+                "label": "Vector Control逐bit：Mask、保留位与可选TPH Steering Tag"
+              },
+              {
+                "href": "#feature/55/detail/msix-location-and-gate-query",
+                "label": "MSI-X查询：Table/PBA定位、索引、Pending位与门控"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix4-isolation-required-recommended",
+                "label": "MSI-X地址隔离：4KB不共页是要求，8KB与独立BAR是建议"
+              },
+              {
+                "href": "#feature/55/detail/r80-msix-mask-trace-query",
+                "label": "离线轨迹查询：Pending、屏蔽、改表、刷新与实际发送"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。 对照原55结构/图/标题，正式2019-08-19 B42明确裁决偏移；原始PCI ECN与5/6/7正式正文复核Mask/别名、缓存刷新、访问与隔离规则，必需值/建议值分开。"
           }
         },
         "baseline": {
@@ -5120,14 +5635,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R97按实际已核维度验收；旧工具/位图复用。55本主题收口，其他条目未通过维度继续保留。",
         "taskId": "v1-task-06",
         "requiredTaskIds": [
           "v1-task-06",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 97
       },
       {
         "id": "v1-feature-56",
@@ -5137,44 +5653,128 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/56/detail/r97-interrupt-gates-not-one-enable",
+                "label": "“不进中断”先拆门：事件、通知使能、BME、表访问和ISR"
+              },
+              {
+                "href": "#feature/56/detail/r97-two-events-one-pending",
+                "label": "两次事件可以只有一个Pending位：通知合并不应丢失工作记录"
+              },
+              {
+                "href": "#feature/56/detail/interrupt-debug-observation-ladder",
+                "label": "中断丢失排查：按通路检查，避免用一个Pending位下结论"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/56/detail/r97-interrupt-gates-not-one-enable",
+                "label": "“不进中断”先拆门：事件、通知使能、BME、表访问和ISR"
+              },
+              {
+                "href": "#feature/56/detail/r97-two-events-one-pending",
+                "label": "两次事件可以只有一个Pending位：通知合并不应丢失工作记录"
+              },
+              {
+                "href": "#feature/56/detail/interrupt-debug-observation-ladder",
+                "label": "中断丢失排查：按通路检查，避免用一个Pending位下结论"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/56/detail/r97-interrupt-gates-not-one-enable",
+                "label": "“不进中断”先拆门：事件、通知使能、BME、表访问和ISR"
+              },
+              {
+                "href": "#feature/56/detail/r97-two-events-one-pending",
+                "label": "两次事件可以只有一个Pending位：通知合并不应丢失工作记录"
+              },
+              {
+                "href": "#feature/56/detail/interrupt-debug-observation-ladder",
+                "label": "中断丢失排查：按通路检查，避免用一个Pending位下结论"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/56/detail/r97-interrupt-gates-not-one-enable",
+                "label": "“不进中断”先拆门：事件、通知使能、BME、表访问和ISR"
+              },
+              {
+                "href": "#feature/56/detail/r97-two-events-one-pending",
+                "label": "两次事件可以只有一个Pending位：通知合并不应丢失工作记录"
+              },
+              {
+                "href": "#feature/56/detail/interrupt-debug-observation-ladder",
+                "label": "中断丢失排查：按通路检查，避免用一个Pending位下结论"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "versions": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/56/detail/r97-interrupt-gates-not-one-enable",
+                "label": "“不进中断”先拆门：事件、通知使能、BME、表访问和ISR"
+              },
+              {
+                "href": "#feature/56/detail/r97-two-events-one-pending",
+                "label": "两次事件可以只有一个Pending位：通知合并不应丢失工作记录"
+              },
+              {
+                "href": "#feature/56/detail/interrupt-debug-observation-ladder",
+                "label": "中断丢失排查：按通路检查，避免用一个Pending位下结论"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/56/detail/r97-interrupt-gates-not-one-enable",
+                "label": "“不进中断”先拆门：事件、通知使能、BME、表访问和ISR"
+              },
+              {
+                "href": "#feature/56/detail/r97-two-events-one-pending",
+                "label": "两次事件可以只有一个Pending位：通知合并不应丢失工作记录"
+              },
+              {
+                "href": "#feature/56/detail/interrupt-debug-observation-ladder",
+                "label": "中断丢失排查：按通路检查，避免用一个Pending位下结论"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "consistency": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           }
         },
         "baseline": {
@@ -5183,7 +5783,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R97按实际已核维度验收；旧工具/位图复用。55本主题收口，其他条目未通过维度继续保留。",
         "taskId": "v1-task-06",
         "requiredTaskIds": [
           "v1-task-06",
@@ -5200,44 +5800,64 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/57/detail/message-intx-versus-msi-packet",
+                "label": "同叫中断通知：INTx是Message TLP，MSI/MSI-X是Memory Write"
+              },
+              {
+                "href": "#feature/57/detail/message-routing-query",
+                "label": "查询：按r、入口方向和模式查看消息路由与检查边界"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "mechanism": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           },
           "structure": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           },
           "exceptions": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           },
           "versions": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           },
           "sources": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 97,
+            "evidence": [
+              {
+                "href": "#feature/57/detail/message-intx-versus-msi-packet",
+                "label": "同叫中断通知：INTx是Message TLP，MSI/MSI-X是Memory Write"
+              },
+              {
+                "href": "#feature/57/detail/message-routing-query",
+                "label": "查询：按r、入口方向和模式查看消息路由与检查边界"
+              }
+            ],
+            "note": "R97核对应中断正文并复用既有位图/查询/稳定链接；通用配置前提按机制修正，独立角色/协议不凭局部验收关闭。"
           },
           "consistency": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "R97保留：仍需该完整功能范围逐版/独立ECN及交叉核对，现有深度与局部来源不代替整条验收。"
           }
         },
         "baseline": {
@@ -5246,7 +5866,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "R97按实际已核维度验收；旧工具/位图复用。55本主题收口，其他条目未通过维度继续保留。",
         "taskId": "v1-task-06",
         "requiredTaskIds": [
           "v1-task-06",
@@ -14436,6 +15056,163 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "R97转中断成熟条目INTx/MSI/MSI-X及向量表/PBA/Mask一致性验收，复用R80等已有表/工具；R98按约定汇总关闭量与预算，PHY剩余版本/路径不自动完成。",
         "publication": "构建、发布与线上抽查以本地实际记录为准。"
+      },
+      {
+        "round": 97,
+        "kind": "interrupt-capability-and-mask-acceptance",
+        "deliverables": [
+          "补6个原创来源/门控细节块，复用既有位图/查询",
+          "34新维度累计121，55 MSI-X结构主题完整验收，累计4/183",
+          "正式B42裁决问题33，B38纠正MSI图漏EMD；区分2003 ECN与早期Base"
+        ],
+        "closedDeliverableIds": [
+          "msix-structure-accepted",
+          "msix-offset-officially-resolved"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 52,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 52,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 52,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 52,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 52,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 52,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 53,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 53,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 53,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 53,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 53,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 53,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 54,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 54,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 54,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 54,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 54,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 54,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 55,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 55,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 55,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 55,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 55,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 55,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 55,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 55,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 56,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 56,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 56,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 56,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 56,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 56,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 57,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 57,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [
+          55
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "R98复核本组未验版本与一致性，按约定总结R95～R98关闭量和预算；不能把34维度当34完整功能。",
+        "publication": "本地构建和发布结果以实际记录为准。"
       }
     ],
     "backlog": [
@@ -14661,7 +15438,15 @@
           106
         ],
         "evidence": [],
-        "closedRound": null
+        "closedRound": null,
+        "progress": {
+          "round": 97,
+          "newPassedCriteria": 34,
+          "acceptedUnitIds": [
+            55
+          ],
+          "remaining": "52/53/54/56版本与交叉核对、57其余维度、58/60/61仍待完整验收；任务未关闭。"
+        }
       },
       {
         "id": "v1-task-07",
@@ -15651,15 +16436,22 @@
       },
       {
         "id": "v1-conflict-33",
-        "title": "MSI Control偏移与正式勘误",
+        "title": "MSI-X Control偏移与正式勘误",
         "taskId": "v1-task-06",
         "legacyRecordIndices": [
           106
         ],
-        "status": "needs-corroboration",
+        "status": "resolved-official-erratum",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "本偏移问题已裁决；保留117历史原记录，不因本问题关闭而关闭整个中断任务。",
+        "evidence": [
+          {
+            "href": "#feature/55/detail/r80-msix4-offset-conflict",
+            "label": "本地正式勘误B42已核，Control为C+02h"
+          }
+        ],
+        "resolvedRound": 97,
+        "resolution": "2019-08-19 Base4.0正式勘误B42 p33明确将§7.7.2.2标题Offset04h改为02h；保留原图/标题差异与旧ID。未认定此为最早修正日期。"
       },
       {
         "id": "v1-conflict-34",
@@ -17652,33 +18444,31 @@
       }
     ],
     "nextExecution": {
-      "round": 97,
+      "round": 98,
       "taskId": "v1-task-06",
       "featureIds": [
         52,
         53,
         54,
-        55,
-        56,
-        57
+        56
       ],
-      "goal": "按真实功能分区复核INTx/MSI/MSI-X成熟字段、Mask/PBA/消息与软件边界，优先验收而非新增工具；实际条目ID核对后执行。",
+      "goal": "优先复核本组剩余版本/一致性与独立ECN例外，复用成熟内容；完成R95～R98四轮总结，报告完整功能关闭量、源问题与剩余预算，不增加范围。",
       "reviewRound": 98
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "needs-calibration",
-      "assessedRound": 96,
+      "assessedRound": 97,
       "reestimateRound": 98,
-      "assessment": "R96累计87个验收维度通过、3个完整功能、0项分组任务关闭；剩余180项仍按证据验收。余42轮是预算，当前局部收口速度不足以保证目标。",
-      "action": "R138目标保留，R97转中断成熟内容批验，R98比较两窗口的完整条目关闭量、来源问题和剩余工作；不自动扩范围或静默延长。",
+      "assessment": "R97累计121个维度通过、4个完整功能、0分组任务关闭。其余179项仍须实际验收；41轮是预算，尚不足以作为完成保证。",
+      "action": "R98按约定复盘四轮完整功能关闭速度，若预算明显不足直接报告，不自动扩写、降标准或延长。",
       "latestProgress": {
-        "round": 96,
-        "newAcceptedUnits": 2,
-        "cumulativeAcceptedUnits": 3,
+        "round": 97,
+        "newAcceptedUnits": 1,
+        "cumulativeAcceptedUnits": 4,
         "newPassedCriteria": 34,
-        "cumulativePassedCriteria": 87,
-        "remainingPlannedRounds": 42
+        "cumulativePassedCriteria": 121,
+        "remainingPlannedRounds": 41
       }
     },
     "reviewWindows": [

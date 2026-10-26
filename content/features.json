@@ -54478,7 +54478,7 @@
     "mechanism": "设备用Assert/Deassert消息模拟传统INTx电平状态，软件读取设备原因并清除后才能解除持续中断条件。",
     "example": "若中断服务没有清掉设备状态，INTx可反复触发；只在CPU中断控制器应答可能不够。",
     "checks": "区分PCIe消息与物理中断引脚；检查Interrupt Disable、设备事件状态和Deassert路径。",
-    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "prerequisites": "先确认Function/Port角色、Interrupt Pin与平台映射、INTx虚拟线及Command Interrupt Disable；INTx不通过编程MSI目标Address/Data来路由。",
     "id": 52,
     "status": "选定中断规则已展开 · 持续逐版核读",
     "sources": [
@@ -54487,7 +54487,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "2.2.8.1",
@@ -55170,6 +55170,50 @@
         "title": "R80 早期INTx、MSI与MSI-X选定正文",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R80核1.0a/2.0/3.0及4.0 Version1.0所引正式版选定正文；视觉核4.0 p799/802/807。所引本地印刷页/PDF物理页一致。未把Base转引的独立PCI规范/ECN当已核全文，非全章或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "6.1.4",
+        "page": 260,
+        "pdfPage": 260,
+        "title": "未合入MSI-X ECN的早期MSI要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "ecn-msix-pcie-20031031",
+        "document": "MSI-X ECN for PCI Express",
+        "version": "2003-10-31",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "MSI-X对PCIe1.0a的正式变更与收益",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "ecn-msix-pcie-20031031",
+        "document": "MSI-X ECN for PCI Express",
+        "version": "2003-10-31",
+        "section": "Part II",
+        "page": 2,
+        "pdfPage": 2,
+        "title": "Endpoint规则修改",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.1",
+        "page": 659,
+        "pdfPage": 659,
+        "title": "当前每Function中断机制及活动中切换风险",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
       }
     ],
     "referenceStatus": "R61核6.0/7.0 INTx、MSI/MSI-X字段、发送/屏蔽与事件通路；保留早期版本、ECN和产品/平台实现缺口。 R80补1.0a/2.0/3.0/4.0所引中断选定正文与4.0详细字段；独立PCI/ECN全文及中间修订继续核。",
@@ -55595,6 +55639,57 @@
           56,
           57
         ]
+      },
+      {
+        "id": "r97-interrupt-origin-and-selection",
+        "title": "先选机制再读寄存器：MSI-X来自1.0a时代的独立ECN",
+        "paragraphs": [
+          "INTx用Assert/Deassert消息模拟电平虚拟线，平台把Root侧虚拟线映射到系统中断资源；它不靠驱动把目标CPU地址填入MSI-X表。MSI/MSI-X则由系统配置目标Address/Data，Function发送DWORD Memory Write请求服务。",
+          "原始Base1.0a §6.1.4要求有中断能力的Function支持MSI；2003-10-31的PCIe MSI-X ECN明确修改Base1.0a，允许MSI、MSI-X或二者。不能把未合入ECN的旧正文当成后来的总规则，也不能说MSI-X到Gen2才出现。",
+          "同一Function可以同时实现MSI和MSI-X能力，但运行时软件不能同时使能二者；选择其中之一后不得再用INTx请求服务。活动期间直接切换机制可能丢失或重复事件，应按系统软件与设备驱动的停用/配置流程切换，不能把Enable当作ISR临时屏蔽位。"
+        ],
+        "referenceIndices": [
+          62,
+          63,
+          64,
+          65
+        ],
+        "table": {
+          "columns": [
+            "机制",
+            "先查什么",
+            "配置责任"
+          ],
+          "rows": [
+            [
+              "INTx",
+              "Pin/平台路由、虚拟线状态、Interrupt Disable",
+              "平台映射系统资源；无需MSI目标地址"
+            ],
+            [
+              "MSI",
+              "Capability ID05h、MMC/MME、Address/Data、可选PVM",
+              "系统分配向量；软件支持和设备能力共同决定"
+            ],
+            [
+              "MSI-X",
+              "Capability ID11h、Table/PBA、Enable/Mask",
+              "每表项独立地址/数据，表项可别名"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 53,
+            "detailId": "msi-four-capability-layouts",
+            "label": "MSI四种能力布局"
+          },
+          {
+            "featureId": 55,
+            "detailId": "msix-location-and-gate-query",
+            "label": "MSI-X定位与门控查询"
+          }
+        ]
       }
     ]
   },
@@ -55606,7 +55701,7 @@
     "mechanism": "系统为设备分配消息地址/数据，设备按要求发出中断写事务，主机把它转成CPU事件；业务仍需有可读取的完成状态。",
     "example": "DMA完成后通知主机，主机中断服务程序再收割队列；一次中断可对应多项完成。",
     "checks": "确认MSI Enable、地址/数据、Function和事件来源；收到中断不能替代对实际完成条目的核对。",
-    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "prerequisites": "系统按MSI Capability分配并配置向量、Address/Data和Enable；BME、机制互斥与可选PVM能力分别核对，驱动不自行绕过系统配置服务。",
     "id": 53,
     "status": "选定中断规则已展开 · 持续逐版核读",
     "sources": [
@@ -55615,7 +55710,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "7.7.1",
@@ -56573,6 +56668,39 @@
         "title": "R80 早期INTx、MSI与MSI-X选定正文",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R80核1.0a/2.0/3.0及4.0 Version1.0所引正式版选定正文；视觉核4.0 p799/802/807。所引本地印刷页/PDF物理页一致。未把Base转引的独立PCI规范/ECN当已核全文，非全章或硬件验证。"
+      },
+      {
+        "documentId": "errata-base4-20190819",
+        "document": "Errata for PCI Express Base Specification Rev. 4.0",
+        "version": "2019-08-19",
+        "section": "7.7.1.2",
+        "page": 32,
+        "pdfPage": 32,
+        "title": "B38：MSI Control图补EMD能力/使能",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.7.1.2",
+        "page": 776,
+        "pdfPage": 776,
+        "title": "后续正式版MSI Control图",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.7.1.2",
+        "page": 777,
+        "pdfPage": 777,
+        "title": "EMD bit9/10与PVM bit8",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
       }
     ],
     "referenceStatus": "R61核6.0/7.0 INTx、MSI/MSI-X字段、发送/屏蔽与事件通路；保留早期版本、ECN和产品/平台实现缺口。 R80补1.0a/2.0/3.0/4.0所引中断选定正文与4.0详细字段；独立PCI/ECN全文及中间修订继续核。",
@@ -57035,6 +57163,32 @@
           63,
           80
         ]
+      },
+      {
+        "id": "r97-msi-control-errata-b38",
+        "title": "4.0勘误B38：图里漏画EMD，不表示bit9/10无效",
+        "paragraphs": [
+          "Base4.0正式勘误2019-08-19的B38要求在Figure7-47增加Extended Message Data Capable和Enable字段。阅读旧图时，应合看对应字段表与正式勘误；不是看到旧图高位写Reserved就删掉能力。",
+          "这两个字段分别是bit9能力和bit10使能，决定MSI写入数据高16bit是否采用Extended Message Data；PVM能力是bit8，含义不同。Base5.0 p776～777可直接对照修订后的图和字段表。",
+          "这一结论只裁决旧图漏字段问题，不声称所有MSI实现都必须支持EMD，也不依据Gen速率猜能力。完整布局、写入字宽与字段所有权继续查询已有MSI条目。"
+        ],
+        "referenceIndices": [
+          87,
+          88,
+          89
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 53,
+            "detailId": "r80-msi4-control-fields",
+            "label": "复用MSI Control全部字段"
+          },
+          {
+            "featureId": 53,
+            "detailId": "r80-msi4-layout-emd",
+            "label": "EMD存在条件与布局"
+          }
+        ]
       }
     ]
   },
@@ -57046,7 +57200,7 @@
     "mechanism": "支持PVM的MSI可屏蔽某向量，并保留相应待处理信息，以协调事件到达与软件处理。它不是无限容量的事件队列。",
     "example": "驱动临时屏蔽通知批量处理完成项，再恢复中断，减少频繁进入中断的开销。",
     "checks": "设备事件计数/队列仍要自己维护；屏蔽位不代表业务停止，Pending位也不等于精确事件数量。",
-    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "prerequisites": "先确认MSI PVM Capable和PF/VF等角色要求，再按MMC/MME解释实现/分配位；Mask不等于停DMA，Pending不等于事件计数。",
     "id": 54,
     "status": "选定中断规则已展开 · 持续逐版核读",
     "sources": [
@@ -57055,7 +57209,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "7.7.1",
@@ -57353,6 +57507,94 @@
         "title": "R80 早期INTx、MSI与MSI-X选定正文",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R80核1.0a/2.0/3.0及4.0 Version1.0所引正式版选定正文；视觉核4.0 p799/802/807。所引本地印刷页/PDF物理页一致。未把Base转引的独立PCI规范/ECN当已核全文，非全章或硬件验证。"
+      },
+      {
+        "documentId": "ecn-msix-pci-20030610",
+        "document": "MSI-X ECN for PCI Local Bus 2.3",
+        "version": "2003-06-10",
+        "section": "6.8.1.7",
+        "page": 195,
+        "pdfPage": 9,
+        "title": "早期MSI Mask Bits定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "ecn-msix-pci-20030610",
+        "document": "MSI-X ECN for PCI Local Bus 2.3",
+        "version": "2003-06-10",
+        "section": "6.8.1.8",
+        "page": 196,
+        "pdfPage": 10,
+        "title": "早期MSI Pending Bits定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "ecn-msix-pci-20030610",
+        "document": "MSI-X ECN for PCI Local Bus 2.3",
+        "version": "2003-06-10",
+        "section": "6.8.3.5",
+        "page": 206,
+        "pdfPage": 20,
+        "title": "早期Mask/Pending生命周期",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "6.1.4",
+        "page": 337,
+        "pdfPage": 337,
+        "title": "PVM普通MSI可选与MSI-X标准能力",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.1.4",
+        "page": 461,
+        "pdfPage": 461,
+        "title": "普通MSI可选PVM及建议",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "6.1.4.5",
+        "page": 495,
+        "pdfPage": 495,
+        "title": "后续PVM生命周期及SR-IOV例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.5",
+        "page": 664,
+        "pdfPage": 664,
+        "title": "屏蔽、解除屏蔽与底层事件已满足",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.1.7",
+        "page": 1169,
+        "pdfPage": 1169,
+        "title": "已实现/已分配Mask/Pending边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
       }
     ],
     "referenceStatus": "R61核6.0/7.0 INTx、MSI/MSI-X字段、发送/屏蔽与事件通路；保留早期版本、ECN和产品/平台实现缺口。 R80补1.0a/2.0/3.0/4.0所引中断选定正文与4.0详细字段；独立PCI/ECN全文及中间修订继续核。",
@@ -57474,6 +57716,72 @@
           22,
           26
         ]
+      },
+      {
+        "id": "r97-pvm-source-and-lifecycle",
+        "title": "PVM来源与三条清除路径：发送完成、事件已满足、下一次事件重新置位",
+        "paragraphs": [
+          "2003-06-10的PCI Local Bus MSI-X ECN同时扩展了MSI的可选PVM。早期Mask/Pending正文在印刷195～196页，对应本地PDF9～10页；不能拿印刷页直接当PDF物理页。PCIe使用它的来源链见1.0a时代PCIe MSI-X ECN。",
+          "普通MSI的PVM可选，MSI-X的每表项Mask和Function Mask是其标准能力。SR-IOV设备中实现MSI的PF/VF有必须支持PVM的例外，不能用普通MSI可选规则覆盖它；较新SIOV语境另看已有角色限制，不把链路Gen号当虚拟化角色。",
+          "Mask=1时本应发送的通知使Pending=1；解除Mask且Pending=1时必须安排发送，Pending在实际消息已发送后清除。若仍被屏蔽但底层事件已被处理，硬件也必须清除Pending，避免未来伪通知；此后新事件仍须再次置位。软件不把MSI Pending当W1C状态。",
+          "Pending只有一位，不保存事件数量。MMC决定实现范围，MME决定当前分配范围，不能把未实现的Reserved位或已实现但未分配的位当可用事件槽。完整位图/角色与轮询规则复用原条目；本轮不宣称已核所有SR-IOV独立修订的首次引入日期。"
+        ],
+        "referenceIndices": [
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34
+        ],
+        "table": {
+          "columns": [
+            "观察步骤",
+            "条件",
+            "结果与限制"
+          ],
+          "rows": [
+            [
+              "masked-event",
+              "Mask=1且本应通知",
+              "Pending置1；重复事件不累加位数"
+            ],
+            [
+              "unmask-pending",
+              "解除屏蔽且Pending=1",
+              "安排发送；不能仅因解除屏蔽就清位"
+            ],
+            [
+              "message-sent",
+              "对应消息已发出",
+              "清Pending，不等待ISR"
+            ],
+            [
+              "underlying-satisfied",
+              "屏蔽期间底层事件已满足",
+              "硬件清Pending；后续新事件重新置位"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 54,
+            "detailId": "r80-pvm-role-exception",
+            "label": "SR-IOV/SIOV角色例外"
+          },
+          {
+            "featureId": 54,
+            "detailId": "r80-msi4-implemented-pending",
+            "label": "实现/分配位边界"
+          },
+          {
+            "featureId": 55,
+            "detailId": "r80-msix-mask-trace-query",
+            "label": "复用MSI-X屏蔽轨迹查询"
+          }
+        ]
       }
     ]
   },
@@ -57485,16 +57793,16 @@
     "mechanism": "每个MSI-X表项提供消息地址、数据与向量控制，PBA记录被屏蔽情况下的待处理条件。表/PBA位置由BAR指示信息描述。",
     "example": "每个收发队列使用不同向量，可分别绑定CPU处理，降低单中断瓶颈。",
     "checks": "MSI和MSI-X不能同时启用，同时启用行为未定义；核Table/PBA的BAR定位、屏蔽/缓存更新以及设备事件来源，不能只看Enable。",
-    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "prerequisites": "先配置BAR或受支持EA资源，定位Table/PBA；由系统配置服务控制机制Enable/Function Mask，更新表项遵守先Mask、写入、再Unmask。",
     "id": 55,
-    "status": "选定中断规则已展开 · 持续逐版核读",
+    "status": "一期已验收：MSI-X Capability/Table/PBA/Mask；含逐版来源链与正式勘误，独立TPH/虚拟化主题另行验收",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "6.1.4",
@@ -58265,6 +58573,193 @@
         "title": "R80 早期INTx、MSI与MSI-X选定正文",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R80核1.0a/2.0/3.0及4.0 Version1.0所引正式版选定正文；视觉核4.0 p799/802/807。所引本地印刷页/PDF物理页一致。未把Base转引的独立PCI规范/ECN当已核全文，非全章或硬件验证。"
+      },
+      {
+        "documentId": "ecn-msix-pcie-20031031",
+        "document": "MSI-X ECN for PCI Express",
+        "version": "2003-10-31",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "PCIe1.0a与MSI-X ECN关联",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "ecn-msix-pci-20030610",
+        "document": "MSI-X ECN for PCI Local Bus 2.3",
+        "version": "2003-06-10",
+        "section": "6.8.2",
+        "page": 196,
+        "pdfPage": 10,
+        "title": "早期结构布局",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "ecn-msix-pci-20030610",
+        "document": "MSI-X ECN for PCI Local Bus 2.3",
+        "version": "2003-06-10",
+        "section": "6.8.2.3",
+        "page": 199,
+        "pdfPage": 13,
+        "title": "早期Message Control/Function Mask",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "ecn-msix-pci-20030610",
+        "document": "MSI-X ECN for PCI Local Bus 2.3",
+        "version": "2003-06-10",
+        "section": "6.8.2.9",
+        "page": 202,
+        "pdfPage": 16,
+        "title": "早期Vector Control位0及Reserved",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "7.7",
+        "page": 439,
+        "pdfPage": 439,
+        "title": "早期Base委托PCI Local Bus3.0与ECN",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "7.7",
+        "page": 603,
+        "pdfPage": 603,
+        "title": "委托定义及可选ST扩展",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.7.2",
+        "page": 807,
+        "pdfPage": 807,
+        "title": "MSI-X结构、EA/BAR及隔离",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "errata-base4-20190819",
+        "document": "Errata for PCI Express Base Specification Rev. 4.0",
+        "version": "2019-08-19",
+        "section": "7.7.2.2",
+        "page": 33,
+        "pdfPage": 33,
+        "title": "B42：Control标题偏移04h改02h",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.7.2.2",
+        "page": 784,
+        "pdfPage": 784,
+        "title": "Message Control正确偏移",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.7.2.8",
+        "page": 788,
+        "pdfPage": 788,
+        "title": "可选ST字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2",
+        "page": 1018,
+        "pdfPage": 1018,
+        "title": "配置结构和Table/PBA职责",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2",
+        "page": 1020,
+        "pdfPage": 1020,
+        "title": "隔离、SR-IOV页大小与访问尺寸",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.2.2",
+        "page": 1022,
+        "pdfPage": 1022,
+        "title": "Control+02h字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2",
+        "page": 1173,
+        "pdfPage": 1173,
+        "title": "隔离与访问约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.2",
+        "page": 1175,
+        "pdfPage": 1175,
+        "title": "Control+02h字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.8",
+        "page": 1179,
+        "pdfPage": 1179,
+        "title": "Mask与可选TPH/ST字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.2.9",
+        "page": 1180,
+        "pdfPage": 1180,
+        "title": "PBA软件只读使用、写入未定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
       }
     ],
     "referenceStatus": "R61核6.0/7.0 INTx、MSI/MSI-X字段、发送/屏蔽与事件通路；保留早期版本、ECN和产品/平台实现缺口。 R80补1.0a/2.0/3.0/4.0所引中断选定正文与4.0详细字段；独立PCI/ECN全文及中间修订继续核。",
@@ -58624,15 +59119,16 @@
       },
       {
         "id": "r80-msix4-offset-conflict",
-        "title": "4.0来源冲突保留：Message Control按结构图在+02h，小节标题误写+04h",
+        "title": "4.0偏移疑问已裁决：正式勘误B42将Message Control标题改为+02h",
         "paragraphs": [
           "4.0 p807 Figure7-54把Capability ID放C+00h低字节、Next放C+01h、16bit Message Control放C+02h；Table Offset/BIR在C+04h，PBA Offset/BIR在C+08h。",
-          "同版本p809 §7.7.2.2标题却写Message Control Offset04h，与该图冲突。本网站按总结构图采用+02h，并保留这个来源差异，不把标题当另一个寄存器，也不编造已正式勘误的日期。表项16B、PBA位数组与配置Capability是三个不同地址区域。"
+          "同版本p809 §7.7.2.2标题写Offset04h，与总结构图冲突。R97实际核到2019-08-19正式Base4.0 Errata的B42（印刷/PDF33页），红线删除04h、蓝线替换02h，明确要求修改该标题。因此采用C+02h有正式勘误依据；C+04h仍是Table Offset/BIR，不能覆盖。保留原发现和稳定ID，但“尚无正式勘误依据”的旧结论已解除；未声称此日期是最早修正日期。"
         ],
         "referenceIndices": [
           56,
           57,
-          58
+          58,
+          77
         ]
       },
       {
@@ -58713,6 +59209,102 @@
           56,
           60
         ]
+      },
+      {
+        "id": "r97-msix-seven-version-map",
+        "title": "Gen1～Gen7查询地图：公共布局复用，ECN、ST、资源和勘误分开",
+        "paragraphs": [
+          "本表比较正式Base修订与独立变更，不把速率代际当成MSI-X有无的开关。2003年的PCI Local Bus ECN给出16B表项、独立Address/Data、Table/PBA和Mask；同年PCIe ECN将其带入Base1.0a语境。",
+          "Base2.0/3.0的§7.7明确引用PCI Local Bus规范及相应ECN，不能说在这两版Base中找不到现代完整位表就等于不支持。3.0又在§7.7.1说明可选Steering Tag扩展；早期Vector Control的Reserved高位不能直接套较新ST含义。",
+          "4.0旧标题偏移冲突已有正式B42勘误裁决，旧ID保留并链接到勘误。5.0、6.0、7.0的Control均按+02h解释。Table/PBA的BAR/EA映射、VF相对资源和SR-IOV页大小例外按所列版本读；普通4KB隔离与8KB建议不可混成一个强制值。",
+          "6.0/7.0仍是每表项16B、PBA每表项一位，Table Size按N−1编码；Gen6的FLIT或Gen7速率不会自动扩大2048项上限或改变PBA计数含义。可选ST取决于TPH能力/表位置等条件；不是所有MSI-X表项都必须提供ST。",
+          "验收范围为本主题的Capability、Table、PBA、Mask和安全更新契约；TPH路由、全部虚拟化生命周期及应用ISR算法是独立主题，引用其边界不等于宣布这些主题也已完成。"
+        ],
+        "referenceIndices": [
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86
+        ],
+        "table": {
+          "columns": [
+            "版本",
+            "正文依据",
+            "本主题确认结果"
+          ],
+          "rows": [
+            [
+              "Gen1 / Base1.0a",
+              "2003-10-31 PCIe ECN + 2003-06-10 PCI ECN",
+              "MSI-X不必等待Gen2；原Base与已合ECN状态区别"
+            ],
+            [
+              "Gen2 / Base2.0",
+              "§7.7 p439委托正式PCI3.0与ECN",
+              "复用ECN基础布局；不伪造本版完整字段表"
+            ],
+            [
+              "Gen3 / Base3.0",
+              "§7.7/7.7.1 p603",
+              "委托定义，并说明可选ST Lower/Upper"
+            ],
+            [
+              "Gen4 / Base4.0",
+              "§7.7.2 + 2019-08-19 B42",
+              "Control标题04h误写正式修为02h；EA/隔离按本版"
+            ],
+            [
+              "Gen5 / Base5.0",
+              "§7.7.2.2/.8 p784/788",
+              "Control+02h；ST仍有能力/位置前提"
+            ],
+            [
+              "Gen6 / Base6.0",
+              "§7.7.2 p1018～1026",
+              "BAR/EA、16B表项、页隔离与Mask；不是FLIT专属新中断"
+            ],
+            [
+              "Gen7 / Base7.0",
+              "§7.7.2 p1170～1180",
+              "维持本主题基本布局；保留ST/PBA/角色限制"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 55,
+            "detailId": "r80-msix4-offset-conflict",
+            "label": "B42正式勘误裁决"
+          },
+          {
+            "featureId": 55,
+            "detailId": "msix-control-bit-diagram",
+            "label": "Control位图"
+          },
+          {
+            "featureId": 55,
+            "detailId": "msix-vector-control-bit-diagram",
+            "label": "Vector Control位图"
+          },
+          {
+            "featureId": 55,
+            "detailId": "r80-msix4-isolation-required-recommended",
+            "label": "隔离强制值与建议值"
+          }
+        ]
       }
     ]
   },
@@ -58724,7 +59316,7 @@
     "mechanism": "应用先产生某向量事件，生成模块查询或使用相应配置，处理Mask/Pending后发送消息。Capability只是配置界面，事件必须实际接入。",
     "example": "队列有完成项但未向MSI-X生成模块发出事件时，表配置再正确也不会自动出现中断。",
     "checks": "检查应用事件、向量号、table/PBA更新、握手与报文发送；不要只看Enable已为1。",
-    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "prerequisites": "设备应用保留事件/队列，系统提供向量映射；逐层核事件、MSI-X表项/屏蔽、BME及接收端/ISR，不把发送完成当软件处理完成。",
     "id": 56,
     "status": "选定中断规则已展开 · 持续逐版核读",
     "sources": [
@@ -58733,7 +59325,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "6.1.4",
@@ -59141,6 +59733,72 @@
         "title": "R80 早期INTx、MSI与MSI-X选定正文",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R80核1.0a/2.0/3.0及4.0 Version1.0所引正式版选定正文；视觉核4.0 p799/802/807。所引本地印刷页/PDF物理页一致。未把Base转引的独立PCI规范/ECN当已核全文，非全章或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.1.1.3",
+        "page": 1068,
+        "pdfPage": 1068,
+        "title": "Command：MSE、BME对入站/出站分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.3",
+        "page": 663,
+        "pdfPage": 663,
+        "title": "机制使能互斥及活动中改变风险",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.5",
+        "page": 664,
+        "pdfPage": 664,
+        "title": "Mask/Pending生命周期",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.6",
+        "page": 665,
+        "pdfPage": 665,
+        "title": "重复同向量与软件握手",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.6",
+        "page": 666,
+        "pdfPage": 666,
+        "title": "事件队列与驱动消费",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.1.4.7",
+        "page": 667,
+        "pdfPage": 667,
+        "title": "Posted接收、ISR与顺序分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "R97核对应本地正式版本选定正文；ECN变更标记须结合原规则阅读，不把目录/封面当字段依据。PCI-SIG链接为规范目录入口，非此修订PDF直链。"
       }
     ],
     "referenceStatus": "R61核6.0/7.0 INTx、MSI/MSI-X字段、发送/屏蔽与事件通路；保留早期版本、ECN和产品/平台实现缺口。 R80补1.0a/2.0/3.0/4.0所引中断选定正文与4.0详细字段；独立PCI/ECN全文及中间修订继续核。",
@@ -59245,6 +59903,114 @@
           35,
           36
         ]
+      },
+      {
+        "id": "r97-interrupt-gates-not-one-enable",
+        "title": "“不进中断”先拆门：事件、通知使能、BME、表访问和ISR",
+        "paragraphs": [
+          "应用事件、通知生成和处理器ISR是三个观察层。DMA队列完成只产生事件来源；MSI/MSI-X逻辑还要选择有效向量，并满足本机制使能、屏蔽和请求发起条件。",
+          "按Base7.0 Command表，Type0 Function的BME控制其Memory/I/O请求发起，因此清BME也阻止MSI/MSI-X这种Memory Write。MSE控制该Function响应入站Memory请求，影响软件访问BAR内MSI-X表的路径；MSE不是用来代替BME判断中断写是否可发。VF的Memory Space另由SR-IOV控制，不把PF通用MSE位直接复制给VF。",
+          "下表用于区分故障层，不能据此推断规范没有保证的并发时序：例如BME撤销与事件同时发生时，不把“没有TLP”自动解码成某个Pending结果；Pending生命周期按其Mask条件单独判断。"
+        ],
+        "referenceIndices": [
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ],
+        "table": {
+          "columns": [
+            "门/层",
+            "直接管什么",
+            "不能推断什么"
+          ],
+          "rows": [
+            [
+              "设备事件/队列",
+              "工作是否完成、事件是否仍需服务",
+              "不是CPU已经收到中断"
+            ],
+            [
+              "MSI/MSI-X Enable",
+              "系统是否选择此机制；二者不能同时使能",
+              "不是临时每向量屏蔽"
+            ],
+            [
+              "Vector/Function Mask",
+              "延后对应通知；关联Pending按规则维护",
+              "不自动暂停DMA或清设备事件"
+            ],
+            [
+              "BME（Type0）",
+              "允许/禁止发起Memory/I/O请求",
+              "清BME也挡MSI/MSI-X写；不管所有Message TLP"
+            ],
+            [
+              "MSE / VF MSE",
+              "响应软件对该Memory资源的入站访问",
+              "访问不了Table与中断写发不出是不同路径"
+            ],
+            [
+              "ISR/设备消费",
+              "CPU调度后处理队列并确认底层事件",
+              "Posted发送和Pending清位不证明ISR已完成"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 53,
+            "detailId": "interrupt-command-gates-and-ordering",
+            "label": "既有Command门控细节"
+          },
+          {
+            "featureId": 55,
+            "detailId": "msix-mask-update-unmask-sequence",
+            "label": "先Mask再更新表项"
+          },
+          {
+            "featureId": 56,
+            "detailId": "interrupt-debug-observation-ladder",
+            "label": "逐层取证阶梯"
+          }
+        ]
+      },
+      {
+        "id": "r97-two-events-one-pending",
+        "title": "两次事件可以只有一个Pending位：通知合并不应丢失工作记录",
+        "paragraphs": [
+          "设某已使能MSI-X表项被Mask，设备队列先后完成工作A和B，且其它发送前提满足。两次本应通知都只使同一个Pending位为1；它不可能表达“有两个完成”。队列、状态或设备自定义事件账本必须保留真正工作内容。",
+          "软件解除屏蔽时，如果事件仍需服务且Pending=1，硬件安排一个通知；消息实际发出后清Pending。随后ISR可能一次读到A、B两项并处理两项，因此“一个通知对应两个工作”不等于丢中断。相反，只统计中断次数来回收两个工作会出错。",
+          "如果软件在屏蔽期间通过轮询已处理A、B，底层事件满足，硬件应清Pending；解除屏蔽时不应为已经满足的事件再造通知。若过程中又出现新事件，仍需重新维护Pending和设备工作账本。本例不定义软件与硬件同拍竞争的优先级。",
+          "查询轨迹沿用已有Mask/Pending工具；它帮助解释所建模动作，不替代RTL仿真、平台中断控制器行为或驱动并发验证。"
+        ],
+        "referenceIndices": [
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 55,
+            "detailId": "r80-msix-mask-trace-query",
+            "label": "运行现有Mask/Pending轨迹"
+          },
+          {
+            "featureId": 56,
+            "detailId": "r80-event-queues-message-count",
+            "label": "事件队列与通知次数"
+          },
+          {
+            "featureId": 54,
+            "detailId": "msi-interrupt-not-event-counter",
+            "label": "MSI的同类计数边界"
+          }
+        ]
       }
     ]
   },
@@ -59256,7 +60022,7 @@
     "mechanism": "消息TLP可带或不带数据，其路由由具体类型决定；并非所有消息都按Memory地址命中BAR。",
     "example": "PME、错误报告与VDM可能使用不同路由，接收过滤也可能把它们送到专门接口。",
     "checks": "先解码消息类型/路由，再追踪目标；不能只凭第三/第四DWORD看起来像地址就进行普通iATU解释。",
-    "prerequisites": "系统软件先配置消息目的和处理方式，设备应用再产生实际事件；屏蔽、待处理状态、向量归属与握手都要实现。",
+    "prerequisites": "先按具体Message Code确定Msg/MsgD、允许路由和角色；不是所有Message都属于中断，也不是都需MSI目标地址或向量配置。",
     "id": 57,
     "status": "已整理 · 待持续深化",
     "sources": [
@@ -59265,7 +60031,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-22",
+    "reviewed": "2026-10-26",
     "protocolReferences": [
       {
         "section": "2.2.8",

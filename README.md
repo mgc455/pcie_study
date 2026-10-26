@@ -499,3 +499,7 @@ R92将117条历史记录归并为固定24项验收任务，并登记37项来源�
 ## R96 PHY分层与TX
 
 [PHY三份契约](https://mgc455.github.io/pcie_study/#feature/163/detail/r96-three-boundary-contracts) · [TX表示边界](https://mgc455.github.io/pcie_study/#feature/168/detail/r96-tx-representation-boundaries)。本轮34维度、累计87；166/167分层职责验收通过，完整功能3/183。余42轮为预算，R97转中断、R98总结，自动任务保持暂停。
+
+## R97 中断结构验收
+
+[MSI-X七代来源地图](https://mgc455.github.io/pcie_study/#feature/55/detail/r97-msix-seven-version-map) · [B42正式勘误](https://mgc455.github.io/pcie_study/#feature/55/detail/r80-msix4-offset-conflict) · [中断各层门控](https://mgc455.github.io/pcie_study/#feature/56/detail/r97-interrupt-gates-not-one-enable)。34新维度累计121；55收口，完整功能4/183，余41轮预算。R98总结R95～R98进度，自动任务保持暂停。
