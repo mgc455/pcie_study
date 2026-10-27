@@ -1,8 +1,12 @@
 {
   "nextFeatureIds": [
-    72,
-    73,
-    83
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    108
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,13 +52,14 @@
     "功能首次引入版本与ECN证据"
   ],
   "lastCompleted": {
-    "date": "2026-10-27",
-    "edition": "2026-10-27-r113",
+    "date": "2026-10-28",
+    "edition": "2026-10-28-r115",
     "featureIds": [
-      70,
-      71
+      74,
+      75,
+      76
     ],
-    "nextTrack": "R114按队列；R114总结"
+    "nextTrack": "R116按队列；R118总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -344,14 +349,14 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 1,
+    "nextReviewAfterRounds": 3,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 55,
-    "lastReviewEdition": "2026-10-27-r110",
-    "lastReviewId": "r107-r110",
-    "nextExpectedReview": "R114（R111～R114四轮总结）"
+    "completedTotal": 57,
+    "lastReviewEdition": "2026-10-27-r114",
+    "lastReviewId": "r111-r114",
+    "nextExpectedReview": "R118（R115～R118四轮总结）"
   },
   "stageReviews": [
     {
@@ -1276,7 +1281,7 @@
     "id": "v1-r91-r138",
     "title": "一期收尾：从持续扩写转为逐项验收",
     "baselineEdition": "2026-10-26-r90",
-    "updated": "2026-10-27",
+    "updated": "2026-10-28",
     "targetRounds": 48,
     "estimateRange": [
       40,
@@ -1285,10 +1290,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 23,
-    "remainingPlannedRounds": 25,
-    "nextRound": 114,
-    "nextReviewRound": 114,
+    "completedRounds": 25,
+    "remainingPlannedRounds": 23,
+    "nextRound": 116,
+    "nextReviewRound": 118,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -8992,47 +8997,127 @@
         "featureId": 72,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/72/detail/r114-ta-iommu-address-and-cache-map",
+                "label": "TA、IOMMU、ATC与iATU：地址和缓存到底由谁管理"
+              },
+              {
+                "href": "#feature/72/detail/r114-iommu-domain-lifecycle-and-checklist",
+                "label": "映射、撤销、错误排查：查上下文，再查实际经过的路径"
+              }
+            ],
+            "note": "核Base6/7 §10.1的TA/ATPT实现边界与PASID、ACS路径；两项既有隔离块复用，新增地址/缓存/生命周期表；V1架构查询范围明确不虚构平台IOMMU寄存器，协议版本复用已验收68–71。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/72/detail/r114-ta-iommu-address-and-cache-map",
+                "label": "TA、IOMMU、ATC与iATU：地址和缓存到底由谁管理"
+              },
+              {
+                "href": "#feature/72/detail/r114-iommu-domain-lifecycle-and-checklist",
+                "label": "映射、撤销、错误排查：查上下文，再查实际经过的路径"
+              }
+            ],
+            "note": "核Base6/7 §10.1的TA/ATPT实现边界与PASID、ACS路径；两项既有隔离块复用，新增地址/缓存/生命周期表；V1架构查询范围明确不虚构平台IOMMU寄存器，协议版本复用已验收68–71。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/72/detail/r114-ta-iommu-address-and-cache-map",
+                "label": "TA、IOMMU、ATC与iATU：地址和缓存到底由谁管理"
+              },
+              {
+                "href": "#feature/72/detail/r114-iommu-domain-lifecycle-and-checklist",
+                "label": "映射、撤销、错误排查：查上下文，再查实际经过的路径"
+              }
+            ],
+            "note": "核Base6/7 §10.1的TA/ATPT实现边界与PASID、ACS路径；两项既有隔离块复用，新增地址/缓存/生命周期表；V1架构查询范围明确不虚构平台IOMMU寄存器，协议版本复用已验收68–71。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/72/detail/r114-ta-iommu-address-and-cache-map",
+                "label": "TA、IOMMU、ATC与iATU：地址和缓存到底由谁管理"
+              },
+              {
+                "href": "#feature/72/detail/r114-iommu-domain-lifecycle-and-checklist",
+                "label": "映射、撤销、错误排查：查上下文，再查实际经过的路径"
+              }
+            ],
+            "note": "核Base6/7 §10.1的TA/ATPT实现边界与PASID、ACS路径；两项既有隔离块复用，新增地址/缓存/生命周期表；V1架构查询范围明确不虚构平台IOMMU寄存器，协议版本复用已验收68–71。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/72/detail/r114-ta-iommu-address-and-cache-map",
+                "label": "TA、IOMMU、ATC与iATU：地址和缓存到底由谁管理"
+              },
+              {
+                "href": "#feature/72/detail/r114-iommu-domain-lifecycle-and-checklist",
+                "label": "映射、撤销、错误排查：查上下文，再查实际经过的路径"
+              }
+            ],
+            "note": "核Base6/7 §10.1的TA/ATPT实现边界与PASID、ACS路径；两项既有隔离块复用，新增地址/缓存/生命周期表；V1架构查询范围明确不虚构平台IOMMU寄存器，协议版本复用已验收68–71。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/72/detail/r114-ta-iommu-address-and-cache-map",
+                "label": "TA、IOMMU、ATC与iATU：地址和缓存到底由谁管理"
+              },
+              {
+                "href": "#feature/72/detail/r114-iommu-domain-lifecycle-and-checklist",
+                "label": "映射、撤销、错误排查：查上下文，再查实际经过的路径"
+              }
+            ],
+            "note": "核Base6/7 §10.1的TA/ATPT实现边界与PASID、ACS路径；两项既有隔离块复用，新增地址/缓存/生命周期表；V1架构查询范围明确不虚构平台IOMMU寄存器，协议版本复用已验收68–71。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/72/detail/r114-ta-iommu-address-and-cache-map",
+                "label": "TA、IOMMU、ATC与iATU：地址和缓存到底由谁管理"
+              },
+              {
+                "href": "#feature/72/detail/r114-iommu-domain-lifecycle-and-checklist",
+                "label": "映射、撤销、错误排查：查上下文，再查实际经过的路径"
+              }
+            ],
+            "note": "核Base6/7 §10.1的TA/ATPT实现边界与PASID、ACS路径；两项既有隔离块复用，新增地址/缓存/生命周期表；V1架构查询范围明确不虚构平台IOMMU寄存器，协议版本复用已验收68–71。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/72/detail/r114-ta-iommu-address-and-cache-map",
+                "label": "TA、IOMMU、ATC与iATU：地址和缓存到底由谁管理"
+              },
+              {
+                "href": "#feature/72/detail/r114-iommu-domain-lifecycle-and-checklist",
+                "label": "映射、撤销、错误排查：查上下文，再查实际经过的路径"
+              }
+            ],
+            "note": "核Base6/7 §10.1的TA/ATPT实现边界与PASID、ACS路径；两项既有隔离块复用，新增地址/缓存/生命周期表；V1架构查询范围明确不虚构平台IOMMU寄存器，协议版本复用已验收68–71。"
           }
         },
         "baseline": {
@@ -9043,61 +9128,142 @@
           "translation"
         ],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核Base6/7 §10.1的TA/ATPT实现边界与PASID、ACS路径；两项既有隔离块复用，新增地址/缓存/生命周期表；V1架构查询范围明确不虚构平台IOMMU寄存器，协议版本复用已验收68–71。",
         "taskId": "v1-task-08",
         "requiredTaskIds": [
           "v1-task-08",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 114
       },
       {
         "id": "v1-feature-73",
         "featureId": 73,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/73/detail/r114-sva-svm-meaning-and-page-fault-flow",
+                "label": "SVA/SVM共享的是地址空间：缺页后仍要翻译，不能直接DMA"
+              },
+              {
+                "href": "#feature/73/detail/r114-sva-lifetime-version-and-coherence-boundary",
+                "label": "SVA生命周期与一致性边界：共享虚拟地址不自动提供缓存一致性"
+              }
+            ],
+            "note": "新增SVA/SVM语义、可分页访问闭环和撤销/一致性边界；协议条件核Base6/7及复用68–71，Linux6.12 x86文档仅作明确平台示例并保留链接；不将ENQCMD或页表ABI设为通用PCIe要求。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/73/detail/r114-sva-svm-meaning-and-page-fault-flow",
+                "label": "SVA/SVM共享的是地址空间：缺页后仍要翻译，不能直接DMA"
+              },
+              {
+                "href": "#feature/73/detail/r114-sva-lifetime-version-and-coherence-boundary",
+                "label": "SVA生命周期与一致性边界：共享虚拟地址不自动提供缓存一致性"
+              }
+            ],
+            "note": "新增SVA/SVM语义、可分页访问闭环和撤销/一致性边界；协议条件核Base6/7及复用68–71，Linux6.12 x86文档仅作明确平台示例并保留链接；不将ENQCMD或页表ABI设为通用PCIe要求。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/73/detail/r114-sva-svm-meaning-and-page-fault-flow",
+                "label": "SVA/SVM共享的是地址空间：缺页后仍要翻译，不能直接DMA"
+              },
+              {
+                "href": "#feature/73/detail/r114-sva-lifetime-version-and-coherence-boundary",
+                "label": "SVA生命周期与一致性边界：共享虚拟地址不自动提供缓存一致性"
+              }
+            ],
+            "note": "新增SVA/SVM语义、可分页访问闭环和撤销/一致性边界；协议条件核Base6/7及复用68–71，Linux6.12 x86文档仅作明确平台示例并保留链接；不将ENQCMD或页表ABI设为通用PCIe要求。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/73/detail/r114-sva-svm-meaning-and-page-fault-flow",
+                "label": "SVA/SVM共享的是地址空间：缺页后仍要翻译，不能直接DMA"
+              },
+              {
+                "href": "#feature/73/detail/r114-sva-lifetime-version-and-coherence-boundary",
+                "label": "SVA生命周期与一致性边界：共享虚拟地址不自动提供缓存一致性"
+              }
+            ],
+            "note": "新增SVA/SVM语义、可分页访问闭环和撤销/一致性边界；协议条件核Base6/7及复用68–71，Linux6.12 x86文档仅作明确平台示例并保留链接；不将ENQCMD或页表ABI设为通用PCIe要求。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/73/detail/r114-sva-svm-meaning-and-page-fault-flow",
+                "label": "SVA/SVM共享的是地址空间：缺页后仍要翻译，不能直接DMA"
+              },
+              {
+                "href": "#feature/73/detail/r114-sva-lifetime-version-and-coherence-boundary",
+                "label": "SVA生命周期与一致性边界：共享虚拟地址不自动提供缓存一致性"
+              }
+            ],
+            "note": "新增SVA/SVM语义、可分页访问闭环和撤销/一致性边界；协议条件核Base6/7及复用68–71，Linux6.12 x86文档仅作明确平台示例并保留链接；不将ENQCMD或页表ABI设为通用PCIe要求。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/73/detail/r114-sva-svm-meaning-and-page-fault-flow",
+                "label": "SVA/SVM共享的是地址空间：缺页后仍要翻译，不能直接DMA"
+              },
+              {
+                "href": "#feature/73/detail/r114-sva-lifetime-version-and-coherence-boundary",
+                "label": "SVA生命周期与一致性边界：共享虚拟地址不自动提供缓存一致性"
+              }
+            ],
+            "note": "新增SVA/SVM语义、可分页访问闭环和撤销/一致性边界；协议条件核Base6/7及复用68–71，Linux6.12 x86文档仅作明确平台示例并保留链接；不将ENQCMD或页表ABI设为通用PCIe要求。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/73/detail/r114-sva-svm-meaning-and-page-fault-flow",
+                "label": "SVA/SVM共享的是地址空间：缺页后仍要翻译，不能直接DMA"
+              },
+              {
+                "href": "#feature/73/detail/r114-sva-lifetime-version-and-coherence-boundary",
+                "label": "SVA生命周期与一致性边界：共享虚拟地址不自动提供缓存一致性"
+              }
+            ],
+            "note": "新增SVA/SVM语义、可分页访问闭环和撤销/一致性边界；协议条件核Base6/7及复用68–71，Linux6.12 x86文档仅作明确平台示例并保留链接；不将ENQCMD或页表ABI设为通用PCIe要求。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/73/detail/r114-sva-svm-meaning-and-page-fault-flow",
+                "label": "SVA/SVM共享的是地址空间：缺页后仍要翻译，不能直接DMA"
+              },
+              {
+                "href": "#feature/73/detail/r114-sva-lifetime-version-and-coherence-boundary",
+                "label": "SVA生命周期与一致性边界：共享虚拟地址不自动提供缓存一致性"
+              }
+            ],
+            "note": "新增SVA/SVM语义、可分页访问闭环和撤销/一致性边界；协议条件核Base6/7及复用68–71，Linux6.12 x86文档仅作明确平台示例并保留链接；不将ENQCMD或页表ABI设为通用PCIe要求。"
           }
         },
         "baseline": {
@@ -9108,61 +9274,142 @@
           "translation"
         ],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "新增SVA/SVM语义、可分页访问闭环和撤销/一致性边界；协议条件核Base6/7及复用68–71，Linux6.12 x86文档仅作明确平台示例并保留链接；不将ENQCMD或页表ABI设为通用PCIe要求。",
         "taskId": "v1-task-08",
         "requiredTaskIds": [
           "v1-task-08",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 114
       },
       {
         "id": "v1-feature-74",
         "featureId": 74,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/74/detail/r115-acs-version-role-and-field-map",
+                "label": "ACS版本、角色与字段：基础七项和Enhanced不是同一批规则"
+              },
+              {
+                "href": "#feature/74/detail/r115-acs-vector-address-and-ari-map",
+                "label": "Egress Vector按bit定位：Port、Function和ARI Group三种解释"
+              }
+            ],
+            "note": "既有Control全位表复用，新增2006独立ECN/3/4/2019Enhanced/5/6/7能力演进与角色，以及6/7完整向量寻址和ARI映射。Source Validation2026正文缺口保留独立75，不用综述冒充该子功能验收。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/74/detail/r115-acs-version-role-and-field-map",
+                "label": "ACS版本、角色与字段：基础七项和Enhanced不是同一批规则"
+              },
+              {
+                "href": "#feature/74/detail/r115-acs-vector-address-and-ari-map",
+                "label": "Egress Vector按bit定位：Port、Function和ARI Group三种解释"
+              }
+            ],
+            "note": "既有Control全位表复用，新增2006独立ECN/3/4/2019Enhanced/5/6/7能力演进与角色，以及6/7完整向量寻址和ARI映射。Source Validation2026正文缺口保留独立75，不用综述冒充该子功能验收。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/74/detail/r115-acs-version-role-and-field-map",
+                "label": "ACS版本、角色与字段：基础七项和Enhanced不是同一批规则"
+              },
+              {
+                "href": "#feature/74/detail/r115-acs-vector-address-and-ari-map",
+                "label": "Egress Vector按bit定位：Port、Function和ARI Group三种解释"
+              }
+            ],
+            "note": "既有Control全位表复用，新增2006独立ECN/3/4/2019Enhanced/5/6/7能力演进与角色，以及6/7完整向量寻址和ARI映射。Source Validation2026正文缺口保留独立75，不用综述冒充该子功能验收。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/74/detail/r115-acs-version-role-and-field-map",
+                "label": "ACS版本、角色与字段：基础七项和Enhanced不是同一批规则"
+              },
+              {
+                "href": "#feature/74/detail/r115-acs-vector-address-and-ari-map",
+                "label": "Egress Vector按bit定位：Port、Function和ARI Group三种解释"
+              }
+            ],
+            "note": "既有Control全位表复用，新增2006独立ECN/3/4/2019Enhanced/5/6/7能力演进与角色，以及6/7完整向量寻址和ARI映射。Source Validation2026正文缺口保留独立75，不用综述冒充该子功能验收。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/74/detail/r115-acs-version-role-and-field-map",
+                "label": "ACS版本、角色与字段：基础七项和Enhanced不是同一批规则"
+              },
+              {
+                "href": "#feature/74/detail/r115-acs-vector-address-and-ari-map",
+                "label": "Egress Vector按bit定位：Port、Function和ARI Group三种解释"
+              }
+            ],
+            "note": "既有Control全位表复用，新增2006独立ECN/3/4/2019Enhanced/5/6/7能力演进与角色，以及6/7完整向量寻址和ARI映射。Source Validation2026正文缺口保留独立75，不用综述冒充该子功能验收。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/74/detail/r115-acs-version-role-and-field-map",
+                "label": "ACS版本、角色与字段：基础七项和Enhanced不是同一批规则"
+              },
+              {
+                "href": "#feature/74/detail/r115-acs-vector-address-and-ari-map",
+                "label": "Egress Vector按bit定位：Port、Function和ARI Group三种解释"
+              }
+            ],
+            "note": "既有Control全位表复用，新增2006独立ECN/3/4/2019Enhanced/5/6/7能力演进与角色，以及6/7完整向量寻址和ARI映射。Source Validation2026正文缺口保留独立75，不用综述冒充该子功能验收。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/74/detail/r115-acs-version-role-and-field-map",
+                "label": "ACS版本、角色与字段：基础七项和Enhanced不是同一批规则"
+              },
+              {
+                "href": "#feature/74/detail/r115-acs-vector-address-and-ari-map",
+                "label": "Egress Vector按bit定位：Port、Function和ARI Group三种解释"
+              }
+            ],
+            "note": "既有Control全位表复用，新增2006独立ECN/3/4/2019Enhanced/5/6/7能力演进与角色，以及6/7完整向量寻址和ARI映射。Source Validation2026正文缺口保留独立75，不用综述冒充该子功能验收。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/74/detail/r115-acs-version-role-and-field-map",
+                "label": "ACS版本、角色与字段：基础七项和Enhanced不是同一批规则"
+              },
+              {
+                "href": "#feature/74/detail/r115-acs-vector-address-and-ari-map",
+                "label": "Egress Vector按bit定位：Port、Function和ARI Group三种解释"
+              }
+            ],
+            "note": "既有Control全位表复用，新增2006独立ECN/3/4/2019Enhanced/5/6/7能力演进与角色，以及6/7完整向量寻址和ARI映射。Source Validation2026正文缺口保留独立75，不用综述冒充该子功能验收。"
           }
         },
         "baseline": {
@@ -9171,14 +9418,15 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "既有Control全位表复用，新增2006独立ECN/3/4/2019Enhanced/5/6/7能力演进与角色，以及6/7完整向量寻址和ARI映射。Source Validation2026正文缺口保留独立75，不用综述冒充该子功能验收。",
         "taskId": "v1-task-09",
         "requiredTaskIds": [
           "v1-task-09",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 115
       },
       {
         "id": "v1-feature-75",
@@ -9188,44 +9436,80 @@
         "status": "awaiting-acceptance",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/75/detail/r115-source-validation-window-and-ecn-gap",
+                "label": "Source Validation的判定与尚缺正文：Bus窗口不是完整身份认证"
+              }
+            ],
+            "note": "原机制/字段/Segment块与新增版本定位复核，六维通过；官方2026-04-15 Source Validation Clarification会员文档23552正文未取得，versions和sources保持pending，未验收完整功能。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/75/detail/r115-source-validation-window-and-ecn-gap",
+                "label": "Source Validation的判定与尚缺正文：Bus窗口不是完整身份认证"
+              }
+            ],
+            "note": "原机制/字段/Segment块与新增版本定位复核，六维通过；官方2026-04-15 Source Validation Clarification会员文档23552正文未取得，versions和sources保持pending，未验收完整功能。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/75/detail/r115-source-validation-window-and-ecn-gap",
+                "label": "Source Validation的判定与尚缺正文：Bus窗口不是完整身份认证"
+              }
+            ],
+            "note": "原机制/字段/Segment块与新增版本定位复核，六维通过；官方2026-04-15 Source Validation Clarification会员文档23552正文未取得，versions和sources保持pending，未验收完整功能。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/75/detail/r115-source-validation-window-and-ecn-gap",
+                "label": "Source Validation的判定与尚缺正文：Bus窗口不是完整身份认证"
+              }
+            ],
+            "note": "原机制/字段/Segment块与新增版本定位复核，六维通过；官方2026-04-15 Source Validation Clarification会员文档23552正文未取得，versions和sources保持pending，未验收完整功能。"
           },
           "versions": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "尚缺官方2026-04-15《Access Control Services (ACS) - Source Validation Clarification》ECN正文；会员文档23552。公开摘要已核，不能代替完整条文。"
           },
           "sources": {
             "status": "pending",
             "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "note": "尚缺官方2026-04-15《Access Control Services (ACS) - Source Validation Clarification》ECN正文；会员文档23552。公开摘要已核，不能代替完整条文。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/75/detail/r115-source-validation-window-and-ecn-gap",
+                "label": "Source Validation的判定与尚缺正文：Bus窗口不是完整身份认证"
+              }
+            ],
+            "note": "原机制/字段/Segment块与新增版本定位复核，六维通过；官方2026-04-15 Source Validation Clarification会员文档23552正文未取得，versions和sources保持pending，未验收完整功能。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/75/detail/r115-source-validation-window-and-ecn-gap",
+                "label": "Source Validation的判定与尚缺正文：Bus窗口不是完整身份认证"
+              }
+            ],
+            "note": "原机制/字段/Segment块与新增版本定位复核，六维通过；官方2026-04-15 Source Validation Clarification会员文档23552正文未取得，versions和sources保持pending，未验收完整功能。"
           }
         },
         "baseline": {
@@ -9234,7 +9518,7 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "原机制/字段/Segment块与新增版本定位复核，六维通过；官方2026-04-15 Source Validation Clarification会员文档23552正文未取得，versions和sources保持pending，未验收完整功能。",
         "taskId": "v1-task-09",
         "requiredTaskIds": [
           "v1-task-09",
@@ -9248,47 +9532,95 @@
         "featureId": 76,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/76/detail/r115-translation-block-at-role-matrix",
+                "label": "Translation Blocking真值表：AT不为默认即阻断，Direct Translated不能覆盖"
+              }
+            ],
+            "note": "原两块与FM边界复用，核原始ACS ECN、3/4/5/6/7 AT非默认、上行角色、优先级和bit6互斥；补真值表及非法AT仍有独立检查，不按速率推可选能力。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/76/detail/r115-translation-block-at-role-matrix",
+                "label": "Translation Blocking真值表：AT不为默认即阻断，Direct Translated不能覆盖"
+              }
+            ],
+            "note": "原两块与FM边界复用，核原始ACS ECN、3/4/5/6/7 AT非默认、上行角色、优先级和bit6互斥；补真值表及非法AT仍有独立检查，不按速率推可选能力。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/76/detail/r115-translation-block-at-role-matrix",
+                "label": "Translation Blocking真值表：AT不为默认即阻断，Direct Translated不能覆盖"
+              }
+            ],
+            "note": "原两块与FM边界复用，核原始ACS ECN、3/4/5/6/7 AT非默认、上行角色、优先级和bit6互斥；补真值表及非法AT仍有独立检查，不按速率推可选能力。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/76/detail/r115-translation-block-at-role-matrix",
+                "label": "Translation Blocking真值表：AT不为默认即阻断，Direct Translated不能覆盖"
+              }
+            ],
+            "note": "原两块与FM边界复用，核原始ACS ECN、3/4/5/6/7 AT非默认、上行角色、优先级和bit6互斥；补真值表及非法AT仍有独立检查，不按速率推可选能力。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/76/detail/r115-translation-block-at-role-matrix",
+                "label": "Translation Blocking真值表：AT不为默认即阻断，Direct Translated不能覆盖"
+              }
+            ],
+            "note": "原两块与FM边界复用，核原始ACS ECN、3/4/5/6/7 AT非默认、上行角色、优先级和bit6互斥；补真值表及非法AT仍有独立检查，不按速率推可选能力。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/76/detail/r115-translation-block-at-role-matrix",
+                "label": "Translation Blocking真值表：AT不为默认即阻断，Direct Translated不能覆盖"
+              }
+            ],
+            "note": "原两块与FM边界复用，核原始ACS ECN、3/4/5/6/7 AT非默认、上行角色、优先级和bit6互斥；补真值表及非法AT仍有独立检查，不按速率推可选能力。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/76/detail/r115-translation-block-at-role-matrix",
+                "label": "Translation Blocking真值表：AT不为默认即阻断，Direct Translated不能覆盖"
+              }
+            ],
+            "note": "原两块与FM边界复用，核原始ACS ECN、3/4/5/6/7 AT非默认、上行角色、优先级和bit6互斥；补真值表及非法AT仍有独立检查，不按速率推可选能力。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 115,
+            "evidence": [
+              {
+                "href": "#feature/76/detail/r115-translation-block-at-role-matrix",
+                "label": "Translation Blocking真值表：AT不为默认即阻断，Direct Translated不能覆盖"
+              }
+            ],
+            "note": "原两块与FM边界复用，核原始ACS ECN、3/4/5/6/7 AT非默认、上行角色、优先级和bit6互斥；补真值表及非法AT仍有独立检查，不按速率推可选能力。"
           }
         },
         "baseline": {
@@ -9297,14 +9629,15 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "原两块与FM边界复用，核原始ACS ECN、3/4/5/6/7 AT非默认、上行角色、优先级和bit6互斥；补真值表及非法AT仍有独立检查，不按速率推可选能力。",
         "taskId": "v1-task-09",
         "requiredTaskIds": [
           "v1-task-09",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 115
       },
       {
         "id": "v1-feature-77",
@@ -9689,47 +10022,95 @@
         "featureId": 83,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/83/detail/r114-p2p-seven-version-routing-contract",
+                "label": "P2P七版共同边界：跨Root Port不能只看设备BAR地址"
+              }
+            ],
+            "note": "原四块路由、拒绝和SDI策略复用；逐版核1.0a/2/3/4/5/6/7 §1.3.1跨域P2P可选边界，6/7 ACS路径与顺序；Linux在线P2PDMA拓扑/移除约束仅标为OS示例。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/83/detail/r114-p2p-seven-version-routing-contract",
+                "label": "P2P七版共同边界：跨Root Port不能只看设备BAR地址"
+              }
+            ],
+            "note": "原四块路由、拒绝和SDI策略复用；逐版核1.0a/2/3/4/5/6/7 §1.3.1跨域P2P可选边界，6/7 ACS路径与顺序；Linux在线P2PDMA拓扑/移除约束仅标为OS示例。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/83/detail/r114-p2p-seven-version-routing-contract",
+                "label": "P2P七版共同边界：跨Root Port不能只看设备BAR地址"
+              }
+            ],
+            "note": "原四块路由、拒绝和SDI策略复用；逐版核1.0a/2/3/4/5/6/7 §1.3.1跨域P2P可选边界，6/7 ACS路径与顺序；Linux在线P2PDMA拓扑/移除约束仅标为OS示例。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/83/detail/r114-p2p-seven-version-routing-contract",
+                "label": "P2P七版共同边界：跨Root Port不能只看设备BAR地址"
+              }
+            ],
+            "note": "原四块路由、拒绝和SDI策略复用；逐版核1.0a/2/3/4/5/6/7 §1.3.1跨域P2P可选边界，6/7 ACS路径与顺序；Linux在线P2PDMA拓扑/移除约束仅标为OS示例。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/83/detail/r114-p2p-seven-version-routing-contract",
+                "label": "P2P七版共同边界：跨Root Port不能只看设备BAR地址"
+              }
+            ],
+            "note": "原四块路由、拒绝和SDI策略复用；逐版核1.0a/2/3/4/5/6/7 §1.3.1跨域P2P可选边界，6/7 ACS路径与顺序；Linux在线P2PDMA拓扑/移除约束仅标为OS示例。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/83/detail/r114-p2p-seven-version-routing-contract",
+                "label": "P2P七版共同边界：跨Root Port不能只看设备BAR地址"
+              }
+            ],
+            "note": "原四块路由、拒绝和SDI策略复用；逐版核1.0a/2/3/4/5/6/7 §1.3.1跨域P2P可选边界，6/7 ACS路径与顺序；Linux在线P2PDMA拓扑/移除约束仅标为OS示例。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/83/detail/r114-p2p-seven-version-routing-contract",
+                "label": "P2P七版共同边界：跨Root Port不能只看设备BAR地址"
+              }
+            ],
+            "note": "原四块路由、拒绝和SDI策略复用；逐版核1.0a/2/3/4/5/6/7 §1.3.1跨域P2P可选边界，6/7 ACS路径与顺序；Linux在线P2PDMA拓扑/移除约束仅标为OS示例。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 114,
+            "evidence": [
+              {
+                "href": "#feature/83/detail/r114-p2p-seven-version-routing-contract",
+                "label": "P2P七版共同边界：跨Root Port不能只看设备BAR地址"
+              }
+            ],
+            "note": "原四块路由、拒绝和SDI策略复用；逐版核1.0a/2/3/4/5/6/7 §1.3.1跨域P2P可选边界，6/7 ACS路径与顺序；Linux在线P2PDMA拓扑/移除约束仅标为OS示例。"
           }
         },
         "baseline": {
@@ -9738,14 +10119,15 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "原四块路由、拒绝和SDI策略复用；逐版核1.0a/2/3/4/5/6/7 §1.3.1跨域P2P可选边界，6/7 ACS路径与顺序；Linux在线P2PDMA拓扑/移除约束仅标为OS示例。",
         "taskId": "v1-task-08",
         "requiredTaskIds": [
           "v1-task-08",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 114
       },
       {
         "id": "v1-feature-84",
@@ -20183,6 +20565,232 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定范围仍有132功能；61/89来源疑点保留，R114总结。",
         "publication": "用户授权R112/R113；分别验收，最终合并发布R113并修复未发布R110/R111。"
+      },
+      {
+        "round": 114,
+        "kind": "R114 翻译与P2P分组收尾及四轮总结",
+        "deliverables": [
+          "R114验收IOMMU/TA、SVA/SVM和P2P三项，翻译分组08闭合；补地址/缓存/停止职责和七版跨域P2P边界，R111～R114四轮总结单列。"
+        ],
+        "closedDeliverableIds": [
+          "feature-72-v1-accepted",
+          "feature-73-v1-accepted",
+          "feature-83-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 72,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 72,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 72,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 72,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 72,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 72,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 72,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 72,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 73,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 73,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 73,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 73,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 73,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 73,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 73,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 73,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 83,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 83,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 83,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 83,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 83,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 83,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 83,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 83,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          72,
+          73,
+          83
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有129功能；61/89来源疑点保留，R118总结。",
+        "publication": "R113先补发成功后，用户授权R114/R115；分别检查，合并发布R115。"
+      },
+      {
+        "round": 115,
+        "kind": "R115 ACS基础控制与版本复核",
+        "deliverables": [
+          "R115验收ACS总览与Translation Blocking两项，Source Validation六维通过但2026澄清ECN正文缺失保留；新增向量/ARI映射与AT真值表。"
+        ],
+        "closedDeliverableIds": [
+          "feature-74-v1-accepted",
+          "feature-76-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 74,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 74,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 74,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 74,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 74,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 74,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 74,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 74,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 75,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 75,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 75,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 75,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 75,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 75,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 76,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 76,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 76,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 76,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 76,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 76,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 76,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 76,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          74,
+          76
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有127功能；61/89来源疑点保留，R118总结。",
+        "publication": "R113先补发成功后，用户授权R114/R115；分别检查，合并发布R115。"
       }
     ],
     "backlog": [
@@ -20566,7 +21174,7 @@
           83
         ],
         "phase": "breadth",
-        "status": "open",
+        "status": "closed",
         "focus": "ATS/PRI/PASID及失效闭环、IOMMU/SVA/P2P角色；平台实现不泛化。",
         "exit": "所列条目八维验收的适用项逐一有证据通过；可复用既有正文，独有语义、版本限制及相关冲突不可遗漏。",
         "legacyRecordIndices": [
@@ -20576,8 +21184,29 @@
           59,
           102
         ],
-        "evidence": [],
-        "closedRound": null
+        "evidence": [
+          {
+            "href": "#feature/72/detail/r114-ta-iommu-address-and-cache-map",
+            "label": "IOMMU / Translation Agent"
+          },
+          {
+            "href": "#feature/72/detail/r114-iommu-domain-lifecycle-and-checklist",
+            "label": "IOMMU / Translation Agent"
+          },
+          {
+            "href": "#feature/73/detail/r114-sva-svm-meaning-and-page-fault-flow",
+            "label": "SVA / SVM"
+          },
+          {
+            "href": "#feature/73/detail/r114-sva-lifetime-version-and-coherence-boundary",
+            "label": "SVA / SVM"
+          },
+          {
+            "href": "#feature/83/detail/r114-p2p-seven-version-routing-contract",
+            "label": "Peer-to-Peer（P2P）"
+          }
+        ],
+        "closedRound": 114
       },
       {
         "id": "v1-task-09",
@@ -23571,33 +24200,37 @@
       }
     ],
     "nextExecution": {
-      "round": 114,
-      "taskId": "v1-task-08",
+      "round": 116,
+      "taskId": "v1-task-09",
       "featureIds": [
-        72,
-        73,
-        83
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        108
       ],
-      "goal": "R114复核72 IOMMU/TA、73 SVA/SVM与83 P2P的实际职责边界，依据证据逐项验收，并完成R111～R114四轮总结；不将平台特定接口当PCIe通用寄存器。",
-      "reviewRound": 114
+      "goal": "继续成熟ACS路由/Enhanced条目77/78/79/80/81/82/108的证据复核；75待2026官方澄清ECN正文。按实际工作量拆分，不预先宣称全部可关闭。R118总结。",
+      "reviewRound": 118
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 113,
-      "reestimateRound": 114,
-      "observedAcceptedUnitsPerRound": 2.75,
-      "requiredAcceptedUnitsPerRemainingRound": 5.28,
-      "linearExtrapolationRounds": 51,
-      "assessment": "R113累计51/183，剩132项/25预算轮，需5.28项每轮；R111～R113实际新增7项。未据此自动延期或降低验收门槛；R114按四轮实绩重评。",
-      "action": "R111先收虚拟化分组的PF/实现接口/SIOV范围；然后转成熟事务/翻译条目，R114按实际关闭量重评。保留183固定范围，不以新增细节数量粉饰完成。",
+      "assessedRound": 115,
+      "reestimateRound": 118,
+      "observedAcceptedUnitsPerRound": 2.5,
+      "requiredAcceptedUnitsPerRemainingRound": 5.521739130434782,
+      "linearExtrapolationRounds": 52,
+      "assessment": "R115累计56/183、471验收维度；剩127项/23预算轮，需约5.522项/轮。Source Validation的2026 ECN正文缺失仍阻塞该功能，不能计为完成；R118复盘，不自动延期。",
+      "action": "R115按成熟ACS基础控制批核74/75/76；后续复用成熟路由条目收尾，R118再评估。",
       "latestProgress": {
-        "round": 113,
+        "round": 115,
         "newAcceptedUnits": 2,
-        "cumulativeAcceptedUnits": 51,
-        "newPassedCriteria": 16,
-        "cumulativePassedCriteria": 425,
-        "remainingPlannedRounds": 25
+        "cumulativeAcceptedUnits": 56,
+        "newPassedCriteria": 22,
+        "cumulativePassedCriteria": 471,
+        "remainingPlannedRounds": 23
       }
     },
     "reviewWindows": [
@@ -23838,6 +24471,55 @@
             "newPassedCriteria": 24,
             "cumulativePassedCriteria": 369,
             "remainingPlannedRounds": 28
+          }
+        }
+      },
+      {
+        "id": "r111-r114",
+        "firstRound": 111,
+        "lastRound": 114,
+        "completedPlanRounds": 4,
+        "closedFeatureUnits": [
+          62,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          83
+        ],
+        "newPassedCriteria": 80,
+        "cumulativePassedCriteria": 449,
+        "remainingFeatureUnits": 129,
+        "remainingRequiredTasks": 20,
+        "closedTaskIds": [
+          "v1-task-07",
+          "v1-task-08"
+        ],
+        "sourceQuestions": 38,
+        "resolvedSourceQuestions": 4,
+        "remainingSourceQuestions": 34,
+        "remainingPlannedRounds": 24,
+        "targetRound": 138,
+        "forecast": {
+          "status": "at-risk",
+          "assessedRound": 114,
+          "reestimateRound": 118,
+          "observedAcceptedUnitsPerRound": 2.5,
+          "requiredAcceptedUnitsPerRemainingRound": 5.375,
+          "linearExtrapolationRounds": 52,
+          "assessment": "R111–R114实际10功能/80维度，累计54/183、449维度；剩129功能/24预算轮，需5.375项/轮，窗口实绩2.5项/轮。机械外推52轮仅是风险指标，不是新预算；不自动延期，不降低验收标准。",
+          "action": "R115按成熟ACS基础控制批核74/75/76；后续复用成熟路由条目收尾，R118再评估。",
+          "latestProgress": {
+            "round": 114,
+            "newAcceptedUnits": 3,
+            "cumulativeAcceptedUnits": 54,
+            "newPassedCriteria": 24,
+            "cumulativePassedCriteria": 449,
+            "remainingPlannedRounds": 24
           }
         }
       }

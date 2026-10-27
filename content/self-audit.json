@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-27",
-  "summary": "R113验收PRI和PASID两项，补独立ATS1.1/2011及2020 ECN版本边界、共享额度和PASID复用；修复大数据文件上传路径，与未发布R110/R111及R112合并。",
+  "date": "2026-10-28",
+  "summary": "R115验收ACS总览与Translation Blocking两项，Source Validation六维通过但2026澄清ECN正文缺失保留；新增向量/ARI映射与AT真值表。",
   "checks": [
     {
       "name": "ACS 74/75/76事实与字段",
@@ -2036,6 +2036,21 @@
       "name": "R112/R113核读及发布链路复核",
       "status": "内容与本地加载检查通过；远端待核",
       "detail": "R112核ATS1.0/1.1选定正文、A7红线渲染及A11布局，与Base4/5/6/7字段核对；R113核PRI状态/资源、2011 PASID两份ECN及2020 Translated Requests ECN。保留183功能ID、历史117记录、38来源问题；不是整章通读。将生成数据拆为core/features/coverage三个同步脚本，逐键对照全部canonical JSON并用JavaScript VM执行加载；公开文件扫描和构建通过。GitHub读取目前传输错误，未确认上线；本地file协议预览被内置浏览器URL安全策略拒绝，未绕过，视觉复核未完成。"
+    },
+    {
+      "name": "R114有限范围复核",
+      "status": "按已核证据推进",
+      "detail": "R114验收IOMMU/TA、SVA/SVM和P2P三项，翻译分组08闭合；补地址/缓存/停止职责和七版跨域P2P边界，R111～R114四轮总结单列。 旧ID/引用和历史问题保留；构建、发布和视觉结果按实际记录。"
+    },
+    {
+      "name": "R115有限范围复核",
+      "status": "按已核证据推进",
+      "detail": "R115验收ACS总览与Translation Blocking两项，Source Validation六维通过但2026澄清ECN正文缺失保留；新增向量/ARI映射与AT真值表。 旧ID/引用和历史问题保留；构建、发布和视觉结果按实际记录。"
+    },
+    {
+      "name": "R114/R115正文、保留性与实际发布核验",
+      "status": "本地检查通过；Source Validation未全验收",
+      "detail": "R113修复提交707a7ab已通过CI/Pages且在线首页逐字节一致；补充数据下载两项超时、一项自动审批审核流断开未执行，不绕过。R114/115核读仅所列PDF正文选段及官方OS资料，保留所有旧detail/引用前缀、38来源问题和历史记录。R114三项完整验收；R115两项完整、Source Validation六维，2026官方ECN会员正文未取得。R114四轮10项/80维度总结已记录；新两轮构建、check和JS/数据加载通过。"
     }
   ],
   "unresolved": [

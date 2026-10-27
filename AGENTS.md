@@ -112,3 +112,9 @@ R111: accepted[62, 66, 67], new criteria24, cumulative47/183 and393 criteria;136
 R112: accepted[68, 69], new criteria16, cumulative49/183 and409 criteria;134 units/26 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR113[70, 71]; R114 review, daily paused. User authorized R112/R113; independent checks, combinedR113 publication repairsR110/R111.
 
 R113: accepted[70, 71], new criteria16, cumulative51/183 and425 criteria;132 units/25 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR114[72, 73, 83]; R114 review, daily paused. User authorized R112/R113; independent checks, combinedR113 publication repairsR110/R111.
+
+R114: accepted[72, 73, 83], new criteria24, cumulative54/183 and449 criteria;129 units/24 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR115[74, 75, 76]; R118 review, daily paused. User authorized R114/R115 after successful R113 repair; independent checks, combined R115 publication.
+
+R114 review: R111-R114 accepted10 units/80 criteria; tasks07/08 closed,20 tasks remain. Cumulative54/183 and449 criteria;129 units/24budget rounds, observed2.5/round vs5.375 required;52-round extrapolation risk only. NextR11574/75/76; nextsummaryR118; daily paused. R113 repair707a7ab CI/Pages success/index byte match; full-data HTTP timed out/approval-review-service failed, no bypass.
+
+R115: accepted[74, 76], new criteria22, cumulative56/183 and471 criteria;127 units/23 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR116[77, 78, 79, 80, 81, 82, 108]; R118 review, daily paused. User authorized R114/R115 after successful R113 repair; independent checks, combined R115 publication.
