@@ -1,10 +1,8 @@
 {
   "nextFeatureIds": [
-    36,
-    38,
-    39,
-    37,
-    40
+    63,
+    64,
+    65
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -51,12 +49,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-27",
-    "edition": "2026-10-27-r106",
+    "edition": "2026-10-27-r109",
     "featureIds": [
-      43,
-      46
+      51
     ],
-    "nextTrack": "R107按队列；R106总结"
+    "nextTrack": "R110按队列；R110总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -346,11 +343,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 48,
+    "completedTotal": 51,
     "lastReviewEdition": "2026-10-27-r106",
     "lastReviewId": "r103-r106",
     "nextExpectedReview": "R110（R107～R110四轮总结）"
@@ -1287,9 +1284,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 16,
-    "remainingPlannedRounds": 32,
-    "nextRound": 107,
+    "completedRounds": 19,
+    "remainingPlannedRounds": 29,
+    "nextRound": 110,
     "nextReviewRound": 110,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -3778,7 +3775,7 @@
         "featureId": 36,
         "group": "枚举、寻址与资源",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -3791,34 +3788,84 @@
               {
                 "href": "#feature/36/detail/enum-resource-failure-chain",
                 "label": "看得见设备但MMIO不通，沿配置链逐项定位"
+              },
+              {
+                "href": "#feature/36/detail/enum-observation-stages",
+                "label": "枚举到可用：把观察点分成六步"
               }
             ],
             "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/36/detail/r107-enumeration-identity-version-map",
+                "label": "枚举逐版检查链：Vendor ID可读、身份捕获、资源和DMA许可分开"
+              },
+              {
+                "href": "#feature/36/detail/enum-capture-write-not-probe",
+                "label": "何时学到自己的BDF：Type0配置写完成才是Bus/Device捕获事件"
+              }
+            ],
+            "note": "核七版身份/初次配置写/配置头选段，复核既有6/7 ARI、捕获、NP及资源门控链；角色/模式和Segment例外分开，不要求某OS唯一枚举算法。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/36/detail/r107-enumeration-identity-version-map",
+                "label": "枚举逐版检查链：Vendor ID可读、身份捕获、资源和DMA许可分开"
+              },
+              {
+                "href": "#feature/36/detail/enum-mf-permission-not-count",
+                "label": "Header Type bit7：探测许可，不是Function数量"
+              }
+            ],
+            "note": "核七版身份/初次配置写/配置头选段，复核既有6/7 ARI、捕获、NP及资源门控链；角色/模式和Segment例外分开，不要求某OS唯一枚举算法。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/36/detail/r107-enumeration-identity-version-map",
+                "label": "枚举逐版检查链：Vendor ID可读、身份捕获、资源和DMA许可分开"
+              },
+              {
+                "href": "#feature/36/detail/enum-vf-not-legacy-scan",
+                "label": "VF不是普通的兼容探测对象"
+              }
+            ],
+            "note": "核七版身份/初次配置写/配置头选段，复核既有6/7 ARI、捕获、NP及资源门控链；角色/模式和Segment例外分开，不要求某OS唯一枚举算法。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/36/detail/r107-enumeration-identity-version-map",
+                "label": "枚举逐版检查链：Vendor ID可读、身份捕获、资源和DMA许可分开"
+              }
+            ],
+            "note": "核七版身份/初次配置写/配置头选段，复核既有6/7 ARI、捕获、NP及资源门控链；角色/模式和Segment例外分开，不要求某OS唯一枚举算法。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/36/detail/r107-enumeration-identity-version-map",
+                "label": "枚举逐版检查链：Vendor ID可读、身份捕获、资源和DMA许可分开"
+              },
+              {
+                "href": "#feature/36/detail/r107-enumeration-identity-version-map",
+                "label": "枚举逐版检查链：Vendor ID可读、身份捕获、资源和DMA许可分开"
+              }
+            ],
+            "note": "核七版身份/初次配置写/配置头选段，复核既有6/7 ARI、捕获、NP及资源门控链；角色/模式和Segment例外分开，不要求某OS唯一枚举算法。"
           },
           "navigation": {
             "status": "passed",
@@ -3831,14 +3878,24 @@
               {
                 "href": "#feature/36/detail/enum-ari-discovery-order",
                 "label": "ARI发现顺序：先确认直接下游，再启用上游转发，最后走非VF链"
+              },
+              {
+                "href": "#feature/36/detail/enum-resource-failure-chain",
+                "label": "看得见设备但MMIO不通，沿配置链逐项定位"
               }
             ],
             "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/36/detail/r107-enumeration-identity-version-map",
+                "label": "枚举逐版检查链：Vendor ID可读、身份捕获、资源和DMA许可分开"
+              }
+            ],
+            "note": "核七版身份/初次配置写/配置头选段，复核既有6/7 ARI、捕获、NP及资源门控链；角色/模式和Segment例外分开，不要求某OS唯一枚举算法。"
           }
         },
         "baseline": {
@@ -3847,61 +3904,134 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R95批量验收所列维度，独有语义和未通过维度保留；未因段落或引用数量认定完成。",
+        "reviewNote": "核七版身份/初次配置写/配置头选段，复核既有6/7 ARI、捕获、NP及资源门控链；角色/模式和Segment例外分开，不要求某OS唯一枚举算法。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 107
       },
       {
         "id": "v1-feature-37",
         "featureId": 37,
         "group": "枚举、寻址与资源",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/37/detail/r107-identity-inheritance-and-role-map",
+                "label": "身份字段逐版：继承PCI定义，不由PCIe代际改变字节排列"
+              },
+              {
+                "href": "#feature/37/detail/identity-vendor-device-allocation",
+                "label": "Vendor/Device/Revision：谁分配，何时用于驱动匹配"
+              }
+            ],
+            "note": "旧PCI2.3/3.0身份正文、七版PCIe继承/字段选段及6/7 VF覆盖复核；字节图/查询保留，未知Class不编造。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/37/detail/r107-identity-inheritance-and-role-map",
+                "label": "身份字段逐版：继承PCI定义，不由PCIe代际改变字节排列"
+              },
+              {
+                "href": "#feature/37/detail/identity-subsystem-product-not-device-id",
+                "label": "Subsystem身份：板卡产品与芯片身份不能混用"
+              }
+            ],
+            "note": "旧PCI2.3/3.0身份正文、七版PCIe继承/字段选段及6/7 VF覆盖复核；字节图/查询保留，未知Class不编造。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/37/detail/r107-identity-inheritance-and-role-map",
+                "label": "身份字段逐版：继承PCI定义，不由PCIe代际改变字节排列"
+              },
+              {
+                "href": "#feature/37/detail/identity-dword-map",
+                "label": "身份寄存器总图：00h、08h与Type0的2Ch三个DWORD"
+              }
+            ],
+            "note": "旧PCI2.3/3.0身份正文、七版PCIe继承/字段选段及6/7 VF覆盖复核；字节图/查询保留，未知Class不编造。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/37/detail/r107-identity-inheritance-and-role-map",
+                "label": "身份字段逐版：继承PCI定义，不由PCIe代际改变字节排列"
+              },
+              {
+                "href": "#feature/37/detail/identity-vf-raw-and-presented",
+                "label": "VF的FFFF陷阱：原始寄存器与VI软件呈现值"
+              }
+            ],
+            "note": "旧PCI2.3/3.0身份正文、七版PCIe继承/字段选段及6/7 VF覆盖复核；字节图/查询保留，未知Class不编造。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/37/detail/r107-identity-inheritance-and-role-map",
+                "label": "身份字段逐版：继承PCI定义，不由PCIe代际改变字节排列"
+              }
+            ],
+            "note": "旧PCI2.3/3.0身份正文、七版PCIe继承/字段选段及6/7 VF覆盖复核；字节图/查询保留，未知Class不编造。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/37/detail/r107-identity-inheritance-and-role-map",
+                "label": "身份字段逐版：继承PCI定义，不由PCIe代际改变字节排列"
+              },
+              {
+                "href": "#feature/37/detail/r107-identity-inheritance-and-role-map",
+                "label": "身份字段逐版：继承PCI定义，不由PCIe代际改变字节排列"
+              }
+            ],
+            "note": "旧PCI2.3/3.0身份正文、七版PCIe继承/字段选段及6/7 VF覆盖复核；字节图/查询保留，未知Class不编造。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/37/detail/r107-identity-inheritance-and-role-map",
+                "label": "身份字段逐版：继承PCI定义，不由PCIe代际改变字节排列"
+              },
+              {
+                "href": "#feature/37/detail/identity-snapshot-query",
+                "label": "离线查询：身份DWORD和Header Type解码"
+              }
+            ],
+            "note": "旧PCI2.3/3.0身份正文、七版PCIe继承/字段选段及6/7 VF覆盖复核；字节图/查询保留，未知Class不编造。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/37/detail/r107-identity-inheritance-and-role-map",
+                "label": "身份字段逐版：继承PCI定义，不由PCIe代际改变字节排列"
+              }
+            ],
+            "note": "旧PCI2.3/3.0身份正文、七版PCIe继承/字段选段及6/7 VF覆盖复核；字节图/查询保留，未知Class不编造。"
           }
         },
         "baseline": {
@@ -3910,21 +4040,22 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "旧PCI2.3/3.0身份正文、七版PCIe继承/字段选段及6/7 VF覆盖复核；字节图/查询保留，未知Class不编造。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 107
       },
       {
         "id": "v1-feature-38",
         "featureId": 38,
         "group": "枚举、寻址与资源",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -3933,34 +4064,84 @@
               {
                 "href": "#feature/38/detail/basics-config-size-not-bdf",
                 "label": "配置空间大小、BDF和BAR空间要分别理解"
+              },
+              {
+                "href": "#feature/38/detail/basics-config-size-not-bdf",
+                "label": "配置空间大小、BDF和BAR空间要分别理解"
               }
             ],
             "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/38/detail/r107-config-readiness-revision-contract",
+                "label": "4KB与Immediate Readiness版本边界：正式6.4已明确VF为0"
+              },
+              {
+                "href": "#feature/38/detail/config-command-status-write-hazard",
+                "label": "04h DWORD读改写陷阱：低16bit Command，高16bit RW1C Status"
+              }
+            ],
+            "note": "早期4KB和属性、4/5已有IR、6/6.1与6.4/7 VF差分核读；冲突30按版本正式正文消歧，不凭省略授权VF。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/38/detail/r107-config-readiness-revision-contract",
+                "label": "4KB与Immediate Readiness版本边界：正式6.4已明确VF为0"
+              },
+              {
+                "href": "#feature/38/detail/config-access-attribute-contract",
+                "label": "配置字段属性表：RO、HwInit、RW、RW1C、RsvdP/Z"
+              }
+            ],
+            "note": "早期4KB和属性、4/5已有IR、6/6.1与6.4/7 VF差分核读；冲突30按版本正式正文消歧，不凭省略授权VF。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/38/detail/r107-config-readiness-revision-contract",
+                "label": "4KB与Immediate Readiness版本边界：正式6.4已明确VF为0"
+              },
+              {
+                "href": "#feature/38/detail/config-immediate-readiness-scope",
+                "label": "Immediate Readiness：只解除配置等待，不承诺业务已经ready"
+              }
+            ],
+            "note": "早期4KB和属性、4/5已有IR、6/6.1与6.4/7 VF差分核读；冲突30按版本正式正文消歧，不凭省略授权VF。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/38/detail/r107-config-readiness-revision-contract",
+                "label": "4KB与Immediate Readiness版本边界：正式6.4已明确VF为0"
+              }
+            ],
+            "note": "早期4KB和属性、4/5已有IR、6/6.1与6.4/7 VF差分核读；冲突30按版本正式正文消歧，不凭省略授权VF。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/38/detail/r107-config-readiness-revision-contract",
+                "label": "4KB与Immediate Readiness版本边界：正式6.4已明确VF为0"
+              },
+              {
+                "href": "#feature/38/detail/r107-config-readiness-revision-contract",
+                "label": "4KB与Immediate Readiness版本边界：正式6.4已明确VF为0"
+              }
+            ],
+            "note": "早期4KB和属性、4/5已有IR、6/6.1与6.4/7 VF差分核读；冲突30按版本正式正文消歧，不凭省略授权VF。"
           },
           "navigation": {
             "status": "passed",
@@ -3973,14 +4154,24 @@
               {
                 "href": "#feature/38/detail/pcie-capability-version-is-not-generation",
                 "label": "跨版核对：Base1.0a的PCIe能力版本为1，2.0/6.0/7.0仍不等于代际"
+              },
+              {
+                "href": "#feature/38/detail/pcie-capability-version-is-not-generation",
+                "label": "跨版核对：Base1.0a的PCIe能力版本为1，2.0/6.0/7.0仍不等于代际"
               }
             ],
             "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/38/detail/r107-config-readiness-revision-contract",
+                "label": "4KB与Immediate Readiness版本边界：正式6.4已明确VF为0"
+              }
+            ],
+            "note": "早期4KB和属性、4/5已有IR、6/6.1与6.4/7 VF差分核读；冲突30按版本正式正文消歧，不凭省略授权VF。"
           }
         },
         "baseline": {
@@ -3989,21 +4180,22 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R95批量验收所列维度，独有语义和未通过维度保留；未因段落或引用数量认定完成。",
+        "reviewNote": "早期4KB和属性、4/5已有IR、6/6.1与6.4/7 VF差分核读；冲突30按版本正式正文消歧，不凭省略授权VF。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 107
       },
       {
         "id": "v1-feature-39",
         "featureId": 39,
         "group": "枚举、寻址与资源",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -4012,34 +4204,84 @@
               {
                 "href": "#feature/39/detail/cap-two-list-entry-points",
                 "label": "先分两条链：传统能力从34h找入口，扩展能力从100h开始"
+              },
+              {
+                "href": "#feature/39/detail/cap-two-list-entry-points",
+                "label": "先分两条链：传统能力从34h找入口，扩展能力从100h开始"
               }
             ],
             "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/39/detail/r107-capability-chain-version-contract",
+                "label": "两条能力链从早期版本就不同：逐版定位及诊断清单"
+              },
+              {
+                "href": "#feature/39/detail/cap-traditional-header-and-next",
+                "label": "普通能力节点怎么读：ID与Next各8bit，不存在统一Version字节"
+              }
+            ],
+            "note": "七版扩展Header/空链/偏移选段与已有传统链说明复核；软件防护与硬件要求分开，复用原查询器。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/39/detail/r107-capability-chain-version-contract",
+                "label": "两条能力链从早期版本就不同：逐版定位及诊断清单"
+              },
+              {
+                "href": "#feature/39/detail/cap-extended-header-bit-fields",
+                "label": "扩展能力Header的32bit：ID[15:0]、Version[19:16]、Next[31:20]"
+              }
+            ],
+            "note": "七版扩展Header/空链/偏移选段与已有传统链说明复核；软件防护与硬件要求分开，复用原查询器。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/39/detail/r107-capability-chain-version-contract",
+                "label": "两条能力链从早期版本就不同：逐版定位及诊断清单"
+              },
+              {
+                "href": "#feature/39/detail/cap-empty-config-versus-rcrb",
+                "label": "空链不止一种表示：配置空间全零Header，RCRB是FFFFh ID"
+              }
+            ],
+            "note": "七版扩展Header/空链/偏移选段与已有传统链说明复核；软件防护与硬件要求分开，复用原查询器。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/39/detail/r107-capability-chain-version-contract",
+                "label": "两条能力链从早期版本就不同：逐版定位及诊断清单"
+              }
+            ],
+            "note": "七版扩展Header/空链/偏移选段与已有传统链说明复核；软件防护与硬件要求分开，复用原查询器。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/39/detail/r107-capability-chain-version-contract",
+                "label": "两条能力链从早期版本就不同：逐版定位及诊断清单"
+              },
+              {
+                "href": "#feature/39/detail/r107-capability-chain-version-contract",
+                "label": "两条能力链从早期版本就不同：逐版定位及诊断清单"
+              }
+            ],
+            "note": "七版扩展Header/空链/偏移选段与已有传统链说明复核；软件防护与硬件要求分开，复用原查询器。"
           },
           "navigation": {
             "status": "passed",
@@ -4052,14 +4294,24 @@
               {
                 "href": "#feature/39/detail/cap-chain-snapshot-query",
                 "label": "离线查询：逐步遍历Capability头与Extended Header"
+              },
+              {
+                "href": "#feature/39/detail/cap-chain-snapshot-query",
+                "label": "离线查询：逐步遍历Capability头与Extended Header"
               }
             ],
             "note": "R95复用并检查所列实际正文与稳定导航；BAR/桥相关标准维度按6.0/7.0已核选段，目的/导航仅验对应内容。未通过的版本/全范围一致性或DBI2实现维度继续待核。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/39/detail/r107-capability-chain-version-contract",
+                "label": "两条能力链从早期版本就不同：逐版定位及诊断清单"
+              }
+            ],
+            "note": "七版扩展Header/空链/偏移选段与已有传统链说明复核；软件防护与硬件要求分开，复用原查询器。"
           }
         },
         "baseline": {
@@ -4068,61 +4320,134 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R95批量验收所列维度，独有语义和未通过维度保留；未因段落或引用数量认定完成。",
+        "reviewNote": "七版扩展Header/空链/偏移选段与已有传统链说明复核；软件防护与硬件要求分开，复用原查询器。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 107
       },
       {
         "id": "v1-feature-40",
         "featureId": 40,
         "group": "枚举、寻址与资源",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/40/detail/r107-header-command-status-version-map",
+                "label": "Type0/Type1逐版：相同公共头不代表后半布局和门控完全相同"
+              },
+              {
+                "href": "#feature/40/detail/header-bar-slots-and-window",
+                "label": "10h之后：端点资源与桥路由资源分开"
+              }
+            ],
+            "note": "七版公共头及Command/Status、已验收BAR/桥/ROM复用边界复核；后版UIO/VF差异不倒推早期。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/40/detail/r107-header-command-status-version-map",
+                "label": "Type0/Type1逐版：相同公共头不代表后半布局和门控完全相同"
+              },
+              {
+                "href": "#feature/40/detail/command-mse-bme-direction-matrix",
+                "label": "MSE与BME按方向理解：响应、发起、上行转发、Completion"
+              }
+            ],
+            "note": "七版公共头及Command/Status、已验收BAR/桥/ROM复用边界复核；后版UIO/VF差异不倒推早期。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/40/detail/r107-header-command-status-version-map",
+                "label": "Type0/Type1逐版：相同公共头不代表后半布局和门控完全相同"
+              },
+              {
+                "href": "#feature/40/detail/header-64byte-layout-map",
+                "label": "两类配置头64B对照图：相同偏移，不同资源"
+              }
+            ],
+            "note": "七版公共头及Command/Status、已验收BAR/桥/ROM复用边界复核；后版UIO/VF差异不倒推早期。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/40/detail/r107-header-command-status-version-map",
+                "label": "Type0/Type1逐版：相同公共头不代表后半布局和门控完全相同"
+              },
+              {
+                "href": "#feature/40/detail/status-poison-ca-ur-role-boundaries",
+                "label": "Status错误位的角色边界：发送请求与接收完成不能颠倒"
+              }
+            ],
+            "note": "七版公共头及Command/Status、已验收BAR/桥/ROM复用边界复核；后版UIO/VF差异不倒推早期。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/40/detail/r107-header-command-status-version-map",
+                "label": "Type0/Type1逐版：相同公共头不代表后半布局和门控完全相同"
+              }
+            ],
+            "note": "七版公共头及Command/Status、已验收BAR/桥/ROM复用边界复核；后版UIO/VF差异不倒推早期。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/40/detail/r107-header-command-status-version-map",
+                "label": "Type0/Type1逐版：相同公共头不代表后半布局和门控完全相同"
+              },
+              {
+                "href": "#feature/40/detail/r107-header-command-status-version-map",
+                "label": "Type0/Type1逐版：相同公共头不代表后半布局和门控完全相同"
+              }
+            ],
+            "note": "七版公共头及Command/Status、已验收BAR/桥/ROM复用边界复核；后版UIO/VF差异不倒推早期。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/40/detail/r107-header-command-status-version-map",
+                "label": "Type0/Type1逐版：相同公共头不代表后半布局和门控完全相同"
+              },
+              {
+                "href": "#feature/40/detail/command-gate-query",
+                "label": "离线查询：Command门控按Function、方向与请求种类检查"
+              }
+            ],
+            "note": "七版公共头及Command/Status、已验收BAR/桥/ROM复用边界复核；后版UIO/VF差异不倒推早期。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 107,
+            "evidence": [
+              {
+                "href": "#feature/40/detail/r107-header-command-status-version-map",
+                "label": "Type0/Type1逐版：相同公共头不代表后半布局和门控完全相同"
+              }
+            ],
+            "note": "七版公共头及Command/Status、已验收BAR/桥/ROM复用边界复核；后版UIO/VF差异不倒推早期。"
           }
         },
         "baseline": {
@@ -4131,14 +4456,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "七版公共头及Command/Status、已验收BAR/桥/ROM复用边界复核；后版UIO/VF差异不倒推早期。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 107
       },
       {
         "id": "v1-feature-41",
@@ -5181,47 +5507,191 @@
         "featureId": 49,
         "group": "枚举、寻址与资源",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/49/detail/r108-vpd-register-handshake",
+                "label": "VPD完整寄存器与握手：读等F=1，写等F=0"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-resource-keyword-format",
+                "label": "VPD内容逐byte：资源Tag、关键词、RV校验和可写区"
+              },
+              {
+                "href": "#feature/49/detail/r108-dsn-register-byte-order",
+                "label": "DSN完整布局与EUI-64字节顺序：不是把两个DWORD打印后直接拼接"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-dsn-version-and-use",
+                "label": "Gen1～Gen7查VPD/DSN：访问机制、内容身份和版本分别记录"
+              }
+            ],
+            "note": "新增VPD字段/握手/Tag/关键字/RV及DSN EUI映射和角色，核6/7正文、PCI继承与七版DSN；识别用途、来源/bit、异常、版本和导航都有直接证据，非硬件写操作。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/49/detail/r108-vpd-register-handshake",
+                "label": "VPD完整寄存器与握手：读等F=1，写等F=0"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-resource-keyword-format",
+                "label": "VPD内容逐byte：资源Tag、关键词、RV校验和可写区"
+              },
+              {
+                "href": "#feature/49/detail/r108-dsn-register-byte-order",
+                "label": "DSN完整布局与EUI-64字节顺序：不是把两个DWORD打印后直接拼接"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-dsn-version-and-use",
+                "label": "Gen1～Gen7查VPD/DSN：访问机制、内容身份和版本分别记录"
+              }
+            ],
+            "note": "新增VPD字段/握手/Tag/关键字/RV及DSN EUI映射和角色，核6/7正文、PCI继承与七版DSN；识别用途、来源/bit、异常、版本和导航都有直接证据，非硬件写操作。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/49/detail/r108-vpd-register-handshake",
+                "label": "VPD完整寄存器与握手：读等F=1，写等F=0"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-resource-keyword-format",
+                "label": "VPD内容逐byte：资源Tag、关键词、RV校验和可写区"
+              },
+              {
+                "href": "#feature/49/detail/r108-dsn-register-byte-order",
+                "label": "DSN完整布局与EUI-64字节顺序：不是把两个DWORD打印后直接拼接"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-dsn-version-and-use",
+                "label": "Gen1～Gen7查VPD/DSN：访问机制、内容身份和版本分别记录"
+              }
+            ],
+            "note": "新增VPD字段/握手/Tag/关键字/RV及DSN EUI映射和角色，核6/7正文、PCI继承与七版DSN；识别用途、来源/bit、异常、版本和导航都有直接证据，非硬件写操作。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/49/detail/r108-vpd-register-handshake",
+                "label": "VPD完整寄存器与握手：读等F=1，写等F=0"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-resource-keyword-format",
+                "label": "VPD内容逐byte：资源Tag、关键词、RV校验和可写区"
+              },
+              {
+                "href": "#feature/49/detail/r108-dsn-register-byte-order",
+                "label": "DSN完整布局与EUI-64字节顺序：不是把两个DWORD打印后直接拼接"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-dsn-version-and-use",
+                "label": "Gen1～Gen7查VPD/DSN：访问机制、内容身份和版本分别记录"
+              }
+            ],
+            "note": "新增VPD字段/握手/Tag/关键字/RV及DSN EUI映射和角色，核6/7正文、PCI继承与七版DSN；识别用途、来源/bit、异常、版本和导航都有直接证据，非硬件写操作。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/49/detail/r108-vpd-register-handshake",
+                "label": "VPD完整寄存器与握手：读等F=1，写等F=0"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-resource-keyword-format",
+                "label": "VPD内容逐byte：资源Tag、关键词、RV校验和可写区"
+              },
+              {
+                "href": "#feature/49/detail/r108-dsn-register-byte-order",
+                "label": "DSN完整布局与EUI-64字节顺序：不是把两个DWORD打印后直接拼接"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-dsn-version-and-use",
+                "label": "Gen1～Gen7查VPD/DSN：访问机制、内容身份和版本分别记录"
+              }
+            ],
+            "note": "新增VPD字段/握手/Tag/关键字/RV及DSN EUI映射和角色，核6/7正文、PCI继承与七版DSN；识别用途、来源/bit、异常、版本和导航都有直接证据，非硬件写操作。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/49/detail/r108-vpd-register-handshake",
+                "label": "VPD完整寄存器与握手：读等F=1，写等F=0"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-resource-keyword-format",
+                "label": "VPD内容逐byte：资源Tag、关键词、RV校验和可写区"
+              },
+              {
+                "href": "#feature/49/detail/r108-dsn-register-byte-order",
+                "label": "DSN完整布局与EUI-64字节顺序：不是把两个DWORD打印后直接拼接"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-dsn-version-and-use",
+                "label": "Gen1～Gen7查VPD/DSN：访问机制、内容身份和版本分别记录"
+              }
+            ],
+            "note": "新增VPD字段/握手/Tag/关键字/RV及DSN EUI映射和角色，核6/7正文、PCI继承与七版DSN；识别用途、来源/bit、异常、版本和导航都有直接证据，非硬件写操作。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/49/detail/r108-vpd-register-handshake",
+                "label": "VPD完整寄存器与握手：读等F=1，写等F=0"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-resource-keyword-format",
+                "label": "VPD内容逐byte：资源Tag、关键词、RV校验和可写区"
+              },
+              {
+                "href": "#feature/49/detail/r108-dsn-register-byte-order",
+                "label": "DSN完整布局与EUI-64字节顺序：不是把两个DWORD打印后直接拼接"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-dsn-version-and-use",
+                "label": "Gen1～Gen7查VPD/DSN：访问机制、内容身份和版本分别记录"
+              }
+            ],
+            "note": "新增VPD字段/握手/Tag/关键字/RV及DSN EUI映射和角色，核6/7正文、PCI继承与七版DSN；识别用途、来源/bit、异常、版本和导航都有直接证据，非硬件写操作。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/49/detail/r108-vpd-register-handshake",
+                "label": "VPD完整寄存器与握手：读等F=1，写等F=0"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-resource-keyword-format",
+                "label": "VPD内容逐byte：资源Tag、关键词、RV校验和可写区"
+              },
+              {
+                "href": "#feature/49/detail/r108-dsn-register-byte-order",
+                "label": "DSN完整布局与EUI-64字节顺序：不是把两个DWORD打印后直接拼接"
+              },
+              {
+                "href": "#feature/49/detail/r108-vpd-dsn-version-and-use",
+                "label": "Gen1～Gen7查VPD/DSN：访问机制、内容身份和版本分别记录"
+              }
+            ],
+            "note": "新增VPD字段/握手/Tag/关键字/RV及DSN EUI映射和角色，核6/7正文、PCI继承与七版DSN；识别用途、来源/bit、异常、版本和导航都有直接证据，非硬件写操作。"
           }
         },
         "baseline": {
@@ -5230,61 +5700,110 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "新增VPD字段/握手/Tag/关键字/RV及DSN EUI映射和角色，核6/7正文、PCI继承与七版DSN；识别用途、来源/bit、异常、版本和导航都有直接证据，非硬件写操作。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 108
       },
       {
         "id": "v1-feature-50",
         "featureId": 50,
         "group": "枚举、寻址与资源",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/50/detail/r108-vsec-dvsec-version-contract",
+                "label": "VSEC/DVSEC版本和长度边界：2004 ECN与2015 ECN两条线"
+              }
+            ],
+            "note": "复用已有完整VSC/VSEC/DVSEC字段，补2004/2015独立ECN及2/3/4/5正式版本证据；长度/命名空间、+0Ah、多个实例和未知修订边界明确。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/50/detail/r108-vsec-dvsec-version-contract",
+                "label": "VSEC/DVSEC版本和长度边界：2004 ECN与2015 ECN两条线"
+              }
+            ],
+            "note": "复用已有完整VSC/VSEC/DVSEC字段，补2004/2015独立ECN及2/3/4/5正式版本证据；长度/命名空间、+0Ah、多个实例和未知修订边界明确。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/50/detail/r108-vsec-dvsec-version-contract",
+                "label": "VSEC/DVSEC版本和长度边界：2004 ECN与2015 ECN两条线"
+              }
+            ],
+            "note": "复用已有完整VSC/VSEC/DVSEC字段，补2004/2015独立ECN及2/3/4/5正式版本证据；长度/命名空间、+0Ah、多个实例和未知修订边界明确。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/50/detail/r108-vsec-dvsec-version-contract",
+                "label": "VSEC/DVSEC版本和长度边界：2004 ECN与2015 ECN两条线"
+              }
+            ],
+            "note": "复用已有完整VSC/VSEC/DVSEC字段，补2004/2015独立ECN及2/3/4/5正式版本证据；长度/命名空间、+0Ah、多个实例和未知修订边界明确。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/50/detail/r108-vsec-dvsec-version-contract",
+                "label": "VSEC/DVSEC版本和长度边界：2004 ECN与2015 ECN两条线"
+              }
+            ],
+            "note": "复用已有完整VSC/VSEC/DVSEC字段，补2004/2015独立ECN及2/3/4/5正式版本证据；长度/命名空间、+0Ah、多个实例和未知修订边界明确。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/50/detail/r108-vsec-dvsec-version-contract",
+                "label": "VSEC/DVSEC版本和长度边界：2004 ECN与2015 ECN两条线"
+              }
+            ],
+            "note": "复用已有完整VSC/VSEC/DVSEC字段，补2004/2015独立ECN及2/3/4/5正式版本证据；长度/命名空间、+0Ah、多个实例和未知修订边界明确。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/50/detail/r108-vsec-dvsec-version-contract",
+                "label": "VSEC/DVSEC版本和长度边界：2004 ECN与2015 ECN两条线"
+              }
+            ],
+            "note": "复用已有完整VSC/VSEC/DVSEC字段，补2004/2015独立ECN及2/3/4/5正式版本证据；长度/命名空间、+0Ah、多个实例和未知修订边界明确。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 108,
+            "evidence": [
+              {
+                "href": "#feature/50/detail/r108-vsec-dvsec-version-contract",
+                "label": "VSEC/DVSEC版本和长度边界：2004 ECN与2015 ECN两条线"
+              }
+            ],
+            "note": "复用已有完整VSC/VSEC/DVSEC字段，补2004/2015独立ECN及2/3/4/5正式版本证据；长度/命名空间、+0Ah、多个实例和未知修订边界明确。"
           }
         },
         "baseline": {
@@ -5293,61 +5812,238 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用已有完整VSC/VSEC/DVSEC字段，补2004/2015独立ECN及2/3/4/5正式版本证据；长度/命名空间、+0Ah、多个实例和未知修订边界明确。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 108
       },
       {
         "id": "v1-feature-51",
         "featureId": 51,
         "group": "枚举、寻址与资源",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 109,
+            "evidence": [
+              {
+                "href": "#feature/51/detail/r109-ea-purpose-topology-and-bar",
+                "label": "EA解决什么问题、哪些拓扑能用：固定资源描述不等于iATU或在线改BAR"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-capability-entry-bit-map",
+                "label": "EA完整头字段与Entry Size：能力Next和条目长度各管一层"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-properties-and-bei",
+                "label": "EA的全部BEI与Primary/Secondary属性编码：6.0和7.0对照"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-address-layout-and-example",
+                "label": "EA地址按DWORD画出来：Base与MaxOffset独立32/64bit"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-version-discovery-checklist",
+                "label": "EA逐版定位与实际使用检查链：先拓扑，再条目，再资源"
+              }
+            ],
+            "note": "补EA用途/永久连接和角色、完整首DW/ES、BEI及两版PP/SP全编码、四种地址宽度/示例、E/W/Command/传统BAR和ROM互斥；独立ECN及4～7正文直接定位。Gen1～3的独立规范适用性不由速率猜测。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 109,
+            "evidence": [
+              {
+                "href": "#feature/51/detail/r109-ea-purpose-topology-and-bar",
+                "label": "EA解决什么问题、哪些拓扑能用：固定资源描述不等于iATU或在线改BAR"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-capability-entry-bit-map",
+                "label": "EA完整头字段与Entry Size：能力Next和条目长度各管一层"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-properties-and-bei",
+                "label": "EA的全部BEI与Primary/Secondary属性编码：6.0和7.0对照"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-address-layout-and-example",
+                "label": "EA地址按DWORD画出来：Base与MaxOffset独立32/64bit"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-version-discovery-checklist",
+                "label": "EA逐版定位与实际使用检查链：先拓扑，再条目，再资源"
+              }
+            ],
+            "note": "补EA用途/永久连接和角色、完整首DW/ES、BEI及两版PP/SP全编码、四种地址宽度/示例、E/W/Command/传统BAR和ROM互斥；独立ECN及4～7正文直接定位。Gen1～3的独立规范适用性不由速率猜测。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 109,
+            "evidence": [
+              {
+                "href": "#feature/51/detail/r109-ea-purpose-topology-and-bar",
+                "label": "EA解决什么问题、哪些拓扑能用：固定资源描述不等于iATU或在线改BAR"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-capability-entry-bit-map",
+                "label": "EA完整头字段与Entry Size：能力Next和条目长度各管一层"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-properties-and-bei",
+                "label": "EA的全部BEI与Primary/Secondary属性编码：6.0和7.0对照"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-address-layout-and-example",
+                "label": "EA地址按DWORD画出来：Base与MaxOffset独立32/64bit"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-version-discovery-checklist",
+                "label": "EA逐版定位与实际使用检查链：先拓扑，再条目，再资源"
+              }
+            ],
+            "note": "补EA用途/永久连接和角色、完整首DW/ES、BEI及两版PP/SP全编码、四种地址宽度/示例、E/W/Command/传统BAR和ROM互斥；独立ECN及4～7正文直接定位。Gen1～3的独立规范适用性不由速率猜测。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 109,
+            "evidence": [
+              {
+                "href": "#feature/51/detail/r109-ea-purpose-topology-and-bar",
+                "label": "EA解决什么问题、哪些拓扑能用：固定资源描述不等于iATU或在线改BAR"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-capability-entry-bit-map",
+                "label": "EA完整头字段与Entry Size：能力Next和条目长度各管一层"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-properties-and-bei",
+                "label": "EA的全部BEI与Primary/Secondary属性编码：6.0和7.0对照"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-address-layout-and-example",
+                "label": "EA地址按DWORD画出来：Base与MaxOffset独立32/64bit"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-version-discovery-checklist",
+                "label": "EA逐版定位与实际使用检查链：先拓扑，再条目，再资源"
+              }
+            ],
+            "note": "补EA用途/永久连接和角色、完整首DW/ES、BEI及两版PP/SP全编码、四种地址宽度/示例、E/W/Command/传统BAR和ROM互斥；独立ECN及4～7正文直接定位。Gen1～3的独立规范适用性不由速率猜测。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 109,
+            "evidence": [
+              {
+                "href": "#feature/51/detail/r109-ea-purpose-topology-and-bar",
+                "label": "EA解决什么问题、哪些拓扑能用：固定资源描述不等于iATU或在线改BAR"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-capability-entry-bit-map",
+                "label": "EA完整头字段与Entry Size：能力Next和条目长度各管一层"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-properties-and-bei",
+                "label": "EA的全部BEI与Primary/Secondary属性编码：6.0和7.0对照"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-address-layout-and-example",
+                "label": "EA地址按DWORD画出来：Base与MaxOffset独立32/64bit"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-version-discovery-checklist",
+                "label": "EA逐版定位与实际使用检查链：先拓扑，再条目，再资源"
+              }
+            ],
+            "note": "补EA用途/永久连接和角色、完整首DW/ES、BEI及两版PP/SP全编码、四种地址宽度/示例、E/W/Command/传统BAR和ROM互斥；独立ECN及4～7正文直接定位。Gen1～3的独立规范适用性不由速率猜测。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 109,
+            "evidence": [
+              {
+                "href": "#feature/51/detail/r109-ea-purpose-topology-and-bar",
+                "label": "EA解决什么问题、哪些拓扑能用：固定资源描述不等于iATU或在线改BAR"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-capability-entry-bit-map",
+                "label": "EA完整头字段与Entry Size：能力Next和条目长度各管一层"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-properties-and-bei",
+                "label": "EA的全部BEI与Primary/Secondary属性编码：6.0和7.0对照"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-address-layout-and-example",
+                "label": "EA地址按DWORD画出来：Base与MaxOffset独立32/64bit"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-version-discovery-checklist",
+                "label": "EA逐版定位与实际使用检查链：先拓扑，再条目，再资源"
+              }
+            ],
+            "note": "补EA用途/永久连接和角色、完整首DW/ES、BEI及两版PP/SP全编码、四种地址宽度/示例、E/W/Command/传统BAR和ROM互斥；独立ECN及4～7正文直接定位。Gen1～3的独立规范适用性不由速率猜测。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 109,
+            "evidence": [
+              {
+                "href": "#feature/51/detail/r109-ea-purpose-topology-and-bar",
+                "label": "EA解决什么问题、哪些拓扑能用：固定资源描述不等于iATU或在线改BAR"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-capability-entry-bit-map",
+                "label": "EA完整头字段与Entry Size：能力Next和条目长度各管一层"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-properties-and-bei",
+                "label": "EA的全部BEI与Primary/Secondary属性编码：6.0和7.0对照"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-address-layout-and-example",
+                "label": "EA地址按DWORD画出来：Base与MaxOffset独立32/64bit"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-version-discovery-checklist",
+                "label": "EA逐版定位与实际使用检查链：先拓扑，再条目，再资源"
+              }
+            ],
+            "note": "补EA用途/永久连接和角色、完整首DW/ES、BEI及两版PP/SP全编码、四种地址宽度/示例、E/W/Command/传统BAR和ROM互斥；独立ECN及4～7正文直接定位。Gen1～3的独立规范适用性不由速率猜测。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 109,
+            "evidence": [
+              {
+                "href": "#feature/51/detail/r109-ea-purpose-topology-and-bar",
+                "label": "EA解决什么问题、哪些拓扑能用：固定资源描述不等于iATU或在线改BAR"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-capability-entry-bit-map",
+                "label": "EA完整头字段与Entry Size：能力Next和条目长度各管一层"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-properties-and-bei",
+                "label": "EA的全部BEI与Primary/Secondary属性编码：6.0和7.0对照"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-address-layout-and-example",
+                "label": "EA地址按DWORD画出来：Base与MaxOffset独立32/64bit"
+              },
+              {
+                "href": "#feature/51/detail/r109-ea-version-discovery-checklist",
+                "label": "EA逐版定位与实际使用检查链：先拓扑，再条目，再资源"
+              }
+            ],
+            "note": "补EA用途/永久连接和角色、完整首DW/ES、BEI及两版PP/SP全编码、四种地址宽度/示例、E/W/Command/传统BAR和ROM互斥；独立ECN及4～7正文直接定位。Gen1～3的独立规范适用性不由速率猜测。"
           }
         },
         "baseline": {
@@ -5356,14 +6052,15 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "补EA用途/永久连接和角色、完整首DW/ES、BEI及两版PP/SP全编码、四种地址宽度/示例、E/W/Command/传统BAR和ROM互斥；独立ECN及4～7正文直接定位。Gen1～3的独立规范适用性不由速率猜测。",
         "taskId": "v1-task-05",
         "requiredTaskIds": [
           "v1-task-05",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 109
       },
       {
         "id": "v1-feature-52",
@@ -18163,6 +18860,306 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定范围仍有150功能；61/89来源疑点保留，R106总结。",
         "publication": "用户本次授权连续两轮；分别构建验收，最后统一发布R106，发布结果单列。"
+      },
+      {
+        "round": 107,
+        "kind": "R107：枚举、身份、配置空间、能力链及配置头五项验收",
+        "deliverables": [
+          "R107新增5项完整验收、34维度；累计38/183和321维度，剩145项/31预算轮。补七版配置继承与链表来源、6.4 Immediate Readiness VF约束，复用成熟图表与查询。下步VPD/DSN、VSEC/DVSEC及EA，R110复盘。"
+        ],
+        "closedDeliverableIds": [
+          "feature-36-v1-accepted",
+          "feature-37-v1-accepted",
+          "feature-38-v1-accepted",
+          "feature-39-v1-accepted",
+          "feature-40-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 36,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 36,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 36,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 36,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 36,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 36,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 37,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 37,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 37,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 37,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 37,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 37,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 37,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 37,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 38,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 38,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 38,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 38,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 38,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 38,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 39,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 39,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 39,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 39,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 39,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 39,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 40,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 40,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 40,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 40,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 40,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 40,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 40,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 40,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          36,
+          37,
+          38,
+          39,
+          40
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有145功能；61/89来源疑点保留，R110总结。",
+        "publication": "用户授权手动R107；本轮构建验收与发布结果分别记录。"
+      },
+      {
+        "round": 108,
+        "kind": "R108：VPD/DSN完整访问格式与VSEC/DVSEC沿革",
+        "deliverables": [
+          "R108验收49/50，新增16维度；累计40/183、337维度，剩143项/30预算轮。补VPD握手与内容、DSN字节映射和2004/2015厂商能力ECN，R109完成EA真实缺口；R110复盘。"
+        ],
+        "closedDeliverableIds": [
+          "feature-49-v1-accepted",
+          "feature-50-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 49,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 49,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 49,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 49,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 49,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 49,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 49,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 49,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 50,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 50,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 50,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 50,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 50,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 50,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 50,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 50,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          49,
+          50
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有143功能；61/89来源疑点保留，R110总结。",
+        "publication": "用户授权连续R108/R109；分别构建验收，最终R109合并补传R107，发布结果单列。"
+      },
+      {
+        "round": 109,
+        "kind": "R109：EA详细结构和配置资源分组收尾",
+        "deliverables": [
+          "R109验收EA，新增8维度；累计41/183和345维度，剩142项/29预算轮。配置资源分组05的16项全部通过，分组关闭；R107待发布并入本次补传。R110转ARI/SR-IOV/VF并四轮总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-51-v1-accepted",
+          "v1-task-05"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 51,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 51,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 51,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 51,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 51,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 51,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 51,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 51,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          51
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有142功能；61/89来源疑点保留，R110总结。",
+        "publication": "用户授权连续R108/R109；分别构建验收，最终R109合并补传R107，发布结果单列。",
+        "closedTaskIds": [
+          "v1-task-05"
+        ]
       }
     ],
     "backlog": [
@@ -18340,7 +19337,7 @@
           51
         ],
         "phase": "core",
-        "status": "open",
+        "status": "closed",
         "focus": "发现到配置链/BAR探测/分配/桥路由的闭环；ROM/VPD/EA等薄弱条目补齐。",
         "exit": "所列条目八维验收的适用项逐一有证据通过；可复用既有正文，独有语义、版本限制及相关冲突不可遗漏。",
         "legacyRecordIndices": [
@@ -18351,11 +19348,81 @@
           64,
           101
         ],
-        "evidence": [],
-        "closedRound": null,
+        "evidence": [
+          {
+            "href": "#feature/36",
+            "label": "功能36八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/37",
+            "label": "功能37八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/38",
+            "label": "功能38八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/39",
+            "label": "功能39八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/40",
+            "label": "功能40八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/41",
+            "label": "功能41八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/42",
+            "label": "功能42八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/43",
+            "label": "功能43八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/44",
+            "label": "功能44八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/45",
+            "label": "功能45八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/46",
+            "label": "功能46八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/47",
+            "label": "功能47八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/48",
+            "label": "功能48八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/49",
+            "label": "功能49八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/50",
+            "label": "功能50八维验收通过，引用各自criterionReviews"
+          },
+          {
+            "href": "#feature/51",
+            "label": "功能51八维验收通过，引用各自criterionReviews"
+          }
+        ],
+        "closedRound": 109,
         "progress": {
-          "round": 106,
+          "round": 109,
           "acceptedUnitIds": [
+            36,
+            37,
+            38,
+            39,
+            40,
             41,
             42,
             43,
@@ -18363,19 +19430,13 @@
             45,
             46,
             47,
-            48
-          ],
-          "remainingFeatureIds": [
-            36,
-            37,
-            38,
-            39,
-            40,
+            48,
             49,
             50,
             51
           ],
-          "remaining": "配置/枚举/头部与VPD/VSEC/EA仍未完成；不能因BAR子组通过关闭整个分组。"
+          "remainingFeatureIds": [],
+          "remaining": "功能分组05验收完成；全站导航/来源/发布等共享任务仍各自保持状态，不是整份规范通读完成。"
         }
       },
       {
@@ -19424,10 +20485,17 @@
         "legacyRecordIndices": [
           101
         ],
-        "status": "needs-corroboration",
+        "status": "resolved-version-context",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "保留原历史记录；后续新官方澄清再按证据更新，不重复开整个主题。",
+        "evidence": [
+          {
+            "href": "#feature/38/detail/r107-config-readiness-revision-contract",
+            "label": "6.0/6.1/6.4/7.0正式表对照"
+          }
+        ],
+        "resolvedRound": 107,
+        "resolution": "正式6.4 p1050已明确VF ROZ，7.0 p1070一致；6.0 p920与6.1 p958本位条目未同列该限制。按修订分别说明，不将省略当VF置1授权，也不声称首次独立ECN已定位。"
       },
       {
         "id": "v1-conflict-31",
@@ -21463,35 +22531,33 @@
       }
     ],
     "nextExecution": {
-      "round": 107,
-      "taskId": "v1-task-05",
+      "round": 110,
+      "taskId": "v1-task-07",
       "featureIds": [
-        36,
-        38,
-        39,
-        37,
-        40
+        63,
+        64,
+        65
       ],
-      "goal": "R107先批验成熟36/38/39及37/40；继续沿固定配置任务到VPD/VSEC/EA薄弱条目，不重写已验收BAR。R110复盘。",
+      "goal": "R110批验成熟63 ARI、64 SR-IOV PF/VF、65 VF BAR/MSI-X/FLR/RID边界，并做R107～R110四轮总结；按证据验收，不重新扩写已关闭配置分组。",
       "reviewRound": 110
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 106,
+      "assessedRound": 109,
       "reestimateRound": 110,
       "observedAcceptedUnitsPerRound": 3.25,
-      "requiredAcceptedUnitsPerRemainingRound": 4.6875,
+      "requiredAcceptedUnitsPerRemainingRound": 4.896551724137931,
       "linearExtrapolationRounds": 47,
-      "assessment": "本窗13项/4轮=3.25项每轮；剩150项/32预算轮需4.6875项每轮。机械外推约47轮仅为风险参考，未计共享收尾，不是新计划或自动延期。",
-      "action": "R107批验成熟枚举/配置条目36/38/39及37/40，随后VPD/VSEC/EA实际缺口；保持183项固定范围，按证据验收，R110再评估。",
+      "assessment": "R109关闭EA和配置资源分组05；累计41/183、345维度，142项/29预算轮。配置薄弱主题补正文使本次两轮仅关闭3完整项，不能靠拆块粉饰速度；R138仍有风险，R110按四轮实绩复盘。",
+      "action": "R110转ARI/SR-IOV/VF成熟条目及四轮总结。固定183范围；共享来源/导航/发布验收未关闭不等于功能分组不能记录真实完成。",
       "latestProgress": {
-        "round": 106,
-        "newAcceptedUnits": 2,
-        "cumulativeAcceptedUnits": 33,
-        "newPassedCriteria": 12,
-        "cumulativePassedCriteria": 287,
-        "remainingPlannedRounds": 32
+        "round": 109,
+        "newAcceptedUnits": 1,
+        "cumulativeAcceptedUnits": 41,
+        "newPassedCriteria": 8,
+        "cumulativePassedCriteria": 345,
+        "remainingPlannedRounds": 29
       }
     },
     "reviewWindows": [

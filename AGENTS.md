@@ -94,3 +94,11 @@ R105: accepted[42, 44, 45], new criteria24, cumulative31/183 and275 criteria;152
 R106: accepted[43, 46], new criteria12, cumulative33/183 and287 criteria;150 units/32 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR107[36, 38, 39, 37, 40]; R106 review, daily paused. User authorized two rounds105/106, independent content/check records, combined final publicationR106.
 
 R106 review complete: R103-R106 accepted13 units/70 criteria, cumulative33/183 and287;150 units/32 budget rounds remain,23 tasks open. Observed3.25/round vs4.6875 required; mechanical47-round extrapolation is risk only. NextR107 mature36/38/39/37/40; next reviewR110, daily paused. Original117 history/38 questions retained.
+
+R107: accepted[36, 37, 38, 39, 40], new criteria34, cumulative38/183 and321 criteria;145 units/31 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR108[49, 50, 51]; R110 review, daily paused. Manual R107; daily paused, next review R110.
+
+R108: accepted[49, 50], new criteria16, cumulative40/183 and337 criteria;143 units/30 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR109[51]; R110 review, daily paused. User authorized R108/R109; independent checks, combined final R109 publication; repair unpublished R107 from its remote baseline.
+
+R109: accepted[51], new criteria8, cumulative41/183 and345 criteria;142 units/29 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR110[63, 64, 65]; R110 review, daily paused. User authorized R108/R109; independent checks, combined final R109 publication; repair unpublished R107 from its remote baseline.
+
+R109: task05 closed after all16 units accepted and its conflicts resolved;22 grouped/shared tasks remain. Cumulative41/183,345 criteria;142 units/29budget rounds. R110 next ARI63/SRIOV64/VF65 and mandatory R107-R110 summary. Repair unpublishedR107 together withR108/R109 from round107_before remote baseline; upload retry is not a round. Daily paused.

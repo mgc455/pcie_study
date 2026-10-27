@@ -29,7 +29,7 @@ for f in features:
         doc=documents_by_id[ref['documentId']]
         assert ref['version']==doc['version'] and 1<=ref['pdfPage']<=doc['pages']
         assert isinstance(ref['page'],int) and ref['page']>=1
-        assert re.fullmatch(r'(?:\d+(?:\.\d+)*|Glossary|Revision History)',ref['section']) or doc.get('kind')=='ecn' and re.fullmatch(r'(?:Part I|Part II|(?:\d+|x+)(?:\.(?:\d+|x+))*)',ref['section']), 'Use actual ECN headings without inventing Base sections'
+        assert re.fullmatch(r'(?:\d+(?:\.\d+)*|[A-Z](?:\.\d+)*|Glossary|Revision History)',ref['section']) or doc.get('kind')=='ecn' and re.fullmatch(r'(?:Part I|Part II|(?:\d+|x+)(?:\.(?:\d+|x+))*)',ref['section']), 'Use actual ECN headings without inventing Base sections'
         assert ref['url']==doc['url']
 # Packet figures must account for every depicted bit, including short final rows.
 packet_ids=set()
