@@ -1,8 +1,8 @@
 {
   "nextFeatureIds": [
-    63,
-    64,
-    65
+    72,
+    73,
+    83
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,11 +49,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-27",
-    "edition": "2026-10-27-r109",
+    "edition": "2026-10-27-r113",
     "featureIds": [
-      51
+      70,
+      71
     ],
-    "nextTrack": "R110按队列；R110总结"
+    "nextTrack": "R114按队列；R114总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -347,10 +348,10 @@
     "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 51,
-    "lastReviewEdition": "2026-10-27-r106",
-    "lastReviewId": "r103-r106",
-    "nextExpectedReview": "R110（R107～R110四轮总结）"
+    "completedTotal": 55,
+    "lastReviewEdition": "2026-10-27-r110",
+    "lastReviewId": "r107-r110",
+    "nextExpectedReview": "R114（R111～R114四轮总结）"
   },
   "stageReviews": [
     {
@@ -1284,10 +1285,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 19,
-    "remainingPlannedRounds": 29,
-    "nextRound": 110,
-    "nextReviewRound": 110,
+    "completedRounds": 23,
+    "remainingPlannedRounds": 25,
+    "nextRound": 114,
+    "nextReviewRound": 114,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -7735,47 +7736,127 @@
         "featureId": 62,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/62/detail/r111-function-pf-vf-sdi-roles",
+                "label": "Function、PF、VF、SDI：身份、配置空间和资源归属"
+              },
+              {
+                "href": "#feature/62/detail/r111-function-resource-lifecycle-checklist",
+                "label": "从发现到停用：逐Function建立资源与复位责任表"
+              }
+            ],
+            "note": "核对Base6.0 §9.1 pp1437–1439及Base7.0 SIOV PF/SDI正文；复用已验收36/40的七版枚举和Header规则、63/64版本映射，补普通Function不自动等于SR-IOV PF及共享资源/复位边界。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/62/detail/r111-function-pf-vf-sdi-roles",
+                "label": "Function、PF、VF、SDI：身份、配置空间和资源归属"
+              },
+              {
+                "href": "#feature/62/detail/r111-function-resource-lifecycle-checklist",
+                "label": "从发现到停用：逐Function建立资源与复位责任表"
+              }
+            ],
+            "note": "核对Base6.0 §9.1 pp1437–1439及Base7.0 SIOV PF/SDI正文；复用已验收36/40的七版枚举和Header规则、63/64版本映射，补普通Function不自动等于SR-IOV PF及共享资源/复位边界。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/62/detail/r111-function-pf-vf-sdi-roles",
+                "label": "Function、PF、VF、SDI：身份、配置空间和资源归属"
+              },
+              {
+                "href": "#feature/62/detail/r111-function-resource-lifecycle-checklist",
+                "label": "从发现到停用：逐Function建立资源与复位责任表"
+              }
+            ],
+            "note": "核对Base6.0 §9.1 pp1437–1439及Base7.0 SIOV PF/SDI正文；复用已验收36/40的七版枚举和Header规则、63/64版本映射，补普通Function不自动等于SR-IOV PF及共享资源/复位边界。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/62/detail/r111-function-pf-vf-sdi-roles",
+                "label": "Function、PF、VF、SDI：身份、配置空间和资源归属"
+              },
+              {
+                "href": "#feature/62/detail/r111-function-resource-lifecycle-checklist",
+                "label": "从发现到停用：逐Function建立资源与复位责任表"
+              }
+            ],
+            "note": "核对Base6.0 §9.1 pp1437–1439及Base7.0 SIOV PF/SDI正文；复用已验收36/40的七版枚举和Header规则、63/64版本映射，补普通Function不自动等于SR-IOV PF及共享资源/复位边界。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/62/detail/r111-function-pf-vf-sdi-roles",
+                "label": "Function、PF、VF、SDI：身份、配置空间和资源归属"
+              },
+              {
+                "href": "#feature/62/detail/r111-function-resource-lifecycle-checklist",
+                "label": "从发现到停用：逐Function建立资源与复位责任表"
+              }
+            ],
+            "note": "核对Base6.0 §9.1 pp1437–1439及Base7.0 SIOV PF/SDI正文；复用已验收36/40的七版枚举和Header规则、63/64版本映射，补普通Function不自动等于SR-IOV PF及共享资源/复位边界。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/62/detail/r111-function-pf-vf-sdi-roles",
+                "label": "Function、PF、VF、SDI：身份、配置空间和资源归属"
+              },
+              {
+                "href": "#feature/62/detail/r111-function-resource-lifecycle-checklist",
+                "label": "从发现到停用：逐Function建立资源与复位责任表"
+              }
+            ],
+            "note": "核对Base6.0 §9.1 pp1437–1439及Base7.0 SIOV PF/SDI正文；复用已验收36/40的七版枚举和Header规则、63/64版本映射，补普通Function不自动等于SR-IOV PF及共享资源/复位边界。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/62/detail/r111-function-pf-vf-sdi-roles",
+                "label": "Function、PF、VF、SDI：身份、配置空间和资源归属"
+              },
+              {
+                "href": "#feature/62/detail/r111-function-resource-lifecycle-checklist",
+                "label": "从发现到停用：逐Function建立资源与复位责任表"
+              }
+            ],
+            "note": "核对Base6.0 §9.1 pp1437–1439及Base7.0 SIOV PF/SDI正文；复用已验收36/40的七版枚举和Header规则、63/64版本映射，补普通Function不自动等于SR-IOV PF及共享资源/复位边界。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/62/detail/r111-function-pf-vf-sdi-roles",
+                "label": "Function、PF、VF、SDI：身份、配置空间和资源归属"
+              },
+              {
+                "href": "#feature/62/detail/r111-function-resource-lifecycle-checklist",
+                "label": "从发现到停用：逐Function建立资源与复位责任表"
+              }
+            ],
+            "note": "核对Base6.0 §9.1 pp1437–1439及Base7.0 SIOV PF/SDI正文；复用已验收36/40的七版枚举和Header规则、63/64版本映射，补普通Function不自动等于SR-IOV PF及共享资源/复位边界。"
           }
         },
         "baseline": {
@@ -7784,61 +7865,110 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核对Base6.0 §9.1 pp1437–1439及Base7.0 SIOV PF/SDI正文；复用已验收36/40的七版枚举和Header规则、63/64版本映射，补普通Function不自动等于SR-IOV PF及共享资源/复位边界。",
         "taskId": "v1-task-07",
         "requiredTaskIds": [
           "v1-task-07",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 111
       },
       {
         "id": "v1-feature-63",
         "featureId": 63,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/63/detail/r110-ari-version-and-three-controls",
+                "label": "ARI逐版与三个控制面：RID解释、上游转发、Function Group分开"
+              }
+            ],
+            "note": "核ARI2007 ECN、正式3/4/5/6/7所列机制/结构，区分1.1/2.0+ECN、ARI组/上游Forwarding/Hierarchy与非VF链。原位表和查询保留。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/63/detail/r110-ari-version-and-three-controls",
+                "label": "ARI逐版与三个控制面：RID解释、上游转发、Function Group分开"
+              }
+            ],
+            "note": "核ARI2007 ECN、正式3/4/5/6/7所列机制/结构，区分1.1/2.0+ECN、ARI组/上游Forwarding/Hierarchy与非VF链。原位表和查询保留。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/63/detail/r110-ari-version-and-three-controls",
+                "label": "ARI逐版与三个控制面：RID解释、上游转发、Function Group分开"
+              }
+            ],
+            "note": "核ARI2007 ECN、正式3/4/5/6/7所列机制/结构，区分1.1/2.0+ECN、ARI组/上游Forwarding/Hierarchy与非VF链。原位表和查询保留。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/63/detail/r110-ari-version-and-three-controls",
+                "label": "ARI逐版与三个控制面：RID解释、上游转发、Function Group分开"
+              }
+            ],
+            "note": "核ARI2007 ECN、正式3/4/5/6/7所列机制/结构，区分1.1/2.0+ECN、ARI组/上游Forwarding/Hierarchy与非VF链。原位表和查询保留。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/63/detail/r110-ari-version-and-three-controls",
+                "label": "ARI逐版与三个控制面：RID解释、上游转发、Function Group分开"
+              }
+            ],
+            "note": "核ARI2007 ECN、正式3/4/5/6/7所列机制/结构，区分1.1/2.0+ECN、ARI组/上游Forwarding/Hierarchy与非VF链。原位表和查询保留。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/63/detail/r110-ari-version-and-three-controls",
+                "label": "ARI逐版与三个控制面：RID解释、上游转发、Function Group分开"
+              }
+            ],
+            "note": "核ARI2007 ECN、正式3/4/5/6/7所列机制/结构，区分1.1/2.0+ECN、ARI组/上游Forwarding/Hierarchy与非VF链。原位表和查询保留。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/63/detail/r110-ari-version-and-three-controls",
+                "label": "ARI逐版与三个控制面：RID解释、上游转发、Function Group分开"
+              }
+            ],
+            "note": "核ARI2007 ECN、正式3/4/5/6/7所列机制/结构，区分1.1/2.0+ECN、ARI组/上游Forwarding/Hierarchy与非VF链。原位表和查询保留。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/63/detail/r110-ari-version-and-three-controls",
+                "label": "ARI逐版与三个控制面：RID解释、上游转发、Function Group分开"
+              }
+            ],
+            "note": "核ARI2007 ECN、正式3/4/5/6/7所列机制/结构，区分1.1/2.0+ECN、ARI组/上游Forwarding/Hierarchy与非VF链。原位表和查询保留。"
           }
         },
         "baseline": {
@@ -7847,61 +7977,142 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核ARI2007 ECN、正式3/4/5/6/7所列机制/结构，区分1.1/2.0+ECN、ARI组/上游Forwarding/Hierarchy与非VF链。原位表和查询保留。",
         "taskId": "v1-task-07",
         "requiredTaskIds": [
           "v1-task-07",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 110
       },
       {
         "id": "v1-feature-64",
         "featureId": 64,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/64/detail/r110-sriov-capabilities-status-fields",
+                "label": "SR-IOV补齐能力与状态位：Supported、Enable和迁移遗留字段不能混用"
+              },
+              {
+                "href": "#feature/64/detail/r110-sriov-independent-spec-version-map",
+                "label": "SR-IOV版本线：独立1.0/1.1、现代Tag与初始化等待"
+              }
+            ],
+            "note": "核独立SRIOV1.0/1.1与Base6/7管理/就绪/依赖选段，补能力及Status完整表；旧迁移与现代Tag/FRS/UIO明确分版。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/64/detail/r110-sriov-capabilities-status-fields",
+                "label": "SR-IOV补齐能力与状态位：Supported、Enable和迁移遗留字段不能混用"
+              },
+              {
+                "href": "#feature/64/detail/r110-sriov-independent-spec-version-map",
+                "label": "SR-IOV版本线：独立1.0/1.1、现代Tag与初始化等待"
+              }
+            ],
+            "note": "核独立SRIOV1.0/1.1与Base6/7管理/就绪/依赖选段，补能力及Status完整表；旧迁移与现代Tag/FRS/UIO明确分版。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/64/detail/r110-sriov-capabilities-status-fields",
+                "label": "SR-IOV补齐能力与状态位：Supported、Enable和迁移遗留字段不能混用"
+              },
+              {
+                "href": "#feature/64/detail/r110-sriov-independent-spec-version-map",
+                "label": "SR-IOV版本线：独立1.0/1.1、现代Tag与初始化等待"
+              }
+            ],
+            "note": "核独立SRIOV1.0/1.1与Base6/7管理/就绪/依赖选段，补能力及Status完整表；旧迁移与现代Tag/FRS/UIO明确分版。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/64/detail/r110-sriov-capabilities-status-fields",
+                "label": "SR-IOV补齐能力与状态位：Supported、Enable和迁移遗留字段不能混用"
+              },
+              {
+                "href": "#feature/64/detail/r110-sriov-independent-spec-version-map",
+                "label": "SR-IOV版本线：独立1.0/1.1、现代Tag与初始化等待"
+              }
+            ],
+            "note": "核独立SRIOV1.0/1.1与Base6/7管理/就绪/依赖选段，补能力及Status完整表；旧迁移与现代Tag/FRS/UIO明确分版。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/64/detail/r110-sriov-capabilities-status-fields",
+                "label": "SR-IOV补齐能力与状态位：Supported、Enable和迁移遗留字段不能混用"
+              },
+              {
+                "href": "#feature/64/detail/r110-sriov-independent-spec-version-map",
+                "label": "SR-IOV版本线：独立1.0/1.1、现代Tag与初始化等待"
+              }
+            ],
+            "note": "核独立SRIOV1.0/1.1与Base6/7管理/就绪/依赖选段，补能力及Status完整表；旧迁移与现代Tag/FRS/UIO明确分版。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/64/detail/r110-sriov-capabilities-status-fields",
+                "label": "SR-IOV补齐能力与状态位：Supported、Enable和迁移遗留字段不能混用"
+              },
+              {
+                "href": "#feature/64/detail/r110-sriov-independent-spec-version-map",
+                "label": "SR-IOV版本线：独立1.0/1.1、现代Tag与初始化等待"
+              }
+            ],
+            "note": "核独立SRIOV1.0/1.1与Base6/7管理/就绪/依赖选段，补能力及Status完整表；旧迁移与现代Tag/FRS/UIO明确分版。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/64/detail/r110-sriov-capabilities-status-fields",
+                "label": "SR-IOV补齐能力与状态位：Supported、Enable和迁移遗留字段不能混用"
+              },
+              {
+                "href": "#feature/64/detail/r110-sriov-independent-spec-version-map",
+                "label": "SR-IOV版本线：独立1.0/1.1、现代Tag与初始化等待"
+              }
+            ],
+            "note": "核独立SRIOV1.0/1.1与Base6/7管理/就绪/依赖选段，补能力及Status完整表；旧迁移与现代Tag/FRS/UIO明确分版。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/64/detail/r110-sriov-capabilities-status-fields",
+                "label": "SR-IOV补齐能力与状态位：Supported、Enable和迁移遗留字段不能混用"
+              },
+              {
+                "href": "#feature/64/detail/r110-sriov-independent-spec-version-map",
+                "label": "SR-IOV版本线：独立1.0/1.1、现代Tag与初始化等待"
+              }
+            ],
+            "note": "核独立SRIOV1.0/1.1与Base6/7管理/就绪/依赖选段，补能力及Status完整表；旧迁移与现代Tag/FRS/UIO明确分版。"
           }
         },
         "baseline": {
@@ -7910,61 +8121,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核独立SRIOV1.0/1.1与Base6/7管理/就绪/依赖选段，补能力及Status完整表；旧迁移与现代Tag/FRS/UIO明确分版。",
         "taskId": "v1-task-07",
         "requiredTaskIds": [
           "v1-task-07",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 110
       },
       {
         "id": "v1-feature-65",
         "featureId": 65,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/65/detail/r110-vf-resource-interrupt-reset-checklist",
+                "label": "VF四条边界合起来查：RID、BAR、MSI-X页面与FLR"
+              }
+            ],
+            "note": "核旧SRIOV与6/7的VF窗口/RID/复位，并明确MSIX隔离以SystemPageSize、资源相对VF；复用已验收55/95及原查询，非全平台上线脚本。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/65/detail/r110-vf-resource-interrupt-reset-checklist",
+                "label": "VF四条边界合起来查：RID、BAR、MSI-X页面与FLR"
+              }
+            ],
+            "note": "核旧SRIOV与6/7的VF窗口/RID/复位，并明确MSIX隔离以SystemPageSize、资源相对VF；复用已验收55/95及原查询，非全平台上线脚本。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/65/detail/r110-vf-resource-interrupt-reset-checklist",
+                "label": "VF四条边界合起来查：RID、BAR、MSI-X页面与FLR"
+              }
+            ],
+            "note": "核旧SRIOV与6/7的VF窗口/RID/复位，并明确MSIX隔离以SystemPageSize、资源相对VF；复用已验收55/95及原查询，非全平台上线脚本。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/65/detail/r110-vf-resource-interrupt-reset-checklist",
+                "label": "VF四条边界合起来查：RID、BAR、MSI-X页面与FLR"
+              }
+            ],
+            "note": "核旧SRIOV与6/7的VF窗口/RID/复位，并明确MSIX隔离以SystemPageSize、资源相对VF；复用已验收55/95及原查询，非全平台上线脚本。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/65/detail/r110-vf-resource-interrupt-reset-checklist",
+                "label": "VF四条边界合起来查：RID、BAR、MSI-X页面与FLR"
+              }
+            ],
+            "note": "核旧SRIOV与6/7的VF窗口/RID/复位，并明确MSIX隔离以SystemPageSize、资源相对VF；复用已验收55/95及原查询，非全平台上线脚本。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/65/detail/r110-vf-resource-interrupt-reset-checklist",
+                "label": "VF四条边界合起来查：RID、BAR、MSI-X页面与FLR"
+              }
+            ],
+            "note": "核旧SRIOV与6/7的VF窗口/RID/复位，并明确MSIX隔离以SystemPageSize、资源相对VF；复用已验收55/95及原查询，非全平台上线脚本。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/65/detail/r110-vf-resource-interrupt-reset-checklist",
+                "label": "VF四条边界合起来查：RID、BAR、MSI-X页面与FLR"
+              }
+            ],
+            "note": "核旧SRIOV与6/7的VF窗口/RID/复位，并明确MSIX隔离以SystemPageSize、资源相对VF；复用已验收55/95及原查询，非全平台上线脚本。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 110,
+            "evidence": [
+              {
+                "href": "#feature/65/detail/r110-vf-resource-interrupt-reset-checklist",
+                "label": "VF四条边界合起来查：RID、BAR、MSI-X页面与FLR"
+              }
+            ],
+            "note": "核旧SRIOV与6/7的VF窗口/RID/复位，并明确MSIX隔离以SystemPageSize、资源相对VF；复用已验收55/95及原查询，非全平台上线脚本。"
           }
         },
         "baseline": {
@@ -7973,61 +8233,110 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核旧SRIOV与6/7的VF窗口/RID/复位，并明确MSIX隔离以SystemPageSize、资源相对VF；复用已验收55/95及原查询，非全平台上线脚本。",
         "taskId": "v1-task-07",
         "requiredTaskIds": [
           "v1-task-07",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 110
       },
       {
         "id": "v1-feature-66",
         "featureId": 66,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/66/detail/r111-extensible-iov-integration-contract",
+                "label": "6.50a外置VF集成契约：哪些由控制器做，哪些由应用承担"
+              }
+            ],
+            "note": "产品范围限定DM Controller6.50a §28.7 pp745–746及§29.7 p754；两项既有正文与新增集成表闭合接口归属，和标准SIOV区分；RTL时序与硬件验证不在本主题验收范围。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/66/detail/r111-extensible-iov-integration-contract",
+                "label": "6.50a外置VF集成契约：哪些由控制器做，哪些由应用承担"
+              }
+            ],
+            "note": "产品范围限定DM Controller6.50a §28.7 pp745–746及§29.7 p754；两项既有正文与新增集成表闭合接口归属，和标准SIOV区分；RTL时序与硬件验证不在本主题验收范围。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/66/detail/r111-extensible-iov-integration-contract",
+                "label": "6.50a外置VF集成契约：哪些由控制器做，哪些由应用承担"
+              }
+            ],
+            "note": "产品范围限定DM Controller6.50a §28.7 pp745–746及§29.7 p754；两项既有正文与新增集成表闭合接口归属，和标准SIOV区分；RTL时序与硬件验证不在本主题验收范围。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/66/detail/r111-extensible-iov-integration-contract",
+                "label": "6.50a外置VF集成契约：哪些由控制器做，哪些由应用承担"
+              }
+            ],
+            "note": "产品范围限定DM Controller6.50a §28.7 pp745–746及§29.7 p754；两项既有正文与新增集成表闭合接口归属，和标准SIOV区分；RTL时序与硬件验证不在本主题验收范围。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/66/detail/r111-extensible-iov-integration-contract",
+                "label": "6.50a外置VF集成契约：哪些由控制器做，哪些由应用承担"
+              }
+            ],
+            "note": "产品范围限定DM Controller6.50a §28.7 pp745–746及§29.7 p754；两项既有正文与新增集成表闭合接口归属，和标准SIOV区分；RTL时序与硬件验证不在本主题验收范围。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/66/detail/r111-extensible-iov-integration-contract",
+                "label": "6.50a外置VF集成契约：哪些由控制器做，哪些由应用承担"
+              }
+            ],
+            "note": "产品范围限定DM Controller6.50a §28.7 pp745–746及§29.7 p754；两项既有正文与新增集成表闭合接口归属，和标准SIOV区分；RTL时序与硬件验证不在本主题验收范围。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/66/detail/r111-extensible-iov-integration-contract",
+                "label": "6.50a外置VF集成契约：哪些由控制器做，哪些由应用承担"
+              }
+            ],
+            "note": "产品范围限定DM Controller6.50a §28.7 pp745–746及§29.7 p754；两项既有正文与新增集成表闭合接口归属，和标准SIOV区分；RTL时序与硬件验证不在本主题验收范围。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/66/detail/r111-extensible-iov-integration-contract",
+                "label": "6.50a外置VF集成契约：哪些由控制器做，哪些由应用承担"
+              }
+            ],
+            "note": "产品范围限定DM Controller6.50a §28.7 pp745–746及§29.7 p754；两项既有正文与新增集成表闭合接口归属，和标准SIOV区分；RTL时序与硬件验证不在本主题验收范围。"
           }
         },
         "baseline": {
@@ -8036,61 +8345,110 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "产品范围限定DM Controller6.50a §28.7 pp745–746及§29.7 p754；两项既有正文与新增集成表闭合接口归属，和标准SIOV区分；RTL时序与硬件验证不在本主题验收范围。",
         "taskId": "v1-task-07",
         "requiredTaskIds": [
           "v1-task-07",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 111
       },
       {
         "id": "v1-feature-67",
         "featureId": 67,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/67/detail/r111-siov-version-and-complete-capability-map",
+                "label": "SIOV版本与完整16字节能力表：状态是RO，创建走设备专用接口"
+              }
+            ],
+            "note": "保留11项既有RID、资源、复位、软件和产品边界详情，核对正式7.0能力全字段及2025-03-07影响6.x的ECN；首次具体6.x整合小版不臆测，独立设备ABI/完整TDISP不冒充已覆盖。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/67/detail/r111-siov-version-and-complete-capability-map",
+                "label": "SIOV版本与完整16字节能力表：状态是RO，创建走设备专用接口"
+              }
+            ],
+            "note": "保留11项既有RID、资源、复位、软件和产品边界详情，核对正式7.0能力全字段及2025-03-07影响6.x的ECN；首次具体6.x整合小版不臆测，独立设备ABI/完整TDISP不冒充已覆盖。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/67/detail/r111-siov-version-and-complete-capability-map",
+                "label": "SIOV版本与完整16字节能力表：状态是RO，创建走设备专用接口"
+              }
+            ],
+            "note": "保留11项既有RID、资源、复位、软件和产品边界详情，核对正式7.0能力全字段及2025-03-07影响6.x的ECN；首次具体6.x整合小版不臆测，独立设备ABI/完整TDISP不冒充已覆盖。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/67/detail/r111-siov-version-and-complete-capability-map",
+                "label": "SIOV版本与完整16字节能力表：状态是RO，创建走设备专用接口"
+              }
+            ],
+            "note": "保留11项既有RID、资源、复位、软件和产品边界详情，核对正式7.0能力全字段及2025-03-07影响6.x的ECN；首次具体6.x整合小版不臆测，独立设备ABI/完整TDISP不冒充已覆盖。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/67/detail/r111-siov-version-and-complete-capability-map",
+                "label": "SIOV版本与完整16字节能力表：状态是RO，创建走设备专用接口"
+              }
+            ],
+            "note": "保留11项既有RID、资源、复位、软件和产品边界详情，核对正式7.0能力全字段及2025-03-07影响6.x的ECN；首次具体6.x整合小版不臆测，独立设备ABI/完整TDISP不冒充已覆盖。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/67/detail/r111-siov-version-and-complete-capability-map",
+                "label": "SIOV版本与完整16字节能力表：状态是RO，创建走设备专用接口"
+              }
+            ],
+            "note": "保留11项既有RID、资源、复位、软件和产品边界详情，核对正式7.0能力全字段及2025-03-07影响6.x的ECN；首次具体6.x整合小版不臆测，独立设备ABI/完整TDISP不冒充已覆盖。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/67/detail/r111-siov-version-and-complete-capability-map",
+                "label": "SIOV版本与完整16字节能力表：状态是RO，创建走设备专用接口"
+              }
+            ],
+            "note": "保留11项既有RID、资源、复位、软件和产品边界详情，核对正式7.0能力全字段及2025-03-07影响6.x的ECN；首次具体6.x整合小版不臆测，独立设备ABI/完整TDISP不冒充已覆盖。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 111,
+            "evidence": [
+              {
+                "href": "#feature/67/detail/r111-siov-version-and-complete-capability-map",
+                "label": "SIOV版本与完整16字节能力表：状态是RO，创建走设备专用接口"
+              }
+            ],
+            "note": "保留11项既有RID、资源、复位、软件和产品边界详情，核对正式7.0能力全字段及2025-03-07影响6.x的ECN；首次具体6.x整合小版不臆测，独立设备ABI/完整TDISP不冒充已覆盖。"
           }
         },
         "baseline": {
@@ -8099,61 +8457,142 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "保留11项既有RID、资源、复位、软件和产品边界详情，核对正式7.0能力全字段及2025-03-07影响6.x的ECN；首次具体6.x整合小版不臆测，独立设备ABI/完整TDISP不冒充已覆盖。",
         "taskId": "v1-task-07",
         "requiredTaskIds": [
           "v1-task-07",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 111
       },
       {
         "id": "v1-feature-68",
         "featureId": 68,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/68/detail/r112-ats-register-evolution",
+                "label": "ATS独立规范到Base7.0：同为000Fh，不能跨版照抄布局"
+              },
+              {
+                "href": "#feature/68/detail/r112-ats-generation-and-use-contract",
+                "label": "Gen1～Gen7怎么查ATS：协议版本、翻译流程与权限分别核对"
+              }
+            ],
+            "note": "复用22块AT/翻译、R/W/U、能力控制、范围查询和竞态正文；新增独立ATS1.0/勘误A11/1.1及Base4/5/6/7字段演进，AMA2020修正；Gen1～3与独立功能修订边界明确，不按速率推功能。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/68/detail/r112-ats-register-evolution",
+                "label": "ATS独立规范到Base7.0：同为000Fh，不能跨版照抄布局"
+              },
+              {
+                "href": "#feature/68/detail/r112-ats-generation-and-use-contract",
+                "label": "Gen1～Gen7怎么查ATS：协议版本、翻译流程与权限分别核对"
+              }
+            ],
+            "note": "复用22块AT/翻译、R/W/U、能力控制、范围查询和竞态正文；新增独立ATS1.0/勘误A11/1.1及Base4/5/6/7字段演进，AMA2020修正；Gen1～3与独立功能修订边界明确，不按速率推功能。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/68/detail/r112-ats-register-evolution",
+                "label": "ATS独立规范到Base7.0：同为000Fh，不能跨版照抄布局"
+              },
+              {
+                "href": "#feature/68/detail/r112-ats-generation-and-use-contract",
+                "label": "Gen1～Gen7怎么查ATS：协议版本、翻译流程与权限分别核对"
+              }
+            ],
+            "note": "复用22块AT/翻译、R/W/U、能力控制、范围查询和竞态正文；新增独立ATS1.0/勘误A11/1.1及Base4/5/6/7字段演进，AMA2020修正；Gen1～3与独立功能修订边界明确，不按速率推功能。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/68/detail/r112-ats-register-evolution",
+                "label": "ATS独立规范到Base7.0：同为000Fh，不能跨版照抄布局"
+              },
+              {
+                "href": "#feature/68/detail/r112-ats-generation-and-use-contract",
+                "label": "Gen1～Gen7怎么查ATS：协议版本、翻译流程与权限分别核对"
+              }
+            ],
+            "note": "复用22块AT/翻译、R/W/U、能力控制、范围查询和竞态正文；新增独立ATS1.0/勘误A11/1.1及Base4/5/6/7字段演进，AMA2020修正；Gen1～3与独立功能修订边界明确，不按速率推功能。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/68/detail/r112-ats-register-evolution",
+                "label": "ATS独立规范到Base7.0：同为000Fh，不能跨版照抄布局"
+              },
+              {
+                "href": "#feature/68/detail/r112-ats-generation-and-use-contract",
+                "label": "Gen1～Gen7怎么查ATS：协议版本、翻译流程与权限分别核对"
+              }
+            ],
+            "note": "复用22块AT/翻译、R/W/U、能力控制、范围查询和竞态正文；新增独立ATS1.0/勘误A11/1.1及Base4/5/6/7字段演进，AMA2020修正；Gen1～3与独立功能修订边界明确，不按速率推功能。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/68/detail/r112-ats-register-evolution",
+                "label": "ATS独立规范到Base7.0：同为000Fh，不能跨版照抄布局"
+              },
+              {
+                "href": "#feature/68/detail/r112-ats-generation-and-use-contract",
+                "label": "Gen1～Gen7怎么查ATS：协议版本、翻译流程与权限分别核对"
+              }
+            ],
+            "note": "复用22块AT/翻译、R/W/U、能力控制、范围查询和竞态正文；新增独立ATS1.0/勘误A11/1.1及Base4/5/6/7字段演进，AMA2020修正；Gen1～3与独立功能修订边界明确，不按速率推功能。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/68/detail/r112-ats-register-evolution",
+                "label": "ATS独立规范到Base7.0：同为000Fh，不能跨版照抄布局"
+              },
+              {
+                "href": "#feature/68/detail/r112-ats-generation-and-use-contract",
+                "label": "Gen1～Gen7怎么查ATS：协议版本、翻译流程与权限分别核对"
+              }
+            ],
+            "note": "复用22块AT/翻译、R/W/U、能力控制、范围查询和竞态正文；新增独立ATS1.0/勘误A11/1.1及Base4/5/6/7字段演进，AMA2020修正；Gen1～3与独立功能修订边界明确，不按速率推功能。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/68/detail/r112-ats-register-evolution",
+                "label": "ATS独立规范到Base7.0：同为000Fh，不能跨版照抄布局"
+              },
+              {
+                "href": "#feature/68/detail/r112-ats-generation-and-use-contract",
+                "label": "Gen1～Gen7怎么查ATS：协议版本、翻译流程与权限分别核对"
+              }
+            ],
+            "note": "复用22块AT/翻译、R/W/U、能力控制、范围查询和竞态正文；新增独立ATS1.0/勘误A11/1.1及Base4/5/6/7字段演进，AMA2020修正；Gen1～3与独立功能修订边界明确，不按速率推功能。"
           }
         },
         "baseline": {
@@ -8164,61 +8603,110 @@
           "translation"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用22块AT/翻译、R/W/U、能力控制、范围查询和竞态正文；新增独立ATS1.0/勘误A11/1.1及Base4/5/6/7字段演进，AMA2020修正；Gen1～3与独立功能修订边界明确，不按速率推功能。",
         "taskId": "v1-task-08",
         "requiredTaskIds": [
           "v1-task-08",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 112
       },
       {
         "id": "v1-feature-69",
         "featureId": 69,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/69/detail/r112-invalidate-errata-and-drain-contract",
+                "label": "失效完成不是清缓存：早期勘误与现代排空条件"
+              }
+            ],
+            "note": "复用23块失效包图、ITag/CC账本、超时、PASID/Global和排空；渲染核对ATS1.0 A7红线，以正式1.1及6/7复核ATS未使能仍响应与不同排空语义，保留UIO和Shadow边界。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/69/detail/r112-invalidate-errata-and-drain-contract",
+                "label": "失效完成不是清缓存：早期勘误与现代排空条件"
+              }
+            ],
+            "note": "复用23块失效包图、ITag/CC账本、超时、PASID/Global和排空；渲染核对ATS1.0 A7红线，以正式1.1及6/7复核ATS未使能仍响应与不同排空语义，保留UIO和Shadow边界。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/69/detail/r112-invalidate-errata-and-drain-contract",
+                "label": "失效完成不是清缓存：早期勘误与现代排空条件"
+              }
+            ],
+            "note": "复用23块失效包图、ITag/CC账本、超时、PASID/Global和排空；渲染核对ATS1.0 A7红线，以正式1.1及6/7复核ATS未使能仍响应与不同排空语义，保留UIO和Shadow边界。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/69/detail/r112-invalidate-errata-and-drain-contract",
+                "label": "失效完成不是清缓存：早期勘误与现代排空条件"
+              }
+            ],
+            "note": "复用23块失效包图、ITag/CC账本、超时、PASID/Global和排空；渲染核对ATS1.0 A7红线，以正式1.1及6/7复核ATS未使能仍响应与不同排空语义，保留UIO和Shadow边界。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/69/detail/r112-invalidate-errata-and-drain-contract",
+                "label": "失效完成不是清缓存：早期勘误与现代排空条件"
+              }
+            ],
+            "note": "复用23块失效包图、ITag/CC账本、超时、PASID/Global和排空；渲染核对ATS1.0 A7红线，以正式1.1及6/7复核ATS未使能仍响应与不同排空语义，保留UIO和Shadow边界。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/69/detail/r112-invalidate-errata-and-drain-contract",
+                "label": "失效完成不是清缓存：早期勘误与现代排空条件"
+              }
+            ],
+            "note": "复用23块失效包图、ITag/CC账本、超时、PASID/Global和排空；渲染核对ATS1.0 A7红线，以正式1.1及6/7复核ATS未使能仍响应与不同排空语义，保留UIO和Shadow边界。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/69/detail/r112-invalidate-errata-and-drain-contract",
+                "label": "失效完成不是清缓存：早期勘误与现代排空条件"
+              }
+            ],
+            "note": "复用23块失效包图、ITag/CC账本、超时、PASID/Global和排空；渲染核对ATS1.0 A7红线，以正式1.1及6/7复核ATS未使能仍响应与不同排空语义，保留UIO和Shadow边界。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 112,
+            "evidence": [
+              {
+                "href": "#feature/69/detail/r112-invalidate-errata-and-drain-contract",
+                "label": "失效完成不是清缓存：早期勘误与现代排空条件"
+              }
+            ],
+            "note": "复用23块失效包图、ITag/CC账本、超时、PASID/Global和排空；渲染核对ATS1.0 A7红线，以正式1.1及6/7复核ATS未使能仍响应与不同排空语义，保留UIO和Shadow边界。"
           }
         },
         "baseline": {
@@ -8229,61 +8717,142 @@
           "translation"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用23块失效包图、ITag/CC账本、超时、PASID/Global和排空；渲染核对ATS1.0 A7红线，以正式1.1及6/7复核ATS未使能仍响应与不同排空语义，保留UIO和Shadow边界。",
         "taskId": "v1-task-08",
         "requiredTaskIds": [
           "v1-task-08",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 112
       },
       {
         "id": "v1-feature-70",
         "featureId": 70,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/70/detail/r113-pri-version-and-state-map",
+                "label": "PRI从ATS1.1到Base7.0：Enable、Stopped与额度的版本地图"
+              },
+              {
+                "href": "#feature/70/detail/r113-pri-resource-and-reuse-checklist",
+                "label": "1000条额度为什么只有512个组号：资源归还与PASID重用"
+              }
+            ],
+            "note": "复用15块PRI包字段、状态、额度、停止、PASID与SIOV内容及解码器；以ATS1.1修订记录和正文核实首次PRI，2011配套ECN、4/5/6/7控制及状态校对，补容量/消息/PRG三种资源与重用清单。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/70/detail/r113-pri-version-and-state-map",
+                "label": "PRI从ATS1.1到Base7.0：Enable、Stopped与额度的版本地图"
+              },
+              {
+                "href": "#feature/70/detail/r113-pri-resource-and-reuse-checklist",
+                "label": "1000条额度为什么只有512个组号：资源归还与PASID重用"
+              }
+            ],
+            "note": "复用15块PRI包字段、状态、额度、停止、PASID与SIOV内容及解码器；以ATS1.1修订记录和正文核实首次PRI，2011配套ECN、4/5/6/7控制及状态校对，补容量/消息/PRG三种资源与重用清单。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/70/detail/r113-pri-version-and-state-map",
+                "label": "PRI从ATS1.1到Base7.0：Enable、Stopped与额度的版本地图"
+              },
+              {
+                "href": "#feature/70/detail/r113-pri-resource-and-reuse-checklist",
+                "label": "1000条额度为什么只有512个组号：资源归还与PASID重用"
+              }
+            ],
+            "note": "复用15块PRI包字段、状态、额度、停止、PASID与SIOV内容及解码器；以ATS1.1修订记录和正文核实首次PRI，2011配套ECN、4/5/6/7控制及状态校对，补容量/消息/PRG三种资源与重用清单。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/70/detail/r113-pri-version-and-state-map",
+                "label": "PRI从ATS1.1到Base7.0：Enable、Stopped与额度的版本地图"
+              },
+              {
+                "href": "#feature/70/detail/r113-pri-resource-and-reuse-checklist",
+                "label": "1000条额度为什么只有512个组号：资源归还与PASID重用"
+              }
+            ],
+            "note": "复用15块PRI包字段、状态、额度、停止、PASID与SIOV内容及解码器；以ATS1.1修订记录和正文核实首次PRI，2011配套ECN、4/5/6/7控制及状态校对，补容量/消息/PRG三种资源与重用清单。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/70/detail/r113-pri-version-and-state-map",
+                "label": "PRI从ATS1.1到Base7.0：Enable、Stopped与额度的版本地图"
+              },
+              {
+                "href": "#feature/70/detail/r113-pri-resource-and-reuse-checklist",
+                "label": "1000条额度为什么只有512个组号：资源归还与PASID重用"
+              }
+            ],
+            "note": "复用15块PRI包字段、状态、额度、停止、PASID与SIOV内容及解码器；以ATS1.1修订记录和正文核实首次PRI，2011配套ECN、4/5/6/7控制及状态校对，补容量/消息/PRG三种资源与重用清单。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/70/detail/r113-pri-version-and-state-map",
+                "label": "PRI从ATS1.1到Base7.0：Enable、Stopped与额度的版本地图"
+              },
+              {
+                "href": "#feature/70/detail/r113-pri-resource-and-reuse-checklist",
+                "label": "1000条额度为什么只有512个组号：资源归还与PASID重用"
+              }
+            ],
+            "note": "复用15块PRI包字段、状态、额度、停止、PASID与SIOV内容及解码器；以ATS1.1修订记录和正文核实首次PRI，2011配套ECN、4/5/6/7控制及状态校对，补容量/消息/PRG三种资源与重用清单。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/70/detail/r113-pri-version-and-state-map",
+                "label": "PRI从ATS1.1到Base7.0：Enable、Stopped与额度的版本地图"
+              },
+              {
+                "href": "#feature/70/detail/r113-pri-resource-and-reuse-checklist",
+                "label": "1000条额度为什么只有512个组号：资源归还与PASID重用"
+              }
+            ],
+            "note": "复用15块PRI包字段、状态、额度、停止、PASID与SIOV内容及解码器；以ATS1.1修订记录和正文核实首次PRI，2011配套ECN、4/5/6/7控制及状态校对，补容量/消息/PRG三种资源与重用清单。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/70/detail/r113-pri-version-and-state-map",
+                "label": "PRI从ATS1.1到Base7.0：Enable、Stopped与额度的版本地图"
+              },
+              {
+                "href": "#feature/70/detail/r113-pri-resource-and-reuse-checklist",
+                "label": "1000条额度为什么只有512个组号：资源归还与PASID重用"
+              }
+            ],
+            "note": "复用15块PRI包字段、状态、额度、停止、PASID与SIOV内容及解码器；以ATS1.1修订记录和正文核实首次PRI，2011配套ECN、4/5/6/7控制及状态校对，补容量/消息/PRG三种资源与重用清单。"
           }
         },
         "baseline": {
@@ -8294,61 +8863,110 @@
           "translation"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用15块PRI包字段、状态、额度、停止、PASID与SIOV内容及解码器；以ATS1.1修订记录和正文核实首次PRI，2011配套ECN、4/5/6/7控制及状态校对，补容量/消息/PRG三种资源与重用清单。",
         "taskId": "v1-task-08",
         "requiredTaskIds": [
           "v1-task-08",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 113
       },
       {
         "id": "v1-feature-71",
         "featureId": 71,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/71/detail/r113-pasid-version-and-translated-requests",
+                "label": "PASID版本地图：2011的身份扩展与2020的Translated Request扩展"
+              }
+            ],
+            "note": "复用11块Prefix/OHC、身份、执行/特权、四使能和stop内容；核2011两份ECN、Base4/5保留bit3与2020ECN、正式6/7现代字段和多功能作用域，明确低速链路不决定可选功能及PASID非地址/PID。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/71/detail/r113-pasid-version-and-translated-requests",
+                "label": "PASID版本地图：2011的身份扩展与2020的Translated Request扩展"
+              }
+            ],
+            "note": "复用11块Prefix/OHC、身份、执行/特权、四使能和stop内容；核2011两份ECN、Base4/5保留bit3与2020ECN、正式6/7现代字段和多功能作用域，明确低速链路不决定可选功能及PASID非地址/PID。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/71/detail/r113-pasid-version-and-translated-requests",
+                "label": "PASID版本地图：2011的身份扩展与2020的Translated Request扩展"
+              }
+            ],
+            "note": "复用11块Prefix/OHC、身份、执行/特权、四使能和stop内容；核2011两份ECN、Base4/5保留bit3与2020ECN、正式6/7现代字段和多功能作用域，明确低速链路不决定可选功能及PASID非地址/PID。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/71/detail/r113-pasid-version-and-translated-requests",
+                "label": "PASID版本地图：2011的身份扩展与2020的Translated Request扩展"
+              }
+            ],
+            "note": "复用11块Prefix/OHC、身份、执行/特权、四使能和stop内容；核2011两份ECN、Base4/5保留bit3与2020ECN、正式6/7现代字段和多功能作用域，明确低速链路不决定可选功能及PASID非地址/PID。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/71/detail/r113-pasid-version-and-translated-requests",
+                "label": "PASID版本地图：2011的身份扩展与2020的Translated Request扩展"
+              }
+            ],
+            "note": "复用11块Prefix/OHC、身份、执行/特权、四使能和stop内容；核2011两份ECN、Base4/5保留bit3与2020ECN、正式6/7现代字段和多功能作用域，明确低速链路不决定可选功能及PASID非地址/PID。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/71/detail/r113-pasid-version-and-translated-requests",
+                "label": "PASID版本地图：2011的身份扩展与2020的Translated Request扩展"
+              }
+            ],
+            "note": "复用11块Prefix/OHC、身份、执行/特权、四使能和stop内容；核2011两份ECN、Base4/5保留bit3与2020ECN、正式6/7现代字段和多功能作用域，明确低速链路不决定可选功能及PASID非地址/PID。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/71/detail/r113-pasid-version-and-translated-requests",
+                "label": "PASID版本地图：2011的身份扩展与2020的Translated Request扩展"
+              }
+            ],
+            "note": "复用11块Prefix/OHC、身份、执行/特权、四使能和stop内容；核2011两份ECN、Base4/5保留bit3与2020ECN、正式6/7现代字段和多功能作用域，明确低速链路不决定可选功能及PASID非地址/PID。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 113,
+            "evidence": [
+              {
+                "href": "#feature/71/detail/r113-pasid-version-and-translated-requests",
+                "label": "PASID版本地图：2011的身份扩展与2020的Translated Request扩展"
+              }
+            ],
+            "note": "复用11块Prefix/OHC、身份、执行/特权、四使能和stop内容；核2011两份ECN、Base4/5保留bit3与2020ECN、正式6/7现代字段和多功能作用域，明确低速链路不决定可选功能及PASID非地址/PID。"
           }
         },
         "baseline": {
@@ -8359,14 +8977,15 @@
           "translation"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用11块Prefix/OHC、身份、执行/特权、四使能和stop内容；核2011两份ECN、Base4/5保留bit3与2020ECN、正式6/7现代字段和多功能作用域，明确低速链路不决定可选功能及PASID非地址/PID。",
         "taskId": "v1-task-08",
         "requiredTaskIds": [
           "v1-task-08",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 113
       },
       {
         "id": "v1-feature-72",
@@ -19160,6 +19779,410 @@
         "closedTaskIds": [
           "v1-task-05"
         ]
+      },
+      {
+        "round": 110,
+        "kind": "R110：ARI/SR-IOV/VF三项验收与四轮总结",
+        "deliverables": [
+          "R110新增3项/24维度，累计44/183和369维度，剩139项/28预算轮。R107～R110关闭11项/82维度、配置分组05；窗口2.75项/轮，剩余需约4.964项/轮，R138仍有风险。R111转Multi-function/PF及Extensible IOV/SIOV；下次R114总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-63-v1-accepted",
+          "feature-64-v1-accepted",
+          "feature-65-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 63,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 63,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 63,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 63,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 63,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 63,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 63,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 63,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 64,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 64,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 64,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 64,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 64,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 64,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 64,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 64,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 65,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 65,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 65,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 65,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 65,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 65,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 65,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 65,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          63,
+          64,
+          65
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有139功能；61/89来源疑点保留，R114总结。",
+        "publication": "用户授权连续R110/R111；分别构建验收，最终合并发布R111，R110含四轮总结。"
+      },
+      {
+        "round": 111,
+        "kind": "R111 多功能与IOV边界验收",
+        "deliverables": [
+          "R111闭合62/66/67三项，新增普通Function/PF/VF/SDI资源职责、6.50a外置VF集成契约和SIOV版本/16字节能力表；与R110合并发布。"
+        ],
+        "closedDeliverableIds": [
+          "feature-62-v1-accepted",
+          "feature-66-v1-accepted",
+          "feature-67-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 62,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 62,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 62,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 62,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 62,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 62,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 62,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 62,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 66,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 66,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 66,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 66,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 66,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 66,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 66,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 66,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 67,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 67,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 67,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 67,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 67,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 67,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 67,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 67,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          62,
+          66,
+          67
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有136功能；61/89来源疑点保留，R114总结。",
+        "publication": "用户授权连续R110/R111；分别构建验收，最终合并发布R111，R110含四轮总结。"
+      },
+      {
+        "round": 112,
+        "kind": "R112 ATS与失效协议版本验收",
+        "deliverables": [
+          "R112验收ATS及Translation/Invalidation两项，补独立规范/勘误到Base7.0版本表、AMA位修正及失效响应条件；复用现有范围和完成账本。"
+        ],
+        "closedDeliverableIds": [
+          "feature-68-v1-accepted",
+          "feature-69-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 68,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 68,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 68,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 68,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 68,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 68,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 68,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 68,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 69,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 69,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 69,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 69,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 69,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 69,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 69,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 69,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          68,
+          69
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有134功能；61/89来源疑点保留，R114总结。",
+        "publication": "用户授权R112/R113；分别验收，最终合并发布R113并修复未发布R110/R111。"
+      },
+      {
+        "round": 113,
+        "kind": "R113 PRI与PASID版本验收及发布修复",
+        "deliverables": [
+          "R113验收PRI和PASID两项，补独立ATS1.1/2011及2020 ECN版本边界、共享额度和PASID复用；修复大数据文件上传路径，与未发布R110/R111及R112合并。"
+        ],
+        "closedDeliverableIds": [
+          "feature-70-v1-accepted",
+          "feature-71-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 70,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 70,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 70,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 70,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 70,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 70,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 70,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 70,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 71,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 71,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 71,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 71,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 71,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 71,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 71,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 71,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          70,
+          71
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有132功能；61/89来源疑点保留，R114总结。",
+        "publication": "用户授权R112/R113；分别验收，最终合并发布R113并修复未发布R110/R111。"
       }
     ],
     "backlog": [
@@ -19503,15 +20526,32 @@
           67
         ],
         "phase": "breadth",
-        "status": "open",
+        "status": "closed",
         "focus": "普通MFD、ARI、PF/VF、EIOV/SIOV能力、身份与生命周期边界。",
         "exit": "所列条目八维验收的适用项逐一有证据通过；可复用既有正文，独有语义、版本限制及相关冲突不可遗漏。",
         "legacyRecordIndices": [
           75,
           101
         ],
-        "evidence": [],
-        "closedRound": null
+        "evidence": [
+          {
+            "href": "#feature/62/detail/r111-function-pf-vf-sdi-roles",
+            "label": "Multi-function / PF"
+          },
+          {
+            "href": "#feature/62/detail/r111-function-resource-lifecycle-checklist",
+            "label": "Multi-function / PF"
+          },
+          {
+            "href": "#feature/66/detail/r111-extensible-iov-integration-contract",
+            "label": "Extensible IOV"
+          },
+          {
+            "href": "#feature/67/detail/r111-siov-version-and-complete-capability-map",
+            "label": "Scalable IOV（SIOV）"
+          }
+        ],
+        "closedRound": 111
       },
       {
         "id": "v1-task-08",
@@ -22531,33 +23571,33 @@
       }
     ],
     "nextExecution": {
-      "round": 110,
-      "taskId": "v1-task-07",
+      "round": 114,
+      "taskId": "v1-task-08",
       "featureIds": [
-        63,
-        64,
-        65
+        72,
+        73,
+        83
       ],
-      "goal": "R110批验成熟63 ARI、64 SR-IOV PF/VF、65 VF BAR/MSI-X/FLR/RID边界，并做R107～R110四轮总结；按证据验收，不重新扩写已关闭配置分组。",
-      "reviewRound": 110
+      "goal": "R114复核72 IOMMU/TA、73 SVA/SVM与83 P2P的实际职责边界，依据证据逐项验收，并完成R111～R114四轮总结；不将平台特定接口当PCIe通用寄存器。",
+      "reviewRound": 114
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 109,
-      "reestimateRound": 110,
-      "observedAcceptedUnitsPerRound": 3.25,
-      "requiredAcceptedUnitsPerRemainingRound": 4.896551724137931,
-      "linearExtrapolationRounds": 47,
-      "assessment": "R109关闭EA和配置资源分组05；累计41/183、345维度，142项/29预算轮。配置薄弱主题补正文使本次两轮仅关闭3完整项，不能靠拆块粉饰速度；R138仍有风险，R110按四轮实绩复盘。",
-      "action": "R110转ARI/SR-IOV/VF成熟条目及四轮总结。固定183范围；共享来源/导航/发布验收未关闭不等于功能分组不能记录真实完成。",
+      "assessedRound": 113,
+      "reestimateRound": 114,
+      "observedAcceptedUnitsPerRound": 2.75,
+      "requiredAcceptedUnitsPerRemainingRound": 5.28,
+      "linearExtrapolationRounds": 51,
+      "assessment": "R113累计51/183，剩132项/25预算轮，需5.28项每轮；R111～R113实际新增7项。未据此自动延期或降低验收门槛；R114按四轮实绩重评。",
+      "action": "R111先收虚拟化分组的PF/实现接口/SIOV范围；然后转成熟事务/翻译条目，R114按实际关闭量重评。保留183固定范围，不以新增细节数量粉饰完成。",
       "latestProgress": {
-        "round": 109,
-        "newAcceptedUnits": 1,
-        "cumulativeAcceptedUnits": 41,
-        "newPassedCriteria": 8,
-        "cumulativePassedCriteria": 345,
-        "remainingPlannedRounds": 29
+        "round": 113,
+        "newAcceptedUnits": 2,
+        "cumulativeAcceptedUnits": 51,
+        "newPassedCriteria": 16,
+        "cumulativePassedCriteria": 425,
+        "remainingPlannedRounds": 25
       }
     },
     "reviewWindows": [
@@ -22751,6 +23791,55 @@
           61,
           89
         ]
+      },
+      {
+        "id": "r107-r110",
+        "firstRound": 107,
+        "lastRound": 110,
+        "completedPlanRounds": 4,
+        "closedFeatureUnits": [
+          36,
+          37,
+          38,
+          39,
+          40,
+          49,
+          50,
+          51,
+          63,
+          64,
+          65
+        ],
+        "newPassedCriteria": 82,
+        "cumulativePassedCriteria": 369,
+        "remainingFeatureUnits": 139,
+        "remainingRequiredTasks": 22,
+        "closedTaskIds": [
+          "v1-task-05"
+        ],
+        "sourceQuestions": 38,
+        "resolvedSourceQuestions": 4,
+        "remainingSourceQuestions": 34,
+        "remainingPlannedRounds": 28,
+        "targetRound": 138,
+        "forecast": {
+          "status": "at-risk",
+          "assessedRound": 110,
+          "reestimateRound": 114,
+          "observedAcceptedUnitsPerRound": 2.75,
+          "requiredAcceptedUnitsPerRemainingRound": 4.964285714285714,
+          "linearExtrapolationRounds": 51,
+          "assessment": "R107-R110为11功能/82维度，配置分组05关闭；累计44/183。剩139项/28预算轮需4.964项每轮，本窗2.75；机械外推约51轮仅为风险参考，不是新计划或自动延期，且未计共享收尾。",
+          "action": "R111先收虚拟化分组的PF/实现接口/SIOV范围；然后转成熟事务/翻译条目，R114按实际关闭量重评。保留183固定范围，不以新增细节数量粉饰完成。",
+          "latestProgress": {
+            "round": 110,
+            "newAcceptedUnits": 3,
+            "cumulativeAcceptedUnits": 44,
+            "newPassedCriteria": 24,
+            "cumulativePassedCriteria": 369,
+            "remainingPlannedRounds": 28
+          }
+        }
       }
     ]
   }

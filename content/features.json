@@ -70223,16 +70223,16 @@
     "mechanism": "一个设备可有多个PF，每个功能有自己的配置资源和请求者身份，但可能共享链路、RAM或应用引擎。共享部分仍需仲裁与隔离。",
     "example": "PF0做管理，PF1做数据业务时，驱动应分别绑定资源，同时处理共享复位/带宽关系。",
     "checks": "不能根据功能号不同就假设物理资源完全独立；明确每个PF能访问和复位的范围。",
-    "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
+    "prerequisites": "普通多功能发现按Header/ARI规则；虚拟化直通还需软件、拓扑、地址/中断隔离支持。IOMMU不是所有普通多功能设备工作的先决条件。",
     "id": 62,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R111按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "7.5",
@@ -70244,9 +70244,200 @@
         "pdfPage": 915,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "9.1",
+        "page": 1437,
+        "pdfPage": 1437,
+        "title": "PF/VF定义及多功能设备",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "9.1",
+        "page": 1438,
+        "pdfPage": 1438,
+        "title": "共享链路与每功能资源",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "9.1",
+        "page": 1439,
+        "pdfPage": 1439,
+        "title": "PF与VF配置资源",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.1",
+        "page": 1651,
+        "pdfPage": 1651,
+        "title": "SIOV中的PF和SDI",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.2",
+        "page": 1680,
+        "pdfPage": 1680,
+        "title": "Type 0 PF与SIOV能力",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "R111核读功能角色正文，并复用已验收七版Header/枚举证据；具体版本与实现范围见详情。",
+    "details": [
+      {
+        "id": "r111-function-pf-vf-sdi-roles",
+        "title": "Function、PF、VF、SDI：身份、配置空间和资源归属",
+        "paragraphs": [
+          "普通Multi-function Device表示一个设备暴露多个可寻址Function；不是只要看见多个Function就能认定设备实现了SR-IOV。Base 6.0的SR-IOV语境把PF定义为支持SR-IOV Extended Capability的PCIe Function；Base 7.0还规定支持SIOV的PF含有SIOV能力。这里必须随所谈虚拟化机制使用PF术语。",
+          "Function号用于路由和软件发现，不是芯片上独占物理引擎的证明。Base 6.0图9-4的多功能设备共享链路，公共链路及PCIe功能通过Function 0管理；图中独立ATC属于该示例的ATS配置，不能据此要求每个普通Function都必须有ATC。",
+          "传统Function发现、Header Type bit7、ARI和VF创建是不同路径。Header Type的多功能位不是VF数量字段；不会因PF派生VF就把VF数量写进该位。七版Header/枚举规则沿用已验收条目36、40，ARI及SR-IOV的独立规范版本见63、64；不按Gen速率推断是否支持。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "如何识别",
+            "限制"
+          ],
+          "rows": [
+            [
+              "普通Function",
+              "独立配置空间与RID；传统或ARI发现",
+              "资源实现可共享；不自动支持SR-IOV"
+            ],
+            [
+              "SR-IOV PF",
+              "有SR-IOV能力，软件配置和管理VF",
+              "VF Enable、NumVFs、VF BAR、VF MSE属于PF控制面"
+            ],
+            [
+              "VF",
+              "轻量PCIe Function，有自己的路由身份及规定的配置视图",
+              "部分字段继承PF；VF BAR分配/全体MSE不由每个VF独立改写"
+            ],
+            [
+              "SIOV PF",
+              "含0038h能力的Type 0 Function",
+              "负责底层资源，配合SR-PCIM/VI建立SDI"
+            ],
+            [
+              "SDI",
+              "专用RID，没有硬件配置空间",
+              "VI呈现配置视图；不把SDI当作扫描得到的VF"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 40,
+            "detailId": "header-layout-and-multifunction",
+            "label": "Header Type与多功能位"
+          },
+          {
+            "featureId": 63,
+            "detailId": "r110-ari-version-and-three-controls",
+            "label": "ARI版本及三种控制"
+          },
+          {
+            "featureId": 64,
+            "detailId": "r110-sriov-independent-spec-version-map",
+            "label": "SR-IOV独立规范演进"
+          },
+          {
+            "featureId": 67,
+            "detailId": "siov-sdi-versus-vf",
+            "label": "SIOV身份区别"
+          }
+        ]
+      },
+      {
+        "id": "r111-function-resource-lifecycle-checklist",
+        "title": "从发现到停用：逐Function建立资源与复位责任表",
+        "paragraphs": [
+          "使用时先发现真实Function和能力，再分配BAR、总线号码及中断资源，然后配置IOMMU/中断重映射和设备队列，最后按设备要求允许发起DMA。能力存在、资源已分配和运行使能是三件事。DMA控制方式由设备协议决定，PCIe没有统一的PF DMA启动寄存器。",
+          "排查PF0工作但PF1不工作时，逐一核对配置身份、BAR译码、中断表/向量、Requester ID、Bus Master及队列归属；不要只比较应用地址。共享链路带宽、RAM和应用引擎是否隔离还需设备契约，Function编号不能回答。",
+          "停用或重新分配前应按驱动和设备接口停止新任务并处理在途事务。VF FLR、PF FLR、SDI Reset和链路复位作用域不同；SR-IOV PF FLR对VF存在性的影响及例外见65，SDI独立复位见67。不能把普通Function复位一概描述成删除所有其他Function。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "table": {
+          "columns": [
+            "阶段",
+            "检查内容",
+            "常见误判"
+          ],
+          "rows": [
+            [
+              "发现",
+              "Header Type/ARI链；VF Offset/Stride；SDI设备专用建立",
+              "三种机制分别查证"
+            ],
+            [
+              "分配",
+              "BAR、MSI/MSI-X、RID、IOMMU与队列",
+              "RID间距不是BAR字节间距"
+            ],
+            [
+              "运行",
+              "Function与其应用资源绑定",
+              "共享物理资源需设备提供隔离"
+            ],
+            [
+              "复位/迁移",
+              "先确认作用域和停止访问条件",
+              "不以写启动位代替完成判据"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 36,
+            "detailId": "enum-mf-permission-not-count",
+            "label": "多功能枚举"
+          },
+          {
+            "featureId": 65,
+            "detailId": "r110-vf-resource-interrupt-reset-checklist",
+            "label": "VF资源与复位"
+          },
+          {
+            "featureId": 67,
+            "detailId": "siov-sdi-reset-completion",
+            "label": "SDI复位完成"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "ARI",
@@ -70258,14 +70449,14 @@
     "checks": "同时查Endpoint ARI能力与上游ARI Forwarding；它不负责给VF分配队列或保证DMA权限。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 63,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R110按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "6.13",
@@ -70629,6 +70820,127 @@
         "title": "查询与原创位图：ARI能力、控制和非VF的NFN",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R53核读该版所列枚举、ARI与Capability链所列正文；视觉核7.0 p1316/1317/1163。印刷页与本地PDF物理页一致；选定分支不等于整章/七代沿革或硬件状态优先级已验证。"
+      },
+      {
+        "documentId": "ecn-ari-20070604",
+        "document": "Alternative Routing-ID Interpretation ECN",
+        "version": "2006-08-07; last updated 2007-06-04; affected Base1.1/2.0",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "ARI ECN受影响版本",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.13",
+        "page": 542,
+        "pdfPage": 542,
+        "title": "正式3.0 ARI机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "7.23",
+        "page": 763,
+        "pdfPage": 763,
+        "title": "正式3.0 ARI结构",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "6.13",
+        "page": 591,
+        "pdfPage": 591,
+        "title": "4.0 ARI机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.8.7",
+        "page": 888,
+        "pdfPage": 888,
+        "title": "4.0 ARI结构",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.13",
+        "page": 590,
+        "pdfPage": 590,
+        "title": "5.0 ARI机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.8.7",
+        "page": 870,
+        "pdfPage": 870,
+        "title": "5.0 ARI结构",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.13",
+        "page": 762,
+        "pdfPage": 762,
+        "title": "6.0 ARI机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.8.2",
+        "page": 1147,
+        "pdfPage": 1147,
+        "title": "6.0 NFN与分组",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.13",
+        "page": 877,
+        "pdfPage": 877,
+        "title": "7.0 ARI机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.8.2",
+        "page": 1316,
+        "pdfPage": 1316,
+        "title": "7.0 NFN与分组",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "目录定位保留；R45新增块已按所列版本核读正文",
@@ -70840,6 +71152,85 @@
           31,
           32
         ]
+      },
+      {
+        "id": "r110-ari-version-and-three-controls",
+        "title": "ARI逐版与三个控制面：RID解释、上游转发、Function Group分开",
+        "paragraphs": [
+          "ARI的ECN最初日期2006-08-07、最后更新2007-06-04，受影响版本写Base1.1/2.0；不是看到“Gen2”就可断言原始2.0所有实现已支持，也不能因低速运行而否认后代设备的ARI能力。正式3/4/5及6/7的所列正文和结构另有直接证据。",
+          "ARI将16bit Routing ID解释成8bit Bus和8bit Function，标识总长没有增加。例如RID2083h在传统解释是Bus20h/Device10h/Function3，在ARI解释是Bus20h/Function83h。要让路径正确使用ARI，须核直接上游Port的Forwarding支持和使能，不是只在端点看到000Eh能力就算完成。",
+          "ARI Control的MFVC/ACS组使能是组粒度机制，不是Forwarding Enable；SR-IOV Control里的ARI Capable Hierarchy又是最低编号PF向设备表达层级信息的另一位。它们的寄存器、角色和目的不同。每个地方都写1既不是统一初始化流程，也不能取代VF创建和资源分配。",
+          "已有NFN查询器只走非VF，非零NFN应更高且可稀疏，0表示结束；VF用Offset/Stride算RID，不沿NFN查找。后代Shadow/SDI和Function Group限制按相应主题，分组不能自行当作IOMMU或ACS隔离已完成的证明。"
+        ],
+        "referenceIndices": [
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43
+        ],
+        "table": {
+          "columns": [
+            "版本/位置",
+            "意义",
+            "边界"
+          ],
+          "rows": [
+            [
+              "ECN与1.1/2.0语境",
+              "用ECN/实现契约确认支持",
+              "不把文档发布日期转换成Link速率开关"
+            ],
+            [
+              "正式3.0 /4.0 /5.0",
+              "§6.13及各自ARI结构章节",
+              "000Eh能力、NFN和分组按具体字段"
+            ],
+            [
+              "6.0/7.0",
+              "§6.13、§7.8.8",
+              "后代例外不倒填早期正文"
+            ],
+            [
+              "上游PCIe Capability +24h/+28h bit5",
+              "Forwarding Supported / Enable",
+              "直接上游Port的角色与许可"
+            ],
+            [
+              "端点ARI +04h/+06h",
+              "MFVC/ACS组能力、使能和组号",
+              "不是VF数或Forwarding开关"
+            ],
+            [
+              "最低编号PF SR-IOV +08h bit4",
+              "ARI Capable Hierarchy",
+              "提示设备使用相应VF编号布局；改动有所有PF VFEnable前提"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 63,
+            "detailId": "ari-capability-field-map",
+            "label": "完整ARI位表"
+          },
+          {
+            "featureId": 63,
+            "detailId": "ari-register-query",
+            "label": "已有ARI查询"
+          },
+          {
+            "featureId": 65,
+            "detailId": "sriov-rid-window-query",
+            "label": "VF用RID算术发现"
+          }
+        ]
       }
     ]
   },
@@ -70853,14 +71244,14 @@
     "checks": "核对Total/Num VFs、VF BAR、Offset/Stride、FLR及隔离；宏里有64VF不等于已经有64套可工作业务。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 64,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R110按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "9",
@@ -71213,6 +71604,182 @@
         "title": "PF/VF依赖链：RID独立不表示可以任意分配给不同系统",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R45核读所列Base6.0/7.0正文与必要续页；7.0 p1657 Routing ID表、p1667 Control图表视觉核对。页码绑定本地对应正式版，印刷页与PDF物理页一致；非整章或所有修订覆盖。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "9.3.3.2",
+        "page": 1452,
+        "pdfPage": 1452,
+        "title": "6.0 Capabilities位图",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "9.3.3.2",
+        "page": 1453,
+        "pdfPage": 1453,
+        "title": "6.0 Tag与层级保留",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "9.3.3.4",
+        "page": 1458,
+        "pdfPage": 1458,
+        "title": "6.0 Status及弃用字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.4.3.2",
+        "page": 1664,
+        "pdfPage": 1664,
+        "title": "7.0 Capabilities位图",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.4.3.2",
+        "page": 1665,
+        "pdfPage": 1665,
+        "title": "7.0 UIO边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.4.3.4",
+        "page": 1670,
+        "pdfPage": 1670,
+        "title": "7.0 Status",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.4.3.4.1",
+        "page": 1671,
+        "pdfPage": 1671,
+        "title": "7.0迁移弃用",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "sriov-1.0",
+        "document": "Single Root I/O Virtualization and Sharing Specification",
+        "version": "1.0",
+        "section": "3.3.1",
+        "page": 37,
+        "pdfPage": 37,
+        "title": "独立1.0结构/能力",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "sriov-1.0",
+        "document": "Single Root I/O Virtualization and Sharing Specification",
+        "version": "1.0",
+        "section": "3.3.3.1",
+        "page": 39,
+        "pdfPage": 39,
+        "title": "独立1.0创建等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "sriov-1.0",
+        "document": "Single Root I/O Virtualization and Sharing Specification",
+        "version": "1.0",
+        "section": "3.3.3.1",
+        "page": 40,
+        "pdfPage": 40,
+        "title": "独立1.0销毁等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "sriov-1.1",
+        "document": "Single Root I/O Virtualization and Sharing Specification",
+        "version": "1.1",
+        "section": "3.3.1",
+        "page": 37,
+        "pdfPage": 37,
+        "title": "独立1.1结构",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "sriov-1.1",
+        "document": "Single Root I/O Virtualization and Sharing Specification",
+        "version": "1.1",
+        "section": "3.3.3.1",
+        "page": 40,
+        "pdfPage": 40,
+        "title": "1.1初始化和Memory条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "sriov-1.1",
+        "document": "Single Root I/O Virtualization and Sharing Specification",
+        "version": "1.1",
+        "section": "3.3.5",
+        "page": 43,
+        "pdfPage": 43,
+        "title": "旧迁移与VFs数量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "9.3.3.3.1",
+        "page": 1456,
+        "pdfPage": 1456,
+        "title": "6.0后续放行机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.4.3.3.1",
+        "page": 1668,
+        "pdfPage": 1668,
+        "title": "7.0后续放行机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.4.3.3.1",
+        "page": 1669,
+        "pdfPage": 1669,
+        "title": "7.0销毁和SIOV限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "目录定位保留；R45新增块已按所列版本核读正文",
@@ -71449,6 +72016,158 @@
           30,
           31
         ]
+      },
+      {
+        "id": "r110-sriov-capabilities-status-fields",
+        "title": "SR-IOV补齐能力与状态位：Supported、Enable和迁移遗留字段不能混用",
+        "paragraphs": [
+          "下表相对0010h SR-IOV扩展能力起点。+04h是Capabilities，+08h是Control，+0Ah是Status；在PF写Enable之前须先看Supported和适用PF/角色。VF数量16bit、Routing ID16bit、Tag位宽是不同空间，开启大Tag不增加可创建的VF数。",
+          "6.0/7.0能力bit2/3与控制bit5/6分别表示VF的10bit/14bit Tag请求支持和使能。当前同PF的所有VF要么均支持相应大Tag请求能力、要么均不支持；PF相关Supported为0时VF也不能声明对应支持。7.0另明确non-UIO范围和UIO专用规则，不能把这两位当对UIO统一适用的开关。",
+          "两个大Tag Enable不能同时置1；有未完成Non-Posted请求时改变它们结果未定义。没有单独的VF大Tag Completer Supported位不表示Completer无需支持，须按PF/VF继承规则另读。",
+          "VF Migration相关字段是MR-IOV历史机制，所核6/7已弃用并建议新设计硬0；这是should类指导，不能把旧1.0/1.1合法迁移实现直接宣称不合规。Status[0]原是RW1C事件，不是VF Enable镜像，也不能拿Migration State Array偏移当现代通用热迁移接口。"
+        ],
+        "referenceIndices": [
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38
+        ],
+        "table": {
+          "columns": [
+            "字段",
+            "定义/属性",
+            "使用限制"
+          ],
+          "rows": [
+            [
+              "Capabilities +04h bit0",
+              "VF Migration Capable / RO",
+              "弃用MR-IOV，新设计建议硬0"
+            ],
+            [
+              "Capabilities bit1",
+              "ARI Capable Hierarchy Preserved / RO",
+              "层级位跨指定功耗转换保留；最低PF/RCiEP边界回本版正文"
+            ],
+            [
+              "Capabilities bit2 / bit3",
+              "VF 10bit /14bit Tag Requester Supported / HwInit",
+              "6.0与7.0 UIO措辞分开；还须核PF支持"
+            ],
+            [
+              "Capabilities [20:4]",
+              "RsvdP",
+              "不是额外VF计数"
+            ],
+            [
+              "Capabilities [31:21]",
+              "VF Migration Interrupt Message Number / RO",
+              "迁移能力清零时未定义，现代新设计建议硬0"
+            ],
+            [
+              "Status +0Ah bit0",
+              "VF Migration Status / RW1C",
+              "弃用迁移事件，新设计建议硬0；其余[15:1]RsvdZ"
+            ],
+            [
+              "Control +08h bits5/6",
+              "VF大Tag Enable",
+              "二者互斥；改变不得有未完成NP请求"
+            ],
+            [
+              "+3Ch",
+              "VF Migration State Array Offset（Deprecated）",
+              "按对应历史协议解释，不自动代表OS热迁移能力"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 64,
+            "detailId": "sriov-control-bit-table",
+            "label": "完整Control位表"
+          },
+          {
+            "featureId": 64,
+            "detailId": "sriov-capability-register-map",
+            "label": "全寄存器偏移"
+          },
+          {
+            "featureId": 64,
+            "detailId": "sriov-enable-readiness",
+            "label": "创建后的就绪"
+          }
+        ]
+      },
+      {
+        "id": "r110-sriov-independent-spec-version-map",
+        "title": "SR-IOV版本线：独立1.0/1.1、现代Tag与初始化等待",
+        "paragraphs": [
+          "SR-IOV独立1.0为2007-09-11、1.1为2010-01-20；其版本号不是PCIe Gen1.0/1.1，更不是链路当前GT/s。两份正式规范已定义PF的0010h、VF Enable/MSE、NumVFs和VF资源/RID机制。6.0/7.0把它们放进Base第9章时，不等于这些能力到Gen6才出现。",
+          "旧1.0能力+04h的bit[20:1]是保留，Control[15:5]也保留，不能用6/7的大Tag和层级保留定义回填旧表。旧InitialVFs/TotalVFs在Single-Root模式应相同，Multi-Root迁移有另一套可变关系；现代已弃用MR-IOV的建议不能抹掉该历史上下文。",
+          "1.0初次创建后先等待至少100ms才允许发配置请求；1.1正文扩大为发Request前等待，并明确Memory要等内部初始化条件。二者均有至少允许1秒再判初始化故障及清VFEnable后访问管理块的等待规则。所核6/7另列FRS及VF Enable Time等放行条件，不能把这些后代加速机制当作旧1.0已明确支持。",
+          "100ms入口、1秒初始化容许、VF BAR页面/地址规划、VF MSE、BME/中断和系统隔离分别检查。1秒不是每笔TLP的Completion Timeout，也不是给所有设备写完VFEnable就可以立即运行DMA的保证。"
+        ],
+        "referenceIndices": [
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47
+        ],
+        "table": {
+          "columns": [
+            "规范线",
+            "已核行为",
+            "边界"
+          ],
+          "rows": [
+            [
+              "独立SR-IOV1.0",
+              "0010h Version1；旧迁移字段及固定等待",
+              "不回填6/7的大Tag位"
+            ],
+            [
+              "独立SR-IOV1.1",
+              "保留基础寄存器，完善初始化/Memory条件",
+              "CRS旧名与后版Configuration RRS按版本对照"
+            ],
+            [
+              "Base1～5时代实现",
+              "结合独立规范/ECN及器件适用版本",
+              "不能由Base正文目录或最大速率推断不支持"
+            ],
+            [
+              "正式6.0/7.0",
+              "6.0 §9.3.3、7.0 §9.4.3；后代Tag/FRS/SIOV边界",
+              "各字段和等待分别核对，不能用同章节号跨版跳页"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 64,
+            "detailId": "r110-sriov-capabilities-status-fields",
+            "label": "新增能力/状态对照"
+          },
+          {
+            "featureId": 64,
+            "detailId": "sriov-disable-recreate-version",
+            "label": "销毁重建规则"
+          },
+          {
+            "featureId": 64,
+            "detailId": "sriov-function-dependency",
+            "label": "依赖链"
+          }
+        ]
       }
     ]
   },
@@ -71462,14 +72181,14 @@
     "checks": "通道所属PF/VF、MSI-X归属和复位范围必须一致，不能只把PCIe头Function字段改对。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 65,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R110按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "9",
@@ -71723,6 +72442,94 @@
         "title": "VF FLR、PF FLR、销毁VF：可见性、BAR与中断范围分别核查",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R45核读所列Base6.0/7.0正文与必要续页；7.0 p1657 Routing ID表、p1667 Control图表视觉核对。页码绑定本地对应正式版，印刷页与PDF物理页一致；非整章或所有修订覆盖。"
+      },
+      {
+        "documentId": "sriov-1.0",
+        "document": "Single Root I/O Virtualization and Sharing Specification",
+        "version": "1.0",
+        "section": "2.1.1.1",
+        "page": 25,
+        "pdfPage": 25,
+        "title": "旧VF BAR机制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "sriov-1.0",
+        "document": "Single Root I/O Virtualization and Sharing Specification",
+        "version": "1.0",
+        "section": "2.1.2",
+        "page": 26,
+        "pdfPage": 26,
+        "title": "旧RID偏移及地址窗口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "sriov-1.0",
+        "document": "Single Root I/O Virtualization and Sharing Specification",
+        "version": "1.0",
+        "section": "5.1.3",
+        "page": 80,
+        "pdfPage": 80,
+        "title": "MSI-X按SystemPage隔离",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "sriov-1.1",
+        "document": "Single Root I/O Virtualization and Sharing Specification",
+        "version": "1.1",
+        "section": "5.1.3",
+        "page": 84,
+        "pdfPage": 84,
+        "title": "1.1 MSI-X地址隔离",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "9.2.1.2",
+        "page": 1446,
+        "pdfPage": 1446,
+        "title": "6.0完整RID算术",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "9.2.2.2",
+        "page": 1449,
+        "pdfPage": 1449,
+        "title": "6.0复位边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.2.1.2",
+        "page": 1656,
+        "pdfPage": 1656,
+        "title": "7.0 RID及窗口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.2.2.2",
+        "page": 1659,
+        "pdfPage": 1659,
+        "title": "7.0复位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "目录定位保留；R45新增块已按所列版本核读正文",
@@ -71934,6 +72741,82 @@
             ]
           ]
         }
+      },
+      {
+        "id": "r110-vf-resource-interrupt-reset-checklist",
+        "title": "VF四条边界合起来查：RID、BAR、MSI-X页面与FLR",
+        "paragraphs": [
+          "独立SR-IOV1.0/1.1已经区分两种步长：Offset/Stride按16bit RID算身份，VF BAR aperture按字节算相邻VF窗口。它们不是同一个stride。例PF RID=2000h、FirstVFOffset=0100h、VFStride=1，前三VF RID为2100h/2101h/2102h；跨到Bus21h需要系统路由资源覆盖，不等于Memory窗口也跨某个固定步长。",
+          "MSI-X的Table/PBA偏移相对该VF自己的Memory资源，不能直接加到PF普通BAR。所核1.0 §5.1.3、1.1 §5.1.3明确按System Page Size隔离：同BAR中的非MSI-X CSR不能与Table/PBA共用该大小的自然对齐页；Table和PBA可同页但不能重叠。这里不是所有VF一律4KiB，完整表项/Pending/Mask复用已验收55。",
+          "在SR-IOV语境，VF FLR针对VF状态，不使它从配置空间消失，也不把PF中全部VF BAR或VF MSE一并重置；PF FLR则清其SR-IOV使能而导致关联VF消失，ARI层级位有明示保留例外。普通Function或后来的SDI重置要另按各自规则，不能把“所有名字带PF的对象必须同样处理”当通用推论。",
+          "可审查的启用链是确认能力/数量→选页面和Size→规划RID及Bus→规划各BAR窗口→建立中断/隔离与驱动状态→按规范启用并等就绪。这个顺序展示依赖关系，不能代替特定OS的资源管理流程；已有离线查询只计算给定快照，不执行配置写或证明整机合规。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "table": {
+          "columns": [
+            "检查面",
+            "规则",
+            "限制"
+          ],
+          "rows": [
+            [
+              "RID",
+              "PF RID+Offset+(v−1)×Stride",
+              "16bit身份算术；回绕/冲突/Bus限制另验"
+            ],
+            [
+              "BARn",
+              "首VF基址+(v−1)×单VF大小",
+              "字节地址；单VF大小再乘NumVFs才是当前总窗口"
+            ],
+            [
+              "System Page",
+              "单选支持位图，修改会影响aperture",
+              "不是MPS；MSI-X隔离据此页大小"
+            ],
+            [
+              "MSI-X Table/PBA",
+              "VF资源内定位、按页与其它CSR分离",
+              "完整位表/门控复用55，不重复造一套"
+            ],
+            [
+              "VF FLR / PF FLR",
+              "目标VF复位但仍在 / 关联VF随PF使能清除而消失",
+              "就绪/在途事务和中断恢复按相应规范及驱动处理"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 65,
+            "detailId": "sriov-rid-window-query",
+            "label": "已有RID查询"
+          },
+          {
+            "featureId": 65,
+            "detailId": "sriov-bar-window-query",
+            "label": "已有窗口查询"
+          },
+          {
+            "featureId": 55,
+            "detailId": "msix-resource-isolation-access",
+            "label": "完整MSI-X资源隔离"
+          },
+          {
+            "featureId": 95,
+            "detailId": "flr-scope-guarantee",
+            "label": "FLR完成边界"
+          }
+        ]
       }
     ]
   },
@@ -71947,14 +72830,14 @@
     "checks": "按具体版本检查内/外VF能否混用、配置完成与FLR处理；不等于支持VF迁移。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 66,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R111按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "9",
@@ -72032,6 +72915,50 @@
         "title": "外置VF把哪些责任移到应用：MSI-X表、错误消息与FLR通知",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
         "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "28.7",
+        "page": 745,
+        "pdfPage": 745,
+        "title": "外置VF寄存器与中断接口",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "28.7",
+        "page": 746,
+        "pdfPage": 746,
+        "title": "外置VF错误及能力限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "29.7",
+        "page": 754,
+        "pdfPage": 754,
+        "title": "外置VF FLR通知",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5.2",
+        "page": 1680,
+        "pdfPage": 1680,
+        "title": "SIOV无SDI硬件配置空间",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "旧Base第9章引用仅为IOV背景，不证明Extensible IOV产品功能；R47追加Controller6.50a直接正文。",
@@ -72063,6 +72990,78 @@
           5,
           6
         ]
+      },
+      {
+        "id": "r111-extensible-iov-integration-contract",
+        "title": "6.50a外置VF集成契约：哪些由控制器做，哪些由应用承担",
+        "paragraphs": [
+          "本块仅描述DM Controller 6.50a（January 2026）的Extensible IOV。手册以超过256 VF的需求说明外置VF寄存器路径；这不是标准新增的另一种IOV架构，也不表示PCIe传统Function字段被扩宽。VF身份、路由及总线资源仍需遵守SR-IOV和ARI规则。产品版本6.50a不能映射为PCIe Gen6或Gen7支持声明。",
+          "启用该产品集成选项后，应用提供外置VF寄存器，访问协议使用手册规定的ELBI式接口；同一配置不能同时保留内部和外部VF。控制器在特定继承读路径可使用父PF寄存器数据，不能认为所有VF寄存器都由应用无条件独立返回。",
+          "与SIOV比较：这里仍然实现VF配置寄存器，只是存储和处理放在应用侧；SIOV的SDI硬件本来就没有配置空间，由VI承担软件呈现。外置VF不等于SDI，也不等于外部物理PCIe链路。",
+          "以下是软件/硬件集成责任说明，不是厂商寄存器或信号转储；具体端口时序、综合配置和资源容量需按所用产品修订集成验证，未在本站声称已做RTL仿真或实机验证。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "table": {
+          "columns": [
+            "事项",
+            "6.50a责任",
+            "限制/检查点"
+          ],
+          "rows": [
+            [
+              "配置寄存器",
+              "应用实现外部VF，控制器转接访问及规定的PF继承值",
+              "不得内部/外部VF混用"
+            ],
+            [
+              "MSI-X",
+              "应用为所有PF/VF实现外部表；可由应用事务路径或MSI接口发MSI-X",
+              "控制器内部MSI-X Table功能不支持此模式"
+            ],
+            [
+              "MSI",
+              "外部VF的MSI地址/数据不在控制器中，应用事务路径生成MSI",
+              "不要误用控制器MSI接口代发外部VF MSI"
+            ],
+            [
+              "错误消息",
+              "应用构造并调度外部VF错误消息",
+              "共享AER Multiple Header Logging不支持外部VF"
+            ],
+            [
+              "FRS/PM",
+              "无外部FRS/PM能力支持；手册允许应用事务路径发FRS消息",
+              "能发消息不代表有完整能力结构"
+            ],
+            [
+              "FLR",
+              "应用完成外部FLR寄存器置1后通知控制器，并依约完成复位握手",
+              "寄存器写应答不等于设备已完成FLR"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 66,
+            "detailId": "extiov-interrupt-error-flr-owner",
+            "label": "已有中断错误与FLR解释"
+          },
+          {
+            "featureId": 65,
+            "detailId": "r110-vf-resource-interrupt-reset-checklist",
+            "label": "标准VF资源生命周期"
+          },
+          {
+            "featureId": 67,
+            "detailId": "siov-controller-native-interface-limit",
+            "label": "SIOV产品接口边界"
+          }
+        ]
       }
     ]
   },
@@ -72076,14 +73075,14 @@
     "checks": "核对完整应用/软件架构，不把PASID开启或队列很多当作SIOV已经实现。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 67,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R111按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "documentId": "pcie-base-7.0",
@@ -72535,6 +73534,50 @@
         "title": "规范SIOV与控制器6.50a实现：本版要求Native接口，不能据AXI连接宣称支持",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
         "verification": "R47核读所列Base7.0 SIOV正文或Controller6.50a产品正文，保留两类证据边界；视觉核Base7.0 p1681/1682及产品p754。所引印刷页与本地PDF物理页一致。仅选定条款，不代表独立规范/ECN首次引入、整章及硬件验证。"
+      },
+      {
+        "documentId": "ecn-siov-20250307",
+        "document": "Scalable I/O Virtualization ECN",
+        "version": "2025-03-07; affected Base6.x, references6.2",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "SIOV ECN影响版本与控制面目的",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5",
+        "page": 1681,
+        "pdfPage": 1681,
+        "title": "能力头及寄存器布局",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "核读Base7.0 §9.5所列物理页正文；具体子条款见标题与详情，不以章引用表示整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5",
+        "page": 1682,
+        "pdfPage": 1682,
+        "title": "Capabilities、Total SDIs、Status",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "核读Base7.0 §9.5所列物理页正文；具体子条款见标题与详情，不以章引用表示整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "9.5",
+        "page": 1683,
+        "pdfPage": 1683,
+        "title": "Offset和Stride",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "核读Base7.0 §9.5所列物理页正文；具体子条款见标题与详情，不以章引用表示整章完成。"
       }
     ],
     "referenceStatus": "R47已核Base7.0 §9.1/9.3/9.5所列正文；早期独立规范与ECN沿革仍待核，不再把现有Base正文当缺文档。",
@@ -72865,6 +73908,113 @@
           39,
           40
         ]
+      },
+      {
+        "id": "r111-siov-version-and-complete-capability-map",
+        "title": "SIOV版本与完整16字节能力表：状态是RO，创建走设备专用接口",
+        "paragraphs": [
+          "SIOV ECN日期为2025-03-07，明确影响Base 6.x且条文引用6.2；正式Base 7.0包含第9章SIOV正文。因此不能称SIOV为Gen7链路独占。ECN引用6.2不等于已经证明每一个6.x正式小版本均纳入该ECN；此前Base或更低速链路也不能仅凭速率推出具备该能力。",
+          "能力表总长16字节。下列偏移都相对0038h能力起点，按字节区分+08h的16bit Total SDIs、+0Ah保留字节和+0Bh状态。没有一个通用RW的SIOV Enable命令；Status bit0只是报告至少一个SDI已通过设备专用机制启用。",
+          "通常先读取能力和总容量，校验Mixed IOV策略、桥下RID池和内存/中断隔离资源，再由SR-PCIM及设备专用接口建立SDI，最后核对状态。Total SDIs是容量上限，不是当前启用计数，也不能据此跳过RID去冲突。",
+          "下表及已有RID池算法、Mixed IOV、复位和VI职责构成本主题一期范围；设备专用创建ABI、完整OCP SIOV和TDISP协议仍分别按实现/独立协议查阅，不声称一个PCIe能力块包含它们全部。"
+        ],
+        "referenceIndices": [
+          41,
+          42,
+          43,
+          44
+        ],
+        "table": {
+          "columns": [
+            "相对偏移与位",
+            "字段",
+            "属性与语义"
+          ],
+          "rows": [
+            [
+              "+00h [15:0]",
+              "Extended Capability ID",
+              "RO，0038h"
+            ],
+            [
+              "+00h [19:16]",
+              "Capability Version",
+              "RO，此版1h"
+            ],
+            [
+              "+00h [31:20]",
+              "Next Capability Offset",
+              "RO，0终结；非0须大于0FFh"
+            ],
+            [
+              "+04h [0]",
+              "Strided RID Mapping",
+              "RO；1仅可使用Offset/Stride隐含RID；0采用动态分配"
+            ],
+            [
+              "+04h [1]",
+              "Mixed IOV Supported",
+              "RO；无其他PF或无其他支持SR-IOV PF时固定0且无意义；否则决定不同PF能否混用"
+            ],
+            [
+              "+04h [31:2]",
+              "保留",
+              "RsvdP"
+            ],
+            [
+              "+08h [15:0]",
+              "Total SDIs",
+              "RO，PF支持的SDI总容量"
+            ],
+            [
+              "+0Ah [7:0]",
+              "保留",
+              "RsvdP"
+            ],
+            [
+              "+0Bh [0]",
+              "SIOV Enabled",
+              "RO，默认0；至少一个SDI启用时1，全停用时0"
+            ],
+            [
+              "+0Bh [7:1]",
+              "保留",
+              "RsvdZ"
+            ],
+            [
+              "+0Ch [15:0]",
+              "First SDI Offset",
+              "Strided模式RO，否则RsvdP；PF RID+Offset无符号16bit忽略进位"
+            ],
+            [
+              "+0Eh [15:0]",
+              "SDI Stride",
+              "Strided模式RO且不可0，否则RsvdP；相邻SDI RID差，16bit忽略进位"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 67,
+            "detailId": "siov-capability-snapshot-query",
+            "label": "能力快照查询"
+          },
+          {
+            "featureId": 67,
+            "detailId": "siov-dynamic-rid-pool",
+            "label": "动态RID池去冲突"
+          },
+          {
+            "featureId": 67,
+            "detailId": "siov-mixed-iov-two-scopes",
+            "label": "Mixed IOV作用域"
+          },
+          {
+            "featureId": 67,
+            "detailId": "siov-software-config-and-tdisp",
+            "label": "软件配置与TDISP"
+          }
+        ]
       }
     ]
   },
@@ -72878,14 +74028,14 @@
     "checks": "部分控制器不内置ATS cache；发报文接口具备并不意味着ATC、权限检查、失效应答都已完成。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 68,
-    "status": "失效闭环与所选隔离边界已深化 · 持续核读",
+    "status": "一期已验收：R112按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "10.1.1",
@@ -73579,6 +74729,171 @@
         "title": "ATS失效、在途翻译与隔离选定规则",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R76核6.0/7.0所引正式版选定正文与续页；视觉核7.0 p1713/p1714报文字段。所引本地印刷页与PDF物理页一致。非整章、早期修订、完整IOMMU/TEE或实物验证。"
+      },
+      {
+        "documentId": "ats-1.0",
+        "document": "Address Translation Services",
+        "version": "1.0; 2007-03-08",
+        "section": "4.1",
+        "page": 35,
+        "pdfPage": 35,
+        "title": "原始ATS1.0旧配置布局，须结合勘误",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.0-errata-snapshot",
+        "document": "Errata for ATS Specification1.0",
+        "version": "supplied snapshot; 2007-11-30 filename label, not blanket approval evidence",
+        "section": "4.1",
+        "page": 8,
+        "pdfPage": 8,
+        "title": "A11重写为扩展能力头",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.0-errata-snapshot",
+        "document": "Errata for ATS Specification1.0",
+        "version": "supplied snapshot; 2007-11-30 filename label, not blanket approval evidence",
+        "section": "4.1.2",
+        "page": 9,
+        "pdfPage": 9,
+        "title": "A11能力和控制分离",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.1",
+        "document": "Address Translation Services",
+        "version": "1.1; 2009-01-26",
+        "section": "5.1.2",
+        "page": 46,
+        "pdfPage": 46,
+        "title": "ATS1.1能力表与Page Aligned Request",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.1",
+        "document": "Address Translation Services",
+        "version": "1.1; 2009-01-26",
+        "section": "5.1.3",
+        "page": 47,
+        "pdfPage": 47,
+        "title": "ATS1.1 Control",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "10.5.1.2",
+        "page": 1204,
+        "pdfPage": 1204,
+        "title": "Global Invalidate支持位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "10.5.1.2",
+        "page": 1205,
+        "pdfPage": 1205,
+        "title": "RO Supported与旧版Control",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ats-memory-attributes-20200130",
+        "document": "ATS Memory Attributes ECN Revision A",
+        "version": "2020-01-30; affected Base4.0/5.0",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "AMA Rev A修正为bit8",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.1.2",
+        "page": 1515,
+        "pdfPage": 1515,
+        "title": "现代AMA能力及STU",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.1.2",
+        "page": 1729,
+        "pdfPage": 1729,
+        "title": "TEE属性与互斥约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.0",
+        "document": "Address Translation Services",
+        "version": "1.0; 2007-03-08",
+        "section": "1.1",
+        "page": 13,
+        "pdfPage": 13,
+        "title": "ATS与Base1.1互操作边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.1",
+        "document": "Address Translation Services",
+        "version": "1.1; 2009-01-26",
+        "section": "1.1",
+        "page": 13,
+        "pdfPage": 13,
+        "title": "ATC和TA职责",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "Revision History",
+        "page": 3,
+        "pdfPage": 3,
+        "title": "正式版记录ATS独立规范并入",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.2.3.5",
+        "page": 1489,
+        "pdfPage": 1489,
+        "title": "返回R/W及缓存限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.2.3.5",
+        "page": 1703,
+        "pdfPage": 1703,
+        "title": "返回权限与缓存限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R76核6.0/7.0所引ATS失效、在途范围及ACS选定正文；非全部版本、完整IOMMU/TEE/平台或硬件验证。",
@@ -74214,6 +75529,156 @@
           49,
           50
         ]
+      },
+      {
+        "id": "r112-ats-register-evolution",
+        "title": "ATS独立规范到Base7.0：同为000Fh，不能跨版照抄布局",
+        "paragraphs": [
+          "ATS是独立功能修订，不按链路速率自动具备。ATS1.0发布于2007-03-08，1.1发布于2009-01-26。原始1.0 p35使用8bit Capability ID及Next Pointer的旧布局；所供勘误A11把该节整体改为PCIe Extended Capability，1.1正式版已经采用此布局。旧PDF中的000Fh字样不能证明它与现代8字节结构相同。",
+          "现代结构B+00h为32bit扩展能力头，B+04h为16bit Capability，B+06h为16bit Control；STU与Enable位置必须按所属修订查表。本站原寄存器解码器只适用于明确选择的Base6.0/7.0，不用于原始未勘误ATS1.0。",
+          "2020-01-30 AMA ECN Revision A明确修正早先AMA Supported误放bit7的问题：正确是bit8，bit7已用于Relaxed Ordering Supported。不能把2019旧ECN图和2020修订或Base6/7字段混拼。",
+          "Base7.0的TEE Exclusive Memory Attribute Supported为bit9：Global Invalidate Supported=1时必须0；TEE-IO Supported=0时也必须0。Global能力在TEE-IO Supported=1时必须0，并被强烈建议清零。支持、使能和实际返回属性分别判断。"
+        ],
+        "referenceIndices": [
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72
+        ],
+        "table": {
+          "columns": [
+            "规范修订",
+            "经正文确认的布局",
+            "边界"
+          ],
+          "rows": [
+            [
+              "原始ATS1.0",
+              "旧4字节布局：STU[20:16]、IQD[28:24]、E[31]",
+              "历史阅读用，不据此配置现代设备"
+            ],
+            [
+              "ATS1.0勘误A11",
+              "重写Extended Header，Capability/Control分开",
+              "快照批准信息不完整；以1.1正式正文交叉确认布局"
+            ],
+            [
+              "ATS1.1",
+              "000Fh/Version1；IQD[4:0]、Page Aligned[5]；STU[4:0]、E[15]",
+              "PRI在1.1新增，非1.0原始内容"
+            ],
+            [
+              "Base4.0",
+              "Capability增加Global[6]",
+              "PASID配套；现代AMA位尚未出现在此原版表"
+            ],
+            [
+              "Base5.0",
+              "Capability含RO[7]；Control[14:5]仍保留",
+              "配合后续AMA ECN才新增AMAD/AMAE"
+            ],
+            [
+              "Base6.0",
+              "AMA Supported[8]；Control AMAD[13:11]/AMAE[14]",
+              "不要把bit7解成AMA"
+            ],
+            [
+              "Base7.0",
+              "再含TEE属性[9]与Global/TEE约束",
+              "可选能力不是128GT/s链路固有属性"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 68,
+            "detailId": "ats-capability-register",
+            "label": "现代能力全字段"
+          },
+          {
+            "featureId": 68,
+            "detailId": "ats-control-register",
+            "label": "现代Control全字段"
+          },
+          {
+            "featureId": 68,
+            "detailId": "ats-register-decoder",
+            "label": "6.0/7.0寄存器解码"
+          }
+        ]
+      },
+      {
+        "id": "r112-ats-generation-and-use-contract",
+        "title": "Gen1～Gen7怎么查ATS：协议版本、翻译流程与权限分别核对",
+        "paragraphs": [
+          "Gen1低速链路不等于只能读Base1.0a的功能集合。ATS1.0要求与Base1.1组件互操作；它不能倒推Base1.0a原版已定义ATS。Gen2/Gen3时代可使用独立ATS规范及后续ECN；Base4.0正式版修订记录说明并入ATS1.1及PASID配套更新。因此查Gen1～Gen3时先问独立规范修订，查Gen4～Gen7时再核实际Base版及ECN，不能只报一个最大GT/s。",
+          "操作闭环为：软件先建立TA/IOMMU上下文和使能所需能力，Function在ATC未命中时发Translation Request，收到翻译后检查R/W/U及相关属性，再决定可否形成Translated Memory Request。Translation Completion带的是翻译信息，不能当业务数据读的完成。",
+          "R=W=0的条目不能用于形成Translated请求，也不能作为有效翻译缓存；即使返回R/W允许，后续以未翻译地址发业务访问是否成功仍不能据此保证。映射撤销必须接入失效和在途事务排空，不能只清ATC valid位。"
+        ],
+        "referenceIndices": [
+          73,
+          74,
+          75,
+          76,
+          77
+        ],
+        "table": {
+          "columns": [
+            "需求",
+            "查询入口",
+            "限制"
+          ],
+          "rows": [
+            [
+              "想知道地址能否DMA",
+              "查返回R/W/U与请求上下文",
+              "Capability支持并不授权所有地址"
+            ],
+            [
+              "想降低翻译开销",
+              "看ATC复用率、TA延迟及失效频率",
+              "ATS不是所有DMA都必须启用"
+            ],
+            [
+              "想撤销映射",
+              "进入69的失效生命周期",
+              "Translation Request不是flush"
+            ],
+            [
+              "想处理缺页",
+              "进入70 PRI，再回ATS重新翻译",
+              "PRI成功不直接提供物理地址"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 68,
+            "detailId": "ats-request-to-dma-flow",
+            "label": "翻译到DMA数据路径"
+          },
+          {
+            "featureId": 68,
+            "detailId": "ats-rw-u-n",
+            "label": "返回R/W/U/N"
+          },
+          {
+            "featureId": 69,
+            "detailId": "invalidate-lifecycle",
+            "label": "失效闭环"
+          },
+          {
+            "featureId": 70,
+            "detailId": "pri-fault-to-translation",
+            "label": "缺页与重新翻译"
+          }
+        ]
       }
     ]
   },
@@ -74227,14 +75692,14 @@
     "checks": "测试映射更新与失效完成，不只测首次翻译成功；区分地址的AT状态与是否真正获授权。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 69,
-    "status": "失效闭环与所选隔离边界已深化 · 持续核读",
+    "status": "一期已验收：R112按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "10",
@@ -74741,6 +76206,94 @@
         "title": "ATS失效、在途翻译与隔离选定规则",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R76核6.0/7.0所引正式版选定正文与续页；视觉核7.0 p1713/p1714报文字段。所引本地印刷页与PDF物理页一致。非整章、早期修订、完整IOMMU/TEE或实物验证。"
+      },
+      {
+        "documentId": "ats-1.0",
+        "document": "Address Translation Services",
+        "version": "1.0; 2007-03-08",
+        "section": "3.2",
+        "page": 30,
+        "pdfPage": 30,
+        "title": "原版disabled矛盾及排空条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.0",
+        "document": "Address Translation Services",
+        "version": "1.0; 2007-03-08",
+        "section": "3.4",
+        "page": 31,
+        "pdfPage": 31,
+        "title": "原版要求ATS未使能仍响应",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.0-errata-snapshot",
+        "document": "Errata for ATS Specification1.0",
+        "version": "supplied snapshot; 2007-11-30 filename label, not blanket approval evidence",
+        "section": "3.2",
+        "page": 5,
+        "pdfPage": 5,
+        "title": "A7红线删除disabled也当UR",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.1",
+        "document": "Address Translation Services",
+        "version": "1.1; 2009-01-26",
+        "section": "3.2",
+        "page": 34,
+        "pdfPage": 34,
+        "title": "正式1.1修正措辞",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.1",
+        "document": "Address Translation Services",
+        "version": "1.1; 2009-01-26",
+        "section": "3.4",
+        "page": 35,
+        "pdfPage": 35,
+        "title": "正式1.1接收及队列节流",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.3",
+        "page": 1501,
+        "pdfPage": 1501,
+        "title": "Function及Shadow旧读/写条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.3",
+        "page": 1715,
+        "pdfPage": 1715,
+        "title": "Memory/Translation与UIO细分",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.4",
+        "page": 1716,
+        "pdfPage": 1716,
+        "title": "ATS未使能仍须响应",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R76核6.0/7.0所引ATS失效、在途范围及ACS选定正文；非全部版本、完整IOMMU/TEE/平台或硬件验证。",
@@ -75419,6 +76972,82 @@
           35,
           36
         ]
+      },
+      {
+        "id": "r112-invalidate-errata-and-drain-contract",
+        "title": "失效完成不是清缓存：早期勘误与现代排空条件",
+        "paragraphs": [
+          "ATS1.0原版p30把“不支持ATS或ATS已关闭”并列为UR，p31却要求有ATS能力的Function即使未启用也须接受Invalidate并回复，二者有冲突。所供勘误A7在p5以删除线去掉“ATS已关闭”这一条件，渲染核对确认；ATS1.1正式版p34–35及Base7.0正文保持后者规则。本站依据正式1.1/后续版说明行为，不把快照中其它带未定批准文字的条目一并宣布已批准。",
+          "因此必须区分“不支持ATS”与“支持但Enable=0”；清BME也不是拒收Invalidate的许可。不能造成必须先发Posted Invalidate Completion才能接收Posted Invalidate Request的环形依赖。IQD是上层节流预算，链路Credit用于逐跳缓冲，不能彼此替代。",
+          "旧版的完成条件包含：新请求不再用旧翻译、匹配旧读完成或标记丢弃、旧Posted Write已推到TA，按TC收齐所需完成副本。Base6.0明确涵盖Shadows；Base7.0再将Memory Completions必须收到、Translation Completions可收到或标记丢弃分开，并加入SDI和UIO边界。不能用旧版“标记丢弃”概括Gen7所有Memory读。",
+          "映射可以回收的证据是TA按ITag/目标身份和CC收齐响应，并满足请求接受/排空规则；超时、ATS Enable=0、链路Credit恢复、ATC队列为空都不能单独证明安全回收。"
+        ],
+        "referenceIndices": [
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53
+        ],
+        "table": {
+          "columns": [
+            "情形",
+            "结论",
+            "限制"
+          ],
+          "rows": [
+            [
+              "原始1.0冲突",
+              "按A7红线并用正式1.1核证",
+              "旧PDF原句不直接作为配置指南"
+            ],
+            [
+              "支持ATS但E=0/BME=0",
+              "仍有失效响应义务",
+              "不支持ATS才按相应UR处理"
+            ],
+            [
+              "Base6.0旧读",
+              "完成或标记丢弃",
+              "范围包含Function及Shadows"
+            ],
+            [
+              "Base7.0旧Memory请求",
+              "预期Completions必须收到",
+              "不能套用Translation Completion可丢弃条件"
+            ],
+            [
+              "Base7.0纯UIO受影响流量",
+              "仍至少一份非UIO Invalidate Completion",
+              "不可在UIO VC发Posted Message完成"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 69,
+            "detailId": "invalidate-completion-scoreboard-query",
+            "label": "完成账本查询"
+          },
+          {
+            "featureId": 69,
+            "detailId": "invalidate-drain-version-matrix",
+            "label": "6.0/7.0逐项排空表"
+          },
+          {
+            "featureId": 69,
+            "detailId": "invalidate-shared-queue-allocation",
+            "label": "共享IQD队列预算"
+          },
+          {
+            "featureId": 68,
+            "detailId": "ats-partial-overlap-entry-eviction",
+            "label": "失效范围与条目"
+          }
+        ]
       }
     ]
   },
@@ -75432,14 +77061,14 @@
     "checks": "处理超时、失败、进程退出和停止请求；具体控制器需要应用实现相关协议行为与状态反馈。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 70,
-    "status": "选定正文与字段已展开 · 逐版完善",
+    "status": "一期已验收：R113按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "10.4",
@@ -75781,6 +77410,149 @@
         "title": "Gen7溢出恢复后续",
         "verification": "本轮实际核读所列页的相关正文/表；按职责、条件和动作编写中文说明，不表示整章、所有例外或全部后续修订已审计。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "ats-1.1",
+        "document": "Address Translation Services",
+        "version": "1.1; 2009-01-26",
+        "section": "Revision History",
+        "page": 2,
+        "pdfPage": 2,
+        "title": "正式ATS1.1新增PRI",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.1",
+        "document": "Address Translation Services",
+        "version": "1.1; 2009-01-26",
+        "section": "1.2",
+        "page": 19,
+        "pdfPage": 19,
+        "title": "PRI用途和ATS依赖",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.1",
+        "document": "Address Translation Services",
+        "version": "1.1; 2009-01-26",
+        "section": "5.2.2",
+        "page": 49,
+        "pdfPage": 49,
+        "title": "原始PRI Control",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.1",
+        "document": "Address Translation Services",
+        "version": "1.1; 2009-01-26",
+        "section": "5.2.3",
+        "page": 51,
+        "pdfPage": 51,
+        "title": "Stopped及共享PF/VF",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-pasid-ats-20110331",
+        "document": "PASID Translation ECN",
+        "version": "2011-03-31; affected ATS1.1",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "PASID与PRI/Stop Marker扩展",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "10.5.2.3",
+        "page": 1207,
+        "pdfPage": 1207,
+        "title": "PRI Status布局",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "10.5.2.3",
+        "page": 1209,
+        "pdfPage": 1209,
+        "title": "PASID Required及Allocation",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.2.5",
+        "page": 1520,
+        "pdfPage": 1520,
+        "title": "预分配整组及PASID共享额度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.2.3",
+        "page": 1733,
+        "pdfPage": 1733,
+        "title": "SIOV共享错误与Stopped",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ats-1.1",
+        "document": "Address Translation Services",
+        "version": "1.1; 2009-01-26",
+        "section": "4.1",
+        "page": 40,
+        "pdfPage": 40,
+        "title": "PRG/消息额度与9bit索引",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.5.2.5",
+        "page": 1520,
+        "pdfPage": 1520,
+        "title": "预分配及停止PASID后额度处理",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.5.2.5",
+        "page": 1734,
+        "pdfPage": 1734,
+        "title": "Stop Marker及共享额度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.4.1.2",
+        "page": 1723,
+        "pdfPage": 1723,
+        "title": "PASID停止流程",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "新知识块绑定明确版本、正文条款和PDF页；旧目录引用与未展开主题不算整章核读。",
@@ -76122,6 +77894,144 @@
           11,
           12
         ]
+      },
+      {
+        "id": "r113-pri-version-and-state-map",
+        "title": "PRI从ATS1.1到Base7.0：Enable、Stopped与额度的版本地图",
+        "paragraphs": [
+          "PRI在ATS1.1（2009-01-26）的修订记录中明确新增，不能回填到ATS1.0原版。它允许设备为未驻留页面请求主机准备资源，ATS可独立于PRI存在，PRI依赖ATS能力。2011 PASID-ATS ECN又增加PASID相关使用和Stop Marker；不能认为原始1.1已具备后续全部PASID字段。",
+          "现代0013h能力块仍使用Control+04h、Status+06h、Capacity+08h、Allocation+0Ch的16字节布局。Control E清零只是停止产生新Page Request，Status S才表明PRI停止状态。E=0/S=0时还可能有已发或排队请求；重新使能尚未成功停止的接口会导致未定义结果。",
+          "PRI Reset仅清接口的请求计数和待处理状态，不是FLR、不是IOMMU上下文撤销，也不是通用DMA停止证明。错误位RW1C与Control RW位不能用不加区分的整DWORD读改写混在一起。",
+          "Base4/5/6所列正文有PF/VF共享约束；Base7.0把共享PRI的SDI也明确纳入PF错误与Stopped聚合。PF管理一个共享接口，不表示报文使用PF身份代替真正的请求Function/SDI。"
+        ],
+        "referenceIndices": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39
+        ],
+        "table": {
+          "columns": [
+            "修订",
+            "核实的变化/规则",
+            "限制"
+          ],
+          "rows": [
+            [
+              "ATS1.0",
+              "不含1.1新增PRI",
+              "不能仅因有ATS能力就写0013h"
+            ],
+            [
+              "ATS1.1",
+              "Enable/Reset、RF/UPRGI、Stopped、Capacity/Allocation",
+              "PASID扩展另看2011 ECN"
+            ],
+            [
+              "Base4.0/5.0",
+              "Status[15] PRG Response PASID Required",
+              "RO，是否带PASID由能力语义决定，不是任意软件开关"
+            ],
+            [
+              "Base6.0",
+              "组内所有Page Request先预留额度；不同PASID共享Function额度",
+              "Stop Marker不计Allocation但仍消耗额外缓冲"
+            ],
+            [
+              "Base7.0",
+              "共享PRI的PF/VF/SDI聚合错误和停止状态",
+              "S=1前核对整个接口关联对象"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 70,
+            "detailId": "pri-control-register",
+            "label": "PRI完整Control表"
+          },
+          {
+            "featureId": 70,
+            "detailId": "pri-status-register",
+            "label": "PRI完整Status表"
+          },
+          {
+            "featureId": 70,
+            "detailId": "pri-register-decoder",
+            "label": "使能/停止快照解码"
+          }
+        ]
+      },
+      {
+        "id": "r113-pri-resource-and-reuse-checklist",
+        "title": "1000条额度为什么只有512个组号：资源归还与PASID重用",
+        "paragraphs": [
+          "Outstanding Allocation按每条Page Request消息计数，PRG Index是9bit组标识；二者不是同一个资源。分配1000条消息额度时，一个组可以用掉全部1000条；每组只发一条时，则最多先用完512个组号。开始发送某组前必须为该组全部Page Request预留可用额度。",
+          "Capacity是物理支持上限，Allocation是软件允许上限；改Allocation应在接口未Enable时，且不能超过Capacity。不同PASID不各拿一份独立Allocation，停止某个PASID也不能把它已占用的消息和PRG资源直接清账。",
+          "停止PASID后，旧PRG响应仍承担资源归还职责；Stop Marker不要求响应，不占Page Request Allocation或PRG Index，但需要额外缓冲。页面可用、翻译可用、旧访问已排空分别由PRI、ATS及失效/停止协议提供证据。"
+        ],
+        "referenceIndices": [
+          40,
+          41,
+          42,
+          43
+        ],
+        "table": {
+          "columns": [
+            "阶段",
+            "操作与证据",
+            "误区"
+          ],
+          "rows": [
+            [
+              "准备",
+              "验证Capacity/Allocation和整组预算",
+              "不在E=1时改Allocation"
+            ],
+            [
+              "缺页请求",
+              "相同PRG内身份一致，末条L=1",
+              "额度按消息消耗，组号另计"
+            ],
+            [
+              "收到Success",
+              "按ATS重新取得并检查翻译",
+              "Success不提供业务读数据或物理地址"
+            ],
+            [
+              "停止/重用",
+              "停排新任务，按PASID stop和Marker/响应路线处理",
+              "旧响应仍归还资源，不能当新上下文结果"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 70,
+            "detailId": "pri-capacity-allocation",
+            "label": "三种资源上限"
+          },
+          {
+            "featureId": 70,
+            "detailId": "pri-stop-marker-sequence",
+            "label": "Stop Marker两条停止路线"
+          },
+          {
+            "featureId": 71,
+            "detailId": "pasid-stop-before-reuse",
+            "label": "PASID复用前置条件"
+          },
+          {
+            "featureId": 69,
+            "detailId": "r112-invalidate-errata-and-drain-contract",
+            "label": "失效排空边界"
+          }
+        ]
       }
     ]
   },
@@ -76135,7 +78045,7 @@
     "checks": "不把PASID当物理地址高位；检查宽度、Enable、权限与前缀处理，DMA引擎是否支持PASID Prefix还需单独核对。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 71,
-    "status": "选定正文与字段已展开 · 逐版完善",
+    "status": "一期已验收：R113按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
@@ -76150,7 +78060,7 @@
         "url": "https://pcisig.com/PCIExpress/ECN/Base/PASIDTranslation"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-27",
     "protocolReferences": [
       {
         "section": "10.1.3",
@@ -76459,6 +78369,105 @@
         "title": "Gen7 Requester ID与PASID共同标识地址空间",
         "verification": "本轮核读该页PASID相关正文。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "ecn-pasid-base-20110331",
+        "document": "Process Address Space ID ECN",
+        "version": "2011-03-31; affected Base3.0",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "2011 PASID ECN及RID联合上下文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-pasid-ats-20110331",
+        "document": "PASID Translation ECN",
+        "version": "2011-03-31; affected ATS1.1",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "PASID配套ATS/PRI",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "Revision History",
+        "page": 2,
+        "pdfPage": 2,
+        "title": "Base3.1纳入PASID记录",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "7.8.8.2",
+        "page": 891,
+        "pdfPage": 891,
+        "title": "旧PASID能力bit3保留",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.8.8.2",
+        "page": 873,
+        "pdfPage": 873,
+        "title": "Base5.0原版bit3保留",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-pasid-translated-20200921",
+        "document": "Translated Memory Requests with PASID ECN",
+        "version": "Updated2020-09-21; affected Base5.0",
+        "section": "10.1.3",
+        "page": 4,
+        "pdfPage": 4,
+        "title": "2020 Translated Request扩展",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.9.2",
+        "page": 1150,
+        "pdfPage": 1150,
+        "title": "现代Translated能力位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.9.2",
+        "page": 1319,
+        "pdfPage": 1319,
+        "title": "现代PASID能力及位宽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.9.3",
+        "page": 1320,
+        "pdfPage": 1320,
+        "title": "四个使能及关联要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "新知识块绑定明确版本、正文条款和PDF页；旧目录引用与未展开主题不算整章核读。",
@@ -76736,6 +78745,78 @@
           8,
           9,
           10
+        ]
+      },
+      {
+        "id": "r113-pasid-version-and-translated-requests",
+        "title": "PASID版本地图：2011的身份扩展与2020的Translated Request扩展",
+        "paragraphs": [
+          "2011-03-31 PASID Base ECN针对Base3.0定义20bit PASID及Execute/Privileged请求属性；同日另一份ECN专门规定与ATS/PRI的配合。Base4.0正式版修订记录列出Base3.1纳入PASID。不能把“Gen3原版”“Gen3时代后续ECN”和“Base3.1”混成同一文本，也不能由Gen1/Gen2链路速率推导是否具有这一后续可选功能。",
+          "Base4.0和Base5.0原版Capability[3]、Control[3]仍保留；2020-09-21更新的Translated Memory Requests with PASID ECN针对Base5.0放宽Translated地址携带PASID的限制并加入支持/使能位。Base6.0/7.0正文有该位，不能把现代四使能表直接套到未采用ECN的Base4/5设备。",
+          "PASID数值不是操作系统PID，也不是物理地址高位；Requester ID和PASID共同选地址空间。不同Requester ID下相同PASID可以代表不同上下文。Capability的Max Width=n表示0至2^n−1；n=0仍支持PASID0，n最大20。字段位宽不保证能同时维持2^n个活动上下文。",
+          "若使用Translated Requests with PASID，除PASID Enable还必须具备并开启Translated Requests with PASID能力。取得翻译时带PASID，随后对应Translated Request须带相同PASID；取得翻译时不带，则随后也不得凭空加一个PASID。修改PASID Control时还必须遵守关联ATS E的限制。"
+        ],
+        "referenceIndices": [
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36
+        ],
+        "table": {
+          "columns": [
+            "版本/模型",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "2011 Base ECN",
+              "面向Untranslated Memory Request的PASID身份",
+              "ATS/PRI用途由配套ECN定义"
+            ],
+            [
+              "Base4.0/5.0原版",
+              "支持/使能位1/2以及Max Width；bit3保留",
+              "普通PASID Enable不自动允许Translated+PASID"
+            ],
+            [
+              "2020 ECN→Base6.0/7.0",
+              "Capability[3]支持与Control[3]使能",
+              "需ATS，和翻译时PASID严格对应"
+            ],
+            [
+              "Base7.0多功能",
+              "单能力共享或多能力每Function；PF能力覆盖关联VF",
+              "按适用模型确定关联Control，不拿一个PF快照解释全设备"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 71,
+            "detailId": "pasid-capability-register",
+            "label": "现代能力完整位表"
+          },
+          {
+            "featureId": 71,
+            "detailId": "pasid-control-register",
+            "label": "现代四使能表"
+          },
+          {
+            "featureId": 71,
+            "detailId": "pasid-multifunction-version",
+            "label": "多功能适用模型"
+          },
+          {
+            "featureId": 71,
+            "detailId": "pasid-register-decoder",
+            "label": "现代寄存器解码"
+          }
         ]
       }
     ]

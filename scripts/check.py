@@ -44,15 +44,27 @@ for f in features:
                 width=sum(field['width'] for field in row)
                 assert width==32 or index==len(layout['rows'])-1 and width in {8,16,24}
                 assert all(isinstance(field['width'],int) and field['width']>0 and field['key'] and field['label'] and field['help'] for field in row)
-raw='\n'.join((ROOT/'docs'/n).read_text(encoding='utf-8') for n in ['index.html','style.css','app.js','data.js'])
-for asset in ['style.css','data.js','app.js']:
+raw='\n'.join((ROOT/'docs'/n).read_text(encoding='utf-8') for n in ['index.html','style.css','app.js','data.js','features-data.js','coverage-data.js'])
+for asset in ['style.css','data.js','features-data.js','coverage-data.js','app.js']:
     digest=hashlib.sha256((ROOT/'docs'/asset).read_bytes()).hexdigest()[:16]
     assert '"'+asset+'?v='+digest+'"' in (ROOT/'docs/index.html').read_text(encoding='utf-8'), 'Stale or missing asset version: '+asset
 assert not re.search(r'file:///|[A-Z]:[\\/]|/Users/|pcie_test_ip|DWC_pcie_ctl|CX_[A-Z_]+|CC_[A-Z_]+',raw),'Found local-only/project-specific content in website'
 assert not any(p.suffix.lower() in {'.pdf','.sv','.svh','.v','.doc','.docx','.ppt','.pptx','.cdl','.sp','.spi','.gds','.oas','.lef','.lib','.db','.hex','.mem','.rom','.bin'} for p in (ROOT/'docs').rglob('*') if p.is_file())
 assert 'fetch(' not in (ROOT/'web/app.js').read_text(encoding='utf-8'),'Website is intended to work without content/PDF upload APIs'
 assert 'URL.createObjectURL(file)' in raw and '#page=' in raw
-assert (ROOT/'docs/data.js').read_bytes().endswith(b';\n') and b'\r\n' not in (ROOT/'docs/data.js').read_bytes(), 'Use deterministic LF output for Windows/Linux rebuilds'
+# Check that splitting the generated data preserves every canonical value.
+loaded={}
+for filename,prefix,key in [('data.js','window.PCIE_STUDY = ',None),('features-data.js','window.PCIE_STUDY.features = ','features'),('coverage-data.js','window.PCIE_STUDY.coverage = ','coverage')]:
+    payload=(ROOT/'docs'/filename).read_bytes()
+    assert payload.endswith(b';\n') and b'\r\n' not in payload, 'Use deterministic LF output: '+filename
+    source=payload.decode('utf-8');assert source.startswith(prefix)
+    value=json.loads(source[len(prefix):-2])
+    if key is None:loaded=value
+    else:loaded[key]=value
+for key,name in [('features','features'),('documents','documents'),('protocols','protocols'),('changelog','changelog'),('maintenance','maintenance'),('generations','generations'),('audit','self-audit'),('phy','phy'),('coverage','coverage')]:
+    assert loaded[key]==json.loads((ROOT/'content'/(name+'.json')).read_text(encoding='utf-8')), 'Generated data mismatch: '+key
+assert loaded['builtDate']==max(c['date'] for c in loaded['changelog'])
+
 class Check(HTMLParser):
     def __init__(self):super().__init__();self.ids=set();self.files=[]
     def handle_starttag(self,tag,attrs):
@@ -61,6 +73,8 @@ class Check(HTMLParser):
         if tag=='script' and 'src' in a:self.files.append(a['src'])
         if tag=='link' and a.get('rel')=='stylesheet':self.files.append(a['href'])
 p=Check();p.feed((ROOT/'docs/index.html').read_text(encoding='utf-8'));p.close()
+script_order=[name.split('?')[0] for name in p.files if name.split('?')[0].endswith('.js')]
+assert script_order==['data.js','features-data.js','coverage-data.js','app.js'], 'Preserve synchronous data initialization order'
 assert all((ROOT/'docs'/f.split('?',1)[0]).is_file() for f in p.files)
 assert {'content','search','groups','pdf-dialog','pdf-file'}<=p.ids
 for fn in ['changelog','maintenance','protocols','documents','generations','self-audit','phy','coverage']:json.loads((ROOT/f'content/{fn}.json').read_text(encoding='utf-8'))
@@ -157,13 +171,13 @@ public_files=['.gitignore','site.config.json','AGENTS.md','README.md','.github/w
 public_files += ['scripts/'+n for n in ['build.py','check.py','import_content.py','index_protocol.py','map_references.py','prepare_public.py']]
 public_files += ['web/'+n for n in ['index.html','style.css','app.js']]
 public_files += ['content/'+n+'.json' for n in ['features','documents','protocols','changelog','maintenance','generations','self-audit','phy','coverage']]
-public_files += ['docs/'+n for n in ['index.html','style.css','app.js','data.js','.nojekyll']]
+public_files += ['docs/'+n for n in ['index.html','style.css','app.js','data.js','features-data.js','coverage-data.js','.nojekyll']]
 drive_path=re.compile(r'(?<![A-Za-z0-9])[A-Za-z]:[\\/]')
 for relative in public_files:
     text=(ROOT/relative).read_text(encoding='utf-8')
     assert not drive_path.search(text), f'Absolute drive path in publication file: {relative}'
     assert not re.search(r'/(?:Users|home)/[^\s\"\x27<>/]+/',text), f'Home directory in publication file: {relative}'
-assert len(public_files)==28
+assert len(public_files)==30
 print(f'PASS: {len(features)} features, Gen1–Gen7, source links, public-content boundary, local-only PDF reader, static assets, JSON and HTML structure.')
 
 # V1 scope is frozen; acceptance requires evidence, never a note-count threshold.
