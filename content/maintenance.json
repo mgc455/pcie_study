@@ -1,8 +1,8 @@
 {
   "nextFeatureIds": [
-    108,
-    99,
-    100
+    105,
+    106,
+    107
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,14 +49,14 @@
   ],
   "lastCompleted": {
     "date": "2026-10-28",
-    "edition": "2026-10-28-r117",
+    "edition": "2026-10-28-r119",
     "featureIds": [
-      79,
-      80,
-      81,
-      82
+      101,
+      102,
+      103,
+      104
     ],
-    "nextTrack": "R118按队列；R118总结"
+    "nextTrack": "R120按队列；R122总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -346,14 +346,14 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 1,
+    "nextReviewAfterRounds": 3,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 59,
-    "lastReviewEdition": "2026-10-27-r114",
-    "lastReviewId": "r111-r114",
-    "nextExpectedReview": "R118（R115～R118四轮总结）"
+    "completedTotal": 61,
+    "lastReviewEdition": "2026-10-28-r118",
+    "lastReviewId": "r115-r118",
+    "nextExpectedReview": "R122（R119～R122四轮总结）"
   },
   "stageReviews": [
     {
@@ -1287,10 +1287,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 27,
-    "remainingPlannedRounds": 21,
-    "nextRound": 118,
-    "nextReviewRound": 118,
+    "completedRounds": 29,
+    "remainingPlannedRounds": 19,
+    "nextRound": 120,
+    "nextReviewRound": 122,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -12702,47 +12702,95 @@
         "featureId": 99,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/99/detail/r118-ecrc-seven-revision-and-diagnostic-map",
+                "label": "ECRC七版查询地图：链路CRC有效，也可能端到端内容已坏"
+              }
+            ],
+            "note": "复用8块算法、覆盖、生成/检查与寄存器；逐版核1.0a/2/3/4/5/6/7 ECRC正文，补版本地图与诊断闭环，不以CRC名字替代位序且未新增未验证计算器。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/99/detail/r118-ecrc-seven-revision-and-diagnostic-map",
+                "label": "ECRC七版查询地图：链路CRC有效，也可能端到端内容已坏"
+              }
+            ],
+            "note": "复用8块算法、覆盖、生成/检查与寄存器；逐版核1.0a/2/3/4/5/6/7 ECRC正文，补版本地图与诊断闭环，不以CRC名字替代位序且未新增未验证计算器。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/99/detail/r118-ecrc-seven-revision-and-diagnostic-map",
+                "label": "ECRC七版查询地图：链路CRC有效，也可能端到端内容已坏"
+              }
+            ],
+            "note": "复用8块算法、覆盖、生成/检查与寄存器；逐版核1.0a/2/3/4/5/6/7 ECRC正文，补版本地图与诊断闭环，不以CRC名字替代位序且未新增未验证计算器。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/99/detail/r118-ecrc-seven-revision-and-diagnostic-map",
+                "label": "ECRC七版查询地图：链路CRC有效，也可能端到端内容已坏"
+              }
+            ],
+            "note": "复用8块算法、覆盖、生成/检查与寄存器；逐版核1.0a/2/3/4/5/6/7 ECRC正文，补版本地图与诊断闭环，不以CRC名字替代位序且未新增未验证计算器。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/99/detail/r118-ecrc-seven-revision-and-diagnostic-map",
+                "label": "ECRC七版查询地图：链路CRC有效，也可能端到端内容已坏"
+              }
+            ],
+            "note": "复用8块算法、覆盖、生成/检查与寄存器；逐版核1.0a/2/3/4/5/6/7 ECRC正文，补版本地图与诊断闭环，不以CRC名字替代位序且未新增未验证计算器。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/99/detail/r118-ecrc-seven-revision-and-diagnostic-map",
+                "label": "ECRC七版查询地图：链路CRC有效，也可能端到端内容已坏"
+              }
+            ],
+            "note": "复用8块算法、覆盖、生成/检查与寄存器；逐版核1.0a/2/3/4/5/6/7 ECRC正文，补版本地图与诊断闭环，不以CRC名字替代位序且未新增未验证计算器。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/99/detail/r118-ecrc-seven-revision-and-diagnostic-map",
+                "label": "ECRC七版查询地图：链路CRC有效，也可能端到端内容已坏"
+              }
+            ],
+            "note": "复用8块算法、覆盖、生成/检查与寄存器；逐版核1.0a/2/3/4/5/6/7 ECRC正文，补版本地图与诊断闭环，不以CRC名字替代位序且未新增未验证计算器。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/99/detail/r118-ecrc-seven-revision-and-diagnostic-map",
+                "label": "ECRC七版查询地图：链路CRC有效，也可能端到端内容已坏"
+              }
+            ],
+            "note": "复用8块算法、覆盖、生成/检查与寄存器；逐版核1.0a/2/3/4/5/6/7 ECRC正文，补版本地图与诊断闭环，不以CRC名字替代位序且未新增未验证计算器。"
           }
         },
         "baseline": {
@@ -12751,61 +12799,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用8块算法、覆盖、生成/检查与寄存器；逐版核1.0a/2/3/4/5/6/7 ECRC正文，补版本地图与诊断闭环，不以CRC名字替代位序且未新增未验证计算器。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 118
       },
       {
         "id": "v1-feature-100",
         "featureId": 100,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/100/detail/r118-poison-seven-revision-and-three-receiver-map",
+                "label": "Poison七版差异：控制写保护、出口阻断与最终Completer分开"
+              }
+            ],
+            "note": "复用17块Poison角色、受保护目标、日志和查询；逐版核1.0a～7.0，对早期UR分类、3.0修订、4/5出口条件及7.0 non-UIO出口/最终UIO区别明确分版。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/100/detail/r118-poison-seven-revision-and-three-receiver-map",
+                "label": "Poison七版差异：控制写保护、出口阻断与最终Completer分开"
+              }
+            ],
+            "note": "复用17块Poison角色、受保护目标、日志和查询；逐版核1.0a～7.0，对早期UR分类、3.0修订、4/5出口条件及7.0 non-UIO出口/最终UIO区别明确分版。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/100/detail/r118-poison-seven-revision-and-three-receiver-map",
+                "label": "Poison七版差异：控制写保护、出口阻断与最终Completer分开"
+              }
+            ],
+            "note": "复用17块Poison角色、受保护目标、日志和查询；逐版核1.0a～7.0，对早期UR分类、3.0修订、4/5出口条件及7.0 non-UIO出口/最终UIO区别明确分版。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/100/detail/r118-poison-seven-revision-and-three-receiver-map",
+                "label": "Poison七版差异：控制写保护、出口阻断与最终Completer分开"
+              }
+            ],
+            "note": "复用17块Poison角色、受保护目标、日志和查询；逐版核1.0a～7.0，对早期UR分类、3.0修订、4/5出口条件及7.0 non-UIO出口/最终UIO区别明确分版。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/100/detail/r118-poison-seven-revision-and-three-receiver-map",
+                "label": "Poison七版差异：控制写保护、出口阻断与最终Completer分开"
+              }
+            ],
+            "note": "复用17块Poison角色、受保护目标、日志和查询；逐版核1.0a～7.0，对早期UR分类、3.0修订、4/5出口条件及7.0 non-UIO出口/最终UIO区别明确分版。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/100/detail/r118-poison-seven-revision-and-three-receiver-map",
+                "label": "Poison七版差异：控制写保护、出口阻断与最终Completer分开"
+              }
+            ],
+            "note": "复用17块Poison角色、受保护目标、日志和查询；逐版核1.0a～7.0，对早期UR分类、3.0修订、4/5出口条件及7.0 non-UIO出口/最终UIO区别明确分版。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/100/detail/r118-poison-seven-revision-and-three-receiver-map",
+                "label": "Poison七版差异：控制写保护、出口阻断与最终Completer分开"
+              }
+            ],
+            "note": "复用17块Poison角色、受保护目标、日志和查询；逐版核1.0a～7.0，对早期UR分类、3.0修订、4/5出口条件及7.0 non-UIO出口/最终UIO区别明确分版。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/100/detail/r118-poison-seven-revision-and-three-receiver-map",
+                "label": "Poison七版差异：控制写保护、出口阻断与最终Completer分开"
+              }
+            ],
+            "note": "复用17块Poison角色、受保护目标、日志和查询；逐版核1.0a～7.0，对早期UR分类、3.0修订、4/5出口条件及7.0 non-UIO出口/最终UIO区别明确分版。"
           }
         },
         "baseline": {
@@ -12814,61 +12911,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用17块Poison角色、受保护目标、日志和查询；逐版核1.0a～7.0，对早期UR分类、3.0修订、4/5出口条件及7.0 non-UIO出口/最终UIO区别明确分版。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 118
       },
       {
         "id": "v1-feature-101",
         "featureId": 101,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/101/detail/r119-completion-status-seven-revision-contract",
+                "label": "完成状态七版对照：编码相同，不代表错误类型、包头位置或软件读值相同"
+              }
+            ],
+            "note": "复用10块完整状态/RRS软件可见性与查询，逐一核七份Base状态表；FM状态位置、UR/CA本地分类与事务失败/Timeout分开，首次中间修订改名未作无证断言。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/101/detail/r119-completion-status-seven-revision-contract",
+                "label": "完成状态七版对照：编码相同，不代表错误类型、包头位置或软件读值相同"
+              }
+            ],
+            "note": "复用10块完整状态/RRS软件可见性与查询，逐一核七份Base状态表；FM状态位置、UR/CA本地分类与事务失败/Timeout分开，首次中间修订改名未作无证断言。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/101/detail/r119-completion-status-seven-revision-contract",
+                "label": "完成状态七版对照：编码相同，不代表错误类型、包头位置或软件读值相同"
+              }
+            ],
+            "note": "复用10块完整状态/RRS软件可见性与查询，逐一核七份Base状态表；FM状态位置、UR/CA本地分类与事务失败/Timeout分开，首次中间修订改名未作无证断言。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/101/detail/r119-completion-status-seven-revision-contract",
+                "label": "完成状态七版对照：编码相同，不代表错误类型、包头位置或软件读值相同"
+              }
+            ],
+            "note": "复用10块完整状态/RRS软件可见性与查询，逐一核七份Base状态表；FM状态位置、UR/CA本地分类与事务失败/Timeout分开，首次中间修订改名未作无证断言。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/101/detail/r119-completion-status-seven-revision-contract",
+                "label": "完成状态七版对照：编码相同，不代表错误类型、包头位置或软件读值相同"
+              }
+            ],
+            "note": "复用10块完整状态/RRS软件可见性与查询，逐一核七份Base状态表；FM状态位置、UR/CA本地分类与事务失败/Timeout分开，首次中间修订改名未作无证断言。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/101/detail/r119-completion-status-seven-revision-contract",
+                "label": "完成状态七版对照：编码相同，不代表错误类型、包头位置或软件读值相同"
+              }
+            ],
+            "note": "复用10块完整状态/RRS软件可见性与查询，逐一核七份Base状态表；FM状态位置、UR/CA本地分类与事务失败/Timeout分开，首次中间修订改名未作无证断言。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/101/detail/r119-completion-status-seven-revision-contract",
+                "label": "完成状态七版对照：编码相同，不代表错误类型、包头位置或软件读值相同"
+              }
+            ],
+            "note": "复用10块完整状态/RRS软件可见性与查询，逐一核七份Base状态表；FM状态位置、UR/CA本地分类与事务失败/Timeout分开，首次中间修订改名未作无证断言。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/101/detail/r119-completion-status-seven-revision-contract",
+                "label": "完成状态七版对照：编码相同，不代表错误类型、包头位置或软件读值相同"
+              }
+            ],
+            "note": "复用10块完整状态/RRS软件可见性与查询，逐一核七份Base状态表；FM状态位置、UR/CA本地分类与事务失败/Timeout分开，首次中间修订改名未作无证断言。"
           }
         },
         "baseline": {
@@ -12877,61 +13023,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用10块完整状态/RRS软件可见性与查询，逐一核七份Base状态表；FM状态位置、UR/CA本地分类与事务失败/Timeout分开，首次中间修订改名未作无证断言。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 119
       },
       {
         "id": "v1-feature-102",
         "featureId": 102,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/102/detail/r119-timeout-seven-revision-and-software-contract",
+                "label": "Timeout七版收尾：默认值、可编程区间和在途改值各是什么保证"
+              }
+            ],
+            "note": "复用27块范围表/查询、生命周期/FLR与恢复；补2.0实际编程字段及3/4/5正文、6/7FM/PFVF对照，区间与精确deadline分离。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/102/detail/r119-timeout-seven-revision-and-software-contract",
+                "label": "Timeout七版收尾：默认值、可编程区间和在途改值各是什么保证"
+              }
+            ],
+            "note": "复用27块范围表/查询、生命周期/FLR与恢复；补2.0实际编程字段及3/4/5正文、6/7FM/PFVF对照，区间与精确deadline分离。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/102/detail/r119-timeout-seven-revision-and-software-contract",
+                "label": "Timeout七版收尾：默认值、可编程区间和在途改值各是什么保证"
+              }
+            ],
+            "note": "复用27块范围表/查询、生命周期/FLR与恢复；补2.0实际编程字段及3/4/5正文、6/7FM/PFVF对照，区间与精确deadline分离。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/102/detail/r119-timeout-seven-revision-and-software-contract",
+                "label": "Timeout七版收尾：默认值、可编程区间和在途改值各是什么保证"
+              }
+            ],
+            "note": "复用27块范围表/查询、生命周期/FLR与恢复；补2.0实际编程字段及3/4/5正文、6/7FM/PFVF对照，区间与精确deadline分离。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/102/detail/r119-timeout-seven-revision-and-software-contract",
+                "label": "Timeout七版收尾：默认值、可编程区间和在途改值各是什么保证"
+              }
+            ],
+            "note": "复用27块范围表/查询、生命周期/FLR与恢复；补2.0实际编程字段及3/4/5正文、6/7FM/PFVF对照，区间与精确deadline分离。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/102/detail/r119-timeout-seven-revision-and-software-contract",
+                "label": "Timeout七版收尾：默认值、可编程区间和在途改值各是什么保证"
+              }
+            ],
+            "note": "复用27块范围表/查询、生命周期/FLR与恢复；补2.0实际编程字段及3/4/5正文、6/7FM/PFVF对照，区间与精确deadline分离。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/102/detail/r119-timeout-seven-revision-and-software-contract",
+                "label": "Timeout七版收尾：默认值、可编程区间和在途改值各是什么保证"
+              }
+            ],
+            "note": "复用27块范围表/查询、生命周期/FLR与恢复；补2.0实际编程字段及3/4/5正文、6/7FM/PFVF对照，区间与精确deadline分离。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/102/detail/r119-timeout-seven-revision-and-software-contract",
+                "label": "Timeout七版收尾：默认值、可编程区间和在途改值各是什么保证"
+              }
+            ],
+            "note": "复用27块范围表/查询、生命周期/FLR与恢复；补2.0实际编程字段及3/4/5正文、6/7FM/PFVF对照，区间与精确deadline分离。"
           }
         },
         "baseline": {
@@ -12940,61 +13135,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用27块范围表/查询、生命周期/FLR与恢复；补2.0实际编程字段及3/4/5正文、6/7FM/PFVF对照，区间与精确deadline分离。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 119
       },
       {
         "id": "v1-feature-103",
         "featureId": 103,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/103/detail/r119-aer-seven-revision-evidence-layers",
+                "label": "AER七版字段地图与排查顺序：检测、保留证据、通知、恢复分别确认"
+              }
+            ],
+            "note": "复用61块完整现代位表、门控/ANFE/桥Root归属及查询；核早期AER高位保留至现代FM/ECS，按版本解码不将现代UE清单倒填旧代，独立RP PIO问题保留。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/103/detail/r119-aer-seven-revision-evidence-layers",
+                "label": "AER七版字段地图与排查顺序：检测、保留证据、通知、恢复分别确认"
+              }
+            ],
+            "note": "复用61块完整现代位表、门控/ANFE/桥Root归属及查询；核早期AER高位保留至现代FM/ECS，按版本解码不将现代UE清单倒填旧代，独立RP PIO问题保留。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/103/detail/r119-aer-seven-revision-evidence-layers",
+                "label": "AER七版字段地图与排查顺序：检测、保留证据、通知、恢复分别确认"
+              }
+            ],
+            "note": "复用61块完整现代位表、门控/ANFE/桥Root归属及查询；核早期AER高位保留至现代FM/ECS，按版本解码不将现代UE清单倒填旧代，独立RP PIO问题保留。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/103/detail/r119-aer-seven-revision-evidence-layers",
+                "label": "AER七版字段地图与排查顺序：检测、保留证据、通知、恢复分别确认"
+              }
+            ],
+            "note": "复用61块完整现代位表、门控/ANFE/桥Root归属及查询；核早期AER高位保留至现代FM/ECS，按版本解码不将现代UE清单倒填旧代，独立RP PIO问题保留。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/103/detail/r119-aer-seven-revision-evidence-layers",
+                "label": "AER七版字段地图与排查顺序：检测、保留证据、通知、恢复分别确认"
+              }
+            ],
+            "note": "复用61块完整现代位表、门控/ANFE/桥Root归属及查询；核早期AER高位保留至现代FM/ECS，按版本解码不将现代UE清单倒填旧代，独立RP PIO问题保留。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/103/detail/r119-aer-seven-revision-evidence-layers",
+                "label": "AER七版字段地图与排查顺序：检测、保留证据、通知、恢复分别确认"
+              }
+            ],
+            "note": "复用61块完整现代位表、门控/ANFE/桥Root归属及查询；核早期AER高位保留至现代FM/ECS，按版本解码不将现代UE清单倒填旧代，独立RP PIO问题保留。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/103/detail/r119-aer-seven-revision-evidence-layers",
+                "label": "AER七版字段地图与排查顺序：检测、保留证据、通知、恢复分别确认"
+              }
+            ],
+            "note": "复用61块完整现代位表、门控/ANFE/桥Root归属及查询；核早期AER高位保留至现代FM/ECS，按版本解码不将现代UE清单倒填旧代，独立RP PIO问题保留。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/103/detail/r119-aer-seven-revision-evidence-layers",
+                "label": "AER七版字段地图与排查顺序：检测、保留证据、通知、恢复分别确认"
+              }
+            ],
+            "note": "复用61块完整现代位表、门控/ANFE/桥Root归属及查询；核早期AER高位保留至现代FM/ECS，按版本解码不将现代UE清单倒填旧代，独立RP PIO问题保留。"
           }
         },
         "baseline": {
@@ -13005,61 +13249,110 @@
           "aer-messages"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用61块完整现代位表、门控/ANFE/桥Root归属及查询；核早期AER高位保留至现代FM/ECS，按版本解码不将现代UE清单倒填旧代，独立RP PIO问题保留。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 119
       },
       {
         "id": "v1-feature-104",
         "featureId": 104,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/104/detail/r119-header-log-version-and-snapshot-contract",
+                "label": "Header Log收尾：七版读取边界、同类两条记录与陈旧FEP的处理"
+              }
+            ],
+            "note": "复用15块队列/字节序/Prefix及快照；核七主版本，明确3.0与4/5同类位措辞差异、6/7VF/FEP陈旧歧义是已说明限制，不虚假承诺无竞态快照。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/104/detail/r119-header-log-version-and-snapshot-contract",
+                "label": "Header Log收尾：七版读取边界、同类两条记录与陈旧FEP的处理"
+              }
+            ],
+            "note": "复用15块队列/字节序/Prefix及快照；核七主版本，明确3.0与4/5同类位措辞差异、6/7VF/FEP陈旧歧义是已说明限制，不虚假承诺无竞态快照。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/104/detail/r119-header-log-version-and-snapshot-contract",
+                "label": "Header Log收尾：七版读取边界、同类两条记录与陈旧FEP的处理"
+              }
+            ],
+            "note": "复用15块队列/字节序/Prefix及快照；核七主版本，明确3.0与4/5同类位措辞差异、6/7VF/FEP陈旧歧义是已说明限制，不虚假承诺无竞态快照。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/104/detail/r119-header-log-version-and-snapshot-contract",
+                "label": "Header Log收尾：七版读取边界、同类两条记录与陈旧FEP的处理"
+              }
+            ],
+            "note": "复用15块队列/字节序/Prefix及快照；核七主版本，明确3.0与4/5同类位措辞差异、6/7VF/FEP陈旧歧义是已说明限制，不虚假承诺无竞态快照。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/104/detail/r119-header-log-version-and-snapshot-contract",
+                "label": "Header Log收尾：七版读取边界、同类两条记录与陈旧FEP的处理"
+              }
+            ],
+            "note": "复用15块队列/字节序/Prefix及快照；核七主版本，明确3.0与4/5同类位措辞差异、6/7VF/FEP陈旧歧义是已说明限制，不虚假承诺无竞态快照。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/104/detail/r119-header-log-version-and-snapshot-contract",
+                "label": "Header Log收尾：七版读取边界、同类两条记录与陈旧FEP的处理"
+              }
+            ],
+            "note": "复用15块队列/字节序/Prefix及快照；核七主版本，明确3.0与4/5同类位措辞差异、6/7VF/FEP陈旧歧义是已说明限制，不虚假承诺无竞态快照。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/104/detail/r119-header-log-version-and-snapshot-contract",
+                "label": "Header Log收尾：七版读取边界、同类两条记录与陈旧FEP的处理"
+              }
+            ],
+            "note": "复用15块队列/字节序/Prefix及快照；核七主版本，明确3.0与4/5同类位措辞差异、6/7VF/FEP陈旧歧义是已说明限制，不虚假承诺无竞态快照。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 119,
+            "evidence": [
+              {
+                "href": "#feature/104/detail/r119-header-log-version-and-snapshot-contract",
+                "label": "Header Log收尾：七版读取边界、同类两条记录与陈旧FEP的处理"
+              }
+            ],
+            "note": "复用15块队列/字节序/Prefix及快照；核七主版本，明确3.0与4/5同类位措辞差异、6/7VF/FEP陈旧歧义是已说明限制，不虚假承诺无竞态快照。"
           }
         },
         "baseline": {
@@ -13070,14 +13363,15 @@
           "aer-messages"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用15块队列/字节序/Prefix及快照；核七主版本，明确3.0与4/5同类位措辞差异、6/7VF/FEP陈旧歧义是已说明限制，不虚假承诺无竞态快照。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 119
       },
       {
         "id": "v1-feature-105",
@@ -13378,47 +13672,95 @@
         "featureId": 108,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/108/detail/r118-blocked-request-version-and-error-contract",
+                "label": "ACS、Atomic出口阻断和IDE错路：三种入口，三套事务结局"
+              }
+            ],
+            "note": "复用19块阻断、AER与IDE例外及查询，核2008 Atomic ECN、6/7 ACS/Atomic及7.0 IDE原页；三种入口事务结局独立，完整安全协议/全部并发错误优先级不在此项范围。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/108/detail/r118-blocked-request-version-and-error-contract",
+                "label": "ACS、Atomic出口阻断和IDE错路：三种入口，三套事务结局"
+              }
+            ],
+            "note": "复用19块阻断、AER与IDE例外及查询，核2008 Atomic ECN、6/7 ACS/Atomic及7.0 IDE原页；三种入口事务结局独立，完整安全协议/全部并发错误优先级不在此项范围。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/108/detail/r118-blocked-request-version-and-error-contract",
+                "label": "ACS、Atomic出口阻断和IDE错路：三种入口，三套事务结局"
+              }
+            ],
+            "note": "复用19块阻断、AER与IDE例外及查询，核2008 Atomic ECN、6/7 ACS/Atomic及7.0 IDE原页；三种入口事务结局独立，完整安全协议/全部并发错误优先级不在此项范围。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/108/detail/r118-blocked-request-version-and-error-contract",
+                "label": "ACS、Atomic出口阻断和IDE错路：三种入口，三套事务结局"
+              }
+            ],
+            "note": "复用19块阻断、AER与IDE例外及查询，核2008 Atomic ECN、6/7 ACS/Atomic及7.0 IDE原页；三种入口事务结局独立，完整安全协议/全部并发错误优先级不在此项范围。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/108/detail/r118-blocked-request-version-and-error-contract",
+                "label": "ACS、Atomic出口阻断和IDE错路：三种入口，三套事务结局"
+              }
+            ],
+            "note": "复用19块阻断、AER与IDE例外及查询，核2008 Atomic ECN、6/7 ACS/Atomic及7.0 IDE原页；三种入口事务结局独立，完整安全协议/全部并发错误优先级不在此项范围。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/108/detail/r118-blocked-request-version-and-error-contract",
+                "label": "ACS、Atomic出口阻断和IDE错路：三种入口，三套事务结局"
+              }
+            ],
+            "note": "复用19块阻断、AER与IDE例外及查询，核2008 Atomic ECN、6/7 ACS/Atomic及7.0 IDE原页；三种入口事务结局独立，完整安全协议/全部并发错误优先级不在此项范围。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/108/detail/r118-blocked-request-version-and-error-contract",
+                "label": "ACS、Atomic出口阻断和IDE错路：三种入口，三套事务结局"
+              }
+            ],
+            "note": "复用19块阻断、AER与IDE例外及查询，核2008 Atomic ECN、6/7 ACS/Atomic及7.0 IDE原页；三种入口事务结局独立，完整安全协议/全部并发错误优先级不在此项范围。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 118,
+            "evidence": [
+              {
+                "href": "#feature/108/detail/r118-blocked-request-version-and-error-contract",
+                "label": "ACS、Atomic出口阻断和IDE错路：三种入口，三套事务结局"
+              }
+            ],
+            "note": "复用19块阻断、AER与IDE例外及查询，核2008 Atomic ECN、6/7 ACS/Atomic及7.0 IDE原页；三种入口事务结局独立，完整安全协议/全部并发错误优先级不在此项范围。"
           }
         },
         "baseline": {
@@ -13427,14 +13769,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用19块阻断、AER与IDE例外及查询，核2008 Atomic ECN、6/7 ACS/Atomic及7.0 IDE原页；三种入口事务结局独立，完整安全协议/全部并发错误优先级不在此项范围。",
         "taskId": "v1-task-09",
         "requiredTaskIds": [
           "v1-task-09",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 118
       },
       {
         "id": "v1-feature-109",
@@ -21341,6 +21684,276 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定范围仍有120功能；61/89来源疑点保留，R118总结。",
         "publication": "用户确认补发R115成功后，授权R116/R117；分别检查，合并发布R117。"
+      },
+      {
+        "round": 118,
+        "kind": "R118 数据完整性及阻断验收与四轮总结",
+        "deliverables": [
+          "R118验收108/99/100，ACS分组09闭合；补Atomic独立ECN、七版ECRC/Poison差异及事务结局。R115～R118四轮总结单列。"
+        ],
+        "closedDeliverableIds": [
+          "feature-108-v1-accepted",
+          "feature-99-v1-accepted",
+          "feature-100-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 108,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 108,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 108,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 108,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 108,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 108,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 108,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 108,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 99,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 99,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 99,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 99,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 99,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 99,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 99,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 99,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 100,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 100,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 100,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 100,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 100,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 100,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 100,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 100,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          108,
+          99,
+          100
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有117功能；61/89来源疑点保留，R122总结。",
+        "publication": "用户确认R117成功发布后，授权R118/R119；分别检查，合并发布R119。"
+      },
+      {
+        "round": 119,
+        "kind": "R119 Completion与AER日志批量验收",
+        "deliverables": [
+          "R119验收101/102/103/104，补七版Completion、Timeout及AER日志字段地图；明确区间/在途修改、事务/记录/通知三层证据和FEP陈旧歧义。累计70/183，577维度，剩113项/19预算轮。"
+        ],
+        "closedDeliverableIds": [
+          "feature-101-v1-accepted",
+          "feature-102-v1-accepted",
+          "feature-103-v1-accepted",
+          "feature-104-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 101,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 101,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 101,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 101,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 101,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 101,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 101,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 101,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 102,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 102,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 102,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 102,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 102,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 102,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 102,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 102,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 103,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 103,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 103,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 103,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 103,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 103,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 103,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 103,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 104,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 104,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 104,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 104,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 104,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 104,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 104,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 104,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          101,
+          102,
+          103,
+          104
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有113功能；61/89来源疑点保留，R122总结。",
+        "publication": "用户确认R117成功发布后，授权R118/R119；分别检查，合并发布R119。"
       }
     ],
     "backlog": [
@@ -21774,7 +22387,7 @@
           108
         ],
         "phase": "breadth",
-        "status": "open",
+        "status": "closed",
         "focus": "能力/Control、角色、Memory/Message/Completion路径与IOV/UIO限制；补需核ECN证据。",
         "exit": "所列条目八维验收的适用项逐一有证据通过；可复用既有正文，独有语义、版本限制及相关冲突不可遗漏。",
         "legacyRecordIndices": [
@@ -21785,8 +22398,13 @@
           22,
           62
         ],
-        "evidence": [],
-        "closedRound": null
+        "evidence": [
+          {
+            "href": "#feature/108/detail/r118-blocked-request-version-and-error-contract",
+            "label": "ACS Violation / Atomic Egress Block"
+          }
+        ],
+        "closedRound": 118
       },
       {
         "id": "v1-task-10",
@@ -24761,33 +25379,33 @@
       }
     ],
     "nextExecution": {
-      "round": 118,
-      "taskId": "v1-task-09",
+      "round": 120,
+      "taskId": "v1-task-12",
       "featureIds": [
-        108,
-        99,
-        100
+        105,
+        106,
+        107
       ],
-      "goal": "R118优先复核分组09余项108（ACS/Atomic阻断与AER），再按证据处理成熟错误条目99/100，并完成R115～R118四轮总结；不以已有细节数量判定通过。",
-      "reviewRound": 118
+      "goal": "按固定收尾队列批验成熟条目，真实缺口才补正文，不为数量添工具；R122四轮总结。",
+      "reviewRound": 122
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 117,
-      "reestimateRound": 118,
-      "observedAcceptedUnitsPerRound": 2.5,
-      "requiredAcceptedUnitsPerRemainingRound": 5.714285714285714,
-      "linearExtrapolationRounds": 52,
-      "assessment": "R117累计63/183、521验收维度，剩120项/21预算轮，需约5.714项/轮；R116/R117共关闭7项。R118必须做四轮总结，预算目标仍有风险，不自动延期。",
-      "action": "R115按成熟ACS基础控制批核74/75/76；后续复用成熟路由条目收尾，R118再评估。",
+      "assessedRound": 119,
+      "reestimateRound": 122,
+      "observedAcceptedUnitsPerRound": 3,
+      "requiredAcceptedUnitsPerRemainingRound": 5.947368421052632,
+      "linearExtrapolationRounds": 38,
+      "assessment": "R119关闭4功能/32维度，累计70/183、577维度，剩113项/19预算轮。上一已结算四轮R115～R118实绩3项/轮；预算内需约5.95项/轮，目标仍有风险。机械外推38轮仅风险，不是自动延期，R122再总结。",
+      "action": "R119复核成熟Completion Status/Timeout及AER日志条目101/102/103/104；R122总结，按实际阻塞保留未完成。",
       "latestProgress": {
-        "round": 117,
+        "round": 119,
         "newAcceptedUnits": 4,
-        "cumulativeAcceptedUnits": 63,
+        "cumulativeAcceptedUnits": 70,
         "newPassedCriteria": 32,
-        "cumulativePassedCriteria": 521,
-        "remainingPlannedRounds": 21
+        "cumulativePassedCriteria": 577,
+        "remainingPlannedRounds": 19
       }
     },
     "reviewWindows": [
@@ -25077,6 +25695,56 @@
             "newPassedCriteria": 24,
             "cumulativePassedCriteria": 449,
             "remainingPlannedRounds": 24
+          }
+        }
+      },
+      {
+        "id": "r115-r118",
+        "firstRound": 115,
+        "lastRound": 118,
+        "completedPlanRounds": 4,
+        "closedFeatureUnits": [
+          74,
+          76,
+          75,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          108,
+          99,
+          100
+        ],
+        "newPassedCriteria": 96,
+        "cumulativePassedCriteria": 545,
+        "remainingFeatureUnits": 117,
+        "remainingRequiredTasks": 19,
+        "closedTaskIds": [
+          "v1-task-09"
+        ],
+        "sourceQuestions": 38,
+        "resolvedSourceQuestions": 5,
+        "remainingSourceQuestions": 33,
+        "remainingPlannedRounds": 20,
+        "targetRound": 138,
+        "forecast": {
+          "status": "at-risk",
+          "assessedRound": 118,
+          "reestimateRound": 122,
+          "observedAcceptedUnitsPerRound": 3,
+          "requiredAcceptedUnitsPerRemainingRound": 5.85,
+          "linearExtrapolationRounds": 39,
+          "assessment": "R115～R118实际关闭12功能/96维度，累计66/183、545维度；ACS分组09关闭，仍有117项/20预算轮。实绩3项/轮，预算内需5.85项/轮。机械外推39轮仅风险指标，不是延期计划；不自动扩范围或降低门槛。",
+          "action": "R119复核成熟Completion Status/Timeout及AER日志条目101/102/103/104；R122总结，按实际阻塞保留未完成。",
+          "latestProgress": {
+            "round": 118,
+            "newAcceptedUnits": 3,
+            "cumulativeAcceptedUnits": 66,
+            "newPassedCriteria": 24,
+            "cumulativePassedCriteria": 545,
+            "remainingPlannedRounds": 20
           }
         }
       }

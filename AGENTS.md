@@ -122,3 +122,9 @@ R115: accepted[74, 76], new criteria22, cumulative56/183 and471 criteria;127 uni
 R116: accepted[75, 77, 78], new criteria18, cumulative59/183 and489 criteria;124 units/22 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR117[79, 80, 81, 82]; R118 review, daily paused. User authorized R116/R117 after successful R113 repair; independent checks, combined R117 publication.
 
 R117: accepted[79, 80, 81, 82], new criteria32, cumulative63/183 and521 criteria;120 units/21 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR118[108, 99, 100]; R118 review, daily paused. User authorized R116/R117 after successful R113 repair; independent checks, combined R117 publication.
+
+R118: accepted[108, 99, 100], new criteria24, cumulative66/183 and545 criteria;117 units/20 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR119[101, 102, 103, 104]; R122 review, daily paused. User authorized R118/R119 after published R117; independent checks, combined R119 publication.
+
+R118 review: R115-R118 accepted12 units/96 criteria; task09closed,19tasks remain. Cumulative66/183 and545criteria;117units/20budget rounds,observed3/round vs5.85required;39-round extrapolation risk only. NextR119101/102/103/104;nextsummaryR122,daily paused. Seven-revision ECRC/Poison and2008Atomic ECN checked, not full chapters.
+
+R119: accepted[101, 102, 103, 104], new criteria32, cumulative70/183 and577 criteria;113 units/19 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR120[105, 106, 107]; R122 review, daily paused. User authorized R118/R119 after published R117; independent checks, combined R119 publication.
