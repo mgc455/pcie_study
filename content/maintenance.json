@@ -1,6 +1,8 @@
 {
   "nextFeatureIds": [
-    149
+    154,
+    155,
+    96
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -47,11 +49,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-28",
-    "edition": "2026-10-28-r138",
+    "edition": "2026-10-28-r140",
     "featureIds": [
-      143
+      151,
+      152
     ],
-    "nextTrack": "本次另授权R139；原预算已结束"
+    "nextTrack": "R141按队列；R122总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -341,11 +344,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 2,
+    "nextReviewAfterRounds": 2,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 80,
+    "completedTotal": 82,
     "lastReviewEdition": "2026-10-28-r138",
     "lastReviewId": "r135-r138",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
@@ -1282,9 +1285,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 48,
+    "completedRounds": 50,
     "remainingPlannedRounds": 0,
-    "nextRound": 139,
+    "nextRound": 141,
     "nextReviewRound": 142,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -19271,47 +19274,127 @@
         "featureId": 149,
         "group": "IP集成与片内接口",
         "scope": "implementation",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/149/detail/r139-native-handshake",
+                "label": "Native发送/接收与握手：XALI、TRGT1、RBYP"
+              },
+              {
+                "href": "#feature/149/detail/r139-native-lut-token",
+                "label": "Completion LUT与Token：方向、单位及资源责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/149/detail/r139-native-handshake",
+                "label": "Native发送/接收与握手：XALI、TRGT1、RBYP"
+              },
+              {
+                "href": "#feature/149/detail/r139-native-lut-token",
+                "label": "Completion LUT与Token：方向、单位及资源责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/149/detail/r139-native-handshake",
+                "label": "Native发送/接收与握手：XALI、TRGT1、RBYP"
+              },
+              {
+                "href": "#feature/149/detail/r139-native-lut-token",
+                "label": "Completion LUT与Token：方向、单位及资源责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/149/detail/r139-native-handshake",
+                "label": "Native发送/接收与握手：XALI、TRGT1、RBYP"
+              },
+              {
+                "href": "#feature/149/detail/r139-native-lut-token",
+                "label": "Completion LUT与Token：方向、单位及资源责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/149/detail/r139-native-handshake",
+                "label": "Native发送/接收与握手：XALI、TRGT1、RBYP"
+              },
+              {
+                "href": "#feature/149/detail/r139-native-lut-token",
+                "label": "Completion LUT与Token：方向、单位及资源责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/149/detail/r139-native-handshake",
+                "label": "Native发送/接收与握手：XALI、TRGT1、RBYP"
+              },
+              {
+                "href": "#feature/149/detail/r139-native-lut-token",
+                "label": "Completion LUT与Token：方向、单位及资源责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/149/detail/r139-native-handshake",
+                "label": "Native发送/接收与握手：XALI、TRGT1、RBYP"
+              },
+              {
+                "href": "#feature/149/detail/r139-native-lut-token",
+                "label": "Completion LUT与Token：方向、单位及资源责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/149/detail/r139-native-handshake",
+                "label": "Native发送/接收与握手：XALI、TRGT1、RBYP"
+              },
+              {
+                "href": "#feature/149/detail/r139-native-lut-token",
+                "label": "Completion LUT与Token：方向、单位及资源责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           }
         },
         "baseline": {
@@ -19320,61 +19403,110 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。",
         "taskId": "v1-task-17",
         "requiredTaskIds": [
           "v1-task-17",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 139
       },
       {
         "id": "v1-feature-150",
         "featureId": 150,
         "group": "IP集成与片内接口",
         "scope": "implementation",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/150/detail/r139-dual-port-contract",
+                "label": "MultiStream与双端口：并行度、对称配置与排序责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/150/detail/r139-dual-port-contract",
+                "label": "MultiStream与双端口：并行度、对称配置与排序责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/150/detail/r139-dual-port-contract",
+                "label": "MultiStream与双端口：并行度、对称配置与排序责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/150/detail/r139-dual-port-contract",
+                "label": "MultiStream与双端口：并行度、对称配置与排序责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/150/detail/r139-dual-port-contract",
+                "label": "MultiStream与双端口：并行度、对称配置与排序责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/150/detail/r139-dual-port-contract",
+                "label": "MultiStream与双端口：并行度、对称配置与排序责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/150/detail/r139-dual-port-contract",
+                "label": "MultiStream与双端口：并行度、对称配置与排序责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 139,
+            "evidence": [
+              {
+                "href": "#feature/150/detail/r139-dual-port-contract",
+                "label": "MultiStream与双端口：并行度、对称配置与排序责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           }
         },
         "baseline": {
@@ -19383,61 +19515,110 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。",
         "taskId": "v1-task-17",
         "requiredTaskIds": [
           "v1-task-17",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 139
       },
       {
         "id": "v1-feature-151",
         "featureId": 151,
         "group": "IP集成与片内接口",
         "scope": "implementation",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/151/detail/r140-cic-observe-override",
+                "label": "配置截获：观察、延迟写响应、替换读数据分别做什么"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/151/detail/r140-cic-observe-override",
+                "label": "配置截获：观察、延迟写响应、替换读数据分别做什么"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/151/detail/r140-cic-observe-override",
+                "label": "配置截获：观察、延迟写响应、替换读数据分别做什么"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/151/detail/r140-cic-observe-override",
+                "label": "配置截获：观察、延迟写响应、替换读数据分别做什么"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/151/detail/r140-cic-observe-override",
+                "label": "配置截获：观察、延迟写响应、替换读数据分别做什么"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/151/detail/r140-cic-observe-override",
+                "label": "配置截获：观察、延迟写响应、替换读数据分别做什么"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/151/detail/r140-cic-observe-override",
+                "label": "配置截获：观察、延迟写响应、替换读数据分别做什么"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/151/detail/r140-cic-observe-override",
+                "label": "配置截获：观察、延迟写响应、替换读数据分别做什么"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           }
         },
         "baseline": {
@@ -19446,61 +19627,110 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。",
         "taskId": "v1-task-17",
         "requiredTaskIds": [
           "v1-task-17",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 140
       },
       {
         "id": "v1-feature-152",
         "featureId": 152,
         "group": "IP集成与片内接口",
         "scope": "implementation",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/152/detail/r140-filter-route-map",
+                "label": "过滤与路由：先判断合法性，再选TRGT0/TRGT1及响应责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/152/detail/r140-filter-route-map",
+                "label": "过滤与路由：先判断合法性，再选TRGT0/TRGT1及响应责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/152/detail/r140-filter-route-map",
+                "label": "过滤与路由：先判断合法性，再选TRGT0/TRGT1及响应责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/152/detail/r140-filter-route-map",
+                "label": "过滤与路由：先判断合法性，再选TRGT0/TRGT1及响应责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/152/detail/r140-filter-route-map",
+                "label": "过滤与路由：先判断合法性，再选TRGT0/TRGT1及响应责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/152/detail/r140-filter-route-map",
+                "label": "过滤与路由：先判断合法性，再选TRGT0/TRGT1及响应责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/152/detail/r140-filter-route-map",
+                "label": "过滤与路由：先判断合法性，再选TRGT0/TRGT1及响应责任"
+              }
+            ],
+            "note": "按6.50a产品接口查询契约，所列正文及角色/配置限制核对；非完整PCIe标准或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 140,
+            "evidence": [
+              {
+                "href": "#feature/152/detail/r140-filter-route-map",
+                "label": "阈值相等边界保留"
+              }
+            ],
+            "note": "大于/小于规则已核，等号未获直接证据；未整项关闭。"
           }
         },
         "baseline": {
@@ -19516,6 +19746,9 @@
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "所核6.50a路由阈值表未明示等于边界，不能猜测比较编码。"
         ]
       },
       {
@@ -26379,6 +26612,168 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "原预算结束仍有84项/30来源问题；下一轮为用户本次另授权。",
         "publication": "R137先上线并比对首页后，用户授权R138/R139；逐轮检查，合并发布R139。"
+      },
+      {
+        "round": 139,
+        "kind": "R139片内接口批量核读",
+        "deliverables": [
+          "R139按产品范围补Native与双端口。"
+        ],
+        "closedDeliverableIds": [
+          "feature-149-v1-accepted",
+          "feature-150-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 149,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 149,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 149,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 149,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 149,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 149,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 149,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 149,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 150,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 150,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 150,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 150,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 150,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 150,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 150,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 150,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          149,
+          150
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "当前81功能未整项验收；原R138预算结束快照保留。",
+        "publication": "用户授权R139/R140，逐轮检查合并发布R140。"
+      },
+      {
+        "round": 140,
+        "kind": "R140片内接口批量核读",
+        "deliverables": [
+          "R140按产品范围补配置截获与过滤路由；152阈值等号保留待核。"
+        ],
+        "closedDeliverableIds": [
+          "feature-151-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 151,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 151,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 151,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 151,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 151,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 151,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 151,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 151,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 152,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 152,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 152,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 152,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 152,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 152,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 152,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [
+          151
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "当前81功能未整项验收；原R138预算结束快照保留。",
+        "publication": "用户授权R139/R140，逐轮检查合并发布R140。"
       }
     ],
     "backlog": [
@@ -29886,30 +30281,32 @@
       }
     ],
     "nextExecution": {
-      "round": 139,
+      "round": 141,
       "taskId": "v1-task-17",
       "featureIds": [
-        149
+        154,
+        155,
+        96
       ],
-      "goal": "本次明确另授权R139补149；原预算结束，不将追加写为原计划自动延期。",
+      "goal": "按用户已给出的逐轮计划继续；R142四轮总结。",
       "reviewRound": 142
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 138,
+      "assessedRound": 140,
       "reestimateRound": 142,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R135～R138关闭4项/39维度，累计99/183、857维度；原48轮预算用完，84项仍未验收。",
-      "action": "保留预算结束快照和84项清单；用户另授权R139，不延长原计划或降低标准，不给无依据的新完工轮数。",
+      "assessment": "原48轮预算已结束；本次为用户明确授权的手动继续，原快照保持。",
+      "action": "下一轮按计划154/155/96；R142总结。",
       "latestProgress": {
-        "round": 138,
-        "newAcceptedUnits": 0,
-        "cumulativeAcceptedUnits": 99,
-        "newPassedCriteria": 7,
-        "cumulativePassedCriteria": 857,
+        "round": 140,
+        "newAcceptedUnits": 1,
+        "cumulativeAcceptedUnits": 102,
+        "newPassedCriteria": 15,
+        "cumulativePassedCriteria": 888,
         "remainingPlannedRounds": 0
       }
     },
@@ -30759,6 +31156,18 @@
         "有新官方澄清时处理143/146/147/148及30个待核来源问题，不重复扫同页。",
         "其余成熟待验收或缺独立正文条目按固定清单推进。"
       ]
+    },
+    "manualContinuation": {
+      "authorizedRounds": [
+        139,
+        140
+      ],
+      "completedRounds": [
+        139,
+        140
+      ],
+      "originalTargetRound": 138,
+      "automaticExtension": false
     }
   }
 }

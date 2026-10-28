@@ -157269,16 +157269,185 @@
     "checks": "核对当前可见端口、报文长度/对齐、反压与Completion责任；模板中列出的端口未必当前同时外露。",
     "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
     "id": 149,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R139按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-28",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.1.1",
+        "page": 285,
+        "pdfPage": 285,
+        "title": "发送规则",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.1.1",
+        "page": 286,
+        "pdfPage": 286,
+        "title": "长度责任",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.7",
+        "page": 303,
+        "pdfPage": 303,
+        "title": "FC接收接口",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.1.4",
+        "page": 291,
+        "pdfPage": 291,
+        "title": "两种LUT",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "19.3",
+        "page": 696,
+        "pdfPage": 696,
+        "title": "Token单位",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "19.3",
+        "page": 697,
+        "pdfPage": 697,
+        "title": "门控与归还",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.7",
+        "page": 303,
+        "pdfPage": 303,
+        "title": "FM/NFM字段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节",
+    "details": [
+      {
+        "id": "r139-native-handshake",
+        "title": "Native发送/接收与握手：XALI、TRGT1、RBYP",
+        "paragraphs": [
+          "限定Controller6.50a。XALI把应用请求或Completion交给控制器；TRGT1输出过滤后的入站TLP；RBYP服务旁路队列。Client编号不代表Function或VC。启用AXI桥时若干接口成为内部连接，不能按Native模板推断外部端口一定可见。",
+          "传统Halt接口中，MRd等无Payload请求不置dv；有Payload请求的头阶段同时置hv/dv，后续数据不必保持hv。eot对应最后有效头或数据周期，bad_eot与eot同周期表示中止。halt时保持头和数据稳定，包内不得任意断流。这不是AXI独立AW/W通道。",
+          "Native不替应用完整校验TLP错误、MPS或内部最大传输容量；超内部容量可损坏重放缓冲。应用先满足类型、长度、边界和字节使能，再发接口。不同产品/配置的接口不是PCIe Gen1～7标准要求。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "hv/dv",
+              "头/数据有效",
+              "Payload首周期同时有效"
+            ],
+            [
+              "eot/bad_eot",
+              "末尾/中止",
+              "不替代完整错误检查"
+            ],
+            [
+              "halt",
+              "保持当前信息",
+              "不直接套READY"
+            ],
+            [
+              "Gen6 FC接收",
+              "P/NP/Cpl分口",
+              "应用字段不等于线上位布局"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r139-native-lut-token",
+        "title": "Completion LUT与Token：方向、单位及资源责任",
+        "paragraphs": [
+          "Target Completion LUT保存入站NP请求上下文。应用保存Lookup ID，生成Completion时带回，控制器补部分头字段；应用仍负责响应状态、数据及结束。表满会阻塞接收。Target LUT等应用响应，Receive Completion LUT等线上响应，两者超时方向相反；Lookup ID不是线上Tag。",
+          "Token架构中发送时应用是生产者，接收时控制器是生产者。每VC/FC维护Header/Data计数。一个Header Token表示一个TLP头，一个Data Token表示一个本地data beat，不是PCIe固定16byte的Data Credit。开包前需整包资源充足，不能只留首beat。",
+          "串行Trailer需计入Data beat取整，并行Trailer按配置不另占数据拍。128bit接口上40byte Payload加4byte串行Trailer需ceil(44/16)=3个Data Token及1个Header Token。Token接口halt-free不等于无限发送；归还资源前不能重用。FM/NFM线上PASID位置不同，应用语义字段可相同，不能把本地字段总线当原始线上包。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "Target LUT",
+              "入站NP→应用响应",
+              "需保存Lookup ID"
+            ],
+            [
+              "Header Token",
+              "1个头",
+              "不同于数据字节数"
+            ],
+            [
+              "Data Token",
+              "1个本地beat",
+              "宽度决定单位"
+            ],
+            [
+              "halt-free",
+              "Token容量门控",
+              "不是无背压"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      }
+    ]
   },
   {
     "name": "MultiStream / Dual-port选项",
@@ -157290,16 +157459,96 @@
     "checks": "对照实际顶层端口与参数；并行硬件不保证应用内存和总线能提供同样吞吐。",
     "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
     "id": 150,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R139按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-28",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.2.2",
+        "page": 416,
+        "pdfPage": 416,
+        "title": "双端口约束",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.4.3.3",
+        "page": 164,
+        "pdfPage": 164,
+        "title": "短包条件",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.4.3.3",
+        "page": 165,
+        "pdfPage": 165,
+        "title": "IDE与排序",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节",
+    "details": [
+      {
+        "id": "r139-dual-port-contract",
+        "title": "MultiStream与双端口：并行度、对称配置与排序责任",
+        "paragraphs": [
+          "6.50a所列x16 MultiStream配置可每PCIe时钟每FC处理至多两个TLP，这是内部接口能力，不是两个独立PCIe Link，也不是保证吞吐翻倍。短包双发有Payload不超过半内部数据宽度等条件；长包、短长包交界和IDE串行化都可能限制并行度。",
+          "Dual Port AXI要求TX/RX端口数对称；两个Manager端口宽度相同，两个Subordinate端口也相同。每个Manager单独跟踪其NP ID，最大并发按两口相加，但DTI Manager和MSI-GIC仍单口。DTI流量关联0号端口，不能想当然均匀分摊所有流量。",
+          "接收分发使用路由控制与包属性；本版Dual Port桥接收排序有Single VC和无IDO排序逻辑的限制。两个AXI Subordinate之间控制器不强制流量排序，应用必须正确分配请求和维护跨口依赖。吞吐优化不取消PCIe顺序要求，不能靠双口修复Tag/缓冲或一致性错误。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "端口数",
+              "TX/RX对称",
+              "非两个独立Link"
+            ],
+            [
+              "宽度",
+              "同类两口相同",
+              "不是任意混接"
+            ],
+            [
+              "DTI/MSI-GIC",
+              "仍单口",
+              "不按所有接口翻倍"
+            ],
+            [
+              "双Subordinate",
+              "应用负责跨口排序",
+              "控制器不代管依赖"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      }
+    ]
   },
   {
     "name": "Configuration Intercept（CIC）",
@@ -157311,16 +157560,96 @@
     "checks": "检查哪些访问被截获、完成数据/状态和复位时行为；不要误覆盖标准能力导致枚举失败。",
     "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
     "id": 151,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R140按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-28",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.5",
+        "page": 218,
+        "pdfPage": 218,
+        "title": "写截获",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.5",
+        "page": 219,
+        "pdfPage": 219,
+        "title": "读截获",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.5",
+        "page": 221,
+        "pdfPage": 221,
+        "title": "valid与cs边界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节",
+    "details": [
+      {
+        "id": "r140-cic-observe-override",
+        "title": "配置截获：观察、延迟写响应、替换读数据分别做什么",
+        "paragraphs": [
+          "限定6.50a的CDM经ELBI截获机制。线上或本地DBI/AXI访问CDM时，lbc_ext_valid对应PF位给观察机会；不要求应用把所有寄存器重新实现。真正映射到ELBI的访问另有lbc_ext_cs，应用必须响应，不受override是否启用影响。",
+          "需要截获时，在valid出现后一个时钟周期内置ext_lbc_override_en。写访问可等待应用处理后给ack再结束响应；读访问提供ext_lbc_din并ack，可以替换本次返回数据，但不修改CDM寄存器存储值。valid撤销后撤销ack和override，不能常置ack或错过捕获窗口后认为已拦截。",
+          "它不是任意修改线上TLP的通用防火墙，也不是新PCIe Capability。CDM内部读写与应用观察/返回覆盖要分开理解；写延迟不等于禁止内部写发生。低功耗时同步时钟、PF索引及寄存器访问限制仍以交付配置为准，不能用一套固定CPU地址或跨域脉冲处理所有实现。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "valid",
+              "CDM访问观察",
+              "按PF位识别"
+            ],
+            [
+              "override",
+              "一周期内置位",
+              "不同于ELBI cs"
+            ],
+            [
+              "读数据覆盖",
+              "替换返回值",
+              "不改CDM存储"
+            ],
+            [
+              "ELBI cs",
+              "真实外部寄存器请求",
+              "即使override=0也须响应"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      }
+    ]
   },
   {
     "name": "Filtering / Routing / Target Lookup",
@@ -157339,9 +157668,131 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-28",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.4.2",
+        "page": 160,
+        "pdfPage": 160,
+        "title": "过滤职责",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.4.3",
+        "page": 162,
+        "pdfPage": 162,
+        "title": "EP路由",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.4.3.2",
+        "page": 163,
+        "pdfPage": 163,
+        "title": "RP路由",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "I.3",
+        "page": 969,
+        "pdfPage": 969,
+        "title": "应用Completion责任",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "I.5",
+        "page": 972,
+        "pdfPage": 972,
+        "title": "路由状态",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "I.5",
+        "page": 973,
+        "pdfPage": 973,
+        "title": "错误目标及阈值",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节",
+    "details": [
+      {
+        "id": "r140-filter-route-map",
+        "title": "过滤与路由：先判断合法性，再选TRGT0/TRGT1及响应责任",
+        "paragraphs": [
+          "过滤器根据类型、生成选项、运行信号和寄存器配置判断TLP状态、目的和报告。BAR命中只是条件之一，不能跳过Poison、请求身份、长度、当前Function状态等检查。过滤的UR/CA与最终转发/丢弃是两个步骤，Mask更不是权限或IOMMU授权。",
+          "EP默认合法CFG经TRGT0/LBC到CDM，BAR匹配MEM/IO到TRGT1，Message内部解码到SII后终止。配置可改变BAR目标或将特定CFG送TRGT1；一旦交给应用，应用承担相应Completion责任。RP默认路径不同，通常不用BAR，也不期望收到CFG/IO，不能直接复用EP规则。",
+          "丢弃可表示内部已服务但不再交应用，不等于无响应静默丢包。NP过滤错误可能内部生成UR/CA Completion；普通Posted写没有对应Completion。错误转发的Default Target选项对MEM/CFG与Message不是统一规则，不能认为置1后所有坏包都会送TRGT1。",
+          "配置地址阈值与目标选择属于产品路由，不是BAR/iATU地址加法。附录表对阈值列出大于与小于条件，没有在本轮所读表中明确等于边界；此处保留精确比较边界待核，不猜编码。Target Completion LUT仅辅助响应头回填，不自动执行应用寄存器或内存访问。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "TRGT0",
+              "内部LBC/CDM或ELBI",
+              "CFG默认路径"
+            ],
+            [
+              "TRGT1",
+              "应用事务路径",
+              "需履行响应责任"
+            ],
+            [
+              "Message",
+              "可内部解码终止",
+              "不能凭接口无包断言未收到"
+            ],
+            [
+              "BAR命中",
+              "匹配条件之一",
+              "不证明过滤通过"
+            ],
+            [
+              "阈值等号",
+              "所读表未明示",
+              "保留来源边界"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      }
+    ]
   },
   {
     "name": "PIPE / FlexiPIPE / PHY Integration",
