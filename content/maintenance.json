@@ -1,8 +1,11 @@
 {
   "nextFeatureIds": [
-    105,
-    106,
-    107
+    111,
+    112,
+    113,
+    114,
+    115,
+    116
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,14 +52,13 @@
   ],
   "lastCompleted": {
     "date": "2026-10-28",
-    "edition": "2026-10-28-r119",
+    "edition": "2026-10-28-r121",
     "featureIds": [
-      101,
-      102,
-      103,
-      104
+      109,
+      110,
+      135
     ],
-    "nextTrack": "R120按队列；R122总结"
+    "nextTrack": "R122按队列；R122总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -346,11 +348,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 1,
-    "nextReviewAfterRounds": 3,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 61,
+    "completedTotal": 63,
     "lastReviewEdition": "2026-10-28-r118",
     "lastReviewId": "r115-r118",
     "nextExpectedReview": "R122（R119～R122四轮总结）"
@@ -1287,9 +1289,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 29,
-    "remainingPlannedRounds": 19,
-    "nextRound": 120,
+    "completedRounds": 31,
+    "remainingPlannedRounds": 17,
+    "nextRound": 122,
     "nextReviewRound": 122,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -13546,47 +13548,95 @@
         "featureId": 106,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+                "label": "RP PIO日志拼接：可用布局与正式文本未澄清的长度分开"
+              }
+            ],
+            "note": "复用25块位表/查询；核eDPC及6.0/6.1/6.4/7.0原页。核心6维通过，FM长度结构/一致性保留阻塞，未虚报完整验收。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+                "label": "RP PIO日志拼接：可用布局与正式文本未澄清的长度分开"
+              }
+            ],
+            "note": "复用25块位表/查询；核eDPC及6.0/6.1/6.4/7.0原页。核心6维通过，FM长度结构/一致性保留阻塞，未虚报完整验收。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+                "label": "四份正式原版仍保留的长度歧义"
+              }
+            ],
+            "note": "可用偏移和限制已说明，未据推测改规范，不满足完整验收。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+                "label": "RP PIO日志拼接：可用布局与正式文本未澄清的长度分开"
+              }
+            ],
+            "note": "复用25块位表/查询；核eDPC及6.0/6.1/6.4/7.0原页。核心6维通过，FM长度结构/一致性保留阻塞，未虚报完整验收。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+                "label": "RP PIO日志拼接：可用布局与正式文本未澄清的长度分开"
+              }
+            ],
+            "note": "复用25块位表/查询；核eDPC及6.0/6.1/6.4/7.0原页。核心6维通过，FM长度结构/一致性保留阻塞，未虚报完整验收。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+                "label": "RP PIO日志拼接：可用布局与正式文本未澄清的长度分开"
+              }
+            ],
+            "note": "复用25块位表/查询；核eDPC及6.0/6.1/6.4/7.0原页。核心6维通过，FM长度结构/一致性保留阻塞，未虚报完整验收。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+                "label": "RP PIO日志拼接：可用布局与正式文本未澄清的长度分开"
+              }
+            ],
+            "note": "复用25块位表/查询；核eDPC及6.0/6.1/6.4/7.0原页。核心6维通过，FM长度结构/一致性保留阻塞，未虚报完整验收。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+                "label": "四份正式原版仍保留的长度歧义"
+              }
+            ],
+            "note": "可用偏移和限制已说明，未据推测改规范，不满足完整验收。"
           }
         },
         "baseline": {
@@ -13602,6 +13652,9 @@
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "v1-conflict-06：四份正式版52～76字节与最大实现Header/OHC日志需求的对应未澄清。"
         ]
       },
       {
@@ -13609,47 +13662,95 @@
         "featureId": 107,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/107/detail/r120-surprise-down-seven-revision-contract",
+                "label": "Surprise Down七版查询：DL转移、能力、排除原因与完整抑制窗口"
+              }
+            ],
+            "note": "复用8块现代规则；补七份正式Base选定DL正文及现代字段/DPC处理；1.0a段落未列清单不等于全规范不存在，抑制历史/事务恢复分开。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/107/detail/r120-surprise-down-seven-revision-contract",
+                "label": "Surprise Down七版查询：DL转移、能力、排除原因与完整抑制窗口"
+              }
+            ],
+            "note": "复用8块现代规则；补七份正式Base选定DL正文及现代字段/DPC处理；1.0a段落未列清单不等于全规范不存在，抑制历史/事务恢复分开。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/107/detail/r120-surprise-down-seven-revision-contract",
+                "label": "Surprise Down七版查询：DL转移、能力、排除原因与完整抑制窗口"
+              }
+            ],
+            "note": "复用8块现代规则；补七份正式Base选定DL正文及现代字段/DPC处理；1.0a段落未列清单不等于全规范不存在，抑制历史/事务恢复分开。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/107/detail/r120-surprise-down-seven-revision-contract",
+                "label": "Surprise Down七版查询：DL转移、能力、排除原因与完整抑制窗口"
+              }
+            ],
+            "note": "复用8块现代规则；补七份正式Base选定DL正文及现代字段/DPC处理；1.0a段落未列清单不等于全规范不存在，抑制历史/事务恢复分开。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/107/detail/r120-surprise-down-seven-revision-contract",
+                "label": "Surprise Down七版查询：DL转移、能力、排除原因与完整抑制窗口"
+              }
+            ],
+            "note": "复用8块现代规则；补七份正式Base选定DL正文及现代字段/DPC处理；1.0a段落未列清单不等于全规范不存在，抑制历史/事务恢复分开。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/107/detail/r120-surprise-down-seven-revision-contract",
+                "label": "Surprise Down七版查询：DL转移、能力、排除原因与完整抑制窗口"
+              }
+            ],
+            "note": "复用8块现代规则；补七份正式Base选定DL正文及现代字段/DPC处理；1.0a段落未列清单不等于全规范不存在，抑制历史/事务恢复分开。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/107/detail/r120-surprise-down-seven-revision-contract",
+                "label": "Surprise Down七版查询：DL转移、能力、排除原因与完整抑制窗口"
+              }
+            ],
+            "note": "复用8块现代规则；补七份正式Base选定DL正文及现代字段/DPC处理；1.0a段落未列清单不等于全规范不存在，抑制历史/事务恢复分开。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 120,
+            "evidence": [
+              {
+                "href": "#feature/107/detail/r120-surprise-down-seven-revision-contract",
+                "label": "Surprise Down七版查询：DL转移、能力、排除原因与完整抑制窗口"
+              }
+            ],
+            "note": "复用8块现代规则；补七份正式Base选定DL正文及现代字段/DPC处理；1.0a段落未列清单不等于全规范不存在，抑制历史/事务恢复分开。"
           }
         },
         "baseline": {
@@ -13658,14 +13759,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用8块现代规则；补七份正式Base选定DL正文及现代字段/DPC处理；1.0a段落未列清单不等于全规范不存在，抑制历史/事务恢复分开。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 120
       },
       {
         "id": "v1-feature-108",
@@ -13784,47 +13886,95 @@
         "featureId": 109,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/109/detail/r121-internal-protection-coverage-contract",
+                "label": "内部保护查询：边界、检测能力、实际修复和报告各留一栏"
+              }
+            ],
+            "note": "复用36块及查询，重核6.50a DM36.2.1～36.2.5与Base6/7 Internal；类型/实际纠正/写回/标准Corrected分离，产品范围明确。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/109/detail/r121-internal-protection-coverage-contract",
+                "label": "内部保护查询：边界、检测能力、实际修复和报告各留一栏"
+              }
+            ],
+            "note": "复用36块及查询，重核6.50a DM36.2.1～36.2.5与Base6/7 Internal；类型/实际纠正/写回/标准Corrected分离，产品范围明确。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/109/detail/r121-internal-protection-coverage-contract",
+                "label": "内部保护查询：边界、检测能力、实际修复和报告各留一栏"
+              }
+            ],
+            "note": "复用36块及查询，重核6.50a DM36.2.1～36.2.5与Base6/7 Internal；类型/实际纠正/写回/标准Corrected分离，产品范围明确。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/109/detail/r121-internal-protection-coverage-contract",
+                "label": "内部保护查询：边界、检测能力、实际修复和报告各留一栏"
+              }
+            ],
+            "note": "复用36块及查询，重核6.50a DM36.2.1～36.2.5与Base6/7 Internal；类型/实际纠正/写回/标准Corrected分离，产品范围明确。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/109/detail/r121-internal-protection-coverage-contract",
+                "label": "内部保护查询：边界、检测能力、实际修复和报告各留一栏"
+              }
+            ],
+            "note": "复用36块及查询，重核6.50a DM36.2.1～36.2.5与Base6/7 Internal；类型/实际纠正/写回/标准Corrected分离，产品范围明确。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/109/detail/r121-internal-protection-coverage-contract",
+                "label": "内部保护查询：边界、检测能力、实际修复和报告各留一栏"
+              }
+            ],
+            "note": "复用36块及查询，重核6.50a DM36.2.1～36.2.5与Base6/7 Internal；类型/实际纠正/写回/标准Corrected分离，产品范围明确。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/109/detail/r121-internal-protection-coverage-contract",
+                "label": "内部保护查询：边界、检测能力、实际修复和报告各留一栏"
+              }
+            ],
+            "note": "复用36块及查询，重核6.50a DM36.2.1～36.2.5与Base6/7 Internal；类型/实际纠正/写回/标准Corrected分离，产品范围明确。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/109/detail/r121-internal-protection-coverage-contract",
+                "label": "内部保护查询：边界、检测能力、实际修复和报告各留一栏"
+              }
+            ],
+            "note": "复用36块及查询，重核6.50a DM36.2.1～36.2.5与Base6/7 Internal；类型/实际纠正/写回/标准Corrected分离，产品范围明确。"
           }
         },
         "baseline": {
@@ -13835,61 +13985,110 @@
           "vendor-debug"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用36块及查询，重核6.50a DM36.2.1～36.2.5与Base6/7 Internal；类型/实际纠正/写回/标准Corrected分离，产品范围明确。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 121
       },
       {
         "id": "v1-feature-110",
         "featureId": 110,
         "group": "错误处理与可靠性",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/110/detail/r121-cdm-observation-contract",
+                "label": "CDM判读：未监测、未完成、发现差异与检查器失效分别输出"
+              }
+            ],
+            "note": "复用24块及查询，重核6.50a生成/输出/测试和范围/定位；四类错误、完成及未监测/未完成分开，不承诺标准CDM或硬件安全验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/110/detail/r121-cdm-observation-contract",
+                "label": "CDM判读：未监测、未完成、发现差异与检查器失效分别输出"
+              }
+            ],
+            "note": "复用24块及查询，重核6.50a生成/输出/测试和范围/定位；四类错误、完成及未监测/未完成分开，不承诺标准CDM或硬件安全验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/110/detail/r121-cdm-observation-contract",
+                "label": "CDM判读：未监测、未完成、发现差异与检查器失效分别输出"
+              }
+            ],
+            "note": "复用24块及查询，重核6.50a生成/输出/测试和范围/定位；四类错误、完成及未监测/未完成分开，不承诺标准CDM或硬件安全验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/110/detail/r121-cdm-observation-contract",
+                "label": "CDM判读：未监测、未完成、发现差异与检查器失效分别输出"
+              }
+            ],
+            "note": "复用24块及查询，重核6.50a生成/输出/测试和范围/定位；四类错误、完成及未监测/未完成分开，不承诺标准CDM或硬件安全验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/110/detail/r121-cdm-observation-contract",
+                "label": "CDM判读：未监测、未完成、发现差异与检查器失效分别输出"
+              }
+            ],
+            "note": "复用24块及查询，重核6.50a生成/输出/测试和范围/定位；四类错误、完成及未监测/未完成分开，不承诺标准CDM或硬件安全验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/110/detail/r121-cdm-observation-contract",
+                "label": "CDM判读：未监测、未完成、发现差异与检查器失效分别输出"
+              }
+            ],
+            "note": "复用24块及查询，重核6.50a生成/输出/测试和范围/定位；四类错误、完成及未监测/未完成分开，不承诺标准CDM或硬件安全验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/110/detail/r121-cdm-observation-contract",
+                "label": "CDM判读：未监测、未完成、发现差异与检查器失效分别输出"
+              }
+            ],
+            "note": "复用24块及查询，重核6.50a生成/输出/测试和范围/定位；四类错误、完成及未监测/未完成分开，不承诺标准CDM或硬件安全验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/110/detail/r121-cdm-observation-contract",
+                "label": "CDM判读：未监测、未完成、发现差异与检查器失效分别输出"
+              }
+            ],
+            "note": "复用24块及查询，重核6.50a生成/输出/测试和范围/定位；四类错误、完成及未监测/未完成分开，不承诺标准CDM或硬件安全验证。"
           }
         },
         "baseline": {
@@ -13900,14 +14099,15 @@
           "vendor-debug"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用24块及查询，重核6.50a生成/输出/测试和范围/定位；四类错误、完成及未监测/未完成分开，不承诺标准CDM或硬件安全验证。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 121
       },
       {
         "id": "v1-feature-111",
@@ -15440,47 +15640,127 @@
         "featureId": 135,
         "group": "诊断、测试与管理",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/135/detail/r121-trace-record-and-counter-contract",
+                "label": "LTSSM/Event/Counter取证表：定义记录对象，再关联包、掉链和通知"
+              },
+              {
+                "href": "#feature/135/detail/r121-trace-confidence-and-stop-conditions",
+                "label": "有界取证流程：何时可关联，何时只能标记证据不足"
+              }
+            ],
+            "note": "复用5块并补状态/事件/计数采集和有界取证；七版日志差异复用已核原页，私有Trace不作通用编码，避免Status当计数或Tag复用/异步时钟下强关联。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/135/detail/r121-trace-record-and-counter-contract",
+                "label": "LTSSM/Event/Counter取证表：定义记录对象，再关联包、掉链和通知"
+              },
+              {
+                "href": "#feature/135/detail/r121-trace-confidence-and-stop-conditions",
+                "label": "有界取证流程：何时可关联，何时只能标记证据不足"
+              }
+            ],
+            "note": "复用5块并补状态/事件/计数采集和有界取证；七版日志差异复用已核原页，私有Trace不作通用编码，避免Status当计数或Tag复用/异步时钟下强关联。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/135/detail/r121-trace-record-and-counter-contract",
+                "label": "LTSSM/Event/Counter取证表：定义记录对象，再关联包、掉链和通知"
+              },
+              {
+                "href": "#feature/135/detail/r121-trace-confidence-and-stop-conditions",
+                "label": "有界取证流程：何时可关联，何时只能标记证据不足"
+              }
+            ],
+            "note": "复用5块并补状态/事件/计数采集和有界取证；七版日志差异复用已核原页，私有Trace不作通用编码，避免Status当计数或Tag复用/异步时钟下强关联。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/135/detail/r121-trace-record-and-counter-contract",
+                "label": "LTSSM/Event/Counter取证表：定义记录对象，再关联包、掉链和通知"
+              },
+              {
+                "href": "#feature/135/detail/r121-trace-confidence-and-stop-conditions",
+                "label": "有界取证流程：何时可关联，何时只能标记证据不足"
+              }
+            ],
+            "note": "复用5块并补状态/事件/计数采集和有界取证；七版日志差异复用已核原页，私有Trace不作通用编码，避免Status当计数或Tag复用/异步时钟下强关联。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/135/detail/r121-trace-record-and-counter-contract",
+                "label": "LTSSM/Event/Counter取证表：定义记录对象，再关联包、掉链和通知"
+              },
+              {
+                "href": "#feature/135/detail/r121-trace-confidence-and-stop-conditions",
+                "label": "有界取证流程：何时可关联，何时只能标记证据不足"
+              }
+            ],
+            "note": "复用5块并补状态/事件/计数采集和有界取证；七版日志差异复用已核原页，私有Trace不作通用编码，避免Status当计数或Tag复用/异步时钟下强关联。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/135/detail/r121-trace-record-and-counter-contract",
+                "label": "LTSSM/Event/Counter取证表：定义记录对象，再关联包、掉链和通知"
+              },
+              {
+                "href": "#feature/135/detail/r121-trace-confidence-and-stop-conditions",
+                "label": "有界取证流程：何时可关联，何时只能标记证据不足"
+              }
+            ],
+            "note": "复用5块并补状态/事件/计数采集和有界取证；七版日志差异复用已核原页，私有Trace不作通用编码，避免Status当计数或Tag复用/异步时钟下强关联。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/135/detail/r121-trace-record-and-counter-contract",
+                "label": "LTSSM/Event/Counter取证表：定义记录对象，再关联包、掉链和通知"
+              },
+              {
+                "href": "#feature/135/detail/r121-trace-confidence-and-stop-conditions",
+                "label": "有界取证流程：何时可关联，何时只能标记证据不足"
+              }
+            ],
+            "note": "复用5块并补状态/事件/计数采集和有界取证；七版日志差异复用已核原页，私有Trace不作通用编码，避免Status当计数或Tag复用/异步时钟下强关联。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 121,
+            "evidence": [
+              {
+                "href": "#feature/135/detail/r121-trace-record-and-counter-contract",
+                "label": "LTSSM/Event/Counter取证表：定义记录对象，再关联包、掉链和通知"
+              },
+              {
+                "href": "#feature/135/detail/r121-trace-confidence-and-stop-conditions",
+                "label": "有界取证流程：何时可关联，何时只能标记证据不足"
+              }
+            ],
+            "note": "复用5块并补状态/事件/计数采集和有界取证；七版日志差异复用已核原页，私有Trace不作通用编码，避免Status当计数或Tag复用/异步时钟下强关联。"
           }
         },
         "baseline": {
@@ -15491,14 +15771,15 @@
           "aer-messages"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用5块并补状态/事件/计数采集和有界取证；七版日志差异复用已核原页，私有Trace不作通用编码，避免Status当计数或Tag复用/异步时钟下强关联。",
         "taskId": "v1-task-12",
         "requiredTaskIds": [
           "v1-task-12",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 121
       },
       {
         "id": "v1-feature-136",
@@ -21954,6 +22235,198 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定范围仍有113功能；61/89来源疑点保留，R122总结。",
         "publication": "用户确认R117成功发布后，授权R118/R119；分别检查，合并发布R119。"
+      },
+      {
+        "round": 120,
+        "kind": "R120 Surprise Down验收与RP PIO阻塞定位",
+        "deliverables": [
+          "R120关闭107，新增14维度，累计71/183、591维度；106的FM长度在6.0/6.1/6.4/7.0仍有同一歧义，结构/一致性阻塞，不重复验收已完成105。"
+        ],
+        "closedDeliverableIds": [
+          "feature-107-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 106,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 106,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 106,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 106,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 106,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 106,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 107,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 107,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 107,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 107,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 107,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 107,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 107,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 107,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          107
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有112功能；61/89来源疑点保留，R122总结。",
+        "publication": "用户授权R120/R121；分别检查，合并发布R121；非强制更新，保留远端修改。"
+      },
+      {
+        "round": 121,
+        "kind": "R121 内部保护、CDM与Trace验收",
+        "deliverables": [
+          "R121关闭109/110/135，新增24维度，累计74/183、615维度，剩109项/17预算轮；错误分组仅106保留FM跨度阻塞。R122转信用/VC及四轮总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-109-v1-accepted",
+          "feature-110-v1-accepted",
+          "feature-135-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 109,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 109,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 109,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 109,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 109,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 109,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 109,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 109,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 110,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 110,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 110,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 110,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 110,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 110,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 110,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 110,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 135,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 135,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 135,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 135,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 135,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 135,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 135,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 135,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          109,
+          110,
+          135
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有109功能；61/89来源疑点保留，R122总结。",
+        "publication": "用户授权R120/R121；分别检查，合并发布R121；非强制更新，保留远端修改。"
       }
     ],
     "backlog": [
@@ -22520,7 +22993,7 @@
           135
         ],
         "phase": "core",
-        "status": "open",
+        "status": "blocked",
         "focus": "报告/记录/恢复边界和日志取证；复用已有复杂解释，核优先级、桥/Root、早期版差异。",
         "exit": "所列条目八维验收的适用项逐一有证据通过；可复用既有正文，独有语义、版本限制及相关冲突不可遗漏。",
         "legacyRecordIndices": [
@@ -22534,7 +23007,12 @@
           98,
           116
         ],
-        "evidence": [],
+        "evidence": [
+          {
+            "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+            "label": "仅剩RP PIO跨度问题"
+          }
+        ],
         "closedRound": null
       },
       {
@@ -23038,8 +23516,14 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "等待明确针对该段的PCI-SIG正式澄清或匹配产品说明；四份已核原版不因同一问题反复扫描。",
+        "evidence": [
+          {
+            "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+            "label": "6.0/6.1/6.4/7.0正文与原页视觉核对"
+          }
+        ],
+        "lastReviewedRound": 120
       },
       {
         "id": "v1-conflict-07",
@@ -25379,33 +25863,36 @@
       }
     ],
     "nextExecution": {
-      "round": 120,
-      "taskId": "v1-task-12",
+      "round": 122,
+      "taskId": "v1-task-13",
       "featureIds": [
-        105,
-        106,
-        107
+        111,
+        112,
+        113,
+        114,
+        115,
+        116
       ],
-      "goal": "按固定收尾队列批验成熟条目，真实缺口才补正文，不为数量添工具；R122四轮总结。",
+      "goal": "R122批验信用/VC111～116并完成R119～R122四轮总结；106等待新澄清，不重复扫描同版。",
       "reviewRound": 122
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 119,
+      "assessedRound": 121,
       "reestimateRound": 122,
       "observedAcceptedUnitsPerRound": 3,
-      "requiredAcceptedUnitsPerRemainingRound": 5.947368421052632,
-      "linearExtrapolationRounds": 38,
-      "assessment": "R119关闭4功能/32维度，累计70/183、577维度，剩113项/19预算轮。上一已结算四轮R115～R118实绩3项/轮；预算内需约5.95项/轮，目标仍有风险。机械外推38轮仅风险，不是自动延期，R122再总结。",
+      "requiredAcceptedUnitsPerRemainingRound": 6.411764705882353,
+      "linearExtrapolationRounds": 37,
+      "assessment": "R121关闭3项/24维度，累计74/183、615维度；109项/17预算轮，原目标有风险。两轮合计4完整功能/38维度，106阻塞单列，R122总结不自动延期。",
       "action": "R119复核成熟Completion Status/Timeout及AER日志条目101/102/103/104；R122总结，按实际阻塞保留未完成。",
       "latestProgress": {
-        "round": 119,
-        "newAcceptedUnits": 4,
-        "cumulativeAcceptedUnits": 70,
-        "newPassedCriteria": 32,
-        "cumulativePassedCriteria": 577,
-        "remainingPlannedRounds": 19
+        "round": 121,
+        "newAcceptedUnits": 3,
+        "cumulativeAcceptedUnits": 74,
+        "newPassedCriteria": 24,
+        "cumulativePassedCriteria": 615,
+        "remainingPlannedRounds": 17
       }
     },
     "reviewWindows": [
