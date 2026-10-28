@@ -1,8 +1,9 @@
 {
   "nextFeatureIds": [
-    128,
-    129,
-    131
+    132,
+    133,
+    134,
+    142
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,12 +50,13 @@
   ],
   "lastCompleted": {
     "date": "2026-10-28",
-    "edition": "2026-10-28-r129",
+    "edition": "2026-10-28-r131",
     "featureIds": [
-      127,
-      130
+      131,
+      136,
+      141
     ],
-    "nextTrack": "R130安全剩余项及四轮总结"
+    "nextTrack": "R132诊断薄弱正文；R134四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -344,14 +346,14 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 1,
+    "nextReviewAfterRounds": 3,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 71,
-    "lastReviewEdition": "2026-10-28-r126",
-    "lastReviewId": "r123-r126",
-    "nextExpectedReview": "R130（R127～R130四轮总结）"
+    "completedTotal": 73,
+    "lastReviewEdition": "2026-10-28-r130",
+    "lastReviewId": "r127-r130",
+    "nextExpectedReview": "R134（R131～R134四轮总结）"
   },
   "stageReviews": [
     {
@@ -1285,10 +1287,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 39,
-    "remainingPlannedRounds": 9,
-    "nextRound": 130,
-    "nextReviewRound": 130,
+    "completedRounds": 41,
+    "remainingPlannedRounds": 7,
+    "nextRound": 132,
+    "nextReviewRound": 134,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -16376,47 +16378,127 @@
         "featureId": 128,
         "group": "安全与可信计算",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/128/detail/r130-cma-freshness-profile-contract",
+                "label": "Fresh矛盾收尾：缓存、当前固件、签名与平台接纳分别判断"
+              },
+              {
+                "href": "#feature/128/detail/r130-cma-secured-layer-query",
+                "label": "CMA实际使用链：发现、协商、验证、建会话和上层授权"
+              }
+            ],
+            "note": "复用25块SPDM协商/证书/Challenge/Measurement及CMA映射，核正式SPDM1.2.4 Fresh、Base7当前固件要求和2023ECN redline，分清能力与profile，无需把Fresh=0一概判违规。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/128/detail/r130-cma-freshness-profile-contract",
+                "label": "Fresh矛盾收尾：缓存、当前固件、签名与平台接纳分别判断"
+              },
+              {
+                "href": "#feature/128/detail/r130-cma-secured-layer-query",
+                "label": "CMA实际使用链：发现、协商、验证、建会话和上层授权"
+              }
+            ],
+            "note": "复用25块SPDM协商/证书/Challenge/Measurement及CMA映射，核正式SPDM1.2.4 Fresh、Base7当前固件要求和2023ECN redline，分清能力与profile，无需把Fresh=0一概判违规。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/128/detail/r130-cma-freshness-profile-contract",
+                "label": "Fresh矛盾收尾：缓存、当前固件、签名与平台接纳分别判断"
+              },
+              {
+                "href": "#feature/128/detail/r130-cma-secured-layer-query",
+                "label": "CMA实际使用链：发现、协商、验证、建会话和上层授权"
+              }
+            ],
+            "note": "复用25块SPDM协商/证书/Challenge/Measurement及CMA映射，核正式SPDM1.2.4 Fresh、Base7当前固件要求和2023ECN redline，分清能力与profile，无需把Fresh=0一概判违规。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/128/detail/r130-cma-freshness-profile-contract",
+                "label": "Fresh矛盾收尾：缓存、当前固件、签名与平台接纳分别判断"
+              },
+              {
+                "href": "#feature/128/detail/r130-cma-secured-layer-query",
+                "label": "CMA实际使用链：发现、协商、验证、建会话和上层授权"
+              }
+            ],
+            "note": "复用25块SPDM协商/证书/Challenge/Measurement及CMA映射，核正式SPDM1.2.4 Fresh、Base7当前固件要求和2023ECN redline，分清能力与profile，无需把Fresh=0一概判违规。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/128/detail/r130-cma-freshness-profile-contract",
+                "label": "Fresh矛盾收尾：缓存、当前固件、签名与平台接纳分别判断"
+              },
+              {
+                "href": "#feature/128/detail/r130-cma-secured-layer-query",
+                "label": "CMA实际使用链：发现、协商、验证、建会话和上层授权"
+              }
+            ],
+            "note": "复用25块SPDM协商/证书/Challenge/Measurement及CMA映射，核正式SPDM1.2.4 Fresh、Base7当前固件要求和2023ECN redline，分清能力与profile，无需把Fresh=0一概判违规。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/128/detail/r130-cma-freshness-profile-contract",
+                "label": "Fresh矛盾收尾：缓存、当前固件、签名与平台接纳分别判断"
+              },
+              {
+                "href": "#feature/128/detail/r130-cma-secured-layer-query",
+                "label": "CMA实际使用链：发现、协商、验证、建会话和上层授权"
+              }
+            ],
+            "note": "复用25块SPDM协商/证书/Challenge/Measurement及CMA映射，核正式SPDM1.2.4 Fresh、Base7当前固件要求和2023ECN redline，分清能力与profile，无需把Fresh=0一概判违规。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/128/detail/r130-cma-freshness-profile-contract",
+                "label": "Fresh矛盾收尾：缓存、当前固件、签名与平台接纳分别判断"
+              },
+              {
+                "href": "#feature/128/detail/r130-cma-secured-layer-query",
+                "label": "CMA实际使用链：发现、协商、验证、建会话和上层授权"
+              }
+            ],
+            "note": "复用25块SPDM协商/证书/Challenge/Measurement及CMA映射，核正式SPDM1.2.4 Fresh、Base7当前固件要求和2023ECN redline，分清能力与profile，无需把Fresh=0一概判违规。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/128/detail/r130-cma-freshness-profile-contract",
+                "label": "Fresh矛盾收尾：缓存、当前固件、签名与平台接纳分别判断"
+              },
+              {
+                "href": "#feature/128/detail/r130-cma-secured-layer-query",
+                "label": "CMA实际使用链：发现、协商、验证、建会话和上层授权"
+              }
+            ],
+            "note": "复用25块SPDM协商/证书/Challenge/Measurement及CMA映射，核正式SPDM1.2.4 Fresh、Base7当前固件要求和2023ECN redline，分清能力与profile，无需把Fresh=0一概判违规。"
           }
         },
         "baseline": {
@@ -16425,61 +16507,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用25块SPDM协商/证书/Challenge/Measurement及CMA映射，核正式SPDM1.2.4 Fresh、Base7当前固件要求和2023ECN redline，分清能力与profile，无需把Fresh=0一概判违规。",
         "taskId": "v1-task-15",
         "requiredTaskIds": [
           "v1-task-15",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 130
       },
       {
         "id": "v1-feature-129",
         "featureId": 129,
         "group": "安全与可信计算",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+                "label": "TDISP收尾检查：完整字段不等于来源冲突已经解决"
+              }
+            ],
+            "note": "复用52块逐字段/消息/状态/数据面并核6.4/7.0，目的至导航七维可查；报告RUN错误表及MMIO印字仍保留，不虚构正式勘误或整套实机安全证明。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+                "label": "TDISP收尾检查：完整字段不等于来源冲突已经解决"
+              }
+            ],
+            "note": "复用52块逐字段/消息/状态/数据面并核6.4/7.0，目的至导航七维可查；报告RUN错误表及MMIO印字仍保留，不虚构正式勘误或整套实机安全证明。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+                "label": "TDISP收尾检查：完整字段不等于来源冲突已经解决"
+              }
+            ],
+            "note": "复用52块逐字段/消息/状态/数据面并核6.4/7.0，目的至导航七维可查；报告RUN错误表及MMIO印字仍保留，不虚构正式勘误或整套实机安全证明。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+                "label": "TDISP收尾检查：完整字段不等于来源冲突已经解决"
+              }
+            ],
+            "note": "复用52块逐字段/消息/状态/数据面并核6.4/7.0，目的至导航七维可查；报告RUN错误表及MMIO印字仍保留，不虚构正式勘误或整套实机安全证明。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+                "label": "TDISP收尾检查：完整字段不等于来源冲突已经解决"
+              }
+            ],
+            "note": "复用52块逐字段/消息/状态/数据面并核6.4/7.0，目的至导航七维可查；报告RUN错误表及MMIO印字仍保留，不虚构正式勘误或整套实机安全证明。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+                "label": "TDISP收尾检查：完整字段不等于来源冲突已经解决"
+              }
+            ],
+            "note": "复用52块逐字段/消息/状态/数据面并核6.4/7.0，目的至导航七维可查；报告RUN错误表及MMIO印字仍保留，不虚构正式勘误或整套实机安全证明。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+                "label": "TDISP收尾检查：完整字段不等于来源冲突已经解决"
+              }
+            ],
+            "note": "复用52块逐字段/消息/状态/数据面并核6.4/7.0，目的至导航七维可查；报告RUN错误表及MMIO印字仍保留，不虚构正式勘误或整套实机安全证明。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 130,
+            "evidence": [
+              {
+                "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+                "label": "正式6.4/7.0并列"
+              }
+            ],
+            "note": "字段说明保留可用结论，状态冲突不当作已解决。"
           }
         },
         "baseline": {
@@ -16495,6 +16626,9 @@
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "v1-conflict-24：GET_REPORT在RUN的正常状态与错误表冲突；v1-conflict-27印字正式澄清尚缺。"
         ]
       },
       {
@@ -16614,47 +16748,159 @@
         "featureId": 131,
         "group": "安全与可信计算",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/131/detail/r131-tdisp-filter-responsibility",
+                "label": "Access Filtering不是一个通用开关：谁跟踪、何时锁定、失败后怎么办"
+              },
+              {
+                "href": "#feature/131/detail/r131-tdisp-register-change-classes",
+                "label": "寄存器修改分类表：安全地址/身份、链路、通知、厂商配置分别看"
+              },
+              {
+                "href": "#feature/131/detail/r131-filter-versus-authorized-transition",
+                "label": "如何使用分类：普通配置写、报告、合法属性更新与错误恢复分开"
+              }
+            ],
+            "note": "从空白补DSM安全契约、全部示例分类、与受控属性更新/错误的关系；明确Informative与一般要求，不虚构统一过滤器寄存器或设备白名单。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/131/detail/r131-tdisp-filter-responsibility",
+                "label": "Access Filtering不是一个通用开关：谁跟踪、何时锁定、失败后怎么办"
+              },
+              {
+                "href": "#feature/131/detail/r131-tdisp-register-change-classes",
+                "label": "寄存器修改分类表：安全地址/身份、链路、通知、厂商配置分别看"
+              },
+              {
+                "href": "#feature/131/detail/r131-filter-versus-authorized-transition",
+                "label": "如何使用分类：普通配置写、报告、合法属性更新与错误恢复分开"
+              }
+            ],
+            "note": "从空白补DSM安全契约、全部示例分类、与受控属性更新/错误的关系；明确Informative与一般要求，不虚构统一过滤器寄存器或设备白名单。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/131/detail/r131-tdisp-filter-responsibility",
+                "label": "Access Filtering不是一个通用开关：谁跟踪、何时锁定、失败后怎么办"
+              },
+              {
+                "href": "#feature/131/detail/r131-tdisp-register-change-classes",
+                "label": "寄存器修改分类表：安全地址/身份、链路、通知、厂商配置分别看"
+              },
+              {
+                "href": "#feature/131/detail/r131-filter-versus-authorized-transition",
+                "label": "如何使用分类：普通配置写、报告、合法属性更新与错误恢复分开"
+              }
+            ],
+            "note": "从空白补DSM安全契约、全部示例分类、与受控属性更新/错误的关系；明确Informative与一般要求，不虚构统一过滤器寄存器或设备白名单。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/131/detail/r131-tdisp-filter-responsibility",
+                "label": "Access Filtering不是一个通用开关：谁跟踪、何时锁定、失败后怎么办"
+              },
+              {
+                "href": "#feature/131/detail/r131-tdisp-register-change-classes",
+                "label": "寄存器修改分类表：安全地址/身份、链路、通知、厂商配置分别看"
+              },
+              {
+                "href": "#feature/131/detail/r131-filter-versus-authorized-transition",
+                "label": "如何使用分类：普通配置写、报告、合法属性更新与错误恢复分开"
+              }
+            ],
+            "note": "从空白补DSM安全契约、全部示例分类、与受控属性更新/错误的关系；明确Informative与一般要求，不虚构统一过滤器寄存器或设备白名单。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/131/detail/r131-tdisp-filter-responsibility",
+                "label": "Access Filtering不是一个通用开关：谁跟踪、何时锁定、失败后怎么办"
+              },
+              {
+                "href": "#feature/131/detail/r131-tdisp-register-change-classes",
+                "label": "寄存器修改分类表：安全地址/身份、链路、通知、厂商配置分别看"
+              },
+              {
+                "href": "#feature/131/detail/r131-filter-versus-authorized-transition",
+                "label": "如何使用分类：普通配置写、报告、合法属性更新与错误恢复分开"
+              }
+            ],
+            "note": "从空白补DSM安全契约、全部示例分类、与受控属性更新/错误的关系；明确Informative与一般要求，不虚构统一过滤器寄存器或设备白名单。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/131/detail/r131-tdisp-filter-responsibility",
+                "label": "Access Filtering不是一个通用开关：谁跟踪、何时锁定、失败后怎么办"
+              },
+              {
+                "href": "#feature/131/detail/r131-tdisp-register-change-classes",
+                "label": "寄存器修改分类表：安全地址/身份、链路、通知、厂商配置分别看"
+              },
+              {
+                "href": "#feature/131/detail/r131-filter-versus-authorized-transition",
+                "label": "如何使用分类：普通配置写、报告、合法属性更新与错误恢复分开"
+              }
+            ],
+            "note": "从空白补DSM安全契约、全部示例分类、与受控属性更新/错误的关系；明确Informative与一般要求，不虚构统一过滤器寄存器或设备白名单。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/131/detail/r131-tdisp-filter-responsibility",
+                "label": "Access Filtering不是一个通用开关：谁跟踪、何时锁定、失败后怎么办"
+              },
+              {
+                "href": "#feature/131/detail/r131-tdisp-register-change-classes",
+                "label": "寄存器修改分类表：安全地址/身份、链路、通知、厂商配置分别看"
+              },
+              {
+                "href": "#feature/131/detail/r131-filter-versus-authorized-transition",
+                "label": "如何使用分类：普通配置写、报告、合法属性更新与错误恢复分开"
+              }
+            ],
+            "note": "从空白补DSM安全契约、全部示例分类、与受控属性更新/错误的关系；明确Informative与一般要求，不虚构统一过滤器寄存器或设备白名单。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/131/detail/r131-tdisp-filter-responsibility",
+                "label": "Access Filtering不是一个通用开关：谁跟踪、何时锁定、失败后怎么办"
+              },
+              {
+                "href": "#feature/131/detail/r131-tdisp-register-change-classes",
+                "label": "寄存器修改分类表：安全地址/身份、链路、通知、厂商配置分别看"
+              },
+              {
+                "href": "#feature/131/detail/r131-filter-versus-authorized-transition",
+                "label": "如何使用分类：普通配置写、报告、合法属性更新与错误恢复分开"
+              }
+            ],
+            "note": "从空白补DSM安全契约、全部示例分类、与受控属性更新/错误的关系；明确Informative与一般要求，不虚构统一过滤器寄存器或设备白名单。"
           }
         },
         "baseline": {
@@ -16663,14 +16909,15 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "从空白补DSM安全契约、全部示例分类、与受控属性更新/错误的关系；明确Informative与一般要求，不虚构统一过滤器寄存器或设备白名单。",
         "taskId": "v1-task-15",
         "requiredTaskIds": [
           "v1-task-15",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 131
       },
       {
         "id": "v1-feature-132",
@@ -17018,47 +17265,95 @@
         "featureId": 136,
         "group": "诊断、测试与管理",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
+                "label": "Lane Margining验收边界：标准测量流程可查，Retimer寄存器回应强度待澄清"
+              }
+            ],
+            "note": "复用33块标准命令/寄存器/计数/时序与查询，复核Ready及NRZ/PAM4能力；Retimer非支持回应强度未澄清，一致性仍阻塞。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
+                "label": "Lane Margining验收边界：标准测量流程可查，Retimer寄存器回应强度待澄清"
+              }
+            ],
+            "note": "复用33块标准命令/寄存器/计数/时序与查询，复核Ready及NRZ/PAM4能力；Retimer非支持回应强度未澄清，一致性仍阻塞。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
+                "label": "Lane Margining验收边界：标准测量流程可查，Retimer寄存器回应强度待澄清"
+              }
+            ],
+            "note": "复用33块标准命令/寄存器/计数/时序与查询，复核Ready及NRZ/PAM4能力；Retimer非支持回应强度未澄清，一致性仍阻塞。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
+                "label": "Lane Margining验收边界：标准测量流程可查，Retimer寄存器回应强度待澄清"
+              }
+            ],
+            "note": "复用33块标准命令/寄存器/计数/时序与查询，复核Ready及NRZ/PAM4能力；Retimer非支持回应强度未澄清，一致性仍阻塞。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
+                "label": "Lane Margining验收边界：标准测量流程可查，Retimer寄存器回应强度待澄清"
+              }
+            ],
+            "note": "复用33块标准命令/寄存器/计数/时序与查询，复核Ready及NRZ/PAM4能力；Retimer非支持回应强度未澄清，一致性仍阻塞。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
+                "label": "Lane Margining验收边界：标准测量流程可查，Retimer寄存器回应强度待澄清"
+              }
+            ],
+            "note": "复用33块标准命令/寄存器/计数/时序与查询，复核Ready及NRZ/PAM4能力；Retimer非支持回应强度未澄清，一致性仍阻塞。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
+                "label": "Lane Margining验收边界：标准测量流程可查，Retimer寄存器回应强度待澄清"
+              }
+            ],
+            "note": "复用33块标准命令/寄存器/计数/时序与查询，复核Ready及NRZ/PAM4能力；Retimer非支持回应强度未澄清，一致性仍阻塞。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
+                "label": "标准LMR可查、寄存器访问争议保留"
+              }
+            ],
+            "note": "不因已有33块正文就判整个条目完成。"
           }
         },
         "baseline": {
@@ -17074,6 +17369,9 @@
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "v1-conflict-04：Retimer Register Access不支持时的回复强度尚待明确澄清。"
         ]
       },
       {
@@ -17333,47 +17631,95 @@
         "featureId": 141,
         "group": "诊断、测试与管理",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/141/detail/r131-dl-feature-bringup-contract",
+                "label": "Feature Exchange收尾：Valid、Ack、InitFC、参数各回答不同问题"
+              }
+            ],
+            "note": "复用18块早期DL及4/6/7握手、DLLP图、能力/参数与查询；保留线上的模式要求和寄存器hint层次，34us不是总超时，不把Feature Ack当TLP或InitFC完成。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/141/detail/r131-dl-feature-bringup-contract",
+                "label": "Feature Exchange收尾：Valid、Ack、InitFC、参数各回答不同问题"
+              }
+            ],
+            "note": "复用18块早期DL及4/6/7握手、DLLP图、能力/参数与查询；保留线上的模式要求和寄存器hint层次，34us不是总超时，不把Feature Ack当TLP或InitFC完成。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/141/detail/r131-dl-feature-bringup-contract",
+                "label": "Feature Exchange收尾：Valid、Ack、InitFC、参数各回答不同问题"
+              }
+            ],
+            "note": "复用18块早期DL及4/6/7握手、DLLP图、能力/参数与查询；保留线上的模式要求和寄存器hint层次，34us不是总超时，不把Feature Ack当TLP或InitFC完成。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/141/detail/r131-dl-feature-bringup-contract",
+                "label": "Feature Exchange收尾：Valid、Ack、InitFC、参数各回答不同问题"
+              }
+            ],
+            "note": "复用18块早期DL及4/6/7握手、DLLP图、能力/参数与查询；保留线上的模式要求和寄存器hint层次，34us不是总超时，不把Feature Ack当TLP或InitFC完成。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/141/detail/r131-dl-feature-bringup-contract",
+                "label": "Feature Exchange收尾：Valid、Ack、InitFC、参数各回答不同问题"
+              }
+            ],
+            "note": "复用18块早期DL及4/6/7握手、DLLP图、能力/参数与查询；保留线上的模式要求和寄存器hint层次，34us不是总超时，不把Feature Ack当TLP或InitFC完成。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/141/detail/r131-dl-feature-bringup-contract",
+                "label": "Feature Exchange收尾：Valid、Ack、InitFC、参数各回答不同问题"
+              }
+            ],
+            "note": "复用18块早期DL及4/6/7握手、DLLP图、能力/参数与查询；保留线上的模式要求和寄存器hint层次，34us不是总超时，不把Feature Ack当TLP或InitFC完成。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/141/detail/r131-dl-feature-bringup-contract",
+                "label": "Feature Exchange收尾：Valid、Ack、InitFC、参数各回答不同问题"
+              }
+            ],
+            "note": "复用18块早期DL及4/6/7握手、DLLP图、能力/参数与查询；保留线上的模式要求和寄存器hint层次，34us不是总超时，不把Feature Ack当TLP或InitFC完成。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 131,
+            "evidence": [
+              {
+                "href": "#feature/141/detail/r131-dl-feature-bringup-contract",
+                "label": "Feature Exchange收尾：Valid、Ack、InitFC、参数各回答不同问题"
+              }
+            ],
+            "note": "复用18块早期DL及4/6/7握手、DLLP图、能力/参数与查询；保留线上的模式要求和寄存器hint层次，34us不是总超时，不把Feature Ack当TLP或InitFC完成。"
           }
         },
         "baseline": {
@@ -17382,14 +17728,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用18块早期DL及4/6/7握手、DLLP图、能力/参数与查询；保留线上的模式要求和寄存器hint层次，34us不是总超时，不把Feature Ack当TLP或InitFC完成。",
         "taskId": "v1-task-16",
         "requiredTaskIds": [
           "v1-task-16",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 131
       },
       {
         "id": "v1-feature-142",
@@ -24381,6 +24728,196 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定94项；DOE127新增明确阻塞，128/129/131按队列，R130四轮总结。",
         "publication": "用户授权R128/R129，分别本地检查后合并发布R129；保留远端修改，非强制更新。"
+      },
+      {
+        "round": 130,
+        "kind": "R130 CMA分层澄清、TDISP阻塞及四轮总结",
+        "deliverables": [
+          "R130关闭128，129七维通过但报告状态一致性阻塞；新增15维度，累计90/183、771维度。R127～R130关闭7项/70维度，剩93项/8预算轮。R131补131访问过滤并转成熟诊断条目136/141。"
+        ],
+        "closedDeliverableIds": [
+          "feature-128-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 128,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 128,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 128,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 128,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 128,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 128,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 128,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 128,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 129,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 129,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 129,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 129,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 129,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 129,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 129,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [
+          128
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定93项，127/129明确阻塞保留；R134总结。",
+        "publication": "用户授权R130/R131；独立检查后合并发布R131，非强制更新。"
+      },
+      {
+        "round": 131,
+        "kind": "R131 访问过滤、Lane Margining边界与Feature Exchange验收",
+        "deliverables": [
+          "R131关闭131/141；136七维有据但Retimer访问回应强度仍阻塞。新增23维度，累计92/183、794维度，剩91项/7预算轮。下一轮薄弱诊断132/133/134/142；R134总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-131-v1-accepted",
+          "feature-141-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 131,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 131,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 131,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 131,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 131,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 131,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 131,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 131,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 136,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 136,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 136,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 136,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 136,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 136,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 136,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 141,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 141,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 141,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 141,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 141,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 141,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 141,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 141,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          131,
+          141
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定91项；129/127/136等具体阻塞保留，R134四轮总结。",
+        "publication": "用户授权R130/R131；各轮本地检查后合并发布R131，非强制更新。"
       }
     ],
     "backlog": [
@@ -25052,7 +25589,7 @@
           131
         ],
         "phase": "breadth",
-        "status": "open",
+        "status": "blocked",
         "focus": "管理与数据通路、报文/状态/访问控制、错误；已有安全解释复用，冲突保留受限结论。",
         "exit": "所列条目八维验收的适用项逐一有证据通过；可复用既有正文，独有语义、版本限制及相关冲突不可遗漏。",
         "legacyRecordIndices": [
@@ -25062,7 +25599,8 @@
           110
         ],
         "evidence": [],
-        "closedRound": null
+        "closedRound": null,
+        "reviewNote": "124/125/126/128/130/131均验收；127 DOE Async和129报告状态仍阻塞，不关闭整组。"
       },
       {
         "id": "v1-task-16",
@@ -25461,8 +25999,14 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "标准LMR规则可查，Retimer Register不支持访问的强度需针对性官方澄清，不反复扫同页。",
+        "evidence": [
+          {
+            "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
+            "label": "R131保留一致性阻塞"
+          }
+        ],
+        "lastReviewedRound": 131
       },
       {
         "id": "v1-conflict-05",
@@ -25735,14 +26279,18 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "DOE子问题6.4p944/7.0p964同样矛盾，等待正式澄清，不重复扫描同一页；TDISP报告RUN子问题在129另核，整记录未关闭。",
+        "nextAction": "TDISP子问题经正式6.4/7.0同条款核对仍在，等待针对性正式澄清；原DOE子问题同样保留，不重复扫同版。",
         "evidence": [
           {
             "href": "#feature/127/detail/r129-doe-async-open-contract",
             "label": "R129 DOE连续交换版本核对"
+          },
+          {
+            "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+            "label": "R130 TDISP版本交叉核对"
           }
         ],
-        "lastReviewedRound": 129
+        "lastReviewedRound": 130
       },
       {
         "id": "v1-conflict-25",
@@ -25784,8 +26332,14 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "TDISP子问题经正式6.4/7.0同条款核对仍在，等待针对性正式澄清；原DOE子问题同样保留，不重复扫同版。",
+        "evidence": [
+          {
+            "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+            "label": "R130 TDISP版本交叉核对"
+          }
+        ],
+        "lastReviewedRound": 130
       },
       {
         "id": "v1-conflict-28",
@@ -25892,10 +26446,17 @@
         "legacyRecordIndices": [
           110
         ],
-        "status": "needs-corroboration",
+        "status": "resolved-with-context",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "保留版本上下文；未来若出现具体实现或新版本矛盾再开，不无新证据重复核同页。",
+        "evidence": [
+          {
+            "href": "#feature/128/detail/r130-cma-freshness-profile-contract",
+            "label": "SPDM1.2.4与CMA约束分层"
+          }
+        ],
+        "resolvedRound": 130,
+        "resolution": "SPDM Fresh能力与PCIe CMA当前固件profile约束同时适用。Fresh0允许缓存但不豁免CMA当前值；未变化缓存可正确，更新后不能返旧测量。2023ECN redline及正式7.0界定删除旧证书格式和映射，不将更新日期当首次支持。"
       },
       {
         "id": "v1-conflict-36",
@@ -27864,33 +28425,34 @@
       }
     ],
     "nextExecution": {
-      "round": 130,
-      "taskId": "v1-task-15",
+      "round": 132,
+      "taskId": "v1-task-16",
       "featureIds": [
-        128,
-        129,
-        131
+        132,
+        133,
+        134,
+        142
       ],
-      "goal": "R130核128 CMA/profile/Fresh、129 TDISP来源问题和131过滤实质缺口，并完成R127～R130四轮总结；未能澄清的不判成功。",
-      "reviewRound": 130
+      "goal": "R132优先补薄弱Flit Logging/Error Injection/RAS DES和速率能力132/133/134/142，按正文缺口安排实际工作量；136等待新澄清，140 MCTP后续。",
+      "reviewRound": 134
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 129,
-      "reestimateRound": 130,
-      "observedAcceptedUnitsPerRound": 1.5,
-      "requiredAcceptedUnitsPerRemainingRound": 10.444444444444445,
-      "linearExtrapolationRounds": 63,
-      "assessment": "两轮关闭4项/39维度，累计89/183与756维度，剩94项/9预算轮；R138无法按当前产出速度实现，不擅自延期/降标准。",
-      "action": "下一轮安全124～127，优先复用成熟说明查独有缺口；R130再总结实际完成量。",
+      "assessedRound": 131,
+      "reestimateRound": 134,
+      "observedAcceptedUnitsPerRound": 1.75,
+      "requiredAcceptedUnitsPerRemainingRound": 13.0,
+      "linearExtrapolationRounds": 52,
+      "assessment": "两轮关闭3项/38维度，累计92/183、794维度；剩91项/7预算轮，R138预算与当前产出不符，不自动延期/降标准。",
+      "action": "131补实际空白，再批验成熟136/141；132/133/134/140/142为实际薄弱正文，按固定范围推进，阻塞等新证据。",
       "latestProgress": {
-        "round": 129,
-        "newAcceptedUnits": 1,
-        "cumulativeAcceptedUnits": 89,
-        "newPassedCriteria": 15,
-        "cumulativePassedCriteria": 756,
-        "remainingPlannedRounds": 9
+        "round": 131,
+        "newAcceptedUnits": 2,
+        "cumulativeAcceptedUnits": 92,
+        "newPassedCriteria": 23,
+        "cumulativePassedCriteria": 794,
+        "remainingPlannedRounds": 7
       }
     },
     "reviewWindows": [
@@ -28319,6 +28881,49 @@
             "newPassedCriteria": 8,
             "cumulativePassedCriteria": 701,
             "remainingPlannedRounds": 12
+          }
+        }
+      },
+      {
+        "id": "r127-r130",
+        "firstRound": 127,
+        "lastRound": 130,
+        "completedPlanRounds": 4,
+        "closedFeatureUnits": [
+          122,
+          123,
+          124,
+          125,
+          126,
+          130,
+          128
+        ],
+        "newPassedCriteria": 70,
+        "cumulativePassedCriteria": 771,
+        "remainingFeatureUnits": 93,
+        "remainingRequiredTasks": 19,
+        "closedTaskIds": [],
+        "sourceQuestions": 38,
+        "resolvedSourceQuestions": 8,
+        "remainingSourceQuestions": 30,
+        "remainingPlannedRounds": 8,
+        "targetRound": 138,
+        "forecast": {
+          "status": "at-risk",
+          "assessedRound": 130,
+          "reestimateRound": 134,
+          "observedAcceptedUnitsPerRound": 1.75,
+          "requiredAcceptedUnitsPerRemainingRound": 11.625,
+          "linearExtrapolationRounds": 54,
+          "assessment": "R127～R130关闭7项/70维度，累计90/183与771维度；剩93项/8预算轮。实绩1.75项/轮，预算内需11.625项/轮，R138与实绩明显不符；机械外推54轮仅风险，不自动延期或降标准。",
+          "action": "131补实际空白，再批验成熟136/141；132/133/134/140/142为实际薄弱正文，按固定范围推进，阻塞等新证据。",
+          "latestProgress": {
+            "round": 130,
+            "newAcceptedUnits": 1,
+            "cumulativeAcceptedUnits": 90,
+            "newPassedCriteria": 15,
+            "cumulativePassedCriteria": 771,
+            "remainingPlannedRounds": 8
           }
         }
       }

@@ -164,3 +164,11 @@ R128: IDE124/125/126 accepted with original Base and2025-07-16ECN kept separate;
 R129: accepted[130], new criteria15, cumulative89/183 and756 criteria;94 units/9 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR130[128, 129, 131]; R130 review, daily paused. User authorized R128/R129; independent checks, combined R129 publication.
 
 R129:130accepted;127 seven criteria passed but DOE Async conflict24 still blocked after6.4/7.0 checks. Cumulative89/183 and756criteria,94units/9budget rounds. R128/R129 accepted4/39criteria; nextR130128/129/131 plusmandatory review,daily paused.
+
+R130: accepted[128], new criteria15, cumulative90/183 and771 criteria;93 units/8 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR131[131, 136, 141]; R134 review, daily paused. User authorized R130/R131; independent checks, combined R131 publication.
+
+R130 review: R127-R130 accepted7/70criteria; cumulative90/183 and771criteria,93units/8budget rounds. Source35 resolved by profile/Fresh context,8/38 resolved;129 blocked. R131131/136/141,nextsummaryR134,daily paused; no automatic target extension.
+
+R131: accepted[131, 141], new criteria23, cumulative92/183 and794 criteria;91 units/7 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR132[132, 133, 134, 142]; R134 review, daily paused. User authorized R130/R131; independent checks, combined R131 publication.
+
+R131:131/141accepted,136seven criteria passed with Retimer access conflict04 retained;92/183 and794criteria,91units/7budget rounds. Task15blocked on127/129. NextR132diagnostic132/133/134/142,summaryR134,daily paused.
