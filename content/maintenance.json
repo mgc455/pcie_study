@@ -1,9 +1,8 @@
 {
   "nextFeatureIds": [
-    132,
-    133,
     134,
-    142
+    142,
+    140
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -50,13 +49,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-28",
-    "edition": "2026-10-28-r131",
+    "edition": "2026-10-28-r133",
     "featureIds": [
-      131,
-      136,
-      141
+      133
     ],
-    "nextTrack": "R132诊断薄弱正文；R134四轮总结"
+    "nextTrack": "R134优先134 RAS DES、142速率能力和140 MCTP实际缺口，并完成R131～R134四轮总结；不重复核已完整条目凑数量。"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -346,11 +343,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 1,
-    "nextReviewAfterRounds": 3,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 73,
+    "completedTotal": 75,
     "lastReviewEdition": "2026-10-28-r130",
     "lastReviewId": "r127-r130",
     "nextExpectedReview": "R134（R131～R134四轮总结）"
@@ -1287,9 +1284,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 41,
-    "remainingPlannedRounds": 7,
-    "nextRound": 132,
+    "completedRounds": 43,
+    "remainingPlannedRounds": 5,
+    "nextRound": 134,
     "nextReviewRound": 134,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -16924,47 +16921,191 @@
         "featureId": 132,
         "group": "诊断、测试与管理",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 132,
+            "evidence": [
+              {
+                "href": "#feature/132/detail/r132-flit-log-fifo-map",
+                "label": "0032h日志FIFO：先读完整条目，再写Valid出队"
+              },
+              {
+                "href": "#feature/132/detail/r132-flit-log-interpretation",
+                "label": "怎样解释错误日志：CRC坏、FEC可纠正与Unrecognized分开"
+              },
+              {
+                "href": "#feature/132/detail/r132-error-counter-decay",
+                "label": "0Ch/0Eh错误计数：阈值触发、衰减与中断重新武装"
+              },
+              {
+                "href": "#feature/132/detail/r132-fber-counters-and-workflow",
+                "label": "FBER控制与Lane计数：bit4版本陷阱、饱和、测量窗口"
+              }
+            ],
+            "note": "正式6.0/7.0正文按版本核读，覆盖0032h角色/每项寄存器/事件/清除/窗口/饱和及版本差异；FBER非业务吞吐/无条件BER，未声称实测或完整附录算法证明。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 132,
+            "evidence": [
+              {
+                "href": "#feature/132/detail/r132-flit-log-fifo-map",
+                "label": "0032h日志FIFO：先读完整条目，再写Valid出队"
+              },
+              {
+                "href": "#feature/132/detail/r132-flit-log-interpretation",
+                "label": "怎样解释错误日志：CRC坏、FEC可纠正与Unrecognized分开"
+              },
+              {
+                "href": "#feature/132/detail/r132-error-counter-decay",
+                "label": "0Ch/0Eh错误计数：阈值触发、衰减与中断重新武装"
+              },
+              {
+                "href": "#feature/132/detail/r132-fber-counters-and-workflow",
+                "label": "FBER控制与Lane计数：bit4版本陷阱、饱和、测量窗口"
+              }
+            ],
+            "note": "正式6.0/7.0正文按版本核读，覆盖0032h角色/每项寄存器/事件/清除/窗口/饱和及版本差异；FBER非业务吞吐/无条件BER，未声称实测或完整附录算法证明。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 132,
+            "evidence": [
+              {
+                "href": "#feature/132/detail/r132-flit-log-fifo-map",
+                "label": "0032h日志FIFO：先读完整条目，再写Valid出队"
+              },
+              {
+                "href": "#feature/132/detail/r132-flit-log-interpretation",
+                "label": "怎样解释错误日志：CRC坏、FEC可纠正与Unrecognized分开"
+              },
+              {
+                "href": "#feature/132/detail/r132-error-counter-decay",
+                "label": "0Ch/0Eh错误计数：阈值触发、衰减与中断重新武装"
+              },
+              {
+                "href": "#feature/132/detail/r132-fber-counters-and-workflow",
+                "label": "FBER控制与Lane计数：bit4版本陷阱、饱和、测量窗口"
+              }
+            ],
+            "note": "正式6.0/7.0正文按版本核读，覆盖0032h角色/每项寄存器/事件/清除/窗口/饱和及版本差异；FBER非业务吞吐/无条件BER，未声称实测或完整附录算法证明。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 132,
+            "evidence": [
+              {
+                "href": "#feature/132/detail/r132-flit-log-fifo-map",
+                "label": "0032h日志FIFO：先读完整条目，再写Valid出队"
+              },
+              {
+                "href": "#feature/132/detail/r132-flit-log-interpretation",
+                "label": "怎样解释错误日志：CRC坏、FEC可纠正与Unrecognized分开"
+              },
+              {
+                "href": "#feature/132/detail/r132-error-counter-decay",
+                "label": "0Ch/0Eh错误计数：阈值触发、衰减与中断重新武装"
+              },
+              {
+                "href": "#feature/132/detail/r132-fber-counters-and-workflow",
+                "label": "FBER控制与Lane计数：bit4版本陷阱、饱和、测量窗口"
+              }
+            ],
+            "note": "正式6.0/7.0正文按版本核读，覆盖0032h角色/每项寄存器/事件/清除/窗口/饱和及版本差异；FBER非业务吞吐/无条件BER，未声称实测或完整附录算法证明。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 132,
+            "evidence": [
+              {
+                "href": "#feature/132/detail/r132-flit-log-fifo-map",
+                "label": "0032h日志FIFO：先读完整条目，再写Valid出队"
+              },
+              {
+                "href": "#feature/132/detail/r132-flit-log-interpretation",
+                "label": "怎样解释错误日志：CRC坏、FEC可纠正与Unrecognized分开"
+              },
+              {
+                "href": "#feature/132/detail/r132-error-counter-decay",
+                "label": "0Ch/0Eh错误计数：阈值触发、衰减与中断重新武装"
+              },
+              {
+                "href": "#feature/132/detail/r132-fber-counters-and-workflow",
+                "label": "FBER控制与Lane计数：bit4版本陷阱、饱和、测量窗口"
+              }
+            ],
+            "note": "正式6.0/7.0正文按版本核读，覆盖0032h角色/每项寄存器/事件/清除/窗口/饱和及版本差异；FBER非业务吞吐/无条件BER，未声称实测或完整附录算法证明。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 132,
+            "evidence": [
+              {
+                "href": "#feature/132/detail/r132-flit-log-fifo-map",
+                "label": "0032h日志FIFO：先读完整条目，再写Valid出队"
+              },
+              {
+                "href": "#feature/132/detail/r132-flit-log-interpretation",
+                "label": "怎样解释错误日志：CRC坏、FEC可纠正与Unrecognized分开"
+              },
+              {
+                "href": "#feature/132/detail/r132-error-counter-decay",
+                "label": "0Ch/0Eh错误计数：阈值触发、衰减与中断重新武装"
+              },
+              {
+                "href": "#feature/132/detail/r132-fber-counters-and-workflow",
+                "label": "FBER控制与Lane计数：bit4版本陷阱、饱和、测量窗口"
+              }
+            ],
+            "note": "正式6.0/7.0正文按版本核读，覆盖0032h角色/每项寄存器/事件/清除/窗口/饱和及版本差异；FBER非业务吞吐/无条件BER，未声称实测或完整附录算法证明。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 132,
+            "evidence": [
+              {
+                "href": "#feature/132/detail/r132-flit-log-fifo-map",
+                "label": "0032h日志FIFO：先读完整条目，再写Valid出队"
+              },
+              {
+                "href": "#feature/132/detail/r132-flit-log-interpretation",
+                "label": "怎样解释错误日志：CRC坏、FEC可纠正与Unrecognized分开"
+              },
+              {
+                "href": "#feature/132/detail/r132-error-counter-decay",
+                "label": "0Ch/0Eh错误计数：阈值触发、衰减与中断重新武装"
+              },
+              {
+                "href": "#feature/132/detail/r132-fber-counters-and-workflow",
+                "label": "FBER控制与Lane计数：bit4版本陷阱、饱和、测量窗口"
+              }
+            ],
+            "note": "正式6.0/7.0正文按版本核读，覆盖0032h角色/每项寄存器/事件/清除/窗口/饱和及版本差异；FBER非业务吞吐/无条件BER，未声称实测或完整附录算法证明。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 132,
+            "evidence": [
+              {
+                "href": "#feature/132/detail/r132-flit-log-fifo-map",
+                "label": "0032h日志FIFO：先读完整条目，再写Valid出队"
+              },
+              {
+                "href": "#feature/132/detail/r132-flit-log-interpretation",
+                "label": "怎样解释错误日志：CRC坏、FEC可纠正与Unrecognized分开"
+              },
+              {
+                "href": "#feature/132/detail/r132-error-counter-decay",
+                "label": "0Ch/0Eh错误计数：阈值触发、衰减与中断重新武装"
+              },
+              {
+                "href": "#feature/132/detail/r132-fber-counters-and-workflow",
+                "label": "FBER控制与Lane计数：bit4版本陷阱、饱和、测量窗口"
+              }
+            ],
+            "note": "正式6.0/7.0正文按版本核读，覆盖0032h角色/每项寄存器/事件/清除/窗口/饱和及版本差异；FBER非业务吞吐/无条件BER，未声称实测或完整附录算法证明。"
           }
         },
         "baseline": {
@@ -16975,61 +17116,206 @@
           "vendor-debug"
         ],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "正式6.0/7.0正文按版本核读，覆盖0032h角色/每项寄存器/事件/清除/窗口/饱和及版本差异；FBER非业务吞吐/无条件BER，未声称实测或完整附录算法证明。",
         "taskId": "v1-task-16",
         "requiredTaskIds": [
           "v1-task-16",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 132
       },
       {
         "id": "v1-feature-133",
         "featureId": 133,
         "group": "诊断、测试与管理",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 133,
+            "evidence": [
+              {
+                "href": "#feature/133/detail/r133-injection-capability-control1",
+                "label": "0034h注错入口与Control1：使能、方向、速率和次数"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-control2-status",
+                "label": "Control2与状态逐bit：纠错组、偏移、幅度和完成判定"
+              },
+              {
+                "href": "#feature/133/detail/r133-ordered-set-injection",
+                "label": "Ordered Set注错：类型、LTSSM、Lane和byte四层筛选"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-test-and-version",
+                "label": "如何验证：配置注错不等于完成纠错、重放与报告检查"
+              }
+            ],
+            "note": "正式6.0/7.0所列注错正文与字段核读，方向/次数/间隔/连续重放/CRC aliasing/状态/版本边界分别说明；不把可选能力或Rx模拟效果当硬件实测证明。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 133,
+            "evidence": [
+              {
+                "href": "#feature/133/detail/r133-injection-capability-control1",
+                "label": "0034h注错入口与Control1：使能、方向、速率和次数"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-control2-status",
+                "label": "Control2与状态逐bit：纠错组、偏移、幅度和完成判定"
+              },
+              {
+                "href": "#feature/133/detail/r133-ordered-set-injection",
+                "label": "Ordered Set注错：类型、LTSSM、Lane和byte四层筛选"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-test-and-version",
+                "label": "如何验证：配置注错不等于完成纠错、重放与报告检查"
+              }
+            ],
+            "note": "正式6.0/7.0所列注错正文与字段核读，方向/次数/间隔/连续重放/CRC aliasing/状态/版本边界分别说明；不把可选能力或Rx模拟效果当硬件实测证明。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 133,
+            "evidence": [
+              {
+                "href": "#feature/133/detail/r133-injection-capability-control1",
+                "label": "0034h注错入口与Control1：使能、方向、速率和次数"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-control2-status",
+                "label": "Control2与状态逐bit：纠错组、偏移、幅度和完成判定"
+              },
+              {
+                "href": "#feature/133/detail/r133-ordered-set-injection",
+                "label": "Ordered Set注错：类型、LTSSM、Lane和byte四层筛选"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-test-and-version",
+                "label": "如何验证：配置注错不等于完成纠错、重放与报告检查"
+              }
+            ],
+            "note": "正式6.0/7.0所列注错正文与字段核读，方向/次数/间隔/连续重放/CRC aliasing/状态/版本边界分别说明；不把可选能力或Rx模拟效果当硬件实测证明。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 133,
+            "evidence": [
+              {
+                "href": "#feature/133/detail/r133-injection-capability-control1",
+                "label": "0034h注错入口与Control1：使能、方向、速率和次数"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-control2-status",
+                "label": "Control2与状态逐bit：纠错组、偏移、幅度和完成判定"
+              },
+              {
+                "href": "#feature/133/detail/r133-ordered-set-injection",
+                "label": "Ordered Set注错：类型、LTSSM、Lane和byte四层筛选"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-test-and-version",
+                "label": "如何验证：配置注错不等于完成纠错、重放与报告检查"
+              }
+            ],
+            "note": "正式6.0/7.0所列注错正文与字段核读，方向/次数/间隔/连续重放/CRC aliasing/状态/版本边界分别说明；不把可选能力或Rx模拟效果当硬件实测证明。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 133,
+            "evidence": [
+              {
+                "href": "#feature/133/detail/r133-injection-capability-control1",
+                "label": "0034h注错入口与Control1：使能、方向、速率和次数"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-control2-status",
+                "label": "Control2与状态逐bit：纠错组、偏移、幅度和完成判定"
+              },
+              {
+                "href": "#feature/133/detail/r133-ordered-set-injection",
+                "label": "Ordered Set注错：类型、LTSSM、Lane和byte四层筛选"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-test-and-version",
+                "label": "如何验证：配置注错不等于完成纠错、重放与报告检查"
+              }
+            ],
+            "note": "正式6.0/7.0所列注错正文与字段核读，方向/次数/间隔/连续重放/CRC aliasing/状态/版本边界分别说明；不把可选能力或Rx模拟效果当硬件实测证明。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 133,
+            "evidence": [
+              {
+                "href": "#feature/133/detail/r133-injection-capability-control1",
+                "label": "0034h注错入口与Control1：使能、方向、速率和次数"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-control2-status",
+                "label": "Control2与状态逐bit：纠错组、偏移、幅度和完成判定"
+              },
+              {
+                "href": "#feature/133/detail/r133-ordered-set-injection",
+                "label": "Ordered Set注错：类型、LTSSM、Lane和byte四层筛选"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-test-and-version",
+                "label": "如何验证：配置注错不等于完成纠错、重放与报告检查"
+              }
+            ],
+            "note": "正式6.0/7.0所列注错正文与字段核读，方向/次数/间隔/连续重放/CRC aliasing/状态/版本边界分别说明；不把可选能力或Rx模拟效果当硬件实测证明。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 133,
+            "evidence": [
+              {
+                "href": "#feature/133/detail/r133-injection-capability-control1",
+                "label": "0034h注错入口与Control1：使能、方向、速率和次数"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-control2-status",
+                "label": "Control2与状态逐bit：纠错组、偏移、幅度和完成判定"
+              },
+              {
+                "href": "#feature/133/detail/r133-ordered-set-injection",
+                "label": "Ordered Set注错：类型、LTSSM、Lane和byte四层筛选"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-test-and-version",
+                "label": "如何验证：配置注错不等于完成纠错、重放与报告检查"
+              }
+            ],
+            "note": "正式6.0/7.0所列注错正文与字段核读，方向/次数/间隔/连续重放/CRC aliasing/状态/版本边界分别说明；不把可选能力或Rx模拟效果当硬件实测证明。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 133,
+            "evidence": [
+              {
+                "href": "#feature/133/detail/r133-injection-capability-control1",
+                "label": "0034h注错入口与Control1：使能、方向、速率和次数"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-control2-status",
+                "label": "Control2与状态逐bit：纠错组、偏移、幅度和完成判定"
+              },
+              {
+                "href": "#feature/133/detail/r133-ordered-set-injection",
+                "label": "Ordered Set注错：类型、LTSSM、Lane和byte四层筛选"
+              },
+              {
+                "href": "#feature/133/detail/r133-injection-test-and-version",
+                "label": "如何验证：配置注错不等于完成纠错、重放与报告检查"
+              }
+            ],
+            "note": "正式6.0/7.0所列注错正文与字段核读，方向/次数/间隔/连续重放/CRC aliasing/状态/版本边界分别说明；不把可选能力或Rx模拟效果当硬件实测证明。"
           }
         },
         "baseline": {
@@ -17040,14 +17326,15 @@
           "vendor-debug"
         ],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "正式6.0/7.0所列注错正文与字段核读，方向/次数/间隔/连续重放/CRC aliasing/状态/版本边界分别说明；不把可选能力或Rx模拟效果当硬件实测证明。",
         "taskId": "v1-task-16",
         "requiredTaskIds": [
           "v1-task-16",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 133
       },
       {
         "id": "v1-feature-134",
@@ -24918,6 +25205,106 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定91项；129/127/136等具体阻塞保留，R134四轮总结。",
         "publication": "用户授权R130/R131；各轮本地检查后合并发布R131，非强制更新。"
+      },
+      {
+        "round": 132,
+        "kind": "R132 Flit日志、衰减事件计数与FBER完整入口",
+        "deliverables": [
+          "R132关闭132，新增8维度，累计93/183、802维度；补FIFO逐bit、错误组合、衰减公式、阈值及FBER窗口/饱和/版本差异。剩90项/6预算轮，R133注错，R134总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-132-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 132,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 132,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 132,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 132,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 132,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 132,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 132,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 132,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          132
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围90项；具体来源阻塞保留，R134四轮总结。",
+        "publication": "用户授权R132/R133；逐轮检查后合并发布R133，保留远端修改，非强制更新。"
+      },
+      {
+        "round": 133,
+        "kind": "R133 Flit与Ordered Set错误注入逐字段入口",
+        "deliverables": [
+          "R133关闭133，新增8维度，累计94/183、810维度，剩89项/5预算轮。补0034h Flit/OS控制、筛选、状态和版本差异，区分注错完成与验证通过；下一轮134/142/140并做R134总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-133-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 133,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 133,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 133,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 133,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 133,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 133,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 133,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 133,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          133
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围89项；具体来源阻塞保留，R134四轮总结。",
+        "publication": "用户授权R132/R133；逐轮检查后合并发布R133，保留远端修改，非强制更新。"
       }
     ],
     "backlog": [
@@ -28425,34 +28812,33 @@
       }
     ],
     "nextExecution": {
-      "round": 132,
+      "round": 134,
       "taskId": "v1-task-16",
       "featureIds": [
-        132,
-        133,
         134,
-        142
+        142,
+        140
       ],
-      "goal": "R132优先补薄弱Flit Logging/Error Injection/RAS DES和速率能力132/133/134/142，按正文缺口安排实际工作量；136等待新澄清，140 MCTP后续。",
+      "goal": "R134优先134 RAS DES、142速率能力和140 MCTP实际缺口，并完成R131～R134四轮总结；不重复核已完整条目凑数量。",
       "reviewRound": 134
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 131,
+      "assessedRound": 133,
       "reestimateRound": 134,
       "observedAcceptedUnitsPerRound": 1.75,
-      "requiredAcceptedUnitsPerRemainingRound": 13.0,
-      "linearExtrapolationRounds": 52,
-      "assessment": "两轮关闭3项/38维度，累计92/183、794维度；剩91项/7预算轮，R138预算与当前产出不符，不自动延期/降标准。",
+      "requiredAcceptedUnitsPerRemainingRound": 17.8,
+      "linearExtrapolationRounds": 51,
+      "assessment": "累计94/183，剩89项/5预算轮；R138与当前速度不符，不自动延期或降低门槛。",
       "action": "131补实际空白，再批验成熟136/141；132/133/134/140/142为实际薄弱正文，按固定范围推进，阻塞等新证据。",
       "latestProgress": {
-        "round": 131,
-        "newAcceptedUnits": 2,
-        "cumulativeAcceptedUnits": 92,
-        "newPassedCriteria": 23,
-        "cumulativePassedCriteria": 794,
-        "remainingPlannedRounds": 7
+        "round": 133,
+        "newAcceptedUnits": 1,
+        "cumulativeAcceptedUnits": 94,
+        "newPassedCriteria": 8,
+        "cumulativePassedCriteria": 810,
+        "remainingPlannedRounds": 5
       }
     },
     "reviewWindows": [

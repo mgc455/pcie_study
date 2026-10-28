@@ -172,3 +172,7 @@ R130 review: R127-R130 accepted7/70criteria; cumulative90/183 and771criteria,93u
 R131: accepted[131, 141], new criteria23, cumulative92/183 and794 criteria;91 units/7 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR132[132, 133, 134, 142]; R134 review, daily paused. User authorized R130/R131; independent checks, combined R131 publication.
 
 R131:131/141accepted,136seven criteria passed with Retimer access conflict04 retained;92/183 and794criteria,91units/7budget rounds. Task15blocked on127/129. NextR132diagnostic132/133/134/142,summaryR134,daily paused.
+
+R132: accepted[132], new criteria8, cumulative93/183 and802 criteria;90 units/6 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR133[133]; R134 review, daily paused. User authorized R132/R133; independent checks, combined R133 publication.
+
+R133: accepted[133], new criteria8, cumulative94/183 and810 criteria;89 units/5 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR134[134, 142, 140]; R134 review, daily paused. User authorized R132/R133; independent checks, combined R133 publication.
