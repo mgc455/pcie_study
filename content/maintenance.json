@@ -1,8 +1,9 @@
 {
   "nextFeatureIds": [
-    121,
-    122,
-    123
+    124,
+    125,
+    126,
+    127
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,12 +50,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-28",
-    "edition": "2026-10-28-r125",
+    "edition": "2026-10-28-r127",
     "featureIds": [
-      119,
-      120
+      122,
+      123
     ],
-    "nextTrack": "R126按队列；R122总结"
+    "nextTrack": "R128安全124～127；R130四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -344,14 +345,14 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 1,
+    "nextReviewAfterRounds": 3,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 67,
-    "lastReviewEdition": "2026-10-28-r122",
-    "lastReviewId": "r119-r122",
-    "nextExpectedReview": "R126（R123～R126四轮总结）"
+    "completedTotal": 69,
+    "lastReviewEdition": "2026-10-28-r126",
+    "lastReviewId": "r123-r126",
+    "nextExpectedReview": "R130（R127～R130四轮总结）"
   },
   "stageReviews": [
     {
@@ -1285,10 +1286,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 35,
-    "remainingPlannedRounds": 13,
-    "nextRound": 126,
-    "nextReviewRound": 126,
+    "completedRounds": 37,
+    "remainingPlannedRounds": 11,
+    "nextRound": 128,
+    "nextReviewRound": 130,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -15238,47 +15239,255 @@
         "featureId": 121,
         "group": "性能、QoS与时间",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 126,
+            "evidence": [
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-map",
+                "label": "Flit性能测量测什么：0033h能力、适用Port及完整寄存器入口"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-control-fields",
+                "label": "+08h逐bit：6.4/7.0控制、样本选择与中断阈值"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-status-and-readout",
+                "label": "+0Ch逐bit：有效状态、平均/最坏值和8ns单位"
+              },
+              {
+                "href": "#feature/121/detail/r126-ltssm-measurement",
+                "label": "LTSSM的五个事件、寄存器映射、64µs及清除条件"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-version-differences",
+                "label": "正式6.0/6.1→6.4→7.0差异：避免按Capability Version猜字段"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-workflow",
+                "label": "如何使用：配置→启动→采样→读结果→处理异常"
+              }
+            ],
+            "note": "正式6.0/6.1/6.4/7.0正文逐字段核读，单位错误由后续正式脚注明确修正；机制/角色/编码/异常/操作与版本边界可查询，不要求计数器充当吞吐计，不宣称6.2/6.3全核。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 126,
+            "evidence": [
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-map",
+                "label": "Flit性能测量测什么：0033h能力、适用Port及完整寄存器入口"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-control-fields",
+                "label": "+08h逐bit：6.4/7.0控制、样本选择与中断阈值"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-status-and-readout",
+                "label": "+0Ch逐bit：有效状态、平均/最坏值和8ns单位"
+              },
+              {
+                "href": "#feature/121/detail/r126-ltssm-measurement",
+                "label": "LTSSM的五个事件、寄存器映射、64µs及清除条件"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-version-differences",
+                "label": "正式6.0/6.1→6.4→7.0差异：避免按Capability Version猜字段"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-workflow",
+                "label": "如何使用：配置→启动→采样→读结果→处理异常"
+              }
+            ],
+            "note": "正式6.0/6.1/6.4/7.0正文逐字段核读，单位错误由后续正式脚注明确修正；机制/角色/编码/异常/操作与版本边界可查询，不要求计数器充当吞吐计，不宣称6.2/6.3全核。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 126,
+            "evidence": [
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-map",
+                "label": "Flit性能测量测什么：0033h能力、适用Port及完整寄存器入口"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-control-fields",
+                "label": "+08h逐bit：6.4/7.0控制、样本选择与中断阈值"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-status-and-readout",
+                "label": "+0Ch逐bit：有效状态、平均/最坏值和8ns单位"
+              },
+              {
+                "href": "#feature/121/detail/r126-ltssm-measurement",
+                "label": "LTSSM的五个事件、寄存器映射、64µs及清除条件"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-version-differences",
+                "label": "正式6.0/6.1→6.4→7.0差异：避免按Capability Version猜字段"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-workflow",
+                "label": "如何使用：配置→启动→采样→读结果→处理异常"
+              }
+            ],
+            "note": "正式6.0/6.1/6.4/7.0正文逐字段核读，单位错误由后续正式脚注明确修正；机制/角色/编码/异常/操作与版本边界可查询，不要求计数器充当吞吐计，不宣称6.2/6.3全核。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 126,
+            "evidence": [
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-map",
+                "label": "Flit性能测量测什么：0033h能力、适用Port及完整寄存器入口"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-control-fields",
+                "label": "+08h逐bit：6.4/7.0控制、样本选择与中断阈值"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-status-and-readout",
+                "label": "+0Ch逐bit：有效状态、平均/最坏值和8ns单位"
+              },
+              {
+                "href": "#feature/121/detail/r126-ltssm-measurement",
+                "label": "LTSSM的五个事件、寄存器映射、64µs及清除条件"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-version-differences",
+                "label": "正式6.0/6.1→6.4→7.0差异：避免按Capability Version猜字段"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-workflow",
+                "label": "如何使用：配置→启动→采样→读结果→处理异常"
+              }
+            ],
+            "note": "正式6.0/6.1/6.4/7.0正文逐字段核读，单位错误由后续正式脚注明确修正；机制/角色/编码/异常/操作与版本边界可查询，不要求计数器充当吞吐计，不宣称6.2/6.3全核。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 126,
+            "evidence": [
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-map",
+                "label": "Flit性能测量测什么：0033h能力、适用Port及完整寄存器入口"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-control-fields",
+                "label": "+08h逐bit：6.4/7.0控制、样本选择与中断阈值"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-status-and-readout",
+                "label": "+0Ch逐bit：有效状态、平均/最坏值和8ns单位"
+              },
+              {
+                "href": "#feature/121/detail/r126-ltssm-measurement",
+                "label": "LTSSM的五个事件、寄存器映射、64µs及清除条件"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-version-differences",
+                "label": "正式6.0/6.1→6.4→7.0差异：避免按Capability Version猜字段"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-workflow",
+                "label": "如何使用：配置→启动→采样→读结果→处理异常"
+              }
+            ],
+            "note": "正式6.0/6.1/6.4/7.0正文逐字段核读，单位错误由后续正式脚注明确修正；机制/角色/编码/异常/操作与版本边界可查询，不要求计数器充当吞吐计，不宣称6.2/6.3全核。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 126,
+            "evidence": [
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-map",
+                "label": "Flit性能测量测什么：0033h能力、适用Port及完整寄存器入口"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-control-fields",
+                "label": "+08h逐bit：6.4/7.0控制、样本选择与中断阈值"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-status-and-readout",
+                "label": "+0Ch逐bit：有效状态、平均/最坏值和8ns单位"
+              },
+              {
+                "href": "#feature/121/detail/r126-ltssm-measurement",
+                "label": "LTSSM的五个事件、寄存器映射、64µs及清除条件"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-version-differences",
+                "label": "正式6.0/6.1→6.4→7.0差异：避免按Capability Version猜字段"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-workflow",
+                "label": "如何使用：配置→启动→采样→读结果→处理异常"
+              }
+            ],
+            "note": "正式6.0/6.1/6.4/7.0正文逐字段核读，单位错误由后续正式脚注明确修正；机制/角色/编码/异常/操作与版本边界可查询，不要求计数器充当吞吐计，不宣称6.2/6.3全核。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 126,
+            "evidence": [
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-map",
+                "label": "Flit性能测量测什么：0033h能力、适用Port及完整寄存器入口"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-control-fields",
+                "label": "+08h逐bit：6.4/7.0控制、样本选择与中断阈值"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-status-and-readout",
+                "label": "+0Ch逐bit：有效状态、平均/最坏值和8ns单位"
+              },
+              {
+                "href": "#feature/121/detail/r126-ltssm-measurement",
+                "label": "LTSSM的五个事件、寄存器映射、64µs及清除条件"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-version-differences",
+                "label": "正式6.0/6.1→6.4→7.0差异：避免按Capability Version猜字段"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-workflow",
+                "label": "如何使用：配置→启动→采样→读结果→处理异常"
+              }
+            ],
+            "note": "正式6.0/6.1/6.4/7.0正文逐字段核读，单位错误由后续正式脚注明确修正；机制/角色/编码/异常/操作与版本边界可查询，不要求计数器充当吞吐计，不宣称6.2/6.3全核。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 126,
+            "evidence": [
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-map",
+                "label": "Flit性能测量测什么：0033h能力、适用Port及完整寄存器入口"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-control-fields",
+                "label": "+08h逐bit：6.4/7.0控制、样本选择与中断阈值"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-status-and-readout",
+                "label": "+0Ch逐bit：有效状态、平均/最坏值和8ns单位"
+              },
+              {
+                "href": "#feature/121/detail/r126-ltssm-measurement",
+                "label": "LTSSM的五个事件、寄存器映射、64µs及清除条件"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-version-differences",
+                "label": "正式6.0/6.1→6.4→7.0差异：避免按Capability Version猜字段"
+              },
+              {
+                "href": "#feature/121/detail/r126-flit-measurement-workflow",
+                "label": "如何使用：配置→启动→采样→读结果→处理异常"
+              }
+            ],
+            "note": "正式6.0/6.1/6.4/7.0正文逐字段核读，单位错误由后续正式脚注明确修正；机制/角色/编码/异常/操作与版本边界可查询，不要求计数器充当吞吐计，不宣称6.2/6.3全核。"
           }
         },
         "baseline": {
@@ -15287,61 +15496,174 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "正式6.0/6.1/6.4/7.0正文逐字段核读，单位错误由后续正式脚注明确修正；机制/角色/编码/异常/操作与版本边界可查询，不要求计数器充当吞吐计，不宣称6.2/6.3全核。",
         "taskId": "v1-task-14",
         "requiredTaskIds": [
           "v1-task-14",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 126
       },
       {
         "id": "v1-feature-122",
         "featureId": 122,
         "group": "性能、QoS与时间",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/122/detail/r127-buffer-mode-contract",
+                "label": "三种缓冲模式真正改变什么：开始转发、错误处置和反压责任"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-architecture-differences",
+                "label": "同一6.50a也有两套架构：原队列与MultiStream不可混表"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-error-ordering-and-sizing",
+                "label": "怎样选择：错误提交、Producer–Consumer、无限信用和缓冲尺寸"
+              }
+            ],
+            "note": "核6.50a原架构/MultiStream、Native/AXI、Gen6配置接口差异与包尾错误/顺序/无限信用责任；模式为产品构建边界，不当七代统一寄存器，既有资料不能套同一表。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/122/detail/r127-buffer-mode-contract",
+                "label": "三种缓冲模式真正改变什么：开始转发、错误处置和反压责任"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-architecture-differences",
+                "label": "同一6.50a也有两套架构：原队列与MultiStream不可混表"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-error-ordering-and-sizing",
+                "label": "怎样选择：错误提交、Producer–Consumer、无限信用和缓冲尺寸"
+              }
+            ],
+            "note": "核6.50a原架构/MultiStream、Native/AXI、Gen6配置接口差异与包尾错误/顺序/无限信用责任；模式为产品构建边界，不当七代统一寄存器，既有资料不能套同一表。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/122/detail/r127-buffer-mode-contract",
+                "label": "三种缓冲模式真正改变什么：开始转发、错误处置和反压责任"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-architecture-differences",
+                "label": "同一6.50a也有两套架构：原队列与MultiStream不可混表"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-error-ordering-and-sizing",
+                "label": "怎样选择：错误提交、Producer–Consumer、无限信用和缓冲尺寸"
+              }
+            ],
+            "note": "核6.50a原架构/MultiStream、Native/AXI、Gen6配置接口差异与包尾错误/顺序/无限信用责任；模式为产品构建边界，不当七代统一寄存器，既有资料不能套同一表。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/122/detail/r127-buffer-mode-contract",
+                "label": "三种缓冲模式真正改变什么：开始转发、错误处置和反压责任"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-architecture-differences",
+                "label": "同一6.50a也有两套架构：原队列与MultiStream不可混表"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-error-ordering-and-sizing",
+                "label": "怎样选择：错误提交、Producer–Consumer、无限信用和缓冲尺寸"
+              }
+            ],
+            "note": "核6.50a原架构/MultiStream、Native/AXI、Gen6配置接口差异与包尾错误/顺序/无限信用责任；模式为产品构建边界，不当七代统一寄存器，既有资料不能套同一表。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/122/detail/r127-buffer-mode-contract",
+                "label": "三种缓冲模式真正改变什么：开始转发、错误处置和反压责任"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-architecture-differences",
+                "label": "同一6.50a也有两套架构：原队列与MultiStream不可混表"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-error-ordering-and-sizing",
+                "label": "怎样选择：错误提交、Producer–Consumer、无限信用和缓冲尺寸"
+              }
+            ],
+            "note": "核6.50a原架构/MultiStream、Native/AXI、Gen6配置接口差异与包尾错误/顺序/无限信用责任；模式为产品构建边界，不当七代统一寄存器，既有资料不能套同一表。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/122/detail/r127-buffer-mode-contract",
+                "label": "三种缓冲模式真正改变什么：开始转发、错误处置和反压责任"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-architecture-differences",
+                "label": "同一6.50a也有两套架构：原队列与MultiStream不可混表"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-error-ordering-and-sizing",
+                "label": "怎样选择：错误提交、Producer–Consumer、无限信用和缓冲尺寸"
+              }
+            ],
+            "note": "核6.50a原架构/MultiStream、Native/AXI、Gen6配置接口差异与包尾错误/顺序/无限信用责任；模式为产品构建边界，不当七代统一寄存器，既有资料不能套同一表。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/122/detail/r127-buffer-mode-contract",
+                "label": "三种缓冲模式真正改变什么：开始转发、错误处置和反压责任"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-architecture-differences",
+                "label": "同一6.50a也有两套架构：原队列与MultiStream不可混表"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-error-ordering-and-sizing",
+                "label": "怎样选择：错误提交、Producer–Consumer、无限信用和缓冲尺寸"
+              }
+            ],
+            "note": "核6.50a原架构/MultiStream、Native/AXI、Gen6配置接口差异与包尾错误/顺序/无限信用责任；模式为产品构建边界，不当七代统一寄存器，既有资料不能套同一表。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/122/detail/r127-buffer-mode-contract",
+                "label": "三种缓冲模式真正改变什么：开始转发、错误处置和反压责任"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-architecture-differences",
+                "label": "同一6.50a也有两套架构：原队列与MultiStream不可混表"
+              },
+              {
+                "href": "#feature/122/detail/r127-buffer-error-ordering-and-sizing",
+                "label": "怎样选择：错误提交、Producer–Consumer、无限信用和缓冲尺寸"
+              }
+            ],
+            "note": "核6.50a原架构/MultiStream、Native/AXI、Gen6配置接口差异与包尾错误/顺序/无限信用责任；模式为产品构建边界，不当七代统一寄存器，既有资料不能套同一表。"
           }
         },
         "baseline": {
@@ -15352,61 +15674,174 @@
           "buffers"
         ],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核6.50a原架构/MultiStream、Native/AXI、Gen6配置接口差异与包尾错误/顺序/无限信用责任；模式为产品构建边界，不当七代统一寄存器，既有资料不能套同一表。",
         "taskId": "v1-task-14",
         "requiredTaskIds": [
           "v1-task-14",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 127
       },
       {
         "id": "v1-feature-123",
         "featureId": 123,
         "group": "性能、QoS与时间",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/123/detail/r127-outstanding-resource-gates",
+                "label": "Outstanding不是一个寄存器：读请求同时受哪些资源门控"
+              },
+              {
+                "href": "#feature/123/detail/r127-read-pipeline-sizing",
+                "label": "为什么要并发读：带宽时延积、拆分Completion与算例"
+              },
+              {
+                "href": "#feature/123/detail/r127-backpressure-debug",
+                "label": "反压怎样传递：从AXI RREADY低到PCIe停发，以及死锁边界"
+              }
+            ],
+            "note": "核普通Non-UIO唯一性、拆分Completion、FC与6.50aComposer/Native反压；复用Tag/MRRS七版主题，提供带宽时延积推导、单位算例和角色/模式限制，非全IP计数器脚本。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/123/detail/r127-outstanding-resource-gates",
+                "label": "Outstanding不是一个寄存器：读请求同时受哪些资源门控"
+              },
+              {
+                "href": "#feature/123/detail/r127-read-pipeline-sizing",
+                "label": "为什么要并发读：带宽时延积、拆分Completion与算例"
+              },
+              {
+                "href": "#feature/123/detail/r127-backpressure-debug",
+                "label": "反压怎样传递：从AXI RREADY低到PCIe停发，以及死锁边界"
+              }
+            ],
+            "note": "核普通Non-UIO唯一性、拆分Completion、FC与6.50aComposer/Native反压；复用Tag/MRRS七版主题，提供带宽时延积推导、单位算例和角色/模式限制，非全IP计数器脚本。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/123/detail/r127-outstanding-resource-gates",
+                "label": "Outstanding不是一个寄存器：读请求同时受哪些资源门控"
+              },
+              {
+                "href": "#feature/123/detail/r127-read-pipeline-sizing",
+                "label": "为什么要并发读：带宽时延积、拆分Completion与算例"
+              },
+              {
+                "href": "#feature/123/detail/r127-backpressure-debug",
+                "label": "反压怎样传递：从AXI RREADY低到PCIe停发，以及死锁边界"
+              }
+            ],
+            "note": "核普通Non-UIO唯一性、拆分Completion、FC与6.50aComposer/Native反压；复用Tag/MRRS七版主题，提供带宽时延积推导、单位算例和角色/模式限制，非全IP计数器脚本。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/123/detail/r127-outstanding-resource-gates",
+                "label": "Outstanding不是一个寄存器：读请求同时受哪些资源门控"
+              },
+              {
+                "href": "#feature/123/detail/r127-read-pipeline-sizing",
+                "label": "为什么要并发读：带宽时延积、拆分Completion与算例"
+              },
+              {
+                "href": "#feature/123/detail/r127-backpressure-debug",
+                "label": "反压怎样传递：从AXI RREADY低到PCIe停发，以及死锁边界"
+              }
+            ],
+            "note": "核普通Non-UIO唯一性、拆分Completion、FC与6.50aComposer/Native反压；复用Tag/MRRS七版主题，提供带宽时延积推导、单位算例和角色/模式限制，非全IP计数器脚本。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/123/detail/r127-outstanding-resource-gates",
+                "label": "Outstanding不是一个寄存器：读请求同时受哪些资源门控"
+              },
+              {
+                "href": "#feature/123/detail/r127-read-pipeline-sizing",
+                "label": "为什么要并发读：带宽时延积、拆分Completion与算例"
+              },
+              {
+                "href": "#feature/123/detail/r127-backpressure-debug",
+                "label": "反压怎样传递：从AXI RREADY低到PCIe停发，以及死锁边界"
+              }
+            ],
+            "note": "核普通Non-UIO唯一性、拆分Completion、FC与6.50aComposer/Native反压；复用Tag/MRRS七版主题，提供带宽时延积推导、单位算例和角色/模式限制，非全IP计数器脚本。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/123/detail/r127-outstanding-resource-gates",
+                "label": "Outstanding不是一个寄存器：读请求同时受哪些资源门控"
+              },
+              {
+                "href": "#feature/123/detail/r127-read-pipeline-sizing",
+                "label": "为什么要并发读：带宽时延积、拆分Completion与算例"
+              },
+              {
+                "href": "#feature/123/detail/r127-backpressure-debug",
+                "label": "反压怎样传递：从AXI RREADY低到PCIe停发，以及死锁边界"
+              }
+            ],
+            "note": "核普通Non-UIO唯一性、拆分Completion、FC与6.50aComposer/Native反压；复用Tag/MRRS七版主题，提供带宽时延积推导、单位算例和角色/模式限制，非全IP计数器脚本。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/123/detail/r127-outstanding-resource-gates",
+                "label": "Outstanding不是一个寄存器：读请求同时受哪些资源门控"
+              },
+              {
+                "href": "#feature/123/detail/r127-read-pipeline-sizing",
+                "label": "为什么要并发读：带宽时延积、拆分Completion与算例"
+              },
+              {
+                "href": "#feature/123/detail/r127-backpressure-debug",
+                "label": "反压怎样传递：从AXI RREADY低到PCIe停发，以及死锁边界"
+              }
+            ],
+            "note": "核普通Non-UIO唯一性、拆分Completion、FC与6.50aComposer/Native反压；复用Tag/MRRS七版主题，提供带宽时延积推导、单位算例和角色/模式限制，非全IP计数器脚本。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 127,
+            "evidence": [
+              {
+                "href": "#feature/123/detail/r127-outstanding-resource-gates",
+                "label": "Outstanding不是一个寄存器：读请求同时受哪些资源门控"
+              },
+              {
+                "href": "#feature/123/detail/r127-read-pipeline-sizing",
+                "label": "为什么要并发读：带宽时延积、拆分Completion与算例"
+              },
+              {
+                "href": "#feature/123/detail/r127-backpressure-debug",
+                "label": "反压怎样传递：从AXI RREADY低到PCIe停发，以及死锁边界"
+              }
+            ],
+            "note": "核普通Non-UIO唯一性、拆分Completion、FC与6.50aComposer/Native反压；复用Tag/MRRS七版主题，提供带宽时延积推导、单位算例和角色/模式限制，非全IP计数器脚本。"
           }
         },
         "baseline": {
@@ -15417,14 +15852,15 @@
           "buffers"
         ],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核普通Non-UIO唯一性、拆分Completion、FC与6.50aComposer/Native反压；复用Tag/MRRS七版主题，提供带宽时延积推导、单位算例和角色/模式限制，非全IP计数器脚本。",
         "taskId": "v1-task-14",
         "requiredTaskIds": [
           "v1-task-14",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 127
       },
       {
         "id": "v1-feature-124",
@@ -23309,6 +23745,140 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定范围仍有101功能，106/114/119具体阻塞保留，R126总结。",
         "publication": "用户授权R124/R125；分别检查合并发布R125，保留远端修改，非强制更新。"
+      },
+      {
+        "round": 126,
+        "kind": "R126 Flit测量寄存器、版本纠错及四轮总结",
+        "deliverables": [
+          "R126关闭121，新增8维度；累计83/183、701维度，剩100项/12预算轮。补0033h逐字段、Flit8ns与LTSSM64µs、旧版过滤/响应编码差异和使用流程。R123～R126共关闭6项/62维度，下一轮122/123。"
+        ],
+        "closedDeliverableIds": [
+          "feature-121-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 121,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 121,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 121,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 121,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 121,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 121,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 121,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 121,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          121
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围100项；106/114/119具体阻塞及61/89来源疑点保留；R130总结。",
+        "publication": "用户授权R126/R127；独立检查后合并发布R127，非强制更新。"
+      },
+      {
+        "round": 127,
+        "kind": "R127 缓冲架构与Outstanding读流水验收",
+        "deliverables": [
+          "R127关闭122/123，新增16维度；累计85/183、717维度，剩98项/11预算轮。补原架构/MultiStream区别、包尾错误/顺序责任、Tag/信用/缓冲门控、在途容量和AXI反压排查。task14仅119配置一致性阻塞，下一轮安全组。"
+        ],
+        "closedDeliverableIds": [
+          "feature-122-v1-accepted",
+          "feature-123-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 122,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 122,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 122,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 122,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 122,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 122,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 122,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 122,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 123,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 123,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 123,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 123,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 123,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 123,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 123,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 123,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          122,
+          123
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围98项；106/114/119及61/89具体来源问题保留；R130四轮总结。",
+        "publication": "用户授权R126/R127；分别本地检查后合并发布R127，保留远端修改，非强制更新。"
       }
     ],
     "backlog": [
@@ -23942,7 +24512,7 @@
           123
         ],
         "phase": "breadth",
-        "status": "open",
+        "status": "blocked",
         "focus": "TPH、PTM与时间尺度、Flit测量、缓冲/Outstanding/背压；区分参考公式与实现证据。",
         "exit": "所列条目八维验收的适用项逐一有证据通过；可复用既有正文，独有语义、版本限制及相关冲突不可遗漏。",
         "legacyRecordIndices": [
@@ -23953,8 +24523,18 @@
           68,
           69
         ],
-        "evidence": [],
-        "closedRound": null
+        "evidence": [
+          {
+            "href": "#feature/122/detail/r127-buffer-architecture-differences",
+            "label": "缓冲架构已分清"
+          },
+          {
+            "href": "#feature/123/detail/r127-outstanding-resource-gates",
+            "label": "在途/反压已验收"
+          }
+        ],
+        "closedRound": null,
+        "reviewNote": "117/118/120/121/122/123均验收，仅119的Switch PTM Root配置一致性待正式澄清，不因其他项完成关闭整组。"
       },
       {
         "id": "v1-task-15",
@@ -26776,33 +27356,34 @@
       }
     ],
     "nextExecution": {
-      "round": 126,
-      "taskId": "v1-task-14",
+      "round": 128,
+      "taskId": "v1-task-15",
       "featureIds": [
-        121,
-        122,
-        123
+        124,
+        125,
+        126,
+        127
       ],
-      "goal": "R126补实质薄弱的Flit测量/缓冲/在途121～123，并完成R123～R126四轮总结；106/114/119待新澄清。",
-      "reviewRound": 126
+      "goal": "R128按task15先核IDE/Stream/Key与DOE124～127；优先成熟内容验收，保留独立SPDM/TDISP后续。不重扫106/114/119旧证据。",
+      "reviewRound": 130
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 125,
-      "reestimateRound": 126,
-      "observedAcceptedUnitsPerRound": 2.75,
-      "requiredAcceptedUnitsPerRemainingRound": 7.769230769230769,
-      "linearExtrapolationRounds": 37,
-      "assessment": "R125新增1完整功能/15维度，累计82/183、693维度；101项/13预算轮，R138目标仍有风险。两轮关闭3项/31维度，119问题15保留，R126总结，不自动延期。",
-      "action": "R123收尾VC/MFVC/仲裁；保留106和114的具体歧义，随后按固定分组推进，R126再总结。",
+      "assessedRound": 127,
+      "reestimateRound": 130,
+      "observedAcceptedUnitsPerRound": 1.5,
+      "requiredAcceptedUnitsPerRemainingRound": 8.909090909090908,
+      "linearExtrapolationRounds": 66,
+      "assessment": "R127新增2项/16维度，累计85/183与717维度；剩98项/11预算轮。R123～R126实绩1.5项/轮，原R138预算明显不足，不自动延长或降低标准。",
+      "action": "下一轮安全124～127，优先复用成熟说明查独有缺口；R130再总结实际完成量。",
       "latestProgress": {
-        "round": 125,
-        "newAcceptedUnits": 1,
-        "cumulativeAcceptedUnits": 82,
-        "newPassedCriteria": 15,
-        "cumulativePassedCriteria": 693,
-        "remainingPlannedRounds": 13
+        "round": 127,
+        "newAcceptedUnits": 2,
+        "cumulativeAcceptedUnits": 85,
+        "newPassedCriteria": 16,
+        "cumulativePassedCriteria": 717,
+        "remainingPlannedRounds": 11
       }
     },
     "reviewWindows": [
@@ -27189,6 +27770,48 @@
             "newPassedCriteria": 24,
             "cumulativePassedCriteria": 639,
             "remainingPlannedRounds": 16
+          }
+        }
+      },
+      {
+        "id": "r123-r126",
+        "firstRound": 123,
+        "lastRound": 126,
+        "completedPlanRounds": 4,
+        "closedFeatureUnits": [
+          115,
+          116,
+          117,
+          118,
+          120,
+          121
+        ],
+        "newPassedCriteria": 62,
+        "cumulativePassedCriteria": 701,
+        "remainingFeatureUnits": 100,
+        "remainingRequiredTasks": 19,
+        "closedTaskIds": [],
+        "sourceQuestions": 38,
+        "resolvedSourceQuestions": 7,
+        "remainingSourceQuestions": 31,
+        "remainingPlannedRounds": 12,
+        "targetRound": 138,
+        "forecast": {
+          "status": "at-risk",
+          "assessedRound": 126,
+          "reestimateRound": 130,
+          "observedAcceptedUnitsPerRound": 1.5,
+          "requiredAcceptedUnitsPerRemainingRound": 8.333333333333334,
+          "linearExtrapolationRounds": 67,
+          "assessment": "R123～R126关闭6项/62维度，累计83/183与701维度；剩100项/12预算轮。实绩1.5项/轮，预算内需8.33项/轮，R138已明显偏离当前产出速度；机械外推67轮仅风险指标，不自动延期或降验收标准。",
+          "action": "完成122/123后转task15安全，优先复用成熟正文批验；明确阻塞等待新证据，避免反复扫同页。",
+          "latestProgress": {
+            "round": 126,
+            "newAcceptedUnits": 1,
+            "cumulativeAcceptedUnits": 83,
+            "newPassedCriteria": 8,
+            "cumulativePassedCriteria": 701,
+            "remainingPlannedRounds": 12
           }
         }
       }

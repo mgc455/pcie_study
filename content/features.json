@@ -128163,21 +128163,21 @@
   {
     "name": "Flit Performance Measurement",
     "group": "性能、QoS与时间",
-    "intro": "标准扩展能力记录Flit性能测量信息。",
+    "intro": "可选扩展能力测量Flit响应延迟和指定LTSSM转换时间；不是Payload吞吐计。",
     "usage": "Gen6性能分析，需要理解计数/采样定义。",
-    "mechanism": "Flit性能测量通过对应寄存器定义采样/统计内容，使软件观察传输行为；计数代表什么必须按字段定义。",
+    "mechanism": "0033h能力选择Ack/Nak/Replay或LTSSM事件；Flit计数按修正版8ns解释，LTSSM计数独立为64µs。",
     "example": "有效Payload不高时，结合Flit统计和应用吞吐区分协议空转、重放、资源等待与业务数据不足。",
-    "checks": "明确采样窗口、清零、锁存、溢出与单位；不能把所有Flit数都当成成功业务Payload包数。",
+    "checks": "按正式版本区分响应编码、保留位、单位；确认角色/FM、完成/溢出、样本数和同宽条件，禁止运行中改配置。",
     "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
     "id": 121,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R126按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "7",
@@ -128189,49 +128189,1011 @@
         "pdfPage": 903,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.12",
+        "page": 1166,
+        "pdfPage": 1166,
+        "title": "角色、模式和结构",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.12.2",
+        "page": 1167,
+        "pdfPage": 1167,
+        "title": "能力字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.12.3",
+        "page": 1168,
+        "pdfPage": 1168,
+        "title": "早期控制/过滤",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.12.3",
+        "page": 1169,
+        "pdfPage": 1169,
+        "title": "LTSSM事件与阈值",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.12.4",
+        "page": 1170,
+        "pdfPage": 1170,
+        "title": "早期状态及错误单位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.12.5",
+        "page": 1171,
+        "pdfPage": 1171,
+        "title": "独立LTSSM状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.1",
+        "section": "7.8.12.3",
+        "page": 1208,
+        "pdfPage": 1208,
+        "title": "6.1控制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.1",
+        "section": "7.8.12.4",
+        "page": 1210,
+        "pdfPage": 1210,
+        "title": "6.1状态单位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.4",
+        "document": "PCI Express Base Specification",
+        "version": "6.4",
+        "section": "7.8.12.3",
+        "page": 1306,
+        "pdfPage": 1306,
+        "title": "响应选择修订",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.4",
+        "document": "PCI Express Base Specification",
+        "version": "6.4",
+        "section": "7.8.12.3",
+        "page": 1307,
+        "pdfPage": 1307,
+        "title": "计数完成及保留字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.4",
+        "document": "PCI Express Base Specification",
+        "version": "6.4",
+        "section": "7.8.12.4",
+        "page": 1308,
+        "pdfPage": 1308,
+        "title": "状态定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.4",
+        "document": "PCI Express Base Specification",
+        "version": "6.4",
+        "section": "7.8.12.4",
+        "page": 1309,
+        "pdfPage": 1309,
+        "title": "脚注201明确8ns及旧单位错误",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.12",
+        "page": 1335,
+        "pdfPage": 1335,
+        "title": "可选性、布局和适用角色",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.12.2",
+        "page": 1336,
+        "pdfPage": 1336,
+        "title": "中断向量及跟踪容量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.12.3",
+        "page": 1337,
+        "pdfPage": 1337,
+        "title": "单一响应编码与启停",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.12.3",
+        "page": 1338,
+        "pdfPage": 1338,
+        "title": "控制字段编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.12.4",
+        "page": 1339,
+        "pdfPage": 1339,
+        "title": "Flit状态字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.12.4",
+        "page": 1340,
+        "pdfPage": 1340,
+        "title": "8ns、平均值和脚注202",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.12.5",
+        "page": 1341,
+        "pdfPage": 1341,
+        "title": "LTSSM状态仍64us",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已核6.0/6.1/6.4/7.0 §7.8.12正文及正式单位修正；中间修订首次修改未断言。",
+    "details": [
+      {
+        "id": "r126-flit-measurement-map",
+        "title": "Flit性能测量测什么：0033h能力、适用Port及完整寄存器入口",
+        "paragraphs": [
+          "它测的是指定Flit与Ack/Nak/Replay之间的链路延迟，以及所选LTSSM转换时间；不是累计有效Payload字节的吞吐计。用它定位重放响应慢、链宽恢复或低功耗退出慢，再结合应用字节数/时间判断吞吐。DLL Ack不等于MRd的Completion到达，更不等于应用已消费。",
+          "6.0及7.0均规定该能力可选，仅允许Downstream Port、Upstream Port的Function0及RCRB；其他Function不允许。仅Flit Mode生效，Non-Flit Mode无效果。设备标称Gen6/7不保证实现；跑低速时也必须检查实际FM/NFM，不由速率直接推能力有效。",
+          "先遍历Extended Capability链找ID0033h，版本为1h，所有以下偏移相对这项能力起点，不是BAR地址，也不是固定全局配置偏移。读取04h的LTSSM Tracking Register Count，只能访问实际存在的0～5个附加DW。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "table": {
+          "columns": [
+            "相对偏移",
+            "用途/bit",
+            "访问边界"
+          ],
+          "rows": [
+            [
+              "+00h",
+              "[15:0]ID0033h；[19:16]版本1；[31:20]Next",
+              "RO；Next=0表示结束"
+            ],
+            [
+              "+04h",
+              "[9:0]中断向量；[12:10]跟踪寄存器数0～5",
+              "高[31:13]RsvdP；向量不是软件任写"
+            ],
+            [
+              "+08h",
+              "控制DW",
+              "配置、启停、样本/事件和中断阈值"
+            ],
+            [
+              "+0Ch",
+              "Flit延迟状态DW",
+              "状态、实际样本数、触发标志、延迟计数"
+            ],
+            [
+              "+10h～+20h",
+              "最多5个LTSSM状态DW",
+              "每个对应一个已选事件；未实现寄存器不存在"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r126-flit-control-fields",
+        "title": "+08h逐bit：6.4/7.0控制、样本选择与中断阈值",
+        "paragraphs": [
+          "以下控制表绑定正式6.4/7.0。Flit Response Type是三位编码，只选001、010或100之一；000及其余编码保留，不能像旧版文字那样把几个bit随意OR。Flit到Ack/Nak仅测原始Flit对应的明确响应，排除重放Flit和对后/前序号的隐式响应；Nak到Replay从发出首个相关Nak的Flit到收到该序号首次重放。三种测量都要求相同Link Width。",
+          "Enable从0变1开始，已为1再写1不重启；运行中清0结束并置Flit状态Completed。N=0连续记录最坏延迟，软件停止；N=1～31累计指定数量的延迟，达到数量结束。不是每个线上Flit都被统计；按状态中的已记录样本数计算，不用总流量分母。",
+          "运行过程中不得修改其余配置字段。先停、确认状态、配置再启动；规范对运行中改字段规定undefined，不把寄存器支持RW当热更新许可。推荐测量期间固定目标链宽并禁止硬件自主改宽，同时保留配置前值，结束后按系统策略恢复。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "字段",
+            "解释/编码"
+          ],
+          "rows": [
+            [
+              "0",
+              "Enable",
+              "RW，默认0；0→1开始；运行中清0停止"
+            ],
+            [
+              "3:1",
+              "Response Type",
+              "001 Ack；010 Nak；100 Nak→Replay；其他保留"
+            ],
+            [
+              "5:4",
+              "Reserved",
+              "6.4/7.0为RsvdP或无效果RW，不再筛Payload"
+            ],
+            [
+              "10:6",
+              "Flit样本数N",
+              "0最坏值；1～31累计N个样本"
+            ],
+            [
+              "13:11",
+              "单次Flit延迟中断阈值",
+              "000禁用；001/010/011=100/200/300ns；其他保留"
+            ],
+            [
+              "18:14",
+              "LTSSM事件位图",
+              "14 Recovery；15 L0p增宽；16 L1.0退出；17 L1.1退出；18 L1.2退出"
+            ],
+            [
+              "23:19",
+              "LTSSM样本数",
+              "0最坏值；其余累计该数量"
+            ],
+            [
+              "26:24",
+              "事件14～16阈值",
+              "000禁用；001/010/011=6.4/12.8/19.2ms；其余保留"
+            ],
+            [
+              "29:27",
+              "事件17～18阈值",
+              "000禁用；001～110=1/2/3/4/5/10s；111保留"
+            ],
+            [
+              "31:30",
+              "Reserved",
+              "RsvdP，按版本保留位规则处理"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r126-flit-status-and-readout",
+        "title": "+0Ch逐bit：有效状态、平均/最坏值和8ns单位",
+        "paragraphs": [
+          "6.4/7.0：状态[1:0]为00未开始、01进行中、10完成、11溢出错误完成。错误时样本数和延迟值未定义，不能当有效测量或回绕值继续算。样本数[6:2]记录已测并计入结果的Flit；不回绕。N非0时实际数≤N；N=0时该字段可能任意，不能用它计算最坏模式的平均值。",
+          "[23:8]是16bit Flit Latency Tracking Counter，单位8ns。N非0存延迟和，用该值×8ns/实际样本数得到平均延迟；N=0存最大延迟，直接×8ns。例N=4，完成样本数4、计数100，则累计800ns、平均200ns；最坏模式计数100表示最大800ns。分母为0、仍在采样或溢出时不发布平均值。",
+          "bit7为RW1C触发中断标志，置位期间抑制后续同类触发中断，软件处理后写1清除；它不是清空整份计数结果的开关。04h[9:0]指向MSI/MSI-X向量，7.0还明确MSI Multiple Message Enable改变时该值允许变化，应以当前启用方式重新读取，不能固定缓存后长期使用。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "table": {
+          "columns": [
+            "bit",
+            "含义",
+            "读取规则"
+          ],
+          "rows": [
+            [
+              "1:0",
+              "状态",
+              "00未开始 / 01运行 / 10完成 / 11错误"
+            ],
+            [
+              "6:2",
+              "实际记录样本数",
+              "RO，非总Flit数，不回绕"
+            ],
+            [
+              "7",
+              "触发中断标志",
+              "RW1C，置位时抑制新增触发"
+            ],
+            [
+              "23:8",
+              "延迟和或最大值",
+              "RO，16bit×8ns；错误时未定义"
+            ],
+            [
+              "31:24",
+              "Reserved",
+              "RsvdZ"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r126-ltssm-measurement",
+        "title": "LTSSM的五个事件、寄存器映射、64µs及清除条件",
+        "paragraphs": [
+          "LTSSM事件位14测L0因Framing Error或软件指令转Recovery；位15测L0p增宽中从Lane Electrical Idle到开始Data Stream；位16/17/18分别测L1.0/L1.1/L1.2到L0。不能把位14解释为任意Recovery原因，也不能把位15解释成整个LTSSM训练时间。",
+          "选中的事件按控制位顺序关联附加状态DW：例如只选bit15和17，+10h对应L0p增宽，+14h对应L1.1退出；不会为未选bit14预留第一个槽。启用位数不能大于04h[12:10]容量；测量进行中不能追加同类事件。",
+          "每个LTSSM状态DW[1:0]四状态、[6:2]已跟踪次数不回绕、bit7为RW1CS中断触发标志、[23:8]为64µs单位计数器，[31:24]保留为0。状态、次数、计数器在Enable 0→1清除，bit7按写1清除；这组寄存器不能套用Flit状态的8ns换算。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "table": {
+          "columns": [
+            "事件bit",
+            "测量边界",
+            "配置/映射"
+          ],
+          "rows": [
+            [
+              "14",
+              "L0→Recovery（指定原因）",
+              "阈值组26:24"
+            ],
+            [
+              "15",
+              "L0p增宽Lane EI→Data Stream",
+              "阈值组26:24"
+            ],
+            [
+              "16",
+              "L1.0→L0",
+              "阈值组26:24"
+            ],
+            [
+              "17",
+              "L1.1→L0",
+              "阈值组29:27"
+            ],
+            [
+              "18",
+              "L1.2→L0",
+              "阈值组29:27"
+            ],
+            [
+              "例bit15+17",
+              "两个槽：10h→15，14h→17",
+              "容量必须≥2；计数单位64µs"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r126-flit-version-differences",
+        "title": "正式6.0/6.1→6.4→7.0差异：避免按Capability Version猜字段",
+        "paragraphs": [
+          "这些正式版本结构版本均为1，并不意味着每句语义没有修订。6.0/6.1的Response Type文字按独立bit描述；6.4/7.0明确单一编码及其他保留。6.0/6.1的[5:4]提供IDLE/NOP、Payload、Any Flit过滤，6.4/7.0则保留；不要把旧筛选脚本直接用于新实现。",
+          "6.0/6.1的+0Ch[23:8]名称写作LTSSM计数且单位64µs；6.4脚注201、7.0脚注202明确旧版出现64µs或8µs是错误，正确Flit延迟单位8ns。独立+10h～+20h的LTSSM计数仍是64µs，这不是统一把所有时间寄存器乘8ns。旧实现若按错误单位实现，规范提示观察到0可作为识别线索；0本身不证明链路延迟为0，也不单凭0值自动判断硬件版本。",
+          "6.4/7.0还明确计数和/平均值、原始Flit精确响应、同宽约束及运行停止行为。这里只确认已核版本端点，不声称差异首先出现在6.4；6.2/6.3中间修订未在本轮逐一定位。Gen1～Gen5年代的Non-Flit链路不使用本FM测量；较新设备低速FM适用性按实际协商，不把能力发行版等同当前链路速率。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "table": {
+          "columns": [
+            "正式版/范围",
+            "字段/条件",
+            "来源与边界"
+          ],
+          "rows": [
+            [
+              "6.0 / 6.1",
+              "控制[5:4]有过滤；响应按bit描述",
+              "+0Ch误写64µs；保留原定位供对照"
+            ],
+            [
+              "6.4",
+              "[5:4]保留，单一响应编码",
+              "p1309脚注201明确8ns修正"
+            ],
+            [
+              "7.0",
+              "延续6.4所列规则",
+              "p1340脚注202；独立LTSSM仍64µs"
+            ],
+            [
+              "6.2 / 6.3",
+              "本轮未逐版定位首次修改",
+              "不把未核读说成缺文档"
+            ],
+            [
+              "Gen1～Gen7速率标签",
+              "不能替代角色/能力/实际FM检查",
+              "可选能力不由最高速率保证"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r126-flit-measurement-workflow",
+        "title": "如何使用：配置→启动→采样→读结果→处理异常",
+        "paragraphs": [
+          "先确认Port角色、0033h能力、当前FM、向量配置、跟踪槽数，再选择一个目标：Ack/Nak/Replay延迟，或LTSSM退出时间。不要把所有项目一起开启后再猜哪项触发。",
+          "以6.4/7.0 Ack平均延迟为例：停止旧测量并确认结束；选择Response=001、N=4，保留位按当前实现规则处理，阈值可设200ns；准备相应负载后Enable置1。等状态完成或按策略超时停止；读取样本数、计数器和错误状态，按8ns换算。有限样本不保证一定完成：若没有符合条件的精确Ack，应由管理软件超时退出，不能把等待当硬件故障。",
+          "中断仅表示所配置单次事件超过阈值，不直接给出平均值；处理中断后写1清bit7，再按需求开启下一次独立测量。软件不向RO计数器写0清除，也不在Enable持续1时靠重复写1重启。采样端点应一致，例如发送首bit到接收首bit；这是测量一致性建议，不是从应用提交到业务完成的全系统时间。"
+        ],
+        "referenceIndices": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "table": {
+          "columns": [
+            "阶段",
+            "动作",
+            "异常/限制"
+          ],
+          "rows": [
+            [
+              "配置前",
+              "确认FM/能力/角色/槽数/中断",
+              "没有能力则使用其他测量机制"
+            ],
+            [
+              "运行中",
+              "不改配置；链宽保持一致",
+              "改宽会使测量不准确"
+            ],
+            [
+              "无合格样本",
+              "管理超时停止，记录样本不足",
+              "不把0计数当0ns"
+            ],
+            [
+              "完成",
+              "检查状态和实际样本数再换算",
+              "Flit8ns，LTSSM64µs"
+            ],
+            [
+              "溢出错误",
+              "丢弃本轮数值，缩短采样/重配",
+              "不计算伪平均值"
+            ],
+            [
+              "后续",
+              "Ack延迟结合重放/流控/应用吞吐",
+              "不等价于完成事务时间"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 121,
+            "detailId": "r126-flit-status-and-readout",
+            "label": "结果bit与计算"
+          },
+          {
+            "featureId": 121,
+            "detailId": "r126-flit-version-differences",
+            "label": "版本差异"
+          },
+          {
+            "featureId": 123,
+            "detailId": "r127-outstanding-resource-gates",
+            "label": "在途资源门控"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Buffering：Store-and-forward / Cut-through / Bypass",
     "group": "性能、QoS与时间",
-    "intro": "IP按队列模式决定何时把收到的事务送给应用。",
+    "intro": "三种实现缓冲策略改变首拍延迟、校验/提交位置和信用/反压责任；具体支持依赖架构与构建。",
     "usage": "延迟、缓存成本和协议检查之间权衡。",
-    "mechanism": "Store-and-forward先收齐再转发，Cut-through在允许条件下更早推进，Bypass按对应接口规则传递；检查/反压责任随模式变化。",
+    "mechanism": "先确定被旁路的队列及错误提交点，再核Native/AXI、原架构/MultiStream和实际接收容量。",
     "example": "低延迟业务可关注早转发路径，但资源不足或后续发现错误时仍需正确处置，不能只追求少几拍。",
-    "checks": "核对队列支持的模式、完整性检查位置和握手；旁路不代表无缓冲/无协议约束。",
+    "checks": "Bypass不等于全通路零缓冲；C/T包尾错误需处理；队列模式通常为构建选择，不能假设有统一运行时控制寄存器。",
     "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
     "id": 122,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R127按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-28",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.5.1.1",
+        "page": 120,
+        "pdfPage": 120,
+        "title": "原接收队列责任划分",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.5.1.1",
+        "page": 121,
+        "pdfPage": 121,
+        "title": "错误、退化及配置限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.5.1.2",
+        "page": 122,
+        "pdfPage": 122,
+        "title": "AXI队列模式与HDMA限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.5.2",
+        "page": 123,
+        "pdfPage": 123,
+        "title": "缓冲尺寸与在途风险",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.5.2",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "无限信用与缓冲溢出",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.5.3",
+        "page": 125,
+        "pdfPage": 125,
+        "title": "MultiStream序号及重组",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.5.3",
+        "page": 126,
+        "pdfPage": 126,
+        "title": "MultiStream原生模式",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.5.3",
+        "page": 127,
+        "pdfPage": 127,
+        "title": "MultiStream AXI模式及Bypass存储",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.5.3",
+        "page": 128,
+        "pdfPage": 128,
+        "title": "错误与顺序责任",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.5.3",
+        "page": 129,
+        "pdfPage": 129,
+        "title": "反压和实现条件",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.5",
+        "page": 299,
+        "pdfPage": 299,
+        "title": "旧RBYP与Gen6 FC-TRGT1",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.6",
+        "page": 300,
+        "pdfPage": 300,
+        "title": "TRGT1间隙和等待",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.1.1",
+        "page": 409,
+        "pdfPage": 409,
+        "title": "独立Composer重组缓冲",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "已核Controller6.50a原架构/MultiStream及Native/AXI差异；厂商实现边界明确，不按Gen1～Gen7推标准队列模式。",
+    "details": [
+      {
+        "id": "r127-buffer-mode-contract",
+        "title": "三种缓冲模式真正改变什么：开始转发、错误处置和反压责任",
+        "paragraphs": [
+          "Store-and-forward先收齐整个TLP再交给应用，容易在提交业务动作之前完成检查；Cut-through在包尾尚未到达时就开始交付，降低首数据延迟；Bypass绕过指定接收队列。它们是实现的数据路径选择，不是TLP Header里的标准Mode位，也不能把任意IP里的Bypass定义为整条通路完全无存储。",
+          "以所核Controller6.50a原接收架构为例，Native模式下S/F和C/T由控制器管信用、可halt交付；Bypass由应用承担相应信用和接收责任、不可halt。C/T或Bypass先交付的数据可能到包尾才发现错误，应用必须能够丢弃未提交的数据，避免直接对不可回滚的外设寄存器产生副作用。S/F默认不转发损坏包，但产品允许配置过滤/错误转发，因此也不能脱离配置假定所有S/F数据绝对有效。",
+          "原架构C/T在队列积压后会表现为S/F，只有队首首个TLP获得早转发；C/T并不保证每个包都固定少若干拍。接收端C/T允许数据valid间歇性撤销，应用要接受包内空拍，不能套用发包接口连续供应整个TLP的要求。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "table": {
+          "columns": [
+            "模式",
+            "开始交付时机",
+            "系统责任"
+          ],
+          "rows": [
+            [
+              "S/F",
+              "包完整后交付",
+              "容易在交付前拦截错误；需要整包空间"
+            ],
+            [
+              "C/T",
+              "收包过程中交付",
+              "需等包尾错误信息才提交；接受valid间隙"
+            ],
+            [
+              "Bypass",
+              "绕过指定队列早交付",
+              "不能假定可反压；必须核对信用/下游缓冲"
+            ],
+            [
+              "三者共通",
+              "仍需协议顺序与合法性",
+              "不是Relaxed Ordering或关闭CRC的开关"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r127-buffer-architecture-differences",
+        "title": "同一6.50a也有两套架构：原队列与MultiStream不可混表",
+        "paragraphs": [
+          "原架构Native队列中P/NP一般支持S/F、C/T，NP不允许Bypass；Cpl默认Bypass的配置也受数据宽度约束，256bit表中三类都无Bypass。带AXI的原架构P/NP只支持S/F，Cpl随宽度和配置支持不同组合；该资料还明确HDMA配置未完全支持C/T。以上属于此产品构建配置，不能推成PCIe标准强制规则。",
+          "MultiStream架构使用按类型/VC分开的并行交付，并提供Packet Order信息。它的Native P支持S/F或C/T、NP仅S/F、Cpl支持三类；其AXI表中P支持S/F或C/T、NP仅S/F、Cpl仅Bypass。不能把原架构“AXI P只能S/F”写成覆盖该产品所有构建的限制。",
+          "MultiStream的Bypass也可能先保存首beat，并为序列化、信用或带宽时延积配置存储；仅特定128bit、未启用IDE等条件下存在更直接的Completion交付路径。因此原架构Bypass无队列、MultiStream Bypass有必要首拍/序列化存储，并不矛盾，差别是被旁路的边界。Gen6配置用专门的Completion FC-TRGT1替代旧RBYP，不应拿旧接口名强接。",
+          "MultiStream通常把更多顺序责任交给应用：不同请求的Completion可交错返回，但同一MRd的拆分Completion仍需按协议规则重组。IDE开启时还存在安全模块之前的特定顺序处理，不能凭“应用管顺序”忽略安全路径。网页仅发布原创架构解释和定位，不复制供应商信号表或构建参数表。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "table": {
+          "columns": [
+            "构建边界",
+            "已核区别",
+            "查询条件"
+          ],
+          "rows": [
+            [
+              "原架构 / Native",
+              "NP不能Bypass；C/T可因积压退化",
+              "具体宽度/类型按Table2-12/13"
+            ],
+            [
+              "原架构 / AXI",
+              "P和NP仅S/F",
+              "Cpl另查Table2-14/15与HDMA条件"
+            ],
+            [
+              "MultiStream / Native",
+              "P=S/F或C/T；NP=S/F；Cpl三类",
+              "Table2-17"
+            ],
+            [
+              "MultiStream / AXI",
+              "P=S/F或C/T；NP=S/F；Cpl=Bypass",
+              "Table2-18"
+            ],
+            [
+              "Gen6构建接口",
+              "Completion采用FC-TRGT1",
+              "不把旧RBYP引脚直接泛化"
+            ],
+            [
+              "Bypass含义",
+              "绕过某一队列",
+              "不代表Composer、CDC、序列化存储均消失"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r127-buffer-error-ordering-and-sizing",
+        "title": "怎样选择：错误提交、Producer–Consumer、无限信用和缓冲尺寸",
+        "paragraphs": [
+          "先确定应用何时允许不可撤销提交。若包尚未校验完就把每beat写进最终可见位置，后来abort可能留下半包状态；C/T路径应使用暂存、有效位或提交点，在包尾无错误后才对上层宣布完成。此处是集成设计推导，不是PCIe新增rollback指令。",
+          "再核顺序：传统原架构Cpl Bypass可能使Completion越过较早Posted Write，Producer–Consumer的完成标志读取可能先于数据可见。不能为了降低延迟一律设RO，也不能把中断自动当跨所有缓冲的屏障；必须选择满足实际依赖的队列/桥接顺序方案。",
+          "有限信用能约束特定接收池，但声明Infinite Completion Credits不等于实际RAM无限。Requester必须限制已经发出的读请求所可能返回的总数据及Completion头开销；当P阻塞、顺序规则拦住Cpl或应用反压时，Cpl仍可能到达。只按链路平均流量配RAM会遗漏最坏在途回包。",
+          "先标出控制器Rx队列、桥Composer、CDC、应用FIFO各自的容量/释放点，再确定在途读上限；不能把同一片存储算两次，也不能见Cpl Bypass就删除独立AXI重组缓冲。6.50a所核Composer会重组远端及本地拆包带来的Cpl，原AXI响应未满足前可能不向R通道交付，取决于相应路径。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "table": {
+          "columns": [
+            "约束",
+            "选择/检查",
+            "容易误解"
+          ],
+          "rows": [
+            [
+              "不可回滚MMIO",
+              "优先在校验完成后提交",
+              "C/T需要额外提交控制"
+            ],
+            [
+              "有Producer–Consumer依赖",
+              "验证Cpl/P实际顺序路径",
+              "Bypass/RO不能盲选"
+            ],
+            [
+              "Infinite Cpl信用",
+              "按在途请求管理回包空间",
+              "本地缓冲仍有限"
+            ],
+            [
+              "AXI重组",
+              "保留必要Composer/ID顺序",
+              "Rx Bypass不等于无重组"
+            ],
+            [
+              "首数据延迟目标",
+              "区分队首空闲与积压情况",
+              "C/T不会持续保证同一延迟收益"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 123,
+            "detailId": "r127-outstanding-resource-gates",
+            "label": "在途资源门控"
+          },
+          {
+            "featureId": 123,
+            "detailId": "r127-backpressure-debug",
+            "label": "反压与死锁排查"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Outstanding / Read Pipeline / Backpressure",
     "group": "性能、QoS与时间",
-    "intro": "并发数与下游反压决定能否填满链路。",
+    "intro": "多笔未结束请求覆盖往返时延；Tag、信用、回包缓冲、AXI顺序和软件提交共同限制真实并发。",
     "usage": "实际吞吐看Tag、信用、队列、AXI与内存共同瓶颈。",
-    "mechanism": "多个在途请求覆盖往返延迟，队列和Tag维持流水；某一级不能接受数据时通过反压停止相应推进。瓶颈会从一层传到另一层。",
+    "mechanism": "发读前联合检查事务追踪与未来回包空间；Completion按Tag重组，再按本地总线顺序交付；反压要为已经在途的包留余量。",
     "example": "高带宽但高读延迟时，只有一个在途MRd会大量空等；增加并发可改善，直到其他资源成为瓶颈。",
-    "checks": "同步看请求发出率、在途数、Completion返回率与本地AXI ready，不能只看链路额定GB/s。",
+    "checks": "区分MRd笔数/Cpl包数/Tag/AXI ID；按Payload带宽与时延估算在途容量，核对回包空间、类型信用、流水反压和错误结束。",
     "prerequisites": "先明确测量单位、持续负载和实际资源映射；比较配置前后端到端延迟/吞吐，不能只看某个局部计数。",
     "id": 123,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R127按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "2.6",
@@ -128243,9 +129205,326 @@
         "pdfPage": 235,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2",
+        "page": 198,
+        "pdfPage": 198,
+        "title": "Non-UIO Transaction ID唯一性",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.2.1",
+        "page": 199,
+        "pdfPage": 199,
+        "title": "Tag支持/角色与模式",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 264,
+        "pdfPage": 264,
+        "title": "同请求Completion拆分和剩余字节",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 288,
+        "pdfPage": 288,
+        "title": "FC池与Shared/Dedicated",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.5.2",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "返回数据空间和无限信用",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.6.3",
+        "page": 301,
+        "pdfPage": 301,
+        "title": "按包类型提前halt",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.6.3",
+        "page": 302,
+        "pdfPage": 302,
+        "title": "已grant但未送达的流水线",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.1.1",
+        "page": 409,
+        "pdfPage": 409,
+        "title": "Composer分段重组",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.2.3.2",
+        "page": 421,
+        "pdfPage": 421,
+        "title": "相同AXI ID的返回重排",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已核Base7.0唯一性/Completion/FC及Controller6.50a桥接/Native反压；七代Tag/MRRS差异链接复用已核专题，不泛化UIO。",
+    "details": [
+      {
+        "id": "r127-outstanding-resource-gates",
+        "title": "Outstanding不是一个寄存器：读请求同时受哪些资源门控",
+        "paragraphs": [
+          "Outstanding表示已发出且尚未结束的事务。对普通Non-UIO MRd，Requester用Requester ID+Tag匹配Completion，在适用命名空间内未结束请求必须唯一。一个MRd可拆成多个CplD；第一包Cpl、DLL Ack、甚至部分数据写入本地RAM，都不自动释放整笔读请求的Tag。终结条件还包括成功收齐或按错误/超时流程结束。",
+          "“可以再发一个读”通常需要同时满足：可用Tag/追踪槽、对端NP Header信用、返回数据预留/队列额度、仲裁/链路机会和本地提交条件。普通MRd不带请求Payload，不消耗NPD，但回来的CplD走反方向Completion资源。Shared/Dedicated及Scaled FC的账本规则要按实际模式解释，不能把Header信用、Data信用、Tag数量相互换算成一个计数。",
+          "AXI ID标识本地顺序域，PCIe Tag标识协议事务，两者由桥内部映射，一笔AXI请求可能拆成多个TLP，一个TLP又可能收到多个Completion。增加AXI ID位宽、扩大DMA描述符环或打开Extended Tag，都不独立保证真实在途数增加；实际实现可能被更小追踪表、缓冲或软件批量限制。",
+          "Gen1～Gen7的基本读流水概念相同，但可用Tag大小、Requester使能/Completer支持、NFM/FM、UIO命名空间和FC机制不同。这里推导限普通Non-UIO Memory Read；UIO读写须另按其Transaction ID/完成规则，不把普通MRd唯一性照搬UIO Write。七代Tag与MRRS细节复用已有专题，不重写为由当前速率决定的固定并发数。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "table": {
+          "columns": [
+            "资源",
+            "负责什么",
+            "不能混同"
+          ],
+          "rows": [
+            [
+              "Tag/追踪表",
+              "区分和追踪未结束请求",
+              "第一包Completion不释放全部请求"
+            ],
+            [
+              "NP Header信用",
+              "对端暂存MRd Header",
+              "MRd没有NPD Payload"
+            ],
+            [
+              "Completion空间",
+              "本端未来回包预算",
+              "信用无限也不能无限发读"
+            ],
+            [
+              "链路/仲裁",
+              "何时允许发出",
+              "资源齐备仍可能等待调度"
+            ],
+            [
+              "AXI/应用",
+              "ID顺序、队列和消费速度",
+              "不能把PCIe Tag等同AXI ID"
+            ],
+            [
+              "软件/DMA",
+              "描述符、批量、门铃节奏",
+              "环很大不等于硬件并发很大"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 22,
+            "detailId": "tag-concurrency-bandwidth-limits",
+            "label": "Tag与吞吐估算"
+          },
+          {
+            "featureId": 25,
+            "detailId": "dma-read-size-walkthrough",
+            "label": "MRRS/4KB请求拆分"
+          },
+          {
+            "featureId": 111,
+            "detailId": "r122-fc-seven-revision-and-unit-contract",
+            "label": "六类信用与版本边界"
+          }
+        ]
+      },
+      {
+        "id": "r127-read-pipeline-sizing",
+        "title": "为什么要并发读：带宽时延积、拆分Completion与算例",
+        "paragraphs": [
+          "教学估算：若目标有效载荷带宽为B byte/s，平均每笔读从发出到最后有效数据接收为L秒，每笔可覆盖S byte，至少需要约ceil(B×L/S)笔同时在途才能覆盖等待。它是简化流水容量估算，不是Base保证公式；真实链路还受报文开销、突发、重放、偏斜、信用、Tag和内存服务率限制。",
+          "例目标为单向Payload 8.0 GB/s（十进制），往返完成时延1µs，单笔256byte，需要在途8000byte，即至少32笔；若只有8笔，单由该约束估算的上限为2.048 GB/s。读长512byte时简单估算需要16笔，但仍必须满足MRRS、4KB边界和目标访问语义，不保证延迟保持不变。这里没有把链路GT/s直接当Payload，也不对PAM4重复乘2。",
+          "MRRS决定一笔MRd最多请求多少，MPS/RCB影响远端怎样返回；不能把256byte MRd拆成两个128byte Cpl就当两笔独立MRd。普通同一MRd的成功Cpl按递增地址返回，Byte Count表示含本包在内的剩余数据；不同请求可乱序，所以需要按Tag重组，再按AXI ID等本地约束交付。",
+          "按平均L算出的容量只是起点，还应看时延分布尾部、下游暂停长度、Completion Header数量、所有并行Requester和共享缓冲。扩大N提升缓存、追踪和出错恢复成本；先定位瓶颈，再调整并发/请求长度，比直接把所有队列开最大更可解释。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "table": {
+          "columns": [
+            "条件",
+            "计算",
+            "解释"
+          ],
+          "rows": [
+            [
+              "B×L",
+              "8×10^9byte/s ×10^-6s",
+              "8000byte在途容量"
+            ],
+            [
+              "S=256byte",
+              "ceil(8000/256)",
+              "32笔MRd"
+            ],
+            [
+              "仅N=8",
+              "8×256/1µs",
+              "2.048 GB/s估算上限"
+            ],
+            [
+              "S=512byte",
+              "ceil(8000/512)",
+              "16笔，仍受MRRS/4KB与实现约束"
+            ],
+            [
+              "每笔分2个Cpl",
+              "32笔MRd可能产生64个Cpl",
+              "不是64个可独立释放Tag的读请求"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 25,
+            "detailId": "read-request-mrrs-page-split",
+            "label": "MRRS与4KB双约束"
+          },
+          {
+            "featureId": 22,
+            "detailId": "tag-low8-partition-query",
+            "label": "Tag空间不等于全部可用"
+          }
+        ]
+      },
+      {
+        "id": "r127-backpressure-debug",
+        "title": "反压怎样传递：从AXI RREADY低到PCIe停发，以及死锁边界",
+        "paragraphs": [
+          "典型外发读路径：本地AXI AR→桥拆成MRd→PCIe发出→CplD返回→Tag重组/Composer→本地AXI R。若RREADY持续低，已返回数据堆在桥；桥在空间不足前必须减小新请求的发出或预留额度。已经在链路上的Completion不能靠撤销新AR立即消失，因此需要为在途回包保留空间。具体桥可先完整重组再给AXI R，PCIe收到数据与AXI可见首拍之间会有额外延迟。",
+          "相同AXI ID的多笔请求即使PCIe允许乱序返回，本地响应仍需保持相应顺序。后发B先收到也可能等A完成后才交付，形成Head-of-line阻塞；不是Cpl丢失。优先检查A是否真的结束、Tag匹配/剩余byte、AXI消费者和重排槽，而不是只看B已经到了。",
+          "Native接口又不同：6.50a原TRGT1全局halt或太迟的分类halt可能使NP占住输出流水，挡住解除依赖所需的P，形成潜在死锁。手册要求按类型追踪已grant但未到达包，并提前按包类型阻止出队；类型bit0=P、bit1=NP、bit2=Cpl。halt不是零延迟“本拍说停就没有后续包”，要把流水内的包计入空间。本条件限所引原架构，AXI桥内部接管这些信号，MultiStream另查对应接口。",
+          "排查从应用有效byte/时间开始，再同步记录MRd发出率、占用Tag、Cpl返回/重组进度、各类信用、队列水位和AXI握手。Tag耗尽且Cpl少看远端服务/路由/超时；Cpl多但AXI R少看本地重组、ID顺序或RREADY；NPH停滞看对端请求空间/返还；信用够却不发看本地调度或未来回包空间。这里是推导的排查顺序，不声称所有IP都有相同debug寄存器或事件计数器。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "table": {
+          "columns": [
+            "现象",
+            "优先定位",
+            "边界"
+          ],
+          "rows": [
+            [
+              "Cpl到达但R通道不动",
+              "检查RREADY、Composer完整性、同ID前序",
+              "不立刻判链路故障"
+            ],
+            [
+              "请求不再发出",
+              "查Tag、NPH、回包预留、仲裁",
+              "不能只看一个ready信号"
+            ],
+            [
+              "Native全局halt",
+              "检查流水中NP是否挡住P",
+              "按类型提前关口，预留在途余量"
+            ],
+            [
+              "Bypass Completion",
+              "保证应用按契约全部接收",
+              "不允许照搬可反压S/F逻辑"
+            ],
+            [
+              "看见Ack",
+              "仅链路交付确认",
+              "不表示读完成/内存可见"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 122,
+            "detailId": "r127-buffer-architecture-differences",
+            "label": "先区分接收架构"
+          },
+          {
+            "featureId": 122,
+            "detailId": "r127-buffer-error-ordering-and-sizing",
+            "label": "缓冲/顺序责任"
+          },
+          {
+            "featureId": 121,
+            "detailId": "r126-flit-status-and-readout",
+            "label": "链路延迟测量并非业务完成"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "IDE：Integrity and Data Encryption",

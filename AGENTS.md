@@ -148,3 +148,11 @@ R124: accepted[117, 118], new criteria16, cumulative81/183 and678 criteria;102 u
 R125: accepted[120], new criteria15, cumulative82/183 and693 criteria;101 units/13 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR126[121, 122, 123]; R126 review, daily paused. User authorized R124/R125; independent checks, combined R125 publication.
 
 R125: cumulative82/183 and693criteria;101units/13budget rounds. PTM measurement120 accepted with official5.0 A6,119 consistency blocked on Switch Root; source16 resolved by dialog/capture and ePTM scope, source15 retained. NextR126121/122/123 and mandatory R123-R126 review. Daily paused; original PDFs/RTL private.
+
+R126: accepted[121], new criteria8, cumulative83/183 and701 criteria;100 units/12 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR127[122, 123]; R130 review, daily paused. User authorized R126/R127; independent checks, combined R127 publication.
+
+R126 review: R123-R126 accepted6/62criteria;83/183 and701criteria cumulative,100units/12budget rounds,19tasks open,38source questions with7 resolved. Observed1.5/round vs8.33required;67round extrapolation risk only, no target extension. NextR127122/123,reviewR130,daily paused.
+
+R127: accepted[122, 123], new criteria16, cumulative85/183 and717 criteria;98 units/11 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR128[124, 125, 126, 127]; R130 review, daily paused. User authorized R126/R127; independent checks, combined R127 publication.
+
+R127: task14 6/7 accepted, only119 blocked; cumulative85/183 and717criteria,98units/11budget rounds. Original-vs-MultiStream buffer/credit/order responsibilities and read pipeline completed with explicit product scope. NextR128security124-127,nextsummaryR130,daily paused.
