@@ -142412,16 +142412,450 @@
     "checks": "区分只读诊断与有副作用的测试控制；某模块支持RAS DP不代表同时支持全部RAS DES。",
     "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
     "id": 134,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R134按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-28",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "36.3",
+        "page": 804,
+        "pdfPage": 804,
+        "title": "构建支持与诊断分层",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "36.3.1.2",
+        "page": 805,
+        "pdfPage": 805,
+        "title": "共用/每Lane/VC状态",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "36.3.2",
+        "page": 833,
+        "pdfPage": 833,
+        "title": "注错家族",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "36.3.2.1",
+        "page": 834,
+        "pdfPage": 834,
+        "title": "构建限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "36.3.3.1",
+        "page": 835,
+        "pdfPage": 835,
+        "title": "时间分析",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "36.3.3.1",
+        "page": 837,
+        "pdfPage": 837,
+        "title": "时钟域与吞吐单位",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "36.3.3.2",
+        "page": 838,
+        "pdfPage": 838,
+        "title": "L2与电源门控",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "36.3.3.3",
+        "page": 840,
+        "pdfPage": 840,
+        "title": "事件组",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.35.3",
+        "page": 9059,
+        "pdfPage": 9059,
+        "title": "事件视窗",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.35.3",
+        "page": 9060,
+        "pdfPage": 9060,
+        "title": "选择字段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.35.3",
+        "page": 9061,
+        "pdfPage": 9061,
+        "title": "使能命令",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.35.3",
+        "page": 9062,
+        "pdfPage": 9062,
+        "title": "清除命令",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.35.5",
+        "page": 9064,
+        "pdfPage": 9064,
+        "title": "报告选择与单位",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.35.5",
+        "page": 9066,
+        "pdfPage": 9066,
+        "title": "时长和启动",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.35.6",
+        "page": 9067,
+        "pdfPage": 9067,
+        "title": "下一窗口清结果",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "R134核Controller6.50a §36.3及USP视图关键视窗字段，按产品范围解释；非通用PCIe寄存器表或全内部调试信号穷举。",
+    "details": [
+      {
+        "id": "r134-des-scope-and-observation",
+        "title": "RAS DES是什么：厂商Debug、注错、统计与标准能力分开",
+        "paragraphs": [
+          "本页绑定Controller6.50a的RAS DES实现，不是PCI-SIG统一的RAS寄存器。它以厂商扩展组织Debug、Error Injection和Statistics；软件应先识别Vendor/VSEC及构建版本，再解释字段。不同PF可能访问同一组共享状态，不能把每个Function看到一次当成多份独立计数。",
+          "基本DES和高级Silicon Debug、事件计数、时间分析、注错分别有构建选项；不能在运行时写一个Enable就补出未综合的硬件。LTSSM Monitor有独立支持边界，一些原有状态输出也不依赖全部DES选项。公开笔记只解释使用关系和关键选择语义，完整产品寄存器视图按本地手册定位，不复制供应商原表或寄存器转储。",
+          "Debug状态可分公共、每Lane、每VC及LTSSM/PM/Replay/FC/EQ等观察面。相同现象要关联观察：LinkUp不等于事务已排空，队列非空不等于链路错误，收到UpdateFC也不表示应用读请求完成。先明确事件对应层和采样时刻，再解释数值。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "table": {
+          "columns": [
+            "类别",
+            "用途",
+            "边界"
+          ],
+          "rows": [
+            [
+              "Debug",
+              "状态/探针/跟踪",
+              "可能是快照或特定触发视图"
+            ],
+            [
+              "Error Injection",
+              "主动制造指定故障",
+              "与标准0034h机制分开"
+            ],
+            [
+              "Event Counter",
+              "按Group/Event/Lane选择",
+              "不同组位宽和单位不同"
+            ],
+            [
+              "Time Based Analysis",
+              "指定窗口的驻留时间/吞吐",
+              "时钟域和窗口必须一致"
+            ],
+            [
+              "共享PF访问",
+              "同一硬件视图可能被多个Function看见",
+              "需协调软件所有权"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 135,
+            "detailId": "trace-three-error-ledgers",
+            "label": "已有LTSSM跟踪"
+          },
+          {
+            "featureId": 133,
+            "detailId": "r133-injection-test-and-version",
+            "label": "标准注错区别"
+          }
+        ]
+      },
+      {
+        "id": "r134-event-counter-viewport",
+        "title": "事件计数怎么读：先选坐标、再使能，清除不是普通RW状态",
+        "paragraphs": [
+          "所核USP产品视图把Group放控制字[27:24]、Event放[23:16]、Lane放[11:8]，它们共同选择数据视窗。公共Lane组与逐Lane组不能混用；一个数据寄存器读32bit，并不表示底层每种事件都是32bit计数，手册另列4bit、8bit或RAM中32bit等组。",
+          "控制[4:2]是写命令而非稳定Enable位：编码1/3针对当前事件关/开，5/7针对全部事件关/开，读回0。因此轮询这个字段是否为1会误判。控制bit7用于所选事件状态；[1:0]的清除命令1清当前、3清全部，0/2不改变，读回同样0。仅修改视窗选择时须避免无意携带旧的全局清除/使能命令。",
+          "建议把选择、读取和必要的清除作为同一软件临界区，记录产品版本、组号、事件号、Lane、计数位宽和时间窗。EBUF、Decode、Replay、FC Timeout、低功耗进入及收发TLP等事件的适用编码和模式不同；这里只给使用方法，不把每个事件号照搬为所有PCIe设备通用。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "table": {
+          "columns": [
+            "步骤",
+            "语义",
+            "容易误解"
+          ],
+          "rows": [
+            [
+              "选择坐标",
+              "Group/Event/Lane分别选定",
+              "不是三个可相加的计数"
+            ],
+            [
+              "开关命令",
+              "当前事件或全部事件的独立命令",
+              "读回0不代表全关"
+            ],
+            [
+              "清除命令",
+              "当前/全部，先保存证据",
+              "不能无意清掉其他使用者结果"
+            ],
+            [
+              "数据视窗",
+              "按当前坐标读结果",
+              "32bit读口不等于32bit有效计数"
+            ],
+            [
+              "并发软件",
+              "协调视窗选择和读清",
+              "PF共享硬件时尤其注意"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r134-time-analysis-window-units",
+        "title": "时间分析：同一读口可能是周期、16Byte数据量或辅助时钟驻留",
+        "paragraphs": [
+          "所核产品Time Based Analysis控制有报告选择[31:24]、时长选择[15:8]及bit0 Start/Stop。启动会开始或重启窗口，定时结束会自动清Start；下一次测量启动会清前次结果。手动窗口和预设窗口要分别理解，不把Start读回0当成所有调试引擎统一空闲。",
+          "时间状态要按对应core_clk或aux_clk周期解释，不能统一乘固定PCIe UI。数据吞吐类按每计数16byte换算，然后除以实际窗口时间得到byte/s；例如计数1,000,000、窗口1s表示16MB/s十进制有效口径，不是16Mb/s，也不是原始GT/s。窗口内链宽/速率/模式变化应一并记录。",
+          "手册图中的状态范围并非互斥桶：某些L1辅助时钟计数覆盖L1.1/L1.2，某些事件在NFM表示Tx/Rx L0s组合、FM表示L0p，不能把所有读数求和强制要求等于100%。退出L2会清分析结果；分析中电源门控行为未定义，相关RAM断电丢数据，PMC不替它保存。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "table": {
+          "columns": [
+            "项目",
+            "计算/动作",
+            "限制"
+          ],
+          "rows": [
+            [
+              "时间驻留",
+              "事件周期×对应周期长度",
+              "核core/aux时钟及重叠状态"
+            ],
+            [
+              "吞吐",
+              "计数×16byte÷窗口秒数",
+              "注明Tx/Rx及Payload口径"
+            ],
+            [
+              "下一次Start",
+              "前结果清除并新测量",
+              "先保存再重启"
+            ],
+            [
+              "L2退出",
+              "结果清除",
+              "不能跨L2做无条件差分"
+            ],
+            [
+              "电源门控",
+              "活动分析未定义/结果RAM丢失",
+              "不能当无错误零计数"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r134-des-injection-and-workflow",
+        "title": "DES注错与统计的使用闭环：先留基线，再验证结果和恢复",
+        "paragraphs": [
+          "6.50a的厂商注错覆盖CRC、序号、DLLP、符号/同步头、FC更新、重复/Nullify及指定TLP修改等家族；不等同标准Flit FEC注错的类型编码。具体构建可能不支持某些符号方式，Error Injection6还要求相应数据保护和地址翻译构建选项关闭；不能只看寄存器存在就推全部方式可用。",
+          "使用顺序是识别版本/构建、选观察点和有限测试目标、保存基线、启动指定机制、同时收集状态/事件/AER/重放/应用结果、停止并恢复。统计增加只能证明发生了所定义事件，注错使能读回也不能证明端到端恢复通过。这里未操作真实PCIe设备，也不提供无版本的一键寄存器脚本。",
+          "公开范围是该产品DES职责、关键视窗与窗口语义及限制；完整Silicon Debug内部强制路径、全部事件码/厂商位图和芯片安全验证继续以具体实现资料为准。Gen1～Gen7标准能力演进另查标准专题，不能把本产品选项当协议强制功能。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "table": {
+          "columns": [
+            "阶段",
+            "动作",
+            "边界"
+          ],
+          "rows": [
+            [
+              "先发现",
+              "Vendor/VSEC、版本和构建支持",
+              "不能直接用固定全局地址"
+            ],
+            [
+              "再观察",
+              "事件/时间/状态分别选点",
+              "保留单位和窗口"
+            ],
+            [
+              "有目的注错",
+              "选择本实现支持的家族",
+              "标准0034h另配"
+            ],
+            [
+              "判断",
+              "关联日志、重放、报告、业务结果",
+              "不以单个计数判成功"
+            ],
+            [
+              "恢复",
+              "停止、留证、清理/还原",
+              "共享计数需协调其他使用者"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 132,
+            "detailId": "r132-error-counter-decay",
+            "label": "标准衰减计数不同"
+          },
+          {
+            "featureId": 133,
+            "detailId": "r133-injection-capability-control1",
+            "label": "标准Flit注错"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "LTSSM / Event / Error Counters / Trace",
@@ -150338,14 +150772,14 @@
     "checks": "先按能力链识别结构和版本，再解释字段；",
     "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
     "id": 142,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R135按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "7.7.3",
@@ -150368,9 +150802,644 @@
         "pdfPage": 1029,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.3",
+        "page": 1027,
+        "pdfPage": 1027,
+        "title": "Secondary支持条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.3.2",
+        "page": 1029,
+        "pdfPage": 1029,
+        "title": "旧LinkControl3",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.3",
+        "page": 1180,
+        "pdfPage": 1180,
+        "title": "Secondary角色",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.3.2",
+        "page": 1182,
+        "pdfPage": 1182,
+        "title": "LinkControl3字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.3.3",
+        "page": 1183,
+        "pdfPage": 1183,
+        "title": "SKP向量/Lane错误",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.3.4",
+        "page": 1184,
+        "pdfPage": 1184,
+        "title": "8GT每Lane结构",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.5",
+        "page": 1191,
+        "pdfPage": 1191,
+        "title": "16GT/FM8例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.5.2",
+        "page": 1193,
+        "pdfPage": 1193,
+        "title": "0026h能力和保留DW",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.5.4",
+        "page": 1194,
+        "pdfPage": 1194,
+        "title": "16GT状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.5.5",
+        "page": 1195,
+        "pdfPage": 1195,
+        "title": "共享Parity状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.5.6",
+        "page": 1196,
+        "pdfPage": 1196,
+        "title": "Retimer不存在时未定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.6",
+        "page": 1198,
+        "pdfPage": 1198,
+        "title": "32GT支持/Parity",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.6.1",
+        "page": 1199,
+        "pdfPage": 1199,
+        "title": "002Ah及布局",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.6.2",
+        "page": 1200,
+        "pdfPage": 1200,
+        "title": "32GT独有能力",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.6.3",
+        "page": 1201,
+        "pdfPage": 1201,
+        "title": "Disable反向控制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.6.4",
+        "page": 1202,
+        "pdfPage": 1202,
+        "title": "32GT独有状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.6.9",
+        "page": 1207,
+        "pdfPage": 1207,
+        "title": "32GT每Lane起点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.7.1",
+        "page": 1209,
+        "pdfPage": 1209,
+        "title": "0031h及布局",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.7.2",
+        "page": 1210,
+        "pdfPage": 1210,
+        "title": "64GT保留DW",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.7.4",
+        "page": 1211,
+        "pdfPage": 1211,
+        "title": "64GT状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.7.5",
+        "page": 1212,
+        "pdfPage": 1212,
+        "title": "64GT每Lane起点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.8",
+        "page": 1213,
+        "pdfPage": 1213,
+        "title": "128GT支持条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.8.1",
+        "page": 1214,
+        "pdfPage": 1214,
+        "title": "0039h及共享Parity",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.8.2",
+        "page": 1215,
+        "pdfPage": 1215,
+        "title": "新Vector2",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.8.4",
+        "page": 1216,
+        "pdfPage": 1216,
+        "title": "128GT状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.8.5",
+        "page": 1217,
+        "pdfPage": 1217,
+        "title": "默认Lane索引及数量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "R135核Base6.0 Secondary及Base7.0五组能力，定义查询布局/角色/模式与状态区别；完整训练/编码复用现有专题，不冒充全部早期ECN差分。",
+    "details": [
+      {
+        "id": "r135-speed-capability-map",
+        "title": "先找哪组能力：Secondary、16/32/64/128GT/s与当前链路状态",
+        "paragraphs": [
+          "这些扩展能力承载训练/均衡/每Lane状态，不是五个可以任意写速率的接口。当前速率、协商宽度与目标速率仍要结合PCIe基础Capability的Link Status/Control2；扩展能力存在不代表当前正在该速度运行，更不等于该速度训练成功。",
+          "通过配置空间Extended Capability链按ID发现，偏移均相对各自能力起点。Secondary用于8GT及所列Lower SKP/Lane错误条件，16/32/64/128GT能力各有支持与允许存在的条件；USP多Function通常仅Function0提供对应能力，不把VF/任意Function都当独立物理Port。",
+          "所列位置按Base7.0逐节绑定；6.0已有Secondary同ID和基本布局。Gen1/2的基础链路训练不需要把这些高速每Lane均衡寄存器伪造出来；Gen3～Gen7的机制及首次ECN历史继续由已有训练/均衡专题解释，这里是寄存器查询地图，不宣称所有中间修订字段完全相同。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "table": {
+          "columns": [
+            "能力",
+            "ID",
+            "主要位置"
+          ],
+          "rows": [
+            [
+              "Secondary",
+              "0019h",
+              "+04 Control3，+08 Lane Error，+0C起8GT每Lane"
+            ],
+            [
+              "16GT",
+              "0026h",
+              "+0C Status；+10/14/18 Parity；+20起Lane"
+            ],
+            [
+              "32GT",
+              "002Ah",
+              "+04能力/+08控制；+10～1C Modified TS；+20起Lane"
+            ],
+            [
+              "64GT",
+              "0031h",
+              "+04/+08保留；+0C Status；+10起Lane"
+            ],
+            [
+              "128GT",
+              "0039h",
+              "+04 Vector2；+08保留；+0C Status；+10起Lane"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 3,
+            "detailId": "speed-supported-target-current",
+            "label": "速率协商"
+          },
+          {
+            "featureId": 5,
+            "detailId": "speed-three-variables",
+            "label": "Retrain流程"
+          },
+          {
+            "featureId": 9,
+            "detailId": "block-1",
+            "label": "均衡机制"
+          }
+        ]
+      },
+      {
+        "id": "r135-secondary-controls-and-lane-errors",
+        "title": "Secondary逐字段：Control3触发条件、Lane错误与8GT条目",
+        "paragraphs": [
+          "Control3 bit0 Perform Equalization要与Target Link Speed≥8GT/s及Retrain Link写1结合，不能只写该位就声称触发完成。DSP与支持Crosslink的USP按角色使用；不支持Crosslink的USP相应字段为保留。bit1为所列均衡请求中断使能，具体哪种速率状态触发以版本原表为准，不自动扩成全部未来速率。",
+          "[15:9]是Lower SKP Generation向量，字段内bit0～6对应2.5/5/8/16/32/64/128GT/s。它控制相应支持条件下按SRNS频率安排SKP，不能用不支持的向量位，不能把它当切换Reference Clock架构的开关。",
+          "Lane Error是32bit RW1CS位图，按Physical Lane Number，超Maximum Width的上位为0。先存证再写1清；它是发生过Lane-based error的记录，不是错误次数、当前物理线是否坏或完整FEC故障定位。8GT均衡条目是每Lane16bit，+0Ch+2×Lane，不能用后代一Lane一byte的步幅读取。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "table": {
+          "columns": [
+            "位置",
+            "含义",
+            "条件"
+          ],
+          "rows": [
+            [
+              "Control3[0]",
+              "Perform EQ",
+              "与Retrain/Target速度和角色共同门控"
+            ],
+            [
+              "Control3[1]",
+              "EQ Request IRQ Enable",
+              "按本版列出的状态与向量"
+            ],
+            [
+              "Control3[8:2]/[31:16]",
+              "保留",
+              "RsvdP"
+            ],
+            [
+              "Control3[15:9]",
+              "Lower SKP向量",
+              "逐位核支持和当前速度"
+            ],
+            [
+              "Lane Error +08h[31:0]",
+              "每Physical Lane错误标记",
+              "RW1CS，非计数"
+            ],
+            [
+              "8GT Lane[3:0]/[6:4]",
+              "DSP Tx Preset / Rx Hint",
+              "bit7保留"
+            ],
+            [
+              "8GT Lane[11:8]/[14:12]",
+              "USP Tx Preset / Rx Hint",
+              "bit15保留，角色影响属性"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r135-rate-status-and-modified-ts",
+        "title": "16/32/64/128GT状态对照：同偏移不等于同bit语义",
+        "paragraphs": [
+          "各能力+0Ch低5位基本为EQ Complete、Phase1/2/3 Successful、Link EQ Request；前四项是状态，Request为RW1CS类，不应把读到1解释为软件已经执行Retrain。状态需结合当次训练、当前速度和复位边界；未实现速度下的非Header寄存器还可能未定义。",
+          "16GT +04/+08全部保留；64GT同样保留，不能对名为Control的空DW臆造Enable。32GT则有独有控制：能力bit0支持最高共同NRZ速率绕过中间均衡，bit1支持No EQ Needed，bit8/9/10分别支持Modified TS三种用途。Control bit0/1是Disable，写1是禁止相关优化，不是打开；[10:8]在DSP选择下一次进L0所用模式，选未支持模式未定义。",
+          "32GT Status bit5为Modified TS Received，[7:6]为Received ELBC，bit8/9/10分别是Precoding On、Precode Request、No EQ Needed Received；64/128GT把后三项放在bit5/6/7。Modified TS数据DW按收到/发送和Usage解析，不能将保留0当接收成功，完整训练集字段复用已有TS专题。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "table": {
+          "columns": [
+            "字段",
+            "含义",
+            "注意"
+          ],
+          "rows": [
+            [
+              "各速率Status[0]",
+              "EQ完成",
+              "状态，不是吞吐保证"
+            ],
+            [
+              "各速率Status[3:1]",
+              "Phase1/2/3成功",
+              "需看训练模式和过程"
+            ],
+            [
+              "各速率Status[4]",
+              "EQ Request",
+              "RW1CS类请求状态"
+            ],
+            [
+              "16GT Status[31:5]",
+              "保留0",
+              "别套32GT额外位"
+            ],
+            [
+              "32GT Status[5]/[7:6]",
+              "Modified TS / Received ELBC",
+              "独有附加状态"
+            ],
+            [
+              "32GT Status[10:8]",
+              "NoEQ / PrecodeReq / PrecodingOn",
+              "与64/128位位置不同"
+            ],
+            [
+              "64/128 Status[7:5]",
+              "NoEQ / PrecodeReq / PrecodingOn",
+              "高位RsvdZ"
+            ],
+            [
+              "32GT Control[1:0]",
+              "Disable语义",
+              "0允许协商，1禁止相应优化"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 4,
+            "detailId": "rx-l0s-fts",
+            "label": "训练集详情"
+          }
+        ]
+      },
+      {
+        "id": "r135-parity-lane-and-gen7-vector",
+        "title": "共享Parity、Lane数组和Gen7 Vector2：几个最容易查错的位置",
+        "paragraphs": [
+          "16GT能力中的Local/First Retimer/Second Retimer Parity寄存器也承载32/64/128GT以及FM8GT对应错误。为了按速度统计应在切速时先保存再按规定清除；能力名不是其适用速度的封闭清单。无Retimer时相应寄存器值未定义，不能据默认0证明不存在Retimer错误。",
+          "16/32GT每Lane条目从+20h开始，64/128从+10h开始，每项8bit，低4bit DSP Tx Preset、高4bit USP Tx Preset；按DW粒度实现，x1仍可占一DW，但超Maximum Width的条目未定义。8GT每项16bit且含Rx Hint，不能复用偏移公式。",
+          "7.0对128GT特别写默认Lane编号不随训练中的宽度/反转协商变化；其他所引速率使用Physical Lane编号。读取时保存编号口径，不能把UI显示的逻辑Lane顺序盲套所有数组。",
+          "128GT +04h的[7:0]为Supported Speeds Vector2，[15:8]和[23:16]分别为Lower SKP生成/接收Vector2，目前各低bit对应128GT、各高7bit保留，[31:24]保留。它扩展旧向量，而不是将旧向量数值直接加倍解释；+08h仍保留。本页不把Gen7新增位倒填6.0，也不由保留字段推测未来速率。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "地址/bit",
+            "边界"
+          ],
+          "rows": [
+            [
+              "Parity三DW",
+              "16GT能力+10/+14/+18",
+              "可能记录多种实际速度"
+            ],
+            [
+              "8GT数组",
+              "Secondary+0C+2×Lane",
+              "16bit，含Rx Hint"
+            ],
+            [
+              "16/32数组",
+              "对应能力+20+Lane",
+              "每项8bit，DW粒度"
+            ],
+            [
+              "64/128数组",
+              "对应能力+10+Lane",
+              "不能沿用+20起点"
+            ],
+            [
+              "128GT Vector2[0]",
+              "支持128GT",
+              "[7:1]保留"
+            ],
+            [
+              "Vector2[8]/[16]",
+              "128GT Lower SKP生成/接收支持",
+              "各组其余位保留"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 136,
+            "detailId": "margin-register-explorer",
+            "label": "Lane测量另属0027h"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "AXI Subordinate / AXI Manager桥",

@@ -1,7 +1,5 @@
 {
   "nextFeatureIds": [
-    134,
-    142,
     140
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
@@ -49,11 +47,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-28",
-    "edition": "2026-10-28-r133",
+    "edition": "2026-10-28-r135",
     "featureIds": [
-      133
+      142
     ],
-    "nextTrack": "R134优先134 RAS DES、142速率能力和140 MCTP实际缺口，并完成R131～R134四轮总结；不重复核已完整条目凑数量。"
+    "nextTrack": "R136 MCTP；R138预算总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -343,14 +341,14 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 1,
+    "nextReviewAfterRounds": 3,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 75,
-    "lastReviewEdition": "2026-10-28-r130",
-    "lastReviewId": "r127-r130",
-    "nextExpectedReview": "R134（R131～R134四轮总结）"
+    "completedTotal": 77,
+    "lastReviewEdition": "2026-10-28-r134",
+    "lastReviewId": "r131-r134",
+    "nextExpectedReview": "R138（R135～R138四轮总结及原计划预算结束检查）"
   },
   "stageReviews": [
     {
@@ -1284,10 +1282,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 43,
-    "remainingPlannedRounds": 5,
-    "nextRound": 134,
-    "nextReviewRound": 134,
+    "completedRounds": 45,
+    "remainingPlannedRounds": 3,
+    "nextRound": 136,
+    "nextReviewRound": 138,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -17341,47 +17339,191 @@
         "featureId": 134,
         "group": "诊断、测试与管理",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 134,
+            "evidence": [
+              {
+                "href": "#feature/134/detail/r134-des-scope-and-observation",
+                "label": "RAS DES是什么：厂商Debug、注错、统计与标准能力分开"
+              },
+              {
+                "href": "#feature/134/detail/r134-event-counter-viewport",
+                "label": "事件计数怎么读：先选坐标、再使能，清除不是普通RW状态"
+              },
+              {
+                "href": "#feature/134/detail/r134-time-analysis-window-units",
+                "label": "时间分析：同一读口可能是周期、16Byte数据量或辅助时钟驻留"
+              },
+              {
+                "href": "#feature/134/detail/r134-des-injection-and-workflow",
+                "label": "DES注错与统计的使用闭环：先留基线，再验证结果和恢复"
+              }
+            ],
+            "note": "核产品6.50a架构与关键视窗寄存器的选择/读/清/使能语义，事件位宽/时钟/统计窗口及共享PF/功耗边界明确；厂商内部全集和实机验证不冒充标准功能。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 134,
+            "evidence": [
+              {
+                "href": "#feature/134/detail/r134-des-scope-and-observation",
+                "label": "RAS DES是什么：厂商Debug、注错、统计与标准能力分开"
+              },
+              {
+                "href": "#feature/134/detail/r134-event-counter-viewport",
+                "label": "事件计数怎么读：先选坐标、再使能，清除不是普通RW状态"
+              },
+              {
+                "href": "#feature/134/detail/r134-time-analysis-window-units",
+                "label": "时间分析：同一读口可能是周期、16Byte数据量或辅助时钟驻留"
+              },
+              {
+                "href": "#feature/134/detail/r134-des-injection-and-workflow",
+                "label": "DES注错与统计的使用闭环：先留基线，再验证结果和恢复"
+              }
+            ],
+            "note": "核产品6.50a架构与关键视窗寄存器的选择/读/清/使能语义，事件位宽/时钟/统计窗口及共享PF/功耗边界明确；厂商内部全集和实机验证不冒充标准功能。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 134,
+            "evidence": [
+              {
+                "href": "#feature/134/detail/r134-des-scope-and-observation",
+                "label": "RAS DES是什么：厂商Debug、注错、统计与标准能力分开"
+              },
+              {
+                "href": "#feature/134/detail/r134-event-counter-viewport",
+                "label": "事件计数怎么读：先选坐标、再使能，清除不是普通RW状态"
+              },
+              {
+                "href": "#feature/134/detail/r134-time-analysis-window-units",
+                "label": "时间分析：同一读口可能是周期、16Byte数据量或辅助时钟驻留"
+              },
+              {
+                "href": "#feature/134/detail/r134-des-injection-and-workflow",
+                "label": "DES注错与统计的使用闭环：先留基线，再验证结果和恢复"
+              }
+            ],
+            "note": "核产品6.50a架构与关键视窗寄存器的选择/读/清/使能语义，事件位宽/时钟/统计窗口及共享PF/功耗边界明确；厂商内部全集和实机验证不冒充标准功能。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 134,
+            "evidence": [
+              {
+                "href": "#feature/134/detail/r134-des-scope-and-observation",
+                "label": "RAS DES是什么：厂商Debug、注错、统计与标准能力分开"
+              },
+              {
+                "href": "#feature/134/detail/r134-event-counter-viewport",
+                "label": "事件计数怎么读：先选坐标、再使能，清除不是普通RW状态"
+              },
+              {
+                "href": "#feature/134/detail/r134-time-analysis-window-units",
+                "label": "时间分析：同一读口可能是周期、16Byte数据量或辅助时钟驻留"
+              },
+              {
+                "href": "#feature/134/detail/r134-des-injection-and-workflow",
+                "label": "DES注错与统计的使用闭环：先留基线，再验证结果和恢复"
+              }
+            ],
+            "note": "核产品6.50a架构与关键视窗寄存器的选择/读/清/使能语义，事件位宽/时钟/统计窗口及共享PF/功耗边界明确；厂商内部全集和实机验证不冒充标准功能。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 134,
+            "evidence": [
+              {
+                "href": "#feature/134/detail/r134-des-scope-and-observation",
+                "label": "RAS DES是什么：厂商Debug、注错、统计与标准能力分开"
+              },
+              {
+                "href": "#feature/134/detail/r134-event-counter-viewport",
+                "label": "事件计数怎么读：先选坐标、再使能，清除不是普通RW状态"
+              },
+              {
+                "href": "#feature/134/detail/r134-time-analysis-window-units",
+                "label": "时间分析：同一读口可能是周期、16Byte数据量或辅助时钟驻留"
+              },
+              {
+                "href": "#feature/134/detail/r134-des-injection-and-workflow",
+                "label": "DES注错与统计的使用闭环：先留基线，再验证结果和恢复"
+              }
+            ],
+            "note": "核产品6.50a架构与关键视窗寄存器的选择/读/清/使能语义，事件位宽/时钟/统计窗口及共享PF/功耗边界明确；厂商内部全集和实机验证不冒充标准功能。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 134,
+            "evidence": [
+              {
+                "href": "#feature/134/detail/r134-des-scope-and-observation",
+                "label": "RAS DES是什么：厂商Debug、注错、统计与标准能力分开"
+              },
+              {
+                "href": "#feature/134/detail/r134-event-counter-viewport",
+                "label": "事件计数怎么读：先选坐标、再使能，清除不是普通RW状态"
+              },
+              {
+                "href": "#feature/134/detail/r134-time-analysis-window-units",
+                "label": "时间分析：同一读口可能是周期、16Byte数据量或辅助时钟驻留"
+              },
+              {
+                "href": "#feature/134/detail/r134-des-injection-and-workflow",
+                "label": "DES注错与统计的使用闭环：先留基线，再验证结果和恢复"
+              }
+            ],
+            "note": "核产品6.50a架构与关键视窗寄存器的选择/读/清/使能语义，事件位宽/时钟/统计窗口及共享PF/功耗边界明确；厂商内部全集和实机验证不冒充标准功能。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 134,
+            "evidence": [
+              {
+                "href": "#feature/134/detail/r134-des-scope-and-observation",
+                "label": "RAS DES是什么：厂商Debug、注错、统计与标准能力分开"
+              },
+              {
+                "href": "#feature/134/detail/r134-event-counter-viewport",
+                "label": "事件计数怎么读：先选坐标、再使能，清除不是普通RW状态"
+              },
+              {
+                "href": "#feature/134/detail/r134-time-analysis-window-units",
+                "label": "时间分析：同一读口可能是周期、16Byte数据量或辅助时钟驻留"
+              },
+              {
+                "href": "#feature/134/detail/r134-des-injection-and-workflow",
+                "label": "DES注错与统计的使用闭环：先留基线，再验证结果和恢复"
+              }
+            ],
+            "note": "核产品6.50a架构与关键视窗寄存器的选择/读/清/使能语义，事件位宽/时钟/统计窗口及共享PF/功耗边界明确；厂商内部全集和实机验证不冒充标准功能。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 134,
+            "evidence": [
+              {
+                "href": "#feature/134/detail/r134-des-scope-and-observation",
+                "label": "RAS DES是什么：厂商Debug、注错、统计与标准能力分开"
+              },
+              {
+                "href": "#feature/134/detail/r134-event-counter-viewport",
+                "label": "事件计数怎么读：先选坐标、再使能，清除不是普通RW状态"
+              },
+              {
+                "href": "#feature/134/detail/r134-time-analysis-window-units",
+                "label": "时间分析：同一读口可能是周期、16Byte数据量或辅助时钟驻留"
+              },
+              {
+                "href": "#feature/134/detail/r134-des-injection-and-workflow",
+                "label": "DES注错与统计的使用闭环：先留基线，再验证结果和恢复"
+              }
+            ],
+            "note": "核产品6.50a架构与关键视窗寄存器的选择/读/清/使能语义，事件位宽/时钟/统计窗口及共享PF/功耗边界明确；厂商内部全集和实机验证不冒充标准功能。"
           }
         },
         "baseline": {
@@ -17392,14 +17534,15 @@
           "vendor-debug"
         ],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核产品6.50a架构与关键视窗寄存器的选择/读/清/使能语义，事件位宽/时钟/统计窗口及共享PF/功耗边界明确；厂商内部全集和实机验证不冒充标准功能。",
         "taskId": "v1-task-16",
         "requiredTaskIds": [
           "v1-task-16",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 134
       },
       {
         "id": "v1-feature-135",
@@ -18030,47 +18173,191 @@
         "featureId": 142,
         "group": "诊断、测试与管理",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 135,
+            "evidence": [
+              {
+                "href": "#feature/142/detail/r135-speed-capability-map",
+                "label": "先找哪组能力：Secondary、16/32/64/128GT/s与当前链路状态"
+              },
+              {
+                "href": "#feature/142/detail/r135-secondary-controls-and-lane-errors",
+                "label": "Secondary逐字段：Control3触发条件、Lane错误与8GT条目"
+              },
+              {
+                "href": "#feature/142/detail/r135-rate-status-and-modified-ts",
+                "label": "16/32/64/128GT状态对照：同偏移不等于同bit语义"
+              },
+              {
+                "href": "#feature/142/detail/r135-parity-lane-and-gen7-vector",
+                "label": "共享Parity、Lane数组和Gen7 Vector2：几个最容易查错的位置"
+              }
+            ],
+            "note": "核五组标准能力ID/支持条件/布局/角色/有效性，逐字段区分Secondary、16/32/64/128GT和Mode/编号，连接已有训练/均衡正文；未将Capability存在、EQ状态与当前速率混同。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 135,
+            "evidence": [
+              {
+                "href": "#feature/142/detail/r135-speed-capability-map",
+                "label": "先找哪组能力：Secondary、16/32/64/128GT/s与当前链路状态"
+              },
+              {
+                "href": "#feature/142/detail/r135-secondary-controls-and-lane-errors",
+                "label": "Secondary逐字段：Control3触发条件、Lane错误与8GT条目"
+              },
+              {
+                "href": "#feature/142/detail/r135-rate-status-and-modified-ts",
+                "label": "16/32/64/128GT状态对照：同偏移不等于同bit语义"
+              },
+              {
+                "href": "#feature/142/detail/r135-parity-lane-and-gen7-vector",
+                "label": "共享Parity、Lane数组和Gen7 Vector2：几个最容易查错的位置"
+              }
+            ],
+            "note": "核五组标准能力ID/支持条件/布局/角色/有效性，逐字段区分Secondary、16/32/64/128GT和Mode/编号，连接已有训练/均衡正文；未将Capability存在、EQ状态与当前速率混同。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 135,
+            "evidence": [
+              {
+                "href": "#feature/142/detail/r135-speed-capability-map",
+                "label": "先找哪组能力：Secondary、16/32/64/128GT/s与当前链路状态"
+              },
+              {
+                "href": "#feature/142/detail/r135-secondary-controls-and-lane-errors",
+                "label": "Secondary逐字段：Control3触发条件、Lane错误与8GT条目"
+              },
+              {
+                "href": "#feature/142/detail/r135-rate-status-and-modified-ts",
+                "label": "16/32/64/128GT状态对照：同偏移不等于同bit语义"
+              },
+              {
+                "href": "#feature/142/detail/r135-parity-lane-and-gen7-vector",
+                "label": "共享Parity、Lane数组和Gen7 Vector2：几个最容易查错的位置"
+              }
+            ],
+            "note": "核五组标准能力ID/支持条件/布局/角色/有效性，逐字段区分Secondary、16/32/64/128GT和Mode/编号，连接已有训练/均衡正文；未将Capability存在、EQ状态与当前速率混同。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 135,
+            "evidence": [
+              {
+                "href": "#feature/142/detail/r135-speed-capability-map",
+                "label": "先找哪组能力：Secondary、16/32/64/128GT/s与当前链路状态"
+              },
+              {
+                "href": "#feature/142/detail/r135-secondary-controls-and-lane-errors",
+                "label": "Secondary逐字段：Control3触发条件、Lane错误与8GT条目"
+              },
+              {
+                "href": "#feature/142/detail/r135-rate-status-and-modified-ts",
+                "label": "16/32/64/128GT状态对照：同偏移不等于同bit语义"
+              },
+              {
+                "href": "#feature/142/detail/r135-parity-lane-and-gen7-vector",
+                "label": "共享Parity、Lane数组和Gen7 Vector2：几个最容易查错的位置"
+              }
+            ],
+            "note": "核五组标准能力ID/支持条件/布局/角色/有效性，逐字段区分Secondary、16/32/64/128GT和Mode/编号，连接已有训练/均衡正文；未将Capability存在、EQ状态与当前速率混同。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 135,
+            "evidence": [
+              {
+                "href": "#feature/142/detail/r135-speed-capability-map",
+                "label": "先找哪组能力：Secondary、16/32/64/128GT/s与当前链路状态"
+              },
+              {
+                "href": "#feature/142/detail/r135-secondary-controls-and-lane-errors",
+                "label": "Secondary逐字段：Control3触发条件、Lane错误与8GT条目"
+              },
+              {
+                "href": "#feature/142/detail/r135-rate-status-and-modified-ts",
+                "label": "16/32/64/128GT状态对照：同偏移不等于同bit语义"
+              },
+              {
+                "href": "#feature/142/detail/r135-parity-lane-and-gen7-vector",
+                "label": "共享Parity、Lane数组和Gen7 Vector2：几个最容易查错的位置"
+              }
+            ],
+            "note": "核五组标准能力ID/支持条件/布局/角色/有效性，逐字段区分Secondary、16/32/64/128GT和Mode/编号，连接已有训练/均衡正文；未将Capability存在、EQ状态与当前速率混同。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 135,
+            "evidence": [
+              {
+                "href": "#feature/142/detail/r135-speed-capability-map",
+                "label": "先找哪组能力：Secondary、16/32/64/128GT/s与当前链路状态"
+              },
+              {
+                "href": "#feature/142/detail/r135-secondary-controls-and-lane-errors",
+                "label": "Secondary逐字段：Control3触发条件、Lane错误与8GT条目"
+              },
+              {
+                "href": "#feature/142/detail/r135-rate-status-and-modified-ts",
+                "label": "16/32/64/128GT状态对照：同偏移不等于同bit语义"
+              },
+              {
+                "href": "#feature/142/detail/r135-parity-lane-and-gen7-vector",
+                "label": "共享Parity、Lane数组和Gen7 Vector2：几个最容易查错的位置"
+              }
+            ],
+            "note": "核五组标准能力ID/支持条件/布局/角色/有效性，逐字段区分Secondary、16/32/64/128GT和Mode/编号，连接已有训练/均衡正文；未将Capability存在、EQ状态与当前速率混同。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 135,
+            "evidence": [
+              {
+                "href": "#feature/142/detail/r135-speed-capability-map",
+                "label": "先找哪组能力：Secondary、16/32/64/128GT/s与当前链路状态"
+              },
+              {
+                "href": "#feature/142/detail/r135-secondary-controls-and-lane-errors",
+                "label": "Secondary逐字段：Control3触发条件、Lane错误与8GT条目"
+              },
+              {
+                "href": "#feature/142/detail/r135-rate-status-and-modified-ts",
+                "label": "16/32/64/128GT状态对照：同偏移不等于同bit语义"
+              },
+              {
+                "href": "#feature/142/detail/r135-parity-lane-and-gen7-vector",
+                "label": "共享Parity、Lane数组和Gen7 Vector2：几个最容易查错的位置"
+              }
+            ],
+            "note": "核五组标准能力ID/支持条件/布局/角色/有效性，逐字段区分Secondary、16/32/64/128GT和Mode/编号，连接已有训练/均衡正文；未将Capability存在、EQ状态与当前速率混同。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 135,
+            "evidence": [
+              {
+                "href": "#feature/142/detail/r135-speed-capability-map",
+                "label": "先找哪组能力：Secondary、16/32/64/128GT/s与当前链路状态"
+              },
+              {
+                "href": "#feature/142/detail/r135-secondary-controls-and-lane-errors",
+                "label": "Secondary逐字段：Control3触发条件、Lane错误与8GT条目"
+              },
+              {
+                "href": "#feature/142/detail/r135-rate-status-and-modified-ts",
+                "label": "16/32/64/128GT状态对照：同偏移不等于同bit语义"
+              },
+              {
+                "href": "#feature/142/detail/r135-parity-lane-and-gen7-vector",
+                "label": "共享Parity、Lane数组和Gen7 Vector2：几个最容易查错的位置"
+              }
+            ],
+            "note": "核五组标准能力ID/支持条件/布局/角色/有效性，逐字段区分Secondary、16/32/64/128GT和Mode/编号，连接已有训练/均衡正文；未将Capability存在、EQ状态与当前速率混同。"
           }
         },
         "baseline": {
@@ -18079,14 +18366,15 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核五组标准能力ID/支持条件/布局/角色/有效性，逐字段区分Secondary、16/32/64/128GT和Mode/编号，连接已有训练/均衡正文；未将Capability存在、EQ状态与当前速率混同。",
         "taskId": "v1-task-16",
         "requiredTaskIds": [
           "v1-task-16",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 135
       },
       {
         "id": "v1-feature-143",
@@ -25305,6 +25593,106 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定范围89项；具体来源阻塞保留，R134四轮总结。",
         "publication": "用户授权R132/R133；逐轮检查后合并发布R133，保留远端修改，非强制更新。"
+      },
+      {
+        "round": 134,
+        "kind": "R134 RAS DES产品边界、事件视窗与四轮总结",
+        "deliverables": [
+          "R134关闭134，新增8维度，累计95/183、818维度；R131～R134关闭5项/47维度。剩88项/4预算轮；补事件视窗、时长单位、低功耗结果失效与厂商注错边界。R135速率能力，R138总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-134-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 134,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 134,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 134,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 134,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 134,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 134,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 134,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 134,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          134
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定88项，R138预算结束需如实报告缺口，不自动加轮。",
+        "publication": "R133先部署成功后用户授权R134/R135，逐轮检查合并发布R135。"
+      },
+      {
+        "round": 135,
+        "kind": "R135 Secondary与各速率能力寄存器查询地图",
+        "deliverables": [
+          "R135关闭142，新增8维度，累计96/183、826维度；补能力ID、逐速率状态差异、Lane步幅、共享Parity与Vector2。剩87项/3预算轮，R136 MCTP后转AXI/DMA固定队列；R138总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-142-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 142,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 142,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 142,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 142,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 142,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 142,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 142,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 142,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          142
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定87项；140和AXI/DMA等仍需处理，具体阻塞保留；R138预算总结。",
+        "publication": "R133先成功上线后，用户授权R134/R135；逐轮检查合并发布R135。"
       }
     ],
     "backlog": [
@@ -28812,33 +29200,31 @@
       }
     ],
     "nextExecution": {
-      "round": 134,
+      "round": 136,
       "taskId": "v1-task-16",
       "featureIds": [
-        134,
-        142,
         140
       ],
-      "goal": "R134优先134 RAS DES、142速率能力和140 MCTP实际缺口，并完成R131～R134四轮总结；不重复核已完整条目凑数量。",
-      "reviewRound": 134
+      "goal": "R136补140 MCTP，随后按固定队列AXI/DMA；R138必须报告原预算结束的已完成和未完成，不自动延期。",
+      "reviewRound": 138
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 133,
-      "reestimateRound": 134,
-      "observedAcceptedUnitsPerRound": 1.75,
-      "requiredAcceptedUnitsPerRemainingRound": 17.8,
-      "linearExtrapolationRounds": 51,
-      "assessment": "累计94/183，剩89项/5预算轮；R138与当前速度不符，不自动延期或降低门槛。",
+      "assessedRound": 135,
+      "reestimateRound": 138,
+      "observedAcceptedUnitsPerRound": 1.25,
+      "requiredAcceptedUnitsPerRemainingRound": 29,
+      "linearExtrapolationRounds": 70,
+      "assessment": "累计96/183与826维度，剩87项/3预算轮。原R138预算无法按当前速度完成，不自动延期、缩范围或降低验收标准。",
       "action": "131补实际空白，再批验成熟136/141；132/133/134/140/142为实际薄弱正文，按固定范围推进，阻塞等新证据。",
       "latestProgress": {
-        "round": 133,
+        "round": 135,
         "newAcceptedUnits": 1,
-        "cumulativeAcceptedUnits": 94,
+        "cumulativeAcceptedUnits": 96,
         "newPassedCriteria": 8,
-        "cumulativePassedCriteria": 810,
-        "remainingPlannedRounds": 5
+        "cumulativePassedCriteria": 826,
+        "remainingPlannedRounds": 3
       }
     },
     "reviewWindows": [
@@ -29310,6 +29696,47 @@
             "newPassedCriteria": 15,
             "cumulativePassedCriteria": 771,
             "remainingPlannedRounds": 8
+          }
+        }
+      },
+      {
+        "id": "r131-r134",
+        "firstRound": 131,
+        "lastRound": 134,
+        "completedPlanRounds": 4,
+        "closedFeatureUnits": [
+          131,
+          141,
+          132,
+          133,
+          134
+        ],
+        "newPassedCriteria": 47,
+        "cumulativePassedCriteria": 818,
+        "remainingFeatureUnits": 88,
+        "remainingRequiredTasks": 19,
+        "closedTaskIds": [],
+        "sourceQuestions": 38,
+        "resolvedSourceQuestions": 8,
+        "remainingSourceQuestions": 30,
+        "remainingPlannedRounds": 4,
+        "targetRound": 138,
+        "forecast": {
+          "status": "at-risk",
+          "assessedRound": 134,
+          "reestimateRound": 138,
+          "observedAcceptedUnitsPerRound": 1.25,
+          "requiredAcceptedUnitsPerRemainingRound": 22,
+          "linearExtrapolationRounds": 71,
+          "assessment": "R131～R134关闭5项/47维度，累计95/183，818维度；剩88项/4预算轮，实绩1.25项/轮，R138预算明确不能按当前速度完成；71轮机械外推仅风险，不自动延期或降标准。",
+          "action": "131补实际空白，再批验成熟136/141；132/133/134/140/142为实际薄弱正文，按固定范围推进，阻塞等新证据。",
+          "latestProgress": {
+            "round": 134,
+            "newAcceptedUnits": 1,
+            "cumulativeAcceptedUnits": 95,
+            "newPassedCriteria": 8,
+            "cumulativePassedCriteria": 818,
+            "remainingPlannedRounds": 4
           }
         }
       }

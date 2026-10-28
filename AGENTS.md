@@ -176,3 +176,11 @@ R131:131/141accepted,136seven criteria passed with Retimer access conflict04 ret
 R132: accepted[132], new criteria8, cumulative93/183 and802 criteria;90 units/6 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR133[133]; R134 review, daily paused. User authorized R132/R133; independent checks, combined R133 publication.
 
 R133: accepted[133], new criteria8, cumulative94/183 and810 criteria;89 units/5 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR134[134, 142, 140]; R134 review, daily paused. User authorized R132/R133; independent checks, combined R133 publication.
+
+R134: accepted[134], new criteria8, cumulative95/183 and818 criteria;88 units/4 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR135[142]; R138 review, daily paused. R133 published first; user authorized R134/R135, combined R135 publication.
+
+R134review: R131-R134 accepted5/47criteria;95/183 and818criteria,88units/4budget rounds. Observed1.25vs22required;R138 cannot meet current pace,no automatic extension. NextR135142,summaryR138,daily paused.
+
+R135: accepted[142], new criteria8, cumulative96/183 and826 criteria;87 units/3 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR136[140]; R138 review, daily paused. R133 published first; user authorized R134/R135, combined R135 publication.
+
+R135:142accepted,96/183 and826criteria,87units/3budget rounds;R136140 then fixedAXI/DMA queue. R133 deployed and index verified beforeR134 began. NextsummaryR138 must report budget-end gaps,no autoextension,daily paused.
