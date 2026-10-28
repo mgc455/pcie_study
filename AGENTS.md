@@ -142,3 +142,9 @@ R122四轮总结：R119～R122关闭11功能、94维度；累计77/183、639维�
 R123: accepted[115, 116], new criteria23, cumulative79/183 and662 criteria;104 units/15 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR124[117, 118, 119, 120, 121, 122, 123]; R126 review, daily paused. User authorized R122/R123; independent checks, combined R123 publication.
 
 R123: task13 has5/6 accepted, only114 blocked. Conflict25 resolved by unit/context analysis;106 and114 need new clarification, no blind rescans. MFVC2003ECN selected pages read, not whole31pages. Cumulative79/183 and662criteria;104units/15budget rounds; nextR124 task14, nextsummaryR126,daily paused.
+
+R124: accepted[117, 118], new criteria16, cumulative81/183 and678 criteria;102 units/14 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR125[119, 120]; R126 review, daily paused. User authorized R124/R125; independent checks, combined R125 publication.
+
+R125: accepted[120], new criteria15, cumulative82/183 and693 criteria;101 units/13 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR126[121, 122, 123]; R126 review, daily paused. User authorized R124/R125; independent checks, combined R125 publication.
+
+R125: cumulative82/183 and693criteria;101units/13budget rounds. PTM measurement120 accepted with official5.0 A6,119 consistency blocked on Switch Root; source16 resolved by dialog/capture and ePTM scope, source15 retained. NextR126121/122/123 and mandatory R123-R126 review. Daily paused; original PDFs/RTL private.
