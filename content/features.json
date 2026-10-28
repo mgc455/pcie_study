@@ -129536,14 +129536,14 @@
     "checks": "核对安全模块、认证/密钥流程和错误处理，不要把CRC或ACS当成IDE的替代物。",
     "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
     "id": 124,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R128按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "2.2.8.11",
@@ -129797,9 +129797,75 @@
         "title": "密钥与IV分层：Tx/Rx及各子流分别生成，IV初值不能代替密钥更新",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R44核读Base6.0/7.0所列IDE_KM/密钥/子流正文与必要续页，Go/Stop/ACK位图及使能时序关键页视觉核对。所引印刷页与PDF物理页一致；仅选定规则，不代表完整密码实现、所有ECN或七代覆盖。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.33",
+        "page": 862,
+        "pdfPage": 862,
+        "title": "保护边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.33",
+        "page": 981,
+        "pdfPage": 981,
+        "title": "Link/Selective的信任边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.33",
+        "page": 984,
+        "pdfPage": 984,
+        "title": "威胁、可用性与报告限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.33.5",
+        "page": 1016,
+        "pdfPage": 1016,
+        "title": "子流及IV",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ide-km-20250716",
+        "document": "IDE_KM GETKEY and AEAD Limit ECN",
+        "version": "2025-07-16; underlying Base6.4",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "GETKEY与密钥IV唯一性",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ide-km-20250716",
+        "document": "IDE_KM GETKEY and AEAD Limit ECN",
+        "version": "2025-07-16; underlying Base6.4",
+        "section": "Part I",
+        "page": 2,
+        "pdfPage": 2,
+        "title": "两个独立可选扩展",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "R40所列IDE正文已核读；完整密码构造、全部密钥时序/ECN待继续",
+    "referenceStatus": "R128复用既有逐字段/命令/异常正文，补6.0/7.0边界及2025 IDE_KM ECN；未宣称整章、全部中间修订或实物认证。",
     "details": [
       {
         "id": "ide-protection-and-topology",
@@ -129925,6 +129991,85 @@
           21,
           22
         ]
+      },
+      {
+        "id": "r128-ide-security-contract",
+        "title": "IDE查询总入口：保护对象、控制面、错误边界与版本依据",
+        "paragraphs": [
+          "IDE保护两个Partner Port之间传输的TLP，提供机密性、完整性和防重放。它不替代页表/IOMMU授权、ACS路径控制、ATC失效、设备身份策略或片内内存保护。使用Link IDE逐跳解密时，必须把中间Switch内部纳入相应信任边界；Selective IDE能在支持条件下跨Switch保持到终结Port的保护。",
+          "查询时先分三层：能力/流寄存器决定支持范围、关联规则和使能；SPDM安全会话承载IDE_KM控制；IDE数据面按Stream/子流/方向及Key Set处理实际TLP。Enable=1不等于Secure，也不等于TDISP RUN或整个设备可信。寄存器逐bit和密钥命令已有专门页面，按下面入口查，不在不同页复制相互漂移的字段表。",
+          "错误处置不能只等待IDE Fail消息：规范的威胁模型允许攻击者阻断错误报告，若平台要求及时发现安全失败，应设计相应存活/策略机制。IDE不保证攻击下业务可用性，且终结端口之外的密钥、调试口、互连和本地存储仍须实现自我保护。",
+          "本轮依据6.0/7.0正式Base及2025-07-16、针对Base6.4的GETKEY/AEAD ECN。ECN两个功能独立可选，不反写为Base7.0原版命令，也不因链路跑某个Gen就推断具备它们。首次独立IDE ECN和6.x全部中间差分不在本项已核范围，不猜首次支持代际；同样不能把未逐版核读说成资料缺失。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "table": {
+          "columns": [
+            "层次",
+            "机制",
+            "边界"
+          ],
+          "rows": [
+            [
+              "链路保护",
+              "IDE Stream",
+              "防窥探/篡改/重放，不代替DMA授权"
+            ],
+            [
+              "身份与会话",
+              "SPDM/CMA",
+              "认证证据与安全控制通道"
+            ],
+            [
+              "功能接纳",
+              "TDISP及平台策略",
+              "不是IDE Secure的同义词"
+            ],
+            [
+              "片内保护",
+              "实现责任",
+              "IDE终结Port之外仍需隔离"
+            ],
+            [
+              "2025扩展",
+              "GETKEY / AEAD Limit各自可选",
+              "检查协议能力，不按最高速率推断"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 125,
+            "detailId": "ide-capability-register-table",
+            "label": "0030h与全部流寄存器"
+          },
+          {
+            "featureId": 125,
+            "detailId": "ide-control-status-fields",
+            "label": "控制/状态逐bit"
+          },
+          {
+            "featureId": 126,
+            "detailId": "ide-km-command-catalog",
+            "label": "原版命令表"
+          },
+          {
+            "featureId": 126,
+            "detailId": "r128-ide-km-getkey-extension",
+            "label": "后续GETKEY扩展"
+          },
+          {
+            "featureId": 130,
+            "detailId": "dma-isolation-responsibility-map",
+            "label": "DMA隔离责任"
+          }
+        ]
       }
     ]
   },
@@ -129938,14 +130083,14 @@
     "checks": "结合地址/身份关联、拓扑和对端配置验证；保护流存在不证明所有业务事务都被正确纳入。",
     "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
     "id": 125,
-    "status": "选定数据面与访问字段已深化 · 持续逐版核对",
+    "status": "一期已验收：R128按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-24",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "2.2.8.11",
@@ -130595,9 +130740,64 @@
         "title": "本轮版本边界：7.0数据面不是Gen7首次引入的证明",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R69核Base7.0所列TDISP TLP/ATS/ACS/P2P/MMIO/XT配置及IDE选择正文；视觉核p1770/1773。只代表所引条款，不外推Gen1～7或完整安全验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.33.4",
+        "page": 1012,
+        "pdfPage": 1012,
+        "title": "Selective关联规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.33.4",
+        "page": 1013,
+        "pdfPage": 1013,
+        "title": "不重叠与IDE Fail例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.33.4",
+        "page": 1014,
+        "pdfPage": 1014,
+        "title": "不安全流不回退/接收切换",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.33.4",
+        "page": 1015,
+        "pdfPage": 1015,
+        "title": "整路径模式一致及RID校验",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.33.4",
+        "page": 890,
+        "pdfPage": 890,
+        "title": "早期关联范围",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "R69核Base7.0 TDISP/IDE选定数据面规则与字段；保留管理线及原引用，未做全代际或端到端安全证明。",
+    "referenceStatus": "R128复用既有逐字段/命令/异常正文，补6.0/7.0边界及2025 IDE_KM ECN；未宣称整章、全部中间修订或实物认证。",
     "details": [
       {
         "id": "ide-link-selective-selection",
@@ -130934,6 +131134,84 @@
           57,
           58
         ]
+      },
+      {
+        "id": "r128-ide-stream-decision-order",
+        "title": "流选择实用顺序：匹配→安全状态→接收端核验，不安全不能降级",
+        "paragraphs": [
+          "发送先按TC和允许的类型/关联规则决定Stream。Link与Selective同时启用时，匹配Selective的TLP优先绑定该流；未匹配才使用相应Link流。已匹配但处于Insecure时，普通业务必须丢弃，不能重新按“未匹配”走Link流，更不能发成明文。IDE Fail消息有独立发送/接收例外，不把它扩大成任意业务回退。",
+          "软件必须配置不重叠的RID/地址关联范围；若软件违规配置重叠，硬件须选择一个匹配流，但选哪个由实现决定，不能据此实现有稳定优先级的访问策略。Selective整条路径须统一FM或统一NFM，不能只核两端最高速率。TC、Stream_ID、Sub-Stream和Key Set是四个不同坐标。",
+          "最终接收端按IDE Prefix/OHC-C中Stream_ID关联。Link IDE在每个子流第一次收到IDE TLP后，才进入该子流拒绝后续非IDE包的状态；7.0还明确此处静默丢弃优先于这类包的错误报告。Selective配置请求收紧有自己的第一次受保护配置请求触发，不能用一次普通DMA就替代。",
+          "本轮复核沿用6.0/7.0既有字段/布局及XT、Default、TEE-Limited的版本表；不把7.0的Segment/XT规则倒填6.0。开启流之前锁定所需关联、算法和模式，后续修改遵从对应冻结规则；它不是软件每包任意切换的一组标签。"
+        ],
+        "referenceIndices": [
+          59,
+          60,
+          61,
+          62,
+          63
+        ],
+        "table": {
+          "columns": [
+            "条件",
+            "动作",
+            "限制"
+          ],
+          "rows": [
+            [
+              "未匹配Selective",
+              "按适用规则使用Link IDE",
+              "与匹配后Insecure不同"
+            ],
+            [
+              "匹配且Secure",
+              "使用已关联流及其密钥",
+              "不可随意换流"
+            ],
+            [
+              "匹配但Insecure",
+              "普通业务丢弃",
+              "不可降级到Link/明文"
+            ],
+            [
+              "IDE Fail消息",
+              "依本身特殊规则发送",
+              "不能推广到普通TLP"
+            ],
+            [
+              "RID/地址重叠",
+              "实现选择一个匹配流",
+              "软件必须避免重叠"
+            ],
+            [
+              "首次IDE接收",
+              "逐子流收紧非IDE接收",
+              "配置请求另有触发条件"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 125,
+            "detailId": "ide-rid-address-association",
+            "label": "RID与地址字段"
+          },
+          {
+            "featureId": 125,
+            "detailId": "ide-enable-and-configuration-gates",
+            "label": "配置冻结与使能"
+          },
+          {
+            "featureId": 125,
+            "detailId": "ide-insecure-selected-no-link-fallback",
+            "label": "不回退规则"
+          },
+          {
+            "featureId": 125,
+            "detailId": "ide-substream-encoding-version",
+            "label": "子流版本编码"
+          }
+        ]
       }
     ]
   },
@@ -130947,14 +131225,14 @@
     "checks": "按照选定安全模块与协议流程执行，验证重置、失败和撤销，不在报告中提供虚构的通用写寄存器顺序。",
     "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
     "id": 126,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R128按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "2.2.8.11",
@@ -131483,9 +131761,163 @@
         "title": "逐bit对象图：Go、Stop、Go/Stop ACK与KP_ACK共用哪些字段",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R44核读Base6.0/7.0所列IDE_KM/密钥/子流正文与必要续页，Go/Stop/ACK位图及使能时序关键页视觉核对。所引印刷页与PDF物理页一致；仅选定规则，不代表完整密码实现、所有ECN或七代覆盖。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.33.3",
+        "page": 990,
+        "pdfPage": 990,
+        "title": "原版命令00h～06h",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.33.3",
+        "page": 992,
+        "pdfPage": 992,
+        "title": "编程串行与KP_ACK",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.33.3",
+        "page": 993,
+        "pdfPage": 993,
+        "title": "Go/刷新三分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.33.3",
+        "page": 994,
+        "pdfPage": 994,
+        "title": "Stop与会话约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ide-km-20250716",
+        "document": "IDE_KM GETKEY and AEAD Limit ECN",
+        "version": "2025-07-16; underlying Base6.4",
+        "section": "6.33.3",
+        "page": 4,
+        "pdfPage": 4,
+        "title": "新增Object ID",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ide-km-20250716",
+        "document": "IDE_KM GETKEY and AEAD Limit ECN",
+        "version": "2025-07-16; underlying Base6.4",
+        "section": "6.33.3",
+        "page": 5,
+        "pdfPage": 5,
+        "title": "QUERY_RESP新增能力",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ide-km-20250716",
+        "document": "IDE_KM GETKEY and AEAD Limit ECN",
+        "version": "2025-07-16; underlying Base6.4",
+        "section": "6.33.3",
+        "page": 6,
+        "pdfPage": 6,
+        "title": "Use Initial IV与新增错误状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ide-km-20250716",
+        "document": "IDE_KM GETKEY and AEAD Limit ECN",
+        "version": "2025-07-16; underlying Base6.4",
+        "section": "6.33.3",
+        "page": 7,
+        "pdfPage": 7,
+        "title": "GETKEY串行/对端配对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ide-km-20250716",
+        "document": "IDE_KM GETKEY and AEAD Limit ECN",
+        "version": "2025-07-16; underlying Base6.4",
+        "section": "6.33.3",
+        "page": 8,
+        "pdfPage": 8,
+        "title": "AEAD门控及协商",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ide-km-20250716",
+        "document": "IDE_KM GETKEY and AEAD Limit ECN",
+        "version": "2025-07-16; underlying Base6.4",
+        "section": "6.33.3",
+        "page": 9,
+        "pdfPage": 9,
+        "title": "会话终止与锁定",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ide-km-20250716",
+        "document": "IDE_KM GETKEY and AEAD Limit ECN",
+        "version": "2025-07-16; underlying Base6.4",
+        "section": "6.33.3",
+        "page": 12,
+        "pdfPage": 12,
+        "title": "AEAD对象图",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ide-km-20250716",
+        "document": "IDE_KM GETKEY and AEAD Limit ECN",
+        "version": "2025-07-16; underlying Base6.4",
+        "section": "6.33.5",
+        "page": 13,
+        "pdfPage": 13,
+        "title": "到限Stream转Insecure",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ide-km-20250716",
+        "document": "IDE_KM GETKEY and AEAD Limit ECN",
+        "version": "2025-07-16; underlying Base6.4",
+        "section": "6.33.5",
+        "page": 15,
+        "pdfPage": 15,
+        "title": "最大消息与最小消息不同用途",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ide-km-20250716",
+        "document": "IDE_KM GETKEY and AEAD Limit ECN",
+        "version": "2025-07-16; underlying Base6.4",
+        "section": "6.33.5",
+        "page": 17,
+        "pdfPage": 17,
+        "title": "刷新触发机制和预算",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "R40所列IDE正文已核读；完整密码构造、全部密钥时序/ECN待继续",
+    "referenceStatus": "R128复用既有逐字段/命令/异常正文，补6.0/7.0边界及2025 IDE_KM ECN；未宣称整章、全部中间修订或实物认证。",
     "details": [
       {
         "id": "ide-key-management-control-plane",
@@ -131510,7 +131942,7 @@
         "title": "IDE_KM支持哪些对象：查询、编程、Go、Stop与确认",
         "paragraphs": [
           "下表按用途整理Object ID编码；它们是安全控制协议对象，不是Memory TLP指令或DMA描述符操作码。首DW的Protocol ID[7:0]=00h表示IDE，Object ID[15:8]选择对象，未列编码保留。",
-          "本轮核读的是对象目录与安全封装规则，KEY_PROG的全部参数、子流方向、两个Key Set切换次序/超时/nonce生命周期仍待下一步逐项核读；因此不提供不完整的可执行Rekey步骤。"
+          "原版命令的参数、串行、GO三分支及刷新已在本页后续条目核读。R128新增2025 GETKEY/AEAD ECN，原版00h～06h与扩展07h～0Ah分开解释；具体实现须先做能力发现。"
         ],
         "referenceIndices": [
           9,
@@ -131549,7 +131981,19 @@
               "不能只收到一般Completion就当作此确认"
             ]
           ]
-        }
+        },
+        "relatedDetails": [
+          {
+            "featureId": 126,
+            "detailId": "r128-ide-km-getkey-extension",
+            "label": "2025新增命令/能力"
+          },
+          {
+            "featureId": 126,
+            "detailId": "ide-go-enable-state-branches",
+            "label": "GO三分支"
+          }
+        ]
       },
       {
         "id": "ide-port-role-and-query-binding",
@@ -132221,6 +132665,176 @@
           }
         ],
         "packetReading": "从左到右按对象byte0～7，每byte内bit7→0；各DW中的数值位号另在字段说明标注。这是对象布局，不是PCIe物理串行位序。"
+      },
+      {
+        "id": "r128-ide-km-getkey-extension",
+        "title": "2025 GETKEY扩展：设备生成Tx密钥，不是任意读出当前运行密钥",
+        "paragraphs": [
+          "Base7.0原版Object ID只定义00h～06h；2025-07-16 ECN针对Base6.4新增07h GETKEY、08h GETKEY_ACK、09h EN_AEAD_LC、0Ah EN_AEAD_LC_ACK。这些仍在Secured-SPDM中的IDE_KM对象里，不能把包含密钥的对象直接写成无保护DOE明文，也不能把“GETKEY”理解为通用debug读密钥命令。",
+          "ECN QUERY_RESP首DW[19:16]新增Capability Version：0表示没有这两个扩展，新增能力位保留；1表示至少支持其中一个。[20]IV Gen、[21]Key Gen、[22]AEAD_LC、[23]AEAD_LC_Prog各自表达能力；可编程上限要求支持上限功能。这里是安全协议响应首DW，不是IDE Extended Capability Header的版本字段。",
+          "GETKEY针对PortIndex、Stream_ID、Sub-Stream、方向与Key Set；返回的本地生成Key用于该端Tx及对端Rx，IFV同样按能力处理。不支持Key Gen或IV Gen时，相应返回字段不能当有效生成结果使用。发GETKEY后，必须等对应GETKEY_ACK才发KEY_PROG。机制不规定熵源/密钥生成算法，也不宣称FIPS认证已满足。",
+          "KEY_PROG在扩展能力允许时使用Use Initial IV；IV Gen=0时该位必须0，默认IFV为1；选择本地生成IFV时，Tx采用对应生成值、Rx采用消息提供值。ECN新增KP_ACK状态05h为Tx Key不匹配最近GETKEY_ACK，06h为Tx IFV不匹配；07h～FFh保留。原版05h～FFh统一失败规则仍留在其版本表，不改成无版本解码器。"
+        ],
+        "referenceIndices": [
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "含义",
+            "版本/使用限制"
+          ],
+          "rows": [
+            [
+              "原版00h～06h",
+              "QUERY/QUERY_RESP、KEY_PROG/KP_ACK、GO/STOP/ACK",
+              "Base7.0原文"
+            ],
+            [
+              "扩展07h/08h",
+              "GETKEY / GETKEY_ACK",
+              "能力发现后可用"
+            ],
+            [
+              "扩展09h/0Ah",
+              "EN_AEAD_LC / ACK",
+              "与GETKEY独立可选"
+            ],
+            [
+              "响应首DW[19:16]",
+              "Capability Version0/1",
+              "不是配置能力Header版本"
+            ],
+            [
+              "响应首DW[23:20]",
+              "Prog / Limit / Key Gen / IV Gen",
+              "Version0时均保留"
+            ],
+            [
+              "KP_ACK05h/06h",
+              "Invalid Key / Invalid IV",
+              "新增语义只对相应ECN实现解释"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 126,
+            "detailId": "ide-km-target-axes",
+            "label": "五个目标坐标"
+          },
+          {
+            "featureId": 126,
+            "detailId": "ide-kp-ack-status-table",
+            "label": "原版ACK状态"
+          },
+          {
+            "featureId": 126,
+            "detailId": "ide-km-go-stop-ack-bitmaps",
+            "label": "已有Go/Stop位图"
+          },
+          {
+            "featureId": 126,
+            "detailId": "r128-ide-aead-limit-lifecycle",
+            "label": "AEAD限制与刷新"
+          }
+        ]
+      },
+      {
+        "id": "r128-ide-aead-limit-lifecycle",
+        "title": "AEAD次数上限：建流前协商、Secure后冻结、刷新必须留处理余量",
+        "paragraphs": [
+          "64bit IV计数器不等于在任意安全策略下都能把同一Key用到计数耗尽。ECN允许报告并启用更小的调用次数限制；它约束加密调用而不是秒数、字节吞吐或Completion Timeout。GETKEY与AEAD Limit彼此独立可选；无能力不能假定命令可用。",
+          "EN_AEAD_LC第二DW[13:8]为6bit Exponent，编码0表示默认指数64，不是次数为1。支持可编程时实际采用设备策略和Requester请求中更小的指数；不支持可编程时忽略请求指数、由设备决定。ACK返回实际生效值并对流的所有子流使用，不能只把发出的期望值缓存为事实。未发送该启用命令时采用默认限制。",
+          "进入Secure后活动上限锁定，Secure状态下发EN_AEAD_LC属于错误并导致流转Insecure。活动值绑定相应SPDM会话：会话存续时即使流Insecure仍保留，结束时回默认；其他会话在锁定时发命令导致错误/Insecure，在未锁定时由Responder丢弃。重建SPDM会话、流Enable和上限状态不是同一生命周期。",
+          "到达所规定使用边界必须终止流并进入Insecure；两端谁先到限都可能使业务中断。Requester应在此之前完成备用Key编程与切换，先Rx后Tx，并按子流首次收到新K处理旧Key淘汰；不能把GO的ACK解释为所有子流已用新Key。",
+          "ECN实现建议区分两个保守估计：以最大消息长度评估同Key加密量的安全限制，以最小TLP和最大链路带宽估计次数增长最快的刷新期限，再加入轮询、协议往返、调度和所有流的更新时间。可用硬件计数轮询、估算加轮询或设备通知，但没有统一“每N秒刷新”寄存器；本文不把ECN示例概率表当平台安全认证。"
+        ],
+        "referenceIndices": [
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61
+        ],
+        "table": {
+          "columns": [
+            "条件/字段",
+            "动作",
+            "限制"
+          ],
+          "rows": [
+            [
+              "Version>0且AEAD_LC=1",
+              "允许EN_AEAD_LC",
+              "不需要GETKEY也支持"
+            ],
+            [
+              "第二DW[13:8]=0",
+              "默认指数64",
+              "不是0次或1次"
+            ],
+            [
+              "可编程=1",
+              "取设备与请求较小指数",
+              "读ACK确认实际值"
+            ],
+            [
+              "Secure",
+              "上限锁定，不能重配",
+              "错误命令使流Insecure"
+            ],
+            [
+              "SPDM会话终止",
+              "活动值回默认",
+              "不能沿用旧会话结果"
+            ],
+            [
+              "刷新时刻",
+              "到限前完成全流程",
+              "按最快调用增长及控制面开销留余量"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 126,
+            "detailId": "ide-go-enable-state-branches",
+            "label": "GO三分支时序"
+          },
+          {
+            "featureId": 126,
+            "detailId": "ide-refresh-first-new-k-retirement",
+            "label": "逐子流旧Key淘汰"
+          },
+          {
+            "featureId": 126,
+            "detailId": "ide-secure-session-owner-binding",
+            "label": "会话绑定"
+          }
+        ]
       }
     ]
   },
@@ -132234,14 +132848,14 @@
     "checks": "检查对象协议发现、长度、Busy/Error和超时，不能把DOE当作无限长可靠业务数据通道。",
     "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
     "id": 127,
-    "status": "选定DOE/TDISP正文与字段已深化 · 持续补分支",
+    "status": "一期阻塞：R129七维通过；连续DOE Async状态机待正式澄清",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "6.30",
@@ -133309,9 +133923,97 @@
         "title": "CMA功耗与FLR：D0可用、请求中止、Session状态保留要分别看",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R84核对应正式版所列正文/表字段；DSP0274按封面1.2.4而非下载别名，视觉核p83/p100。Base6.0 p854～857、Base7.0 p967～976仅选定规则；页码按各版本独立绑定，不代表完整章节、全部密码协议或实际认证。"
+      },
+      {
+        "documentId": "pcie-base-6.4",
+        "document": "PCI Express Base Specification",
+        "version": "6.4",
+        "section": "6.30.1.2",
+        "page": 944,
+        "pdfPage": 944,
+        "title": "Async连续交换两句仍并存",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.4",
+        "document": "PCI Express Base Specification",
+        "version": "6.4",
+        "section": "6.30.2",
+        "page": 945,
+        "pdfPage": 945,
+        "title": "对象、FLR与Attention",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.4",
+        "document": "PCI Express Base Specification",
+        "version": "6.4",
+        "section": "6.30.3",
+        "page": 946,
+        "pdfPage": 946,
+        "title": "邮箱收发步骤",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.30.1.2",
+        "page": 964,
+        "pdfPage": 964,
+        "title": "Async歧义与默认处理时间",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.30.2",
+        "page": 965,
+        "pdfPage": 965,
+        "title": "FLR、错误与字节使能",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.30.3",
+        "page": 966,
+        "pdfPage": 966,
+        "title": "读DW后写确认",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.24.3",
+        "page": 1472,
+        "pdfPage": 1472,
+        "title": "控制字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.24.4",
+        "page": 1473,
+        "pdfPage": 1473,
+        "title": "状态字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "R66核DOE6/7与TDISP Base7.0管理主线；表文冲突保留，独立ECN与XT/ATS/P2P完整矩阵待续。 R82补Base7.0选定DOE服务、TDI报告/错误与安全义务；非独立SPDM/全章认证。 R84核DSP0274 1.2.4身份/测量选定字段及Base6/7 CMA绑定；完整会话/密码验证和中间ECN未完成。",
+    "referenceStatus": "R129复核6.4/7.0邮箱正文，七维有据；Async连续REQUEST与仅响应GET的冲突仍阻塞一致性。",
     "details": [
       {
         "id": "doe-role-instance-ownership",
@@ -133889,6 +134591,147 @@
           94,
           95,
           96
+        ]
+      },
+      {
+        "id": "r129-doe-transaction-boundaries",
+        "title": "DOE操作收尾：三个完成点、全DW访问与软件独占",
+        "paragraphs": [
+          "DOE是由主机Configuration Read/Write驱动的对象邮箱，不是DMA队列。一次配置写的Completion仅确认该寄存器访问；DOE Go后Ready表示上层响应可读；最后一个响应DW读出后向Read Mailbox写任意值确认，才完成该对象读取。三个完成点不能互相替代，Go读回0也不表示业务已完成。",
+          "对同一个DOE实例，软件需用独占/互斥覆盖写完整请求、Go、等待、读完整响应及确认的全过程。Connection ID选择上层连接，不允许两个软件同时穿插写同一对象。只有各上层功能允许时，才能在完整对象交换边界交错不同功能对象。",
+          "7.0规定邮箱读写必须全Byte Enabled，否则硬件行为未定义，硬件可选检查；不能把按字节写控制字段的习惯用于DOE数据邮箱。默认Go后1秒内Ready或Error，具体功能可以另定。Abort是清Ready/Error的机制，但内部引擎可能仍Busy；清Interrupt Status只确认通知，不推进邮箱或清Error。",
+          "FLR中止进行中的传输，但不必然复位内部处理引擎；若允许与FLR重叠，软件不能靠RRS判断结束，应按规定时间机制或FRS处理。SPDM会话、IDE状态及设备功能复位后果要再查对应上层规则，不由一次DOE Abort推导全部秘密已清除。"
+        ],
+        "referenceIndices": [
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104
+        ],
+        "table": {
+          "columns": [
+            "观察/动作",
+            "表示什么",
+            "不能代替什么"
+          ],
+          "rows": [
+            [
+              "配置Completion",
+              "本次配置读/写结束",
+              "不代表对象业务结束"
+            ],
+            [
+              "Data Object Ready",
+              "响应对象可读取",
+              "每DW仍要写Read Mailbox确认"
+            ],
+            [
+              "最后DW确认",
+              "当前响应读取结束",
+              "与清中断位不同"
+            ],
+            [
+              "DOE Error",
+              "检查传输错误、按Abort恢复",
+              "Error是RO，不写1清"
+            ],
+            [
+              "Busy",
+              "不能接收新对象/仍在恢复",
+              "Abort/Go读回0不替代"
+            ],
+            [
+              "全DW邮箱访问",
+              "所有Byte Enable有效",
+              "部分字节访问行为未定义"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 127,
+            "detailId": "doe-register-directory",
+            "label": "寄存器全部位"
+          },
+          {
+            "featureId": 127,
+            "detailId": "doe-write-go-and-read-advance",
+            "label": "完整收发流程"
+          },
+          {
+            "featureId": 127,
+            "detailId": "r82-doe-service-query",
+            "label": "状态快照查询"
+          },
+          {
+            "featureId": 127,
+            "detailId": "r129-doe-async-open-contract",
+            "label": "Async剩余阻塞"
+          }
+        ]
+      },
+      {
+        "id": "r129-doe-async-open-contract",
+        "title": "DOE未验收项：6.4/7.0仍有连续Async消息的规范冲突",
+        "paragraphs": [
+          "可以确认的公共路径是：能力支持且Enable=1，设备置Async Status；主机准备好后发送GET，设备返回REQUEST，主机返回RESPONSE；无待发消息时设备返回DONE并清Async Status。对象Variety、封装、最大长度、软件独占和通知位已在既有条目逐字段说明。",
+          "尚不能确认的是多消息继续路径。正式6.4 p944与7.0 p964均先写设备有更多消息时返回另一个REQUEST、主机回RESPONSE，又明确只允许收到GET后返回REQUEST。这两句如何协调并未由本次版本交叉核读解决。不能偷偷插入规范未写的新GET，也不能忽略后一句生成确定的状态机。",
+          "因此本功能七个维度可查且有依据，一致性仍阻塞；等待明确针对该条款的正式澄清或ECN。问题记录同时包含TDISP报告状态合法性，DOE这里只更新其子问题，不把整条记录关闭；已有资料存在与尚无澄清必须区分。"
+        ],
+        "referenceIndices": [
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104
+        ],
+        "table": {
+          "columns": [
+            "路径",
+            "证据状态",
+            "处理"
+          ],
+          "rows": [
+            [
+              "GET→REQUEST",
+              "已明确",
+              "保留能力/使能及对象封装条件"
+            ],
+            [
+              "主机RESPONSE",
+              "已明确",
+              "邮箱交换本身仍需完整完成"
+            ],
+            [
+              "无更多消息→DONE",
+              "已明确",
+              "设备清Async Status"
+            ],
+            [
+              "有更多消息→REQUEST",
+              "与“仅响应GET”句冲突",
+              "6.4/7.0原文相同，保留阻塞"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 127,
+            "detailId": "r82-doe-async-framing",
+            "label": "Async头及内层对象"
+          },
+          {
+            "featureId": 127,
+            "detailId": "r82-doe-async-register-chain",
+            "label": "能力/使能/状态"
+          }
         ]
       }
     ]
@@ -139009,14 +139852,14 @@
     "checks": "按威胁模型分别检查ACS、IOMMU、PASID、IDE和认证，不用单一Enable位代替系统安全论证。",
     "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
     "id": 130,
-    "status": "失效闭环与所选隔离边界已深化 · 持续核读",
+    "status": "一期已验收：R129按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -139369,9 +140212,75 @@
         "title": "ATS失效、在途翻译与隔离选定规则",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R76核6.0/7.0所引正式版选定正文与续页；视觉核7.0 p1713/p1714报文字段。所引本地印刷页与PDF物理页一致。非整章、早期修订、完整IOMMU/TEE或实物验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "10.3.7",
+        "page": 1504,
+        "pdfPage": 1504,
+        "title": "隐式失效无显式完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.3",
+        "page": 1715,
+        "pdfPage": 1715,
+        "title": "Invalidate Completion及排空",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.4",
+        "page": 1716,
+        "pdfPage": 1716,
+        "title": "ATS关闭仍接受失效",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "10.3.7",
+        "page": 1718,
+        "pdfPage": 1718,
+        "title": "隐式失效与PASID",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 867,
+        "pdfPage": 867,
+        "title": "ACS翻译阻断",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 869,
+        "pdfPage": 869,
+        "title": "Direct Translated P2P",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "R76核6.0/7.0所引ATS失效、在途范围及ACS选定正文；非全部版本、完整IOMMU/TEE/平台或硬件验证。",
+    "referenceStatus": "R129复用6.0/7.0隔离、ACS与ATC正文及相关已验收专题；平台IOMMU/驱动/TEE验收需各自规范，不猜统一总开关。",
     "details": [
       {
         "id": "dma-isolation-responsibility-map",
@@ -139522,6 +140431,80 @@
           29,
           30,
           31
+        ]
+      },
+      {
+        "id": "r129-dma-isolation-use-sequence",
+        "title": "DMA隔离使用顺序：授权、允许发起、撤销和页复用是四个阶段",
+        "paragraphs": [
+          "本项提供PCIe侧隔离责任的查询流程，不设一个虚构的“Trusted DMA Enable”总开关。平台先建立设备/进程上下文与允许访问的页/权限，再按能力与系统政策启用BME、ATS/PASID等机制；可信业务若需要IDE/TDISP，还要单独验证流、接口状态及内存属性。具备任何一个能力都不能证明其余环节正确。",
+          "撤销时先按平台流程阻止新的旧权限使用、更新翻译授权并同步，向对应ATC发范围/PASID失效，跟踪在途翻译及所有所需失效完成/旧流量排空。完成数与ITag账本可查既有ATS主题；单份Completion、BME=0、DMA描述符已停或管理超时，都不是内存可立即重新分配的充分证据。",
+          "支持ATS的Function在ATS未启用时仍有接受失效并回完成的职责。复位或ATS E从0→1等隐式失效不发送显式Invalidate Completion；不能为尚未完成的旧ITag补造一次成功。平台如何同步CPU缓存、IOMMU命令队列、驱动映射和页回收，需用实际平台规范，不能从PCIe能力寄存器猜通用脚本。",
+          "ACS Translation Blocking是路径检查，Direct Translated P2P是路径优化，两者既不生成页权限，也不等同身份认证；较早的Translation Blocking不会被后续P2P直通取消。6.0/7.0对FM Address Routed Message等范围有具体差别，沿用既有版本表。Gen1～Gen7运行速率不是ATS/ACS/PASID/TEE能力与启用状态的证据，旧版独立规范及功能差异复用已验收对应专题。"
+        ],
+        "referenceIndices": [
+          32,
+          33,
+          34,
+          35,
+          36,
+          37
+        ],
+        "table": {
+          "columns": [
+            "阶段",
+            "需要核实",
+            "边界"
+          ],
+          "rows": [
+            [
+              "建立授权",
+              "平台映射/上下文/权限",
+              "PCIe不定义通用IOMMU页表实现"
+            ],
+            [
+              "启动DMA",
+              "能力、控制、队列、必要安全状态",
+              "BME不等于完成认证或无旧请求"
+            ],
+            [
+              "撤销",
+              "停止新使用、更新映射、ATC失效及排空",
+              "不把timeout当成功完成"
+            ],
+            [
+              "页复用",
+              "所有平台与协议同步条件满足后",
+              "不能只见一个寄存器变0"
+            ],
+            [
+              "异常/复位",
+              "区分显式完成与隐式清ATC",
+              "隐式失效不补发显式成功"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 130,
+            "detailId": "dma-isolation-responsibility-map",
+            "label": "TA/ATC/ACS各自职责"
+          },
+          {
+            "featureId": 130,
+            "detailId": "dma-revoke-evidence-before-reuse",
+            "label": "页回收证据"
+          },
+          {
+            "featureId": 130,
+            "detailId": "dma-bme-ats-enable-lifecycle",
+            "label": "BME/ATS/复位"
+          },
+          {
+            "featureId": 125,
+            "detailId": "r128-ide-stream-decision-order",
+            "label": "IDE独立门控"
+          }
         ]
       }
     ]

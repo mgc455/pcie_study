@@ -156,3 +156,11 @@ R126 review: R123-R126 accepted6/62criteria;83/183 and701criteria cumulative,100
 R127: accepted[122, 123], new criteria16, cumulative85/183 and717 criteria;98 units/11 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR128[124, 125, 126, 127]; R130 review, daily paused. User authorized R126/R127; independent checks, combined R127 publication.
 
 R127: task14 6/7 accepted, only119 blocked; cumulative85/183 and717criteria,98units/11budget rounds. Original-vs-MultiStream buffer/credit/order responsibilities and read pipeline completed with explicit product scope. NextR128security124-127,nextsummaryR130,daily paused.
+
+R128: accepted[124, 125, 126], new criteria24, cumulative88/183 and741 criteria;95 units/10 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR129[127, 130]; R130 review, daily paused. User authorized R128/R129; independent checks, combined R129 publication.
+
+R128: IDE124/125/126 accepted with original Base and2025-07-16ECN kept separate; GETKEY/AEAD independent optional, not presumed from Gen. Cumulative88/183 and741criteria,95units/10budget rounds. NextR129127/130,nextsummaryR130,daily paused.
+
+R129: accepted[130], new criteria15, cumulative89/183 and756 criteria;94 units/9 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR130[128, 129, 131]; R130 review, daily paused. User authorized R128/R129; independent checks, combined R129 publication.
+
+R129:130accepted;127 seven criteria passed but DOE Async conflict24 still blocked after6.4/7.0 checks. Cumulative89/183 and756criteria,94units/9budget rounds. R128/R129 accepted4/39criteria; nextR130128/129/131 plusmandatory review,daily paused.

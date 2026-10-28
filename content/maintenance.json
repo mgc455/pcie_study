@@ -1,9 +1,8 @@
 {
   "nextFeatureIds": [
-    124,
-    125,
-    126,
-    127
+    128,
+    129,
+    131
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -50,12 +49,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-28",
-    "edition": "2026-10-28-r127",
+    "edition": "2026-10-28-r129",
     "featureIds": [
-      122,
-      123
+      127,
+      130
     ],
-    "nextTrack": "R128安全124～127；R130四轮总结"
+    "nextTrack": "R130安全剩余项及四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -345,11 +344,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 1,
-    "nextReviewAfterRounds": 3,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 69,
+    "completedTotal": 71,
     "lastReviewEdition": "2026-10-28-r126",
     "lastReviewId": "r123-r126",
     "nextExpectedReview": "R130（R127～R130四轮总结）"
@@ -1286,9 +1285,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 37,
-    "remainingPlannedRounds": 11,
-    "nextRound": 128,
+    "completedRounds": 39,
+    "remainingPlannedRounds": 9,
+    "nextRound": 130,
     "nextReviewRound": 130,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -15867,47 +15866,95 @@
         "featureId": 124,
         "group": "安全与可信计算",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/124/detail/r128-ide-security-contract",
+                "label": "IDE查询总入口：保护对象、控制面、错误边界与版本依据"
+              }
+            ],
+            "note": "复用保护边界/概念状态/密钥IV表，按6.0/7.0和独立ECN说明信任模型、角色及版本限定，字段细节导航125/126。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/124/detail/r128-ide-security-contract",
+                "label": "IDE查询总入口：保护对象、控制面、错误边界与版本依据"
+              }
+            ],
+            "note": "复用保护边界/概念状态/密钥IV表，按6.0/7.0和独立ECN说明信任模型、角色及版本限定，字段细节导航125/126。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/124/detail/r128-ide-security-contract",
+                "label": "IDE查询总入口：保护对象、控制面、错误边界与版本依据"
+              }
+            ],
+            "note": "复用保护边界/概念状态/密钥IV表，按6.0/7.0和独立ECN说明信任模型、角色及版本限定，字段细节导航125/126。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/124/detail/r128-ide-security-contract",
+                "label": "IDE查询总入口：保护对象、控制面、错误边界与版本依据"
+              }
+            ],
+            "note": "复用保护边界/概念状态/密钥IV表，按6.0/7.0和独立ECN说明信任模型、角色及版本限定，字段细节导航125/126。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/124/detail/r128-ide-security-contract",
+                "label": "IDE查询总入口：保护对象、控制面、错误边界与版本依据"
+              }
+            ],
+            "note": "复用保护边界/概念状态/密钥IV表，按6.0/7.0和独立ECN说明信任模型、角色及版本限定，字段细节导航125/126。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/124/detail/r128-ide-security-contract",
+                "label": "IDE查询总入口：保护对象、控制面、错误边界与版本依据"
+              }
+            ],
+            "note": "复用保护边界/概念状态/密钥IV表，按6.0/7.0和独立ECN说明信任模型、角色及版本限定，字段细节导航125/126。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/124/detail/r128-ide-security-contract",
+                "label": "IDE查询总入口：保护对象、控制面、错误边界与版本依据"
+              }
+            ],
+            "note": "复用保护边界/概念状态/密钥IV表，按6.0/7.0和独立ECN说明信任模型、角色及版本限定，字段细节导航125/126。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/124/detail/r128-ide-security-contract",
+                "label": "IDE查询总入口：保护对象、控制面、错误边界与版本依据"
+              }
+            ],
+            "note": "复用保护边界/概念状态/密钥IV表，按6.0/7.0和独立ECN说明信任模型、角色及版本限定，字段细节导航125/126。"
           }
         },
         "baseline": {
@@ -15916,61 +15963,110 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用保护边界/概念状态/密钥IV表，按6.0/7.0和独立ECN说明信任模型、角色及版本限定，字段细节导航125/126。",
         "taskId": "v1-task-15",
         "requiredTaskIds": [
           "v1-task-15",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 128
       },
       {
         "id": "v1-feature-125",
         "featureId": 125,
         "group": "安全与可信计算",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/125/detail/r128-ide-stream-decision-order",
+                "label": "流选择实用顺序：匹配→安全状态→接收端核验，不安全不能降级"
+              }
+            ],
+            "note": "复用12块能力/控制/RID/地址/XT/接收子流表，核7.0选择与不回退/全路径模式，清楚区分6.0/7.0及独立扩展。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/125/detail/r128-ide-stream-decision-order",
+                "label": "流选择实用顺序：匹配→安全状态→接收端核验，不安全不能降级"
+              }
+            ],
+            "note": "复用12块能力/控制/RID/地址/XT/接收子流表，核7.0选择与不回退/全路径模式，清楚区分6.0/7.0及独立扩展。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/125/detail/r128-ide-stream-decision-order",
+                "label": "流选择实用顺序：匹配→安全状态→接收端核验，不安全不能降级"
+              }
+            ],
+            "note": "复用12块能力/控制/RID/地址/XT/接收子流表，核7.0选择与不回退/全路径模式，清楚区分6.0/7.0及独立扩展。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/125/detail/r128-ide-stream-decision-order",
+                "label": "流选择实用顺序：匹配→安全状态→接收端核验，不安全不能降级"
+              }
+            ],
+            "note": "复用12块能力/控制/RID/地址/XT/接收子流表，核7.0选择与不回退/全路径模式，清楚区分6.0/7.0及独立扩展。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/125/detail/r128-ide-stream-decision-order",
+                "label": "流选择实用顺序：匹配→安全状态→接收端核验，不安全不能降级"
+              }
+            ],
+            "note": "复用12块能力/控制/RID/地址/XT/接收子流表，核7.0选择与不回退/全路径模式，清楚区分6.0/7.0及独立扩展。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/125/detail/r128-ide-stream-decision-order",
+                "label": "流选择实用顺序：匹配→安全状态→接收端核验，不安全不能降级"
+              }
+            ],
+            "note": "复用12块能力/控制/RID/地址/XT/接收子流表，核7.0选择与不回退/全路径模式，清楚区分6.0/7.0及独立扩展。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/125/detail/r128-ide-stream-decision-order",
+                "label": "流选择实用顺序：匹配→安全状态→接收端核验，不安全不能降级"
+              }
+            ],
+            "note": "复用12块能力/控制/RID/地址/XT/接收子流表，核7.0选择与不回退/全路径模式，清楚区分6.0/7.0及独立扩展。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/125/detail/r128-ide-stream-decision-order",
+                "label": "流选择实用顺序：匹配→安全状态→接收端核验，不安全不能降级"
+              }
+            ],
+            "note": "复用12块能力/控制/RID/地址/XT/接收子流表，核7.0选择与不回退/全路径模式，清楚区分6.0/7.0及独立扩展。"
           }
         },
         "baseline": {
@@ -15979,61 +16075,142 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用12块能力/控制/RID/地址/XT/接收子流表，核7.0选择与不回退/全路径模式，清楚区分6.0/7.0及独立扩展。",
         "taskId": "v1-task-15",
         "requiredTaskIds": [
           "v1-task-15",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 128
       },
       {
         "id": "v1-feature-126",
         "featureId": 126,
         "group": "安全与可信计算",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/126/detail/r128-ide-km-getkey-extension",
+                "label": "2025 GETKEY扩展：设备生成Tx密钥，不是任意读出当前运行密钥"
+              },
+              {
+                "href": "#feature/126/detail/r128-ide-aead-limit-lifecycle",
+                "label": "AEAD次数上限：建流前协商、Secure后冻结、刷新必须留处理余量"
+              }
+            ],
+            "note": "复用13块原版命令/位图/ACK/会话与GO/STOP，核2025 ECN正文4～17与6/12页视觉，补GETKEY/AEAD能力和生命周期，保留独立密码安全验证边界。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/126/detail/r128-ide-km-getkey-extension",
+                "label": "2025 GETKEY扩展：设备生成Tx密钥，不是任意读出当前运行密钥"
+              },
+              {
+                "href": "#feature/126/detail/r128-ide-aead-limit-lifecycle",
+                "label": "AEAD次数上限：建流前协商、Secure后冻结、刷新必须留处理余量"
+              }
+            ],
+            "note": "复用13块原版命令/位图/ACK/会话与GO/STOP，核2025 ECN正文4～17与6/12页视觉，补GETKEY/AEAD能力和生命周期，保留独立密码安全验证边界。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/126/detail/r128-ide-km-getkey-extension",
+                "label": "2025 GETKEY扩展：设备生成Tx密钥，不是任意读出当前运行密钥"
+              },
+              {
+                "href": "#feature/126/detail/r128-ide-aead-limit-lifecycle",
+                "label": "AEAD次数上限：建流前协商、Secure后冻结、刷新必须留处理余量"
+              }
+            ],
+            "note": "复用13块原版命令/位图/ACK/会话与GO/STOP，核2025 ECN正文4～17与6/12页视觉，补GETKEY/AEAD能力和生命周期，保留独立密码安全验证边界。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/126/detail/r128-ide-km-getkey-extension",
+                "label": "2025 GETKEY扩展：设备生成Tx密钥，不是任意读出当前运行密钥"
+              },
+              {
+                "href": "#feature/126/detail/r128-ide-aead-limit-lifecycle",
+                "label": "AEAD次数上限：建流前协商、Secure后冻结、刷新必须留处理余量"
+              }
+            ],
+            "note": "复用13块原版命令/位图/ACK/会话与GO/STOP，核2025 ECN正文4～17与6/12页视觉，补GETKEY/AEAD能力和生命周期，保留独立密码安全验证边界。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/126/detail/r128-ide-km-getkey-extension",
+                "label": "2025 GETKEY扩展：设备生成Tx密钥，不是任意读出当前运行密钥"
+              },
+              {
+                "href": "#feature/126/detail/r128-ide-aead-limit-lifecycle",
+                "label": "AEAD次数上限：建流前协商、Secure后冻结、刷新必须留处理余量"
+              }
+            ],
+            "note": "复用13块原版命令/位图/ACK/会话与GO/STOP，核2025 ECN正文4～17与6/12页视觉，补GETKEY/AEAD能力和生命周期，保留独立密码安全验证边界。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/126/detail/r128-ide-km-getkey-extension",
+                "label": "2025 GETKEY扩展：设备生成Tx密钥，不是任意读出当前运行密钥"
+              },
+              {
+                "href": "#feature/126/detail/r128-ide-aead-limit-lifecycle",
+                "label": "AEAD次数上限：建流前协商、Secure后冻结、刷新必须留处理余量"
+              }
+            ],
+            "note": "复用13块原版命令/位图/ACK/会话与GO/STOP，核2025 ECN正文4～17与6/12页视觉，补GETKEY/AEAD能力和生命周期，保留独立密码安全验证边界。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/126/detail/r128-ide-km-getkey-extension",
+                "label": "2025 GETKEY扩展：设备生成Tx密钥，不是任意读出当前运行密钥"
+              },
+              {
+                "href": "#feature/126/detail/r128-ide-aead-limit-lifecycle",
+                "label": "AEAD次数上限：建流前协商、Secure后冻结、刷新必须留处理余量"
+              }
+            ],
+            "note": "复用13块原版命令/位图/ACK/会话与GO/STOP，核2025 ECN正文4～17与6/12页视觉，补GETKEY/AEAD能力和生命周期，保留独立密码安全验证边界。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 128,
+            "evidence": [
+              {
+                "href": "#feature/126/detail/r128-ide-km-getkey-extension",
+                "label": "2025 GETKEY扩展：设备生成Tx密钥，不是任意读出当前运行密钥"
+              },
+              {
+                "href": "#feature/126/detail/r128-ide-aead-limit-lifecycle",
+                "label": "AEAD次数上限：建流前协商、Secure后冻结、刷新必须留处理余量"
+              }
+            ],
+            "note": "复用13块原版命令/位图/ACK/会话与GO/STOP，核2025 ECN正文4～17与6/12页视觉，补GETKEY/AEAD能力和生命周期，保留独立密码安全验证边界。"
           }
         },
         "baseline": {
@@ -16042,61 +16219,138 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用13块原版命令/位图/ACK/会话与GO/STOP，核2025 ECN正文4～17与6/12页视觉，补GETKEY/AEAD能力和生命周期，保留独立密码安全验证边界。",
         "taskId": "v1-task-15",
         "requiredTaskIds": [
           "v1-task-15",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 128
       },
       {
         "id": "v1-feature-127",
         "featureId": 127,
         "group": "安全与可信计算",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/127/detail/r129-doe-transaction-boundaries",
+                "label": "DOE操作收尾：三个完成点、全DW访问与软件独占"
+              },
+              {
+                "href": "#feature/127/detail/r129-doe-async-open-contract",
+                "label": "DOE未验收项：6.4/7.0仍有连续Async消息的规范冲突"
+              }
+            ],
+            "note": "复用21块逐bit/头图/读确认/Abort/FLR/Attention，补完整对象独占与全DW规则；6.4/7.0 Async矛盾复现，故不通过一致性。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/127/detail/r129-doe-transaction-boundaries",
+                "label": "DOE操作收尾：三个完成点、全DW访问与软件独占"
+              },
+              {
+                "href": "#feature/127/detail/r129-doe-async-open-contract",
+                "label": "DOE未验收项：6.4/7.0仍有连续Async消息的规范冲突"
+              }
+            ],
+            "note": "复用21块逐bit/头图/读确认/Abort/FLR/Attention，补完整对象独占与全DW规则；6.4/7.0 Async矛盾复现，故不通过一致性。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/127/detail/r129-doe-transaction-boundaries",
+                "label": "DOE操作收尾：三个完成点、全DW访问与软件独占"
+              },
+              {
+                "href": "#feature/127/detail/r129-doe-async-open-contract",
+                "label": "DOE未验收项：6.4/7.0仍有连续Async消息的规范冲突"
+              }
+            ],
+            "note": "复用21块逐bit/头图/读确认/Abort/FLR/Attention，补完整对象独占与全DW规则；6.4/7.0 Async矛盾复现，故不通过一致性。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/127/detail/r129-doe-transaction-boundaries",
+                "label": "DOE操作收尾：三个完成点、全DW访问与软件独占"
+              },
+              {
+                "href": "#feature/127/detail/r129-doe-async-open-contract",
+                "label": "DOE未验收项：6.4/7.0仍有连续Async消息的规范冲突"
+              }
+            ],
+            "note": "复用21块逐bit/头图/读确认/Abort/FLR/Attention，补完整对象独占与全DW规则；6.4/7.0 Async矛盾复现，故不通过一致性。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/127/detail/r129-doe-transaction-boundaries",
+                "label": "DOE操作收尾：三个完成点、全DW访问与软件独占"
+              },
+              {
+                "href": "#feature/127/detail/r129-doe-async-open-contract",
+                "label": "DOE未验收项：6.4/7.0仍有连续Async消息的规范冲突"
+              }
+            ],
+            "note": "复用21块逐bit/头图/读确认/Abort/FLR/Attention，补完整对象独占与全DW规则；6.4/7.0 Async矛盾复现，故不通过一致性。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/127/detail/r129-doe-transaction-boundaries",
+                "label": "DOE操作收尾：三个完成点、全DW访问与软件独占"
+              },
+              {
+                "href": "#feature/127/detail/r129-doe-async-open-contract",
+                "label": "DOE未验收项：6.4/7.0仍有连续Async消息的规范冲突"
+              }
+            ],
+            "note": "复用21块逐bit/头图/读确认/Abort/FLR/Attention，补完整对象独占与全DW规则；6.4/7.0 Async矛盾复现，故不通过一致性。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/127/detail/r129-doe-transaction-boundaries",
+                "label": "DOE操作收尾：三个完成点、全DW访问与软件独占"
+              },
+              {
+                "href": "#feature/127/detail/r129-doe-async-open-contract",
+                "label": "DOE未验收项：6.4/7.0仍有连续Async消息的规范冲突"
+              }
+            ],
+            "note": "复用21块逐bit/头图/读确认/Abort/FLR/Attention，补完整对象独占与全DW规则；6.4/7.0 Async矛盾复现，故不通过一致性。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/127/detail/r129-doe-async-open-contract",
+                "label": "两份正式版冲突并列"
+              }
+            ],
+            "note": "未因寄存器齐全而验收有争议的多消息状态机。"
           }
         },
         "baseline": {
@@ -16112,6 +16366,9 @@
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "v1-conflict-24 DOE子问题：6.4/7.0连续Async REQUEST与仅响应GET原文冲突，待明确澄清。"
         ]
       },
       {
@@ -16245,47 +16502,95 @@
         "featureId": 130,
         "group": "安全与可信计算",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/130/detail/r129-dma-isolation-use-sequence",
+                "label": "DMA隔离使用顺序：授权、允许发起、撤销和页复用是四个阶段"
+              }
+            ],
+            "note": "复用TA/ATC/ACS及撤销6块，核6.0/7.0隐式失效与请求接受，复用ATS/ACS已验收来源；PCIe侧操作契约明确，平台页表/缓存同步需独立资料，非无条件页回收脚本。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/130/detail/r129-dma-isolation-use-sequence",
+                "label": "DMA隔离使用顺序：授权、允许发起、撤销和页复用是四个阶段"
+              }
+            ],
+            "note": "复用TA/ATC/ACS及撤销6块，核6.0/7.0隐式失效与请求接受，复用ATS/ACS已验收来源；PCIe侧操作契约明确，平台页表/缓存同步需独立资料，非无条件页回收脚本。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/130/detail/r129-dma-isolation-use-sequence",
+                "label": "DMA隔离使用顺序：授权、允许发起、撤销和页复用是四个阶段"
+              }
+            ],
+            "note": "复用TA/ATC/ACS及撤销6块，核6.0/7.0隐式失效与请求接受，复用ATS/ACS已验收来源；PCIe侧操作契约明确，平台页表/缓存同步需独立资料，非无条件页回收脚本。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/130/detail/r129-dma-isolation-use-sequence",
+                "label": "DMA隔离使用顺序：授权、允许发起、撤销和页复用是四个阶段"
+              }
+            ],
+            "note": "复用TA/ATC/ACS及撤销6块，核6.0/7.0隐式失效与请求接受，复用ATS/ACS已验收来源；PCIe侧操作契约明确，平台页表/缓存同步需独立资料，非无条件页回收脚本。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/130/detail/r129-dma-isolation-use-sequence",
+                "label": "DMA隔离使用顺序：授权、允许发起、撤销和页复用是四个阶段"
+              }
+            ],
+            "note": "复用TA/ATC/ACS及撤销6块，核6.0/7.0隐式失效与请求接受，复用ATS/ACS已验收来源；PCIe侧操作契约明确，平台页表/缓存同步需独立资料，非无条件页回收脚本。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/130/detail/r129-dma-isolation-use-sequence",
+                "label": "DMA隔离使用顺序：授权、允许发起、撤销和页复用是四个阶段"
+              }
+            ],
+            "note": "复用TA/ATC/ACS及撤销6块，核6.0/7.0隐式失效与请求接受，复用ATS/ACS已验收来源；PCIe侧操作契约明确，平台页表/缓存同步需独立资料，非无条件页回收脚本。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/130/detail/r129-dma-isolation-use-sequence",
+                "label": "DMA隔离使用顺序：授权、允许发起、撤销和页复用是四个阶段"
+              }
+            ],
+            "note": "复用TA/ATC/ACS及撤销6块，核6.0/7.0隐式失效与请求接受，复用ATS/ACS已验收来源；PCIe侧操作契约明确，平台页表/缓存同步需独立资料，非无条件页回收脚本。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 129,
+            "evidence": [
+              {
+                "href": "#feature/130/detail/r129-dma-isolation-use-sequence",
+                "label": "DMA隔离使用顺序：授权、允许发起、撤销和页复用是四个阶段"
+              }
+            ],
+            "note": "复用TA/ATC/ACS及撤销6块，核6.0/7.0隐式失效与请求接受，复用ATS/ACS已验收来源；PCIe侧操作契约明确，平台页表/缓存同步需独立资料，非无条件页回收脚本。"
           }
         },
         "baseline": {
@@ -16294,14 +16599,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用TA/ATC/ACS及撤销6块，核6.0/7.0隐式失效与请求接受，复用ATS/ACS已验收来源；PCIe侧操作契约明确，平台页表/缓存同步需独立资料，非无条件页回收脚本。",
         "taskId": "v1-task-15",
         "requiredTaskIds": [
           "v1-task-15",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 129
       },
       {
         "id": "v1-feature-131",
@@ -23879,6 +24185,202 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定范围98项；106/114/119及61/89具体来源问题保留；R130四轮总结。",
         "publication": "用户授权R126/R127；分别本地检查后合并发布R127，保留远端修改，非强制更新。"
+      },
+      {
+        "round": 128,
+        "kind": "R128 IDE控制/数据面收尾与GETKEY、AEAD扩展",
+        "deliverables": [
+          "R128关闭124/125/126，新增24维度，累计88/183、741维度；补2025 GETKEY/AEAD ECN、能力和错误码、Secure锁定及刷新预算。剩95项/10预算轮，R129核DOE及DMA隔离，R130总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-124-v1-accepted",
+          "feature-125-v1-accepted",
+          "feature-126-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 124,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 124,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 124,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 124,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 124,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 124,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 124,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 124,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 125,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 125,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 125,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 125,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 125,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 125,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 125,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 125,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 126,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 126,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 126,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 126,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 126,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 126,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 126,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 126,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          124,
+          125,
+          126
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定95项；127 Async/128 CMA/129 TDISP来源问题需核，R130四轮总结。",
+        "publication": "用户授权R128/R129；分别检查后合并发布R129，非强制更新。"
+      },
+      {
+        "round": 129,
+        "kind": "R129 DOE传输收尾、Async阻塞与DMA隔离验收",
+        "deliverables": [
+          "R129关闭130，127七维通过但Async一致性阻塞；新增15维度，累计89/183、756维度，剩94项/9预算轮。两轮关闭4项/39维度，R130复核CMA/TDISP/过滤并总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-130-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 127,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 127,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 127,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 127,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 127,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 127,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 127,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 130,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 130,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 130,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 130,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 130,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 130,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 130,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 130,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          130
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定94项；DOE127新增明确阻塞，128/129/131按队列，R130四轮总结。",
+        "publication": "用户授权R128/R129，分别本地检查后合并发布R129；保留远端修改，非强制更新。"
       }
     ],
     "backlog": [
@@ -25233,8 +25735,14 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "DOE子问题6.4p944/7.0p964同样矛盾，等待正式澄清，不重复扫描同一页；TDISP报告RUN子问题在129另核，整记录未关闭。",
+        "evidence": [
+          {
+            "href": "#feature/127/detail/r129-doe-async-open-contract",
+            "label": "R129 DOE连续交换版本核对"
+          }
+        ],
+        "lastReviewedRound": 129
       },
       {
         "id": "v1-conflict-25",
@@ -27356,34 +27864,33 @@
       }
     ],
     "nextExecution": {
-      "round": 128,
+      "round": 130,
       "taskId": "v1-task-15",
       "featureIds": [
-        124,
-        125,
-        126,
-        127
+        128,
+        129,
+        131
       ],
-      "goal": "R128按task15先核IDE/Stream/Key与DOE124～127；优先成熟内容验收，保留独立SPDM/TDISP后续。不重扫106/114/119旧证据。",
+      "goal": "R130核128 CMA/profile/Fresh、129 TDISP来源问题和131过滤实质缺口，并完成R127～R130四轮总结；未能澄清的不判成功。",
       "reviewRound": 130
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 127,
+      "assessedRound": 129,
       "reestimateRound": 130,
       "observedAcceptedUnitsPerRound": 1.5,
-      "requiredAcceptedUnitsPerRemainingRound": 8.909090909090908,
-      "linearExtrapolationRounds": 66,
-      "assessment": "R127新增2项/16维度，累计85/183与717维度；剩98项/11预算轮。R123～R126实绩1.5项/轮，原R138预算明显不足，不自动延长或降低标准。",
+      "requiredAcceptedUnitsPerRemainingRound": 10.444444444444445,
+      "linearExtrapolationRounds": 63,
+      "assessment": "两轮关闭4项/39维度，累计89/183与756维度，剩94项/9预算轮；R138无法按当前产出速度实现，不擅自延期/降标准。",
       "action": "下一轮安全124～127，优先复用成熟说明查独有缺口；R130再总结实际完成量。",
       "latestProgress": {
-        "round": 127,
-        "newAcceptedUnits": 2,
-        "cumulativeAcceptedUnits": 85,
-        "newPassedCriteria": 16,
-        "cumulativePassedCriteria": 717,
-        "remainingPlannedRounds": 11
+        "round": 129,
+        "newAcceptedUnits": 1,
+        "cumulativeAcceptedUnits": 89,
+        "newPassedCriteria": 15,
+        "cumulativePassedCriteria": 756,
+        "remainingPlannedRounds": 9
       }
     },
     "reviewWindows": [
