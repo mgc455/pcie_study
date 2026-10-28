@@ -149121,16 +149121,684 @@
     "checks": "核对MCTP端点身份、分包/重组和VDM路由；普通VDM收发成功不等于MCTP协议全部正确。",
     "prerequisites": "区分只读观察与改变运行行为的主动测试；明确测试范围、预期结果、状态清理和应用/板级执行责任。",
     "id": 140,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R136按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
-        "title": "PCI-SIG 规范目录",
-        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+        "title": "DMTF DSP0238 1.3.1（正式）",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf"
+      },
+      {
+        "title": "DMTF DSP0236 1.3.2（正式）",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0236_1.3.2.pdf"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-28",
+    "protocolReferences": [
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.1",
+        "page": 10,
+        "pdfPage": 10,
+        "title": "PF独立性和绑定范围",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.2.1",
+        "page": 11,
+        "pdfPage": 11,
+        "title": "NFM图1与表1",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.2.1",
+        "page": 12,
+        "pdfPage": 12,
+        "title": "NFM字段/Pad/ECRC",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.2.2",
+        "page": 13,
+        "pdfPage": 13,
+        "title": "FM无OHC图2",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.2.2",
+        "page": 14,
+        "pdfPage": 14,
+        "title": "FM OHC图3",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.2.2",
+        "page": 15,
+        "pdfPage": 15,
+        "title": "FM表2字段",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.3",
+        "page": 16,
+        "pdfPage": 16,
+        "title": "表3兼容修订而非速度",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.4",
+        "page": 17,
+        "pdfPage": 17,
+        "title": "表4/5两种物理地址",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.5",
+        "page": 18,
+        "pdfPage": 18,
+        "title": "路由与MCTP桥",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.5.3",
+        "page": 19,
+        "pdfPage": 19,
+        "title": "表6跨模式路由",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.5.3",
+        "page": 20,
+        "pdfPage": 20,
+        "title": "表6跨Segment翻译",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.5.4",
+        "page": 21,
+        "pdfPage": 21,
+        "title": "EID解析与桥地址",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.8",
+        "page": 22,
+        "pdfPage": 22,
+        "title": "主机/复位/功耗依赖",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.9",
+        "page": 23,
+        "pdfPage": 23,
+        "title": "发现通知与标志",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.10.3",
+        "page": 24,
+        "pdfPage": 24,
+        "title": "完整发现过程",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.11",
+        "page": 27,
+        "pdfPage": 27,
+        "title": "表8计时定义",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "6.11",
+        "page": 28,
+        "pdfPage": 28,
+        "title": "计时注释",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-vdm-1.3.1",
+        "document": "MCTP PCIe VDM Transport Binding Specification",
+        "version": "1.3.1",
+        "section": "B",
+        "page": 30,
+        "pdfPage": 30,
+        "title": "附录B：正式版本变化记录",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0238_1.3.1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-base-1.3.2",
+        "document": "Management Component Transport Protocol (MCTP) Base Specification",
+        "version": "1.3.2",
+        "section": "8.2",
+        "page": 25,
+        "pdfPage": 25,
+        "title": "32bit传输头字段",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0236_1.3.2.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-base-1.3.2",
+        "document": "Management Component Transport Protocol (MCTP) Base Specification",
+        "version": "1.3.2",
+        "section": "8.2",
+        "page": 26,
+        "pdfPage": 26,
+        "title": "IC与消息类型",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0236_1.3.2.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-base-1.3.2",
+        "document": "Management Component Transport Protocol (MCTP) Base Specification",
+        "version": "1.3.2",
+        "section": "8.4",
+        "page": 27,
+        "pdfPage": 27,
+        "title": "64byte基线与末包",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0236_1.3.2.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-base-1.3.2",
+        "document": "Management Component Transport Protocol (MCTP) Base Specification",
+        "version": "1.3.2",
+        "section": "8.6",
+        "page": 28,
+        "pdfPage": 28,
+        "title": "重组键和丢包",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0236_1.3.2.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-base-1.3.2",
+        "document": "Management Component Transport Protocol (MCTP) Base Specification",
+        "version": "1.3.2",
+        "section": "8.9",
+        "page": 29,
+        "pdfPage": 29,
+        "title": "重组异常转移",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0236_1.3.2.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-base-1.3.2",
+        "document": "Management Component Transport Protocol (MCTP) Base Specification",
+        "version": "1.3.2",
+        "section": "8.10",
+        "page": 30,
+        "pdfPage": 30,
+        "title": "不支持类型与版本",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0236_1.3.2.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "mctp-base-1.3.2",
+        "document": "Management Component Transport Protocol (MCTP) Base Specification",
+        "version": "1.3.2",
+        "section": "8.13",
+        "page": 31,
+        "pdfPage": 31,
+        "title": "安全由上层提供",
+        "url": "https://www.dmtf.org/sites/default/files/standards/documents/DSP0236_1.3.2.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "R136核DMTF正式DSP0238 1.3.1的选定正文、图1～3/表1～8及附录B，DSP0236 1.3.2 §8.2～8.14选段；未宣称全文或Gen7媒体认证。",
+    "details": [
+      {
+        "id": "r136-mctp-layer-and-header",
+        "title": "MCTP装在什么位置：PCIe Type1 VDM、EID与32bit公共头",
+        "paragraphs": [
+          "MCTP是管理消息传输协议，PCIe VDM是它的一种绑定。PCIe负责当前总线上的物理寻址和投递，MCTP以EID组织逻辑端点，再由消息类型区分上层管理用途。支持普通VDM、BAR或DMA均不代表实现了MCTP；符合此绑定的设备至少一个PF支持，多个Function的MCTP通信相互独立。",
+          "NFM的基本VDM头为4DW，最后1DW用作MCTP传输头，因此不能把它再次当4byte PCIe Data计入Length。以下Byte偏移从该基本头起点计，不包含可选Prefix；FM的基本头同样在Byte12～15放公共头，OHC如存在则在基本头之后，Payload起点随之移动。HdrVersion=1是绑定头格式，不是Base规范小版本或PCIe Gen。",
+          "消息类型只在一条Message首包的Payload首byte出现：bit7=IC，bit[6:0]=Message Type。后续包的第一个byte是消息连续内容，不能重复当作类型。MCTP的3bit Message Tag、PCIe TAG字段里的4bit MCTP VDM Code、PCIe非Posted请求Tag属于不同命名空间。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          18,
+          19
+        ],
+        "table": {
+          "columns": [
+            "位置",
+            "字段",
+            "使用方式"
+          ],
+          "rows": [
+            [
+              "Byte12[7:4]/[3:0]",
+              "Reserved / HeaderVersion",
+              "发送0 / 版本1"
+            ],
+            [
+              "Byte13[7:0]",
+              "Destination EID",
+              "8bit逻辑目的"
+            ],
+            [
+              "Byte14[7:0]",
+              "Source EID",
+              "8bit逻辑源"
+            ],
+            [
+              "Byte15[7]/[6]",
+              "SOM / EOM",
+              "消息首包 / 末包"
+            ],
+            [
+              "Byte15[5:4]/[3]/[2:0]",
+              "Seq / TO / MessageTag",
+              "2bit / 1bit / 3bit"
+            ],
+            [
+              "首包Payload首byte[7]/[6:0]",
+              "IC / MessageType",
+              "每条消息一次，不是每包一次"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 58,
+            "detailId": "r99-vdm-type-route",
+            "label": "PCIe VDM基础"
+          }
+        ],
+        "packetLayouts": [
+          {
+            "id": "mctp-vdm-common-transport-header",
+            "title": "MCTP公共传输头：基本VDM头的最后1DW",
+            "version": "DSP0238 1.3.1 Figure1/2/3；DSP0236 1.3.2 Table1",
+            "headerBits": 32,
+            "lengthLabel": "图示32bit，Byte12→15从左到右；每byte内部bit7→0",
+            "rowLabel": "传输头DW",
+            "rows": [
+              [
+                {
+                  "label": "Reserved",
+                  "width": 4,
+                  "key": "rsv",
+                  "help": "Byte12[7:4]；发送0，接收忽略"
+                },
+                {
+                  "label": "Ver",
+                  "width": 4,
+                  "key": "ver",
+                  "help": "Byte12[3:0]，HeaderVersion=1"
+                },
+                {
+                  "label": "Dest EID",
+                  "width": 8,
+                  "key": "deid",
+                  "help": "Byte13[7:0]；逻辑目的端点"
+                },
+                {
+                  "label": "Src EID",
+                  "width": 8,
+                  "key": "seid",
+                  "help": "Byte14[7:0]；逻辑源端点"
+                },
+                {
+                  "label": "SOM",
+                  "width": 1,
+                  "key": "som",
+                  "help": "Byte15[7]；消息首包"
+                },
+                {
+                  "label": "EOM",
+                  "width": 1,
+                  "key": "eom",
+                  "help": "Byte15[6]；消息末包"
+                },
+                {
+                  "label": "Seq",
+                  "width": 2,
+                  "key": "seq",
+                  "help": "Byte15[5:4]；mod4包序列"
+                },
+                {
+                  "label": "TO",
+                  "width": 1,
+                  "key": "to",
+                  "help": "Byte15[3]；1表示源端点生成Tag"
+                },
+                {
+                  "label": "Tag",
+                  "width": 3,
+                  "key": "tag",
+                  "help": "Byte15[2:0]；MCTP消息Tag，与PCIe VDM Code不同"
+                }
+              ]
+            ],
+            "parts": [
+              {
+                "label": "VDM基本头前部",
+                "size": "12Byte"
+              },
+              {
+                "label": "图示公共传输头",
+                "size": "4Byte"
+              },
+              {
+                "label": "OHC / Payload / Trailer",
+                "size": "按实际Mode和字段另计"
+              }
+            ],
+            "note": "本图只展开基本VDM头最后4Byte，不是完整TLP。先按Mode解析外层格式；FM如有OHC则位于基本头与Payload之间；首包Payload的IC/MessageType不在这32bit内。"
+          }
+        ]
+      },
+      {
+        "id": "r136-mctp-nfm-fm-fields",
+        "title": "NFM与FM逐项对照：路由、Length、补齐、OHC和Trailer",
+        "paragraphs": [
+          "NFM中Fmt[2:0]=011b，Type[4:3]=10b；FM的Type[7:3]=01110b。两者低3bit只支持000到RC、010按ID、011由RC广播。Message Code=7Fh、VendorID=1AB4h、MCTP VDM Code=0、TC=0。NFM Attr低2bit允许00/01，高Attr及AT等按表1限制；FM Attr全部为000，不能原样复制NFM允许的属性。",
+          "Length以DW计PCIe VDM Data，不计前面的公共传输头，也不计PCIe Trailer。MCTP基线Transmission Unit是64byte的MCTP packet payload，不是总TLP大小、MPS或整条管理消息长度。绑定要求传输单元DW对齐；只有EOM包可以短于此前各包的传输单元，需要0～3个00补齐字节并在PadLen记数。NFM PadLen位于Byte6[5:4]，VDMCode在[3:0]；Byte6[7:6]保留。",
+          "FM OHC=00000无OHC、00100有OHC-C、00101有OHC-A4和C。A4含目的Segment/DSV，C含Requester Segment/RSV与IDE信息。FM的TS=000无Trailer，001为1DW ECRC，101为3DW IDE MAC，110为4DW IDE MAC+PCRC；IDE两项还要求OHC-C并指明IDE TLP。NFM用TD指示可选ECRC，不能因为旧绑定曾要求TD=0而在已使能ECRC时漏生成。这里仅解释MCTP承载，不替代IDE密钥与流配置专题。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          20
+        ],
+        "table": {
+          "columns": [
+            "场景",
+            "格式或计算",
+            "注意"
+          ],
+          "rows": [
+            [
+              "NFM",
+              "4DW基本头；可选Prefix另算",
+              "TD和4byte ECRC"
+            ],
+            [
+              "FM同Segment无IDE",
+              "4DW基本头，无OHC的格式见图2",
+              "Payload紧随基本头"
+            ],
+            [
+              "FM跨Segment/IDE",
+              "基本头后按OHC编码附加",
+              "图3的OHC不可按Payload解读"
+            ],
+            [
+              "Length=16 / PadLen=3",
+              "VDM Data 64byte中末尾3byte为填充",
+              "有效MCTP Payload=61byte"
+            ],
+            [
+              "消息总Payload=70byte、使用64byte单元",
+              "首包64；末包6+2补齐，Length=2",
+              "末包不重复插入类型byte"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 99,
+            "detailId": "ecrc-versus-link-crc",
+            "label": "ECRC"
+          },
+          {
+            "featureId": 124,
+            "detailId": "ide-protection-and-topology",
+            "label": "IDE"
+          }
+        ]
+      },
+      {
+        "id": "r136-mctp-reassembly-and-routing",
+        "title": "分包重组和两层路由：Seq不是可靠重传，EID不是BDF",
+        "paragraphs": [
+          "在一个目的Endpoint上，重组仅以Source EID、TO、Message Tag标识消息上下文；Seq按包模4递增，首包可以取0～3任意值，TO/Tag在同一消息内不变。SOM/EOM=11为单包，10开始，00延续，01结束。TO=1说明消息源生成Tag；典型请求的响应复用Tag并清TO，不能把TO通用定义直接等同所有上层协议的请求位。",
+          "没有先收到有效SOM的中间/末包应丢弃，不启动重组；坏头版本、不支持传输单元、无路由EID、过期响应Tag等按所引丢包规则处理。同一上下文收到新SOM会丢旧消息并开始新消息；Seq不连续会丢正在重组的消息。MCTP没有在这里为每个片段提供ACK/自动重传，控制命令重试与PCIe链路Replay不能混为一层。",
+          "BDF/ARI是PCIe物理地址，EID是8bit逻辑标识。0为Null EID、1～7保留、FF为当前总线广播；Null源/目的消息不能跨不同总线作MCTP桥接。NFM控制命令中的物理地址2byte，FM为Segment+BDF/ARI的3byte；FM缺有效目的Segment时按本地Segment解释。",
+          "普通端点互通以及Bus Owner对单个端点使用Route by ID；Discovery Notify及广播请求的响应走Route to RC。Prepare/Endpoint Discovery可由RC广播，其它消息以该广播路由收到时应丢弃。跨NFM/FM同Segment可保持ID，跨Segment遇NFM则需表6列出的MCTP桥/EID查表转换；FM跨Segment可按目的Segment路由。PCIe Switch转发不等于执行了MCTP桥接，RC也不保证支持任意P2P，Bus Owner不在RC时还需实现专用转交路径。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          18,
+          21,
+          22,
+          23
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "SOM/EOM",
+              "11 / 10 / 00 / 01",
+              "单包 / 首包 / 中间 / 末包"
+            ],
+            [
+              "Seq",
+              "2bit，mod4",
+              "连续最多可察觉3个缺包，不是可靠性证明"
+            ],
+            [
+              "EID / BDF",
+              "逻辑 / 当前物理投递",
+              "重枚举后物理地址可能改变"
+            ],
+            [
+              "FM→NFM跨Segment",
+              "MCTP桥按EID换TargetID",
+              "目的域RequesterID按桥身份"
+            ],
+            [
+              "NFM→FM跨Segment",
+              "MCTP桥查目的Segment及TargetID",
+              "Requester带源Segment/BDF"
+            ],
+            [
+              "FM→FM跨Segment",
+              "按DestinationSegment路由",
+              "不因跨Segment必需MCTP桥"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r136-mctp-discovery-timers-and-reset",
+        "title": "何时可以发消息：发现标志、重试时间和复位/低功耗",
+        "paragraphs": [
+          "PCIe枚举先分配Bus/Segment，之后才能可靠使用该绑定。物理地址初次分配或改变时，端点在捕获相关地址后发送Discovery Notify；使用Route to RC、Null Destination EID，尚未分配EID时Source也为Null。收到Set Endpoint ID后Discovered置已发现；Prepare、物理地址变化、EID丢失等会置未发现；只有未发现端点响应Endpoint Discovery。",
+          "完整发现常用顺序是Prepare广播、留出处理时间、Endpoint Discovery广播、对每个响应的物理地址Set EID；持续发现并分配，直到一个MT2窗口无响应。不要等待所有Prepare响应才继续；缓冲有限时可能收不全。下表是DSP0238表8的参数，不是PCIe Completion Timeout，也不能拿控制请求的响应超时当成所有消息分片重组超时。",
+          "Fundamental/Conventional Reset后到重新得到物理地址前不能向该端点投递MCTP VDM。FLR也可能复位对应Function的MCTP并暂时不能响应；Hot Reset可复位端点，规范建议保留EID。功耗/链路状态可能使通信不可用；丢失EID、发现标志或路由状态后需重新初始化/发现。MCTP走PCIe并不意味着主机掉电后仍有独立带外通道。"
+        ],
+        "referenceIndices": [
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "table": {
+          "columns": [
+            "参数",
+            "数值/顺序",
+            "适用语义"
+          ],
+          "rows": [
+            [
+              "TRECLAIM",
+              "5s",
+              "Owner至少等此时长才回收不响应端点的EID"
+            ],
+            [
+              "MN1",
+              "至少2次重试",
+              "含初次至少3次；所有重试受MT4最大值限制"
+            ],
+            [
+              "MT1",
+              "最大120ms",
+              "响应方从请求接收完到响应开始发送，首发可成功条件"
+            ],
+            [
+              "MT2",
+              "默认下界MT1max+6ms=126ms，上界MT4min=5s",
+              "请求方等响应；规范允许另行实现自适应缩短"
+            ],
+            [
+              "MT4",
+              "5～6s",
+              "Instance ID过期/复用窗口；不是3bit Message Tag"
+            ],
+            [
+              "无响应排查",
+              "枚举→物理路由→EID→重组→上层类型",
+              "最后再按电源、链路、复位与发现上下文核对"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 95,
+            "detailId": "flr-scope-guarantee",
+            "label": "FLR边界"
+          }
+        ]
+      },
+      {
+        "id": "r136-mctp-versions-and-security",
+        "title": "版本适用表和安全边界：不由Gen推断管理协议能力",
+        "paragraphs": [
+          "DSP0238附录B记录独立绑定演进：初版2009，1.1.0补Gen3/4及ARI，1.2.0补PCIe5.x/CXL1/2，1.3.0补PCIe6.x的FM/NFM，1.3.1修跨模式非对称路由、Discovery Notify时点等。它不是PCIe Base每次提速都自动获得的必选能力。",
+          "本轮核读的正式1.3.1表3列到PCIe6.x，未显式列出PCIe7.x媒体项；这不证明Gen7不能承载，也不据此宣称已完成Gen7绑定兼容认证。表3所说修订兼容不是当前链路速度：报告PCIe4.x兼容仍可能以Gen3速度运行。Gen1/2查NFM及各字段对应的PCIe1.1/2.x限制，不把Gen1与Base1.0a支持声明直接等同。",
+          "MCTP公共传输本身不定义认证或保密机制，IC也不是统一固定CRC算法。具体上层协议决定是否有消息完整性校验、算法与安全要求，PCIe ECRC、IDE MAC、MCTP IC检查不同范围。实际启用前用Get MCTP Version Support和Get Message Type Support确认能力；支持MCTP不自动支持SPDM、PLDM或任意管理命令。"
+        ],
+        "referenceIndices": [
+          6,
+          17,
+          23,
+          24
+        ],
+        "table": {
+          "columns": [
+            "版本/概念",
+            "已核结论",
+            "限制"
+          ],
+          "rows": [
+            [
+              "PCIe1.1～5.x",
+              "NFM对应字段按绑定表1",
+              "能力由端点/绑定实现决定"
+            ],
+            [
+              "PCIe6.x",
+              "正式1.3.x覆盖FM和NFM",
+              "需按实际Mode解析"
+            ],
+            [
+              "PCIe7.x",
+              "1.3.1媒体表未明确列项",
+              "保留后续正式证据核对"
+            ],
+            [
+              "MCTP HeaderVersion=1",
+              "线格式版本",
+              "不区分1.3.1与1.3.2规范版本"
+            ],
+            [
+              "IC / ECRC / IDE",
+              "上层消息 / PCIe TLP / IDE保护",
+              "不能互代认证、保密结论"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 128,
+            "detailId": "r82-spdm-identity-versus-report",
+            "label": "SPDM/CMA"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Data Link Feature Exchange",
@@ -152167,16 +152835,308 @@
     "checks": "核对端口、生成宏、burst/size/边带约束；总线宽度相同并不意味着协议和一致性完全等价。",
     "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
     "id": 144,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R137按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-28",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.1",
+        "page": 398,
+        "pdfPage": 398,
+        "title": "AXI三种角色与Gen7产品限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.1.1.1",
+        "page": 400,
+        "pdfPage": 400,
+        "title": "传输能力/限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.1.1.1",
+        "page": 402,
+        "pdfPage": 402,
+        "title": "AXI5选项和非合规实现注释",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.1.1.1",
+        "page": 403,
+        "pdfPage": 403,
+        "title": "MsgD不分解与错误边界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.3.2.1",
+        "page": 428,
+        "pdfPage": 428,
+        "title": "FIXED未定义而非必返错误",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.4.4",
+        "page": 459,
+        "pdfPage": 459,
+        "title": "Read Chunking含义",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.4.4",
+        "page": 460,
+        "pdfPage": 460,
+        "title": "Chunking配置/控制与分解",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.5",
+        "page": 462,
+        "pdfPage": 462,
+        "title": "ACE-Lite配置及Subordinate限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.5",
+        "page": 463,
+        "pdfPage": 463,
+        "title": "Manager按NS/TH映射",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.5",
+        "page": 464,
+        "pdfPage": 464,
+        "title": "支持的请求与Domain覆盖",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "R137核Controller6.50a正式产品正文选段，按角色、生成选项、Mode和访问宽度验收；未将产品限制当作Gen1～7规范或完整AMBA协议，未运行硬件/驱动测试。",
+    "details": [
+      {
+        "id": "r137-axi-version-option-contract",
+        "title": "AXI3/4/5是片内接口选项：先看产品生成配置，再看链路代际",
+        "paragraphs": [
+          "本页限定Controller6.50a AMBA桥。AXI3/AXI4/AXI5是可选片内总线接口，PCIe Gen1～Gen7是链路/协议演进，两者没有一一对应关系。该产品对Gen7只支持AXI5，是6.50a产品限制，不能写成PCIe7.0标准要求所有设备必须接AXI5。",
+          "控制器的Manager口把收到的PCIe请求发到本地AXI；Link Subordinate口接收本地AXI请求并生成PCIe；DBI Subordinate口访问寄存器。接口数量最多包括两Manager、一Link Subordinate、一DBI Subordinate，但实际生成配置决定是否存在。总线地址宽度、数据宽度和内部PCIe数据宽度可不同；时钟、背压和缓冲限制也不能仅凭接口名称推断。",
+          "6.50a列出的AXI5能力包括AtomicOps、Unique ID Indicator、Read Data Chunking等，但未在表中列出的AXI5特性不受支持。Poison和Interface Protection明确标为厂商特定实现，不是对应AXI5机制的合规实现；连接标准互连前须核信号定义，不能看到AXI5标签就直接对接所有可选线。本文不替代Arm AMBA全协议。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "table": {
+          "columns": [
+            "事项",
+            "已核范围",
+            "边界"
+          ],
+          "rows": [
+            [
+              "AXI3 / AXI4 / AXI5",
+              "生成接口及6.50a特性表",
+              "PCIe代际不自动选定片内接口"
+            ],
+            [
+              "Gen7仅AXI5",
+              "6.50a §6.1产品约束",
+              "不外推其它厂商/IP版次"
+            ],
+            [
+              "AXI5 Poison/保护",
+              "本版厂商特定实现",
+              "不据名称认定标准AXI5合规"
+            ],
+            [
+              "ACE-Lite",
+              "AMBA_INTERFACE及ACE-Lite生成开关",
+              "不是完整ACE缓存代理"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 143,
+            "detailId": "axi-controller-roles-and-four-paths",
+            "label": "四条读写路径"
+          },
+          {
+            "featureId": 146,
+            "detailId": "iatu-address-match-arithmetic",
+            "label": "iATU地址翻译"
+          }
+        ]
+      },
+      {
+        "id": "r137-axi-transfer-and-chunking",
+        "title": "传输限制与AXI5读Chunk：16byte乱序块不是TLP乱序许可",
+        "paragraphs": [
+          "6.50a支持所列INCR/WRAP用途，不支持FIXED、Exclusive或Locked访问。特别是对Link Subordinate发FIXED burst，正文说不返回SLVERR/DECERR而行为未定义，不能依赖错误响应来侦测非法请求。数据宽度和Burst长度不直接等于MPS/MRRS，桥会按支持的请求规则分解；MsgD不参与普通读写那样的分解/重组，超出对应MTU存在损坏风险。",
+          "Read Data Chunking允许本地Application Subordinate以无序16byte块回读，是AXI5可选路径。生成参数Read Chunking生成开关=1后，运行时AXIG_CTRL_RCHUNK_DISABLE写1可禁止；未生成此能力就不能仅写控制位启用。桥只在条件满足时置mstr_archunken，不代表所有读响应都可以随意乱序。",
+          "条件涉及16byte对齐、支持的INCR/WRAP与Snoop类型、合适ARSIZE/ARLEN及在途读ID唯一性。MSTR_FIXED_SIZE_ENABLE=1且MSTR_SUB_BUS_SIZE_READ_ENABLE=0时可对入站MemRd向下16byte对齐；Chunk预取禁止开关可禁止这种预取行为，CfgRd/IORd不做此对齐。启用Chunk后，读分解按min(内部MTU,Manager MTU)，每个分解读占独立ID和Completion Buffer段，可能降低可并发的原始PCIe读数；吞吐改善与资源成本需一起看。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "规则",
+            "使用注意"
+          ],
+          "rows": [
+            [
+              "FIXED burst",
+              "本产品不支持",
+              "不保证返回错误，行为未定义"
+            ],
+            [
+              "MsgD",
+              "不分解/重组",
+              "先核MTU及实际iATU模式"
+            ],
+            [
+              "Chunk单位",
+              "16byte",
+              "不是PCIe信用或包单位"
+            ],
+            [
+              "生成开关",
+              "Read Chunking生成开关",
+              "硬件存在条件"
+            ],
+            [
+              "运行时禁止",
+              "AXIG_CTRL_RCHUNK_DISABLE=1",
+              "Disable反向语义"
+            ],
+            [
+              "分解资源",
+              "每个Chunked子请求独立ID/Buffer",
+              "不能照搬非Chunk并发估计"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 143,
+            "detailId": "axi-byte-beat-and-decomposition",
+            "label": "Byte/Beat/TLP分段"
+          },
+          {
+            "featureId": 122,
+            "detailId": "r127-buffer-mode-contract",
+            "label": "读缓冲与背压"
+          }
+        ]
+      },
+      {
+        "id": "r137-acelite-direction-and-coherency",
+        "title": "ACE-Lite只覆盖指定方向：No Snoop、Domain与CPU缓存责任",
+        "paragraphs": [
+          "本产品启用条件为AMBA_INTERFACE=3或4且ACE-Lite生成开关=1。AXI桥Subordinate不实现ACE，会忽略DOMAIN/BAR/SNOOP输入，且不支持Barrier；不能用本地CPU给出某组ACE属性来要求桥自动为出站PCIe执行完整缓存一致性。",
+          "Manager端对入站请求结合配置的Memory Type、PCIe NS与TH生成相应内存属性。表中外设走Device/System类语义；主存NS=1为非一致性、NS=0进入相应一致性语义，TH影响分配属性。不能把No Snoop=1解释成强制CPU缓存同步；它恰好要求软件/平台另行判断一致性责任。",
+          "Manager将AxBAR和AxSNOOP驱0，支持的请求限ReadNoSnoop、WriteNoSnoop、ReadOnce、WriteUnique，不支持Barrier。DOMAIN允许按产品机制覆盖，但Message固定为11。产品所谓ACE-Lite支持不代表PCIe链路本身变成缓存一致性协议，也不保证用户程序的映射、DMA API、IOMMU或屏障已正确配置；DMA所有权处理复用已有章节。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "6.50a行为",
+            "限制"
+          ],
+          "rows": [
+            [
+              "Subordinate方向",
+              "忽略DOMAIN/BAR/SNOOP",
+              "不支持完整ACE/Barrier"
+            ],
+            [
+              "Manager方向",
+              "按MemoryType、NS、TH映射",
+              "需核实际互连/内存属性"
+            ],
+            [
+              "主存NS=1",
+              "非一致性路径",
+              "不能省缓存维护责任"
+            ],
+            [
+              "AxSNOOP / AxBAR",
+              "均0",
+              "请求集合受限制"
+            ],
+            [
+              "Message Domain",
+              "11固定",
+              "不能用一般Domain覆盖规则改写"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 143,
+            "detailId": "axi-hdma-memory-ownership",
+            "label": "DMA与缓存所有权"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "DBI / LBC / ELBI",
@@ -152188,16 +153148,353 @@
     "checks": "区分窗口选择、CS2、PF/VF编码和完成握手；未使用ELBI也需按集成规则处理请求，避免永久等待。",
     "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
     "id": 145,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R137按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-28",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.1",
+        "page": 180,
+        "pdfPage": 180,
+        "title": "CDM与厂商Port Logic映射",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.1",
+        "page": 181,
+        "pdfPage": 181,
+        "title": "共享iATU/HDMA和ELBI",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.4.1",
+        "page": 199,
+        "pdfPage": 199,
+        "title": "Native/专用/共享DBI",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.4.1.1",
+        "page": 200,
+        "pdfPage": 200,
+        "title": "Native选择表3-14",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.4.1.3",
+        "page": 201,
+        "pdfPage": 201,
+        "title": "Shared DBI sideband21",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.4.3",
+        "page": 206,
+        "pdfPage": 206,
+        "title": "DW地址/未用位清0",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.4.3.1",
+        "page": 207,
+        "pdfPage": 207,
+        "title": "无ARI/SRIOV选择位",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.4.3.1",
+        "page": 208,
+        "pdfPage": 208,
+        "title": "ARI/SRIOV选择位",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.6",
+        "page": 221,
+        "pdfPage": 221,
+        "title": "CDM访问限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.6",
+        "page": 222,
+        "pdfPage": 222,
+        "title": "ELBI访问限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "3.6.6",
+        "page": 223,
+        "pdfPage": 223,
+        "title": "AXI DBI宽度/strobe/零字节",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.11.1",
+        "page": 309,
+        "pdfPage": 309,
+        "title": "NativeDBI握手",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.12.1",
+        "page": 311,
+        "pdfPage": 311,
+        "title": "ELBI握手及ack错误语义",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "R137核Controller6.50a正式产品正文选段，按角色、生成选项、Mode和访问宽度验收；未将产品限制当作Gen1～7规范或完整AMBA协议，未运行硬件/驱动测试。",
+    "details": [
+      {
+        "id": "r137-dbi-lbc-elbi-route-map",
+        "title": "DBI、LBC、ELBI谁访问谁：本地寄存器通路与线上配置访问",
+        "paragraphs": [
+          "限定Controller6.50a：DBI是本地访问入口，LBC负责控制器内寄存器访问与路由，CDM容纳标准配置及所选厂商Port Logic，ELBI把应用自己实现的外部寄存器接进来。DBI并不是向远端发CfgRd/CfgWr的代名词；从CPU访问本地寄存器和从PCIe线上访问配置空间是两个入口。",
+          "本地DBI可使用Native DBI、独立AXI DBI Subordinate或复用Link Subordinate。SHARED_DBI_ENABLED和DBI_4SLAVE_POPULATED不能同时为1；二者都0时可用Native DBI。Shared模式slv_armisc_info[21]/slv_awmisc_info[21]=1才送LBC，否则仍可能进入正常PCIe Outbound路径。",
+          "每Function标准配置空间4KB不等于所有IP控制寄存器都能从远端CFG访问。Port Logic的CFG/MEM暴露由生成选项决定；共享iATU/HDMA位于标准配置空间之外，不能按某个PF配置空间偏移直接读写。需要远端MEM访问时另核BAR映射、路由及生成限制，不能据DBI可访问就认定线上也可访问。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "table": {
+          "columns": [
+            "路径",
+            "用途",
+            "核对项"
+          ],
+          "rows": [
+            [
+              "Native DBI",
+              "本地CDM/ELBI及所选寄存器",
+              "把Native选择位当CPU物理地址低位"
+            ],
+            [
+              "Dedicated AXI DBI",
+              "专用寄存器入口",
+              "照搬Link Subordinate burst"
+            ],
+            [
+              "Shared AXI DBI",
+              "sideband21=1送LBC",
+              "忘置位导致访问走PCIe出站"
+            ],
+            [
+              "远端CFG",
+              "目标Function配置空间",
+              "把iATU/HDMA当标准Capability"
+            ],
+            [
+              "远端MEM到ELBI",
+              "需BAR与TRGT0/路由配置",
+              "以为DBI可达就天然可达"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 48,
+            "detailId": "ecam-field-map",
+            "label": "ECAM配置空间"
+          },
+          {
+            "featureId": 146,
+            "detailId": "iatu-unroll-window-and-update",
+            "label": "iATU控制入口"
+          }
+        ]
+      },
+      {
+        "id": "r137-dbi-selector-width-and-strobes",
+        "title": "地址选择与访问宽度：Native的bit0不能搬到AXI地址",
+        "paragraphs": [
+          "Native DBI用dbi_addr中的CDM/ELBI选择以及dbi_cs2组合区分目标；4.11图示以dbi_addr[0]呈现，但3.6的表注明选择位位置受配置影响，必须按交付接口布局。CS2=0选择内部Normal或外部ELBI，CS2=1涉及Shadow/iATU/HDMA等，不能把这条概述当所有生成配置的完整地址计算器。",
+          "AXI DBI必须用DW地址，即AXI地址[1:0]=00；CDM/ELBI选择搬到较高地址位。在§3.6.4.3.1指定的ATU/HDMA/MSI-X Table生成条件下，无ARI/SRIOV时Selector/CS2分别是21/20；有ARI或SRIOV时变为32/31。这个表的适用前提要一起保存，不能只记一组硬编码偏移。未使用地址位须清0，产品不保证对错误非零位报告错误。",
+          "即使Shared AXI数据总线可到1024bit，DBI访问仍限制为所列8/16/32bit传输，宽于32bit返回可编程错误；CDM不接收多beat请求。DW内的写字节靠相应4个WSTRB，必须按AXI数据Lane选择，例如64bit总线上addr=4、WSTRB=30h映射为本地低两byte使能。零WSTRB写不能拿来flush：Native里全0表示读，AXI DBI会拦截并返回错误。HDMA寄存器另有不支持byte访问的限制。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "table": {
+          "columns": [
+            "字段/访问",
+            "含义",
+            "适用限制"
+          ],
+          "rows": [
+            [
+              "Native dbi_wr",
+              "各bit为写byte使能",
+              "全0表示读，不是无效写"
+            ],
+            [
+              "AXI地址[1:0]",
+              "00",
+              "高Selector位置取决生成配置"
+            ],
+            [
+              "指定布局且无ARI/SRIOV",
+              "Selector21 / CS2 20",
+              "仅§3.6.4.3.1条件"
+            ],
+            [
+              "指定布局且有ARI/SRIOV",
+              "Selector32 / CS2 31",
+              "共享地址口需满足相应宽度"
+            ],
+            [
+              "AXI DBI传输宽度",
+              "8/16/32bit",
+              "CDM单beat；HDMA例外禁byte"
+            ],
+            [
+              "零WSTRB",
+              "禁止作为写命令发出",
+              "Native可能读，AXI DBI返回错误"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      },
+      {
+        "id": "r137-dbi-elbi-handshake-and-faults",
+        "title": "握手和挂死排查：ACK不是常量，ELBI错误不自动变成UR/CA",
+        "paragraphs": [
+          "Native DBI以dbi_cs发起，必须保持到lbc_dbi_ack；dbi_wr为byte使能，读时全0。6.50a的Native协议用同步握手并给出ack两周期行为，不能将它当AXI VALID/READY逐beat协议。低功耗时实际同步时钟要按接口Synchronous To属性核对，不能永远假设core_clk或直接跨域采样。",
+          "ELBI上由控制器拉lbc_ext_cs，应用返回ext_lbc_ack；等待没有内部时间上界，应用不应对未实现地址永远不答。ext_lbc_ack不能常1，只能在cs有效时置位。成功访问按本版建议ack两周期；错误访问可用一周期表示，DBI路径可反映该错误，但这不会自动改变线上访问的PCIe Completion Status。不能把一周期ELBI错误视为已发送UR/CA。",
+          "CDM最大1DW，ELBI最大LBC每次访问DW数个DW且按要求对齐；ELBI不支持AtomicOps/TPH传递。访问停住时先分清Native/Shared/Dedicated和CDM/ELBI，再查Selector、CS2、Function/BAR及应用ack；未枚举、未设BAR和本地LBC无应答不是同一个故障。应用为非法地址返回空数据仅解决总线前进，仍要记录并上报错误，不能让软件把零当有效寄存器值。"
+        ],
+        "referenceIndices": [
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "table": {
+          "columns": [
+            "观察点",
+            "行为",
+            "排查意义"
+          ],
+          "rows": [
+            [
+              "dbi_cs → lbc_dbi_ack",
+              "本地请求需保持到ack",
+              "不套AXI READY握手"
+            ],
+            [
+              "lbc_ext_cs → ext_lbc_ack",
+              "应用必须最终回应",
+              "不应将ack固定1"
+            ],
+            [
+              "成功/错误ack",
+              "本版建议2周期/可1周期",
+              "不推广到其他厂商/版本"
+            ],
+            [
+              "ELBI错误→线上状态",
+              "不自动改变Completion Status",
+              "别把本地错误当UR/CA已产生"
+            ],
+            [
+              "DBI来的ELBI访问",
+              "lbc_ext_bar_num=111b",
+              "不是实际命中BAR7"
+            ],
+            [
+              "ELBI大包/Atomic/TPH",
+              "按本版限制拒绝或不支持",
+              "不能当通用AXI寄存器桥"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 143,
+            "detailId": "axi-response-is-not-end-to-end-success",
+            "label": "AXI响应与端到端结果"
+          },
+          {
+            "featureId": 148,
+            "detailId": "hdma-stop-confirmation-sequence",
+            "label": "DMA停止顺序"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "iATU Outbound / Inbound",

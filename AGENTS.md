@@ -184,3 +184,7 @@ R134review: R131-R134 accepted5/47criteria;95/183 and818criteria,88units/4budget
 R135: accepted[142], new criteria8, cumulative96/183 and826 criteria;87 units/3 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR136[140]; R138 review, daily paused. R133 published first; user authorized R134/R135, combined R135 publication.
 
 R135:142accepted,96/183 and826criteria,87units/3budget rounds;R136140 then fixedAXI/DMA queue. R133 deployed and index verified beforeR134 began. NextsummaryR138 must report budget-end gaps,no autoextension,daily paused.
+
+R136: accepted[140], new criteria8, cumulative97/183 and834 criteria;86 units/2 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR137[144, 145]; R138 review, daily paused. User authorized R136/R137; independent checks, combined R137 publication.
+
+R137: accepted[144, 145], new criteria16, cumulative99/183 and850 criteria;84 units/1 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR138[143, 146, 147, 148]; R138 review, daily paused. User authorized R136/R137; independent checks, combined R137 publication.

@@ -1,6 +1,9 @@
 {
   "nextFeatureIds": [
-    140
+    143,
+    146,
+    147,
+    148
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -47,11 +50,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-28",
-    "edition": "2026-10-28-r135",
+    "edition": "2026-10-28-r137",
     "featureIds": [
-      142
+      144,
+      145
     ],
-    "nextTrack": "R136 MCTP；R138预算总结"
+    "nextTrack": "R138按固定队列；R138预算结束审计"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -341,11 +345,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 1,
-    "nextReviewAfterRounds": 3,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 77,
+    "completedTotal": 79,
     "lastReviewEdition": "2026-10-28-r134",
     "lastReviewId": "r131-r134",
     "nextExpectedReview": "R138（R135～R138四轮总结及原计划预算结束检查）"
@@ -1282,9 +1286,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 45,
-    "remainingPlannedRounds": 3,
-    "nextRound": 136,
+    "completedRounds": 47,
+    "remainingPlannedRounds": 1,
+    "nextRound": 138,
     "nextReviewRound": 138,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -17998,47 +18002,223 @@
         "featureId": 140,
         "group": "诊断、测试与管理",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 136,
+            "evidence": [
+              {
+                "href": "#feature/140/detail/r136-mctp-layer-and-header",
+                "label": "MCTP装在什么位置：PCIe Type1 VDM、EID与32bit公共头"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-nfm-fm-fields",
+                "label": "NFM与FM逐项对照：路由、Length、补齐、OHC和Trailer"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-reassembly-and-routing",
+                "label": "分包重组和两层路由：Seq不是可靠重传，EID不是BDF"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-discovery-timers-and-reset",
+                "label": "何时可以发消息：发现标志、重试时间和复位/低功耗"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-versions-and-security",
+                "label": "版本适用表和安全边界：不由Gen推断管理协议能力"
+              }
+            ],
+            "note": "按MCTP over PCIe绑定查询契约验收：正式1.3.1/1.3.2选段、图表字段、路由/重组/发现/异常/计时/版本及安全均有直接引用；不要求完整上层管理协议或Gen7认证，不据提速推断支持。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 136,
+            "evidence": [
+              {
+                "href": "#feature/140/detail/r136-mctp-layer-and-header",
+                "label": "MCTP装在什么位置：PCIe Type1 VDM、EID与32bit公共头"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-nfm-fm-fields",
+                "label": "NFM与FM逐项对照：路由、Length、补齐、OHC和Trailer"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-reassembly-and-routing",
+                "label": "分包重组和两层路由：Seq不是可靠重传，EID不是BDF"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-discovery-timers-and-reset",
+                "label": "何时可以发消息：发现标志、重试时间和复位/低功耗"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-versions-and-security",
+                "label": "版本适用表和安全边界：不由Gen推断管理协议能力"
+              }
+            ],
+            "note": "按MCTP over PCIe绑定查询契约验收：正式1.3.1/1.3.2选段、图表字段、路由/重组/发现/异常/计时/版本及安全均有直接引用；不要求完整上层管理协议或Gen7认证，不据提速推断支持。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 136,
+            "evidence": [
+              {
+                "href": "#feature/140/detail/r136-mctp-layer-and-header",
+                "label": "MCTP装在什么位置：PCIe Type1 VDM、EID与32bit公共头"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-nfm-fm-fields",
+                "label": "NFM与FM逐项对照：路由、Length、补齐、OHC和Trailer"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-reassembly-and-routing",
+                "label": "分包重组和两层路由：Seq不是可靠重传，EID不是BDF"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-discovery-timers-and-reset",
+                "label": "何时可以发消息：发现标志、重试时间和复位/低功耗"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-versions-and-security",
+                "label": "版本适用表和安全边界：不由Gen推断管理协议能力"
+              }
+            ],
+            "note": "按MCTP over PCIe绑定查询契约验收：正式1.3.1/1.3.2选段、图表字段、路由/重组/发现/异常/计时/版本及安全均有直接引用；不要求完整上层管理协议或Gen7认证，不据提速推断支持。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 136,
+            "evidence": [
+              {
+                "href": "#feature/140/detail/r136-mctp-layer-and-header",
+                "label": "MCTP装在什么位置：PCIe Type1 VDM、EID与32bit公共头"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-nfm-fm-fields",
+                "label": "NFM与FM逐项对照：路由、Length、补齐、OHC和Trailer"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-reassembly-and-routing",
+                "label": "分包重组和两层路由：Seq不是可靠重传，EID不是BDF"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-discovery-timers-and-reset",
+                "label": "何时可以发消息：发现标志、重试时间和复位/低功耗"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-versions-and-security",
+                "label": "版本适用表和安全边界：不由Gen推断管理协议能力"
+              }
+            ],
+            "note": "按MCTP over PCIe绑定查询契约验收：正式1.3.1/1.3.2选段、图表字段、路由/重组/发现/异常/计时/版本及安全均有直接引用；不要求完整上层管理协议或Gen7认证，不据提速推断支持。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 136,
+            "evidence": [
+              {
+                "href": "#feature/140/detail/r136-mctp-layer-and-header",
+                "label": "MCTP装在什么位置：PCIe Type1 VDM、EID与32bit公共头"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-nfm-fm-fields",
+                "label": "NFM与FM逐项对照：路由、Length、补齐、OHC和Trailer"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-reassembly-and-routing",
+                "label": "分包重组和两层路由：Seq不是可靠重传，EID不是BDF"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-discovery-timers-and-reset",
+                "label": "何时可以发消息：发现标志、重试时间和复位/低功耗"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-versions-and-security",
+                "label": "版本适用表和安全边界：不由Gen推断管理协议能力"
+              }
+            ],
+            "note": "按MCTP over PCIe绑定查询契约验收：正式1.3.1/1.3.2选段、图表字段、路由/重组/发现/异常/计时/版本及安全均有直接引用；不要求完整上层管理协议或Gen7认证，不据提速推断支持。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 136,
+            "evidence": [
+              {
+                "href": "#feature/140/detail/r136-mctp-layer-and-header",
+                "label": "MCTP装在什么位置：PCIe Type1 VDM、EID与32bit公共头"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-nfm-fm-fields",
+                "label": "NFM与FM逐项对照：路由、Length、补齐、OHC和Trailer"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-reassembly-and-routing",
+                "label": "分包重组和两层路由：Seq不是可靠重传，EID不是BDF"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-discovery-timers-and-reset",
+                "label": "何时可以发消息：发现标志、重试时间和复位/低功耗"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-versions-and-security",
+                "label": "版本适用表和安全边界：不由Gen推断管理协议能力"
+              }
+            ],
+            "note": "按MCTP over PCIe绑定查询契约验收：正式1.3.1/1.3.2选段、图表字段、路由/重组/发现/异常/计时/版本及安全均有直接引用；不要求完整上层管理协议或Gen7认证，不据提速推断支持。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 136,
+            "evidence": [
+              {
+                "href": "#feature/140/detail/r136-mctp-layer-and-header",
+                "label": "MCTP装在什么位置：PCIe Type1 VDM、EID与32bit公共头"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-nfm-fm-fields",
+                "label": "NFM与FM逐项对照：路由、Length、补齐、OHC和Trailer"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-reassembly-and-routing",
+                "label": "分包重组和两层路由：Seq不是可靠重传，EID不是BDF"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-discovery-timers-and-reset",
+                "label": "何时可以发消息：发现标志、重试时间和复位/低功耗"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-versions-and-security",
+                "label": "版本适用表和安全边界：不由Gen推断管理协议能力"
+              }
+            ],
+            "note": "按MCTP over PCIe绑定查询契约验收：正式1.3.1/1.3.2选段、图表字段、路由/重组/发现/异常/计时/版本及安全均有直接引用；不要求完整上层管理协议或Gen7认证，不据提速推断支持。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 136,
+            "evidence": [
+              {
+                "href": "#feature/140/detail/r136-mctp-layer-and-header",
+                "label": "MCTP装在什么位置：PCIe Type1 VDM、EID与32bit公共头"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-nfm-fm-fields",
+                "label": "NFM与FM逐项对照：路由、Length、补齐、OHC和Trailer"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-reassembly-and-routing",
+                "label": "分包重组和两层路由：Seq不是可靠重传，EID不是BDF"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-discovery-timers-and-reset",
+                "label": "何时可以发消息：发现标志、重试时间和复位/低功耗"
+              },
+              {
+                "href": "#feature/140/detail/r136-mctp-versions-and-security",
+                "label": "版本适用表和安全边界：不由Gen推断管理协议能力"
+              }
+            ],
+            "note": "按MCTP over PCIe绑定查询契约验收：正式1.3.1/1.3.2选段、图表字段、路由/重组/发现/异常/计时/版本及安全均有直接引用；不要求完整上层管理协议或Gen7认证，不据提速推断支持。"
           }
         },
         "baseline": {
@@ -18047,14 +18227,15 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按MCTP over PCIe绑定查询契约验收：正式1.3.1/1.3.2选段、图表字段、路由/重组/发现/异常/计时/版本及安全均有直接引用；不要求完整上层管理协议或Gen7认证，不据提速推断支持。",
         "taskId": "v1-task-16",
         "requiredTaskIds": [
           "v1-task-16",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 136
       },
       {
         "id": "v1-feature-141",
@@ -18446,47 +18627,159 @@
         "featureId": 144,
         "group": "IP集成与片内接口",
         "scope": "implementation",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/144/detail/r137-axi-version-option-contract",
+                "label": "AXI3/4/5是片内接口选项：先看产品生成配置，再看链路代际"
+              },
+              {
+                "href": "#feature/144/detail/r137-axi-transfer-and-chunking",
+                "label": "传输限制与AXI5读Chunk：16byte乱序块不是TLP乱序许可"
+              },
+              {
+                "href": "#feature/144/detail/r137-acelite-direction-and-coherency",
+                "label": "ACE-Lite只覆盖指定方向：No Snoop、Domain与CPU缓存责任"
+              }
+            ],
+            "note": "按6.50a产品选项而非完整AMBA规范验收：接口角色、生成与运行控制、传输及Chunk资源、ACE-Lite方向/属性限制、版本和错误边界均核直接正文。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/144/detail/r137-axi-version-option-contract",
+                "label": "AXI3/4/5是片内接口选项：先看产品生成配置，再看链路代际"
+              },
+              {
+                "href": "#feature/144/detail/r137-axi-transfer-and-chunking",
+                "label": "传输限制与AXI5读Chunk：16byte乱序块不是TLP乱序许可"
+              },
+              {
+                "href": "#feature/144/detail/r137-acelite-direction-and-coherency",
+                "label": "ACE-Lite只覆盖指定方向：No Snoop、Domain与CPU缓存责任"
+              }
+            ],
+            "note": "按6.50a产品选项而非完整AMBA规范验收：接口角色、生成与运行控制、传输及Chunk资源、ACE-Lite方向/属性限制、版本和错误边界均核直接正文。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/144/detail/r137-axi-version-option-contract",
+                "label": "AXI3/4/5是片内接口选项：先看产品生成配置，再看链路代际"
+              },
+              {
+                "href": "#feature/144/detail/r137-axi-transfer-and-chunking",
+                "label": "传输限制与AXI5读Chunk：16byte乱序块不是TLP乱序许可"
+              },
+              {
+                "href": "#feature/144/detail/r137-acelite-direction-and-coherency",
+                "label": "ACE-Lite只覆盖指定方向：No Snoop、Domain与CPU缓存责任"
+              }
+            ],
+            "note": "按6.50a产品选项而非完整AMBA规范验收：接口角色、生成与运行控制、传输及Chunk资源、ACE-Lite方向/属性限制、版本和错误边界均核直接正文。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/144/detail/r137-axi-version-option-contract",
+                "label": "AXI3/4/5是片内接口选项：先看产品生成配置，再看链路代际"
+              },
+              {
+                "href": "#feature/144/detail/r137-axi-transfer-and-chunking",
+                "label": "传输限制与AXI5读Chunk：16byte乱序块不是TLP乱序许可"
+              },
+              {
+                "href": "#feature/144/detail/r137-acelite-direction-and-coherency",
+                "label": "ACE-Lite只覆盖指定方向：No Snoop、Domain与CPU缓存责任"
+              }
+            ],
+            "note": "按6.50a产品选项而非完整AMBA规范验收：接口角色、生成与运行控制、传输及Chunk资源、ACE-Lite方向/属性限制、版本和错误边界均核直接正文。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/144/detail/r137-axi-version-option-contract",
+                "label": "AXI3/4/5是片内接口选项：先看产品生成配置，再看链路代际"
+              },
+              {
+                "href": "#feature/144/detail/r137-axi-transfer-and-chunking",
+                "label": "传输限制与AXI5读Chunk：16byte乱序块不是TLP乱序许可"
+              },
+              {
+                "href": "#feature/144/detail/r137-acelite-direction-and-coherency",
+                "label": "ACE-Lite只覆盖指定方向：No Snoop、Domain与CPU缓存责任"
+              }
+            ],
+            "note": "按6.50a产品选项而非完整AMBA规范验收：接口角色、生成与运行控制、传输及Chunk资源、ACE-Lite方向/属性限制、版本和错误边界均核直接正文。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/144/detail/r137-axi-version-option-contract",
+                "label": "AXI3/4/5是片内接口选项：先看产品生成配置，再看链路代际"
+              },
+              {
+                "href": "#feature/144/detail/r137-axi-transfer-and-chunking",
+                "label": "传输限制与AXI5读Chunk：16byte乱序块不是TLP乱序许可"
+              },
+              {
+                "href": "#feature/144/detail/r137-acelite-direction-and-coherency",
+                "label": "ACE-Lite只覆盖指定方向：No Snoop、Domain与CPU缓存责任"
+              }
+            ],
+            "note": "按6.50a产品选项而非完整AMBA规范验收：接口角色、生成与运行控制、传输及Chunk资源、ACE-Lite方向/属性限制、版本和错误边界均核直接正文。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/144/detail/r137-axi-version-option-contract",
+                "label": "AXI3/4/5是片内接口选项：先看产品生成配置，再看链路代际"
+              },
+              {
+                "href": "#feature/144/detail/r137-axi-transfer-and-chunking",
+                "label": "传输限制与AXI5读Chunk：16byte乱序块不是TLP乱序许可"
+              },
+              {
+                "href": "#feature/144/detail/r137-acelite-direction-and-coherency",
+                "label": "ACE-Lite只覆盖指定方向：No Snoop、Domain与CPU缓存责任"
+              }
+            ],
+            "note": "按6.50a产品选项而非完整AMBA规范验收：接口角色、生成与运行控制、传输及Chunk资源、ACE-Lite方向/属性限制、版本和错误边界均核直接正文。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/144/detail/r137-axi-version-option-contract",
+                "label": "AXI3/4/5是片内接口选项：先看产品生成配置，再看链路代际"
+              },
+              {
+                "href": "#feature/144/detail/r137-axi-transfer-and-chunking",
+                "label": "传输限制与AXI5读Chunk：16byte乱序块不是TLP乱序许可"
+              },
+              {
+                "href": "#feature/144/detail/r137-acelite-direction-and-coherency",
+                "label": "ACE-Lite只覆盖指定方向：No Snoop、Domain与CPU缓存责任"
+              }
+            ],
+            "note": "按6.50a产品选项而非完整AMBA规范验收：接口角色、生成与运行控制、传输及Chunk资源、ACE-Lite方向/属性限制、版本和错误边界均核直接正文。"
           }
         },
         "baseline": {
@@ -18495,61 +18788,174 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按6.50a产品选项而非完整AMBA规范验收：接口角色、生成与运行控制、传输及Chunk资源、ACE-Lite方向/属性限制、版本和错误边界均核直接正文。",
         "taskId": "v1-task-17",
         "requiredTaskIds": [
           "v1-task-17",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 137
       },
       {
         "id": "v1-feature-145",
         "featureId": 145,
         "group": "IP集成与片内接口",
         "scope": "implementation",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/145/detail/r137-dbi-lbc-elbi-route-map",
+                "label": "DBI、LBC、ELBI谁访问谁：本地寄存器通路与线上配置访问"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-selector-width-and-strobes",
+                "label": "地址选择与访问宽度：Native的bit0不能搬到AXI地址"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-elbi-handshake-and-faults",
+                "label": "握手和挂死排查：ACK不是常量，ELBI错误不自动变成UR/CA"
+              }
+            ],
+            "note": "按6.50a本地寄存器访问入口契约验收：Native/专用/共享、CDM/ELBI/CS2、限定条件的地址位、DW/strobe/宽度、同步握手和错误语义有直接来源；映射随生成变化且不外推线上权限。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/145/detail/r137-dbi-lbc-elbi-route-map",
+                "label": "DBI、LBC、ELBI谁访问谁：本地寄存器通路与线上配置访问"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-selector-width-and-strobes",
+                "label": "地址选择与访问宽度：Native的bit0不能搬到AXI地址"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-elbi-handshake-and-faults",
+                "label": "握手和挂死排查：ACK不是常量，ELBI错误不自动变成UR/CA"
+              }
+            ],
+            "note": "按6.50a本地寄存器访问入口契约验收：Native/专用/共享、CDM/ELBI/CS2、限定条件的地址位、DW/strobe/宽度、同步握手和错误语义有直接来源；映射随生成变化且不外推线上权限。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/145/detail/r137-dbi-lbc-elbi-route-map",
+                "label": "DBI、LBC、ELBI谁访问谁：本地寄存器通路与线上配置访问"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-selector-width-and-strobes",
+                "label": "地址选择与访问宽度：Native的bit0不能搬到AXI地址"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-elbi-handshake-and-faults",
+                "label": "握手和挂死排查：ACK不是常量，ELBI错误不自动变成UR/CA"
+              }
+            ],
+            "note": "按6.50a本地寄存器访问入口契约验收：Native/专用/共享、CDM/ELBI/CS2、限定条件的地址位、DW/strobe/宽度、同步握手和错误语义有直接来源；映射随生成变化且不外推线上权限。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/145/detail/r137-dbi-lbc-elbi-route-map",
+                "label": "DBI、LBC、ELBI谁访问谁：本地寄存器通路与线上配置访问"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-selector-width-and-strobes",
+                "label": "地址选择与访问宽度：Native的bit0不能搬到AXI地址"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-elbi-handshake-and-faults",
+                "label": "握手和挂死排查：ACK不是常量，ELBI错误不自动变成UR/CA"
+              }
+            ],
+            "note": "按6.50a本地寄存器访问入口契约验收：Native/专用/共享、CDM/ELBI/CS2、限定条件的地址位、DW/strobe/宽度、同步握手和错误语义有直接来源；映射随生成变化且不外推线上权限。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/145/detail/r137-dbi-lbc-elbi-route-map",
+                "label": "DBI、LBC、ELBI谁访问谁：本地寄存器通路与线上配置访问"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-selector-width-and-strobes",
+                "label": "地址选择与访问宽度：Native的bit0不能搬到AXI地址"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-elbi-handshake-and-faults",
+                "label": "握手和挂死排查：ACK不是常量，ELBI错误不自动变成UR/CA"
+              }
+            ],
+            "note": "按6.50a本地寄存器访问入口契约验收：Native/专用/共享、CDM/ELBI/CS2、限定条件的地址位、DW/strobe/宽度、同步握手和错误语义有直接来源；映射随生成变化且不外推线上权限。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/145/detail/r137-dbi-lbc-elbi-route-map",
+                "label": "DBI、LBC、ELBI谁访问谁：本地寄存器通路与线上配置访问"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-selector-width-and-strobes",
+                "label": "地址选择与访问宽度：Native的bit0不能搬到AXI地址"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-elbi-handshake-and-faults",
+                "label": "握手和挂死排查：ACK不是常量，ELBI错误不自动变成UR/CA"
+              }
+            ],
+            "note": "按6.50a本地寄存器访问入口契约验收：Native/专用/共享、CDM/ELBI/CS2、限定条件的地址位、DW/strobe/宽度、同步握手和错误语义有直接来源；映射随生成变化且不外推线上权限。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/145/detail/r137-dbi-lbc-elbi-route-map",
+                "label": "DBI、LBC、ELBI谁访问谁：本地寄存器通路与线上配置访问"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-selector-width-and-strobes",
+                "label": "地址选择与访问宽度：Native的bit0不能搬到AXI地址"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-elbi-handshake-and-faults",
+                "label": "握手和挂死排查：ACK不是常量，ELBI错误不自动变成UR/CA"
+              }
+            ],
+            "note": "按6.50a本地寄存器访问入口契约验收：Native/专用/共享、CDM/ELBI/CS2、限定条件的地址位、DW/strobe/宽度、同步握手和错误语义有直接来源；映射随生成变化且不外推线上权限。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 137,
+            "evidence": [
+              {
+                "href": "#feature/145/detail/r137-dbi-lbc-elbi-route-map",
+                "label": "DBI、LBC、ELBI谁访问谁：本地寄存器通路与线上配置访问"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-selector-width-and-strobes",
+                "label": "地址选择与访问宽度：Native的bit0不能搬到AXI地址"
+              },
+              {
+                "href": "#feature/145/detail/r137-dbi-elbi-handshake-and-faults",
+                "label": "握手和挂死排查：ACK不是常量，ELBI错误不自动变成UR/CA"
+              }
+            ],
+            "note": "按6.50a本地寄存器访问入口契约验收：Native/专用/共享、CDM/ELBI/CS2、限定条件的地址位、DW/strobe/宽度、同步握手和错误语义有直接来源；映射随生成变化且不外推线上权限。"
           }
         },
         "baseline": {
@@ -18558,14 +18964,15 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按6.50a本地寄存器访问入口契约验收：Native/专用/共享、CDM/ELBI/CS2、限定条件的地址位、DW/strobe/宽度、同步握手和错误语义有直接来源；映射随生成变化且不外推线上权限。",
         "taskId": "v1-task-17",
         "requiredTaskIds": [
           "v1-task-17",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 137
       },
       {
         "id": "v1-feature-146",
@@ -25693,6 +26100,140 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定87项；140和AXI/DMA等仍需处理，具体阻塞保留；R138预算总结。",
         "publication": "R133先成功上线后，用户授权R134/R135；逐轮检查合并发布R135。"
+      },
+      {
+        "round": 136,
+        "kind": "R136 MCTP over PCIe逐字段、重组、发现和跨模式路由",
+        "deliverables": [
+          "R136验收140，新增8维度；累计97/183、834维度，剩86项/2预算轮。新增NFM/FM字段、EID/BDF/Segment、重组异常、发现计时和安全边界；Gen7媒体明确声明仍待正式证据。R137转AXI选项与DBI/ELBI入口，R138预算结束审计。"
+        ],
+        "closedDeliverableIds": [
+          "feature-140-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 140,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 140,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 140,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 140,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 140,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 140,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 140,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 140,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          140
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围剩86项；具体阻塞和未验收条目保留，R138预算结束审计。",
+        "publication": "用户授权R136/R137；逐轮构建与检查，合并发布R137。"
+      },
+      {
+        "round": 137,
+        "kind": "R137 AXI版本/ACE-Lite选项与DBI/LBC/ELBI访问入口",
+        "deliverables": [
+          "R137验收144/145，新增16维度；累计99/183、850维度，剩84项/1预算轮。补产品接口版本边界、Read Chunking、ACE-Lite方向与一致性责任，以及DBI地址选择、strobe/宽度、ELBI握手和错误语义。R138按预算结束审计并优先处理成熟AXI/iATU/HDMA的可关闭项；不自动延期。"
+        ],
+        "closedDeliverableIds": [
+          "feature-144-v1-accepted",
+          "feature-145-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 144,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 144,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 144,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 144,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 144,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 144,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 144,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 144,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 145,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 145,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 145,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 145,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 145,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 145,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 145,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 145,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          144,
+          145
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围剩84项；具体阻塞和未验收条目保留，R138预算结束审计。",
+        "publication": "用户授权R136/R137；逐轮构建与检查，合并发布R137。"
       }
     ],
     "backlog": [
@@ -29200,31 +29741,34 @@
       }
     ],
     "nextExecution": {
-      "round": 136,
-      "taskId": "v1-task-16",
+      "round": 138,
+      "taskId": "v1-task-17",
       "featureIds": [
-        140
+        143,
+        146,
+        147,
+        148
       ],
-      "goal": "R136补140 MCTP，随后按固定队列AXI/DMA；R138必须报告原预算结束的已完成和未完成，不自动延期。",
+      "goal": "按固定一期范围复用成熟内容并补真实缺口；R138做预算结束审计，不自动延长或降低验收标准。",
       "reviewRound": 138
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 135,
+      "assessedRound": 137,
       "reestimateRound": 138,
       "observedAcceptedUnitsPerRound": 1.25,
-      "requiredAcceptedUnitsPerRemainingRound": 29,
+      "requiredAcceptedUnitsPerRemainingRound": 84.0,
       "linearExtrapolationRounds": 70,
-      "assessment": "累计96/183与826维度，剩87项/3预算轮。原R138预算无法按当前速度完成，不自动延期、缩范围或降低验收标准。",
+      "assessment": "本轮实际验收以台账为准，剩84项/1预算轮；现有速度无法达到R138全部关闭，不自动延期。",
       "action": "131补实际空白，再批验成熟136/141；132/133/134/140/142为实际薄弱正文，按固定范围推进，阻塞等新证据。",
       "latestProgress": {
-        "round": 135,
-        "newAcceptedUnits": 1,
-        "cumulativeAcceptedUnits": 96,
-        "newPassedCriteria": 8,
-        "cumulativePassedCriteria": 826,
-        "remainingPlannedRounds": 3
+        "round": 137,
+        "newAcceptedUnits": 2,
+        "cumulativeAcceptedUnits": 99,
+        "newPassedCriteria": 16,
+        "cumulativePassedCriteria": 850,
+        "remainingPlannedRounds": 1
       }
     },
     "reviewWindows": [
