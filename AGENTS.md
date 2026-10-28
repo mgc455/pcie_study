@@ -188,3 +188,7 @@ R135:142accepted,96/183 and826criteria,87units/3budget rounds;R136140 then fixed
 R136: accepted[140], new criteria8, cumulative97/183 and834 criteria;86 units/2 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR137[144, 145]; R138 review, daily paused. User authorized R136/R137; independent checks, combined R137 publication.
 
 R137: accepted[144, 145], new criteria16, cumulative99/183 and850 criteria;84 units/1 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR138[143, 146, 147, 148]; R138 review, daily paused. User authorized R136/R137; independent checks, combined R137 publication.
+
+R138: accepted[], new criteria7, cumulative99/183 and857 criteria;84 units/0 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR139[149]; R142 review if manually continued, daily paused. R137 published first; R138 original budget-end round, R139 separately authorized.
+
+R138 budget end: original48 rounds exhausted at99/183,857criteria,84units/30source questions remain. R135-R138 closed4/39criteria;143seven dimensions passed but HDMA bit9 consistency blocked. User explicitly authorizedR139, no originaltarget extension. NextsummaryR142 only ifmanual work continues,dailypaused.
