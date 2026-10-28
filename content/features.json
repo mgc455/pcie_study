@@ -79627,6 +79627,28 @@
         "title": "ARI例外与约束",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-acs-source-validation-20260402",
+        "document": "Access Control Services (ACS) - Source Validation Clarification ECN",
+        "version": "PDF2026-04-02; PCI-SIG catalog2026-04-15; affected Base7.0",
+        "section": "7.7.12.1",
+        "page": 4,
+        "pdfPage": 4,
+        "title": "ACS Capability Version允许1建议2",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/AccessControlServicesACSSourceValidationClarification",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-acs-source-validation-20260402",
+        "document": "Access Control Services (ACS) - Source Validation Clarification ECN",
+        "version": "PDF2026-04-02; PCI-SIG catalog2026-04-15; affected Base7.0",
+        "section": "6.12.1.1",
+        "page": 3,
+        "pdfPage": 3,
+        "title": "版本值与Link-Local例外",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/AccessControlServicesACSSourceValidationClarification",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R115新增独立ACS/Enhanced ECN及Base3/4/5/6/7结构与向量选段；各子功能验收独立，75仍有2026官方ECN正文缺口。",
@@ -79918,6 +79940,54 @@
             "label": "不同组的职责"
           }
         ]
+      },
+      {
+        "id": "r116-acs-header-version-1-or-2",
+        "title": "ACS Header更新：000Dh不变，Capability Version不再只认1h",
+        "paragraphs": [
+          "此前Base6.0/7.0原版表的Version=1要求保留其版本范围；采用2026 Source Validation Clarification ECN后，Header[19:16]强烈建议2h、允许1h。遍历能力链时应区分所采用规范组合，不可仅因看到Version=2就把它误报成错误的ACS Capability ID。",
+          "此改动不新增一组控制寄存器；关键是将Source Validation的Link-Local豁免行为与Header版本关联。Version=1允许豁免，Version≥2必须豁免；这也不自动说明Enhanced机制是否支持，Enhanced仍看Capability[7]。"
+        ],
+        "referenceIndices": [
+          21,
+          22
+        ],
+        "table": {
+          "columns": [
+            "字段",
+            "含义",
+            "版本范围"
+          ],
+          "rows": [
+            [
+              "B+00h[15:0]",
+              "Extended Capability ID",
+              "仍000Dh"
+            ],
+            [
+              "B+00h[19:16]",
+              "Capability Version",
+              "原版1h；采用该ECN后推荐2h、允许1h"
+            ],
+            [
+              "B+00h[31:20]",
+              "Next Capability Offset",
+              "链路遍历语义不由此ECN改变"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 75,
+            "detailId": "r116-source-validation-link-local-version-matrix",
+            "label": "完整豁免矩阵"
+          },
+          {
+            "featureId": 74,
+            "detailId": "r115-acs-version-role-and-field-map",
+            "label": "基础及Enhanced位表"
+          }
+        ]
       }
     ]
   },
@@ -79931,7 +80001,7 @@
     "checks": "核对端口角色、Secondary/Subordinate配置和Control[0]；有FPB时还需考虑其归属规则。枚举尚未分配Bus Number时，某些上行Message会使用Bus=00h，启用来源检查可能导致违规，规范在第753页有实现提示。诊断时检查发生错误的接收端口，不要只查发起设备。",
     "prerequisites": "规则位于Base 6.0 §6.12.1.1，适用实现ACS扩展能力的Root Port和Switch Downstream Port。Capability(+04h) bit0报告支持；Control(+06h) bit0为RW使能，默认0，不支持时硬连0。§6.12.1.2覆盖的非DSP多功能Function禁止实现此机制，不能把普通EP按DSP来配置。",
     "id": 75,
-    "status": "六项维度已通过；待2026 Source Validation Clarification正式ECN正文核读，未完成一期验收",
+    "status": "一期已验收：R116按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
@@ -80064,9 +80134,53 @@
         "title": "FM Segment职责边界",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-acs-source-validation-20260402",
+        "document": "Access Control Services (ACS) - Source Validation Clarification ECN",
+        "version": "PDF2026-04-02; PCI-SIG catalog2026-04-15; affected Base7.0",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "封面日期与受影响Base7.0",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/AccessControlServicesACSSourceValidationClarification",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-acs-source-validation-20260402",
+        "document": "Access Control Services (ACS) - Source Validation Clarification ECN",
+        "version": "PDF2026-04-02; PCI-SIG catalog2026-04-15; affected Base7.0",
+        "section": "Part I",
+        "page": 2,
+        "pdfPage": 2,
+        "title": "配置/软硬件影响说明",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/AccessControlServicesACSSourceValidationClarification",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-acs-source-validation-20260402",
+        "document": "Access Control Services (ACS) - Source Validation Clarification ECN",
+        "version": "PDF2026-04-02; PCI-SIG catalog2026-04-15; affected Base7.0",
+        "section": "6.12.1.1",
+        "page": 3,
+        "pdfPage": 3,
+        "title": "Version1允许、Version2及以上必须豁免",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/AccessControlServicesACSSourceValidationClarification",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-acs-source-validation-20260402",
+        "document": "Access Control Services (ACS) - Source Validation Clarification ECN",
+        "version": "PDF2026-04-02; PCI-SIG catalog2026-04-15; affected Base7.0",
+        "section": "7.7.12.1",
+        "page": 4,
+        "pdfPage": 4,
+        "title": "Header Version红线修改",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/AccessControlServicesACSSourceValidationClarification",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
+    "referenceStatus": "R116已取得并核读所供2026 ECN全部四页，红线确认Version门控；旧Base及元数据记录保留明确历史范围。",
     "details": [
       {
         "title": "判定流程与作用边界",
@@ -80116,7 +80230,8 @@
         "title": "后续版本提示：2026年的Source Validation澄清ECN",
         "paragraphs": [
           "PCI-SIG公开目录列出2026-04-15的“Access Control Services (ACS) - Source Validation Clarification”，受影响文档标为PCIe Base 7.0。其公开说明指出，Link-Local Message的Bus窗口检查可能导致训练、热插拔及链路维护时误报，并描述对Routing Code为100b、110b、111b的这类消息增加豁免的修订意图。",
-          "本轮只核对该ECN的官方公开元数据和说明，未读取会员区ECN正文，也未确认其是否及如何合入后续修订。上面逐条规则仍明确绑定Base 6.0；针对7.0/7.1设计时须核对实际采用的规范和ECN，不能直接套用本条6.0规则，也不能仅凭网页概述当成完整规范要求。"
+          "本轮只核对该ECN的官方公开元数据和说明，未读取会员区ECN正文，也未确认其是否及如何合入后续修订。上面逐条规则仍明确绑定Base 6.0；针对7.0/7.1设计时须核对实际采用的规范和ECN，不能直接套用本条6.0规则，也不能仅凭网页概述当成完整规范要求。",
+          "R116更新：现已核读用户提供的四页正式ECN及红线；版本门控条件和日期差异见本页r116-source-validation-link-local-version-matrix。前述“未读正文”是早期轮次记录，不再是当前缺口。"
         ],
         "id": "block-3"
       },
@@ -80133,12 +80248,13 @@
       },
       {
         "id": "r115-source-validation-window-and-ecn-gap",
-        "title": "Source Validation的判定与尚缺正文：Bus窗口不是完整身份认证",
+        "title": "R115历史缺口记录（R116已补齐）：Bus窗口与2026 ECN",
         "paragraphs": [
           "本轮核对原始ACS ECN、Base3.0、4.0、6.0和7.0所列正文：传统检查对象为上行Request中Requester ID的Bus Number，Secondary至Subordinate是闭区间；4.0和后续所核版本还允许按已实现且启用的FPB Routing ID机制确定下游归属。它不是完整BDF白名单、PASID权限或Segment认证。",
           "例：Secondary=20h、Subordinate=2Fh且未使用改变判定的FPB时，20h与2Fh在窗口内，30h在窗口外。窗口内只通过本项来源检查；Completion不由此机制检查。枚举或链路维护阶段还要核对尚未捕获Bus Number的Message问题。",
           "明确未验收项：官方2026-04-15《Access Control Services (ACS) - Source Validation Clarification》影响Base7.0，公开说明谈到Routing Code100b、110b、111b的Link-Local Message豁免。官网Download转向会员文档23552；本地文件检索未找到该ECN正文。官方说明用于记录修订方向，不据此补造逐条豁免、勘误红线或生效条件。",
-          "因此Source Validation本轮仅通过已有机制/结构等六项维度，版本与完整来源仍待该正式ECN核读，不标为一期已验收。需要提供的正是这份2026-04-15官方ECN，而不是再次提供已存在的Base7.0。"
+          "因此Source Validation本轮仅通过已有机制/结构等六项维度，版本与完整来源仍待该正式ECN核读，不标为一期已验收。需要提供的正是这份2026-04-15官方ECN，而不是再次提供已存在的Base7.0。",
+          "R116更新：此处记录的正文缺失已解决，版本与来源验收将在R116关闭；保留原记录用于追踪补证过程，当前规则以R116版本矩阵为准。"
         ],
         "referenceIndices": [
           6,
@@ -80196,6 +80312,73 @@
             "featureId": 75,
             "detailId": "block-3",
             "label": "官方ECN元数据入口"
+          }
+        ]
+      },
+      {
+        "id": "r116-source-validation-link-local-version-matrix",
+        "title": "2026 ECN完整条件：Version=1允许豁免，Version≥2必须豁免",
+        "paragraphs": [
+          "新提供的四页PDF正是所需Source Validation Clarification ECN。封面为2026-04-02，官网目录列2026-04-15；两者分别记录，不用文件名或目录日期替代正文版本。已核读全部四页，并对第3页和第4页修改标记作渲染复核。",
+          "修改后的§6.12.1.1在上行Request的Bus归属检查中增加例外：Message Routing为100b、110b、111b的Messages，当ACS Extended Capability Header中的Capability Version为1h时允许排除，当Version为2h或更高时必须排除。不是“所有Message都豁免”，也不是“只要端口属于Gen7就一律按同一条件处理”。",
+          "Header的Capability Version在B+00h[19:16]，字段宽度4bit；文档写01h/02h是数值表示，不是新增8bit字段。第4页将原版要求Version=1的文字改为强烈建议报告2、允许报告1。ID仍为000Dh，寄存器位置不变，但软件能够读到的版本值语义确有更新；不能将Part I“无新寄存器/发现流程”概括成Header完全没有变化。",
+          "豁免仅针对本ECN所述ACS Source Validation Bus窗口检查。110b/111b本身的Reserved/Terminate-at-Receiver编码解释、其余Message合法性、其它ACS与Segment规则仍分别适用，不从豁免推出这些包可以任意路由。Completion仍不受Source Validation影响。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14
+        ],
+        "table": {
+          "columns": [
+            "版本/位置",
+            "例外条件",
+            "限制"
+          ],
+          "rows": [
+            [
+              "所采用规则",
+              "Routing100b/110b/111b",
+              "其它适用上行Request"
+            ],
+            [
+              "未采用该ECN的原版Base7.0",
+              "按原版Source Validation正文，不能倒填新例外",
+              "按Bus窗口/适用FPB归属检查"
+            ],
+            [
+              "采用该ECN，Version=1h",
+              "允许排除本项Bus检查；不能由版本1唯一判断实现选择",
+              "检查规则不因该例外整体关闭"
+            ],
+            [
+              "采用该ECN，Version≥2h",
+              "必须排除本项Bus检查",
+              "仍检查适用Bus归属"
+            ],
+            [
+              "Header[19:16]",
+              "强烈建议2h，允许1h",
+              "4bit RO字段；ID/偏移不变"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 75,
+            "detailId": "source-validation-segment-gen7",
+            "label": "Segment职责边界"
+          },
+          {
+            "featureId": 75,
+            "detailId": "block-1",
+            "label": "常规Bus/FPB判定"
+          },
+          {
+            "featureId": 74,
+            "detailId": "r116-acs-header-version-1-or-2",
+            "label": "更新后的ACS Header读法"
           }
         ]
       }
@@ -80550,14 +80733,14 @@
     "checks": "沿整个路径检查Redirect与平台P2P支持；具体控制器参数不会自动替应用完成全部流量门控。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 77,
-    "status": "选定正文与字段已展开 · 逐版完善",
+    "status": "一期已验收：R116按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -80789,6 +80972,94 @@
         "title": "order：ACS相关规则与字段",
         "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "ecn-acs-20061011",
+        "document": "PCI Express Access Control Services ECN",
+        "version": "2005-09-27; updated2006-10-11; affected Base1.1",
+        "section": "6.11.1.1",
+        "page": 6,
+        "pdfPage": 6,
+        "title": "早期Request Redirect的DSP/RP区别",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.12.1.1",
+        "page": 534,
+        "pdfPage": 534,
+        "title": "上行与P2P目标条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "6.12.1.1",
+        "page": 584,
+        "pdfPage": 584,
+        "title": "旧版端口边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.12.1.1",
+        "page": 582,
+        "pdfPage": 582,
+        "title": "RC验证非统一算法",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.3",
+        "page": 757,
+        "pdfPage": 757,
+        "title": "E/R/Vector组合表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.3",
+        "page": 758,
+        "pdfPage": 758,
+        "title": "组合表末行",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.3",
+        "page": 872,
+        "pdfPage": 872,
+        "title": "现代组合表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.2",
+        "page": 871,
+        "pdfPage": 871,
+        "title": "沿路Upstream Forwarding要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
@@ -80938,6 +81209,81 @@
           19,
           20
         ]
+      },
+      {
+        "id": "r116-request-redirect-version-and-route-contract",
+        "title": "Request Redirect版本与决策顺序：E=1时R=1也不代表全部上行",
+        "paragraphs": [
+          "原始Base1.1 ACS ECN及Base3/4/5/6/7所列正文区分两种动作：Switch DSP把适用P2P Request向上送；Root Port交给RC Redirected Request Validation决定反射或拒绝。验证算法不由ACS统一定义，支持该位也不证明RC具备任意跨Root Port P2P能力。Gen1/2需确认采用相应独立ECN，不能只看链路速率。",
+          "先确认角色、方向和非ACS正常路由目标，再处理优先级：Source/Translation等适用检查不能跳过；对符合Direct Translated条件的请求先看其覆盖规则；否则按E/R/Vector决定。如下表，E=1/R=1/Vector=0时仍直达，只有相应目标位=1时才重定向。",
+          "重定向启用后还要检查到RC的中间Switch及Root Port的Upstream Forwarding和RC验证能力，不能只开最下游一个bit2。配置值快照只能解释策略，不证明整个拓扑和设备DMA权限已正确。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "table": {
+          "columns": [
+            "E/R",
+            "目标选择",
+            "结果"
+          ],
+          "rows": [
+            [
+              "E=0,R=0",
+              "Vector任意",
+              "直达"
+            ],
+            [
+              "E=0,R=1",
+              "Vector任意",
+              "重定向"
+            ],
+            [
+              "E=1,R=0",
+              "Vector=1 / 0",
+              "ACS Violation / 直达"
+            ],
+            [
+              "E=1,R=1",
+              "Vector=1 / 0",
+              "重定向 / 直达"
+            ],
+            [
+              "下行Request或Completion",
+              "不属于本机制入口",
+              "不套Request Redirect动作"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 77,
+            "detailId": "acs-route-explorer",
+            "label": "离线路由查询"
+          },
+          {
+            "featureId": 76,
+            "detailId": "r115-translation-block-at-role-matrix",
+            "label": "阻断优先级"
+          },
+          {
+            "featureId": 80,
+            "detailId": "egress-vector-explorer",
+            "label": "向量索引查询"
+          },
+          {
+            "featureId": 79,
+            "detailId": "upstream-forwarding-topology",
+            "label": "沿路拓扑要求"
+          }
+        ]
       }
     ]
   },
@@ -80951,14 +81297,14 @@
     "checks": "同时验证请求/完成路由、身份与错误处理；不能只开ReqRedir后假设所有回包自动满足策略。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 78,
-    "status": "选定正文与字段已展开 · 逐版完善",
+    "status": "一期已验收：R116按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -81124,6 +81470,83 @@
         "title": "cap：ACS相关规则与字段",
         "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "ecn-acs-20061011",
+        "document": "PCI Express Access Control Services ECN",
+        "version": "2005-09-27; updated2006-10-11; affected Base1.1",
+        "section": "6.11.1.1",
+        "page": 7,
+        "pdfPage": 7,
+        "title": "早期Read Completion措辞",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.12.1.1",
+        "page": 535,
+        "pdfPage": 535,
+        "title": "包含AtomicOp等非RO完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "6.12.1.1",
+        "page": 584,
+        "pdfPage": 584,
+        "title": "完成重定向与Root Port边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.12.1.1",
+        "page": 582,
+        "pdfPage": 582,
+        "title": "现代非RO完成范围",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.6.1",
+        "page": 760,
+        "pdfPage": 760,
+        "title": "Request绕行与完成顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 868,
+        "pdfPage": 868,
+        "title": "现代otherwise不得redirect",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.6.1",
+        "page": 875,
+        "pdfPage": 875,
+        "title": "RC Retargeting与性能边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
@@ -81237,6 +81660,71 @@
           3,
           4
         ]
+      },
+      {
+        "id": "r116-completion-redirect-version-and-order-contract",
+        "title": "Completion Redirect不等于Request Redirect：非RO、方向与顺序的版本核对",
+        "paragraphs": [
+          "早期ACS ECN在控制描述中使用Read Completion措辞；Base3.0及后续所核脚注明确包括Read、AtomicOp及其它有无数据的Completions，不能把旧措辞移植成现代实现只重定向Memory Read的限制。Capability/Control bit3仍与bit2独立。",
+          "适用Switch DSP收到上行P2P Completion且RO=0、机制使能时，应向上重定向。Base7.0正文对其它情况写must not be redirected；旧版写正常路由。下行Completion不由本机制重定向；Request也不由此机制改变。",
+          "Root Port要保证相应非RO Completion不越过送往RC验证的Request，最终下送原P2P目标且不得再做额外ACS访问检查。请求绕RC而完成直达可能形成完成越过Posted Request的顺序问题；RC Request Retargeting在未改Requester ID时也可能有相同风险。",
+          "若未使用Request Redirect或RC Retargeting，规范没有预期的Completion Redirect收益并建议不要开启以免影响性能。不是所有拓扑都应一律打开bit3；RO属性和实际请求/完成路径应一起核对。"
+        ],
+        "referenceIndices": [
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        "table": {
+          "columns": [
+            "输入/位置",
+            "动作",
+            "限制"
+          ],
+          "rows": [
+            [
+              "上行P2P Completion、RO=0、Enable=1",
+              "Switch DSP重定向上行",
+              "对应请求是否绕路还需另查"
+            ],
+            [
+              "RO=1或不满足本机制条件",
+              "按对应版本正常处理；7.0明确不得由本机制重定向",
+              "不是取消其余协议顺序约束"
+            ],
+            [
+              "Root Port返回路径",
+              "不越过相关Request；最终下送，不追加ACS检查",
+              "不是把完成再次交权限验证"
+            ],
+            [
+              "仅下行Completion/任意Request",
+              "本机制不改变它",
+              "与bit2分开配置"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 78,
+            "detailId": "completion-ro-direction-matrix",
+            "label": "方向及RO原矩阵"
+          },
+          {
+            "featureId": 78,
+            "detailId": "completion-performance-enable",
+            "label": "开启的性能边界"
+          },
+          {
+            "featureId": 83,
+            "detailId": "r114-p2p-seven-version-routing-contract",
+            "label": "跨RC可选支持"
+          }
+        ]
       }
     ]
   },
@@ -81250,14 +81738,14 @@
     "checks": "先核对DSP/USP适用范围及手册规则；",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 79,
-    "status": "选定正文与字段已展开 · 逐版完善",
+    "status": "一期已验收：R117按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -81379,6 +81867,105 @@
         "title": "mfd：ACS相关规则与字段",
         "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "ecn-acs-20061011",
+        "document": "PCI Express Access Control Services ECN",
+        "version": "2005-09-27; updated2006-10-11; affected Base1.1",
+        "section": "6.11.1.1",
+        "page": 7,
+        "pdfPage": 7,
+        "title": "早期Upstream Forwarding",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.12.1.1",
+        "page": 535,
+        "pdfPage": 535,
+        "title": "同出口及关闭时未定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.12.2",
+        "page": 538,
+        "pdfPage": 538,
+        "title": "混合拓扑沿路要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "6.12.1.1",
+        "page": 584,
+        "pdfPage": 584,
+        "title": "传统DSP/RP边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "6.12.1.1",
+        "page": 583,
+        "pdfPage": 583,
+        "title": "Base5.0规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.2",
+        "page": 757,
+        "pdfPage": 757,
+        "title": "重定向路径互操作",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 868,
+        "pdfPage": 868,
+        "title": "现代端口行为",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.2",
+        "page": 870,
+        "pdfPage": 870,
+        "title": "非DSP多功能禁止",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.2",
+        "page": 871,
+        "pdfPage": 871,
+        "title": "现代互操作要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
@@ -81450,6 +82037,78 @@
           9,
           10
         ]
+      },
+      {
+        "id": "r117-upstream-forwarding-topology-and-version-map",
+        "title": "Upstream Forwarding的完整路径契约：不是允许全部上行流量的总开关",
+        "paragraphs": [
+          "该控制处理适用Downstream Port收到的上行Request或Completion，其本来路由出口又是同一端口的情形。Switch继续向RC送；Root Port衔接RC相应Request验证或Completion顺序处理。Control[4]不是“该端口上行总使能”。",
+          "ACS原始ECN及Base3/4/5/6/7所核正文保留这一同出口条件；关闭Upstream Forwarding而仍遇到这种输入时，正文规定处理未定义，不能替规范发明“默认UR”“默认掉包”或“照常下送”。",
+          "当Request/Completion Redirect不使用时，ACS和非ACS组件可按规范混用。使用重定向时，则要沿重定向点到关联Root Port检查中间Switch的Upstream Forwarding以及RC Redirected Request Validation；不能只验证发起端或最下一层DSP。非Downstream Port的多功能ACS Function禁止实现本项。",
+          "Gen1/2按所采纳ACS独立ECN确认能力，后续Base选段按其修订核对；“支持ACS”与“此路径已正确配置”不是同一结论。2026 Source Validation ECN改变的是指定Link-Local的来源检查，不取消这些重定向拓扑约束。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "table": {
+          "columns": [
+            "条件",
+            "要求/行为",
+            "边界"
+          ],
+          "rows": [
+            [
+              "不使用P2P重定向",
+              "允许按规范混合ACS/非ACS组件",
+              "仍核其它能力与路由"
+            ],
+            [
+              "启用下层P2P重定向",
+              "沿路Switch/RP支持Upstream Forwarding，RC具备验证逻辑",
+              "具体例外如RCiEP依对应条款"
+            ],
+            [
+              "同出口上行输入且Enable=1",
+              "继续上行/衔接RC处理",
+              "不是反射回原出口"
+            ],
+            [
+              "同出口上行输入且Enable=0",
+              "处理未定义",
+              "不臆造统一错误返回"
+            ],
+            [
+              "普通非DSP多功能Function",
+              "不得实现本项",
+              "不能套Switch DSP设置"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 79,
+            "detailId": "upstream-forwarding-topology",
+            "label": "原拓扑规则"
+          },
+          {
+            "featureId": 77,
+            "detailId": "r116-request-redirect-version-and-route-contract",
+            "label": "Request重定向顺序"
+          },
+          {
+            "featureId": 78,
+            "detailId": "r116-completion-redirect-version-and-order-contract",
+            "label": "Completion路径"
+          }
+        ]
       }
     ]
   },
@@ -81463,14 +82122,14 @@
     "checks": "核对向量大小、只读掩码、PF/VF继承和实际执行点；软件读回向量正确仍需事务级验证。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 80,
-    "status": "选定正文与字段已展开 · 逐版完善",
+    "status": "一期已验收：R117按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -81702,6 +82361,72 @@
         "title": "默认关闭与Multicast例外",
         "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "ecn-acs-20061011",
+        "document": "PCI Express Access Control Services ECN",
+        "version": "2005-09-27; updated2006-10-11; affected Base1.1",
+        "section": "7.16.4",
+        "page": 19,
+        "pdfPage": 19,
+        "title": "原始向量寻址",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-acs-20061011",
+        "document": "PCI Express Access Control Services ECN",
+        "version": "2005-09-27; updated2006-10-11; affected Base1.1",
+        "section": "7.16.4",
+        "page": 20,
+        "pdfPage": 20,
+        "title": "原始向量极性",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.4",
+        "page": 1089,
+        "pdfPage": 1089,
+        "title": "ARI映射及自身位例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.4",
+        "page": 1248,
+        "pdfPage": 1248,
+        "title": "现代DWORD定位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.4",
+        "page": 1249,
+        "pdfPage": 1249,
+        "title": "ARI取模与Group",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.2",
+        "page": 870,
+        "pdfPage": 870,
+        "title": "SDI沿PF策略",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
@@ -81849,6 +82574,80 @@
           19,
           20
         ]
+      },
+      {
+        "id": "r117-egress-vector-identity-and-lifecycle-contract",
+        "title": "Egress策略位于发送侧：向量地址、身份别名与SDI边界",
+        "paragraphs": [
+          "原始2006更新ACS ECN已定义按目标位选择限制的Egress Vector。现代Base6/7中，策略在发送侧入口Port/Function配置；名字叫Egress不等于每次都去目标Function读取其策略。Vector bit=1触发相应限制或重定向，0仍不能绕过其它ACS和权限检查。",
+          "位K位于相对ACS基址B的08h+4×floor(K/32)字节处DWORD，位号K mod32。N由Capability Size给出，00h代表256bit；假定N=64，K=40对应B+0Ch bit8。位K必须在有效向量内，Port索引不能用Bus号替代。",
+          "ARI组关闭时Function号按受约束的N取模，多个Function可能共用一位；组开启时前8位按Function Group，后续实现位不使用。ARI的已实现位为RW，包括普通非ARI自身位硬连0规则的例外。这些字段完整条件复用已验收74及63，不另造不一致的映射。",
+          "Base7.0明确SDI没有自己独立的ACS Egress Control，采用关联PF的策略并由PF处理相应违规。不同SDI数量、PASID数量和Vector位数不能相互换算成隔离保证。向量条目最终动作仍需与E/R/Direct Translated等控制共同判断。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26
+        ],
+        "table": {
+          "columns": [
+            "模式",
+            "索引/策略",
+            "限制"
+          ],
+          "rows": [
+            [
+              "Port目标",
+              "K=Port Number",
+              "不是Bus或BDF中的Device号"
+            ],
+            [
+              "ARI无Group",
+              "K=Function Number mod N",
+              "警惕同位别名"
+            ],
+            [
+              "ARI有Group",
+              "K=Group Number，前8位",
+              "组内不是逐Function独占位"
+            ],
+            [
+              "SDI",
+              "关联PF策略",
+              "无独立SDI向量"
+            ],
+            [
+              "位设置",
+              "按E/R及Direct等控制得最终动作",
+              "bit1不是普遍授权位"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 80,
+            "detailId": "egress-vector-explorer",
+            "label": "现有Vector查询"
+          },
+          {
+            "featureId": 74,
+            "detailId": "r115-acs-vector-address-and-ari-map",
+            "label": "完整向量与ARI映射"
+          },
+          {
+            "featureId": 77,
+            "detailId": "request-redirect-truth-table",
+            "label": "E/R组合表"
+          },
+          {
+            "featureId": 67,
+            "detailId": "siov-sdi-versus-vf",
+            "label": "SDI身份区别"
+          }
+        ]
       }
     ]
   },
@@ -81862,14 +82661,14 @@
     "checks": "不可把它当成所有P2P请求的无条件放行；核对AT属性来源、设备信任和上游策略。",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 81,
-    "status": "选定正文与字段已展开 · 逐版完善",
+    "status": "一期已验收：R117按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -82123,6 +82922,94 @@
         "title": "Base7.0 SDI关联PF的Direct策略",
         "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "ecn-acs-20061011",
+        "document": "PCI Express Access Control Services ECN",
+        "version": "2005-09-27; updated2006-10-11; affected Base1.1",
+        "section": "7.16.3",
+        "page": 19,
+        "pdfPage": 19,
+        "title": "早期Direct Translated控制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "6.12.3",
+        "page": 538,
+        "pdfPage": 538,
+        "title": "直达覆盖E/R",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.3",
+        "page": 757,
+        "pdfPage": 757,
+        "title": "Translated Memory Request",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.12.6.2",
+        "page": 761,
+        "pdfPage": 761,
+        "title": "混合路径顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 868,
+        "pdfPage": 868,
+        "title": "FM地址路由Message范围",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.6.2",
+        "page": 876,
+        "pdfPage": 876,
+        "title": "混合路径开启约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.6.2",
+        "page": 877,
+        "pdfPage": 877,
+        "title": "三种使用模型",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.3",
+        "page": 1247,
+        "pdfPage": 1247,
+        "title": "Translation Blocking优先",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
@@ -82228,6 +83115,82 @@
           3,
           4
         ]
+      },
+      {
+        "id": "r117-direct-translated-precedence-and-order-checklist",
+        "title": "Direct Translated直达的前提：优先级、FM消息和混合路径的顺序风险",
+        "paragraphs": [
+          "Direct Translated P2P不是启动地址翻译；它允许符合条件的已翻译请求避免P2P重定向开销。Translation Blocking优先，Control[1]=1时bit6被忽略；通过该检查且命中适用Direct条件后，才覆盖Request Redirect/Egress选择。Completion仍由独立规则处理。",
+          "原始ACS ECN和Base3.0所核说明已有该功能，Base6.0正文讨论Translated Memory Request；Base7.0在Downstream Port条款还明确包含FM的Translated Address Routed Message。寄存器表中的简述不能覆盖正文新增范围，也不能把FM误等同于当前128GT/s。现有离线路由工具明确只模拟所列非UIO Memory/Completion，不能用于证明FM消息行为。",
+          "当部分请求直达、部分请求上行绕RC时，Non-Posted或非RO Posted可能越过先前Posted。Base7.0要求软件不要同时启用Request Redirect和Direct Translated，除非确定不会产生该顺序违规，或即使出现也不损害正确操作。Completion Redirect解决的是另一类顺序关系，不能自动修复这里所有请求间风险。",
+          "规范给出一种明确模型：Translated P2P允许直达，Untranslated P2P全部交RC并拒绝，此时可按所述建议配合开启两者。若不同Requester分别用不同地址类型，或同一Requester混用，则还需验证通信关系与操作正确性；不能因为两个Enable均能写1便判为安全配置。"
+        ],
+        "referenceIndices": [
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "table": {
+          "columns": [
+            "情形",
+            "动作/要求",
+            "限制"
+          ],
+          "rows": [
+            [
+              "Translation Blocking开",
+              "忽略Direct bit6，先执行阻断条件",
+              "不靠bit6绕过"
+            ],
+            [
+              "符合Direct Translated条件",
+              "不受E/R/Vector重定向选择影响",
+              "源检查、角色和其它规则仍有效"
+            ],
+            [
+              "Gen7 FM地址路由消息",
+              "按正文扩展范围判断",
+              "旧Memory简述或工具不代表全部"
+            ],
+            [
+              "Translated直达+Untranslated绕行",
+              "分析请求间顺序",
+              "Completion Redirect不是通用补丁"
+            ],
+            [
+              "仅想降低延迟",
+              "先证明使用模型正确",
+              "性能收益不替代隔离及排序"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 81,
+            "detailId": "direct-translated-two-usage-models",
+            "label": "已有使用模型"
+          },
+          {
+            "featureId": 81,
+            "detailId": "direct-translated-ordering-hazard",
+            "label": "请求顺序风险"
+          },
+          {
+            "featureId": 76,
+            "detailId": "r115-translation-block-at-role-matrix",
+            "label": "Translation Blocking真值表"
+          },
+          {
+            "featureId": 78,
+            "detailId": "completion-ordering-motivation",
+            "label": "Completion顺序问题"
+          }
+        ]
       }
     ]
   },
@@ -82241,14 +83204,14 @@
     "checks": "先核对规范/ECN、组配置和向量限制；",
     "prerequisites": "功能必须同时获得设备、应用、上游拓扑、IOMMU/平台和操作系统支持；宏、Capability和运行Enable是不同层次。",
     "id": 82,
-    "status": "选定正文与字段已展开 · 逐版完善",
+    "status": "一期已验收：R117按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-19",
+    "reviewed": "2026-10-28",
     "protocolReferences": [
       {
         "section": "6.12",
@@ -82568,6 +83531,105 @@
         "title": "ctl：ACS相关规则与字段",
         "verification": "本轮核读所列页的相关正文或字段表；不是整版规范、全部例外或首次合入版本的完成审计。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "ecn-acs-enhanced-20190425",
+        "document": "ACS Enhanced Capability ECN",
+        "version": "Introduced2018-04-19; updated/final approval2019-04-25",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "2019 Enhanced四项新服务",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "7.7.8.2",
+        "page": 825,
+        "pdfPage": 825,
+        "title": "Base5.0原版any措辞",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.11.2",
+        "page": 1086,
+        "pdfPage": 1086,
+        "title": "现代all applicable措辞",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.8.2",
+        "page": 1147,
+        "pdfPage": 1147,
+        "title": "ARI Group能力",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.8.3",
+        "page": 1148,
+        "pdfPage": 1148,
+        "title": "ARI Group使能/组号",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.12.1.1",
+        "page": 869,
+        "pdfPage": 869,
+        "title": "四种Enhanced目标与角色",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.3",
+        "page": 1247,
+        "pdfPage": 1247,
+        "title": "IO/DSP控制字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.3",
+        "page": 1248,
+        "pdfPage": 1248,
+        "title": "USP/Unclaimed控制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.12.4",
+        "page": 1249,
+        "pdfPage": 1249,
+        "title": "组向量范围",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "新增块按6.0/7.0相关正文和字段独立定位；旧目录入口保留，未声明整章或全部代际已审计。",
@@ -82809,6 +83871,88 @@
           28,
           5,
           6
+        ]
+      },
+      {
+        "id": "r117-enhanced-and-function-group-version-contract",
+        "title": "Enhanced与Function Groups的完整边界：位于两个能力块，不能互作支持证明",
+        "paragraphs": [
+          "Enhanced ACS和ARI ACS Function Groups不是同一功能。Enhanced来自2019-04-25最终批准的独立ECN，扩展端口目标区域和上行I/O处理；Groups通过ARI能力改变Egress Vector的隔离粒度。ACS Capability[7]不能当作ARI Group支持位，ARI Group开启也不自动支持Enhanced四项机制。",
+          "版本文字必须分开：所核Base5.0 p825写Enhanced支持任一所列服务；Base6.0/7.0改为支持所有适用服务。不能用一个笼统说明覆盖全部原版，具体实现采用的勘误/ECN仍要核对。2026 Source Validation ECN又更新ACS Header版本语义，它与Enhanced/Group支持也分属不同维度。",
+          "Enhanced选机制先看目标区域：peer设备窗口走基本P2P控制；DSP/RP自身受保护Memory BAR看[9:8]；Switch USP自身BAR看[11:10]；USP窗口中未被DSP认领的空洞看bit12；上行I/O Request看bit7。Memory BAR范围在所列现代版还包括规定的Expansion ROM和EA资源，不能只查传统BAR0。",
+          "ARI Cap+04h[1]和Control+06h[1]的Group能力/使能仅Function0有效；各Function的Control[6:4]给0～7组号。Control[0]是MFVC Group仲裁用途，不可代替ACS Group。多Bus SR-IOV、Vector取模和自身位RW例外，按既有详细块及74/63引用共同核对。"
+        ],
+        "referenceIndices": [
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37
+        ],
+        "table": {
+          "columns": [
+            "位置",
+            "功能",
+            "限制"
+          ],
+          "rows": [
+            [
+              "ACS Cap[7]",
+              "Enhanced支持",
+              "不是Group能力或全部ACS当前使能"
+            ],
+            [
+              "ACS Control[7]",
+              "上行I/O Blocking",
+              "不可与Cap同号位混淆"
+            ],
+            [
+              "ACS Control[9:8]/[11:10]",
+              "DSP/USP目标控制",
+              "00直达、01阻断、10重定向、11保留；角色条件另查"
+            ],
+            [
+              "ACS Control[12]",
+              "Unclaimed Redirect",
+              "开：出Switch上行；关：UR；不是所有未知地址均适用"
+            ],
+            [
+              "ARI Cap[1]/Control[1]",
+              "Group支持/使能",
+              "Function0作用域"
+            ],
+            [
+              "ARI Control[6:4]",
+              "本Function组号",
+              "0～7；和PASID/Bus号无关"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 82,
+            "detailId": "enhanced-register-decoder",
+            "label": "现有现代字段解码"
+          },
+          {
+            "featureId": 82,
+            "detailId": "enhanced-target-vs-peer-table",
+            "label": "目标分类表"
+          },
+          {
+            "featureId": 82,
+            "detailId": "ari-group-multibus-vf",
+            "label": "多Bus SR-IOV"
+          },
+          {
+            "featureId": 74,
+            "detailId": "r116-acs-header-version-1-or-2",
+            "label": "2026 Header版本更新"
+          }
         ]
       }
     ]

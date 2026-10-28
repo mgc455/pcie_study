@@ -583,3 +583,11 @@ R111～R114四轮总结：完成10功能、80验收维度，关闭IOV与翻译�
 ## R115 收尾进展
 
 R115验收ACS总览与Translation Blocking两项，Source Validation六维通过但2026澄清ECN正文缺失保留；新增向量/ARI映射与AT真值表。
+
+## R116 收尾进展
+
+R116取得所需四页ECN，完成75版本/来源补证，连同77/78完整验收；补Link-Local版本矩阵、Header版本变化与Request/Completion独立路径。
+
+## R117 收尾进展
+
+R117完整验收Upstream Forwarding、Egress Control、Direct Translated与Enhanced/Function Groups四项；补组合策略、ARI隔离粒度与混合路径顺序风险。

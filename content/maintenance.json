@@ -1,12 +1,8 @@
 {
   "nextFeatureIds": [
-    77,
-    78,
-    79,
-    80,
-    81,
-    82,
-    108
+    108,
+    99,
+    100
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -53,13 +49,14 @@
   ],
   "lastCompleted": {
     "date": "2026-10-28",
-    "edition": "2026-10-28-r115",
+    "edition": "2026-10-28-r117",
     "featureIds": [
-      74,
-      75,
-      76
+      79,
+      80,
+      81,
+      82
     ],
-    "nextTrack": "R116按队列；R118总结"
+    "nextTrack": "R118按队列；R118总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -349,11 +346,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 1,
-    "nextReviewAfterRounds": 3,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 57,
+    "completedTotal": 59,
     "lastReviewEdition": "2026-10-27-r114",
     "lastReviewId": "r111-r114",
     "nextExpectedReview": "R118（R115～R118四轮总结）"
@@ -1290,9 +1287,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "implementation",
-    "completedRounds": 25,
-    "remainingPlannedRounds": 23,
-    "nextRound": 116,
+    "completedRounds": 27,
+    "remainingPlannedRounds": 21,
+    "nextRound": 118,
     "nextReviewRound": 118,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -9433,7 +9430,7 @@
         "featureId": 75,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -9480,14 +9477,26 @@
             "note": "原机制/字段/Segment块与新增版本定位复核，六维通过；官方2026-04-15 Source Validation Clarification会员文档23552正文未取得，versions和sources保持pending，未验收完整功能。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "尚缺官方2026-04-15《Access Control Services (ACS) - Source Validation Clarification》ECN正文；会员文档23552。公开摘要已核，不能代替完整条文。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/75/detail/r116-source-validation-link-local-version-matrix",
+                "label": "2026 ECN完整条件：Version=1允许豁免，Version≥2必须豁免"
+              }
+            ],
+            "note": "已核四页2026 ECN并渲染页1/3/4，补Base7.0原版与ECN、Header Version1/2门控及日期差异；R115两项待验收维度补齐，其它六维保留，未把摘要代替正文。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "尚缺官方2026-04-15《Access Control Services (ACS) - Source Validation Clarification》ECN正文；会员文档23552。公开摘要已核，不能代替完整条文。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/75/detail/r116-source-validation-link-local-version-matrix",
+                "label": "2026 ECN完整条件：Version=1允许豁免，Version≥2必须豁免"
+              }
+            ],
+            "note": "已核四页2026 ECN并渲染页1/3/4，补Base7.0原版与ECN、Header Version1/2门控及日期差异；R115两项待验收维度补齐，其它六维保留，未把摘要代替正文。"
           },
           "navigation": {
             "status": "passed",
@@ -9518,14 +9527,15 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "原机制/字段/Segment块与新增版本定位复核，六维通过；官方2026-04-15 Source Validation Clarification会员文档23552正文未取得，versions和sources保持pending，未验收完整功能。",
+        "reviewNote": "已核四页2026 ECN并渲染页1/3/4，补Base7.0原版与ECN、Header Version1/2门控及日期差异；R115两项待验收维度补齐，其它六维保留，未把摘要代替正文。",
         "taskId": "v1-task-09",
         "requiredTaskIds": [
           "v1-task-09",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 116
       },
       {
         "id": "v1-feature-76",
@@ -9644,47 +9654,95 @@
         "featureId": 77,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/77/detail/r116-request-redirect-version-and-route-contract",
+                "label": "Request Redirect版本与决策顺序：E=1时R=1也不代表全部上行"
+              }
+            ],
+            "note": "复用七项详细路由/真值表/离线查询，补2006独立ECN与3/4/5/6/7角色/版本证据，核E/R/Vector全组合及沿路Upstream要求。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/77/detail/r116-request-redirect-version-and-route-contract",
+                "label": "Request Redirect版本与决策顺序：E=1时R=1也不代表全部上行"
+              }
+            ],
+            "note": "复用七项详细路由/真值表/离线查询，补2006独立ECN与3/4/5/6/7角色/版本证据，核E/R/Vector全组合及沿路Upstream要求。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/77/detail/r116-request-redirect-version-and-route-contract",
+                "label": "Request Redirect版本与决策顺序：E=1时R=1也不代表全部上行"
+              }
+            ],
+            "note": "复用七项详细路由/真值表/离线查询，补2006独立ECN与3/4/5/6/7角色/版本证据，核E/R/Vector全组合及沿路Upstream要求。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/77/detail/r116-request-redirect-version-and-route-contract",
+                "label": "Request Redirect版本与决策顺序：E=1时R=1也不代表全部上行"
+              }
+            ],
+            "note": "复用七项详细路由/真值表/离线查询，补2006独立ECN与3/4/5/6/7角色/版本证据，核E/R/Vector全组合及沿路Upstream要求。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/77/detail/r116-request-redirect-version-and-route-contract",
+                "label": "Request Redirect版本与决策顺序：E=1时R=1也不代表全部上行"
+              }
+            ],
+            "note": "复用七项详细路由/真值表/离线查询，补2006独立ECN与3/4/5/6/7角色/版本证据，核E/R/Vector全组合及沿路Upstream要求。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/77/detail/r116-request-redirect-version-and-route-contract",
+                "label": "Request Redirect版本与决策顺序：E=1时R=1也不代表全部上行"
+              }
+            ],
+            "note": "复用七项详细路由/真值表/离线查询，补2006独立ECN与3/4/5/6/7角色/版本证据，核E/R/Vector全组合及沿路Upstream要求。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/77/detail/r116-request-redirect-version-and-route-contract",
+                "label": "Request Redirect版本与决策顺序：E=1时R=1也不代表全部上行"
+              }
+            ],
+            "note": "复用七项详细路由/真值表/离线查询，补2006独立ECN与3/4/5/6/7角色/版本证据，核E/R/Vector全组合及沿路Upstream要求。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/77/detail/r116-request-redirect-version-and-route-contract",
+                "label": "Request Redirect版本与决策顺序：E=1时R=1也不代表全部上行"
+              }
+            ],
+            "note": "复用七项详细路由/真值表/离线查询，补2006独立ECN与3/4/5/6/7角色/版本证据，核E/R/Vector全组合及沿路Upstream要求。"
           }
         },
         "baseline": {
@@ -9693,61 +9751,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用七项详细路由/真值表/离线查询，补2006独立ECN与3/4/5/6/7角色/版本证据，核E/R/Vector全组合及沿路Upstream要求。",
         "taskId": "v1-task-09",
         "requiredTaskIds": [
           "v1-task-09",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 116
       },
       {
         "id": "v1-feature-78",
         "featureId": 78,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/78/detail/r116-completion-redirect-version-and-order-contract",
+                "label": "Completion Redirect不等于Request Redirect：非RO、方向与顺序的版本核对"
+              }
+            ],
+            "note": "复用六块排序/RO/方向/RC处理，补早期Read措辞到3/4/5/6/7范围证据与7.0不得重定向边界，不用Request bit推Completion策略。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/78/detail/r116-completion-redirect-version-and-order-contract",
+                "label": "Completion Redirect不等于Request Redirect：非RO、方向与顺序的版本核对"
+              }
+            ],
+            "note": "复用六块排序/RO/方向/RC处理，补早期Read措辞到3/4/5/6/7范围证据与7.0不得重定向边界，不用Request bit推Completion策略。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/78/detail/r116-completion-redirect-version-and-order-contract",
+                "label": "Completion Redirect不等于Request Redirect：非RO、方向与顺序的版本核对"
+              }
+            ],
+            "note": "复用六块排序/RO/方向/RC处理，补早期Read措辞到3/4/5/6/7范围证据与7.0不得重定向边界，不用Request bit推Completion策略。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/78/detail/r116-completion-redirect-version-and-order-contract",
+                "label": "Completion Redirect不等于Request Redirect：非RO、方向与顺序的版本核对"
+              }
+            ],
+            "note": "复用六块排序/RO/方向/RC处理，补早期Read措辞到3/4/5/6/7范围证据与7.0不得重定向边界，不用Request bit推Completion策略。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/78/detail/r116-completion-redirect-version-and-order-contract",
+                "label": "Completion Redirect不等于Request Redirect：非RO、方向与顺序的版本核对"
+              }
+            ],
+            "note": "复用六块排序/RO/方向/RC处理，补早期Read措辞到3/4/5/6/7范围证据与7.0不得重定向边界，不用Request bit推Completion策略。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/78/detail/r116-completion-redirect-version-and-order-contract",
+                "label": "Completion Redirect不等于Request Redirect：非RO、方向与顺序的版本核对"
+              }
+            ],
+            "note": "复用六块排序/RO/方向/RC处理，补早期Read措辞到3/4/5/6/7范围证据与7.0不得重定向边界，不用Request bit推Completion策略。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/78/detail/r116-completion-redirect-version-and-order-contract",
+                "label": "Completion Redirect不等于Request Redirect：非RO、方向与顺序的版本核对"
+              }
+            ],
+            "note": "复用六块排序/RO/方向/RC处理，补早期Read措辞到3/4/5/6/7范围证据与7.0不得重定向边界，不用Request bit推Completion策略。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 116,
+            "evidence": [
+              {
+                "href": "#feature/78/detail/r116-completion-redirect-version-and-order-contract",
+                "label": "Completion Redirect不等于Request Redirect：非RO、方向与顺序的版本核对"
+              }
+            ],
+            "note": "复用六块排序/RO/方向/RC处理，补早期Read措辞到3/4/5/6/7范围证据与7.0不得重定向边界，不用Request bit推Completion策略。"
           }
         },
         "baseline": {
@@ -9756,61 +9863,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用六块排序/RO/方向/RC处理，补早期Read措辞到3/4/5/6/7范围证据与7.0不得重定向边界，不用Request bit推Completion策略。",
         "taskId": "v1-task-09",
         "requiredTaskIds": [
           "v1-task-09",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 116
       },
       {
         "id": "v1-feature-79",
         "featureId": 79,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/79/detail/r117-upstream-forwarding-topology-and-version-map",
+                "label": "Upstream Forwarding的完整路径契约：不是允许全部上行流量的总开关"
+              }
+            ],
+            "note": "复用五项同出口/拓扑/角色正文，核2006ECN及3/4/5/6/7关闭时未定义和沿路Upstream要求；不能将bit4当上行总开关。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/79/detail/r117-upstream-forwarding-topology-and-version-map",
+                "label": "Upstream Forwarding的完整路径契约：不是允许全部上行流量的总开关"
+              }
+            ],
+            "note": "复用五项同出口/拓扑/角色正文，核2006ECN及3/4/5/6/7关闭时未定义和沿路Upstream要求；不能将bit4当上行总开关。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/79/detail/r117-upstream-forwarding-topology-and-version-map",
+                "label": "Upstream Forwarding的完整路径契约：不是允许全部上行流量的总开关"
+              }
+            ],
+            "note": "复用五项同出口/拓扑/角色正文，核2006ECN及3/4/5/6/7关闭时未定义和沿路Upstream要求；不能将bit4当上行总开关。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/79/detail/r117-upstream-forwarding-topology-and-version-map",
+                "label": "Upstream Forwarding的完整路径契约：不是允许全部上行流量的总开关"
+              }
+            ],
+            "note": "复用五项同出口/拓扑/角色正文，核2006ECN及3/4/5/6/7关闭时未定义和沿路Upstream要求；不能将bit4当上行总开关。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/79/detail/r117-upstream-forwarding-topology-and-version-map",
+                "label": "Upstream Forwarding的完整路径契约：不是允许全部上行流量的总开关"
+              }
+            ],
+            "note": "复用五项同出口/拓扑/角色正文，核2006ECN及3/4/5/6/7关闭时未定义和沿路Upstream要求；不能将bit4当上行总开关。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/79/detail/r117-upstream-forwarding-topology-and-version-map",
+                "label": "Upstream Forwarding的完整路径契约：不是允许全部上行流量的总开关"
+              }
+            ],
+            "note": "复用五项同出口/拓扑/角色正文，核2006ECN及3/4/5/6/7关闭时未定义和沿路Upstream要求；不能将bit4当上行总开关。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/79/detail/r117-upstream-forwarding-topology-and-version-map",
+                "label": "Upstream Forwarding的完整路径契约：不是允许全部上行流量的总开关"
+              }
+            ],
+            "note": "复用五项同出口/拓扑/角色正文，核2006ECN及3/4/5/6/7关闭时未定义和沿路Upstream要求；不能将bit4当上行总开关。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/79/detail/r117-upstream-forwarding-topology-and-version-map",
+                "label": "Upstream Forwarding的完整路径契约：不是允许全部上行流量的总开关"
+              }
+            ],
+            "note": "复用五项同出口/拓扑/角色正文，核2006ECN及3/4/5/6/7关闭时未定义和沿路Upstream要求；不能将bit4当上行总开关。"
           }
         },
         "baseline": {
@@ -9819,61 +9975,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用五项同出口/拓扑/角色正文，核2006ECN及3/4/5/6/7关闭时未定义和沿路Upstream要求；不能将bit4当上行总开关。",
         "taskId": "v1-task-09",
         "requiredTaskIds": [
           "v1-task-09",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 117
       },
       {
         "id": "v1-feature-80",
         "featureId": 80,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/80/detail/r117-egress-vector-identity-and-lifecycle-contract",
+                "label": "Egress策略位于发送侧：向量地址、身份别名与SDI边界"
+              }
+            ],
+            "note": "复用九块完整Vector/查询，核原始ECN与现代6/7地址、极性、ARI别名、自身位RW和Group条件，7.0明确SDI沿PF策略；复用74/63完整结构证据。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/80/detail/r117-egress-vector-identity-and-lifecycle-contract",
+                "label": "Egress策略位于发送侧：向量地址、身份别名与SDI边界"
+              }
+            ],
+            "note": "复用九块完整Vector/查询，核原始ECN与现代6/7地址、极性、ARI别名、自身位RW和Group条件，7.0明确SDI沿PF策略；复用74/63完整结构证据。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/80/detail/r117-egress-vector-identity-and-lifecycle-contract",
+                "label": "Egress策略位于发送侧：向量地址、身份别名与SDI边界"
+              }
+            ],
+            "note": "复用九块完整Vector/查询，核原始ECN与现代6/7地址、极性、ARI别名、自身位RW和Group条件，7.0明确SDI沿PF策略；复用74/63完整结构证据。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/80/detail/r117-egress-vector-identity-and-lifecycle-contract",
+                "label": "Egress策略位于发送侧：向量地址、身份别名与SDI边界"
+              }
+            ],
+            "note": "复用九块完整Vector/查询，核原始ECN与现代6/7地址、极性、ARI别名、自身位RW和Group条件，7.0明确SDI沿PF策略；复用74/63完整结构证据。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/80/detail/r117-egress-vector-identity-and-lifecycle-contract",
+                "label": "Egress策略位于发送侧：向量地址、身份别名与SDI边界"
+              }
+            ],
+            "note": "复用九块完整Vector/查询，核原始ECN与现代6/7地址、极性、ARI别名、自身位RW和Group条件，7.0明确SDI沿PF策略；复用74/63完整结构证据。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/80/detail/r117-egress-vector-identity-and-lifecycle-contract",
+                "label": "Egress策略位于发送侧：向量地址、身份别名与SDI边界"
+              }
+            ],
+            "note": "复用九块完整Vector/查询，核原始ECN与现代6/7地址、极性、ARI别名、自身位RW和Group条件，7.0明确SDI沿PF策略；复用74/63完整结构证据。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/80/detail/r117-egress-vector-identity-and-lifecycle-contract",
+                "label": "Egress策略位于发送侧：向量地址、身份别名与SDI边界"
+              }
+            ],
+            "note": "复用九块完整Vector/查询，核原始ECN与现代6/7地址、极性、ARI别名、自身位RW和Group条件，7.0明确SDI沿PF策略；复用74/63完整结构证据。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/80/detail/r117-egress-vector-identity-and-lifecycle-contract",
+                "label": "Egress策略位于发送侧：向量地址、身份别名与SDI边界"
+              }
+            ],
+            "note": "复用九块完整Vector/查询，核原始ECN与现代6/7地址、极性、ARI别名、自身位RW和Group条件，7.0明确SDI沿PF策略；复用74/63完整结构证据。"
           }
         },
         "baseline": {
@@ -9882,61 +10087,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用九块完整Vector/查询，核原始ECN与现代6/7地址、极性、ARI别名、自身位RW和Group条件，7.0明确SDI沿PF策略；复用74/63完整结构证据。",
         "taskId": "v1-task-09",
         "requiredTaskIds": [
           "v1-task-09",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 117
       },
       {
         "id": "v1-feature-81",
         "featureId": 81,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/81/detail/r117-direct-translated-precedence-and-order-checklist",
+                "label": "Direct Translated直达的前提：优先级、FM消息和混合路径的顺序风险"
+              }
+            ],
+            "note": "复用七块Direct/排序/使用模型，核原始ECN/3/6/7优先级、7.0 FM消息及§6.12.6.2混合请求顺序；不声称Memory离线工具模拟FM/UIO或全部拓扑。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/81/detail/r117-direct-translated-precedence-and-order-checklist",
+                "label": "Direct Translated直达的前提：优先级、FM消息和混合路径的顺序风险"
+              }
+            ],
+            "note": "复用七块Direct/排序/使用模型，核原始ECN/3/6/7优先级、7.0 FM消息及§6.12.6.2混合请求顺序；不声称Memory离线工具模拟FM/UIO或全部拓扑。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/81/detail/r117-direct-translated-precedence-and-order-checklist",
+                "label": "Direct Translated直达的前提：优先级、FM消息和混合路径的顺序风险"
+              }
+            ],
+            "note": "复用七块Direct/排序/使用模型，核原始ECN/3/6/7优先级、7.0 FM消息及§6.12.6.2混合请求顺序；不声称Memory离线工具模拟FM/UIO或全部拓扑。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/81/detail/r117-direct-translated-precedence-and-order-checklist",
+                "label": "Direct Translated直达的前提：优先级、FM消息和混合路径的顺序风险"
+              }
+            ],
+            "note": "复用七块Direct/排序/使用模型，核原始ECN/3/6/7优先级、7.0 FM消息及§6.12.6.2混合请求顺序；不声称Memory离线工具模拟FM/UIO或全部拓扑。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/81/detail/r117-direct-translated-precedence-and-order-checklist",
+                "label": "Direct Translated直达的前提：优先级、FM消息和混合路径的顺序风险"
+              }
+            ],
+            "note": "复用七块Direct/排序/使用模型，核原始ECN/3/6/7优先级、7.0 FM消息及§6.12.6.2混合请求顺序；不声称Memory离线工具模拟FM/UIO或全部拓扑。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/81/detail/r117-direct-translated-precedence-and-order-checklist",
+                "label": "Direct Translated直达的前提：优先级、FM消息和混合路径的顺序风险"
+              }
+            ],
+            "note": "复用七块Direct/排序/使用模型，核原始ECN/3/6/7优先级、7.0 FM消息及§6.12.6.2混合请求顺序；不声称Memory离线工具模拟FM/UIO或全部拓扑。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/81/detail/r117-direct-translated-precedence-and-order-checklist",
+                "label": "Direct Translated直达的前提：优先级、FM消息和混合路径的顺序风险"
+              }
+            ],
+            "note": "复用七块Direct/排序/使用模型，核原始ECN/3/6/7优先级、7.0 FM消息及§6.12.6.2混合请求顺序；不声称Memory离线工具模拟FM/UIO或全部拓扑。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/81/detail/r117-direct-translated-precedence-and-order-checklist",
+                "label": "Direct Translated直达的前提：优先级、FM消息和混合路径的顺序风险"
+              }
+            ],
+            "note": "复用七块Direct/排序/使用模型，核原始ECN/3/6/7优先级、7.0 FM消息及§6.12.6.2混合请求顺序；不声称Memory离线工具模拟FM/UIO或全部拓扑。"
           }
         },
         "baseline": {
@@ -9945,61 +10199,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用七块Direct/排序/使用模型，核原始ECN/3/6/7优先级、7.0 FM消息及§6.12.6.2混合请求顺序；不声称Memory离线工具模拟FM/UIO或全部拓扑。",
         "taskId": "v1-task-09",
         "requiredTaskIds": [
           "v1-task-09",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 117
       },
       {
         "id": "v1-feature-82",
         "featureId": 82,
         "group": "虚拟化、翻译与隔离",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/82/detail/r117-enhanced-and-function-group-version-contract",
+                "label": "Enhanced与Function Groups的完整边界：位于两个能力块，不能互作支持证明"
+              }
+            ],
+            "note": "复用11块完整Enhanced/Group/解码，核2019ECN、5/6/7版本措辞与现代角色/字段、ARI能力控制；2026Header版本单独引用，未把Group、Enhanced或Header版本等同。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/82/detail/r117-enhanced-and-function-group-version-contract",
+                "label": "Enhanced与Function Groups的完整边界：位于两个能力块，不能互作支持证明"
+              }
+            ],
+            "note": "复用11块完整Enhanced/Group/解码，核2019ECN、5/6/7版本措辞与现代角色/字段、ARI能力控制；2026Header版本单独引用，未把Group、Enhanced或Header版本等同。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/82/detail/r117-enhanced-and-function-group-version-contract",
+                "label": "Enhanced与Function Groups的完整边界：位于两个能力块，不能互作支持证明"
+              }
+            ],
+            "note": "复用11块完整Enhanced/Group/解码，核2019ECN、5/6/7版本措辞与现代角色/字段、ARI能力控制；2026Header版本单独引用，未把Group、Enhanced或Header版本等同。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/82/detail/r117-enhanced-and-function-group-version-contract",
+                "label": "Enhanced与Function Groups的完整边界：位于两个能力块，不能互作支持证明"
+              }
+            ],
+            "note": "复用11块完整Enhanced/Group/解码，核2019ECN、5/6/7版本措辞与现代角色/字段、ARI能力控制；2026Header版本单独引用，未把Group、Enhanced或Header版本等同。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/82/detail/r117-enhanced-and-function-group-version-contract",
+                "label": "Enhanced与Function Groups的完整边界：位于两个能力块，不能互作支持证明"
+              }
+            ],
+            "note": "复用11块完整Enhanced/Group/解码，核2019ECN、5/6/7版本措辞与现代角色/字段、ARI能力控制；2026Header版本单独引用，未把Group、Enhanced或Header版本等同。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/82/detail/r117-enhanced-and-function-group-version-contract",
+                "label": "Enhanced与Function Groups的完整边界：位于两个能力块，不能互作支持证明"
+              }
+            ],
+            "note": "复用11块完整Enhanced/Group/解码，核2019ECN、5/6/7版本措辞与现代角色/字段、ARI能力控制；2026Header版本单独引用，未把Group、Enhanced或Header版本等同。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/82/detail/r117-enhanced-and-function-group-version-contract",
+                "label": "Enhanced与Function Groups的完整边界：位于两个能力块，不能互作支持证明"
+              }
+            ],
+            "note": "复用11块完整Enhanced/Group/解码，核2019ECN、5/6/7版本措辞与现代角色/字段、ARI能力控制；2026Header版本单独引用，未把Group、Enhanced或Header版本等同。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 117,
+            "evidence": [
+              {
+                "href": "#feature/82/detail/r117-enhanced-and-function-group-version-contract",
+                "label": "Enhanced与Function Groups的完整边界：位于两个能力块，不能互作支持证明"
+              }
+            ],
+            "note": "复用11块完整Enhanced/Group/解码，核2019ECN、5/6/7版本措辞与现代角色/字段、ARI能力控制；2026Header版本单独引用，未把Group、Enhanced或Header版本等同。"
           }
         },
         "baseline": {
@@ -10008,14 +10311,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用11块完整Enhanced/Group/解码，核2019ECN、5/6/7版本措辞与现代角色/字段、ARI能力控制；2026Header版本单独引用，未把Group、Enhanced或Header版本等同。",
         "taskId": "v1-task-09",
         "requiredTaskIds": [
           "v1-task-09",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 117
       },
       {
         "id": "v1-feature-83",
@@ -20791,6 +21095,252 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定范围仍有127功能；61/89来源疑点保留，R118总结。",
         "publication": "R113先补发成功后，用户授权R114/R115；分别检查，合并发布R115。"
+      },
+      {
+        "round": 116,
+        "kind": "R116 Source Validation补证与P2P重定向验收",
+        "deliverables": [
+          "R116取得所需四页ECN，完成75版本/来源补证，连同77/78完整验收；补Link-Local版本矩阵、Header版本变化与Request/Completion独立路径。"
+        ],
+        "closedDeliverableIds": [
+          "feature-75-v1-accepted",
+          "feature-77-v1-accepted",
+          "feature-78-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 75,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 75,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 77,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 77,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 77,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 77,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 77,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 77,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 77,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 77,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 78,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 78,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 78,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 78,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 78,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 78,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 78,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 78,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          75,
+          77,
+          78
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有124功能；61/89来源疑点保留，R118总结。",
+        "publication": "用户确认补发R115成功后，授权R116/R117；分别检查，合并发布R117。"
+      },
+      {
+        "round": 117,
+        "kind": "R117 ACS路由与Enhanced边界验收",
+        "deliverables": [
+          "R117完整验收Upstream Forwarding、Egress Control、Direct Translated与Enhanced/Function Groups四项；补组合策略、ARI隔离粒度与混合路径顺序风险。"
+        ],
+        "closedDeliverableIds": [
+          "feature-79-v1-accepted",
+          "feature-80-v1-accepted",
+          "feature-81-v1-accepted",
+          "feature-82-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 79,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 79,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 79,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 79,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 79,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 79,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 79,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 79,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 80,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 80,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 80,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 80,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 80,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 80,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 80,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 80,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 81,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 81,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 81,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 81,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 81,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 81,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 81,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 81,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 82,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 82,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 82,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 82,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 82,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 82,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 82,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 82,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          79,
+          80,
+          81,
+          82
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围仍有120功能；61/89来源疑点保留，R118总结。",
+        "publication": "用户确认补发R115成功后，授权R116/R117；分别检查，合并发布R117。"
       }
     ],
     "backlog": [
@@ -21821,10 +22371,21 @@
         "legacyRecordIndices": [
           22
         ],
-        "status": "needs-corroboration",
+        "status": "resolved-version-and-context",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
         "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "evidence": [
+          {
+            "href": "#feature/76/detail/r115-translation-block-at-role-matrix",
+            "label": "Base7.0正文明确FM Address Routed Message的AT检查"
+          },
+          {
+            "href": "#feature/81/detail/r117-direct-translated-precedence-and-order-checklist",
+            "label": "Base6/7正文范围及Control表摘要分开"
+          }
+        ],
+        "resolvedRound": 117,
+        "resolution": "核对正式Base6.0 pp753–754、Base7.0 pp867–869及Control7.0 p1247：6.0所引正文为Memory Requests，7.0正文明确FM Address Routed Messages；Control表Memory简述不视为穷尽正文范围，不宣称表格必须改字或把7.0规则倒填6.0。查询工具只承诺所列Memory/Completion子集。"
       },
       {
         "id": "v1-conflict-04",
@@ -24200,37 +24761,33 @@
       }
     ],
     "nextExecution": {
-      "round": 116,
+      "round": 118,
       "taskId": "v1-task-09",
       "featureIds": [
-        77,
-        78,
-        79,
-        80,
-        81,
-        82,
-        108
+        108,
+        99,
+        100
       ],
-      "goal": "继续成熟ACS路由/Enhanced条目77/78/79/80/81/82/108的证据复核；75待2026官方澄清ECN正文。按实际工作量拆分，不预先宣称全部可关闭。R118总结。",
+      "goal": "R118优先复核分组09余项108（ACS/Atomic阻断与AER），再按证据处理成熟错误条目99/100，并完成R115～R118四轮总结；不以已有细节数量判定通过。",
       "reviewRound": 118
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "at-risk",
-      "assessedRound": 115,
+      "assessedRound": 117,
       "reestimateRound": 118,
       "observedAcceptedUnitsPerRound": 2.5,
-      "requiredAcceptedUnitsPerRemainingRound": 5.521739130434782,
+      "requiredAcceptedUnitsPerRemainingRound": 5.714285714285714,
       "linearExtrapolationRounds": 52,
-      "assessment": "R115累计56/183、471验收维度；剩127项/23预算轮，需约5.522项/轮。Source Validation的2026 ECN正文缺失仍阻塞该功能，不能计为完成；R118复盘，不自动延期。",
+      "assessment": "R117累计63/183、521验收维度，剩120项/21预算轮，需约5.714项/轮；R116/R117共关闭7项。R118必须做四轮总结，预算目标仍有风险，不自动延期。",
       "action": "R115按成熟ACS基础控制批核74/75/76；后续复用成熟路由条目收尾，R118再评估。",
       "latestProgress": {
-        "round": 115,
-        "newAcceptedUnits": 2,
-        "cumulativeAcceptedUnits": 56,
-        "newPassedCriteria": 22,
-        "cumulativePassedCriteria": 471,
-        "remainingPlannedRounds": 23
+        "round": 117,
+        "newAcceptedUnits": 4,
+        "cumulativeAcceptedUnits": 63,
+        "newPassedCriteria": 32,
+        "cumulativePassedCriteria": 521,
+        "remainingPlannedRounds": 21
       }
     },
     "reviewWindows": [
