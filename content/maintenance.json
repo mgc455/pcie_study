@@ -1,8 +1,8 @@
 {
   "nextFeatureIds": [
-    13,
-    14,
-    15
+    16,
+    59,
+    91
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,11 +49,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r172",
+    "edition": "2026-10-30-r174",
     "featureIds": [
-      12
+      15
     ],
-    "nextTrack": "13 Flit、14 FEC/CRC、15 L0p；R174总结"
+    "nextTrack": "16 Crosslink/59 PME/91 DPA；R178总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -343,13 +343,13 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 114,
-    "lastReviewEdition": "2026-10-29-r170",
-    "lastReviewId": "r167-r170",
+    "completedTotal": 116,
+    "lastReviewEdition": "2026-10-30-r174",
+    "lastReviewId": "r171-r174",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
   },
   "stageReviews": [
@@ -1284,10 +1284,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 82,
+    "completedRounds": 84,
     "remainingPlannedRounds": 0,
-    "nextRound": 173,
-    "nextReviewRound": 174,
+    "nextRound": 175,
+    "nextReviewRound": 178,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -3454,47 +3454,155 @@
         "featureId": 13,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/13/detail/r173-fm-negotiation-disable-and-rate",
+                "label": "FM使用条件：能力、训练协商、Disable与当前速率逐层看"
+              },
+              {
+                "href": "#feature/13/detail/r173-flit-parser-and-replay-walk",
+                "label": "从一份Flit继续下一份：组包、控制负载和重放的检查顺序"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/13/detail/r173-fm-negotiation-disable-and-rate",
+                "label": "FM使用条件：能力、训练协商、Disable与当前速率逐层看"
+              },
+              {
+                "href": "#feature/13/detail/r173-flit-parser-and-replay-walk",
+                "label": "从一份Flit继续下一份：组包、控制负载和重放的检查顺序"
+              },
+              {
+                "href": "#feature/13/detail/fm-tlp-reassembly-walk",
+                "label": "跨FLIT怎样继续解析：不要在每个byte0都重新找头"
+              },
+              {
+                "href": "#feature/13/detail/dlp-live-decoder",
+                "label": "六字节DLP查询：对照波形先确定字节序"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/13/detail/r173-fm-negotiation-disable-and-rate",
+                "label": "FM使用条件：能力、训练协商、Disable与当前速率逐层看"
+              },
+              {
+                "href": "#feature/13/detail/r173-flit-parser-and-replay-walk",
+                "label": "从一份Flit继续下一份：组包、控制负载和重放的检查顺序"
+              },
+              {
+                "href": "#feature/13/detail/fm-memory-tlp-bit-layout",
+                "label": "FM TLP头逐bit：MRd/MWr不能套NFM头布局"
+              },
+              {
+                "href": "#feature/13/detail/dlp-field-map",
+                "label": "DLP六字节逐字段：先按DLP0、DLP1…顺序读"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/13/detail/r173-fm-negotiation-disable-and-rate",
+                "label": "FM使用条件：能力、训练协商、Disable与当前速率逐层看"
+              },
+              {
+                "href": "#feature/13/detail/r173-flit-parser-and-replay-walk",
+                "label": "从一份Flit继续下一份：组包、控制负载和重放的检查顺序"
+              },
+              {
+                "href": "#feature/13/detail/flit-status-cross-packet",
+                "label": "Poison / Nullify跨Flit传播与Credit归还"
+              },
+              {
+                "href": "#feature/13/detail/dlp-invalid-fields",
+                "label": "CRC通过后仍要检查哪些DLP/组包错误"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/13/detail/r173-fm-negotiation-disable-and-rate",
+                "label": "FM使用条件：能力、训练协商、Disable与当前速率逐层看"
+              },
+              {
+                "href": "#feature/13/detail/r173-flit-parser-and-replay-walk",
+                "label": "从一份Flit继续下一份：组包、控制负载和重放的检查顺序"
+              },
+              {
+                "href": "#feature/13/detail/tlps-per-half-version",
+                "label": "实质版本差异：每半Flit非NOP TLP上限从固定8到按接收值4或8"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/13/detail/r173-fm-negotiation-disable-and-rate",
+                "label": "FM使用条件：能力、训练协商、Disable与当前速率逐层看"
+              },
+              {
+                "href": "#feature/13/detail/r173-flit-parser-and-replay-walk",
+                "label": "从一份Flit继续下一份：组包、控制负载和重放的检查顺序"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/13/detail/r173-fm-negotiation-disable-and-rate",
+                "label": "FM使用条件：能力、训练协商、Disable与当前速率逐层看"
+              },
+              {
+                "href": "#feature/13/detail/r173-flit-parser-and-replay-walk",
+                "label": "从一份Flit继续下一份：组包、控制负载和重放的检查顺序"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/13/detail/r173-fm-negotiation-disable-and-rate",
+                "label": "FM使用条件：能力、训练协商、Disable与当前速率逐层看"
+              },
+              {
+                "href": "#feature/13/detail/r173-flit-parser-and-replay-walk",
+                "label": "从一份Flit继续下一份：组包、控制负载和重放的检查顺序"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           }
         },
         "baseline": {
@@ -3503,61 +3611,166 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。",
         "taskId": "v1-task-03",
         "requiredTaskIds": [
           "v1-task-03",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 173
       },
       {
         "id": "v1-feature-14",
         "featureId": 14,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/14/detail/r173-ecc-reference-precedence",
+                "label": "FEC旧图指数差异的核对结论：按本版正文指定的附录参考实现"
+              },
+              {
+                "href": "#feature/14/detail/r173-fec-correction-validity-checklist",
+                "label": "FEC纠了多少还不够：按ECC组、纠后CRC和Usage判有效"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/14/detail/r173-ecc-reference-precedence",
+                "label": "FEC旧图指数差异的核对结论：按本版正文指定的附录参考实现"
+              },
+              {
+                "href": "#feature/14/detail/r173-fec-correction-validity-checklist",
+                "label": "FEC纠了多少还不够：按ECC组、纠后CRC和Usage判有效"
+              },
+              {
+                "href": "#feature/14/detail/fec-crc-processing-order",
+                "label": "TX先CRC后FEC；RX先纠正再做CRC判定"
+              },
+              {
+                "href": "#feature/14/detail/ecc-syndrome-decision",
+                "label": "Syndrome判别表：检查字节错误也可能被修复"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/14/detail/r173-ecc-reference-precedence",
+                "label": "FEC旧图指数差异的核对结论：按本版正文指定的附录参考实现"
+              },
+              {
+                "href": "#feature/14/detail/r173-fec-correction-validity-checklist",
+                "label": "FEC纠了多少还不够：按ECC组、纠后CRC和Usage判有效"
+              },
+              {
+                "href": "#feature/14/detail/ecc-group-map",
+                "label": "逐字节查ECC归属：最后6字节不再直接用i mod 3"
+              },
+              {
+                "href": "#feature/14/detail/crc-matrix-boundary",
+                "label": "Flit CRC不是普通32位LCRC换一个宽度"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/14/detail/r173-ecc-reference-precedence",
+                "label": "FEC旧图指数差异的核对结论：按本版正文指定的附录参考实现"
+              },
+              {
+                "href": "#feature/14/detail/r173-fec-correction-validity-checklist",
+                "label": "FEC纠了多少还不够：按ECC组、纠后CRC和Usage判有效"
+              },
+              {
+                "href": "#feature/14/detail/valid-flit-conditions",
+                "label": "有效Flit不只看CRC：ECC与Usage/Status也要合法"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/14/detail/r173-ecc-reference-precedence",
+                "label": "FEC旧图指数差异的核对结论：按本版正文指定的附录参考实现"
+              },
+              {
+                "href": "#feature/14/detail/r173-fec-correction-validity-checklist",
+                "label": "FEC纠了多少还不够：按ECC组、纠后CRC和Usage判有效"
+              },
+              {
+                "href": "#feature/14/detail/fec-version-differences",
+                "label": "Gen6/Gen7：相同布局，不同小节号；实现细节需独立核读"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/14/detail/r173-ecc-reference-precedence",
+                "label": "FEC旧图指数差异的核对结论：按本版正文指定的附录参考实现"
+              },
+              {
+                "href": "#feature/14/detail/r173-fec-correction-validity-checklist",
+                "label": "FEC纠了多少还不够：按ECC组、纠后CRC和Usage判有效"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/14/detail/r173-ecc-reference-precedence",
+                "label": "FEC旧图指数差异的核对结论：按本版正文指定的附录参考实现"
+              },
+              {
+                "href": "#feature/14/detail/r173-fec-correction-validity-checklist",
+                "label": "FEC纠了多少还不够：按ECC组、纠后CRC和Usage判有效"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 173,
+            "evidence": [
+              {
+                "href": "#feature/14/detail/r173-ecc-reference-precedence",
+                "label": "FEC旧图指数差异的核对结论：按本版正文指定的附录参考实现"
+              },
+              {
+                "href": "#feature/14/detail/r173-fec-correction-validity-checklist",
+                "label": "FEC纠了多少还不够：按ECC组、纠后CRC和Usage判有效"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           }
         },
         "baseline": {
@@ -3566,61 +3779,186 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。",
         "taskId": "v1-task-03",
         "requiredTaskIds": [
           "v1-task-03",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 173
       },
       {
         "id": "v1-feature-15",
         "featureId": 15,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 174,
+            "evidence": [
+              {
+                "href": "#feature/15/detail/r174-l0p-control-to-wire-walk",
+                "label": "L0p使用顺序：先核资格，再发请求，Ack后在边界完成改宽"
+              },
+              {
+                "href": "#feature/15/detail/r174-l0p-timers-and-concurrency",
+                "label": "L0p时间与并发：分清响应、重发、放弃、新请求和激活"
+              },
+              {
+                "href": "#feature/15/detail/r174-base6-l0p-equal-priority-source-gate",
+                "label": "保留边界：Base6双方优先且同宽不能静默采用Base7平局规则"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 174,
+            "evidence": [
+              {
+                "href": "#feature/15/detail/r174-l0p-control-to-wire-walk",
+                "label": "L0p使用顺序：先核资格，再发请求，Ack后在边界完成改宽"
+              },
+              {
+                "href": "#feature/15/detail/r174-l0p-timers-and-concurrency",
+                "label": "L0p时间与并发：分清响应、重发、放弃、新请求和激活"
+              },
+              {
+                "href": "#feature/15/detail/r174-base6-l0p-equal-priority-source-gate",
+                "label": "保留边界：Base6双方优先且同宽不能静默采用Base7平局规则"
+              },
+              {
+                "href": "#feature/15/detail/l0p-upsize-training-counts",
+                "label": "扩宽训练：旧Lane不停流，新Lane要完成8/16及deskew"
+              },
+              {
+                "href": "#feature/15/detail/l0p-downsize-eios-skp-flow",
+                "label": "缩窄执行：在SKP边界分开活动Lane和停用Lane"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 174,
+            "evidence": [
+              {
+                "href": "#feature/15/detail/r174-l0p-control-to-wire-walk",
+                "label": "L0p使用顺序：先核资格，再发请求，Ack后在边界完成改宽"
+              },
+              {
+                "href": "#feature/15/detail/r174-l0p-timers-and-concurrency",
+                "label": "L0p时间与并发：分清响应、重发、放弃、新请求和激活"
+              },
+              {
+                "href": "#feature/15/detail/r174-base6-l0p-equal-priority-source-gate",
+                "label": "保留边界：Base6双方优先且同宽不能静默采用Base7平局规则"
+              },
+              {
+                "href": "#feature/15/detail/l0p-two-width-encoding-tables",
+                "label": "两套宽度编码：报文x16=0，软件目标x16=4"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 174,
+            "evidence": [
+              {
+                "href": "#feature/15/detail/r174-l0p-control-to-wire-walk",
+                "label": "L0p使用顺序：先核资格，再发请求，Ack后在边界完成改宽"
+              },
+              {
+                "href": "#feature/15/detail/r174-l0p-timers-and-concurrency",
+                "label": "L0p时间与并发：分清响应、重发、放弃、新请求和激活"
+              },
+              {
+                "href": "#feature/15/detail/r174-base6-l0p-equal-priority-source-gate",
+                "label": "保留边界：Base6双方优先且同宽不能静默采用Base7平局规则"
+              },
+              {
+                "href": "#feature/15/detail/l0p-upsize-timeout-retimer-caution",
+                "label": "扩宽24ms与Retimer低速风险：不是同一时间尺度"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 174,
+            "evidence": [
+              {
+                "href": "#feature/15/detail/r174-l0p-control-to-wire-walk",
+                "label": "L0p使用顺序：先核资格，再发请求，Ack后在边界完成改宽"
+              },
+              {
+                "href": "#feature/15/detail/r174-l0p-timers-and-concurrency",
+                "label": "L0p时间与并发：分清响应、重发、放弃、新请求和激活"
+              },
+              {
+                "href": "#feature/15/detail/r174-base6-l0p-equal-priority-source-gate",
+                "label": "保留边界：Base6双方优先且同宽不能静默采用Base7平局规则"
+              },
+              {
+                "href": "#feature/15/detail/l0p-six-seven-change-index",
+                "label": "6.0→7.0选定差异速查：哪些仍待中间修订证据"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 174,
+            "evidence": [
+              {
+                "href": "#feature/15/detail/r174-l0p-control-to-wire-walk",
+                "label": "L0p使用顺序：先核资格，再发请求，Ack后在边界完成改宽"
+              },
+              {
+                "href": "#feature/15/detail/r174-l0p-timers-and-concurrency",
+                "label": "L0p时间与并发：分清响应、重发、放弃、新请求和激活"
+              },
+              {
+                "href": "#feature/15/detail/r174-base6-l0p-equal-priority-source-gate",
+                "label": "保留边界：Base6双方优先且同宽不能静默采用Base7平局规则"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 174,
+            "evidence": [
+              {
+                "href": "#feature/15/detail/r174-l0p-control-to-wire-walk",
+                "label": "L0p使用顺序：先核资格，再发请求，Ack后在边界完成改宽"
+              },
+              {
+                "href": "#feature/15/detail/r174-l0p-timers-and-concurrency",
+                "label": "L0p时间与并发：分清响应、重发、放弃、新请求和激活"
+              },
+              {
+                "href": "#feature/15/detail/r174-base6-l0p-equal-priority-source-gate",
+                "label": "保留边界：Base6双方优先且同宽不能静默采用Base7平局规则"
+              }
+            ],
+            "note": "按所列正式版正文及现有查询验收，14另按本版指定附录参考优先闭环；不代表整章、全部ECN或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 174,
+            "evidence": [
+              {
+                "href": "#feature/15/detail/r174-base6-l0p-equal-priority-source-gate",
+                "label": "Base6同宽优先仲裁边界"
+              }
+            ],
+            "note": "Base6双方Priority且同宽的赢家未由所核条款明确；Base7明确DSP，不能静默回填，需匹配正式澄清。"
           }
         },
         "baseline": {
@@ -3629,13 +3967,16 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "Base6双方Priority且同宽的赢家未由所核条款明确；Base7明确DSP，不能静默回填，需匹配正式澄清。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "Base6双方Priority且同宽的赢家未由所核条款明确；Base7明确DSP，不能静默回填，需匹配正式澄清。"
         ]
       },
       {
@@ -32953,6 +33294,135 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项与原预算、38项历史来源记录保留；10/12共享旧Lower SKP问题，不能计为两个新来源冲突。",
         "publication": "先恢复核验R170的线上入口/内容；R171/R172分别检查后合并发布R172。"
+      },
+      {
+        "round": 173,
+        "kind": "R173 Flit解析链与FEC指定参考一致性核对",
+        "deliverables": [
+          "补FM协商/Disable与跨Flit解析，按正文指定的附录参考闭环旧FEC图权重疑点；13/14通过主题验收。"
+        ],
+        "closedDeliverableIds": [
+          "feature-13-v1-accepted",
+          "feature-14-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 13,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 13,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 13,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 13,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 13,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 13,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 13,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 13,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 14,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 14,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 14,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 14,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 14,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 14,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 14,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 14,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          13,
+          14
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项与原预算/历史来源记录保留；14按指定附录优先解决实现选择疑点，15保留同宽优先仲裁问题。",
+        "publication": "R173/R174独立检查后合并发布R174，线上版本和视觉结果按实际记录。",
+        "resolvedConflictIds": [
+          "v1-conflict-01"
+        ]
+      },
+      {
+        "round": 174,
+        "kind": "R174 L0p从控制到执行复核及四轮总结",
+        "deliverables": [
+          "补L0p资格/控制/请求/执行证据链和并发时序，保留Base6同宽优先仲裁疑点，完成R171～R174复盘。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 15,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 15,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 15,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 15,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 15,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 15,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 15,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项与原预算/历史来源记录保留；14按指定附录优先解决实现选择疑点，15保留同宽优先仲裁问题。",
+        "publication": "R173/R174独立检查后合并发布R174，线上版本和视觉结果按实际记录。"
       }
     ],
     "backlog": [
@@ -33978,10 +34448,25 @@
         "legacyRecordIndices": [
           12
         ],
-        "status": "needs-corroboration",
+        "status": "resolved",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "保留原图与历史记录；实际实现仍须按本版附录参考结果验证。未来新官方资料可继续补充。",
+        "evidence": [
+          {
+            "href": "#feature/14/detail/r173-ecc-reference-precedence",
+            "label": "各版正文指定参考优先与附录J.2静态一致"
+          }
+        ],
+        "resolutionHistory": [
+          {
+            "round": 173,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
+            "previousEvidence": []
+          }
+        ],
+        "resolvedRound": 173,
+        "resolution": "已渲染确认6.0图首项指数差异；两版正文公式一致且均明确指定附录J参考结果优先，两版J.2编码器模块去空白后相同。关闭编码权重选择疑点，不宣称单独正式勘误或完整仿真已完成。"
       },
       {
         "id": "v1-conflict-02",
@@ -36460,37 +36945,37 @@
       }
     ],
     "nextExecution": {
-      "round": 173,
-      "taskId": "v1-task-03",
+      "round": 175,
+      "taskId": "v1-task-01",
       "featureIds": [
-        13,
-        14,
-        15
+        16,
+        59,
+        91
       ],
-      "goal": "按固定队列继续13 Flit Mode、14 FEC/CRC、15 L0p；共享Lower SKP来源疑点单列，不重读同页冒充关闭。",
-      "reviewRound": 174
+      "goal": "按固定剩余范围推进16 Crosslink、59 PME，再91 DPA；已知来源阻塞单列追证，避免长期停留同一链路家族。",
+      "reviewRound": 178
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 172,
-      "reestimateRound": 174,
+      "assessedRound": 174,
+      "reestimateRound": 178,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "原预算耗尽，手动收尾；本轮仅按明确证据通过维度，Lower SKP能力/使能跨表问题保留。",
-      "action": "下轮Flit/FEC/L0p；R174四轮复盘，不扩大功能范围或自动延长预算。",
+      "assessment": "四轮验收11 Retimer、13 FM、14 FEC/CRC，共3项、45维度；累计143/183、1337维度、剩40（16待验收、24阻塞）。14依据正文指定参考优先闭环旧图的算法选择疑点；10/12共享Lower SKP、15同宽Priority及原PHY疑点继续单列。38项历史来源问题保留，其中FEC权重选择1项本窗口按指定参考优先闭环。",
+      "action": "下一窗口先16 Crosslink/59 PME，再91 DPA/92 EPR/183功率预算；后续测试、Hot-plug与桥接DMA。原预算终点不变，外部澄清未到齐前无可保证结束轮数。",
       "latestProgress": {
-        "round": 172,
+        "round": 174,
         "newAcceptedUnits": 0,
-        "cumulativeAcceptedUnits": 141,
+        "cumulativeAcceptedUnits": 143,
         "newPassedCriteria": 7,
-        "cumulativePassedCriteria": 1314,
+        "cumulativePassedCriteria": 1337,
         "remainingPlannedRounds": 0
       },
       "unacceptedBreakdown": {
-        "blocked": 21,
-        "awaiting": 22
+        "blocked": 24,
+        "awaiting": 16
       }
     },
     "reviewWindows": [
@@ -37332,6 +37817,82 @@
           183
         ],
         "note": "本窗口验收6/7/8三项、重开3一项，净关闭2项；新通过45维度、撤回1，净增44。累计140/183、1292维度、剩43。3/4/5共享Base6回退疑点；9保留原No-EQ跨位门控问题，PHY产品疑点不重复验收。"
+      },
+      {
+        "id": "r171-r174",
+        "firstRound": 171,
+        "lastRound": 174,
+        "closedFeatureUnits": [
+          11,
+          13,
+          14
+        ],
+        "reopenedFeatureUnits": [],
+        "newPassedCriteria": 45,
+        "remainingFeatureUnits": 40,
+        "cumulativePassedCriteria": 1337,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 8,
+          "中断与消息": 2,
+          "功耗与复位": 4,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 4,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 10
+        },
+        "blockedFeatureIds": [
+          3,
+          4,
+          5,
+          9,
+          10,
+          12,
+          15,
+          106,
+          114,
+          119,
+          127,
+          129,
+          136,
+          143,
+          152,
+          153,
+          159,
+          169,
+          170,
+          172,
+          173,
+          174,
+          175,
+          176
+        ],
+        "awaitingFeatureIds": [
+          16,
+          59,
+          61,
+          89,
+          91,
+          92,
+          137,
+          138,
+          139,
+          146,
+          147,
+          148,
+          164,
+          179,
+          181,
+          183
+        ],
+        "note": "四轮验收11 Retimer、13 FM、14 FEC/CRC，共3项、45维度；累计143/183、1337维度、剩40（16待验收、24阻塞）。14依据正文指定参考优先闭环旧图的算法选择疑点；10/12共享Lower SKP、15同宽Priority及原PHY疑点继续单列。38项历史来源问题保留，其中FEC权重选择1项本窗口按指定参考优先闭环。",
+        "resolvedConflictIds": [
+          "v1-conflict-01"
+        ]
       }
     ],
     "budgetEndAudit": {
@@ -37629,8 +38190,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        171,
-        172
+        173,
+        174
       ],
       "completedRounds": [
         143,
@@ -37662,10 +38223,12 @@
         169,
         170,
         171,
-        172
+        172,
+        173,
+        174
       ],
-      "publication": "checks-before-combined-r172-publication",
-      "note": "每日继续暂停，固定183项与原预算快照保留。"
+      "publication": "checks-before-combined-r174-publication",
+      "note": "每日暂停，固定范围与原预算快照保留。"
     },
     "queueAudit": {
       "round": 150,
