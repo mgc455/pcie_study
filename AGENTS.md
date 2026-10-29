@@ -270,3 +270,7 @@ R172: clock/Retimer/encoding selected-body review;10/12 share Base6 Lower SKP so
 R173: FM/FEC/L0p review; FEC reference precedence confirmed, L0p Base6 priority tie retained; next review R174; daily paused; original budget preserved.
 
 R174: FM/FEC/L0p review; FEC reference precedence confirmed, L0p Base6 priority tie retained; next review R178; daily paused; original budget preserved.
+
+R175: Crosslink/PME/DPA selected-rule review; DPA conflict07 retained; next review R178; daily paused; original budget preserved.
+
+R176: Crosslink/PME/DPA selected-rule review; DPA conflict07 retained; next review R178; daily paused; original budget preserved.

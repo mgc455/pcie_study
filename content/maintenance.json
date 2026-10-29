@@ -1,8 +1,7 @@
 {
   "nextFeatureIds": [
-    16,
-    59,
-    91
+    92,
+    183
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,11 +48,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r174",
+    "edition": "2026-10-30-r176",
     "featureIds": [
-      15
+      91
     ],
-    "nextTrack": "16 Crosslink/59 PME/91 DPA；R178总结"
+    "nextTrack": "92 EPR/183功率预算；R178总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -343,11 +342,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 2,
+    "nextReviewAfterRounds": 2,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 116,
+    "completedTotal": 118,
     "lastReviewEdition": "2026-10-30-r174",
     "lastReviewId": "r171-r174",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
@@ -1284,9 +1283,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 84,
+    "completedRounds": 86,
     "remainingPlannedRounds": 0,
-    "nextRound": 175,
+    "nextRound": 177,
     "nextReviewRound": 178,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -3984,47 +3983,143 @@
         "featureId": 16,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/16/detail/r175-crosslink-role-arbitration-walk",
+                "label": "Crosslink训练怎么用：先打破同角色，再继续Link和Lane编号"
+              },
+              {
+                "href": "#feature/16/detail/r175-crosslink-seven-revision-gates",
+                "label": "Crosslink七版查阅：Base1.0a不能直接套后期16～32计数"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/16/detail/r175-crosslink-role-arbitration-walk",
+                "label": "Crosslink训练怎么用：先打破同角色，再继续Link和Lane编号"
+              },
+              {
+                "href": "#feature/16/detail/r175-crosslink-seven-revision-gates",
+                "label": "Crosslink七版查阅：Base1.0a不能直接套后期16～32计数"
+              },
+              {
+                "href": "#feature/16/detail/crosslink-both-dsp",
+                "label": "双方初始为DSP：如何打破冲突"
+              },
+              {
+                "href": "#feature/16/detail/crosslink-both-usp",
+                "label": "双方初始为USP：随机计时到角色确定"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/16/detail/r175-crosslink-role-arbitration-walk",
+                "label": "Crosslink训练怎么用：先打破同角色，再继续Link和Lane编号"
+              },
+              {
+                "href": "#feature/16/detail/r175-crosslink-seven-revision-gates",
+                "label": "Crosslink七版查阅：Base1.0a不能直接套后期16～32计数"
+              },
+              {
+                "href": "#feature/16/detail/crosslink-roles",
+                "label": "Crosslink的角色与非目标"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/16/detail/r175-crosslink-role-arbitration-walk",
+                "label": "Crosslink训练怎么用：先打破同角色，再继续Link和Lane编号"
+              },
+              {
+                "href": "#feature/16/detail/r175-crosslink-seven-revision-gates",
+                "label": "Crosslink七版查阅：Base1.0a不能直接套后期16～32计数"
+              },
+              {
+                "href": "#feature/16/detail/crosslink-timer",
+                "label": "Tcrosslink：上限、随机性和易错处"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/16/detail/r175-crosslink-role-arbitration-walk",
+                "label": "Crosslink训练怎么用：先打破同角色，再继续Link和Lane编号"
+              },
+              {
+                "href": "#feature/16/detail/r175-crosslink-seven-revision-gates",
+                "label": "Crosslink七版查阅：Base1.0a不能直接套后期16～32计数"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/16/detail/r175-crosslink-role-arbitration-walk",
+                "label": "Crosslink训练怎么用：先打破同角色，再继续Link和Lane编号"
+              },
+              {
+                "href": "#feature/16/detail/r175-crosslink-seven-revision-gates",
+                "label": "Crosslink七版查阅：Base1.0a不能直接套后期16～32计数"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/16/detail/r175-crosslink-role-arbitration-walk",
+                "label": "Crosslink训练怎么用：先打破同角色，再继续Link和Lane编号"
+              },
+              {
+                "href": "#feature/16/detail/r175-crosslink-seven-revision-gates",
+                "label": "Crosslink七版查阅：Base1.0a不能直接套后期16～32计数"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/16/detail/r175-crosslink-role-arbitration-walk",
+                "label": "Crosslink训练怎么用：先打破同角色，再继续Link和Lane编号"
+              },
+              {
+                "href": "#feature/16/detail/r175-crosslink-seven-revision-gates",
+                "label": "Crosslink七版查阅：Base1.0a不能直接套后期16～32计数"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           }
         },
         "baseline": {
@@ -4033,14 +4128,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。",
         "taskId": "v1-task-01",
         "requiredTaskIds": [
           "v1-task-01",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 175
       },
       {
         "id": "v1-feature-17",
@@ -10111,7 +10207,7 @@
         "featureId": 59,
         "group": "中断与消息",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -10129,9 +10225,27 @@
             "note": "复用已有PME用途/状态/通知解释和稳定查询入口，核来源PMCSR、Root通知及新增LTR对照；未因此接受早期全版本或全部状态语义。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/59/detail/r175-pme-event-to-root-service",
+                "label": "PME从事件到软件服务：唤醒、上行报告、两级Status与重发"
+              },
+              {
+                "href": "#feature/59/detail/r175-turnoff-fence-and-pending-wakeup",
+                "label": "PME_Turn_Off关机围栏：聚合Ack、L2/L3 Ready和未服务事件"
+              },
+              {
+                "href": "#feature/59/detail/pme-delivery-state-query",
+                "label": "原创图与查询：按当前态/事件查看PME传递动作"
+              },
+              {
+                "href": "#feature/59/detail/pme-state-transition-table",
+                "label": "四态逐事件转移表：动作与前提一起查"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "structure": {
             "status": "passed",
@@ -10148,24 +10262,70 @@
               {
                 "href": "#feature/59/detail/r94-pme-versus-aspm-resume",
                 "label": "普通ASPM退出、PME唤醒与TurnOff围栏是三条不同路径"
+              },
+              {
+                "href": "#feature/59/detail/pme-native-register-query",
+                "label": "查询：来源与Root状态解码、INTx电平和MSI组合边沿"
               }
             ],
             "note": "R94复核所列用途/状态/字段或导航的实际要求，复用已有充分正文；主要依据正式Base7.0，并独立核6.0对应选段。维度通过不代表早期版本或整项已通过。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/59/detail/r175-pme-event-to-root-service",
+                "label": "PME从事件到软件服务：唤醒、上行报告、两级Status与重发"
+              },
+              {
+                "href": "#feature/59/detail/r175-turnoff-fence-and-pending-wakeup",
+                "label": "PME_Turn_Off关机围栏：聚合Ack、L2/L3 Ready和未服务事件"
+              },
+              {
+                "href": "#feature/59/detail/pme-pending-turnoff-race",
+                "label": "PME未服务又收到TurnOff：既要Ack，也要保留恢复后报告责任"
+              },
+              {
+                "href": "#feature/59/detail/pme-backpressure-cycle",
+                "label": "RC缓存满如何卡住服务：Posted PME可能挡住配置读Completion"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/59/detail/r175-pme-event-to-root-service",
+                "label": "PME从事件到软件服务：唤醒、上行报告、两级Status与重发"
+              },
+              {
+                "href": "#feature/59/detail/r175-turnoff-fence-and-pending-wakeup",
+                "label": "PME_Turn_Off关机围栏：聚合Ack、L2/L3 Ready和未服务事件"
+              },
+              {
+                "href": "#feature/59/detail/pme-six-seven-comparison",
+                "label": "6.0与7.0逐页对照：本组握手、四态、计时和Root PME字段一致"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/59/detail/r175-pme-event-to-root-service",
+                "label": "PME从事件到软件服务：唤醒、上行报告、两级Status与重发"
+              },
+              {
+                "href": "#feature/59/detail/r175-turnoff-fence-and-pending-wakeup",
+                "label": "PME_Turn_Off关机围栏：聚合Ack、L2/L3 Ready和未服务事件"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "navigation": {
             "status": "passed",
@@ -10187,9 +10347,19 @@
             "note": "复用已有PME用途/状态/通知解释和稳定查询入口，核来源PMCSR、Root通知及新增LTR对照；未因此接受早期全版本或全部状态语义。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "保留待核：早期正式版/ECN适用差异和全范围交叉核对尚未逐项验收；已有6.0/7.0本组比较不能外推所有修订。"
+            "status": "passed",
+            "reviewedRound": 175,
+            "evidence": [
+              {
+                "href": "#feature/59/detail/r175-pme-event-to-root-service",
+                "label": "PME从事件到软件服务：唤醒、上行报告、两级Status与重发"
+              },
+              {
+                "href": "#feature/59/detail/r175-turnoff-fence-and-pending-wakeup",
+                "label": "PME_Turn_Off关机围栏：聚合Ack、L2/L3 Ready和未服务事件"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           }
         },
         "baseline": {
@@ -10198,14 +10368,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "R94以复用旧正文完成所列验收维度；剩余维度见本项台账，未自动接受整项。",
+        "reviewNote": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 175
       },
       {
         "id": "v1-feature-60",
@@ -14550,47 +14721,179 @@
         "featureId": 91,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 176,
+            "evidence": [
+              {
+                "href": "#feature/91/detail/r176-dpa-discovery-register-contract",
+                "label": "DPA从能力到目标：寄存器宽度、档位、功率与延迟怎样读"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-transition-and-accounting",
+                "label": "DPA转换怎样观察：目标、当前功率上限及最新请求分别看"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-example-source-gate",
+                "label": "DPA示例越界仍留待澄清：不能把“四档”解释为0～4"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 176,
+            "evidence": [
+              {
+                "href": "#feature/91/detail/r176-dpa-discovery-register-contract",
+                "label": "DPA从能力到目标：寄存器宽度、档位、功率与延迟怎样读"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-transition-and-accounting",
+                "label": "DPA转换怎样观察：目标、当前功率上限及最新请求分别看"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-example-source-gate",
+                "label": "DPA示例越界仍留待澄清：不能把“四档”解释为0～4"
+              },
+              {
+                "href": "#feature/91/detail/dpa-transition-power-status",
+                "label": "转换中Status反映功耗较高档，不能低报需求"
+              },
+              {
+                "href": "#feature/91/detail/dpa-new-request-during-transition",
+                "label": "尚未转换完也可收到新目标，最终须跟到最新配置"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 176,
+            "evidence": [
+              {
+                "href": "#feature/91/detail/r176-dpa-discovery-register-contract",
+                "label": "DPA从能力到目标：寄存器宽度、档位、功率与延迟怎样读"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-transition-and-accounting",
+                "label": "DPA转换怎样观察：目标、当前功率上限及最新请求分别看"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-example-source-gate",
+                "label": "DPA示例越界仍留待澄清：不能把“四档”解释为0～4"
+              },
+              {
+                "href": "#feature/91/detail/dpa-register-map",
+                "label": "能力0016h：每档Power是BYTE，Control是WORD"
+              },
+              {
+                "href": "#feature/91/detail/dpa-capability-field-table",
+                "label": "Capability字段：最大编号、延迟单位和功率Scale"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 176,
+            "evidence": [
+              {
+                "href": "#feature/91/detail/r176-dpa-discovery-register-contract",
+                "label": "DPA从能力到目标：寄存器宽度、档位、功率与延迟怎样读"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-transition-and-accounting",
+                "label": "DPA转换怎样观察：目标、当前功率上限及最新请求分别看"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-example-source-gate",
+                "label": "DPA示例越界仍留待澄清：不能把“四档”解释为0～4"
+              },
+              {
+                "href": "#feature/91/detail/dpa-enabled-is-w1c",
+                "label": "Substate Control Enabled为RW1C：写1是关闭，软件不能直接再置1"
+              },
+              {
+                "href": "#feature/91/detail/dpa-emergency-override",
+                "label": "EPR覆盖DPA，但不是替换成某个DPA档号"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 176,
+            "evidence": [
+              {
+                "href": "#feature/91/detail/r176-dpa-discovery-register-contract",
+                "label": "DPA从能力到目标：寄存器宽度、档位、功率与延迟怎样读"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-transition-and-accounting",
+                "label": "DPA转换怎样观察：目标、当前功率上限及最新请求分别看"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-example-source-gate",
+                "label": "DPA示例越界仍留待澄清：不能把“四档”解释为0～4"
+              },
+              {
+                "href": "#feature/91/detail/dpa-valid-index-and-text-error",
+                "label": "状态编号必须在0～Max内，不能照搬规范示例中的越界4"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 176,
+            "evidence": [
+              {
+                "href": "#feature/91/detail/r176-dpa-discovery-register-contract",
+                "label": "DPA从能力到目标：寄存器宽度、档位、功率与延迟怎样读"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-transition-and-accounting",
+                "label": "DPA转换怎样观察：目标、当前功率上限及最新请求分别看"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-example-source-gate",
+                "label": "DPA示例越界仍留待澄清：不能把“四档”解释为0～4"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 176,
+            "evidence": [
+              {
+                "href": "#feature/91/detail/r176-dpa-discovery-register-contract",
+                "label": "DPA从能力到目标：寄存器宽度、档位、功率与延迟怎样读"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-transition-and-accounting",
+                "label": "DPA转换怎样观察：目标、当前功率上限及最新请求分别看"
+              },
+              {
+                "href": "#feature/91/detail/r176-dpa-example-source-gate",
+                "label": "DPA示例越界仍留待澄清：不能把“四档”解释为0～4"
+              }
+            ],
+            "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 176,
+            "evidence": [
+              {
+                "href": "#feature/91/detail/r176-dpa-example-source-gate",
+                "label": "DPA越界示例及能力范围"
+              }
+            ],
+            "note": "Base6/7四档0～3示例后提状态4，与能力Max/数组范围不一致；合法输入按0～Max检查，原例应如何修订仍待正式澄清（conflict07）。"
           }
         },
         "baseline": {
@@ -14601,13 +14904,16 @@
           "budget"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "Base6/7四档0～3示例后提状态4，与能力Max/数组范围不一致；合法输入按0～Max检查，原例应如何修订仍待正式澄清（conflict07）。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "Base6/7四档0～3示例后提状态4，与能力Max/数组范围不一致；合法输入按0～Max检查，原例应如何修订仍待正式澄清（conflict07）。"
         ]
       },
       {
@@ -33423,6 +33729,120 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项与原预算/历史来源记录保留；14按指定附录优先解决实现选择疑点，15保留同宽优先仲裁问题。",
         "publication": "R173/R174独立检查后合并发布R174，线上版本和视觉结果按实际记录。"
+      },
+      {
+        "round": 175,
+        "kind": "R175 Crosslink七版差分与PME服务/关机链复核",
+        "deliverables": [
+          "补Crosslink早期all/any及计数差分、PME来源到Root服务与TurnOff围栏；16/59通过主题验收。"
+        ],
+        "closedDeliverableIds": [
+          "feature-16-v1-accepted",
+          "feature-59-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 16,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 16,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 16,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 16,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 16,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 16,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 16,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 16,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 59,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 59,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 59,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 59,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 59,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          16,
+          59
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项、原R138预算与38来源历史不变；DPA保留conflict07，未将非法示例修订猜测作通过依据。",
+        "publication": "R175/R176独立检查后合并发布R176，线上和视觉结果单列。"
+      },
+      {
+        "round": 176,
+        "kind": "R176 DPA寄存器使用、转换功率与来源边界复核",
+        "deliverables": [
+          "补DPA能力→目标→转换观察流程、合法功率/延迟复算及多Function归属；七维通过，原状态4示例一致性继续阻塞。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 91,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 91,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 91,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 91,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 91,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 91,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 91,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项、原R138预算与38来源历史不变；DPA保留conflict07，未将非法示例修订猜测作通过依据。",
+        "publication": "R175/R176独立检查后合并发布R176，线上和视觉结果单列。"
       }
     ],
     "backlog": [
@@ -34567,8 +34987,21 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "核匹配版本正式勘误或中间修订的源例；合法控制值仍按0～Substate_Max，不能凭猜测选择应替换4的编号。",
+        "evidence": [
+          {
+            "href": "#feature/91/detail/r176-dpa-example-source-gate",
+            "label": "Base6/7越界例与Max/数组字段定位"
+          }
+        ],
+        "reviewHistory": [
+          {
+            "round": 176,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
+            "previousEvidence": []
+          }
+        ]
       },
       {
         "id": "v1-conflict-08",
@@ -36945,32 +37378,31 @@
       }
     ],
     "nextExecution": {
-      "round": 175,
-      "taskId": "v1-task-01",
+      "round": 177,
+      "taskId": "v1-task-10",
       "featureIds": [
-        16,
-        59,
-        91
+        92,
+        183
       ],
-      "goal": "按固定剩余范围推进16 Crosslink、59 PME，再91 DPA；已知来源阻塞单列追证，避免长期停留同一链路家族。",
+      "goal": "按固定范围继续92 EPR和183功率预算，随后测试/Hot-plug/桥接DMA；旧来源问题单列。",
       "reviewRound": 178
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 174,
+      "assessedRound": 176,
       "reestimateRound": 178,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "四轮验收11 Retimer、13 FM、14 FEC/CRC，共3项、45维度；累计143/183、1337维度、剩40（16待验收、24阻塞）。14依据正文指定参考优先闭环旧图的算法选择疑点；10/12共享Lower SKP、15同宽Priority及原PHY疑点继续单列。38项历史来源问题保留，其中FEC权重选择1项本窗口按指定参考优先闭环。",
-      "action": "下一窗口先16 Crosslink/59 PME，再91 DPA/92 EPR/183功率预算；后续测试、Hot-plug与桥接DMA。原预算终点不变，外部澄清未到齐前无可保证结束轮数。",
+      "assessment": "原预算耗尽，手动按证据继续；本窗口通过Crosslink/PME，DPA保留原来源问题。",
+      "action": "下一步EPR/功率预算；R178汇总，随后测试/Hot-plug与桥接DMA。",
       "latestProgress": {
-        "round": 174,
+        "round": 176,
         "newAcceptedUnits": 0,
-        "cumulativeAcceptedUnits": 143,
+        "cumulativeAcceptedUnits": 145,
         "newPassedCriteria": 7,
-        "cumulativePassedCriteria": 1337,
+        "cumulativePassedCriteria": 1357,
         "remainingPlannedRounds": 0
       },
       "unacceptedBreakdown": {
@@ -38190,8 +38622,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        173,
-        174
+        175,
+        176
       ],
       "completedRounds": [
         143,
@@ -38225,10 +38657,12 @@
         171,
         172,
         173,
-        174
+        174,
+        175,
+        176
       ],
-      "publication": "checks-before-combined-r174-publication",
-      "note": "每日暂停，固定范围与原预算快照保留。"
+      "publication": "checks-before-combined-r176-publication",
+      "note": "每日暂停；固定183项与原预算快照保留。"
     },
     "queueAudit": {
       "round": 150,
