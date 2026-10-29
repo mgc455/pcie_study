@@ -158636,16 +158636,255 @@
     "checks": "区分产品源代码包含、配置选择与实际端口连接，避免按文件存在推断协议已启用。",
     "prerequisites": "先确认具体规范版本、设备类型和平台方案；这些概念并非每个PCIe Endpoint都必须实现，也不只靠基础控制器完成。",
     "id": 158,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R145按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-29",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "8.1",
+        "page": 530,
+        "pdfPage": 530,
+        "title": "传输实现与应用职责（8.1）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "8.1.2",
+        "page": 531,
+        "pdfPage": 531,
+        "title": "Transport能力（8.1.2）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "8.1.3",
+        "page": 532,
+        "pdfPage": 532,
+        "title": "Protocol DVSEC外部职责（8.1.3）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "8.3.1",
+        "page": 534,
+        "pdfPage": 534,
+        "title": "CXS依据与能力（8.3.1）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "8.3.2",
+        "page": 535,
+        "pdfPage": 535,
+        "title": "宽度与跨域（8.3.2）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "8.1.3",
+        "page": 531,
+        "pdfPage": 531,
+        "title": "产品数据路径限制（8.1.3）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "8.3.4",
+        "page": 536,
+        "pdfPage": 536,
+        "title": "发送激活流程（8.3.4）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "8.3.4.1",
+        "page": 538,
+        "pdfPage": 538,
+        "title": "停用定时器与提示（8.3.4.1）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "8.3.5",
+        "page": 539,
+        "pdfPage": 539,
+        "title": "接收激活条件（8.3.5）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "8.3.5.2",
+        "page": 540,
+        "pdfPage": 540,
+        "title": "异常停用（8.3.5.2）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "8.3.6",
+        "page": 541,
+        "pdfPage": 541,
+        "title": "连续与缓存模式（8.3.6）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "所列正式产品/形态规范正文选段核读；仅对具体版本及声明范围负责。",
+    "details": [
+      {
+        "id": "r145-ccix-cxs-boundary",
+        "title": "CCIX、CXS、PCIe：一致性协议、片上接口与传输层分别在哪",
+        "paragraphs": [
+          "本页是相关协议与集成入口，限定Controller6.50a第8章；不是完整CCIX缓存一致性状态机或所有CXS修订的逐信号手册。CCIX让加速器在硬件一致性规则下使用与处理器共享的内存；PCIe链路可承载其一致性协议，但普通PCIe DMA不会自动提供CCIX一致性。",
+          "本控制器扩展实现CCIX Transport，应用仍负责相应CCIX协议与业务。CCIX Transport DVSEC由本控制器提供，而CCIX Protocol DVSEC须外部实现；后者的可访问入口和能力链也需集成。源文件存在、生成时选了功能、运行时启用及对端支持是不同层次的证据。",
+          "CXS是控制器与片上互连之间传送分组的接口，不是外部PCIe串行PHY接口，也不能把CXS的一拍Flit直接当PCIe6的256B FLIT。本产品CXS依据CMN-600 r1p0接口模型，支持256/512/1024bit数据Flit及128/256/512bit控制器数据路径；这些是交付范围，不是所有AMBA CXS版本的通用能力表。",
+          "同步CXS实现与异步实现的跨域电路不同；同步实现要求接口宽度匹配控制器数据路径，异步时不能按接口同频就删除同步。激活/停用是片上接口握手，和PCIe LTSSM及低功耗存在联动。连通CXS并不意味着已经实现外部所有CCIX agent、共享内存与一致性管理。",
+          "版本须分别记录CCIX修订、控制器版本、CXS/互连接口依据和PHY能力；不能以PCIe代际或一个CCIX宏倒推全部版本兼容。本轮核的是产品集成契约，不宣称核读了CCIX Base或AMBA CXS全部正文。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "机制/定义",
+            "适用范围与限制"
+          ],
+          "rows": [
+            [
+              "CCIX协议",
+              "共享内存一致性语义",
+              "应用/互连协议逻辑仍需实现"
+            ],
+            [
+              "CCIX Transport",
+              "使用PCIe链路承载消息",
+              "不是普通EP自动附带"
+            ],
+            [
+              "CXS",
+              "片上流接口",
+              "不等于PIPE或线侧FLIT"
+            ],
+            [
+              "Transport/Protocol DVSEC",
+              "本产品内建/外部集成",
+              "能力链及访问路径均须正确"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 158,
+            "detailId": "r145-cxs-activation",
+            "label": "CXS激活和异常条件"
+          }
+        ]
+      },
+      {
+        "id": "r145-cxs-activation",
+        "title": "CXS启停、信用、连续传输及异常：按6.50a集成",
+        "paragraphs": [
+          "链路按STOP、ACTIVATE、RUN、DEACTIVATE阶段组织，发送者请求激活、接收者确认；激活确认不能替代数据接收信用。片上信用与PCIe的PH/PD/NPH等信用属于不同缓冲边界，不能用一个计数器代替两者。本文仅给阶段职责，不把产品时序图当通用CXS版本完整状态表。",
+          "控制器接收方向在CCIX TLP被禁用时忽略激活请求；控制器低功耗或PCIe未就绪时不能据请求已拉高推定可传输。收到请求可触发控制器退出低功耗。该激活请求在本实现经过相应同步，应用须遵守实际生成接口的时钟/复位约束。",
+          "发送队列为空后可启动停用定时器；期间来了新分组则取消停用。定时器全1使自动停用保持禁用，仍不能忽略电源管理请求或接收方的停用提示。提示到来后先阻止新包进入发送缓冲，发完已取出的包，再撤激活请求进入停用流程。",
+          "接收方低功耗请求会提示对端停用；正常低功耗停用期间在途包仍按流程处理。Hot Reset或PCIe链路掉线时也提示停用并等待请求撤销/信用归还，但该异常窗口分组按产品复位流程清除。不能拿正常停用流程保证复位时业务无损。",
+          "连续模式要求有足够信用时一个包开始后连续提供后续拍；发送侧Store-Forward先确认可连续输出，再开包。接收侧是否能用寄存器改为整包缓存取决生成配置；若生成固定连续模式，写对应位也不能得到原来没生成的缓冲能力。",
+          "本产品不会替发送应用检查全部TLP合法性或最大载荷；超长载荷可能溢出重放缓冲。另有ECRC转交、FLR期间不同格式包、仲裁优先级及不支持HDMA等产品限制，不能推成所有CCIX规范的限制。出现堵塞先区分激活、CXS信用、连续供数、PCIe VC和对端协议五个边界。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "机制/定义",
+            "适用范围与限制"
+          ],
+          "rows": [
+            [
+              "ACTIVATE",
+              "请求并等确认",
+              "还需有数据信用"
+            ],
+            [
+              "空队列+定时器",
+              "满足条件才停用",
+              "新包到达可取消"
+            ],
+            [
+              "停用提示",
+              "停止引入新包，处理已取包",
+              "不等于立即截断包"
+            ],
+            [
+              "固定连续配置",
+              "生成时决定缓存能力",
+              "运行时位写入不能补硬件"
+            ],
+            [
+              "复位/掉线",
+              "异常窗口有丢弃边界",
+              "非无损暂停"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 158,
+            "detailId": "r145-ccix-cxs-boundary",
+            "label": "层次与版本边界"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "PCIe for USB4 / Tunneling",
@@ -158664,9 +158903,182 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-29",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "37.1",
+        "page": 848,
+        "pdfPage": 848,
+        "title": "适配器与增强PIPE（37.1）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "37.1.1",
+        "page": 849,
+        "pdfPage": 849,
+        "title": "产品模式与配置（37.1.1）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "37.1.2",
+        "page": 850,
+        "pdfPage": 850,
+        "title": "LTSSM差异和接口待核（37.1.2）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "37.2",
+        "page": 852,
+        "pdfPage": 852,
+        "title": "PTM/TMU换算（37.2）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "37.3",
+        "page": 853,
+        "pdfPage": 853,
+        "title": "计时表与控制入口（37.3）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "37.4",
+        "page": 854,
+        "pdfPage": 854,
+        "title": "L1滞留请求（37.4）",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "所列正式产品/形态规范正文选段核读；仅对具体版本及声明范围负责。",
+    "details": [
+      {
+        "id": "r145-usb4-tunnel",
+        "title": "USB4承载PCIe：外层隧道与产品内部PIPE要分开看",
+        "paragraphs": [
+          "USB4在路由与连接管理下承载包括PCIe在内的协议；PCIe设备的配置/寄存器/事务语义仍有各自责任，USB4外层增加连接、共享带宽与延迟边界。本轮核的是6.50a的PCIe for USB4集成，不是USB4全部路由配置寄存器或所有Thunderbolt产品兼容性承诺。",
+          "本产品主机侧PCIe控制器连接Host Router中的PCIe DN Adapter，设备侧连接Device Router中的PCIe UP Adapter，中间是增强PIPE。增强接口增加发送背压及接收节流；它不能直接视为一组原样接到模拟PMA的普通PIPE。USB4适配器及连接管理不由一个普通PCIe控制器自动实现。",
+          "所核产品模式采用Gen1、x16、每Lane 8bit、250MHz及128bit核心路径、MPS128B；这是内部逻辑承载配置，不是USB4线缆的实际PCIe x16物理接口或设备可用载荷带宽。不能把它与某个USB4标称Gbps直接相等，更不能从内部Gen1判断外部USB4规范代际。",
+          "本模式移除了部分普通PCIe训练/速宽变化路径：不做Lane宽度升降、不走Recovery.Speed，不使用普通周期SKP机制；Loopback、Polling.Compliance、L0s及相关转移不适用，L1子状态也被关闭。这里是6.50a的修改清单，不能拿这份LTSSM替代普通PCIe PHY的训练要求。",
+          "手册850页对发送ready与背压的文字存在需要澄清的极性表述；本轮不据此给出可直接接线的采样方程。接口扩展的精确有效周期/极性须以相同交付的信号定义和仿真核实，故本项一致性验收保留，不把通用ready/valid直觉当证据。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "机制/定义",
+            "适用范围与限制"
+          ],
+          "rows": [
+            [
+              "Host侧",
+              "PCIe RC ↔ PCIe DN Adapter",
+              "控制路径与USB4路由分层"
+            ],
+            [
+              "Device侧",
+              "PCIe EP ↔ PCIe UP Adapter",
+              "上层驱动语义仍需满足"
+            ],
+            [
+              "内部Gen1 x16",
+              "本产品逻辑接口配置",
+              "非线缆物理Lane数/载荷性能"
+            ],
+            [
+              "背压/节流",
+              "发送和接收独立",
+              "极性文字待核，不直接给接线方程"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 159,
+            "detailId": "r145-usb4-timeouts",
+            "label": "隧道延迟与计时"
+          }
+        ]
+      },
+      {
+        "id": "r145-usb4-timeouts",
+        "title": "USB4延迟如何影响PCIe计时、PTM和L1",
+        "paragraphs": [
+          "隧道背压会延长包和控制消息到达时间，不能只调业务Completion Timeout就认为所有协议计时都解决。本产品有LTSSM、流控初始化/更新、ACK、Replay及L1拒绝等计时调整入口；0x814在该模式被重新用作计时控制，不能沿用普通模式同偏移寄存器含义。",
+          "表37-2列LTSSM超时可按1/2/3/4倍扩展，FC Init1/Init2/UpdateFC超时在所列基值32μs上按8μs步进、至再加120μs。ACK/Replay等使用各自离散增量，不是同一乘数。表中基值是本产品配置表，不能推作所有PCIe代际/宽度/速率的通用常量。",
+          "PTM与USB4 TMU之间通过旁带采样建立时钟换算。Responder取两组PTM/TMU时间，求斜率A和偏移B；在USB4模式的ResponseD中传递换算参数，Requester据此重建主时钟。它是在不同时间基准间换算，不是简单减一个固定传输延迟。",
+          "L1协商中，发送背压可让旧的PM请求滞留，超过正常拒绝窗口后再送出时被对端当新一轮请求，引起状态不同步。本产品提供在NAK后按配置丢弃一定数量旧请求的办法；这是适配USB4延迟的产品机制，不是建议任意丢弃普通PCIe电源管理DLLP。",
+          "排查时依次确认隧道是否建立、控制器模式是否正确、双向节流是否完成、计时是否按实际时钟校准、PTM是否选择正确时间源。应用带宽还受共享路由、其他协议和端点处理限制；不能仅凭PCIe Link Capabilities或USB4线速承诺吞吐。未在硬件或仿真中测试这些设置。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "机制/定义",
+            "适用范围与限制"
+          ],
+          "rows": [
+            [
+              "LTSSM",
+              "超时倍率1/2/3/4",
+              "仅本模式配置表"
+            ],
+            [
+              "FC Init/UpdateFC",
+              "32μs基值+8μs步进",
+              "至+120μs，不套到所有PCIe"
+            ],
+            [
+              "PTM/TMU",
+              "两次配对采样求A/B",
+              "须选USB4时间换算模式"
+            ],
+            [
+              "L1拒绝",
+              "处理背压留下的旧请求",
+              "不是通用丢包策略"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 159,
+            "detailId": "r145-usb4-tunnel",
+            "label": "隧道和内部接口"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "CEM / M.2 / U.2 / OCuLink等形态",
@@ -158685,9 +159097,264 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-29",
+    "protocolReferences": [
+      {
+        "documentId": "cem-5.0-v1.0",
+        "document": "PCI Express Card Electromechanical Specification",
+        "version": "5.0 Version 1.0 (2021-06-09)",
+        "section": "1",
+        "page": 14,
+        "pdfPage": 14,
+        "title": "形态与热插拔范围（1）",
+        "url": "https://pcisig.com/specifications",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "cem-5.0-v1.0",
+        "document": "PCI Express Card Electromechanical Specification",
+        "version": "5.0 Version 1.0 (2021-06-09)",
+        "section": "1.5",
+        "page": 18,
+        "pdfPage": 18,
+        "title": "辅助信号（1.5）",
+        "url": "https://pcisig.com/specifications",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "cem-5.0-v1.0",
+        "document": "PCI Express Card Electromechanical Specification",
+        "version": "5.0 Version 1.0 (2021-06-09)",
+        "section": "2.2",
+        "page": 28,
+        "pdfPage": 28,
+        "title": "PERST上电（2.2）",
+        "url": "https://pcisig.com/specifications",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "cem-5.0-v1.0",
+        "document": "PCI Express Card Electromechanical Specification",
+        "version": "5.0 Version 1.0 (2021-06-09)",
+        "section": "3.1",
+        "page": 45,
+        "pdfPage": 45,
+        "title": "热插拔边界（3.1）",
+        "url": "https://pcisig.com/specifications",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "cem-5.0-v1.0",
+        "document": "PCI Express Card Electromechanical Specification",
+        "version": "5.0 Version 1.0 (2021-06-09)",
+        "section": "3.2",
+        "page": 46,
+        "pdfPage": 46,
+        "title": "存在触点（3.2）",
+        "url": "https://pcisig.com/specifications",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "cem-5.0-v1.0",
+        "document": "PCI Express Card Electromechanical Specification",
+        "version": "5.0 Version 1.0 (2021-06-09)",
+        "section": "4.1",
+        "page": 48,
+        "pdfPage": 48,
+        "title": "供电责任（4.1）",
+        "url": "https://pcisig.com/specifications",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "cem-5.0-v1.0",
+        "document": "PCI Express Card Electromechanical Specification",
+        "version": "5.0 Version 1.0 (2021-06-09)",
+        "section": "4.2",
+        "page": 50,
+        "pdfPage": 50,
+        "title": "初始和配置后功率（4.2）",
+        "url": "https://pcisig.com/specifications",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "m2-5.1",
+        "document": "PCI Express M.2 Specification",
+        "version": "5.1 (2024-05-01)",
+        "section": "1",
+        "page": 26,
+        "pdfPage": 26,
+        "title": "形态种类（1）",
+        "url": "https://pcisig.com/specifications",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "m2-5.1",
+        "document": "PCI Express M.2 Specification",
+        "version": "5.1 (2024-05-01)",
+        "section": "1.2",
+        "page": 29,
+        "pdfPage": 29,
+        "title": "应用与接口范围（1.2）",
+        "url": "https://pcisig.com/specifications",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "m2-5.1",
+        "document": "PCI Express M.2 Specification",
+        "version": "5.1 (2024-05-01)",
+        "section": "2.2",
+        "page": 34,
+        "pdfPage": 34,
+        "title": "类型命名（2.2）",
+        "url": "https://pcisig.com/specifications",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "m2-5.1",
+        "document": "PCI Express M.2 Specification",
+        "version": "5.1 (2024-05-01)",
+        "section": "2.3.4.2",
+        "page": 66,
+        "pdfPage": 66,
+        "title": "Key与双Key（2.3.4.2）",
+        "url": "https://pcisig.com/specifications",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "m2-5.1",
+        "document": "PCI Express M.2 Specification",
+        "version": "5.1 (2024-05-01)",
+        "section": "2.4.10.1",
+        "page": 124,
+        "pdfPage": 124,
+        "title": "主板连接器Key（2.4.10.1）",
+        "url": "https://pcisig.com/specifications",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "所列正式产品/形态规范正文选段核读；仅对具体版本及声明范围负责。",
+    "details": [
+      {
+        "id": "r146-cem-platform-boundary",
+        "title": "CEM：连接、上电、供电与热插拔不能只看PCIe代际",
+        "paragraphs": [
+          "CEM是Base以外的卡机电规范：Base规定事务、链路及收发电气基础，CEM补充板卡/连接器、辅助信号、供电、机械和散热边界。本页核CEM5.0 Version1.0，不把它等同所有PCIe形态，也不把2021版当当前所有新电源连接器的统一规则。",
+          "本版要求系统提供REFCLK，存在检测PRSNT1#/PRSNT2#和PERST#为必要信号，CLKREQ#、JTAG、SMBus等有可选或条件要求。信号的存在、实际布线及软件管理要逐一核对；L1SS能力存在不自动证明板上的时钟请求/电源设计满足条件。",
+          "CEM5.0上电时PERST#撤销至少等待电源达到规定范围后100ms，还要满足时钟先稳定的间隔。这是CEM上电情形，不能直接替代片上软复位、FLR、PHY内部复位或其他形态规范的时序要求。",
+          "插槽供电与额外辅助电源不同。所核表4-3初始x1允许10W，x4/x8/x16允许25W；表4-4软件配置后x4/x8/x16上限75W，x1依卡的机械类别分别有10W或75W。超过75W卡功率需要相应辅助电源，不能将整卡600W能力当边缘插槽供电能力。",
+          "本版CEM仅支持相应范围的Managed Hot Plug，不再支持Unmanaged/Surprise Hot Plug；板级热插拔实现本身可选，而且使用辅助电源的卡不在其原生热插拔支持范围。PRSNT指存在，不表示链路已训练，更不表示可以直接拔卡；要核槽供电控制、软件流程与实际平台。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "机制/定义",
+            "适用范围与限制"
+          ],
+          "rows": [
+            [
+              "REFCLK/PERST#",
+              "时钟和复位要求",
+              "不是仅LinkUp即可替代"
+            ],
+            [
+              "PRSNT#",
+              "卡存在检测",
+              "非业务/链路就绪"
+            ],
+            [
+              "初始 x1 / x4,x8,x16",
+              "10W / 25W",
+              "先于软件配置的限制"
+            ],
+            [
+              "配置后 x4/x8/x16",
+              "75W边缘连接器上限",
+              "整卡高功率另需辅助电源"
+            ],
+            [
+              "CEM5.0热插拔",
+              "受控且板级实现可选",
+              "不支持随意拔插保证"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 160,
+            "detailId": "r146-m2-key-and-size",
+            "label": "M.2尺寸和Key"
+          }
+        ]
+      },
+      {
+        "id": "r146-m2-key-and-size",
+        "title": "M.2：尺寸、Key、Socket、实际协议分别查",
+        "paragraphs": [
+          "M.2是一族形态，既有连接器式也有焊接式，覆盖存储、无线、通信及加速等应用。本页核M.2 Revision5.1；不能把M.2这个机械名称等同NVMe，也不能把M.2修订号直接当PCIe Gen编号。",
+          "板卡命名分别编码宽长、单双面及器件高度组合、Key位置。以2242为例，尺寸部分表示22mm宽、42mm长，不包含支持PCIe几条Lane、是否NVMe、是否SATA等全部信息；还要核完整类型、Socket引脚表、主板接线和设备协议。",
+          "本版Key用于机械防错和配置，双Key允许对应的多种插入匹配；通用75位置连接器的Key占8个位置，单Key连接器有67个可用触点。此处是连接器结构，不应据此推算任何特定设备的信号数或可用Lane数。Key相容只是必要条件之一，仍需逐引脚核实际接口。",
+          "M.2规范覆盖PCIe、SATA、USB、SDIO等多种主机接口，因此一个能插入的模块可能仍与平台提供的接口不同。没有读取对应Socket引脚/功能表前，不给出A/B/E/M等Key到协议的绝对映射，也不把某种SSD的用法当所有M.2的规则。",
+          "U.2、OCuLink等名称仍保留在此入口，但本轮未核其独立规范的完整连接/供电/热插拔条款。它们的专门兼容表尚未完成，故整个形态项的一致性验收保留，不以CEM和M.2两本正文替代其他形态。正确选型还需设备、平台、线缆与固件文档交叉确认。"
+        ],
+        "referenceIndices": [
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "机制/定义",
+            "适用范围与限制"
+          ],
+          "rows": [
+            [
+              "宽长编号",
+              "如2242=22×42mm",
+              "非协议或Lane数编号"
+            ],
+            [
+              "S/D及高度",
+              "单双面与器件高度",
+              "还需核机械空间"
+            ],
+            [
+              "机械Key",
+              "防错及适配相应Socket",
+              "不是协议支持的充分证明"
+            ],
+            [
+              "Socket/引脚表",
+              "定义实际功能组合",
+              "必须与主板接线对应"
+            ],
+            [
+              "U.2/OCuLink",
+              "独立形态入口保留",
+              "专门规则本轮未完成核读"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 160,
+            "detailId": "r146-cem-platform-boundary",
+            "label": "与CEM比较"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "NVMe / NIC / GPU应用协议",
