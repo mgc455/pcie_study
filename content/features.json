@@ -95269,16 +95269,133 @@
     "checks": "协议进入低功耗和物理断电是两层事情；验证入口、出口和异常中断，不能只检查静态功耗数字。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 96,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R141按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-29",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "5.9",
+        "page": 377,
+        "pdfPage": 377,
+        "title": "PHY和UPF边界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "5.9.2",
+        "page": 378,
+        "pdfPage": 378,
+        "title": "L2供电",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "5.9.4",
+        "page": 385,
+        "pdfPage": 385,
+        "title": "保存隔离复位流程",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "5.9.4",
+        "page": 386,
+        "pdfPage": 386,
+        "title": "内部电源岛",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "5.9.7",
+        "page": 393,
+        "pdfPage": 393,
+        "title": "UPF技术单元",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.2.1",
+        "page": 80,
+        "pdfPage": 80,
+        "title": "RAM隔离",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节",
+    "details": [
+      {
+        "id": "r141-power-retention",
+        "title": "Power Gating与Retention：进入L1.2之后仍有集成握手",
+        "paragraphs": [
+          "本页限定6.50a电源集成，不是通用UPF语言教程。L1.2或L2是协议/链路状态，是否关闭某个内部电源岛由所生成电源模式和SoC决定；Clock Gating仅停钟，不能等同关闭供电。SoC MAIN供电仍开着时，控制器内部可切换电源岛也可能已关闭。",
+          "所核流程先确认已进L1.2并核AXI/DBI无在途且桥就绪；期间若退出L1.2，不启动掉电。然后请求应用保存状态并等ack，再隔离、请求复位、等待相应完成，才请求电源开关断电并等确认。上电也须等待电源恢复确认，再按流程释放隔离/复位；不能把发请求当操作已经结束。",
+          "Retention使用技术库保留单元保存选定状态，非Retention方案有不同保存恢复流程。UPF须匹配真实Retention cell、隔离、level shifter和电源状态，控制器RAM掉电隔离模型还需应用处理。Sticky寄存器是否保留要同时看电源与复位，不能仅凭名字判断。",
+          "本产品不替PHY保存恢复配置，L1.2掉电恢复时PHY负责自身复位/状态策略；示例PHY UPF假设也不代表实际PHY掉电能力。若电气空闲检测一起被关闭，某些L1.CPM唤醒方式不再成立。没有真实电源感知仿真与签核，就不能由这份网页证明SoC掉电安全。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "table": {
+          "columns": [
+            "事项",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "停钟",
+              "时钟门控",
+              "不等于断电"
+            ],
+            [
+              "Sticky",
+              "复位保持属性",
+              "不等于Retention"
+            ],
+            [
+              "Save/Isolate/Reset",
+              "逐步等待完成",
+              "不能直接切电"
+            ],
+            [
+              "PHY状态",
+              "按PHY交付处理",
+              "控制器不代保存"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      }
+    ]
   },
   {
     "name": "LCRC / ACK / NAK / Replay",
@@ -157811,9 +157928,96 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-29",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17",
+        "page": 319,
+        "pdfPage": 319,
+        "title": "接口及额外启动要求",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17.2",
+        "page": 321,
+        "pdfPage": 321,
+        "title": "低引脚接口",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17.2.1",
+        "page": 322,
+        "pdfPage": 322,
+        "title": "可选消息限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节",
+    "details": [
+      {
+        "id": "r142-pipe-integration-contract",
+        "title": "PIPE集成入口：架构、版本、Lane映射及额外启动要求",
+        "paragraphs": [
+          "限定Controller6.50a。外部PHY通过PIPE连接，多Lane拼接的低位对应Lane0；应分别核协议代际、PIPE修订、Original/SerDes架构、数据宽度、时钟方向和实际实现的可选特性。不能用PIPE版本号推PCIe代际，不能仅凭两个端口同名判断可以互接。",
+          "本版列PIPE4.4.1/5.1.1/6.1.1/7.1接口支持，具体信号和Message Bus采用实际生成选项。存在额外控制器要求：PHY复位撤销后，Message Bus至少20个pipe_clk周期保持0再开始写访问。它不是通用PIPE最小时序，也不能用PhyStatus撤销替代这段产品约束。",
+          "Controller不使用的部分PIPE模式/终端控制信号需外部按要求驱动；默认PCIe模式和终端连接还要核PHY特殊要求。本控制器不同时切Rate和Power，即使PHY本身支持同时改变也不能据此组合请求。低引脚接口把部分控制搬到Message Bus，不意味着所有可选消息寄存器都实现。",
+          "本轮可核的命名是PIPE/SerDes PIPE。目录中的FlexiPIPE称谓未在所核产品段落建立精确对应，不据名称把它强行等同某个模式；这个集成别名的证据缺口保留在一致性验收。详细逐信号查询复用164，不再复制整套位表。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2
+        ],
+        "table": {
+          "columns": [
+            "事项",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "Lane拼接",
+              "低位Lane0",
+              "核各Lane位宽"
+            ],
+            [
+              "复位后消息总线",
+              "本产品至少20个pipe_clk为0",
+              "非通用PIPE规则"
+            ],
+            [
+              "Rate/Power",
+              "不同时改变",
+              "PHY支持也不等于控制器支持"
+            ],
+            [
+              "FlexiPIPE别名",
+              "未核精确对应",
+              "保留一致性缺口"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 164,
+            "detailId": "pipe-signal-directory",
+            "label": "已有PIPE逐信号索引"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Clock / Reset / CDC / Retention",
@@ -157825,16 +158029,109 @@
     "checks": "验证异步断言/同步释放及停钟前后握手；查已有clk_rst报告，不用单一延迟计数代替所有条件。",
     "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
     "id": 154,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R141按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-29",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "F.1",
+        "page": 944,
+        "pdfPage": 944,
+        "title": "核心同步关系",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.3.4",
+        "page": 93,
+        "pdfPage": 93,
+        "title": "AXI频率及门控",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "6.2.4.3",
+        "page": 424,
+        "pdfPage": 424,
+        "title": "复位域",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.4.1",
+        "page": 109,
+        "pdfPage": 109,
+        "title": "Sticky",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节",
+    "details": [
+      {
+        "id": "r141-clock-reset-cdc",
+        "title": "时钟与复位域：哪些跨域已处理，哪些必须保持同步",
+        "paragraphs": [
+          "限定Controller6.50a。Native核心的aux/core正常运行须完全同步，core与pipe时钟须满足本版准同步关系；这些边界没有替你插入任意异步CDC。不能因为时钟名字不同就当作可独立变化，也不能把两个同频但相位无约束的输入当同步。",
+          "AXI桥的Manager/Subordinate等时钟默认有相应跨域电路。只有真实满足同步条件才可去掉CDC；动态切速导致core/aux频率变化时，不能声明固定AXI时钟与之同步并关闭跨域。16:1～1:16是手册列的仿真验证范围，不是通用允许频比上限。",
+          "AXI桥各复位可异步置位、须相对对应时钟同步撤销；Native很多输入则按aux域规则再内部同步，两类要求不要混套。Hot Reset前要先按产品流程处理在途请求，单纯拉某个域复位可能留下孤立请求。Sticky表示某些复位中保持寄存器，不证明电源关闭后状态仍在。",
+          "门控版本的AXI时钟和供低功耗FSM的未门控输入不同；后者不能随意停。低功耗/多Function仍要按Function电源状态拦业务，不能用整条链路仍运行推断每个Function都可发请求。此页是集成规则，未执行CDC静态检查、仿真或硅验证。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "table": {
+          "columns": [
+            "事项",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "Native core/aux",
+              "正常运行同步",
+              "无任意异步保护"
+            ],
+            [
+              "AXI跨域",
+              "按实际配置生成",
+              "切速时不能误关CDC"
+            ],
+            [
+              "复位撤销",
+              "相对对应时钟同步",
+              "非全域同一脉冲"
+            ],
+            [
+              "未门控时钟",
+              "维持低功耗FSM",
+              "不可当普通可停时钟"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      }
+    ]
   },
   {
     "name": "RAM配置与ECC / Parity Glue",
@@ -157846,16 +158143,133 @@
     "checks": "核对每种RAM参数、时钟、延迟和保护路径；内部协议缓存不能随意当用户共享数据RAM复用。",
     "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
     "id": 155,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R141按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
-    "protocolReferences": [],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节"
+    "reviewed": "2026-10-29",
+    "protocolReferences": [
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.2.1",
+        "page": 80,
+        "pdfPage": 80,
+        "title": "RAM基本要求",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "2.2.1.2",
+        "page": 82,
+        "pdfPage": 82,
+        "title": "延迟匹配",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "36.2.1",
+        "page": 791,
+        "pdfPage": 791,
+        "title": "保护职责",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "36.2.2",
+        "page": 795,
+        "pdfPage": 795,
+        "title": "RAM保护",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "36.2.2",
+        "page": 797,
+        "pdfPage": 797,
+        "title": "覆盖例外",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "36.2.2",
+        "page": 798,
+        "pdfPage": 798,
+        "title": "脚注限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      }
+    ],
+    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节",
+    "details": [
+      {
+        "id": "r141-ram-protection",
+        "title": "RAM与保护Glue：延迟、ECC、地址Parity分别谁负责",
+        "paragraphs": [
+          "6.50a RAM默认下一周期返回读数据，可按生成选项匹配外部重定时；不能增加流水后仍按旧延迟采样。单/双端口、时钟数和深度宽度由配置决定，仿真RAM不等于ASIC技术宏，必须核读写碰撞、使能与返回时刻。无需初始化不代表未写地址的随机值可作有效数据。",
+          "RAM ECC和内部数据路径保护覆盖不同边界；本版ECC可纠单bit、检双bit，校正的数据不会自动写回RAM。地址Parity由控制器生成，但不在控制器内检查，外部RAM集成需负责检查和错误处理；不能因数据ECC存在就认为地址错也被修复。",
+          "AXI侧地址/数据/控制保护取决生成模式，缺失控制信号还会改变保护位位置。Native TX应用生成保护码，RX应用检查保护码，示例Glue只能作参考。AXI配置RAM保护不能脱离数据路径保护单独打开，内部桥Header并非所有旁带都处处受保护。",
+          "RAS DES、部分MSI发送存储和LBC/MSI/VMI等路径有明确覆盖例外；数据保护不是ECRC/LCRC的替代。单个错误可能增加多个计数，不把计数相加当独立故障数。以上限本产品，不推成AXI5标准或所有控制器统一ECC布局。"
+        ],
+        "referenceIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "table": {
+          "columns": [
+            "事项",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "读延迟",
+              "匹配真实流水",
+              "不能随意加拍"
+            ],
+            [
+              "ECC校正",
+              "不自动回写RAM",
+              "持续错误需另处理"
+            ],
+            [
+              "地址Parity",
+              "应用侧检查",
+              "不是数据ECC职责"
+            ],
+            [
+              "保护位",
+              "随模式/接口变化",
+              "示例不能直接照搬"
+            ]
+          ]
+        },
+        "relatedDetails": []
+      }
+    ]
   },
   {
     "name": "CXL.io / CXL.cache / CXL.mem",
@@ -158392,7 +158806,7 @@
     "example": "一个Gen6-capable PHY降速到Gen3，不意味着其内部就可以动态切回Original PIPE。应按配置能力、规范版本和允许的接口组合判定。",
     "checks": "检查时钟方向、RxClk、valid语义、编码归属及Message Bus；PIPE规范版本号不等于PCIe代际。",
     "status": "选定规则/字段已展开 · 持续逐版完善",
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-29",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -160533,6 +160947,50 @@
         "title": "1.00的25%建立时间是互操作建议，不能当所有修订的固定STA约束",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
         "verification": "R81核对应本地正式修订所列正文；1.00为2003-06-19稳定版，7.1为当前所核修订。所引本地印刷/PDF页一致；7.1本地190页与官网189页分开。仅选定规则和原创说明，不代表中间修订、全部Base代际或硬件验证。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17.2.2",
+        "page": 323,
+        "pdfPage": 323,
+        "title": "SerDes职责",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17.2.2",
+        "page": 324,
+        "pdfPage": 324,
+        "title": "扩展和支持范围",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17.2.3",
+        "page": 325,
+        "pdfPage": 325,
+        "title": "ADPM不支持",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17.2.1",
+        "page": 322,
+        "pdfPage": 322,
+        "title": "可选项限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R64核PIPE7.1切速/时钟/待机相关选定正文与Gen6 3.02a下层边界；保留p63/p126边沿及副本页数差异。非七代Recovery整章或硬件验证。 R81追加1.00/7.1选定逐版控制/参数依据，保留中间修订与真实硬件缺口。",
@@ -162626,6 +163084,58 @@
         "referenceIndices": [
           192,
           193
+        ]
+      },
+      {
+        "id": "r142-pipe-reuse-and-product-boundaries",
+        "title": "Original/SerDes查询的使用顺序与产品可选项边界",
+        "paragraphs": [
+          "已有逐信号、版本矩阵、Rate/Width/PCLK、Message Bus和启动握手细则继续保留。查某个信号先选实际PIPE修订和架构，再核时钟域、宽度、有效周期及握手，不将旧接口的K/SyncHeader位置直接接到新架构。",
+          "6.50a的SerDes架构将编码/解码、Symbol Lock、Block Alignment、Elastic Buffer等职责放到控制器侧；这与Original的职责划分不同，不表示PHY模拟CDR/AFE消失。厂商Lane turn-off信号是扩展，不是所有PIPE PHY都必须具有的统一端口。",
+          "本版不支持Asynchronous Deep Power Management。Elastic Buffer相关可选消息和IORecal等也有未实现项，发送一个不支持的命令不能当成功配置。Gen6系数/反馈编码存在截位和降档语义，但本页不输出全部厂商寄存器转储或把它扩成通用规范。",
+          "既有Control0/1转引、PCLK位宽、Ok撤销时点和PDF页码等未决来源仍保留。本轮只核用途、架构与导航，不宣称46个既有细则全部完成版本和一致性验收；不因可复用正文多就整项关闭。"
+        ],
+        "referenceIndices": [
+          194,
+          195,
+          196,
+          197
+        ],
+        "table": {
+          "columns": [
+            "事项",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "先选修订/架构",
+              "再查信号及位定义",
+              "不由Gen倒推版本"
+            ],
+            [
+              "SerDes职责迁移",
+              "控制器侧处理部分PCS功能",
+              "模拟接收仍由PHY负责"
+            ],
+            [
+              "可选项未实现",
+              "不能以写入当支持",
+              "按交付核读"
+            ],
+            [
+              "既有来源问题",
+              "继续保留",
+              "未完整验收164"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 164,
+            "detailId": "pipe-signal-directory",
+            "label": "逐信号详情"
+          }
         ]
       }
     ]

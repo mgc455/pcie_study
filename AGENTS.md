@@ -200,3 +200,9 @@ R139: explicit manual continuation; original R138 budget-end snapshot retained. 
 R140: accepted[151], new criteria15, cumulative102/183 and888 criteria;81 units/-2 budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR141[154, 155, 96]; R142 review, daily paused. User authorized R139/R140, combined R140 publication.
 
 R140: explicit manual continuation; original R138 budget-end snapshot retained. Next review R142; daily paused.
+
+R141: accepted[154, 155, 96], new criteria24, cumulative105/183 and912 criteria;78 units/0 original budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR142[153, 164]; R142 review, daily paused. User authorized R118/R119 after published R117; independent checks, combined R119 publication.
+R141: manual continuation; next review R142; daily paused, original budget-end snapshot unchanged.
+
+R142: accepted[], new criteria10, cumulative105/183 and922 criteria;78 units/0 original budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR143[181, 182]; R146 review, daily paused. User authorized R118/R119 after published R117; independent checks, combined R119 publication.
+R142: manual continuation; next review R146; daily paused, original budget-end snapshot unchanged.
