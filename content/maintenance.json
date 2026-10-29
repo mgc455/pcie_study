@@ -1,7 +1,7 @@
 {
   "nextFeatureIds": [
-    161,
-    162
+    165,
+    166
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,11 +48,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-29",
-    "edition": "2026-10-29-r146",
+    "edition": "2026-10-29-r148",
     "featureIds": [
       160
     ],
-    "nextTrack": "R147按队列；R122总结"
+    "nextTrack": "R149按固定台账；R150四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -342,11 +342,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 2,
+    "nextReviewAfterRounds": 2,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 88,
+    "completedTotal": 90,
     "lastReviewEdition": "2026-10-29-r146",
     "lastReviewId": "r143-r146",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
@@ -1283,9 +1283,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 56,
+    "completedRounds": 58,
     "remainingPlannedRounds": 0,
-    "nextRound": 147,
+    "nextRound": 149,
     "nextReviewRound": 150,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -20689,7 +20689,7 @@
         "featureId": 160,
         "group": "相关协议与平台扩展",
         "scope": "related-protocol-boundary",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -20797,9 +20797,19 @@
             "note": "按相关协议/形态入口契约逐项复核；不等于相关独立协议全覆盖，未决精确接口/形态问题保留。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 148,
+            "evidence": [
+              {
+                "href": "#feature/160/detail/r148-sff8639-dual-port",
+                "label": "U.2/SFF-8639：单口、双口、供电和存在检测"
+              },
+              {
+                "href": "#feature/160/detail/r148-oculink-cabling",
+                "label": "OCuLink：内部/外部线缆、供电与辅助信号"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           }
         },
         "baseline": {
@@ -20808,61 +20818,174 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。",
         "taskId": "v1-task-18",
         "requiredTaskIds": [
           "v1-task-18",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 148
       },
       {
         "id": "v1-feature-161",
         "featureId": 161,
         "group": "相关协议与平台扩展",
         "scope": "related-protocol-boundary",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/161/detail/r147-application-protocol-boundary",
+                "label": "PCIe、DMA与NVMe/NIC/GPU：传输可达不等于设备功能已实现"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-queue-doorbell",
+                "label": "NVMe队列与Doorbell：谁写、写什么、地址怎么算"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-init",
+                "label": "NVMe启动：LinkUp、CC.EN、CSTS.RDY是三个不同门槛"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/161/detail/r147-application-protocol-boundary",
+                "label": "PCIe、DMA与NVMe/NIC/GPU：传输可达不等于设备功能已实现"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-queue-doorbell",
+                "label": "NVMe队列与Doorbell：谁写、写什么、地址怎么算"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-init",
+                "label": "NVMe启动：LinkUp、CC.EN、CSTS.RDY是三个不同门槛"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/161/detail/r147-application-protocol-boundary",
+                "label": "PCIe、DMA与NVMe/NIC/GPU：传输可达不等于设备功能已实现"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-queue-doorbell",
+                "label": "NVMe队列与Doorbell：谁写、写什么、地址怎么算"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-init",
+                "label": "NVMe启动：LinkUp、CC.EN、CSTS.RDY是三个不同门槛"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/161/detail/r147-application-protocol-boundary",
+                "label": "PCIe、DMA与NVMe/NIC/GPU：传输可达不等于设备功能已实现"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-queue-doorbell",
+                "label": "NVMe队列与Doorbell：谁写、写什么、地址怎么算"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-init",
+                "label": "NVMe启动：LinkUp、CC.EN、CSTS.RDY是三个不同门槛"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/161/detail/r147-application-protocol-boundary",
+                "label": "PCIe、DMA与NVMe/NIC/GPU：传输可达不等于设备功能已实现"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-queue-doorbell",
+                "label": "NVMe队列与Doorbell：谁写、写什么、地址怎么算"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-init",
+                "label": "NVMe启动：LinkUp、CC.EN、CSTS.RDY是三个不同门槛"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/161/detail/r147-application-protocol-boundary",
+                "label": "PCIe、DMA与NVMe/NIC/GPU：传输可达不等于设备功能已实现"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-queue-doorbell",
+                "label": "NVMe队列与Doorbell：谁写、写什么、地址怎么算"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-init",
+                "label": "NVMe启动：LinkUp、CC.EN、CSTS.RDY是三个不同门槛"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/161/detail/r147-application-protocol-boundary",
+                "label": "PCIe、DMA与NVMe/NIC/GPU：传输可达不等于设备功能已实现"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-queue-doorbell",
+                "label": "NVMe队列与Doorbell：谁写、写什么、地址怎么算"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-init",
+                "label": "NVMe启动：LinkUp、CC.EN、CSTS.RDY是三个不同门槛"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/161/detail/r147-application-protocol-boundary",
+                "label": "PCIe、DMA与NVMe/NIC/GPU：传输可达不等于设备功能已实现"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-queue-doorbell",
+                "label": "NVMe队列与Doorbell：谁写、写什么、地址怎么算"
+              },
+              {
+                "href": "#feature/161/detail/r147-nvme-init",
+                "label": "NVMe启动：LinkUp、CC.EN、CSTS.RDY是三个不同门槛"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           }
         },
         "baseline": {
@@ -20871,61 +20994,110 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。",
         "taskId": "v1-task-18",
         "requiredTaskIds": [
           "v1-task-18",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 147
       },
       {
         "id": "v1-feature-162",
         "featureId": 162,
         "group": "相关协议与平台扩展",
         "scope": "related-protocol-boundary",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/162/detail/r147-legacy-capability-ids",
+                "label": "历史能力ID：认名字、选能力链，再查对应总线规则"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/162/detail/r147-legacy-capability-ids",
+                "label": "历史能力ID：认名字、选能力链，再查对应总线规则"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/162/detail/r147-legacy-capability-ids",
+                "label": "历史能力ID：认名字、选能力链，再查对应总线规则"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/162/detail/r147-legacy-capability-ids",
+                "label": "历史能力ID：认名字、选能力链，再查对应总线规则"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/162/detail/r147-legacy-capability-ids",
+                "label": "历史能力ID：认名字、选能力链，再查对应总线规则"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/162/detail/r147-legacy-capability-ids",
+                "label": "历史能力ID：认名字、选能力链，再查对应总线规则"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/162/detail/r147-legacy-capability-ids",
+                "label": "历史能力ID：认名字、选能力链，再查对应总线规则"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 147,
+            "evidence": [
+              {
+                "href": "#feature/162/detail/r147-legacy-capability-ids",
+                "label": "历史能力ID：认名字、选能力链，再查对应总线规则"
+              }
+            ],
+            "note": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。"
           }
         },
         "baseline": {
@@ -20934,14 +21106,15 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按原相关协议/形态入口契约验收；直接正文定位与角色/版本边界明确，不等于全部独立协议或硬件实现验收。",
         "taskId": "v1-task-18",
         "requiredTaskIds": [
           "v1-task-18",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 147
       },
       {
         "id": "v1-feature-163",
@@ -27883,6 +28056,112 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "按固定183项验收台账；原预算终点R138保持不变。",
         "publication": "R144已线上验证后，用户授权R145/R146；分别检查，合并发布。"
+      },
+      {
+        "round": 147,
+        "kind": "R147 应用协议与历史能力识别",
+        "deliverables": [
+          "R147 补NVMe命令/队列/Doorbell/启动字段与历史能力ID识别，限定独立协议入口契约。"
+        ],
+        "closedDeliverableIds": [
+          "feature-161-v1-accepted",
+          "feature-162-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 161,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 161,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 161,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 161,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 161,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 161,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 161,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 161,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 162,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 162,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 162,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 162,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 162,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 162,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 162,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 162,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          161,
+          162
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "以固定183项台账为准；保持原R138预算终点及历史来源问题。",
+        "publication": "用户授权R147/R148；分别检查，合并发布R148。"
+      },
+      {
+        "round": 148,
+        "kind": "R148 SFF-8639及OCuLink形态边界",
+        "deliverables": [
+          "R148 补单双口、供电/存在检测和内外线缆旁带，闭合160所列形态的跨页边界。"
+        ],
+        "closedDeliverableIds": [
+          "feature-160-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 160,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          160
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "以固定183项台账为准；保持原R138预算终点及历史来源问题。",
+        "publication": "用户授权R147/R148；分别检查，合并发布R148。"
       }
     ],
     "backlog": [
@@ -31390,31 +31669,31 @@
       }
     ],
     "nextExecution": {
-      "round": 147,
-      "taskId": "v1-task-18",
+      "round": 149,
+      "taskId": "v1-task-19",
       "featureIds": [
-        161,
-        162
+        165,
+        166
       ],
-      "goal": "R147应用协议与历史兼容入口161/162；随后按固定183项验收缺口收尾，先修真实阻塞。",
+      "goal": "R149优先165/166已有PHY交付分层内容验收；R150四轮复盘，同时保留159精确背压及181方言来源等阻塞。",
       "reviewRound": 150
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 146,
+      "assessedRound": 148,
       "reestimateRound": 150,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R143～R146关闭4项、通过52维度；累计109/183、974维度，剩74项。",
+      "assessment": "手动续作按已有功能契约关闭；原48轮预算已耗尽，不以新增段落数量假装收尾。",
       "action": "下一轮161/162；其后按未通过维度集中收尾，真实来源问题单独核证；下次四轮复盘R150。",
       "latestProgress": {
-        "round": 146,
-        "newAcceptedUnits": 0,
-        "cumulativeAcceptedUnits": 109,
-        "newPassedCriteria": 7,
-        "cumulativePassedCriteria": 974,
+        "round": 148,
+        "newAcceptedUnits": 1,
+        "cumulativeAcceptedUnits": 112,
+        "newPassedCriteria": 1,
+        "cumulativePassedCriteria": 991,
         "remainingPlannedRounds": 0
       }
     },
@@ -32316,17 +32595,19 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        145,
-        146
+        147,
+        148
       ],
       "completedRounds": [
         143,
         144,
         145,
-        146
+        146,
+        147,
+        148
       ],
-      "publication": "checks-before-combined-r146-publication",
-      "note": "R144先上线；每日仍暂停；原R138预算快照不变。"
+      "publication": "checks-before-combined-r148-publication",
+      "note": "每日任务继续暂停，原预算快照保持。"
     }
   }
 }
