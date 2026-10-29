@@ -165884,8 +165884,8 @@
     "prerequisites": "RxValid的语义要看对应PIPE架构和产品版本；不能把某个数字信号当成模拟误码率证明。",
     "example": "PLL锁定但RX无有效数据时，检查输入信号、接收使能、CDR、恢复时钟及对齐，而不是只看PLL lock。",
     "checks": "按signal present → RX使能 → 时钟/CDR → valid → 协议对齐 → LTSSM逐层定位，丢信号后的恢复流程按手册核对。",
-    "status": "PIPE复位/独立时钟与接收尾窗已深化 · 持续核读",
-    "reviewed": "2026-10-25",
+    "status": "一期部分验收：R151七个维度通过；来源一致性仍阻塞，见详情",
+    "reviewed": "2026-10-29",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -167289,9 +167289,64 @@
         "title": "极性反转的20个PCLK：1.00/7.1正文相同数值，控制载体却不同",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
         "verification": "R81核对应本地正式修订所列正文；1.00为2003-06-19稳定版，7.1为当前所核修订。所引本地印刷/PDF页一致；7.1本地190页与官网189页分开。仅选定规则和原创说明，不代表中间修订、全部Base代际或硬件验证。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.12.2",
+        "page": 75,
+        "pdfPage": 75,
+        "title": "产品数据活动/失信号处理",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "Original/SerDes有效性",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.1",
+        "page": 69,
+        "pdfPage": 69,
+        "title": "至少8周期与RxCLK上限",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-1.00",
+        "document": "PHY Interface for the PCI Express Architecture",
+        "version": "1.00",
+        "section": "6.8.3",
+        "page": 19,
+        "pdfPage": 19,
+        "title": "旧Underflow前文",
+        "url": "https://www.intel.com/content/www/us/en/io/pci-express/pci-express-architecture-devnet-resources.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-1.00",
+        "document": "PHY Interface for the PCI Express Architecture",
+        "version": "1.00",
+        "section": "6.8.3",
+        "page": 20,
+        "pdfPage": 20,
+        "title": "旧Underflow续页差异",
+        "url": "https://www.intel.com/content/www/us/en/io/pci-express/pci-express-architecture-devnet-resources.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "R73核PIPE7.1所列复位、MacCLK/SRIS及RxCLK正文与关键波形；本地与官网PDF分开定位，不声明所有旧修订/Gen1～7或产品硅片已验证。 R81追加1.00/7.1选定逐版控制/参数依据，保留中间修订与真实硬件缺口。",
+    "referenceStatus": "所列正式正文选段与既有细则可查询；未闭合的来源矛盾明确保留。",
     "details": [
       {
         "id": "rx-readiness-layers",
@@ -168524,6 +168579,76 @@
           124,
           125
         ]
+      },
+      {
+        "id": "r151-rx-valid-clock-data-gates",
+        "title": "接收数据何时能用：产品PMA、Original PIPE、SerDes PIPE分别判定",
+        "paragraphs": [
+          "本轮复用已有128b/130b、1b/1b对齐、接收错误和各版恢复细则，补跨层判定入口。先固定产品/PIPE修订及架构，再看有效标志；相同RxValid名字在三个边界不保证相同承诺。未将67个页面式细节或引用数量当作整章完成。",
+          "Gen6 PHY3.02a的RX并行数据通路要求Lane处于产品P0且数据使能有效；使能前还须检测到输入信号。使能CDR后产品rx_valid在bit lock时置位，撤销数据使能后撤valid。失去信号或协议推断信号丢失时，按该产品先关闭再在恢复检测后重新使能CDR；P0不是LTSSM L0。",
+          "PIPE7.1 Original架构的RxValid与symbol/block对齐相关，BlockAlignControl改变其状态含义；SerDes架构的RxValid表示恢复RxCLK稳定，MAC在此后才开始symbol/block lock。不能用SerDes valid取代MAC对齐，也不能把Original译码/弹性缓冲错误表全部复制给SerDes。",
+          "SerDes RxValid撤销后，PHY必须继续提供至少8个RxCLK，供MAC采到撤销事件；即使valid已低也须不超过已公布的MaxRxClkFrequency。这是事件接收和时钟频率边界，既不是继续消费8拍业务的许可，也不是8周期后必须立即停钟，更不是固定墙钟超时。",
+          "数据已对齐后还要分别核训练、Data Link初始化和业务接收条件；单看PLL lock、Signal Detect、PhyStatus或rx_valid不能证明TLP已可接收。既有逐版本对齐及错误优先级条目保留，不在此另造一套状态机。",
+          "一致性仍保留一处旧版来源问题：PIPE1.00 Underflow前文与图描述EDB插入，但续页一句用SKP。网页保留原文范围和旧解释，未取得正式澄清前不把它改成另一条可直接实现的规则；因此本项尚未整体验收。"
+        ],
+        "referenceIndices": [
+          127,
+          128,
+          129,
+          130,
+          131
+        ],
+        "table": {
+          "columns": [
+            "查询对象",
+            "准确含义/动作",
+            "异常与限制"
+          ],
+          "rows": [
+            [
+              "产品PMA rx_valid",
+              "该产品CDR bit lock反馈",
+              "不是MAC/协议对齐保证"
+            ],
+            [
+              "Original PIPE RxValid",
+              "按BlockAlignControl解释symbol/block状态",
+              "不与SerDes同名语义互换"
+            ],
+            [
+              "SerDes PIPE RxValid",
+              "恢复时钟稳定，随后MAC开始对齐",
+              "不能据此直接消费完整TLP"
+            ],
+            [
+              "valid撤销后8周期",
+              "让MAC捕获撤销；仍受频率上限约束",
+              "不是继续消费8拍或固定超时"
+            ],
+            [
+              "旧Underflow用词",
+              "来源差异明确保留",
+              "不凭猜测关闭一致性验收"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 169,
+            "detailId": "rx-readiness-layers",
+            "label": "既有接收就绪分层"
+          },
+          {
+            "featureId": 169,
+            "detailId": "rxguard-cycle-budget-query",
+            "label": "RxValid尾窗查询"
+          },
+          {
+            "featureId": 169,
+            "detailId": "r81-underflow-old-text-conflict",
+            "label": "旧版来源矛盾"
+          }
+        ]
       }
     ]
   },
@@ -168537,8 +168662,8 @@
     "prerequisites": "PCLK as PHY Input/Output从PHY视角命名。PIPE 7.1正文对PCIe5及以后不支持PCLK输出模式；旧产品手册描述的可生成模式不应不加限定外推。",
     "example": "两条同link lane频率相同不代表相位关系满足要求；各自的RX时钟也不能当成一个普通同相时钟。",
     "checks": "列出频率、来源、启动条件、是否停钟及domain；跨域使用同步器/FIFO/握手，不能只按时钟名字相同就设为同步。",
-    "status": "PIPE复位/独立时钟与接收尾窗已深化 · 持续核读",
-    "reviewed": "2026-10-25",
+    "status": "一期部分验收：R151七个维度通过；来源一致性仍阻塞，见详情",
+    "reviewed": "2026-10-29",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -170404,9 +170529,86 @@
         "title": "集成前要收集哪些能力参数：检测、切速、RX训练与校准分别确认",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
         "verification": "R81核对应本地正式修订所列正文；1.00为2003-06-19稳定版，7.1为当前所核修订。所引本地印刷/PDF页一致；7.1本地190页与官网189页分开。仅选定规则和原创说明，不代表中间修订、全部Base代际或硬件验证。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1",
+        "page": 110,
+        "pdfPage": 110,
+        "title": "时钟角色与模式",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 115,
+        "pdfPage": 115,
+        "title": "MacCLK请求采样与频率窗口",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 147,
+        "pdfPage": 147,
+        "title": "转换时间条目差异",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 152,
+        "pdfPage": 152,
+        "title": "静态支持与时序参数",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "2.3.1",
+        "page": 30,
+        "pdfPage": 30,
+        "title": "输入PCLK与同Link相位",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.5.2",
+        "page": 47,
+        "pdfPage": 47,
+        "title": "TX/独立分频及RX恢复",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.5.3",
+        "page": 48,
+        "pdfPage": 48,
+        "title": "恢复域分频边界",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "R73核PIPE7.1所列复位、MacCLK/SRIS及RxCLK正文与关键波形；本地与官网PDF分开定位，不声明所有旧修订/Gen1～7或产品硅片已验证。 R81追加1.00/7.1选定逐版控制/参数依据，保留中间修订与真实硬件缺口。",
+    "referenceStatus": "所列正式正文选段与既有细则可查询；未闭合的来源矛盾明确保留。",
     "details": [
       {
         "title": "从clk_rst出发的时钟清单",
@@ -171911,6 +172113,78 @@
             ]
           ]
         }
+      },
+      {
+        "id": "r151-clock-roles-and-change-gates",
+        "title": "时钟集成核对表：源、方向、消费者与切换完成分别记录",
+        "paragraphs": [
+          "复用已有PCLK输入切换、MacCLK四相闭环、复位和产品多Lane时钟细则。本轮核PIPE7.1与PCS1.75a/PHY3.02a所列正文，补一张按职责判断的表，不把CLK、PCLK、MaxPCLK、MacCLK和恢复RxCLK并成一条网。",
+          "PIPE7.1的CLK为参考，PCLK同步并行接口传输，MaxPCLK提供规定的稳定最高PCLK参考，MacCLK是可选独立时钟功能。PCLK的输入/输出方向按模式选择；所核Gen6 PCS采用输入PCLK，同Link各Lane须相位同步。来自同一参考且特性匹配，不等于物理上必须使用同一根时钟网。",
+          "产品TX时钟由CM PLL及相应分频路径服务并行发送；RX路径还受CDR控制再分频。word/div两类分频可独立配置，不能拿一个分频比推出全部输出。PCLK模式、Rate/Width、节流节奏与实际生成配置要配套核，不能只看频率数字相同。",
+          "MacCLKRate仅在Req和Ack都撤销时改变，影响频率的值在Req上升沿采样；时钟运行后保持稳定直到请求撤销。SSC允许在规定条件下动态改变，但完成时间取产品公开参数。修改配置值、得到许可、应答完成与真正观测到稳定/停止时钟是不同事件。",
+          "静态支持参数不是PCIe配置寄存器。最大速率或最大频率不证明每个速率/宽度/时钟模式组合都合法，也不能为未给定的转换时间编默认值。门控、CDC及复位撤销分别按消费者与时钟域核实，本轮未执行STA/CDC/RDC验证。",
+          "PIPE7.1表8-4的PCIe P2条目标题写到P0，测量描述却写PowerDown设P1及PhyStatus撤销；原来源问题继续保留。当前网页只给明确流程和产品支持范围，未据表标题补造P2直达P0通用握手；一致性维度仍阻塞。"
+        ],
+        "referenceIndices": [
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175
+        ],
+        "table": {
+          "columns": [
+            "查询对象",
+            "准确含义/动作",
+            "异常与限制"
+          ],
+          "rows": [
+            [
+              "CLK / PCLK",
+              "参考 / 并行接口节奏",
+              "同源不等于同一网"
+            ],
+            [
+              "MaxPCLK / MacCLK",
+              "最高稳定参考 / 可选独立请求时钟",
+              "两个功能不能按名称合并"
+            ],
+            [
+              "RX恢复域",
+              "CDR控制后再分频",
+              "TX时钟正确不证明RX已恢复"
+            ],
+            [
+              "切换闭环",
+              "空闲改值、提交、许可与完成分开",
+              "寄存器写入不等于时钟生效"
+            ],
+            [
+              "P2参数行",
+              "标题与描述冲突仍待澄清",
+              "不生成未经证实的P-state路径"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 170,
+            "detailId": "macclk-event-trace-query",
+            "label": "MacCLK事件追踪"
+          },
+          {
+            "featureId": 170,
+            "detailId": "r81-static-mode-support-fields",
+            "label": "模式支持参数"
+          },
+          {
+            "featureId": 170,
+            "detailId": "r81-p2-latency-row-conflict",
+            "label": "P2来源问题"
+          }
+        ]
       }
     ]
   },
@@ -173348,8 +173622,8 @@
     "prerequisites": "系数更新须遵守该版本幅度/系数约束与产品更新时序，不能把手册里的某组数当成通用最佳值。",
     "example": "软件或训练状态要求同一Preset编号，两种PHY的实际输入码可能不同；应比较定义和映射后的物理权重。",
     "checks": "沿MAC请求 → PIPE控制 → uPCS映射 → PHY输入/寄存器 → 完成状态追踪，并核对适用速率。",
-    "status": "Retimer拓扑与所选分段规则已深化 · 持续核读",
-    "reviewed": "2026-10-25",
+    "status": "一期部分验收：R152七个维度通过；来源一致性仍阻塞，见详情",
+    "reviewed": "2026-10-29",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -174478,9 +174752,86 @@
         "title": "Retimer拓扑、发现、转发与分段均衡选定规则",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R77核6.0/7.0所引正式版选定正文/续页；视觉核7.0 p664拓扑及p1150能力位图。所引本地印刷页与PDF物理页一致。非完整Retimer状态机、所有中间修订/ECN、光实现或实物签核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.4.1",
+        "page": 477,
+        "pdfPage": 477,
+        "title": "系数含义、TS绝对值与FS",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.4.1",
+        "page": 478,
+        "pdfPage": 478,
+        "title": "同时满足的请求条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.4.2",
+        "page": 478,
+        "pdfPage": 478,
+        "title": "P/Q编码与适用速率",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.4.2",
+        "page": 479,
+        "pdfPage": 479,
+        "title": "量化误差补偿",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.3.3.3",
+        "page": 1510,
+        "pdfPage": 1510,
+        "title": "Preset电压比例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.3.3.3",
+        "page": 1511,
+        "pdfPage": 1511,
+        "title": "Full/Reduced子集",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.2",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "产品控制码仅适用该交付",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "R77核6.0/7.0所引Retimer拓扑、发现、SKP及局部TX/RX规则；旧版/ECN、光内部实现和完整训练继续，非硬件签核。",
+    "referenceStatus": "所列正式正文选段与既有细则可查询；未闭合的来源矛盾明确保留。",
     "details": [
       {
         "id": "ffe-low-speed-high-speed",
@@ -175753,6 +176104,78 @@
           100,
           101
         ]
+      },
+      {
+        "id": "r152-tx-eq-request-validation",
+        "title": "TX均衡请求怎么核：Preset编号、TS系数、物理符号和电气比例分层",
+        "paragraphs": [
+          "复用已有P/Q Preset表、三/四tap合法性查询、PIPE系数返回与Retimer边界。本轮核Base7.0正式正文和PHY3.02a产品说明，按角色区分接收端提出调整、相邻发送端执行和接口适配；它们不是同一组未经转换的数字。",
+          "8/16/32GT/s使用P类Preset，64GT/s及以上使用Q类；相同编码数字不保证相同物理均衡。平坦设置分别是P4和Q0，不能将P0直接改名Q0。TS1传递侧tap的绝对值；电气FIR中的符号、索引与软件里的整数幅值必须分别标明。",
+          "本版请求前同时核：|C-1|≤floor(FS/4)，|C-2|+|C-1|+C0+|C+1|=FS，C0−|C-1|+|C-2|−|C+1|≥LF，以及|C-2|≤floor(FS/8)。低于64GT/s令C-2为0。只有某一条满足不构成合法请求；接收新系数请求的端口要拒绝违反条件的请求。",
+          "Preset按电压比例及容差定义，并非统一厂商DAC码。本版Full Swing支持对应全部Preset，Reduced Swing的P类和Q类必需子集不同；选FS及整数系数还需满足量化后Preset精度。数字合法、电气比例合格与接收BER达标是三层检查。",
+          "产品实现可用自己的控制码、缩放和输入更新机制，但必须建立与规范系数的对应关系。Retimer存在时，训练字段及相邻TX能力按各链路段理解；不能把远端应用设备的FS/LF直接当整条路径所有TX的共同值。",
+          "PIPE7.1已有64GT/s LocalPresetIndex跳号记录：网页保留表中数值及待核范围，不用“应当连续”的直觉自行补码，也不宣称得到官方修正。该接口索引疑点与规范P/Q Preset定义分开，仍阻塞本项一致性验收。"
+        ],
+        "referenceIndices": [
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108
+        ],
+        "table": {
+          "columns": [
+            "查询对象",
+            "准确含义/动作",
+            "异常与限制"
+          ],
+          "rows": [
+            [
+              "TS1系数 / 电气FIR",
+              "幅值传递 / 有符号滤波表示",
+              "不能遗漏符号映射"
+            ],
+            [
+              "FS",
+              "全部tap幅值总和保持",
+              "不是仅主tap数值"
+            ],
+            [
+              "LF",
+              "检查低频组合下限",
+              "不只核总幅值"
+            ],
+            [
+              "P类 / Q类",
+              "按当前速率解释Preset",
+              "P0与Q0不等价"
+            ],
+            [
+              "厂商控制码",
+              "按产品缩放/编码映射",
+              "不是通用协议寄存器转储"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 172,
+            "detailId": "ffe-three-constraint-table",
+            "label": "三tap合法性表"
+          },
+          {
+            "featureId": 172,
+            "detailId": "pam4-four-tap-query",
+            "label": "四tap约束与比例查询"
+          },
+          {
+            "featureId": 172,
+            "detailId": "pipe-preset-query",
+            "label": "PIPE索引查询及待核提示"
+          }
+        ]
       }
     ]
   },
@@ -175766,8 +176189,8 @@
     "prerequisites": "本轮核对了Gen6 RX模块职责，没有核读全部私有算法或所有tap寄存器。",
     "example": "冷启动通过而温度变化后误码增加时，应检查持续适应、校准状态和时钟/电源条件，不能仅重新跑一次LTSSM掩盖问题。",
     "checks": "记录校准完成、适应阶段、失败原因和BER；更改EQ前确认固件是否会覆盖手工设置。",
-    "status": "Retimer拓扑与所选分段规则已深化 · 持续核读",
-    "reviewed": "2026-10-26",
+    "status": "一期部分验收：R152七个维度通过；来源一致性仍阻塞，见详情",
+    "reviewed": "2026-10-29",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -177677,9 +178100,86 @@
         "title": "查询：lock、检测旁路、评估反馈与误码证据分别说明什么",
         "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.4",
+        "page": 43,
+        "pdfPage": 43,
+        "title": "校准职责",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.5",
+        "page": 44,
+        "pdfPage": 44,
+        "title": "启动和持续适配",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.1",
+        "page": 61,
+        "pdfPage": 61,
+        "title": "评估入口及结果有效",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.1.1",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "请求限制与示例边界",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.1.1",
+        "page": 63,
+        "pdfPage": 63,
+        "title": "循环索引及方向建议",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-reference-3.02",
+        "document": "Gen6 PHY Reference Manual",
+        "version": "3.02a",
+        "section": "2.1.120",
+        "page": 383,
+        "pdfPage": 383,
+        "title": "锁定检测旁路",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-reference-3.02",
+        "document": "Gen6 PHY Reference Manual",
+        "version": "3.02a",
+        "section": "2.1.120",
+        "page": 384,
+        "pdfPage": 384,
+        "title": "窗口与统计条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "R77核6.0/7.0所引Retimer拓扑、发现、SKP及局部TX/RX规则；旧版/ECN、光内部实现和完整训练继续，非硬件签核。",
+    "referenceStatus": "所列正式正文选段与既有细则可查询；未闭合的来源矛盾明确保留。",
     "details": [
       {
         "id": "rx-calibration-vs-adaptation",
@@ -178961,6 +179461,78 @@
           170,
           171,
           172
+        ]
+      },
+      {
+        "id": "r152-rx-adaptation-result-validity",
+        "title": "RX适配怎么使用：先满足入口，再区分完成、建议和真实接收质量",
+        "paragraphs": [
+          "复用已有启动/持续校准、FFE/DFE参考结构、FOM与方向建议、锁定窗口查询。本轮以PHY3.02a及相同修订Reference选段核结果有效性，不发布厂商寄存器转储，也不把产品算法定义成所有PCIe接收器必需实现。",
+          "Calibration降低器件偏置/增益/采样相位误差；Adaptation寻找当前通道的幅度、频响及均衡工作点；协议Equalization组织端口之间的训练。所核产品先启动校准，再建立幅度工作点，然后联合调节CTLE、PAM4判决电平及FFE/DFE；运行期持续校准与适配可并行，参数变化不必然是异常。",
+          "产品RX评估入口要求P0、退出Electrical Idle、数据使能和相应CDR有效条件。发出评估请求后必须等本次Ack有效才使用FOM或方向建议；旧反馈数值不能在新请求未完成时当本次结果。完成耗时依赖波特率和参考时钟，不能将一个固定等待值作为全部运行点的通用期限。",
+          "FOM用于相同评估上下文下比较候选，方向建议表示对相邻TX系数的增减/保持需求；都不是正式BER报告。中途撤销评估或复位可能留下非最优工作点；评估在途也不能同时发送产品规定不允许重叠的其他配置请求。接口操作成功不保证被建议的TX系数满足全部协议约束。",
+          "Reference明确锁定检测可被旁路，旁路后lock可由ready计时结束产生。锁定检测的窗口使用ADC clock，百分比编码描述窗口内样本条件；它不是允许BER。要同时记录旁路状态、lock来源、计数时钟和独立错误测量，不能用lock=1替代CDR质量或合规证明。",
+          "两版产品FOM示例仍有Preset数量/循环索引边界待核，网页不给未经确认的可执行遍历循环；其疑点不改变正式Base中的合法Preset集合。启动/握手/结果有效性规则可独立查询，但这处产品示例一致性尚未闭合，因此本项没有整体验收。"
+        ],
+        "referenceIndices": [
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179
+        ],
+        "table": {
+          "columns": [
+            "查询对象",
+            "准确含义/动作",
+            "异常与限制"
+          ],
+          "rows": [
+            [
+              "校准 / 适配 / 协议均衡",
+              "分别消除误差、找工作点、协调端口",
+              "不是同一个完成标志"
+            ],
+            [
+              "本次评估Ack",
+              "限定本次FOM/方向反馈有效",
+              "不能提前用旧反馈"
+            ],
+            [
+              "FOM / 方向建议",
+              "候选比较 / 系数调整建议",
+              "不是BER或协议合法性结论"
+            ],
+            [
+              "lock旁路与窗口",
+              "确认有效性生成路径、ADC计数域",
+              "窗口百分比不是BER"
+            ],
+            [
+              "FOM循环示例",
+              "索引歧义明确保留",
+              "不输出猜测的可执行循环"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 173,
+            "detailId": "rx-calibration-vs-adaptation",
+            "label": "三类调节职责"
+          },
+          {
+            "featureId": 173,
+            "detailId": "r89-lock-evidence-query",
+            "label": "锁定证据查询"
+          },
+          {
+            "featureId": 173,
+            "detailId": "g5-fom-loop-count-text-caveat",
+            "label": "两版循环边界待核"
+          }
         ]
       }
     ]

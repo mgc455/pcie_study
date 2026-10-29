@@ -222,3 +222,7 @@ R148: authorized manual continuation, independent checks and combined R148 publi
 R149: manual continuation; corrected duplicate acceptance queue; next review R150; daily paused and original budget snapshot preserved.
 
 R150: manual continuation; corrected duplicate acceptance queue; next review R154; daily paused and original budget snapshot preserved.
+
+R151: authorized manual continuation; partial criteria only, source consistency blockers retained; next review R154; daily paused; original budget snapshot preserved.
+
+R152: authorized manual continuation; partial criteria only, source consistency blockers retained; next review R154; daily paused; original budget snapshot preserved.
