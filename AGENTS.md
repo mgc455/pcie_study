@@ -274,3 +274,7 @@ R174: FM/FEC/L0p review; FEC reference precedence confirmed, L0p Base6 priority 
 R175: Crosslink/PME/DPA selected-rule review; DPA conflict07 retained; next review R178; daily paused; original budget preserved.
 
 R176: Crosslink/PME/DPA selected-rule review; DPA conflict07 retained; next review R178; daily paused; original budget preserved.
+
+R177: EPR/Power Budgeting selected-body review; EPR VF conflict11 retained; next review R178; daily paused; original budget preserved.
+
+R178: EPR/Power Budgeting selected-body review; EPR VF conflict11 retained; next review R182; daily paused; original budget preserved.

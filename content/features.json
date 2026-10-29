@@ -101810,14 +101810,14 @@
     "checks": "应用必须有真实降功耗动作；核对报告档位、入口/出口与PF/VF协同，不能只实现状态寄存器。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 92,
-    "status": "选定规则与字段已展开 · 持续逐版核读",
+    "status": "R177部分验收：7/8通过，VF字段来源一致性阻塞",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "section": "6.24",
@@ -101972,6 +101972,215 @@
         "title": "Supported字段起始",
         "verification": "核读该版对应页相关正文/字段；VF文字冲突保留，未声明全章/所有版本完成。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.24",
+        "page": 925,
+        "pdfPage": 925,
+        "title": "紧急用途、方法与合法组合",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.24",
+        "page": 926,
+        "pdfPage": 926,
+        "title": "共同进入、VF和Detected",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.24",
+        "page": 927,
+        "pdfPage": 927,
+        "title": "初始化与短暂事件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1144,
+        "pdfPage": 1144,
+        "title": "Supported逐bit定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1145,
+        "pdfPage": 1145,
+        "title": "初始化保持与Init字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.16",
+        "page": 1148,
+        "pdfPage": 1148,
+        "title": "有效Request Function及退出条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.5",
+        "page": 1116,
+        "pdfPage": 1116,
+        "title": "Device Status bit6 RW1C",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.24",
+        "page": 812,
+        "pdfPage": 812,
+        "title": "预算实现要求及系统板例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.24",
+        "page": 813,
+        "pdfPage": 813,
+        "title": "Init两条恢复路径",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.24",
+        "page": 925,
+        "pdfPage": 925,
+        "title": "紧急用途及报告前提",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.24",
+        "page": 926,
+        "pdfPage": 926,
+        "title": "Link状态、复位与共同作用域",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.24",
+        "page": 813,
+        "pdfPage": 813,
+        "title": "VF跟随与后续保留措辞",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.15",
+        "page": 993,
+        "pdfPage": 993,
+        "title": "能力字段VF规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.24",
+        "page": 926,
+        "pdfPage": 926,
+        "title": "同类相互措辞",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1145,
+        "pdfPage": 1145,
+        "title": "VF应与PF一致",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.16",
+        "page": 1148,
+        "pdfPage": 1148,
+        "title": "VF Request保留",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.5",
+        "page": 1116,
+        "pdfPage": 1116,
+        "title": "VF Detected硬连零",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.1",
+        "section": "6.24",
+        "page": 839,
+        "pdfPage": 839,
+        "title": "中间正式修订VF跟随与字段保留选段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "定位后核读本页正文；未将全文件搜索当作通读或整章完成。"
+      },
+      {
+        "documentId": "pcie-base-6.4",
+        "document": "PCI Express Base Specification",
+        "version": "6.4",
+        "section": "6.24",
+        "page": 906,
+        "pdfPage": 906,
+        "title": "中间正式修订VF跟随与字段保留选段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "定位后核读本页正文；未将全文件搜索当作通读或整章完成。"
       }
     ],
     "referenceStatus": "已定位规范目录",
@@ -102341,6 +102550,219 @@
           10,
           11,
           12
+        ]
+      },
+      {
+        "id": "r177-epr-capability-request-history",
+        "title": "EPR怎么查：能力、有效请求Function与历史状态三步对照",
+        "paragraphs": [
+          "EPR用于紧急降低功耗以避免系统损坏，正常动态功耗分配另查DPA。查询先分清PCIe Capability基址C：C+24h DWORD的[25:24]为Supported，[26]为Initialization Required；C+28h WORD bit11才是Request；C+0Ah WORD bit6是Detected。不能把Detected误查到Device Status2，也不能把能力、请求、事件快照合并为一个Enable。",
+          "Supported=00表示该Function不支持，01支持设备特定方法，10支持形态规范和/或设备特定方法，11保留。10只有在实现相应形态规范定义的请求机制时才允许报告；是否存在专用引脚、极性、滤波和时序仍查对应形态/产品。Supported与Init组合的合法触发方式见原矩阵，不因01就认定存在通用外部信号。",
+          "软件诊断请求写在最低编号、非VF、属于USP且Supported非零的Function，未必是Function0。其它Function的Request保留。写1会让组件中所有支持的Function进入；写0仅在没有其它原因阻止退出时才能退出。外部紧急条件仍存在时，清软件Request不能强行取消紧急保护。",
+          "Detected是RW1C事件记录：短暂进入也必须被捕获，事件解除后仍可留下历史。导致进入的条件仍存在时，对Detected的写操作不起清除作用；因此读到1既可能是当前紧急状态，也可能是已退出但未清历史，不能仅凭一位区分。普通RW快照回写到Device Status还可能清其它W1C错误位，读解码与实际写入必须分开。",
+          "非零Supported的同一多Function USP各Function应一致，Init也须一致；字段还受复位后初始化约束。规范建议在枚举前完成能力初始化，允许延至驱动加载并不等于运行中任意改写只读能力。VF字段的文字冲突单列，不以这些一般规则掩盖。"
+        ],
+        "referenceIndices": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "地址/门槛",
+            "使用边界"
+          ],
+          "rows": [
+            [
+              "能力",
+              "C+24h[25:24]/[26]",
+              "先确定方法和恢复要求"
+            ],
+            [
+              "请求",
+              "C+28h[11]，最低编号有效非VF USP Function",
+              "不是默认Function0"
+            ],
+            [
+              "历史",
+              "C+0Ah[6] RW1C",
+              "1不单独证明条件仍在"
+            ],
+            [
+              "软件请求清零",
+              "还要没有其它进入原因",
+              "不是强制退出"
+            ],
+            [
+              "诊断范围",
+              "只说明查询和规范动作",
+              "未写真实设备寄存器"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 92,
+            "detailId": "epr-supported-init-matrix",
+            "label": "完整支持/初始化组合矩阵"
+          },
+          {
+            "featureId": 92,
+            "detailId": "epr-request-lowest-function",
+            "label": "有效Function定位"
+          },
+          {
+            "featureId": 92,
+            "detailId": "epr-register-explorer",
+            "label": "离线字段查询"
+          },
+          {
+            "featureId": 92,
+            "detailId": "epr-detected-clear-guard",
+            "label": "Detected清除前提"
+          }
+        ]
+      },
+      {
+        "id": "r177-epr-recovery-decision-chain",
+        "title": "EPR恢复决策链：Init、DL状态和重新配置分别判断",
+        "paragraphs": [
+          "先观察实际触发条件与设备/平台通知，不以Request读零或Detected可清就认定业务已恢复。InitRequired=0时，Function应继续正常工作但可降低性能或进入设备特定低功耗活动状态；USP须保持工作，未完成请求继续正常完成。紧急条件解除后退出不需要软件干预。",
+          "InitRequired=1时Function停止正常工作，USP允许但不要求进入DL_Down。若仍为DL_Up，未完成请求正常完成；若DL_Down，则按事务层Link Down规则处理，可能产生Surprise Down报告。不能把“停止正常工作”一律解释成所有事务静默丢弃，也不能把“可能DL_Down”改成必然重训。",
+          "InitRequired=1的退出需要软件干预；通知机制是实现特定内容，不在Base中统一规定。若USP曾进入DL_Down，须复位全部Device Functions并按Link Down后的恢复要求进行完整重新配置；不能只清Detected或给一个VF做FLR便替代此Device范围恢复。规定Sticky字段在紧急过程中保留，具体复位域仍按适用规则。",
+          "在设备范围内，所有支持EPR的Function共同进入/退出，VF跟随对应PF，Unsupported Function在USP仍DL_Up时不受EPR影响。Switch的DSP跟随USP并保留对应DSP字段，因此不能把所有端口各自软件Request当独立功率域。EPR还需要相应预算报告，系统板集成设备有明确能力实现例外，不把该例外扩成任意插卡免报。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          23,
+          24
+        ],
+        "table": {
+          "columns": [
+            "条件",
+            "已核规则",
+            "排障边界"
+          ],
+          "rows": [
+            [
+              "Init=0",
+              "USP工作；未完成请求正常完成",
+              "退出不需软件干预"
+            ],
+            [
+              "Init=1，DL_Up",
+              "停止正常工作，未完成请求仍按规定完成",
+              "不能推断已经DL_Down"
+            ],
+            [
+              "Init=1，DL_Down",
+              "按Link Down处理，可能Surprise Down",
+              "退出需Device复位与完整重新配置"
+            ],
+            [
+              "VF / Switch DSP",
+              "跟随PF / USP",
+              "不是独立控制域"
+            ],
+            [
+              "Detected已清",
+              "仅说明历史位满足清除条件",
+              "不是业务恢复完成证明"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 92,
+            "detailId": "epr-no-init-required",
+            "label": "无初始化分支"
+          },
+          {
+            "featureId": 92,
+            "detailId": "epr-init-required",
+            "label": "需初始化分支"
+          },
+          {
+            "featureId": 92,
+            "detailId": "epr-link-down-reconfiguration",
+            "label": "Link Down恢复"
+          },
+          {
+            "featureId": 92,
+            "detailId": "epr-switch-scope",
+            "label": "Switch范围"
+          },
+          {
+            "featureId": 183,
+            "detailId": "budget-emergency-report-not-trigger",
+            "label": "预算报告不是EPR触发"
+          }
+        ]
+      },
+      {
+        "id": "r177-epr-vf-source-boundary",
+        "title": "EPR验收边界：VF跟随关系明确，能力字段相互措辞未闭环",
+        "paragraphs": [
+          "Base6 p813与Base7 p926既讨论非零Supported的VF跟随PF，又在后续规则中将VF对应字段描述为保留；Device Capabilities2表则明确VF的Supported和InitRequired与PF一致。本轮再次对照正文和字段表，仍不能把任一段静默删除，或把后版措辞视为已取得正式勘误。",
+          "可独立确认的是VF不能通过Request独立进入，Detected须硬连零，紧急状态跟随对应PF。网页继续保留这些可查询规则及原冲突定位；能力字段应如何落实的来源一致性维度继续阻塞。该状态是有文档但需要澄清，不是宣称用户缺少整本Base规范。",
+          "进一步定位并核读Base6.1 §6.24 p839与Base6.4 §6.24 p906：同页仍同时存在“非零Supported的VF跟随PF”和“VF对应字段保留”的表述。本次中间修订选段没有提供消除这一疑点的新措辞；这不是声称所有中间ECN或整章已经审完。"
+        ],
+        "referenceIndices": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "table": {
+          "columns": [
+            "问题",
+            "证据结果",
+            "处理"
+          ],
+          "rows": [
+            [
+              "VF跟随PF",
+              "正文明确",
+              "可用于理解状态作用域"
+            ],
+            [
+              "VF Request / Detected",
+              "保留 / 硬连零",
+              "可分别查询"
+            ],
+            [
+              "VF Supported / Init",
+              "正文保留与字段表一致PF并存",
+              "保留conflict11"
+            ],
+            [
+              "本轮结论",
+              "七维通过，一致性阻塞",
+              "未猜测实现细则"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 92,
+            "detailId": "epr-vf-confirmed-and-conflict",
+            "label": "原VF冲突记录"
+          },
+          {
+            "featureId": 92,
+            "detailId": "r177-epr-capability-request-history",
+            "label": "寄存器查询顺序"
+          }
         ]
       }
     ]
@@ -206888,14 +207310,14 @@
     "checks": "先确认Ext Enable/Present、Scale、作用范围和类型；保留值不伪装成瓦数，预算报告不是实测功率。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 183,
-    "status": "选定规则与字段已展开 · 持续逐版核读",
+    "status": "一期已验收：R178按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "documentId": "pcie-base-6.0",
@@ -207435,6 +207857,215 @@
         "title": "EPR Type与测量窗口",
         "verification": "核读该版对应页相关正文/字段；VF文字冲突保留，未声明全章/所有版本完成。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1",
+        "page": 1255,
+        "pdfPage": 1255,
+        "title": "用途、PF/VF/SDI范围及结构",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.2",
+        "page": 1256,
+        "pdfPage": 1256,
+        "title": "索引宽度和起点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1258,
+        "pdfPage": 1258,
+        "title": "越界、无序及隐藏条目",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1260,
+        "pdfPage": 1260,
+        "title": "Rail与Connector身份",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1261,
+        "pdfPage": 1261,
+        "title": "同时与互斥",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1262,
+        "pdfPage": 1262,
+        "title": "必须报告的Rail和Thermal",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.5",
+        "page": 1263,
+        "pdfPage": 1263,
+        "title": "System Allocated及能力门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1258,
+        "pdfPage": 1258,
+        "title": "BasePower区间门槛",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1259,
+        "pdfPage": 1259,
+        "title": "高功率区间及非连续Scale",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1260,
+        "pdfPage": 1260,
+        "title": "Type测量窗和Scale高位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.4",
+        "page": 1095,
+        "pdfPage": 1095,
+        "title": "旧版5秒/1ms测量窗",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.8.1.4",
+        "page": 1096,
+        "pdfPage": 1096,
+        "title": "旧版ConnectorType枚举",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1261,
+        "pdfPage": 1261,
+        "title": "新版ConnectorType",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.8.3",
+        "page": 859,
+        "pdfPage": 859,
+        "title": "授权层级、双限额及配置时点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.3",
+        "page": 1256,
+        "pdfPage": 1256,
+        "title": "Control字段布局",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.3",
+        "page": 1257,
+        "pdfPage": 1257,
+        "title": "Function、属性和带外更新",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1260,
+        "pdfPage": 1260,
+        "title": "EPR Type编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.4",
+        "page": 1262,
+        "pdfPage": 1262,
+        "title": "EPR报告集合",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.1.5",
+        "page": 1263,
+        "pdfPage": 1263,
+        "title": "能力支持及SystemAllocated",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "按版正文/字段定位；未核中间修订/ECN、形态规范或整章不标完成。",
@@ -208217,6 +208848,246 @@
           46,
           47,
           48
+        ]
+      },
+      {
+        "id": "r178-budget-enumeration-to-accounting",
+        "title": "Power Budgeting怎么读：能力链、索引枚举、条件分组到预算决策",
+        "paragraphs": [
+          "Power Budgeting报告设备在特定条件下的功率需求，帮助平台规划供电与散热。扩展能力ID0004h、Version1；基址B+04h为Data Select BYTE（RW），B+06h为Control WORD，B+08h为Data DWORD（RO），B+0Ch为Capability BYTE，B+0Dh为Sense Detect。不能把一个索引号理解为DPA目标功率档，也不能把只读Data当控制命令。",
+          "先核B+0Ch[0] System Allocated：为1表示已计入系统预算，软件预算决策必须忽略本设备所报Data，避免重复计费。再核Extended Supported、Sense Detect Supported及Power Limit Supported。VF不得实现此能力；PF若实现，所报值必须涵盖关联VF或SDI，不能再把同一组VF功率重复累计。",
+          "Data Select从0开始选择首DWORD，递增枚举不同工作条件，顺序不保证按D-state、Rail或瓦数排序。越过条目数返回全零。Extended Enable默认0，扩展条目被隐藏且返回零，所有非扩展条目排在扩展条目前；因此未开启扩展时见到零，不能证明完整扩展数据库为空。按能力和当前可见模式解释结束边界，不对未知端口盲写Enable。",
+          "解码后按PM State、Type、PM Sub State以及Connector/Rail归组。同工作条件、同Substate的条目通常是同时消耗（PME Aux与Auxiliary有例外）；不同Substate互斥。Thermal是热负载报告，不是额外供电Rail，不能在各Rail总和之上再把Thermal相加成总输入功率。Connector Number对应板卡物理连接器，不等于Data Select索引。",
+          "例如同一D0 Sustained、同一Substate下，12V条目100W与3.3V条目10W可表示同时输入110W；若另报Thermal110W，不能据此得220W。另一个Substate的80W与此档互斥，不再相加。例子只说明分组算法，实际还要核报告范围、System Allocated、PF归属与形态供电许可。"
+        ],
+        "referenceIndices": [
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55
+        ],
+        "table": {
+          "columns": [
+            "阶段",
+            "动作",
+            "限制"
+          ],
+          "rows": [
+            [
+              "先查能力",
+              "System Allocated与Extended/Limit支持",
+              "避免重复预算与误解隐藏条目"
+            ],
+            [
+              "再枚举",
+              "BYTE索引→RO DWORD，不保证排序",
+              "全零结合扩展可见性判断"
+            ],
+            [
+              "再分组",
+              "State / Type / Substate / Connector / Rail",
+              "相同索引不等于固定物理接口"
+            ],
+            [
+              "再计量",
+              "同时Rail合计，互斥档不相加",
+              "Thermal不再加一次"
+            ],
+            [
+              "最后做决策",
+              "报告需求与实际供电授权分别核",
+              "不是读到150W就获准用150W"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 183,
+            "detailId": "budget-register-map",
+            "label": "完整寄存器结构"
+          },
+          {
+            "featureId": 183,
+            "detailId": "budget-data-field-table",
+            "label": "Data逐bit表"
+          },
+          {
+            "featureId": 183,
+            "detailId": "budget-extended-hidden-entries",
+            "label": "扩展条目隐藏规则"
+          },
+          {
+            "featureId": 183,
+            "detailId": "budget-simultaneous-exclusive",
+            "label": "同时/互斥条件"
+          },
+          {
+            "featureId": 183,
+            "detailId": "budget-register-explorer",
+            "label": "离线寄存器查询"
+          }
+        ]
+      },
+      {
+        "id": "r178-budget-decode-version-check",
+        "title": "字段复算与版本对照：离散Scale、Legacy区间、功率测量窗口",
+        "paragraphs": [
+          "Data Scale不是连续三位：[1:0]在Data[9:8]，[2]在Data[21]。合成编码后000/001/010/011/100/101分别为1/0.1/0.01/0.001/10/100，110和111保留。取BasePower=15且Scale=100b，得到15×10=150W；不能误将低两位00当1倍，也不能把bit21当ConnectorNumber。",
+          "Legacy特殊区间要先判门槛：Extended Enable=0、Scale低两位00且BasePower大于EFh时，使用替代区间编码。例如F0h表示大于239且不超过250W，F1h为大于250且不超过275W，而非精确240W和241W；FFh为大于600W的保留编码。不要先套普通乘法再在结果后补说明。",
+          "功率数字还必须带Type与匹配版本的测量窗。所核Base6.0 Sustained为5秒平均、Maximum为1ms移动窗；Base7.0分别为1秒平均、100µs移动窗，形态规范可明确另外定义。两版Idle均以闲置至少20秒为条件。不能仅看“150W Maximum”就跨版本断定相同瞬态约束，更不能从速率升一代推断同字段定义。",
+          "ConnectorType同样按版本解码：Base6.0的10h～13h尚保留，Base7.0用于12V-2x6的150/300/450/600W线缆条件；0Ah/0Bh也从所核旧表保留变为新版12VHPWR其它Sense组合。此比较只确认6.0和7.0端点差异，首次ECN与每个中间修订仍不据此冒充已核。"
+        ],
+        "referenceIndices": [
+          56,
+          57,
+          58,
+          59,
+          60,
+          61
+        ],
+        "table": {
+          "columns": [
+            "输入/比较",
+            "复算结果",
+            "边界"
+          ],
+          "rows": [
+            [
+              "15 × Scale100b",
+              "150W",
+              "必须合并Data[21]与[9:8]"
+            ],
+            [
+              "Legacy F0h，门槛成立",
+              "239W < P ≤ 250W",
+              "不是精确240W"
+            ],
+            [
+              "6.0 / 7.0 Sustained",
+              "5s / 1s平均",
+              "形态明确另定时按适用规定"
+            ],
+            [
+              "6.0 / 7.0 Maximum",
+              "1ms / 100µs移动窗",
+              "不把功率数字脱离测量窗"
+            ],
+            [
+              "10h～13h ConnectorType",
+              "6.0保留 / 7.0为12V-2x6",
+              "不是证明首次引入在7.0"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 183,
+            "detailId": "budget-data-scale-table",
+            "label": "完整Scale表"
+          },
+          {
+            "featureId": 183,
+            "detailId": "budget-legacy-high-power-intervals",
+            "label": "Legacy全部高功率区间"
+          },
+          {
+            "featureId": 183,
+            "detailId": "budget-type-time-windows",
+            "label": "Type与时间窗表"
+          },
+          {
+            "featureId": 183,
+            "detailId": "budget-connector-type-evolution",
+            "label": "完整连接器版本表"
+          }
+        ]
+      },
+      {
+        "id": "r178-budget-grant-control-boundary",
+        "title": "什么时候用控制寄存器：初始化限额、带外限额与EPR报告的分工",
+        "paragraphs": [
+          "报告值假设设备已获适当许可且外部供电正常，报告本身不授予功率。供电许可可来自形态Initial Power、有效Set_Slot_Power_Limit、Power Limit、带外Power Limit、固件Aux请求及其它形态/类规范；各有覆盖关系，不把它们简单累加为总许可。System Allocated是预算归属，也不是普通Enable。",
+          "Control B+06h[0]为Extended Enable，[1]为Power Limit Enable，[4:2]为其Substate，[5]及[8:6]为带外Enable/Substate。以实际Power Limit支持及有效最低编号Function规则定位作用域，不假定Function0。软件字段控制整个设备/板卡供电配置；带外值由实现特定机制初始化，可在Configuration Ready后改变，不等于OS可把HwInit字段当RW直接写。",
+          "软件Power Limit Enable/Substate只在所有Function均D0uninitialized期间用Configuration Write配置；任何Function退出该阶段后再改变，行为未定义。所以这不是可在运行中反复调的通用DVFS按钮，也不是DPA的32档控制。PowerBudgeting最多8个Substate，与L1.1/L1.2完全不同；未报告Data的Substate也不能选。",
+          "两条Limit同时使能时，对每个Rail/Connector组合采用二者所表示较小功率，不是编号较小的Substate，也不是把瓦数相加。若两条都未使能，则当前Substate由实现特定机制确定。多Rail各自比较的规则也不应被简化成一个全局整数最小值。",
+          "EPR的Type100b/101b分别报告紧急状态Sustained/Maximum，要求覆盖设备所用Rail，Thermal不同于总和时另报。读取这些条目只是理解紧急时预算；实际进入/退出仍查EPR请求及外部条件，恢复查Init/Link，不存在“写PowerBudgeting Data触发EPR”的命令。本文未写设备、测量功率或验证真实线缆。"
+        ],
+        "referenceIndices": [
+          62,
+          63,
+          64,
+          65,
+          66,
+          67
+        ],
+        "table": {
+          "columns": [
+            "字段/条件",
+            "用途",
+            "限制"
+          ],
+          "rows": [
+            [
+              "B+06h[1]/[4:2]",
+              "软件Power Limit",
+              "仅规定的D0uninitialized配置窗"
+            ],
+            [
+              "B+06h[5]/[8:6]",
+              "带外Power Limit",
+              "HwInit值由实现机制更新"
+            ],
+            [
+              "两条Limit均开",
+              "每Rail/Connector取较低功率",
+              "不是取较小编号"
+            ],
+            [
+              "EPR Type100/101",
+              "紧急Sustained/Maximum报告",
+              "报告不触发紧急状态"
+            ],
+            [
+              "实际动态功率调整",
+              "另查DPA与适用产品机制",
+              "不能把初始化字段当运行按钮"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 183,
+            "detailId": "budget-control-field-table",
+            "label": "完整Control属性"
+          },
+          {
+            "featureId": 183,
+            "detailId": "budget-power-limit-config-time",
+            "label": "初始化配置边界"
+          },
+          {
+            "featureId": 183,
+            "detailId": "budget-two-limit-sources",
+            "label": "双限额规则"
+          },
+          {
+            "featureId": 183,
+            "detailId": "budget-power-grant-hierarchy",
+            "label": "授权层级"
+          },
+          {
+            "featureId": 92,
+            "detailId": "r177-epr-recovery-decision-chain",
+            "label": "EPR退出恢复"
+          },
+          {
+            "featureId": 91,
+            "detailId": "r176-dpa-transition-and-accounting",
+            "label": "DPA运行中调整"
+          }
         ]
       }
     ]

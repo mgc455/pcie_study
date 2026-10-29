@@ -1,7 +1,7 @@
 {
   "nextFeatureIds": [
-    92,
-    183
+    137,
+    179
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,11 +48,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r176",
+    "edition": "2026-10-30-r178",
     "featureIds": [
-      91
+      183
     ],
-    "nextTrack": "92 EPR/183功率预算；R178总结"
+    "nextTrack": "[137, 179]；R182总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -342,13 +342,13 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 118,
-    "lastReviewEdition": "2026-10-30-r174",
-    "lastReviewId": "r171-r174",
+    "completedTotal": 120,
+    "lastReviewEdition": "2026-10-30-r178",
+    "lastReviewId": "r175-r178",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
   },
   "stageReviews": [
@@ -1283,10 +1283,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 86,
+    "completedRounds": 88,
     "remainingPlannedRounds": 0,
-    "nextRound": 177,
-    "nextReviewRound": 178,
+    "nextRound": 179,
+    "nextReviewRound": 182,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -14921,47 +14921,179 @@
         "featureId": 92,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 177,
+            "evidence": [
+              {
+                "href": "#feature/92/detail/r177-epr-capability-request-history",
+                "label": "EPR怎么查：能力、有效请求Function与历史状态三步对照"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-recovery-decision-chain",
+                "label": "EPR恢复决策链：Init、DL状态和重新配置分别判断"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-vf-source-boundary",
+                "label": "EPR验收边界：VF跟随关系明确，能力字段相互措辞未闭环"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 177,
+            "evidence": [
+              {
+                "href": "#feature/92/detail/r177-epr-capability-request-history",
+                "label": "EPR怎么查：能力、有效请求Function与历史状态三步对照"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-recovery-decision-chain",
+                "label": "EPR恢复决策链：Init、DL状态和重新配置分别判断"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-vf-source-boundary",
+                "label": "EPR验收边界：VF跟随关系明确，能力字段相互措辞未闭环"
+              },
+              {
+                "href": "#feature/92/detail/epr-request-enter-exit",
+                "label": "Request清零只是撤销一个理由，不保证已退出EPR"
+              },
+              {
+                "href": "#feature/92/detail/epr-observation-sequence",
+                "label": "排查先查有效Function和进入原因，再看恢复路径"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 177,
+            "evidence": [
+              {
+                "href": "#feature/92/detail/r177-epr-capability-request-history",
+                "label": "EPR怎么查：能力、有效请求Function与历史状态三步对照"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-recovery-decision-chain",
+                "label": "EPR恢复决策链：Init、DL状态和重新配置分别判断"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-vf-source-boundary",
+                "label": "EPR验收边界：VF跟随关系明确，能力字段相互措辞未闭环"
+              },
+              {
+                "href": "#feature/92/detail/epr-register-field-table",
+                "label": "三处寄存器分别报告能力、请求和历史事件"
+              },
+              {
+                "href": "#feature/92/detail/epr-register-explorer",
+                "label": "查询：EPR支持矩阵、Request归属与Detected快照"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 177,
+            "evidence": [
+              {
+                "href": "#feature/92/detail/r177-epr-capability-request-history",
+                "label": "EPR怎么查：能力、有效请求Function与历史状态三步对照"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-recovery-decision-chain",
+                "label": "EPR恢复决策链：Init、DL状态和重新配置分别判断"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-vf-source-boundary",
+                "label": "EPR验收边界：VF跟随关系明确，能力字段相互措辞未闭环"
+              },
+              {
+                "href": "#feature/92/detail/epr-supported-init-matrix",
+                "label": "Supported和Initialization Required要组合解释"
+              },
+              {
+                "href": "#feature/92/detail/epr-detected-clear-guard",
+                "label": "仍有进入条件时写Detected无效果；写1不是强制退出"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 177,
+            "evidence": [
+              {
+                "href": "#feature/92/detail/r177-epr-capability-request-history",
+                "label": "EPR怎么查：能力、有效请求Function与历史状态三步对照"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-recovery-decision-chain",
+                "label": "EPR恢复决策链：Init、DL状态和重新配置分别判断"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-vf-source-boundary",
+                "label": "EPR验收边界：VF跟随关系明确，能力字段相互措辞未闭环"
+              },
+              {
+                "href": "#feature/92/detail/epr-version-scope",
+                "label": "Base6.0与7.0所引主规则一致，不据此推断首次引入"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 177,
+            "evidence": [
+              {
+                "href": "#feature/92/detail/r177-epr-capability-request-history",
+                "label": "EPR怎么查：能力、有效请求Function与历史状态三步对照"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-recovery-decision-chain",
+                "label": "EPR恢复决策链：Init、DL状态和重新配置分别判断"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-vf-source-boundary",
+                "label": "EPR验收边界：VF跟随关系明确，能力字段相互措辞未闭环"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 177,
+            "evidence": [
+              {
+                "href": "#feature/92/detail/r177-epr-capability-request-history",
+                "label": "EPR怎么查：能力、有效请求Function与历史状态三步对照"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-recovery-decision-chain",
+                "label": "EPR恢复决策链：Init、DL状态和重新配置分别判断"
+              },
+              {
+                "href": "#feature/92/detail/r177-epr-vf-source-boundary",
+                "label": "EPR验收边界：VF跟随关系明确，能力字段相互措辞未闭环"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 177,
+            "evidence": [
+              {
+                "href": "#feature/92/detail/r177-epr-vf-source-boundary",
+                "label": "EPR VF字段来源边界"
+              }
+            ],
+            "note": "Base6/7 §6.24 VF对应字段保留与Device Capabilities2的VF同PF要求并存；跟随/Request/Detected可确认，能力字段实现细则保留conflict11待正式澄清。"
           }
         },
         "baseline": {
@@ -14970,13 +15102,16 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "Base6/7 §6.24 VF对应字段保留与Device Capabilities2的VF同PF要求并存；跟随/Request/Detected可确认，能力字段实现细则保留conflict11待正式澄清。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "Base6/7 §6.24 VF对应字段保留与Device Capabilities2的VF同PF要求并存；跟随/Request/Detected可确认，能力字段实现细则保留conflict11待正式澄清。"
         ]
       },
       {
@@ -26570,47 +26705,199 @@
         "featureId": 183,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 178,
+            "evidence": [
+              {
+                "href": "#feature/183/detail/r178-budget-enumeration-to-accounting",
+                "label": "Power Budgeting怎么读：能力链、索引枚举、条件分组到预算决策"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-decode-version-check",
+                "label": "字段复算与版本对照：离散Scale、Legacy区间、功率测量窗口"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-grant-control-boundary",
+                "label": "什么时候用控制寄存器：初始化限额、带外限额与EPR报告的分工"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 178,
+            "evidence": [
+              {
+                "href": "#feature/183/detail/r178-budget-enumeration-to-accounting",
+                "label": "Power Budgeting怎么读：能力链、索引枚举、条件分组到预算决策"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-decode-version-check",
+                "label": "字段复算与版本对照：离散Scale、Legacy区间、功率测量窗口"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-grant-control-boundary",
+                "label": "什么时候用控制寄存器：初始化限额、带外限额与EPR报告的分工"
+              },
+              {
+                "href": "#feature/183/detail/budget-data-select-enumeration",
+                "label": "Data Select从0递增；顺序不代表D-state/功率排序"
+              },
+              {
+                "href": "#feature/183/detail/budget-power-grant-hierarchy",
+                "label": "六类功率授予机制：不要把Slot消息视为唯一入口"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 178,
+            "evidence": [
+              {
+                "href": "#feature/183/detail/r178-budget-enumeration-to-accounting",
+                "label": "Power Budgeting怎么读：能力链、索引枚举、条件分组到预算决策"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-decode-version-check",
+                "label": "字段复算与版本对照：离散Scale、Legacy区间、功率测量窗口"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-grant-control-boundary",
+                "label": "什么时候用控制寄存器：初始化限额、带外限额与EPR报告的分工"
+              },
+              {
+                "href": "#feature/183/detail/budget-data-field-table",
+                "label": "Data DWORD逐字段：Scale高位与低位不连续"
+              },
+              {
+                "href": "#feature/183/detail/budget-control-field-table",
+                "label": "Control+06h：扩展显示开关与两套Power Limit字段"
+              },
+              {
+                "href": "#feature/183/detail/budget-register-explorer",
+                "label": "查询：Budget Data数值、条件与Legacy高功率区间"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 178,
+            "evidence": [
+              {
+                "href": "#feature/183/detail/r178-budget-enumeration-to-accounting",
+                "label": "Power Budgeting怎么读：能力链、索引枚举、条件分组到预算决策"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-decode-version-check",
+                "label": "字段复算与版本对照：离散Scale、Legacy区间、功率测量窗口"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-grant-control-boundary",
+                "label": "什么时候用控制寄存器：初始化限额、带外限额与EPR报告的分工"
+              },
+              {
+                "href": "#feature/183/detail/budget-extended-hidden-entries",
+                "label": "默认隐藏Extended条目：全0不代表不存在扩展数据"
+              },
+              {
+                "href": "#feature/183/detail/budget-two-limit-sources",
+                "label": "两套Power Limit同时启用：按每Rail/Connector取较低功耗"
+              },
+              {
+                "href": "#feature/183/detail/budget-aux-power-not-auto-granted",
+                "label": "Aux/PME Aux报告并不自动提高辅助供电许可"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 178,
+            "evidence": [
+              {
+                "href": "#feature/183/detail/r178-budget-enumeration-to-accounting",
+                "label": "Power Budgeting怎么读：能力链、索引枚举、条件分组到预算决策"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-decode-version-check",
+                "label": "字段复算与版本对照：离散Scale、Legacy区间、功率测量窗口"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-grant-control-boundary",
+                "label": "什么时候用控制寄存器：初始化限额、带外限额与EPR报告的分工"
+              },
+              {
+                "href": "#feature/183/detail/budget-type-time-windows",
+                "label": "Type与测量窗口：6.0为5s/1ms，7.0为1s/100μs"
+              },
+              {
+                "href": "#feature/183/detail/budget-connector-type-evolution",
+                "label": "7.0新增12V-2x6编码；6.0相同区间仍为保留"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 178,
+            "evidence": [
+              {
+                "href": "#feature/183/detail/r178-budget-enumeration-to-accounting",
+                "label": "Power Budgeting怎么读：能力链、索引枚举、条件分组到预算决策"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-decode-version-check",
+                "label": "字段复算与版本对照：离散Scale、Legacy区间、功率测量窗口"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-grant-control-boundary",
+                "label": "什么时候用控制寄存器：初始化限额、带外限额与EPR报告的分工"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 178,
+            "evidence": [
+              {
+                "href": "#feature/183/detail/r178-budget-enumeration-to-accounting",
+                "label": "Power Budgeting怎么读：能力链、索引枚举、条件分组到预算决策"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-decode-version-check",
+                "label": "字段复算与版本对照：离散Scale、Legacy区间、功率测量窗口"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-grant-control-boundary",
+                "label": "什么时候用控制寄存器：初始化限额、带外限额与EPR报告的分工"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 178,
+            "evidence": [
+              {
+                "href": "#feature/183/detail/r178-budget-enumeration-to-accounting",
+                "label": "Power Budgeting怎么读：能力链、索引枚举、条件分组到预算决策"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-decode-version-check",
+                "label": "字段复算与版本对照：离散Scale、Legacy区间、功率测量窗口"
+              },
+              {
+                "href": "#feature/183/detail/r178-budget-grant-control-boundary",
+                "label": "什么时候用控制寄存器：初始化限额、带外限额与EPR报告的分工"
+              }
+            ],
+            "note": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。"
           }
         },
         "baseline": {
@@ -26621,14 +26908,15 @@
           "budget"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列Base6/7正式正文，并复用原字段表、离线查询、机制及异常规则；限本主题契约，不代表全章、所有ECN或实机功率验证。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 178
       }
     ],
     "reuseGroups": [
@@ -33843,6 +34131,98 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项、原R138预算与38来源历史不变；DPA保留conflict07，未将非法示例修订猜测作通过依据。",
         "publication": "R175/R176独立检查后合并发布R176，线上和视觉结果单列。"
+      },
+      {
+        "round": 177,
+        "kind": "R177 EPR能力、触发与恢复链复核",
+        "deliverables": [
+          "补EPR能力→请求→事件查询链、Init/Link恢复决策与作用域；七维通过，VF字段来源一致性保留阻塞。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 92,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 92,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 92,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 92,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 92,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 92,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 92,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项、原R138预算与38来源历史不变；EPR保留conflict11，不猜VF能力字段结论。",
+        "publication": "R177/R178独立检查后合并发布R178；线上字节与视觉结果分列。"
+      },
+      {
+        "round": 178,
+        "kind": "R178 功率预算读取/复算/授权复核与四轮总结",
+        "deliverables": [
+          "补预算数据读取与分组复算、Base6/7测量窗/连接器差异及初始化限额边界；183通过主题验收，完成R175～R178复盘。"
+        ],
+        "closedDeliverableIds": [
+          "feature-183-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 183,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 183,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 183,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 183,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 183,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 183,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 183,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 183,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          183
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项、原R138预算与38来源历史不变；EPR保留conflict11，不猜VF能力字段结论。",
+        "publication": "R177/R178独立检查后合并发布R178；线上字节与视觉结果分列。"
       }
     ],
     "backlog": [
@@ -35048,8 +35428,21 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "核适用正式勘误/ECN/官方澄清；本轮6.1 p839与6.4 p906选段仍有相互措辞，不能自行选边。",
+        "evidence": [
+          {
+            "href": "#feature/92/detail/r177-epr-vf-source-boundary",
+            "label": "Base6/6.1/6.4/7 EPR VF字段冲突及明确规则"
+          }
+        ],
+        "reviewHistory": [
+          {
+            "round": 177,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
+            "previousEvidence": []
+          }
+        ]
       },
       {
         "id": "v1-conflict-12",
@@ -37378,36 +37771,36 @@
       }
     ],
     "nextExecution": {
-      "round": 177,
-      "taskId": "v1-task-10",
+      "round": 179,
+      "taskId": "v1-task-16",
       "featureIds": [
-        92,
-        183
+        137,
+        179
       ],
-      "goal": "按固定范围继续92 EPR和183功率预算，随后测试/Hot-plug/桥接DMA；旧来源问题单列。",
-      "reviewRound": 178
+      "goal": "固定范围下一步测试/PRBS与环回，再Hot-plug、桥接DMA；DPA/EPR等已知来源问题单列，不重复扩展已验收概述。",
+      "reviewRound": 182
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 176,
-      "reestimateRound": 178,
+      "assessedRound": 178,
+      "reestimateRound": 182,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "原预算耗尽，手动按证据继续；本窗口通过Crosslink/PME，DPA保留原来源问题。",
-      "action": "下一步EPR/功率预算；R178汇总，随后测试/Hot-plug与桥接DMA。",
+      "assessment": "四轮验收16 Crosslink、59 PME、183功率预算，共3项、35新增维度（PME原3项不重计）；累计146/183、1372维度、剩37。91 DPA与92 EPR各七维通过，保留原来源疑点。待验收与来源阻塞分开，不用无限新增条目推迟收尾。",
+      "action": "下一窗口优先137测试/179 PRBS环回，接181/164等测试交界，再138/139 Hot-plug与146/147/148桥接DMA。26项来源阻塞追证另列，不能保证外部澄清到达轮次。",
       "latestProgress": {
-        "round": 176,
-        "newAcceptedUnits": 0,
-        "cumulativeAcceptedUnits": 145,
-        "newPassedCriteria": 7,
-        "cumulativePassedCriteria": 1357,
+        "round": 178,
+        "newAcceptedUnits": 1,
+        "cumulativeAcceptedUnits": 146,
+        "newPassedCriteria": 8,
+        "cumulativePassedCriteria": 1372,
         "remainingPlannedRounds": 0
       },
       "unacceptedBreakdown": {
-        "blocked": 24,
-        "awaiting": 16
+        "blocked": 26,
+        "awaiting": 11
       }
     },
     "reviewWindows": [
@@ -38325,6 +38718,76 @@
         "resolvedConflictIds": [
           "v1-conflict-01"
         ]
+      },
+      {
+        "id": "r175-r178",
+        "firstRound": 175,
+        "lastRound": 178,
+        "closedFeatureUnits": [
+          16,
+          59,
+          183
+        ],
+        "reopenedFeatureUnits": [],
+        "newPassedCriteria": 35,
+        "remainingFeatureUnits": 37,
+        "cumulativePassedCriteria": 1372,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 7,
+          "中断与消息": 1,
+          "功耗与复位": 3,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 4,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 10
+        },
+        "blockedFeatureIds": [
+          3,
+          4,
+          5,
+          9,
+          10,
+          12,
+          15,
+          91,
+          92,
+          106,
+          114,
+          119,
+          127,
+          129,
+          136,
+          143,
+          152,
+          153,
+          159,
+          169,
+          170,
+          172,
+          173,
+          174,
+          175,
+          176
+        ],
+        "awaitingFeatureIds": [
+          61,
+          89,
+          137,
+          138,
+          139,
+          146,
+          147,
+          148,
+          164,
+          179,
+          181
+        ],
+        "note": "四轮验收16 Crosslink、59 PME、183功率预算，共3项、35新增维度（PME原3项不重计）；累计146/183、1372维度、剩37。91 DPA与92 EPR各七维通过，保留原来源疑点。待验收与来源阻塞分开，不用无限新增条目推迟收尾。"
       }
     ],
     "budgetEndAudit": {
@@ -38622,8 +39085,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        175,
-        176
+        177,
+        178
       ],
       "completedRounds": [
         143,
@@ -38659,10 +39122,12 @@
         173,
         174,
         175,
-        176
+        176,
+        177,
+        178
       ],
-      "publication": "checks-before-combined-r176-publication",
-      "note": "每日暂停；固定183项与原预算快照保留。"
+      "publication": "checks-before-combined-r178-publication",
+      "note": "每日暂停，固定183项与原预算快照保留。"
     },
     "queueAudit": {
       "round": 150,
