@@ -17725,14 +17725,14 @@
     "checks": "核对板级时钟来源、SSC、Common Clock相关字段及PHY支持，不能靠一个寄存器产生缺失的参考时钟。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 10,
-    "status": "选定规则已展开 · 持续逐版核读",
+    "status": "R171部分验收：7/8维度通过，Base6 Lower SKP控制来源一致性阻塞",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "4",
@@ -18283,6 +18283,116 @@
         "title": "调度到期、线上实际间隔与Receiver容忍度是三个观察量",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R51核对应正式版所列正文、字段或表；6.0 p1030、7.0 p1183/1215/1629关键表已视觉核对。所引印刷页与本地PDF物理页一致；并非整章或Gen1～7历史沿革完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1123,
+        "pdfPage": 1123,
+        "title": "Common Clock与Clock PM字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1124,
+        "pdfPage": 1124,
+        "title": "SRIS Clocking位及模式表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.8",
+        "page": 1127,
+        "pdfPage": 1127,
+        "title": "两端Slot Clock与重训说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.8",
+        "page": 1129,
+        "pdfPage": 1129,
+        "title": "Slot Clock HwInit与Function范围",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.8",
+        "page": 619,
+        "pdfPage": 619,
+        "title": "SRNS/SRIS及形态约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.18",
+        "page": 999,
+        "pdfPage": 999,
+        "title": "Lower SKP能力至64GT/s",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.3.2",
+        "page": 1030,
+        "pdfPage": 1030,
+        "title": "使能表内部bit6:5保留",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.3.2",
+        "page": 1183,
+        "pdfPage": 1183,
+        "title": "使能表扩至128GT/s",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.8",
+        "page": 619,
+        "pdfPage": 619,
+        "title": "逐方向及透明扩展路径资格",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.8.4",
+        "page": 630,
+        "pdfPage": 630,
+        "title": "FM修改窗口限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
@@ -18674,6 +18784,159 @@
             ]
           ]
         }
+      },
+      {
+        "id": "r171-clock-configuration-bits",
+        "title": "时钟软件配置逐bit：Slot Clock、Common Clock与SRIS不是同一开关",
+        "paragraphs": [
+          "以下固定为Base7.0，C是每个Function自己的PCI Express Capability起点。C+10h为Link Control WORD，C+12h为Link Status WORD；不是配置空间绝对地址，也不是PHY的REFCLK/PCLK配置寄存器。物理参考来源、协议通告和MAC/PHY接口时钟方向必须分别确认。",
+          "Link Status[12] Slot Clock Configuration是HwInit，表示组件实际采用平台在连接器提供的同一物理参考时钟；独立时钟即使频率同为100MHz也应为0。Common Clock Configuration则在Link Control[6]，RW、默认0，表示两端已按共同参考运行。设置bit6不会合成共同参考、改变PCB连接或保证所有数字时钟同相。",
+          "跨连接器的规范说明要求软件读两端Slot Clock信息，结合平台时钟分配判断；双方均置位时设置两端Common Clock。修改两端bit6后，软件须通过DSP的Retrain触发重训，以更新N_FTS及相应退出延迟，不能一直沿用切换前的接收锁定预算。非ARI多功能设备各Function需一致，若不是全部置位则整体按不共参考处理；ARI设备以Function0为准，其余写值可读回但不控制组件行为。VF字段为保留。",
+          "Base7 Link Control[12] SRIS Clocking只对支持FM的DSP有意义，其他Function为保留。bit6=1时bit12不影响模式，发出的TS1 SRIS位必须0；bit6=0时bit12=0/1分别表达SRNS/SRIS并送入TS1 Symbol4 bit7。它不是所有Endpoint通用的SRIS硬件切换开关，也不能仅靠软件写1让不支持SRIS的PHY符合电气条件。",
+          "Link Control[8] Enable Clock Power Management又是独立机制：适用USP及支持CLKREQ#的形态规范，非ARI多Function需满足能力与全部使能条件，ARI由Function0控制；L1SS也可控制CLKREQ#，不受该位简单替代。本页给字段和操作关系，不执行配置写入；实际时钟质量、SSC及板级切换方案需按相应规范核对。"
+        ],
+        "referenceIndices": [
+          50,
+          51,
+          52,
+          53,
+          54
+        ],
+        "table": {
+          "columns": [
+            "坐标/组合",
+            "字段或模式",
+            "行为边界"
+          ],
+          "rows": [
+            [
+              "C+12h[12]",
+              "Slot Clock Configuration",
+              "HwInit；报告实际物理参考来源"
+            ],
+            [
+              "C+10h[6]",
+              "Common Clock Configuration",
+              "RW/默认0；非ARI全Function一致，ARI看F0"
+            ],
+            [
+              "C+10h[12]",
+              "SRIS Clocking",
+              "支持FM的DSP；与bit6组合解释"
+            ],
+            [
+              "bit6=1 / bit12=x",
+              "Common Clock",
+              "TS1 SRIS Clocking须0"
+            ],
+            [
+              "bit6=0 / bit12=0或1",
+              "SRNS / SRIS",
+              "不替代实际硬件/SSC能力"
+            ],
+            [
+              "C+10h[8]",
+              "Enable Clock Power Management",
+              "与bit6和L1SS控制分别核"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 10,
+            "detailId": "clock-architecture-matrix",
+            "label": "物理时钟架构表"
+          },
+          {
+            "featureId": 10,
+            "detailId": "form-factor-clockreq",
+            "label": "CLKREQ与形态规范"
+          },
+          {
+            "featureId": 5,
+            "detailId": "r168-retrain-request-versus-completion",
+            "label": "重训请求和结果判定"
+          },
+          {
+            "featureId": 12,
+            "detailId": "r85-early-nfts-advertisement-epoch",
+            "label": "N_FTS的速率/时钟上下文"
+          }
+        ]
+      },
+      {
+        "id": "r171-lower-skp-version-source-gate",
+        "title": "Lower SKP检查顺序与Base6使能表的未闭环边界",
+        "paragraphs": [
+          "Lower SKP改变发送SKP的调度频度，不改变物理时钟架构。对A→B要核A生成能力、B接收能力、当前速率以及所有透明扩展器件支持；反向独立核。使能只在规定L0上下文生效，训练中仍按实际时钟架构处理，不能把SRNS低频度带到所有LTSSM状态。",
+          "能力与控制的基址分别是PCIe Capability内LinkCap2 C+2Ch，以及Secondary PCIe Extended Capability内LinkControl3 S+04h。字段内部bit5对应64GT/s时，生成能力与使能寄存器位置为bit14，接收能力为bit21；字段位号不等于配置DWORD位号。",
+          "Base6 p999能力表定义64GT/s，但p1030使能字段内部bit6:5仍为保留；Base7 p1183明确内部bit5=64、bit6=128GT/s。对Base6的64GT/s不得因寄存器可能可写、Base7已有定义或设备标Gen6就自动通过使能资格。既有离线查询已保留此门槛，本轮把它同步记入整项一致性阻塞。",
+          "Base7 p630还规定FM且速率非2.5GT/s时改变Enable Lower SKP OS Generation Vector设置行为未定义。设置值被能力支持和此刻能否修改是两项检查；不因本端读回1就跳过对端、扩展路径、当前模式与修改窗口。128GT/s还应读Vector2，不能把Current Link Speed编码8当成向量bit8。",
+          "本轮时钟主题七项可确认维度通过，一致性仍阻塞；这也约束编码主题中复用的Lower SKP使能说明。两处共享同一已有来源问题，不新增两个独立冲突。需要适用Base6的正式勘误/修订澄清，已有Base正文不缺，不把尚未找到澄清写成缺少整份规范。"
+        ],
+        "referenceIndices": [
+          55,
+          56,
+          57,
+          58,
+          59
+        ],
+        "table": {
+          "columns": [
+            "检查层",
+            "证据",
+            "排除错误推断"
+          ],
+          "rows": [
+            [
+              "物理时钟架构",
+              "Common/SRNS/SRIS实际连接和支持",
+              "不因Lower使能而换时钟"
+            ],
+            [
+              "方向资格",
+              "本端生成、对端接收、扩展路径",
+              "两个方向单独核"
+            ],
+            [
+              "Base6 64GT/s",
+              "能力有定义、使能表位置保留",
+              "保留来源阻塞，不照搬Base7"
+            ],
+            [
+              "Base7高速FM修改",
+              "非2.5GT/s修改该字段未定义",
+              "支持值与合法修改窗口分开"
+            ],
+            [
+              "验收关系",
+              "10和12共享一个问题",
+              "不重复计来源冲突或伪关闭"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 10,
+            "detailId": "lower-skp-register-bit-map",
+            "label": "既有逐bit映射"
+          },
+          {
+            "featureId": 10,
+            "detailId": "lower-skp-gen7-vector2",
+            "label": "128GT/s扩展向量"
+          },
+          {
+            "featureId": 10,
+            "detailId": "lower-skp-snapshot-query",
+            "label": "逐方向离线查询"
+          },
+          {
+            "featureId": 10,
+            "detailId": "skp-schedule-query",
+            "label": "调度上下文查询"
+          }
+        ]
       }
     ]
   },
@@ -18687,14 +18950,14 @@
     "checks": "不能把retimer当成有独立BAR的普通交换机；核对数量、位置、均衡和复位/供电要求。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 11,
-    "status": "Retimer拓扑与所选分段规则已深化 · 持续核读",
+    "status": "一期已验收：R171按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "4",
@@ -19476,6 +19739,105 @@
         "title": "Retimer拓扑、发现、转发与分段均衡选定规则",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R77核6.0/7.0所引正式版选定正文/续页；视觉核7.0 p664拓扑及p1150能力位图。所引本地印刷页与PDF物理页一致。非完整Retimer状态机、所有中间修订/ECN、光实现或实物签核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.3",
+        "page": 564,
+        "pdfPage": 564,
+        "title": "标准Retimer范围及透明性",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.3.1",
+        "page": 565,
+        "pdfPage": 565,
+        "title": "Pseudo Port方向与逐段要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.3",
+        "page": 659,
+        "pdfPage": 659,
+        "title": "FRA数量/其它扩展器件范围",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.3.1",
+        "page": 660,
+        "pdfPage": 660,
+        "title": "光方案与电气Pseudo Port边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.3.8.2",
+        "page": 697,
+        "pdfPage": 697,
+        "title": "Execution及多Retimer的8GT/s预算",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.3.8",
+        "page": 592,
+        "pdfPage": 592,
+        "title": "延迟测量/非SRIS上限及预算",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.3.9",
+        "page": 593,
+        "pdfPage": 593,
+        "title": "SRIS依MPS上限表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.3.9.1",
+        "page": 702,
+        "pdfPage": 702,
+        "title": "测量端点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.3.9.2",
+        "page": 703,
+        "pdfPage": 703,
+        "title": "非SRIS及SRIS版本表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R77核6.0/7.0所引Retimer拓扑、发现、SKP及局部TX/RX规则；旧版/ECN、光内部实现和完整训练继续，非硬件签核。",
@@ -20360,6 +20722,158 @@
           49,
           50
         ]
+      },
+      {
+        "id": "r171-retimer-protocol-boundaries",
+        "title": "Retimer、Repeater与Switch：先判断协议边界再看芯片名称",
+        "paragraphs": [
+          "Base6/7 Retimer章节定义的是Physical Layer protocol-aware Retimer，不给所有叫Repeater、Redriver或Retimer的商品统一互操作保证。模拟扩展器件、协议无感重定时等可用于经过专门分析的封闭系统，但该分析方法不由此章提供。不能凭产品名称套标准Retimer的数量、检测位和均衡规则。",
+          "普通电气Retimer有两个Pseudo Port，方向在Configuration中动态确定。N个这类Retimer形成N+1个电气段，但端到端仍是一条PCIe Link；它对Data Link/Transaction层透明，不作为Switch增加一层BDF或地址路由。每段独立均衡，转发和执行阶段分别查现有状态说明。",
+          "Forwarding主要转发OS、DLLP、TLP/Flit及空闲；Execution均衡时Pseudo Port生成本地训练信息并使用捕获的Link/Lane编号。看见某一段TS，不等于端到端同一序列已经到达。多个Lane转发还须Deskew，改宽和极性纠正也要与链路协同。",
+          "Base6端到端最多两个标准Retimer；Base7在适用全FRA拓扑中可至四个，混合FRA/non-FRA互操作未由本版定义，不按每块板卡各算一份额度。Base7还说明8GT/s端口不识别Retimer Equalization Extend，多于两个Retimer时若不能确保该速率EQ预算，应采用所述最高NRZ速率bypass建议；这不把未知均衡能力变成自动可跳过。",
+          "光Retimer Solution的两个电气Pseudo Port之间可有实现定义的光扩展机制，不能把其内部光组件数直接代入普通电气段计数。规范要求光方案按既定EQ时限参与，未给任意放大timeout的许可。功耗上，有Retimer的Link不得由软件启用L0s；L1、可选L1SS及L0p需分别核路径，不能因端点支持就视为全路径可用。"
+        ],
+        "referenceIndices": [
+          71,
+          72,
+          73,
+          74,
+          75
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "工作边界",
+            "限制"
+          ],
+          "rows": [
+            [
+              "模拟/其它扩展器件",
+              "先查产品与特定通道分析",
+              "不能按商品名继承标准Retimer保证"
+            ],
+            [
+              "标准Retimer",
+              "PHY协议感知；两个Pseudo Port",
+              "不新增事务路由层"
+            ],
+            [
+              "Switch",
+              "需按交换/桥与路由机制理解",
+              "不能把Retimer当Switch计BDF"
+            ],
+            [
+              "Base6 / Base7",
+              "最多2 / 全FRA至4",
+              "板卡/线缆合计；混合拓扑无通用保证"
+            ],
+            [
+              "光扩展",
+              "按两个电气Pseudo Port边界理解",
+              "内部光技术与数量另查"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 11,
+            "detailId": "retimer-topology-query",
+            "label": "拓扑/电气分段图查询"
+          },
+          {
+            "featureId": 11,
+            "detailId": "retimer-two-modes",
+            "label": "Forwarding与Execution"
+          },
+          {
+            "featureId": 11,
+            "detailId": "retimer-timers-gen7",
+            "label": "Base7 Retimer均衡计时"
+          },
+          {
+            "featureId": 11,
+            "detailId": "retimer-optical-solution-boundary",
+            "label": "光方案边界"
+          },
+          {
+            "featureId": 11,
+            "detailId": "retimer-power-l0s-and-l1-boundaries",
+            "label": "功耗支持边界"
+          }
+        ]
+      },
+      {
+        "id": "r171-retimer-latency-budget",
+        "title": "Retimer延迟怎样用于系统预算：测量端点、SRIS与版本表分开",
+        "paragraphs": [
+          "规范延迟测量条件是Forwarding且Link在L0，从一侧Pseudo Port输入引脚收到某Symbol最后一bit，到另一侧输出引脚发出对应bit。不是内部FIFO深度、某个PCLK周期数、均衡耗时或从驱动提交DMA到完成中断的时长。具体数值须绑定速率、模式、方向和对应产品。",
+          "Base6 p592非SRIS延迟上限表按2.5/5/8/16/32/64GT/s依次为32/32/64/128/256/512个Symbol Time；Base7 p703保留这些档并为128GT/s列1024。这里Symbol不是永远一UI：8b/10b一个编码Symbol为10个串行位，128b/130b与1b/1b又有不同组织。不要用GT/s直接除Symbol计数而忽略单位。",
+          "SRIS有自己的MPS相关表及额外弹性存储条件。Base6 p593的64GT/s列与Base7 p703同列数值不同，例如MPS128时分别258与514 Symbol Time；这是匹配版本的原表定位，不自行把Base6改为Base7、乘2归一或宣布原表有笔误。对应文档范围和真实实现应独立确认，不能从上限表推出实际芯片必有这些延迟。",
+          "端到端往返应对实际每颗、每个方向求和。若两颗单程各为同一个L且正反向相同，往返额外4L；三颗/四颗相同假设才得到6L/8L。这是代数例子，不表示所有Retimer天生等延迟，也不把一套光Solution内部组件数当该数量。",
+          "新增传播延迟影响Replay Buffer、事务接收缓冲/FC Credits及Replay计时预算。足够训练至L0不证明在该带宽时延积下能满吞吐；SRIS下最大TLP引起SKP延期，也会影响弹性存储预算。本轮验收覆盖所列Base6/7机制、既有角色/阶段表和诊断入口，不包含厂商模拟性能、完整电气签核或全部历史ECN。"
+        ],
+        "referenceIndices": [
+          76,
+          77,
+          78,
+          79
+        ],
+        "table": {
+          "columns": [
+            "预算对象",
+            "已核规则",
+            "解释边界"
+          ],
+          "rows": [
+            [
+              "测量起止",
+              "输入引脚最后bit→另一侧输出对应bit",
+              "Forwarding、L0"
+            ],
+            [
+              "非SRIS上限",
+              "Base6至64，Base7另列128GT/s",
+              "单位Symbol Time，不是PCLK"
+            ],
+            [
+              "SRIS上限",
+              "按匹配版本、速率与MPS查表",
+              "不能拿非SRIS表作统一SRIS上限"
+            ],
+            [
+              "双向合计例",
+              "2颗=4L，3颗=6L，4颗=8L",
+              "仅相同L且双向相等的例子"
+            ],
+            [
+              "缓冲/超时",
+              "Replay、FC及Replay计时分别核",
+              "训练成功不证明满吞吐"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 11,
+            "detailId": "retimer-latency",
+            "label": "原非SRIS表及往返说明"
+          },
+          {
+            "featureId": 11,
+            "detailId": "retimer-diagnostic-evidence-order",
+            "label": "排障证据顺序"
+          },
+          {
+            "featureId": 11,
+            "detailId": "retimer-version-query-locators",
+            "label": "Base6/7选段定位"
+          },
+          {
+            "featureId": 10,
+            "detailId": "skp-schedule-versus-arrival",
+            "label": "调度延期与接收容忍度"
+          }
+        ]
       }
     ]
   },
@@ -20373,14 +20887,14 @@
     "checks": "不要简单用GT/s乘lane数就宣称应用带宽；PAM4是调制方式，不是PCIe事务类型。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 12,
-    "status": "选定Polling七版及早期TS字段已深化 · 持续核读",
+    "status": "R172部分验收：7/8维度通过，Base6 Lower SKP控制来源一致性阻塞",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "section": "4",
@@ -22691,6 +23205,204 @@
         "title": "版本、运行速率与编码三轴表：Gen4设备在低速仍用低速序列",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R85核1.0a/2.0/3.0/4.0正式版所列序列或L0s正文与表；视觉核2.0 p226、4.0 p272。版别/速率/编码独立限定，页码按本地副本绑定；非整章、全部中间ECN或实际链路验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.1.1.1",
+        "page": 310,
+        "pdfPage": 310,
+        "title": "8b/10b字母位序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.1.1.1",
+        "page": 311,
+        "pdfPage": 311,
+        "title": "x4条带例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.2.1",
+        "page": 318,
+        "pdfPage": 318,
+        "title": "130bit块与发送位序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.2.1",
+        "page": 374,
+        "pdfPage": 374,
+        "title": "布局和时间图差别",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.1",
+        "page": 340,
+        "pdfPage": 340,
+        "title": "1b/1b及PAM4位对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1",
+        "page": 394,
+        "pdfPage": 394,
+        "title": "1b/1b/FM及位对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.1",
+        "page": 341,
+        "pdfPage": 341,
+        "title": "发送概念处理顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.1.1",
+        "page": 342,
+        "pdfPage": 342,
+        "title": "接收逆过程与PAM4",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1",
+        "page": 395,
+        "pdfPage": 395,
+        "title": "CRC/FEC及per-Lane顺序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1.1",
+        "page": 396,
+        "pdfPage": 396,
+        "title": "TX/RX框图与PAM4",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1.2",
+        "page": 397,
+        "pdfPage": 397,
+        "title": "TS0及扰码例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.1.1.1",
+        "page": 310,
+        "pdfPage": 310,
+        "title": "8b/10b编码单位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.2.1",
+        "page": 318,
+        "pdfPage": 318,
+        "title": "128/130编码预算",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.3.1",
+        "page": 340,
+        "pdfPage": 340,
+        "title": "64GT/s 1b/PAM4",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1",
+        "page": 394,
+        "pdfPage": 394,
+        "title": "64GT/s以上PAM4",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.3.1",
+        "page": 396,
+        "pdfPage": 396,
+        "title": "Flit区域尺寸",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.18",
+        "page": 999,
+        "pdfPage": 999,
+        "title": "共享Lower SKP能力边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.3.2",
+        "page": 1030,
+        "pdfPage": 1030,
+        "title": "共享使能表问题",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R74核七份正式版所引Polling、1.0a/2.0/3.0选定TS字段及状态边界；非整章、所有中间修订或真实链路验证。 R85补1.0a/2.0/3.0/4.0选定EIOS/EIEOS、FTS/SDS与L0s窗口/出口，非完整跨代或硬件验收。",
@@ -25349,6 +26061,223 @@
             ]
           ]
         }
+      },
+      {
+        "id": "r172-code-layout-versus-wire-order",
+        "title": "从字段布局到线上位序：10bit Symbol、130bit Block与PAM4的单位",
+        "paragraphs": [
+          "本条按Base6/7固定正文核对运行编码，而不把端口最大支持代际等同当前编码。2.5/5GT/s用8b/10b；8/16/32GT/s用128b/130b；64GT/s与Base7的128GT/s用1b/1b及PAM4，并运行FM。FM也能在低速编码上工作，因此“FM就是PAM4”不成立。",
+          "8b/10b基本编码单位为一个8bit数据字符加控制含义映射为10bit码组；规范字母位序从a发至j。它不是把软件看到的8bit直接按bit7先发。跨Lane条带与每条Lane串行位序分开解释，Lane Reversal也不是把一个byte的bit顺序颠倒。",
+          "128b/130b普通Block由H1H0两bit Sync Header及16个8bit Symbol组成：10b标Data、01b标Ordered Set，SKP的OS内容可变长。线上先H0、后H1，每Symbol先S0后S7；因此布局图从高位读出的10b，不是要求抓波形按同样字符方向显示。Base7明确区分带时间轴的发送序图和little-endian布局图。",
+          "1b/1b在64GT/s以上没有每128bit追加同样的2bit Sync Header。每个8bit Symbol分成四对，依次S1S0、S3S2、S5S4、S7S6映成PAM4电平，每对占一个物理UI。所谓1b/1b没有取消Flit CRC、FEC、OS或业务头开销，也不表示所有边界标识都消失。"
+        ],
+        "referenceIndices": [
+          210,
+          211,
+          212,
+          213,
+          214,
+          215
+        ],
+        "table": {
+          "columns": [
+            "编码",
+            "布局或组成",
+            "线上顺序/例外"
+          ],
+          "rows": [
+            [
+              "8b/10b",
+              "1字符→10bit Symbol",
+              "先a后j；不是直接发软件bit7"
+            ],
+            [
+              "128b/130b",
+              "H1H0 + Symbol0…15；普通块130bit",
+              "先H0/H1，再每Symbol的S0…S7"
+            ],
+            [
+              "SKP Ordered Set Block",
+              "01b头，内容按允许长度",
+              "头间距可不等于130bit"
+            ],
+            [
+              "1b/1b PAM4",
+              "8bit Symbol→4个2bit电平符号",
+              "先S1S0；不是额外再乘2吞吐"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 12,
+            "detailId": "serialization-vs-table-order",
+            "label": "既有位序说明"
+          },
+          {
+            "featureId": 12,
+            "detailId": "sync-header-and-skp-length",
+            "label": "Sync Header与变长SKP"
+          },
+          {
+            "featureId": 12,
+            "detailId": "special-symbol-mode-table",
+            "label": "K字符在FM/NFM中的作用"
+          },
+          {
+            "featureId": 7,
+            "detailId": "r169-lane-map-and-role",
+            "label": "Lane反序不是bit反转"
+          }
+        ]
+      },
+      {
+        "id": "r172-pam4-tx-rx-processing-order",
+        "title": "PAM4数据通路：CRC/FEC、条带、扰码、Gray与Precode的先后",
+        "paragraphs": [
+          "Base7图4-22/4-23及正文将Link-wide Flit处理与per-Lane处理分开。发送侧先组织236B TLP区与6B DLP，再生成8B CRC，接着生成6B FEC，形成256B Flit；然后按byte分给各Lane。236B是TLP区域容量，仍包含TLP头等，不是236B应用数据保证。",
+          "对于需要扰码的Lane数据，后续顺序为单bit扰码、2bit对齐Gray Coding、适用且使能时的Precoding，然后PAM4电平映射。接收侧相反：电平恢复为2bit量，作适用的接收Precode逆处理、Gray解码、单bit解扰，再跨Lane汇聚Flit；先FEC解码/纠错，后CRC检查，才交付TLP/DLP。不能把CRC校验放在纠错之前作为最终结果。",
+          "并非所有OS字节都走同一条支路：未扰码的OS/测试图样符号按定义映射，其Gray/DC平衡已体现在规定bit值中。TS0还有NRZ-based scrambling特例，只使用PAM4的外侧电平。这个训练特例不等于整条64/128GT/s链路已经改用32/64GT/s的业务编码。",
+          "Gray Coding用于降低相邻电平判决错误的bit影响，不等于能纠正一切误码；Precoding、扰码、FEC和CRC也不是可互相替代的功能。NFM的TLP/DLLP帧标记、FM的Flit布局及OS重复保护分别查相应规则，不把所有K字符或OS塞进业务TLP区。原有FEC/FLIT专章继续负责完整码字与重传流程，本条未做BER、模拟链路或RTL验证。"
+        ],
+        "referenceIndices": [
+          216,
+          217,
+          218,
+          219,
+          220
+        ],
+        "table": {
+          "columns": [
+            "层次",
+            "处理方向与顺序",
+            "边界"
+          ],
+          "rows": [
+            [
+              "TX Link-wide",
+              "TLP区+DLP→CRC生成→FEC生成",
+              "242B→250B→256B"
+            ],
+            [
+              "TX per-Lane",
+              "条带后扰码→Gray→适用Precode→电平",
+              "按OS/图样条件旁路"
+            ],
+            [
+              "RX per-Lane",
+              "电平→适用逆Precode→Gray解码→解扰",
+              "与TX边界对应"
+            ],
+            [
+              "RX Link-wide",
+              "跨Lane汇聚→FEC纠错→CRC检查",
+              "再向上交付"
+            ],
+            [
+              "TS0",
+              "NRZ-based特例及外侧电平",
+              "不改业务速率的定义"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 13,
+            "detailId": "flit-byte-layout",
+            "label": "256B Flit布局"
+          },
+          {
+            "featureId": 12,
+            "detailId": "fm-at-lower-rates",
+            "label": "FM降速与帧标记"
+          },
+          {
+            "featureId": 12,
+            "detailId": "running-disparity-errors",
+            "label": "低速FM错误交给FEC的区别"
+          },
+          {
+            "featureId": 9,
+            "detailId": "block-3",
+            "label": "TS0/TS1角色与阶段矩阵"
+          }
+        ]
+      },
+      {
+        "id": "r172-throughput-units-and-shared-gate",
+        "title": "Gen1～Gen7带宽口径：编码后预算、TLP区与应用Payload分开",
+        "paragraphs": [
+          "下表为十进制GB/s、单Lane、单向的计算口径。NRZ各档先GT/s÷8再乘编码效率；PAM4的64/128GT/s已计入每电平符号两bit，分别为32/64GBaud，不能再次乘2。全双工总量是两方向之和，不是任一方向能独占两倍速率。",
+          "8b/10b的80%与128b/130b的128/130只给编码层预算，尚未扣OS、包头、CRC及空闲。64/128GT/s单Lane的8/16GB/s是原始位流等价字节率，不能套128/130；即使只扣256B Flit中的非TLP区，得到的7.375/14.75GB/s也只是TLP区理论容量，仍未扣TLP头、NOP/填充、OS与业务限制。",
+          "例如128GT/s x16单向原始256GB/s，双向合计512GB/s；只按236/256区域比计算时，单向TLP区域理论236GB/s，仍不是应用净载荷吞吐。计算由已核编码和Flit布局导出，不把理论上限当设备实测。链路当前宽度/速率、读完成往返、FC和Replay也会进一步影响可见性能。",
+          "本轮编码主题七项可确认维度通过；但既有Lower SKP能力/控制说明复用10的Base6 64GT/s使能表问题，一致性仍保留阻塞。正文结构差分和发送顺序可明确查询，不因该疑点否定已核编码；同时也不通过缩窄验收范围将共享控制疑点默认为已解决。"
+        ],
+        "referenceIndices": [
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227
+        ],
+        "table": {
+          "columns": [
+            "速率代际/口径",
+            "每Lane标称速率",
+            "单向预算及限制"
+          ],
+          "rows": [
+            [
+              "Gen1 / 2",
+              "2.5 / 5 GT/s",
+              "0.250 / 0.500 GB/s，编码后预算"
+            ],
+            [
+              "Gen3 / 4 / 5",
+              "8 / 16 / 32 GT/s",
+              "约0.9846 / 1.9692 / 3.9385 GB/s，编码后预算"
+            ],
+            [
+              "Gen6 / 7",
+              "64 / 128 GT/s",
+              "8 / 16 GB/s，原始等价字节率"
+            ],
+            [
+              "Gen6 / 7，仅乘236/256",
+              "64 / 128 GT/s",
+              "7.375 / 14.75 GB/s，TLP区容量上限"
+            ],
+            [
+              "范围",
+              "均为x1单向、十进制",
+              "不是应用实测，也不代表可选功能全支持"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 13,
+            "detailId": "flit-bandwidth-arithmetic",
+            "label": "既有带宽计算与Flit区域"
+          },
+          {
+            "featureId": 10,
+            "detailId": "r171-lower-skp-version-source-gate",
+            "label": "共享来源疑点及验收边界"
+          },
+          {
+            "featureId": 12,
+            "detailId": "lower-skp-capability-controls",
+            "label": "Lower SKP既有说明"
+          },
+          {
+            "featureId": 12,
+            "detailId": "coding-version-audit-boundary",
+            "label": "逐版核读与首版历史边界"
+          }
+        ]
       }
     ]
   },

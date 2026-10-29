@@ -262,3 +262,7 @@ R168: manual link review; feature3 consistency reopened,3/4/5 share Base6 source
 R169: lane reversal/polarity/deskew and EQ selected-version review; source blockers retained; next review R170; daily paused; original budget preserved.
 
 R170: lane reversal/polarity/deskew and EQ selected-version review; source blockers retained; next review R174; daily paused; original budget preserved.
+
+R171: clock/Retimer/encoding selected-body review;10/12 share Base6 Lower SKP source gate; next review R174; daily paused; original budget preserved.
+
+R172: clock/Retimer/encoding selected-body review;10/12 share Base6 Lower SKP source gate; next review R174; daily paused; original budget preserved.

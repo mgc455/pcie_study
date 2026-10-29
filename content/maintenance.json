@@ -1,8 +1,8 @@
 {
   "nextFeatureIds": [
-    10,
-    11,
-    12
+    13,
+    14,
+    15
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,12 +48,12 @@
     "功能首次引入版本与ECN证据"
   ],
   "lastCompleted": {
-    "date": "2026-10-29",
-    "edition": "2026-10-29-r170",
+    "date": "2026-10-30",
+    "edition": "2026-10-30-r172",
     "featureIds": [
-      9
+      12
     ],
-    "nextTrack": "10时钟架构、11 Retimer、12编码；R174总结"
+    "nextTrack": "13 Flit、14 FEC/CRC、15 L0p；R174总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -343,11 +343,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 2,
+    "nextReviewAfterRounds": 2,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 112,
+    "completedTotal": 114,
     "lastReviewEdition": "2026-10-29-r170",
     "lastReviewId": "r167-r170",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
@@ -1275,7 +1275,7 @@
     "id": "v1-r91-r138",
     "title": "一期收尾：从持续扩写转为逐项验收",
     "baselineEdition": "2026-10-26-r90",
-    "updated": "2026-10-29",
+    "updated": "2026-10-30",
     "targetRounds": 48,
     "estimateRange": [
       40,
@@ -1284,9 +1284,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 80,
+    "completedRounds": 82,
     "remainingPlannedRounds": 0,
-    "nextRound": 171,
+    "nextRound": 173,
     "nextReviewRound": 174,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -2912,47 +2912,143 @@
         "featureId": 10,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/10/detail/r171-clock-configuration-bits",
+                "label": "时钟软件配置逐bit：Slot Clock、Common Clock与SRIS不是同一开关"
+              },
+              {
+                "href": "#feature/10/detail/r171-lower-skp-version-source-gate",
+                "label": "Lower SKP检查顺序与Base6使能表的未闭环边界"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/10/detail/r171-clock-configuration-bits",
+                "label": "时钟软件配置逐bit：Slot Clock、Common Clock与SRIS不是同一开关"
+              },
+              {
+                "href": "#feature/10/detail/r171-lower-skp-version-source-gate",
+                "label": "Lower SKP检查顺序与Base6使能表的未闭环边界"
+              },
+              {
+                "href": "#feature/10/detail/lower-skp-direction-qualification",
+                "label": "Lower SKP是单向发送资格：本端生成能力、对端接收能力和透明扩展路径分别核"
+              },
+              {
+                "href": "#feature/10/detail/skp-schedule-query",
+                "label": "查询：选择SKP调度分支并检查计数边界"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/10/detail/r171-clock-configuration-bits",
+                "label": "时钟软件配置逐bit：Slot Clock、Common Clock与SRIS不是同一开关"
+              },
+              {
+                "href": "#feature/10/detail/r171-lower-skp-version-source-gate",
+                "label": "Lower SKP检查顺序与Base6使能表的未闭环边界"
+              },
+              {
+                "href": "#feature/10/detail/lower-skp-register-bit-map",
+                "label": "Lower SKP寄存器位置：字段内bit号与寄存器bit号差9或16"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/10/detail/r171-clock-configuration-bits",
+                "label": "时钟软件配置逐bit：Slot Clock、Common Clock与SRIS不是同一开关"
+              },
+              {
+                "href": "#feature/10/detail/r171-lower-skp-version-source-gate",
+                "label": "Lower SKP检查顺序与Base6使能表的未闭环边界"
+              },
+              {
+                "href": "#feature/10/detail/lower-skp-fm-change-boundary",
+                "label": "7.0明确：FM且非2.5GT/s时改变Lower SKP使能设置，行为未定义"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/10/detail/r171-clock-configuration-bits",
+                "label": "时钟软件配置逐bit：Slot Clock、Common Clock与SRIS不是同一开关"
+              },
+              {
+                "href": "#feature/10/detail/r171-lower-skp-version-source-gate",
+                "label": "Lower SKP检查顺序与Base6使能表的未闭环边界"
+              },
+              {
+                "href": "#feature/10/detail/lower-skp-gen7-vector2",
+                "label": "128GT/s三个编码体系：速率状态8、Vector2 bit0、Control3 bit15"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/10/detail/r171-clock-configuration-bits",
+                "label": "时钟软件配置逐bit：Slot Clock、Common Clock与SRIS不是同一开关"
+              },
+              {
+                "href": "#feature/10/detail/r171-lower-skp-version-source-gate",
+                "label": "Lower SKP检查顺序与Base6使能表的未闭环边界"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/10/detail/r171-clock-configuration-bits",
+                "label": "时钟软件配置逐bit：Slot Clock、Common Clock与SRIS不是同一开关"
+              },
+              {
+                "href": "#feature/10/detail/r171-lower-skp-version-source-gate",
+                "label": "Lower SKP检查顺序与Base6使能表的未闭环边界"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/10/detail/r171-lower-skp-version-source-gate",
+                "label": "Base6 Lower SKP共享来源门槛"
+              }
+            ],
+            "note": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。"
           }
         },
         "baseline": {
@@ -2963,13 +3059,16 @@
           "clock-reset"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。"
         ]
       },
       {
@@ -2977,47 +3076,159 @@
         "featureId": 11,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/11/detail/r171-retimer-protocol-boundaries",
+                "label": "Retimer、Repeater与Switch：先判断协议边界再看芯片名称"
+              },
+              {
+                "href": "#feature/11/detail/r171-retimer-latency-budget",
+                "label": "Retimer延迟怎样用于系统预算：测量端点、SRIS与版本表分开"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/11/detail/r171-retimer-protocol-boundaries",
+                "label": "Retimer、Repeater与Switch：先判断协议边界再看芯片名称"
+              },
+              {
+                "href": "#feature/11/detail/r171-retimer-latency-budget",
+                "label": "Retimer延迟怎样用于系统预算：测量端点、SRIS与版本表分开"
+              },
+              {
+                "href": "#feature/11/detail/retimer-phase-order",
+                "label": "Retimer EQ：Active／Passive拆分了哪些阶段"
+              },
+              {
+                "href": "#feature/11/detail/retimer-two-modes",
+                "label": "Forwarding与Execution：先确定谁在生成训练信息"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/11/detail/r171-retimer-protocol-boundaries",
+                "label": "Retimer、Repeater与Switch：先判断协议边界再看芯片名称"
+              },
+              {
+                "href": "#feature/11/detail/r171-retimer-latency-budget",
+                "label": "Retimer延迟怎样用于系统预算：测量端点、SRIS与版本表分开"
+              },
+              {
+                "href": "#feature/11/detail/retimer-presence-snapshot-query",
+                "label": "离线查询：检测能力与最近协商状态分开解释"
+              },
+              {
+                "href": "#feature/11/detail/retimer-topology-query",
+                "label": "离线查询：普通电气Retimer数量、FRA组合与分段图"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/11/detail/r171-retimer-protocol-boundaries",
+                "label": "Retimer、Repeater与Switch：先判断协议边界再看芯片名称"
+              },
+              {
+                "href": "#feature/11/detail/r171-retimer-latency-budget",
+                "label": "Retimer延迟怎样用于系统预算：测量端点、SRIS与版本表分开"
+              },
+              {
+                "href": "#feature/11/detail/retimer-force-timeout",
+                "label": "Force Timeout：让两端一起退速"
+              },
+              {
+                "href": "#feature/11/detail/retimer-power-l0s-and-l1-boundaries",
+                "label": "功耗边界：存在Retimer就不启用L0s，L1与L1SS另看"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/11/detail/r171-retimer-protocol-boundaries",
+                "label": "Retimer、Repeater与Switch：先判断协议边界再看芯片名称"
+              },
+              {
+                "href": "#feature/11/detail/r171-retimer-latency-budget",
+                "label": "Retimer延迟怎样用于系统预算：测量端点、SRIS与版本表分开"
+              },
+              {
+                "href": "#feature/11/detail/retimer-version-query-locators",
+                "label": "6.0→7.0定位与未核边界：数量、启动窗、光模式、TS0"
+              },
+              {
+                "href": "#feature/11/detail/retimer-two-versus-four-fra",
+                "label": "数量上限逐版：6.0最多2个，7.0全FRA最多4个"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/11/detail/r171-retimer-protocol-boundaries",
+                "label": "Retimer、Repeater与Switch：先判断协议边界再看芯片名称"
+              },
+              {
+                "href": "#feature/11/detail/r171-retimer-latency-budget",
+                "label": "Retimer延迟怎样用于系统预算：测量端点、SRIS与版本表分开"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/11/detail/r171-retimer-protocol-boundaries",
+                "label": "Retimer、Repeater与Switch：先判断协议边界再看芯片名称"
+              },
+              {
+                "href": "#feature/11/detail/r171-retimer-latency-budget",
+                "label": "Retimer延迟怎样用于系统预算：测量端点、SRIS与版本表分开"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 171,
+            "evidence": [
+              {
+                "href": "#feature/11/detail/r171-retimer-protocol-boundaries",
+                "label": "Retimer、Repeater与Switch：先判断协议边界再看芯片名称"
+              },
+              {
+                "href": "#feature/11/detail/r171-retimer-latency-budget",
+                "label": "Retimer延迟怎样用于系统预算：测量端点、SRIS与版本表分开"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           }
         },
         "baseline": {
@@ -3026,61 +3237,198 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。",
         "taskId": "v1-task-02",
         "requiredTaskIds": [
           "v1-task-02",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 171
       },
       {
         "id": "v1-feature-12",
         "featureId": 12,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 172,
+            "evidence": [
+              {
+                "href": "#feature/12/detail/r172-code-layout-versus-wire-order",
+                "label": "从字段布局到线上位序：10bit Symbol、130bit Block与PAM4的单位"
+              },
+              {
+                "href": "#feature/12/detail/r172-pam4-tx-rx-processing-order",
+                "label": "PAM4数据通路：CRC/FEC、条带、扰码、Gray与Precode的先后"
+              },
+              {
+                "href": "#feature/12/detail/r172-throughput-units-and-shared-gate",
+                "label": "Gen1～Gen7带宽口径：编码后预算、TLP区与应用Payload分开"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 172,
+            "evidence": [
+              {
+                "href": "#feature/12/detail/r172-code-layout-versus-wire-order",
+                "label": "从字段布局到线上位序：10bit Symbol、130bit Block与PAM4的单位"
+              },
+              {
+                "href": "#feature/12/detail/r172-pam4-tx-rx-processing-order",
+                "label": "PAM4数据通路：CRC/FEC、条带、扰码、Gray与Precode的先后"
+              },
+              {
+                "href": "#feature/12/detail/r172-throughput-units-and-shared-gate",
+                "label": "Gen1～Gen7带宽口径：编码后预算、TLP区与应用Payload分开"
+              },
+              {
+                "href": "#feature/12/detail/skp-shape-query",
+                "label": "交互查询：当前速率/模式允许这种SKP长度吗"
+              },
+              {
+                "href": "#feature/12/detail/ordered-set-shape-context-query",
+                "label": "查询：OS类型、速率和唤醒入口决定发送结构"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 172,
+            "evidence": [
+              {
+                "href": "#feature/12/detail/r172-code-layout-versus-wire-order",
+                "label": "从字段布局到线上位序：10bit Symbol、130bit Block与PAM4的单位"
+              },
+              {
+                "href": "#feature/12/detail/r172-pam4-tx-rx-processing-order",
+                "label": "PAM4数据通路：CRC/FEC、条带、扰码、Gray与Precode的先后"
+              },
+              {
+                "href": "#feature/12/detail/r172-throughput-units-and-shared-gate",
+                "label": "Gen1～Gen7带宽口径：编码后预算、TLP区与应用Payload分开"
+              },
+              {
+                "href": "#feature/12/detail/ts-classic-symbol-bit-map",
+                "label": "TS1/TS2图：16个Symbol与Training Control逐bit"
+              },
+              {
+                "href": "#feature/12/detail/standard-skp-field-table",
+                "label": "128b/130b Standard SKP：尾部逐字段"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 172,
+            "evidence": [
+              {
+                "href": "#feature/12/detail/r172-code-layout-versus-wire-order",
+                "label": "从字段布局到线上位序：10bit Symbol、130bit Block与PAM4的单位"
+              },
+              {
+                "href": "#feature/12/detail/r172-pam4-tx-rx-processing-order",
+                "label": "PAM4数据通路：CRC/FEC、条带、扰码、Gray与Precode的先后"
+              },
+              {
+                "href": "#feature/12/detail/r172-throughput-units-and-shared-gate",
+                "label": "Gen1～Gen7带宽口径：编码后预算、TLP区与应用Payload分开"
+              },
+              {
+                "href": "#feature/12/detail/parity-reporting-not-retrain",
+                "label": "Parity告警：不是看到不匹配就重训"
+              },
+              {
+                "href": "#feature/12/detail/skp-loopback-gen7-delta",
+                "label": "Loopback SKP：7.0不能直接照抄6.0的成对发送"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 172,
+            "evidence": [
+              {
+                "href": "#feature/12/detail/r172-code-layout-versus-wire-order",
+                "label": "从字段布局到线上位序：10bit Symbol、130bit Block与PAM4的单位"
+              },
+              {
+                "href": "#feature/12/detail/r172-pam4-tx-rx-processing-order",
+                "label": "PAM4数据通路：CRC/FEC、条带、扰码、Gray与Precode的先后"
+              },
+              {
+                "href": "#feature/12/detail/r172-throughput-units-and-shared-gate",
+                "label": "Gen1～Gen7带宽口径：编码后预算、TLP区与应用Payload分开"
+              },
+              {
+                "href": "#feature/12/detail/r85-early-os-version-map",
+                "label": "版本、运行速率与编码三轴表：Gen4设备在低速仍用低速序列"
+              },
+              {
+                "href": "#feature/12/detail/control-skp-versioned-tail",
+                "label": "Control SKP尾部：78h与6.0/7.0字段引用差异"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 172,
+            "evidence": [
+              {
+                "href": "#feature/12/detail/r172-code-layout-versus-wire-order",
+                "label": "从字段布局到线上位序：10bit Symbol、130bit Block与PAM4的单位"
+              },
+              {
+                "href": "#feature/12/detail/r172-pam4-tx-rx-processing-order",
+                "label": "PAM4数据通路：CRC/FEC、条带、扰码、Gray与Precode的先后"
+              },
+              {
+                "href": "#feature/12/detail/r172-throughput-units-and-shared-gate",
+                "label": "Gen1～Gen7带宽口径：编码后预算、TLP区与应用Payload分开"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 172,
+            "evidence": [
+              {
+                "href": "#feature/12/detail/r172-code-layout-versus-wire-order",
+                "label": "从字段布局到线上位序：10bit Symbol、130bit Block与PAM4的单位"
+              },
+              {
+                "href": "#feature/12/detail/r172-pam4-tx-rx-processing-order",
+                "label": "PAM4数据通路：CRC/FEC、条带、扰码、Gray与Precode的先后"
+              },
+              {
+                "href": "#feature/12/detail/r172-throughput-units-and-shared-gate",
+                "label": "Gen1～Gen7带宽口径：编码后预算、TLP区与应用Payload分开"
+              }
+            ],
+            "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 172,
+            "evidence": [
+              {
+                "href": "#feature/12/detail/r172-throughput-units-and-shared-gate",
+                "label": "Base6 Lower SKP共享来源门槛"
+              }
+            ],
+            "note": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。"
           }
         },
         "baseline": {
@@ -3089,13 +3437,16 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。",
         "taskId": "v1-task-03",
         "requiredTaskIds": [
           "v1-task-03",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。"
         ]
       },
       {
@@ -32482,6 +32833,126 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项与原预算、38项历史来源记录保留；3/4/5共享回退阻塞，9复用既有No-EQ措辞问题。",
         "publication": "R169/R170分别本地检查后合并发布R170，线上和视觉结果单列。"
+      },
+      {
+        "round": 171,
+        "kind": "R171 时钟配置位、Lower SKP与Retimer边界复核",
+        "deliverables": [
+          "补Common/Slot/SRIS字段和Function规则、Retimer/Repeater边界及延迟预算；11通过验收，10七维通过但Base6 Lower SKP使能一致性阻塞。"
+        ],
+        "closedDeliverableIds": [
+          "feature-11-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 10,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 10,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 10,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 10,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 10,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 10,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 10,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 11,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 11,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 11,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 11,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 11,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 11,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 11,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 11,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          11
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项与原预算、38项历史来源记录保留；10/12共享旧Lower SKP问题，不能计为两个新来源冲突。",
+        "publication": "先恢复核验R170的线上入口/内容；R171/R172分别检查后合并发布R172。"
+      },
+      {
+        "round": 172,
+        "kind": "R172 编码位序、PAM4数据通路与带宽口径复核",
+        "deliverables": [
+          "补位序/布局对照、PAM4 TX/RX处理链及七代带宽口径；12七维通过，共享Base6 Lower SKP控制来源一致性继续阻塞。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 12,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 12,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 12,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 12,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 12,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 12,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 12,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项与原预算、38项历史来源记录保留；10/12共享旧Lower SKP问题，不能计为两个新来源冲突。",
+        "publication": "先恢复核验R170的线上入口/内容；R171/R172分别检查后合并发布R172。"
       }
     ],
     "backlog": [
@@ -35989,32 +36460,32 @@
       }
     ],
     "nextExecution": {
-      "round": 171,
-      "taskId": "v1-task-10",
+      "round": 173,
+      "taskId": "v1-task-03",
       "featureIds": [
-        10,
-        11,
-        12
+        13,
+        14,
+        15
       ],
-      "goal": "按实际功能名推进10时钟架构、11 Retimer、12编码；来源阻塞单列，不重复重读代替澄清。",
+      "goal": "按固定队列继续13 Flit Mode、14 FEC/CRC、15 L0p；共享Lower SKP来源疑点单列，不重读同页冒充关闭。",
       "reviewRound": 174
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 170,
+      "assessedRound": 172,
       "reestimateRound": 174,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "本窗口验收6/7/8三项、重开3一项，净关闭2项；新通过45维度、撤回1，净增44。累计140/183、1292维度、剩43。3/4/5共享Base6回退疑点；9保留原No-EQ跨位门控问题，PHY产品疑点不重复验收。",
-      "action": "先完成可核正文的10/11及12/13，再FM/FEC/L0p/测试与桥接DMA剩余组；已知来源阻塞单列外部证据清单。原预算已用完，暂无可保证结束的轮数。",
+      "assessment": "原预算耗尽，手动收尾；本轮仅按明确证据通过维度，Lower SKP能力/使能跨表问题保留。",
+      "action": "下轮Flit/FEC/L0p；R174四轮复盘，不扩大功能范围或自动延长预算。",
       "latestProgress": {
-        "round": 170,
+        "round": 172,
         "newAcceptedUnits": 0,
-        "cumulativeAcceptedUnits": 140,
+        "cumulativeAcceptedUnits": 141,
         "newPassedCriteria": 7,
-        "cumulativePassedCriteria": 1292,
+        "cumulativePassedCriteria": 1314,
         "remainingPlannedRounds": 0
       },
       "unacceptedBreakdown": {
@@ -37158,8 +37629,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        169,
-        170
+        171,
+        172
       ],
       "completedRounds": [
         143,
@@ -37189,10 +37660,12 @@
         167,
         168,
         169,
-        170
+        170,
+        171,
+        172
       ],
-      "publication": "checks-before-combined-r170-publication",
-      "note": "每日保持暂停；原预算终点及固定183项不变。"
+      "publication": "checks-before-combined-r172-publication",
+      "note": "每日继续暂停，固定183项与原预算快照保留。"
     },
     "queueAudit": {
       "round": 150,
