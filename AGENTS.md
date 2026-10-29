@@ -238,3 +238,7 @@ R156: manual transaction acceptance; next review R158; daily paused; original bu
 R157: manual transaction acceptance; next review R158; daily paused; original budget snapshot preserved.
 
 R158: manual transaction acceptance; next review R162; daily paused; original budget snapshot preserved.
+
+R159: manual transaction acceptance; next review R162; daily paused; original budget snapshot preserved.
+
+R160: manual transaction acceptance; next review R162; daily paused; original budget snapshot preserved.

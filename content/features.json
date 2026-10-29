@@ -41538,14 +41538,14 @@
     "checks": "确认No Snoop Enable、请求属性和主机策略；特别注意HDMA的SRC_SNOOP/DST_SNOOP字段实际表达No Snoop。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
     "id": 30,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R159按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "2.2.6.5",
@@ -41843,6 +41843,72 @@
         "title": "Attributes提示与实现差异",
         "verification": "核读对应正式版所引正文/图表，所用副本印刷页与PDF物理页一致；仅覆盖所述规则，非整章、全部测试或七代全部修订完成。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.6.5",
+        "page": 161,
+        "pdfPage": 161,
+        "title": "一致性与排序语义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.4",
+        "page": 961,
+        "pdfPage": 961,
+        "title": "逐事务前提",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.6.5",
+        "page": 207,
+        "pdfPage": 207,
+        "title": "类型排除与语义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.4",
+        "page": 1110,
+        "pdfPage": 1110,
+        "title": "Enable与系统cache",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.2",
+        "page": 214,
+        "pdfPage": 214,
+        "title": "UIO Group II一致性",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.15.2",
+        "page": 888,
+        "pdfPage": 888,
+        "title": "AtomicOp保持原子性",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "已展开所引正式版正文；七版No Snoop/TC仅核对基础条款，其他章节与中间修订继续核读。",
@@ -42062,6 +42128,80 @@
           25,
           26
         ]
+      },
+      {
+        "id": "r159-nosnoop-generation-checklist",
+        "title": "No Snoop发送检查：许可、地址未缓存保证及类型限制",
+        "paragraphs": [
+          "复用七版核心语义对照、逻辑Attr位图和策略查询，本轮核Base6.0/7.0 §2.2.6.5及Device Control。No Snoop=0表示期望硬件强制缓存一致性，=1表示不再期望该保证；它允许优化，不要求平台绝不执行snoop，也不保证固定性能收益。",
+          "发送判断分三步：该请求类型是否允许Attr[0]；PCIe Capability+08h Device Control[11]是否允许；是否能保证目标事务地址不存于系统任何cache。Enable默认1并不授权所有DMA包无条件置NS，不能仅凭某CPU核尚未访问就建立系统未缓存保证。VF位为RsvdP，须结合关联PF与设备编程规则核有效设置。",
+          "Configuration、I/O、MSI/MSI-X类Memory请求和未明确许可的Message须清0。NS与RO/IDO不同：NS不改变排序要求，NS=0不撤销合法的RO/IDO放宽，NS=1也不允许同一普通读的完成片段乱序。AtomicOp可以使用NS，但其目标原子性仍必须保证。",
+          "Base7.0另要求同Transaction ID并发的Group II UIO请求具有相同NS；它是特定组的约束，不应套到所有独立Tag或所有FM请求。旧七版表只确认所引核心条文，不代表UIO等后续新增机制完全一样。平台DMA缓存同步、映射属性和缓冲所有权仍须依平台契约处理。"
+        ],
+        "referenceIndices": [
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "含义与操作",
+            "边界与异常"
+          ],
+          "rows": [
+            [
+              "逻辑字段",
+              "Attr[0]",
+              "模式不同需按对应Header定位"
+            ],
+            [
+              "发送许可",
+              "PCIeCap+08h[11]，默认1",
+              "不是所有包自动NS=1"
+            ],
+            [
+              "地址保证",
+              "不存于系统任何cache",
+              "不是只看某CPU核"
+            ],
+            [
+              "配置/I/O/MSI",
+              "NS必须0",
+              "普通Memory分类不足以放行"
+            ],
+            [
+              "UIO Group II同ID",
+              "并发请求NS相同",
+              "普通事务不能照搬此例外"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 30,
+            "detailId": "nosnoop-seven-revisions",
+            "label": "七份Base核心条文"
+          },
+          {
+            "featureId": 30,
+            "detailId": "nosnoop-policy-query",
+            "label": "逐事务条件查询"
+          },
+          {
+            "featureId": 30,
+            "detailId": "nosnoop-cache-timeline",
+            "label": "缓存与所有权推演"
+          },
+          {
+            "featureId": 31,
+            "detailId": "r88-atomic-no-snoop-still-atomic",
+            "label": "NS不取消Atomic原子性"
+          }
+        ]
       }
     ]
   },
@@ -42075,14 +42215,14 @@
     "checks": "核对请求发起、沿途路由、目标执行与Completion；具体控制器开启报文能力也不代表内部RAM自动变成Atomic目标。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
     "id": 31,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R159按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-26",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "6.15",
@@ -42941,6 +43081,105 @@
         "title": "同一个MFD里别的Function支持AtomicOp，不支持的Function仍有解码义务",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R88补核本版CAS返回旧值及MFD/RCiEP完整条款续页；本地印刷/物理页一致，非全章核验。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.15.2",
+        "page": 774,
+        "pdfPage": 774,
+        "title": "顺序、Poison及CA",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.15.2",
+        "page": 775,
+        "pdfPage": 775,
+        "title": "目标及出口阻断",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.15",
+        "page": 887,
+        "pdfPage": 887,
+        "title": "三类能力及可选性",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.15.2",
+        "page": 888,
+        "pdfPage": 888,
+        "title": "ATS、属性和完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.15.2",
+        "page": 889,
+        "pdfPage": 889,
+        "title": "错误和主存目标",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 208,
+        "pdfPage": 208,
+        "title": "Length组合",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 209,
+        "pdfPage": 209,
+        "title": "自然对齐",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1142,
+        "pdfPage": 1142,
+        "title": "能力字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.16",
+        "page": 1147,
+        "pdfPage": 1147,
+        "title": "Requester门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R24已核所列6.0/7.0正文；既有目录定位保留，其他版本与分支继续核读。 R88核早期五类排序表、3→4/5 PASID身份差分与AtomicOp顺序/状态边界；未核中间ECN首次引入。",
@@ -44089,6 +44328,94 @@
           74,
           75
         ]
+      },
+      {
+        "id": "r159-atomic-discovery-and-outcome",
+        "title": "AtomicOp从发现到恢复：能力链、Length及完成状态",
+        "paragraphs": [
+          "复用操作数包图、整数精度计算器、能力查询和早期版本对照，本轮核6.0/7.0正式正文。FetchAdd/Swap支持32/64bit，CAS支持32/64/128bit；CAS请求带compare和swap两个等宽操作数，返回目标旧值。CAS比较不相等仍可正常完成，不能把“不交换”当CA。",
+          "发起前分别确认Requester真实实现、Requester Enable、相关每跳Routing、出口未阻断及目标宽度/地址编程模型。Device Capabilities2+24h[6]为Routing，[7]/[8]为32/64bit全套Completer，[9]仅128bit CAS；Device Control2+28h[6]/[7]分别为Requester Enable/Egress Blocking。Enable可写不证明实际Requester能力。7.0 RP发起条件与6.0字段文字不同，继续使用已有逐版查询，不能统一把RP和EP套同一个门控。",
+          "Length与Type共同确定操作数宽度：FetchAdd/Swap的32/64bit请求Length为1/2DW；CAS的32/64/128bit请求为2/4/8DW。自然对齐按单个操作数大小，CAS访问目标范围不是两个操作数Payload大小。未定义Type/Length组合及对齐违规按相应Malformed规则；形成正确但目标不支持的类型/宽度按UR。",
+          "成功返回旧值后才按业务条件推进依赖请求。AtomicOp为带数据NP，后续Posted或NP可能越过它；要求先观察AtomicOp的依赖请求，必须等对应完成再发。Poisoned AtomicOp在无更高优先错误时回UR且目标不变；执行中不可纠正错误回CA后目标状态由实现决定，不能盲目重发FetchAdd。",
+          "Egress Blocking命中返回UR，但AER应按AtomicOp Egress Blocked分类，不等同普通Unsupported Request。ATS Translated地址还需R/W均1且U=0，ACS隔离继续适用。已有3.0～7.0版本证据不等于已追溯全部首次ECN；CPU原子指令如何导出AtomicOp属于平台契约。"
+        ],
+        "referenceIndices": [
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "含义与操作",
+            "边界与异常"
+          ],
+          "rows": [
+            [
+              "FetchAdd/Swap 32/64",
+              "Length1/2DW，返回旧值",
+              "加法丢弃进位；Swap无条件更新"
+            ],
+            [
+              "CAS32/64/128",
+              "Length2/4/8DW，compare后swap",
+              "对齐按4/8/16B目标范围"
+            ],
+            [
+              "Requester/Router/Completer",
+              "分别发现并检查",
+              "一个能力位不能代表全路径"
+            ],
+            [
+              "Poisoned UR",
+              "无更高优先错误时目标不变",
+              "必须记录Poisoned错误"
+            ],
+            [
+              "执行中CA",
+              "后续目标状态由实现定义",
+              "重发可能重复修改"
+            ],
+            [
+              "出口Blocked+UR",
+              "查看AtomicOp Egress Blocked",
+              "UR状态不是唯一错误证据"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 31,
+            "detailId": "atomic-payload-bit-layout",
+            "label": "已有操作数逐bit图"
+          },
+          {
+            "featureId": 31,
+            "detailId": "atomic-operation-query",
+            "label": "运算及CAS查询"
+          },
+          {
+            "featureId": 31,
+            "detailId": "atomic-capability-query",
+            "label": "能力门控查询"
+          },
+          {
+            "featureId": 31,
+            "detailId": "atomic-root-port-enable-version-difference",
+            "label": "6/7 RP门控差分"
+          },
+          {
+            "featureId": 31,
+            "detailId": "r88-atomic-dependent-request-flow",
+            "label": "依赖请求事件图"
+          }
+        ]
       }
     ]
   },
@@ -44102,14 +44429,14 @@
     "checks": "核对Requester/Completer/Router能力及Device3控制，处理RRS等结果；不能仅修改TLP类型就忽略重试语义。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
     "id": 32,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R160按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "6.32",
@@ -44121,9 +44448,523 @@
         "pdfPage": 857,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.32",
+        "page": 857,
+        "pdfPage": 857,
+        "title": "用途与不可拆分事务",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.32",
+        "page": 858,
+        "pdfPage": 858,
+        "title": "观察粒度和状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.32",
+        "page": 860,
+        "pdfPage": 860,
+        "title": "Requester和重发",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.32",
+        "page": 976,
+        "pdfPage": 976,
+        "title": "用途及事务边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.32",
+        "page": 977,
+        "pdfPage": 977,
+        "title": "粒度与RRS",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.32",
+        "page": 979,
+        "pdfPage": 979,
+        "title": "重发选择",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.32",
+        "page": 980,
+        "pdfPage": 980,
+        "title": "队列用途及编程边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.1",
+        "page": 166,
+        "pdfPage": 166,
+        "title": "32bit地址Type",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.1",
+        "page": 168,
+        "pdfPage": 168,
+        "title": "64bit地址Type",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.2",
+        "page": 214,
+        "pdfPage": 214,
+        "title": "FM形成规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.15",
+        "page": 993,
+        "pdfPage": 993,
+        "title": "Completer及长度编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.2",
+        "page": 1073,
+        "pdfPage": 1073,
+        "title": "Routing字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.9.3",
+        "page": 1075,
+        "pdfPage": 1075,
+        "title": "发起及阻断",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1145,
+        "pdfPage": 1145,
+        "title": "Completer和长度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10",
+        "page": 1231,
+        "pdfPage": 1231,
+        "title": "Device3结构",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.1",
+        "page": 1232,
+        "pdfPage": 1232,
+        "title": "002Fh与Routing",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.10.3",
+        "page": 1235,
+        "pdfPage": 1235,
+        "title": "Requester Enable/BME和Blocking",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.32",
+        "page": 978,
+        "pdfPage": 978,
+        "title": "Switch及RC路径",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.32",
+        "page": 858,
+        "pdfPage": 858,
+        "title": "RRS与特定CA目标不变",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.32",
+        "page": 859,
+        "pdfPage": 859,
+        "title": "Poison、执行错误和路由",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.32",
+        "page": 861,
+        "pdfPage": 861,
+        "title": "排序及用途",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.32",
+        "page": 977,
+        "pdfPage": 977,
+        "title": "不支持目标及RRS",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.32",
+        "page": 978,
+        "pdfPage": 978,
+        "title": "Poison及路由错误",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.32",
+        "page": 979,
+        "pdfPage": 979,
+        "title": "Requester重发",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.32",
+        "page": 980,
+        "pdfPage": 980,
+        "title": "排序与性能",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.32",
+        "page": 981,
+        "pdfPage": 981,
+        "title": "公平性编程边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已定位规范目录",
+    "details": [
+      {
+        "id": "r160-dmwr-transaction-contract",
+        "title": "DMWr是什么：可拒绝的非Posted队列提交，不是普通MWr",
+        "paragraphs": [
+          "DMWr是可选的Non-Posted Memory Request，主要服务共享工作队列等控制接口。多个不合作的软件生产者可向同一队列提交，Completer通过完成状态说明本次是否接受。它携带写数据但需要逐笔Completion；普通Posted MWr通常没有对应事务完成。Base没有统一规定CPU指令或控制寄存器如何触发DMWr，须由平台与设备实现提供。",
+          "一次触发形成一笔请求、目标处理及一笔完成，不允许路由元件把DMWr拆成几次普通写或合并完成。Completer须满足目标操作相对CPU/其它设备访问的原子性约束；成功时还明确规定观察更新粒度不小于min(64B,请求大小)。这不同于“DMA描述符代表的业务全部执行完”：共享队列的SC可表示条目已接受，业务结束仍依设备队列协议。",
+          "7.0 FM Type编码5Bh对应32bit地址、3DW Header Base，7Bh对应64bit地址、4DW Header Base；二者均使用NP资源并按Length带Payload。附加OHC等不计入这里的Base DW数。非UIO请求头形成规则沿用对应NFM要求，BE/TH/TPH要按模式取；不能仅把普通MWr改Type就忽略Tag、能力和返回状态。",
+          "示意流程：确认整个路径和队列允许DMWr→保留请求Tag及Payload上下文→发一笔提交→按SC/RRS/UR/CA处理→由软件/硬件策略决定下一动作。队列暂满可回RRS；Requester可以重试、不重试或改变后续请求，规范不要求每次RRS自动重发。公平性、退避以及共享生产者之间的进展机制由系统编程模型提供。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "含义与操作",
+            "边界与异常"
+          ],
+          "rows": [
+            [
+              "普通MWr",
+              "Posted，正常无对应事务Completion",
+              "Credit/ACK不表示业务结束"
+            ],
+            [
+              "DMWr",
+              "NP带数据，一笔请求/一笔完成",
+              "路由不得拆分或改Payload大小"
+            ],
+            [
+              "FM Type5Bh / 7Bh",
+              "32/64bit地址；Base3/4DW",
+              "OHC及其它开销另计"
+            ],
+            [
+              "SC",
+              "本次按目标编程模型接受/完成",
+              "不等于队列任务已执行"
+            ],
+            [
+              "RRS",
+              "临时不能接受，目标不变",
+              "重试与退避由实现决定"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 32,
+            "detailId": "r160-dmwr-register-map",
+            "label": "能力与控制字段"
+          },
+          {
+            "featureId": 32,
+            "detailId": "r160-dmwr-status-and-version-boundaries",
+            "label": "状态与版本边界"
+          },
+          {
+            "featureId": 21,
+            "detailId": "r154-traffic-credit-and-completion-ledgers",
+            "label": "NP信用与完成账本"
+          },
+          {
+            "featureId": 22,
+            "detailId": "r155-tag-version-and-enable-checklist",
+            "label": "Tag上下文"
+          }
+        ]
+      },
+      {
+        "id": "r160-dmwr-register-map",
+        "title": "DMWr寄存器定位：Device Capabilities2与Device3不能混为一处",
+        "paragraphs": [
+          "先按PCIe Capability链找到PCIe能力基址，读Device Capabilities2的DMWr Completer及长度；再按Extended Capability链找到ID=002Fh、版本1的Device3，读Routing并配置Control3。下面两个基址不同，Device3不是PCIe Capability+某个固定常量。",
+          "PCIe Capability+24h[28]是DMWr Completer Supported；[30:29]表示适用Function最大可接收DMWr长度，00到64B、01到128B、10/11保留。该长度字段也适用于Routing Function，若Routing和Completer均不支持则RsvdP；相关MFD Function须遵守同值报告要求。还须检查适用MPS、4KiB及目标资源解码边界，不可只看长度位。",
+          "Device3+04h[0]是DMWr Request Routing Supported，仅适用于RP与Switch USP/DSP；Device3+08h[0]是Requester Enable，[1]是Egress Blocking，后两位默认0。Requester发起须有真实实现、Requester Enable=1且Command.BME=1；使能位可写本身不证明Requester能力。Blocking置1控制命中该出口的DMWr，不是禁用所有Memory访问。",
+          "Switch任一Port支持DMWr Routing时所有Port都须支持，但RC两个RP均报告Routing并不保证这两个端口之间P2P可达。逐跳同时核能力、长度、出口阻断、地址窗口和设备编程模型。只有目标Completer Supported=1也不足以证明整条路径安全。"
+        ],
+        "referenceIndices": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "含义与操作",
+            "边界与异常"
+          ],
+          "rows": [
+            [
+              "PCIeCap+24h[28]",
+              "Completer Supported，HwInit",
+              "目标能力"
+            ],
+            [
+              "PCIeCap+24h[30:29]",
+              "00≤64B；01≤128B；10/11保留",
+              "适用Router或Completer"
+            ],
+            [
+              "Device3 Header[15:0]",
+              "Extended Capability ID002Fh",
+              "基址与PCIeCap不同"
+            ],
+            [
+              "Device3+04h[0]",
+              "Request Routing Supported",
+              "能力，非发起使能"
+            ],
+            [
+              "Device3+08h[0]",
+              "Requester Enable，默认0",
+              "还需真实实现及BME"
+            ],
+            [
+              "Device3+08h[1]",
+              "Egress Blocking，默认0",
+              "按出口阻断DMWr"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 32,
+            "detailId": "r160-dmwr-transaction-contract",
+            "label": "请求与完成流程"
+          },
+          {
+            "featureId": 48,
+            "detailId": "ecam-address-query",
+            "label": "配置访问基础"
+          }
+        ]
+      },
+      {
+        "id": "r160-dmwr-status-and-version-boundaries",
+        "title": "DMWr异常分支与版本对照：相同CA不保证相同目标后果",
+        "paragraphs": [
+          "临时资源条件可以回RRS，目标必须不变，且这不是错误；Completer不得假定Requester必定重发。支持DMWr的Completer遇到不支持的大小/编程目标或跨不同内部资源边界时按所述CA处理且目标不变；但实际访问中发生不可纠正错误所回CA，目标后续状态由实现决定。不能把所有CA都等同“完全未执行”。",
+          "无更高优先错误时，Poisoned DMWr报告Poisoned TLP Received，回UR或RRS，目标不变。路由入口发现一笔请求跨两个不同目的地解码边界，不能拆开转发，应回UR；出口阻断产生DMWr Egress Blocked并回UR，non-fatal时走Advisory Non-Fatal处理。状态码、错误类型和检测位置分别记录。",
+          "MFD任一Function支持Completer或Routing时，所有带Memory BAR的Function须能解码形成正确的DMWr，对不支持者回UR，不能一概当Malformed。7.0还明确非DMWr Completer按不支持Request Type规则处理；旧版NFM元件可能将该Reserved Type按Malformed处理。须在发起前确认路径，不能试发后把任何UR都解释成“队列满了”。",
+          "6.0与7.0所核长度能力均为64/128B编码，Routing/Requester/Blocking字段的基本职责相同，Device3章节号和页码不同。7.0在§6.32明确补述Completer和长度报告、不支持目标处理及UIO相关边界；不是据7.0最大速率推导DMWr首次引入。Gen1～Gen5和中间ECN的首次引入来源未在本轮完成追溯，保持未知，不宣称旧版一律不支持。",
+          "DMWr按带数据NP排序，Posted可越过它，DMWr与MRd之间也无普遍先后保证。需要设备先看到提交再发后续依赖访问时，由完成状态及编程模型推进；普通读回不是通用的DMWr强制执行手段。规范不推荐它作大块数据传输，原因包括完成开销、可能延期和排序约束，而非表示Posted写在所有场景都可替代队列提交。"
+        ],
+        "referenceIndices": [
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "含义与操作",
+            "边界与异常"
+          ],
+          "rows": [
+            [
+              "SC",
+              "按目标编程模型成功",
+              "业务后续状态另查"
+            ],
+            [
+              "RRS临时拒绝",
+              "目标不变；非错误",
+              "Requester可选择不重试"
+            ],
+            [
+              "不支持资源/边界CA",
+              "所述情形目标不变",
+              "不可泛化所有CA"
+            ],
+            [
+              "访问中不可纠正错误CA",
+              "目标状态由实现决定",
+              "不能无条件重发"
+            ],
+            [
+              "Poisoned DMWr",
+              "UR或RRS，目标不变",
+              "无更高优先错误时"
+            ],
+            [
+              "入口跨目的地 / 出口阻断",
+              "UR / Blocked加UR",
+              "错误源和位置不同"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 32,
+            "detailId": "r160-dmwr-register-map",
+            "label": "发起前核路径"
+          },
+          {
+            "featureId": 31,
+            "detailId": "r159-atomic-discovery-and-outcome",
+            "label": "AtomicOp错误处理对照"
+          },
+          {
+            "featureId": 27,
+            "detailId": "ordering-four-by-four-matrix",
+            "label": "普通排序矩阵"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Unordered IO（UIO）",
