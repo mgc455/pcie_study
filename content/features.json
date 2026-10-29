@@ -9,14 +9,14 @@
     "checks": "先画出主机、桥、设备连接图，再确认device_type及Type0/Type1配置头，不能只看顶层模块名。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 1,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R163按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-21",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "1.3",
@@ -72,6 +72,105 @@
         "title": "三层逻辑结构",
         "verification": "已核读所引6.0正式版相关正文；本次基础查漏不代表完整子条款或逐代差异已核完。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "1.3.1",
+        "page": 103,
+        "pdfPage": 103,
+        "title": "RC与P2P角色",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "1.3.2",
+        "page": 104,
+        "pdfPage": 104,
+        "title": "Endpoint定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "1.3.2.3",
+        "page": 106,
+        "pdfPage": 106,
+        "title": "RCiEP限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "1.3.3",
+        "page": 107,
+        "pdfPage": 107,
+        "title": "Switch转发",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "1.3.1",
+        "page": 142,
+        "pdfPage": 142,
+        "title": "层级与RC",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "1.3.1",
+        "page": 143,
+        "pdfPage": 143,
+        "title": "P2P拆分例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "1.3.2.3",
+        "page": 145,
+        "pdfPage": 145,
+        "title": "RCiEP和Switch",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "1.3.4",
+        "page": 146,
+        "pdfPage": 146,
+        "title": "RCEC角色",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.2",
+        "page": 1103,
+        "pdfPage": 1103,
+        "title": "Device/Port Type编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "本次已补6.0所引基础规则；其余条款与逐版差异继续核读。",
@@ -90,6 +189,85 @@
           3,
           4
         ]
+      },
+      {
+        "id": "r163-topology-role-and-request-path",
+        "title": "EP/RP/USP/DSP定位：拓扑角色与单笔事务角色分开",
+        "paragraphs": [
+          "Root Complex连接CPU/内存与I/O层级，Root Port是其向外建立层级域的端口；Switch的USP朝向根，DSP朝向下级分支。上游/下游按拓扑命名，不随这拍数据方向反转。Endpoint提供Function，可发请求，也可作为请求目标；不能把EP固定称为只接收的“从机”。",
+          "例：主机读设备BAR，Requester在主机侧、Completer在目标设备；设备DMA读主存时，设备成为Requester，主机内存路径成为Completer。请求沿地址/ID等规则路由，Completion按关联信息返回；Switch端口通常转发这笔事务，不因包从DSP进入就变成该笔业务Requester。链路级信用、重放等则分别在相邻端口之间维护。",
+          "软件应先找到PCIe Capability，读相对+02h[7:4] Device/Port Type。Base7.0编码0=PCIe EP，1=Legacy EP，4=RP，5=Switch USP，6=Switch DSP，9=RCiEP，Ah=RCEC。Type00h/01h配置头布局与该字段相关，但它们不是配置Request Type0/1的同一概念；同一多Function设备中的不同Function可以有不同类型。",
+          "RCiEP集成在RC内部，不应虚构一条对外可训练链路去读它的LTSSM。所核6.0/7.0规定它不实现Link Capabilities/Status/Control及对应2系列寄存器，也不实现ASPM；不能把无这些寄存器直接诊断为外接EP掉链。RCEC是可选的RCiEP错误/PME收集角色，不是新的PCIe Switch。",
+          "Switch对软件表现为多个虚拟PCI桥；除规范明确例外，转发不允许将一个TLP拆成更小TLP。RC跨RP的P2P可选，且可依规则接管/拆分某些请求，不等同Switch的限制。DMWr不可拆，7.0 UIO写只允许在64B自然边界拆分，VDM还有限制。两个RP都存在不保证任意端口对P2P；可达性仍核地址窗口、能力、ACS和平台规则。",
+          "本轮角色与字段正文绑定6.0/7.0，复用原拓扑/分层入口。不同Base的BAR、端点子类型及UIO等要求不能由上述共同角色名称推断完全一致；首次ECN链、平台内部互连和完整P2P路由验证不在此次验收范围。"
+        ],
+        "referenceIndices": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "功能与判读",
+            "边界/异常"
+          ],
+          "rows": [
+            [
+              "RP / Switch USP / DSP",
+              "根端口 / 朝根 / 朝下级",
+              "端口名不随包方向变化"
+            ],
+            [
+              "Requester / Completer",
+              "按当前事务确定发起和目标",
+              "EP可兼有两种角色"
+            ],
+            [
+              "PCIeCap+02h[7:4]",
+              "0 EP、1 Legacy、4 RP、5 USP、6 DSP",
+              "9 RCiEP、A RCEC"
+            ],
+            [
+              "RCiEP",
+              "内部Function，无外接Link寄存器",
+              "不是外接EP掉链"
+            ],
+            [
+              "Switch / RC跨RP",
+              "通常不拆TLP / 按规则可选P2P",
+              "DMWr及UIO等有独立限制"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 1,
+            "detailId": "basics-topology-reading-order",
+            "label": "原拓扑与三层阅读入口"
+          },
+          {
+            "featureId": 17,
+            "detailId": "r153-memory-transaction-checklist",
+            "label": "MRd/MWr去程与回程"
+          },
+          {
+            "featureId": 18,
+            "detailId": "r153-config-routing-and-offset",
+            "label": "配置Request Type0/1"
+          },
+          {
+            "featureId": 32,
+            "detailId": "r160-dmwr-transaction-contract",
+            "label": "DMWr不可拆分"
+          }
+        ]
       }
     ]
   },
@@ -103,14 +281,14 @@
     "checks": "同时记录最大宽度与协商宽度；降宽时检查连接、lane训练、时钟和信号质量。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 2,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R163按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "1",
@@ -133,9 +311,253 @@
         "pdfPage": 307,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "1.2",
+        "page": 30,
+        "pdfPage": 30,
+        "title": "早期Lane与宽度列表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "1.2",
+        "page": 102,
+        "pdfPage": 102,
+        "title": "Lane和对称性",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "1.2",
+        "page": 141,
+        "pdfPage": 141,
+        "title": "Lane及带宽基础",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.6",
+        "page": 1117,
+        "pdfPage": 1117,
+        "title": "Maximum Link Width",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.6",
+        "page": 1118,
+        "pdfPage": 1118,
+        "title": "合法宽度编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.8",
+        "page": 1127,
+        "pdfPage": 1127,
+        "title": "VF状态归属",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.8",
+        "page": 1129,
+        "pdfPage": 1129,
+        "title": "当前协商与L0p",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1124,
+        "pdfPage": 1124,
+        "title": "自主降宽例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "1.2",
+        "page": 141,
+        "pdfPage": 141,
+        "title": "表1-1速率、调制、编码及Lane",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "1.2",
+        "page": 102,
+        "pdfPage": 102,
+        "title": "x8单方向原始带宽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "已定位规范目录",
+    "details": [
+      {
+        "id": "r163-lane-link-width-registers",
+        "title": "Lane到Link：差分对数量、能力宽度与协商宽度",
+        "paragraphs": [
+          "一条Lane含一对TX差分信号和一对RX差分信号，支持两个方向同时传输；因此按数据差分信号计，一条Lane有4根导线，不包括参考时钟、复位和其它边带。xN表示每方向N条Lane聚合，不是N个相互独立的PCIe设备。收发宽度须对称，x16每方向16对差分信号。",
+          "物理连接器大小、芯片实现最大宽度、板上实际布线宽度、当前协商宽度分别记录。PCIe Capability+0Ch Link Capabilities[9:4] Maximum Link Width是实现能力，允许大于实际连接的Lane数；+12h Link Status[9:4] Negotiated Link Width才是链路已协商值。把一个x16外形插槽跑成x4，不足以单凭外形认定协议错误。",
+          "Base7.0当前宽度报告包括初始化之后的变化（如L0p）；Device3 Status中的Initial Link Width则记录初始训练宽度，不能把初始值当所有时刻的当前值。Link未Up时Current Link Speed/Negotiated Width的值未定义；VF局部Link Status为RsvdZ，应核关联PF，RCiEP不具备这些外接Link寄存器。",
+          "所核6.0/7.0常用宽度为x1/x2/x4/x8/x16，7.0 Maximum/Negotiated字段编码1/2/4/8/16，其它编码保留。1.0a p30正文还列过x12/x32，不能把早期列表直接写成7.0该字段合法值，也不由两份快照推断中间哪次ECN删除了它们。",
+          "宽度降低可能来自实际布线、训练结果、可靠性恢复或受支持的动态省电机制。诊断先核双方能力、布线和当前状态，再看LTSSM、Lane错误、均衡及L0p控制；一次较窄状态快照不证明必然是坏Lane。Hardware Autonomous Width Disable仍允许为纠正不可靠链路而降宽，不是永久锁定宽度的承诺。"
+        ],
+        "referenceIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "功能与判读",
+            "边界/异常"
+          ],
+          "rows": [
+            [
+              "一条Lane",
+              "TX1差分对+RX1差分对",
+              "共4根数据线，边带另计"
+            ],
+            [
+              "PCIeCap+0Ch[9:4]",
+              "Maximum Link Width，RO",
+              "能力可大于实际布线"
+            ],
+            [
+              "PCIeCap+12h[9:4]",
+              "Negotiated Link Width，RO",
+              "未Up时未定义；含后续变化"
+            ],
+            [
+              "x16插槽外形",
+              "不保证电气布线x16",
+              "还需核主板/器件连接"
+            ],
+            [
+              "1.0a vs 7.0",
+              "早期正文含x12/x32；7.0字段不含",
+              "不是首次变更时间结论"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 1,
+            "detailId": "r163-topology-role-and-request-path",
+            "label": "先确认Function角色"
+          },
+          {
+            "featureId": 3,
+            "detailId": "speed-supported-target-current",
+            "label": "能力、目标与当前速率"
+          },
+          {
+            "featureId": 2,
+            "detailId": "r163-lane-bandwidth-accounting",
+            "label": "速率乘宽度怎么算"
+          }
+        ]
+      },
+      {
+        "id": "r163-lane-bandwidth-accounting",
+        "title": "按Lane算带宽：单向、编码后与Payload分开",
+        "paragraphs": [
+          "单位统一用十进制GB/s。单向原始速率=标称GT/s×Lane数÷8；双向合计再乘2，但不能把这个合计当成某一方向可用吞吐。每Lane本身已含收发两方向，不能在计算单向时先额外翻倍。",
+          "2.5/5GT/s的8b/10b数据流，单向去编码开销后分别是每Lane0.25/0.5GB/s；8/16/32GT/s的128b/130b数据流按128/130换算。它们仍不扣TLP/DLLP、Header、间隔和其它实际开销，不能标作应用Payload吞吐保证。",
+          "64/128GT/s的PAM4标称GT/s已计每符号2bit，不能再乘2。其1b/1b去线编码开销值与实际FLIT可用TLP/Payload容量不同：还存在FLIT内控制、CRC/FEC以及TLP头等开销。也不要把Gen3～5的128/130系数直接用于64/128GT/s。",
+          "例：2.5GT/s x8单向原始20Gbit/s=2.5GB/s，8b/10b后2GB/s；32GT/s x4单向原始16GB/s，128/130后约15.754GB/s；128GT/s x16单向原始256GB/s，双向合计512GB/s，均不是设备DMA实测有效载荷数。当前宽度、速率、模式和事务尺寸必须同时记录。"
+        ],
+        "referenceIndices": [
+          10,
+          11
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "功能与判读",
+            "边界/异常"
+          ],
+          "rows": [
+            [
+              "2.5GT/s x8",
+              "单向原始2.5GB/s；编码后2GB/s",
+              "Payload更低且取决于业务"
+            ],
+            [
+              "32GT/s x4",
+              "单向原始16GB/s；128/130后≈15.754GB/s",
+              "不是持续DMA保证"
+            ],
+            [
+              "128GT/s x16",
+              "单向原始256GB/s",
+              "已计PAM4每符号2bit"
+            ],
+            [
+              "同例双向合计",
+              "512GB/s",
+              "不能当单方向带宽"
+            ],
+            [
+              "64/128GT/s FLIT",
+              "原始/编码后不等于Payload",
+              "不用128/130，也不重复乘2"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 2,
+            "detailId": "r163-lane-link-width-registers",
+            "label": "先取当前宽度"
+          },
+          {
+            "featureId": 3,
+            "detailId": "speed-supported-target-current",
+            "label": "速率能力与当前结果"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Gen1～Gen7 速率协商",
@@ -147,7 +569,7 @@
     "checks": "分别读取双方的 Link Capabilities/Supported Link Speeds、目标速率及 Link Status 中的当前速率和宽度，并检查训练与均衡失败原因。不能仅看设备宣传的 Gen7 就认为当前工作在 128 GT/s；同样不能仅凭最高代际断言支持 ACS、ATS 或 SR-IOV。带宽按单向/双向、lane 数、编码和协议开销分别计算。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 3,
-    "status": "选定早期Recovery/L0p细则已展开 · 持续逐版核对",
+    "status": "一期已验收：R164按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG Gen1～3 速率与编码 FAQ",
@@ -158,7 +580,7 @@
         "url": "https://pcisig.com/faq?field_category_value%5B%5D=pci_express_7.0"
       }
     ],
-    "reviewed": "2026-10-24",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "4",
@@ -731,6 +1153,204 @@
         "title": "R78 早期Recovery、切速、均衡与EI选定正文",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R78核Base2.0、3.0及4.0 Version1.0所引正式正文/续页；视觉核3.0 p236表4-11及4.0 p331脚注58。本地印刷/物理页一致。仅所列规则，非全LTSSM、中间修订/ECN或硬件验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.18",
+        "page": 998,
+        "pdfPage": 998,
+        "title": "旧Vector的64GT/s与保留",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.5.3.19",
+        "page": 1001,
+        "pdfPage": 1001,
+        "title": "旧Target语义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.6",
+        "page": 1117,
+        "pdfPage": 1117,
+        "title": "Max速率编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.8",
+        "page": 1128,
+        "pdfPage": 1128,
+        "title": "Current速率编码",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.18",
+        "page": 1150,
+        "pdfPage": 1150,
+        "title": "第一Vector及扩展指示",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.18",
+        "page": 1152,
+        "pdfPage": 1152,
+        "title": "旧设备兼容",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.19",
+        "page": 1153,
+        "pdfPage": 1153,
+        "title": "Target语义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.19",
+        "page": 1154,
+        "pdfPage": 1154,
+        "title": "1000b与USP角色",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.8.2",
+        "page": 1215,
+        "pdfPage": 1215,
+        "title": "Vector2 bit0",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "page": 502,
+        "pdfPage": 502,
+        "title": "EI等待与改频",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "page": 503,
+        "pdfPage": 503,
+        "title": "回退与Detect",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 589,
+        "pdfPage": 589,
+        "title": "EI等待入口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 590,
+        "pdfPage": 590,
+        "title": "回退及48/96ms",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 591,
+        "pdfPage": 591,
+        "title": "Detect及状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1124,
+        "pdfPage": 1124,
+        "title": "Flit Mode Disable",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1126,
+        "pdfPage": 1126,
+        "title": "Retrain竞态建议",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.8",
+        "page": 1129,
+        "pdfPage": 1129,
+        "title": "Training角色及带宽状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.19",
+        "page": 1154,
+        "pdfPage": 1154,
+        "title": "自主切速禁用例外",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R65核1.0a/2.0 Recovery、6.0/7.0 L0p选定正文和字段；保留中间修订/ECN、6.0平局及软件控制表文差异。非七代整章完成。",
@@ -1322,6 +1942,162 @@
           36,
           37,
           38
+        ]
+      },
+      {
+        "id": "r164-gen7-vector2-speed-fields",
+        "title": "Gen7速率发现：Vector2与1000b编码，不能直接填“7”",
+        "paragraphs": [
+          "复用原有七代Recovery细则和Base5速率快照查询，本轮补Base7.0正式寄存器差异。Max/Supported/Target/Current各有职责：能力集合、目标上限和当前结果不能互相替代；Base版本与当前GT/s也不是同一个维度。",
+          "Base7.0 Link Capabilities2相对PCIeCap+2Ch[7:1]为Supported Link Speeds Vector。其逻辑bit0～5分别对应2.5/5/8/16/32/64GT/s，逻辑bit6表示128GT/s及以上还须查看新增128GT/s Extended Capability中+04h[7:0] Vector2；该版Vector2只有bit0定义128GT/s，bit7:1为RsvdP。逻辑bit编号与整个32bit寄存器bit位置不要混淆。",
+          "7.0 Max Link Speed（PCIeCap+0Ch[3:0]）、Current（+12h[3:0]）及Target（+30h[3:0]）的编码1～6指向第一Vector逻辑bit0～5；0111b保留，1000b指Vector2 bit0，即128GT/s。9～F字段编码虽指向Vector2后续bit，但这些Vector2 bit在本版保留，不是已经定义的更高速率。",
+          "6.0旧Vector最高定义64GT/s，bit6保留；7.0以Vector2扩展，不可把TLS数值直接理解成Gen编号。软件应优先按实际支持向量发现速率，旧设备无Link Capabilities2或向量为0时另按规范早期兼容规则处理，不把保留或不存在的寄存器当成支持。",
+          "Target主要给DSP设运行速率上限；USP在不处于Compliance时允许无效果，MFD相关USP通常由Function0控制。写不支持目标值结果未定义；Target写入本身不保证立刻切速，Current在Link未Up时未定义。旧Base5查询仍按该版范围运行，不被本条扩展成Gen7字段解码器。"
+        ],
+        "referenceIndices": [
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "功能与判读",
+            "边界/异常"
+          ],
+          "rows": [
+            [
+              "编码0001～0110",
+              "2.5/5/8/16/32/64GT/s",
+              "指第一Vector逻辑bit0～5"
+            ],
+            [
+              "编码0111",
+              "Base7.0保留",
+              "不是128GT/s"
+            ],
+            [
+              "编码1000",
+              "Vector2 bit0=128GT/s",
+              "不是把Gen编号7写入"
+            ],
+            [
+              "Vector2 bit7:1",
+              "Base7.0 RsvdP",
+              "不声明未来速率已定义"
+            ],
+            [
+              "Current / Target",
+              "状态 / 目标上限",
+              "写目标不等于状态立即改变"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 3,
+            "detailId": "speed-register-query",
+            "label": "既有Base5限定查询"
+          },
+          {
+            "featureId": 3,
+            "detailId": "speed-vector-versus-max",
+            "label": "向量优先原则"
+          },
+          {
+            "featureId": 3,
+            "detailId": "speed-target-role-multifunction",
+            "label": "DSP/USP与Function0"
+          },
+          {
+            "featureId": 2,
+            "detailId": "r163-lane-bandwidth-accounting",
+            "label": "速率与宽度计算"
+          }
+        ]
+      },
+      {
+        "id": "r164-speed-change-and-diagnostic-checklist",
+        "title": "切速与降速检查：训练动作、状态证据与6/7回退差分",
+        "paragraphs": [
+          "按已有Gen1/Gen2/Gen3～7条目查相应状态和计数，不把后版Recovery.Speed/Equalization分支强加到1.0a。成功切速以双方本次通告的公共最高速率为准，不等于两端标称最大速率或仅写入的Target值；链路已在最高共同速率时也可经过Recovery.Speed而不改速。",
+          "6.0/7.0所核Recovery.Speed须等RX Lane进入Electrical Idle后才可改工作频率；其后成功协商至少800ns，失败至少6µs，额外等待上限1ms。起算点不是软件写寄存器时刻。EIOS、Electrical Idle推断及完整退出条件按具体编码和该版状态条目核，不把这些最小值当作整个训练总时长。",
+          "7.0依次判成功协商、同次Recovery第二次进入Speed回到入口速率、此前编码1b/1b回退32GT/s、其余回退2.5GT/s；6.0无该1b/1b默认32GT/s分支。Speed到Detect也有7.0条件式48/96ms差分，参照旧逐条件表，不能用一个“训练超时48ms”覆盖所有模式。",
+          "软件变更控制并要求Retrain时，7.0实现注释建议先设置参数而不置Retrain，轮询适用DSP的Link Training=0，再仅置Retrain而不改其它Link Control字段，以避免已有Recovery/Configuration使用旧参数的竞态。必须按平台管理契约操作；此处只解释步骤，本轮不写真实硬件。",
+          "读日志时记录Current Speed、Negotiated Width、Link Up/DL状态、训练状态、双方支持向量、目标及相应速率EQ状态。Hardware Autonomous Speed Disable不阻止纠正不可靠链路的降速，也不阻止初始升到最高共同速率；这不是永久锁速开关。Gen7的Link Control中Flit Mode Disable字段禁FM也使64GT/s及以上不可用，其变化在下次Link Up生效，且不取消MUST@FLIT能力义务。"
+        ],
+        "referenceIndices": [
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69
+        ],
+        "table": {
+          "columns": [
+            "对象/字段",
+            "功能与判读",
+            "边界/异常"
+          ],
+          "rows": [
+            [
+              "RX进入EI后",
+              "才允许改频；随后800ns或6µs最小等待",
+              "不是软件写入后的计时"
+            ],
+            [
+              "Recovery.Speed",
+              "可能变速，也可能同速或回退",
+              "结合入口状态/本次通告"
+            ],
+            [
+              "7.0先前1b/1b的默认失败分支",
+              "回退32GT/s",
+              "不回填为6.0要求"
+            ],
+            [
+              "先参数→等训练空闲→Retrain",
+              "规范建议的竞态规避流程",
+              "不是所有角色都可轮询同一Training位"
+            ],
+            [
+              "禁自主变速 / 禁FM",
+              "仍有可靠性例外 / 限制高速模式",
+              "不是永久锁速或取消MUST@FLIT"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 3,
+            "detailId": "speed-idle-wait-matrix",
+            "label": "EI等待条件表"
+          },
+          {
+            "featureId": 3,
+            "detailId": "speed-base6-base7-fallback",
+            "label": "回退差分"
+          },
+          {
+            "featureId": 3,
+            "detailId": "speed-detect-timeout-version-table",
+            "label": "Detect超时条件表"
+          },
+          {
+            "featureId": 3,
+            "detailId": "r78-rcfg-query",
+            "label": "早期TS2门槛查询"
+          }
         ]
       }
     ]
