@@ -1,8 +1,8 @@
 {
   "nextFeatureIds": [
-    33,
-    34,
-    35
+    1,
+    2,
+    3
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,11 +49,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-29",
-    "edition": "2026-10-29-r160",
+    "edition": "2026-10-29-r162",
     "featureIds": [
-      32
+      34,
+      35
     ],
-    "nextTrack": "UIO/Prefix/OHC；R162总结"
+    "nextTrack": "链路1/2/3，随后PHY174/175/176；R166总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -343,13 +344,13 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 102,
-    "lastReviewEdition": "2026-10-29-r158",
-    "lastReviewId": "r155-r158",
+    "completedTotal": 104,
+    "lastReviewEdition": "2026-10-29-r162",
+    "lastReviewId": "r159-r162",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
   },
   "stageReviews": [
@@ -1284,10 +1285,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 70,
+    "completedRounds": 72,
     "remainingPlannedRounds": 0,
-    "nextRound": 161,
-    "nextReviewRound": 162,
+    "nextRound": 163,
+    "nextReviewRound": 166,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -4650,47 +4651,155 @@
         "featureId": 33,
         "group": "事务与数据传输",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 161,
+            "evidence": [
+              {
+                "href": "#feature/33/detail/r161-uio-enable-path-checklist",
+                "label": "UIO启用检查：全路径FM、Device3与SVC各管一层"
+              },
+              {
+                "href": "#feature/33/detail/r161-uio-completion-accounting",
+                "label": "UIO完成核销表：DW总账、状态归并与超时结果未知"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 161,
+            "evidence": [
+              {
+                "href": "#feature/33/detail/r161-uio-enable-path-checklist",
+                "label": "UIO启用检查：全路径FM、Device3与SVC各管一层"
+              },
+              {
+                "href": "#feature/33/detail/r161-uio-completion-accounting",
+                "label": "UIO完成核销表：DW总账、状态归并与超时结果未知"
+              },
+              {
+                "href": "#feature/33/detail/uio-boundary-split-query",
+                "label": "查询：256B/4KB边界、MPS/MRRS与64-bit地址拆分"
+              },
+              {
+                "href": "#feature/33/detail/uio-timeout-trace-query",
+                "label": "查询：同一UIO Transaction ID的发送、DW完成和超时时间线"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 161,
+            "evidence": [
+              {
+                "href": "#feature/33/detail/r161-uio-enable-path-checklist",
+                "label": "UIO启用检查：全路径FM、Device3与SVC各管一层"
+              },
+              {
+                "href": "#feature/33/detail/r161-uio-completion-accounting",
+                "label": "UIO完成核销表：DW总账、状态归并与超时结果未知"
+              },
+              {
+                "href": "#feature/33/detail/uio-request-header-maps",
+                "label": "原创包图：UIO读/写128-bit基础头及每个字段位置"
+              },
+              {
+                "href": "#feature/33/detail/uio-capability-and-enable-fields",
+                "label": "能力、发起使能和VC配置是三层：不能只看一个UIO位"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 161,
+            "evidence": [
+              {
+                "href": "#feature/33/detail/r161-uio-enable-path-checklist",
+                "label": "UIO启用检查：全路径FM、Device3与SVC各管一层"
+              },
+              {
+                "href": "#feature/33/detail/r161-uio-completion-accounting",
+                "label": "UIO完成核销表：DW总账、状态归并与超时结果未知"
+              },
+              {
+                "href": "#feature/33/detail/uio-receive-disposition-query",
+                "label": "查询：已分类接收问题对应的丢弃、FC更新与完成责任"
+              },
+              {
+                "href": "#feature/33/detail/uio-matrix-explorer",
+                "label": "查询：基础/IDE越过矩阵与两角色接收依赖矩阵"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 161,
+            "evidence": [
+              {
+                "href": "#feature/33/detail/r161-uio-enable-path-checklist",
+                "label": "UIO启用检查：全路径FM、Device3与SVC各管一层"
+              },
+              {
+                "href": "#feature/33/detail/r161-uio-completion-accounting",
+                "label": "UIO完成核销表：DW总账、状态归并与超时结果未知"
+              },
+              {
+                "href": "#feature/33/detail/uio-request-version-scope",
+                "label": "本组UIO细规则绑定Base7.0，不能按当前Gen编号自行外推"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 161,
+            "evidence": [
+              {
+                "href": "#feature/33/detail/r161-uio-enable-path-checklist",
+                "label": "UIO启用检查：全路径FM、Device3与SVC各管一层"
+              },
+              {
+                "href": "#feature/33/detail/r161-uio-completion-accounting",
+                "label": "UIO完成核销表：DW总账、状态归并与超时结果未知"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 161,
+            "evidence": [
+              {
+                "href": "#feature/33/detail/r161-uio-enable-path-checklist",
+                "label": "UIO启用检查：全路径FM、Device3与SVC各管一层"
+              },
+              {
+                "href": "#feature/33/detail/r161-uio-completion-accounting",
+                "label": "UIO完成核销表：DW总账、状态归并与超时结果未知"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 161,
+            "evidence": [
+              {
+                "href": "#feature/33/detail/r161-uio-enable-path-checklist",
+                "label": "UIO启用检查：全路径FM、Device3与SVC各管一层"
+              },
+              {
+                "href": "#feature/33/detail/r161-uio-completion-accounting",
+                "label": "UIO完成核销表：DW总账、状态归并与超时结果未知"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           }
         },
         "baseline": {
@@ -4699,61 +4808,130 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。",
         "taskId": "v1-task-04",
         "requiredTaskIds": [
           "v1-task-04",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 161
       },
       {
         "id": "v1-feature-34",
         "featureId": 34,
         "group": "事务与数据传输",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/34/detail/r162-prefix-pasid-receive-checklist",
+                "label": "Prefix与PASID收发检查：顺序、数量、能力和模式转换"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/34/detail/r162-prefix-pasid-receive-checklist",
+                "label": "Prefix与PASID收发检查：顺序、数量、能力和模式转换"
+              },
+              {
+                "href": "#feature/34/detail/prefix-sequence-query",
+                "label": "结构查询：Local/End-End顺序、Header存在性和PASID重复"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/34/detail/r162-prefix-pasid-receive-checklist",
+                "label": "Prefix与PASID收发检查：顺序、数量、能力和模式转换"
+              },
+              {
+                "href": "#feature/34/detail/pasid-prefix-bit-layout",
+                "label": "PASID Prefix逐bit图：91h、PMR/ER与20bit PASID"
+              },
+              {
+                "href": "#feature/34/detail/prefix-type-and-count-table",
+                "label": "子类型表与数量：最多4个只针对End-End，不是全部Local+End-End合计"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/34/detail/r162-prefix-pasid-receive-checklist",
+                "label": "Prefix与PASID收发检查：顺序、数量、能力和模式转换"
+              },
+              {
+                "href": "#feature/34/detail/prefix-receiver-capacity-and-role",
+                "label": "接收端数量上限与不支持类型：Root Port和其它Function不能一概而论"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/34/detail/r162-prefix-pasid-receive-checklist",
+                "label": "Prefix与PASID收发检查：顺序、数量、能力和模式转换"
+              },
+              {
+                "href": "#feature/34/detail/pasid-moves-to-ohc-not-ohce",
+                "label": "PASID到FM不搬进OHC-E：A1/A4与PV才是相应表示"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/34/detail/r162-prefix-pasid-receive-checklist",
+                "label": "Prefix与PASID收发检查：顺序、数量、能力和模式转换"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/34/detail/r162-prefix-pasid-receive-checklist",
+                "label": "Prefix与PASID收发检查：顺序、数量、能力和模式转换"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/34/detail/r162-prefix-pasid-receive-checklist",
+                "label": "Prefix与PASID收发检查：顺序、数量、能力和模式转换"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           }
         },
         "baseline": {
@@ -4762,61 +4940,130 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。",
         "taskId": "v1-task-03",
         "requiredTaskIds": [
           "v1-task-03",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 162
       },
       {
         "id": "v1-feature-35",
         "featureId": 35,
         "group": "事务与数据传输",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/35/detail/r162-ohc-parse-and-support-checklist",
+                "label": "OHC解析与支持表：A/B/C/E排列、E尺寸及7.0能力编码"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/35/detail/r162-ohc-parse-and-support-checklist",
+                "label": "OHC解析与支持表：A/B/C/E排列、E尺寸及7.0能力编码"
+              },
+              {
+                "href": "#feature/35/detail/ohce-packing-query",
+                "label": "逐DW查询：有效内容、No Entry、连续性和最小E尺寸"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/35/detail/r162-ohc-parse-and-support-checklist",
+                "label": "OHC解析与支持表：A/B/C/E排列、E尺寸及7.0能力编码"
+              },
+              {
+                "href": "#feature/35/detail/ohce-dword-format",
+                "label": "OHC-E每DW逐bit：格式半byte与End-End子类型不能当原91h Prefix"
+              },
+              {
+                "href": "#feature/35/detail/ohc-presence-order-and-type",
+                "label": "OHC存在位与排列：A/B/C独立，E长度是2bit编码"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/35/detail/r162-ohc-parse-and-support-checklist",
+                "label": "OHC解析与支持表：A/B/C/E排列、E尺寸及7.0能力编码"
+              },
+              {
+                "href": "#feature/35/detail/ohce-unsupported-role-fc-matrix",
+                "label": "Base7.0不支持OHC-E的转发分支：按PR/NPR/CPL，不一律回UR"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/35/detail/r162-ohc-parse-and-support-checklist",
+                "label": "OHC解析与支持表：A/B/C/E排列、E尺寸及7.0能力编码"
+              },
+              {
+                "href": "#feature/35/detail/prefix-ohce-six-seven-evidence",
+                "label": "6.0/7.0对照：稳定布局与新增明确文字分开"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/35/detail/r162-ohc-parse-and-support-checklist",
+                "label": "OHC解析与支持表：A/B/C/E排列、E尺寸及7.0能力编码"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/35/detail/r162-ohc-parse-and-support-checklist",
+                "label": "OHC解析与支持表：A/B/C/E排列、E尺寸及7.0能力编码"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 162,
+            "evidence": [
+              {
+                "href": "#feature/35/detail/r162-ohc-parse-and-support-checklist",
+                "label": "OHC解析与支持表：A/B/C/E排列、E尺寸及7.0能力编码"
+              }
+            ],
+            "note": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。"
           }
         },
         "baseline": {
@@ -4825,14 +5072,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式Base正文并复用原包图/查询；主题契约验收，不代表全章、首次ECN链或硬件验证。",
         "taskId": "v1-task-03",
         "requiredTaskIds": [
           "v1-task-03",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 162
       },
       {
         "id": "v1-feature-36",
@@ -30607,6 +30855,140 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项与原R138预算终点不变；来源冲突和未完成项保留。",
         "publication": "手动授权R159/R160，分别检查后合并发布R160。"
+      },
+      {
+        "round": 161,
+        "kind": "R161 UIO全路径启用与完成账本验收",
+        "deliverables": [
+          "串联Device3/SVC启用链和DW核销、状态归并、超时边界，复用已有UIO包图及交互查询。"
+        ],
+        "closedDeliverableIds": [
+          "feature-33-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 33,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 33,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 33,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 33,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 33,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 33,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 33,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 33,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          33
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项与原R138预算快照不变，来源矛盾保留。",
+        "publication": "手动授权R161/R162分别检查后合并发布R162。"
+      },
+      {
+        "round": 162,
+        "kind": "R162 Prefix/PASID与OHC验收、四轮总结",
+        "deliverables": [
+          "串联Prefix结构/能力/错误与PASID模式转换，补OHC-E支持编码及接收角色边界，完成R159～R162复盘。"
+        ],
+        "closedDeliverableIds": [
+          "feature-34-v1-accepted",
+          "feature-35-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 34,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 34,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 34,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 34,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 34,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 34,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 34,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 34,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 35,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 35,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 35,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 35,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 35,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 35,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 35,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 35,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          34,
+          35
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项与原R138预算快照不变，来源矛盾保留。",
+        "publication": "手动授权R161/R162分别检查后合并发布R162。"
       }
     ],
     "backlog": [
@@ -34114,32 +34496,32 @@
       }
     ],
     "nextExecution": {
-      "round": 161,
-      "taskId": "v1-task-03",
+      "round": 163,
+      "taskId": "v1-task-01",
       "featureIds": [
-        33,
-        34,
-        35
+        1,
+        2,
+        3
       ],
-      "goal": "按队列先UIO/Prefix/OHC，再转链路与PHY成熟条目；来源矛盾仅凭新证据关闭，R162四轮复盘。",
-      "reviewRound": 162
+      "goal": "事务17～35主题验收后转链路1/2/3，按既有成熟版本表、状态及包图核验；随后交替PHY174/175/176，来源阻塞单列。",
+      "reviewRound": 166
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 160,
-      "reestimateRound": 162,
+      "assessedRound": 162,
+      "reestimateRound": 166,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "原48轮预算耗尽，按用户手动授权推进；本窗口进度待R162完整复盘，不自动延长原目标。",
-      "action": "UIO/Prefix/OHC，之后链路与PHY收尾。",
+      "assessment": "关闭30～35共6项48维度；累计135/183、1203维度、剩48。原R138预算耗尽，不延长；按本窗口1.5项/轮粗估32轮，来源阻塞消除不由轮数保证。",
+      "action": "下一窗口先链路1/2/3，再PHY174/175/176，按待验收维度复用既有内容；R166总结。",
       "latestProgress": {
-        "round": 160,
-        "newAcceptedUnits": 1,
-        "cumulativeAcceptedUnits": 132,
-        "newPassedCriteria": 8,
-        "cumulativePassedCriteria": 1179,
+        "round": 162,
+        "newAcceptedUnits": 2,
+        "cumulativeAcceptedUnits": 135,
+        "newPassedCriteria": 16,
+        "cumulativePassedCriteria": 1203,
         "remainingPlannedRounds": 0
       }
     },
@@ -34842,6 +35224,37 @@
           "PHY与SerDes": 10
         },
         "note": "本窗口关闭9项72维度；原预算已耗尽，54项仍未完整验收。下一窗口事务剩余，再链路/PHY，阻塞项保留，不保证固定轮数全部解决。"
+      },
+      {
+        "id": "r159-r162",
+        "firstRound": 159,
+        "lastRound": 162,
+        "closedFeatureUnits": [
+          30,
+          31,
+          32,
+          33,
+          34,
+          35
+        ],
+        "newPassedCriteria": 48,
+        "remainingFeatureUnits": 48,
+        "cumulativePassedCriteria": 1203,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 16,
+          "中断与消息": 2,
+          "功耗与复位": 4,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 4,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 10
+        },
+        "note": "关闭30～35共6项48维度；累计135/183、1203维度、剩48。原R138预算耗尽，不延长；按本窗口1.5项/轮粗估32轮，来源阻塞消除不由轮数保证。"
       }
     ],
     "budgetEndAudit": {
@@ -35139,8 +35552,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        159,
-        160
+        161,
+        162
       ],
       "completedRounds": [
         143,
@@ -35160,10 +35573,12 @@
         157,
         158,
         159,
-        160
+        160,
+        161,
+        162
       ],
-      "publication": "checks-before-combined-r160-publication",
-      "note": "每日暂停；保留原预算和来源记录。"
+      "publication": "checks-before-combined-r162-publication",
+      "note": "每日暂停；原预算和来源记录保留。"
     },
     "queueAudit": {
       "round": 150,
