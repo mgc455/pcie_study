@@ -26889,14 +26889,14 @@
     "checks": "把源/目的地址与请求发起方向分清；写已发出不代表主机应用已读走，需另外设计消费确认。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
     "id": 17,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R153按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-24",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "2.2",
@@ -27942,6 +27942,72 @@
         "title": "受限编程模型的跨版文字：允许CA不等于只允许CA",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R54核读所列正式版I/O/配置请求、OHC、Completion或接收期限正文；视觉核7.0 p174/210。印刷页与本地PDF物理页一致；局部规则不等于全章、Gen1～5及所有中间修订已核。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 208,
+        "pdfPage": 208,
+        "title": "Memory寻址及MRRS",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 209,
+        "pdfPage": 209,
+        "title": "4KiB边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.5.2",
+        "page": 197,
+        "pdfPage": 197,
+        "title": "FM BE隐含与翻译边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 263,
+        "pdfPage": 263,
+        "title": "读完成分片及MPS",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1",
+        "page": 261,
+        "pdfPage": 261,
+        "title": "Posted接收期限边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1",
+        "page": 163,
+        "pdfPage": 163,
+        "title": "NFM Memory格式对照",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "已展开所引正式版正文；七版No Snoop/TC仅核对基础条款，其他章节与中间修订继续核读。",
@@ -29051,6 +29117,82 @@
           93,
           94
         ]
+      },
+      {
+        "id": "r153-memory-transaction-checklist",
+        "title": "MRd/MWr查询入口：地址去程、完成回程与分包条件",
+        "paragraphs": [
+          "本轮复用已有NFM包图、FM/OHC说明、BE/零长度、4KiB分包和接收期限细则，按Memory事务契约验收；核Base6.0/7.0所列正式正文，不宣称整章全部条款重读。学习时先选模式和请求类型，再对照头格式与事务生命周期。",
+          "普通MRd不带请求数据，是Non-Posted；返回数据由相应Completion携带，可按规则分片。普通MWr在请求中带数据，是Posted，正常不返回对应事务Completion。地址选择目标，Requester ID与Tag等识别源事务和返回上下文；Memory目标不是在头中另放一个目标BDF。",
+          "形成请求时分别核地址/Length不能跨4KiB、MRd受MRRS上限约束、带数据TLP受适用的MPS限制、首尾DW的BE是否符合条件。接收侧对某些非法组合的检查可选，不等于发送侧可以发送非法包。只数enabled byte而忽略Length覆盖范围，会错误绕过分包条件。",
+          "FM Memory Request不含OHC-A1时，非Reserved的BE按规则隐含：1DW时First=1111、Last=0000，多DW时两者1111。需要其他非Reserved BE值就须携带A1；不能把FM基础头直接按NFM字节位置提取BE。某些FM请求的合法字段组合仍可能无法转换到NFM，翻译失败与请求本身非法要分开处理。",
+          "一份MRd的分片Completion必须保留关联并按字节进度收集，不能收到第一片就释放整笔上下文。普通MWr的链路ACK、Credit归还、目标接收和业务执行完成则是不同证据；Posted Request Acceptance Limit不是应用命令的完成期限。需要设备操作完成时应使用该设备定义的状态、队列或中断机制。",
+          "此处普通MRd/MWr不替代DMWr、AtomicOp或UIO各自规则。原有零长度及受限编程模型条目继续按版本查，不把“零个有效byte”当成没有协议占位。硬件仿真、DMA驱动及板级吞吐未在本轮执行验证。"
+        ],
+        "referenceIndices": [
+          95,
+          96,
+          97,
+          98,
+          99,
+          100
+        ],
+        "table": {
+          "columns": [
+            "对象/检查点",
+            "规则与使用方法",
+            "限制/异常"
+          ],
+          "rows": [
+            [
+              "MRd / 普通MWr",
+              "NP、等数据完成 / P、无对应正常Cpl",
+              "不按是否带数据判断是否需完成"
+            ],
+            [
+              "地址 / Requester ID+Tag",
+              "目标路由 / 原请求关联",
+              "不是一组目标BDF字段"
+            ],
+            [
+              "Length / BE",
+              "协议范围 / 首尾有效byte",
+              "BE不能取消Length的边界约束"
+            ],
+            [
+              "FM缺A1",
+              "按规范使用隐含全使能",
+              "部分访问不能假装仍全使能"
+            ],
+            [
+              "Credit / 完成 / 业务状态",
+              "三个不同阶段",
+              "不将链路确认当设备命令已完成"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 17,
+            "detailId": "memory-nfm-bit-layout",
+            "label": "已有逐bit包图"
+          },
+          {
+            "featureId": 17,
+            "detailId": "memory-contiguous-span-planner",
+            "label": "连续byte范围分包查询"
+          },
+          {
+            "featureId": 17,
+            "detailId": "memory-posted-acceptance-not-operation-time",
+            "label": "10µs与业务完成区别"
+          },
+          {
+            "featureId": 20,
+            "detailId": "completion-arrival-context-query",
+            "label": "完成到达时的关联处理"
+          }
+        ]
       }
     ]
   },
@@ -29064,14 +29206,14 @@
     "checks": "检查BDF、配置偏移、完成状态和桥Bus范围；不要拿BAR基址去计算Capability的配置地址。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
     "id": 18,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R153按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-24",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "2.2",
@@ -29754,6 +29896,83 @@
         "title": "离线查询：配置byte偏移转DW字段、BE和RP发起的FM Segment",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R54核读所列正式版I/O/配置请求、OHC、Completion或接收期限正文；视觉核7.0 p174/210。印刷页与本地PDF物理页一致；局部规则不等于全章、Gen1～5及所有中间修订已核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1",
+        "page": 165,
+        "pdfPage": 165,
+        "title": "单DW及字段限制",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 211,
+        "pdfPage": 211,
+        "title": "配置NFM格式",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.2",
+        "page": 216,
+        "pdfPage": 216,
+        "title": "FM Register Number",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.1.2",
+        "page": 177,
+        "pdfPage": 177,
+        "title": "Root Port Segment规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.3.3",
+        "page": 1062,
+        "pdfPage": 1062,
+        "title": "路由与特殊分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.3.3",
+        "page": 1063,
+        "pdfPage": 1063,
+        "title": "未实现寄存器行为",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1",
+        "page": 260,
+        "pdfPage": 260,
+        "title": "RRS允许范围",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "已展开所引Base6.0/7.0规则及版本差异；其他修订和交叉分支继续核读。",
@@ -30115,6 +30334,83 @@
           60,
           61
         ]
+      },
+      {
+        "id": "r153-config-routing-and-offset",
+        "title": "配置访问查询：Type0/1路由、寄存器偏移与完成状态",
+        "paragraphs": [
+          "复用已有逐级路由查询、FM OHC-A3包图和单DW编码查询。本轮核Base6.0/7.0配置形成及路由正文，分别看Function的配置头布局、这笔Request的Type、目标BDF和寄存器偏移；不能把同名Type0/Type1合成一件事。",
+          "普通配置路径由Host Bridge发起，不支持下游向上游或P2P传播。匹配直接下游Bus及所需Device条件时，Type1改成Type0后转发；仅落在更深Bus范围则保持Type1。这里先排除FPB和Secure Selective IDE等特殊分支，它们保留在已有版本化详情中。",
+          "配置请求Length固定1DW、Last BE为0000，TC为0，并有相应Attr/AT及Reserved限制。访问两个byte依然是1DW协议访问，用First BE选择有效byte，不是2byte短包；跨DW软件访问需按平台机制拆分，不能构造一个配置突发包。",
+          "将byte偏移先分解：NFM的Extended Register Number=(offset>>8)&0xF，Register Number=(offset>>2)&0x3F；FM用10bit Register Number=(offset>>2)&0x3FF。比如偏移122h访问连续2byte，对应DW偏移120h，NFM扩展号1、寄存器号8，FM寄存器号48h，First BE=1100b。字段位置仍以所选模式的包图为准。",
+          "FM配置请求必带OHC-A3；Root Port发送时还需DSV有效并填正确Destination Segment，即使系统只实现一个Segment。这不是把操作系统显示的Segment无条件塞进NFM头。ARI也会改变传统Device/Function字段解释，必须先确认转发和设备条件。",
+          "配置写是NP，需相应Completion；SC只表示此配置访问按规则处理，不证明设备业务命令执行成功。有效Function中未实现的配置寄存器通常读0、写丢弃并返回SC（另有错误规则时除外），与不存在的目标Function/无效路由不同。RRS仅在规定复位和就绪条件下使用，不能当任意忙碌响应。"
+        ],
+        "referenceIndices": [
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "table": {
+          "columns": [
+            "对象/检查点",
+            "规则与使用方法",
+            "限制/异常"
+          ],
+          "rows": [
+            [
+              "配置头Type / 请求Type",
+              "布局属性 / 本次访问路由",
+              "桥自身寄存器也可由Type0请求访问"
+            ],
+            [
+              "offset122h、2byte",
+              "对齐DW=120h，BE=1100b",
+              "Length仍为1DW"
+            ],
+            [
+              "NFM ExtReg/Reg",
+              "1 / 8（该例）",
+              "低2bit用于byte位置，不作寄存器号"
+            ],
+            [
+              "FM Reg / A3",
+              "48h / 必须携带",
+              "RP的DSV/Segment也须有效"
+            ],
+            [
+              "SC / UR / RRS",
+              "按目标及就绪上下文区分",
+              "SC不是业务执行完成通知"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 18,
+            "detailId": "cfg-route-hop-query",
+            "label": "配置逐跳路由查询"
+          },
+          {
+            "featureId": 18,
+            "detailId": "cfg-single-dw-encoding-query",
+            "label": "寄存器字段与BE查询"
+          },
+          {
+            "featureId": 18,
+            "detailId": "cfg-fm-ohca3-bit-layout",
+            "label": "OHC-A3逐bit图"
+          },
+          {
+            "featureId": 18,
+            "detailId": "cfg-gen7-selective-ide-branch",
+            "label": "Gen7特殊IDE分支"
+          }
+        ]
       }
     ]
   },
@@ -30128,14 +30424,14 @@
     "checks": "先确认BAR类型、Command.IO Enable和路径支持；没有I/O需求的现代EP无需为了完整而强行采用它。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
     "id": 19,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R154按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-24",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "2.2",
@@ -30653,6 +30949,61 @@
         "title": "离线查询：I/O字段、BE、最小包长和完成形态",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R54核读所列正式版I/O/配置请求、OHC、Completion或接收期限正文；视觉核7.0 p174/210。印刷页与本地PDF物理页一致；局部规则不等于全章、Gen1～5及所有中间修订已核。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.2.7.1",
+        "page": 164,
+        "pdfPage": 164,
+        "title": "I/O形成规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.7.1",
+        "page": 210,
+        "pdfPage": 210,
+        "title": "I/O固定字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.5.2",
+        "page": 197,
+        "pdfPage": 197,
+        "title": "OHC-A2必需",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.2.9.1",
+        "page": 243,
+        "pdfPage": 243,
+        "title": "Byte Count/Lower Address",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.3.1.1",
+        "page": 263,
+        "pdfPage": 263,
+        "title": "I/O恰好一份完成",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "已定位规范目录",
@@ -31106,6 +31457,75 @@
           44,
           45,
           46
+        ]
+      },
+      {
+        "id": "r154-io-request-and-completion",
+        "title": "I/O Space请求：字段、BE、返回包与MMIO区别",
+        "paragraphs": [
+          "本轮复用I/O逐bit包图、FM OHC-A2和字段形成查询，核Base6.0/7.0所列正文。I/O Space Request、Memory MMIO与UIO是三种不同概念；名字里出现IO并不允许互换地址格式、完成模型或能力前提。",
+          "普通IORd和IOWr都按32bit地址路由，都是NP。IOWr虽然带数据也必须有相应Completion；IORd成功时返回带数据Completion。它们均固定Length=1DW、Last BE=0、TC=0，并受相应Attr/AT限制；发送端不能因某些接收检查可选就构造非法字段。",
+          "First BE决定这一DW哪些byte有效，可稀疏，也有全0情形；全0不取消Completion义务。IOWr仍按协议携带1DW Payload，而非按enabled byte数缩短数据区。程序不能将I/O请求用于寄存器块突发，也不能直接复用MRd多片返回的策略。",
+          "成功IORd应恰好一份Completion并带1DW数据；IOWr的成功Completion不带数据。本类Completion的Byte Count为4、Lower Address为0，不能把First BE中1的个数直接填Byte Count。错误状态与成功读返回数据的规则分别查，不把UR/CA当作有效读值。",
+          "FM中的I/O请求必须携带OHC-A2，所以12B Header Base并不是全部请求头；Byte Enable和附加内容按A2定义取。NFM的固定字段和BE不能照原byte位置套到FM。支持或启用I/O Space响应及BAR解码另有配置条件，不代表设备随时可以向任意I/O地址发请求。"
+        ],
+        "referenceIndices": [
+          47,
+          48,
+          49,
+          50,
+          51
+        ],
+        "table": {
+          "columns": [
+            "对象/检查点",
+            "规则与使用方法",
+            "限制/异常"
+          ],
+          "rows": [
+            [
+              "IORd / IOWr",
+              "都属于NP，需Completion",
+              "写请求带Payload不等于Posted"
+            ],
+            [
+              "Length / Last BE",
+              "1DW / 0000b",
+              "不是可突发的短包格式"
+            ],
+            [
+              "First BE=0000",
+              "仍有完成义务",
+              "不能将请求直接当无包处理"
+            ],
+            [
+              "成功IORd完成",
+              "1DW数据，ByteCount4，LowerAddr0",
+              "不按有效byte数量缩短包"
+            ],
+            [
+              "FM I/O头",
+              "Header Base加必需OHC-A2",
+              "不是只解析基础头"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 19,
+            "detailId": "io-nfm-request-bit-layout",
+            "label": "I/O逐bit图"
+          },
+          {
+            "featureId": 19,
+            "detailId": "io-field-formation-query",
+            "label": "I/O形成与返回查询"
+          },
+          {
+            "featureId": 19,
+            "detailId": "io-command-bar-full-decode",
+            "label": "I/O响应与解码开关"
+          }
         ]
       }
     ]
@@ -34264,14 +34684,14 @@
     "checks": "分别观察P/NP/Cpl的Header/Data credit、队列占用和下游反压，排查资源之间的等待环。",
     "prerequisites": "先确定发起者、目标空间、事务类型、当前模式与能力；应用/桥必须满足长度、对齐、排序和完成管理要求。",
     "id": 21,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R154按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-22",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "2.4",
@@ -34558,6 +34978,94 @@
         "title": "查询：4byte FCParameters字段解码与粒度跨byte验证",
         "url": "https://pcisig.com/PCIExpress/ECN/Base/DynamicSharedFlowControlUsageLimits",
         "verification": "R35核读所引版本/副本相关正文；所引页印刷页与PDF物理页已核。ECN采用本地2025-09-18变更标记副本，官网目录日期2025-10-07；两份逐字一致与后续Base合入未核。仅解释所述规则，不代表整章或Gen1～Gen7全面完成。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 236,
+        "pdfPage": 236,
+        "title": "信用单位与模式",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "2.6.1",
+        "page": 237,
+        "pdfPage": 237,
+        "title": "六类信用与消耗表",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6",
+        "page": 287,
+        "pdfPage": 287,
+        "title": "逐Link及Shared/Merged边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.34",
+        "page": 1026,
+        "pdfPage": 1026,
+        "title": "UIO完成义务",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.34.1",
+        "page": 1027,
+        "pdfPage": 1027,
+        "title": "UIO信用分类",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-shared-fc-20250918",
+        "document": "Dynamic Shared Flow Control Usage Limits ECN（本地变更标记副本）",
+        "version": "2025-09-18（官网目录2025-10-07）",
+        "section": "2.6",
+        "page": 3,
+        "pdfPage": 3,
+        "title": "动态上限与寄存器限制",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/DynamicSharedFlowControlUsageLimits",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-shared-fc-20250918",
+        "document": "Dynamic Shared Flow Control Usage Limits ECN（本地变更标记副本）",
+        "version": "2025-09-18（官网目录2025-10-07）",
+        "section": "3.5.1",
+        "page": 5,
+        "pdfPage": 5,
+        "title": "FCParameters方向与完整性",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/DynamicSharedFlowControlUsageLimits",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-shared-fc-20250918",
+        "document": "Dynamic Shared Flow Control Usage Limits ECN（本地变更标记副本）",
+        "version": "2025-09-18（官网目录2025-10-07）",
+        "section": "3.5.1",
+        "page": 6,
+        "pdfPage": 6,
+        "title": "有效条件与TX使能",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/DynamicSharedFlowControlUsageLimits",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "本次已补6.0所引基础规则；其余条款与逐版差异继续核读。",
@@ -34890,6 +35398,79 @@
           23,
           24,
           25
+        ]
+      },
+      {
+        "id": "r154-traffic-credit-and-completion-ledgers",
+        "title": "P/NP/Cpl与六类Credit：按两条轴分类，不把Credit当事务完成",
+        "paragraphs": [
+          "复用既有基础分类、UIO例外、死锁依赖表与FCParameters包图。本轮核Base6.0/7.0和2025-09-18 Dynamic Shared FC ECN选段，明确区分事务完成义务、链路缓冲信用、共享资源占用上限三类状态。ECN独立于Base7.0出版正文，不按最高链路代际猜可选功能已实现。",
+          "基础分类中，普通MWr和Message使用P，MRd/IORd/CfgRd、IOWr/CfgWr、AtomicOp和DMWr使用NP，返回包使用Cpl资源。P/NP不由Payload是否存在决定：MRd无数据而是NP，配置写有数据仍是NP，普通MWr有数据却正常无对应Completion。",
+          "每类再分Header/Data，形成PH/PD、NPH/NPD、CplH/CplD。基础data credit单位为4DW即16B；普通MWr消耗1PH及ceil(LengthDW/4)个PD，读请求只占1NPH，1DW I/O或配置写占1NPH+1NPD，成功1DW读完成占1CplH+1CplD。Header信用覆盖按模式规定的头及附加内容，不是按头有多少DW简单相除。",
+          "Flow Control跨相邻单条Link，不保证请求已到最终Completer。信用归还说明接收侧资源可复用，不是DMA描述符完成；重放/链路确认也不代替事务上下文。应用缓冲所有权还需设备/驱动协议定义，不能收到UpdateFC就释放软件数据。",
+          "Base7.0 UIO是重要例外：UIO Memory Write使用Posted信用，但UIO请求都有对应UIO完成；其它UIO Memory请求用NP信用。必须先看实际协议及模式，不能让PH/PD计数决定是否保留完成账本。FM Shared FC/Merged FC也改变资源共享方式，不把六个逻辑类别误画成所有实现固定六块独立SRAM。",
+          "FCParameters按ECN传递特定VC的共享占用建议，不创造或归还Credit。有效建议还受能力、RX Request有效位、完整性检查与TX发送使能等条件控制；适用的动态限制比寄存器上限更小时按ECN施加更严格限制。InitFC/UpdateFC、共享使用上限及事务Completion仍各司其职。"
+        ],
+        "referenceIndices": [
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33
+        ],
+        "table": {
+          "columns": [
+            "对象/检查点",
+            "规则与使用方法",
+            "限制/异常"
+          ],
+          "rows": [
+            [
+              "普通MWr",
+              "P：1PH+nPD；正常无事务Cpl",
+              "n按协议Length及基础单位计算"
+            ],
+            [
+              "MRd / IORd / CfgRd",
+              "NP：1NPH；等相应完成",
+              "请求不因读取长度大而携带读数据"
+            ],
+            [
+              "IOWr / CfgWr",
+              "NP：1NPH+1NPD",
+              "带写数据仍需Completion"
+            ],
+            [
+              "UIO Memory Write",
+              "Posted信用，但保留UIO完成义务",
+              "不要用信用类别代替事务定义"
+            ],
+            [
+              "FCParameters / UpdateFC",
+              "占用上限建议 / 信用更新",
+              "百分比不是新增Credit数量"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 21,
+            "detailId": "basics-p-np-cpl-table",
+            "label": "基础分类表"
+          },
+          {
+            "featureId": 21,
+            "detailId": "uio-fc-class-versus-completion",
+            "label": "UIO例外"
+          },
+          {
+            "featureId": 21,
+            "detailId": "fcparameters-byte-decoder",
+            "label": "FCParameters逐byte查询"
+          }
         ]
       }
     ]

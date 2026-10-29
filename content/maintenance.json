@@ -1,7 +1,7 @@
 {
   "nextFeatureIds": [
-    17,
-    18
+    20,
+    22
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,12 +48,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-29",
-    "edition": "2026-10-29-r152",
+    "edition": "2026-10-29-r154",
     "featureIds": [
-      172,
-      173
+      19,
+      21
     ],
-    "nextTrack": "R153按未通过台账；R154四轮复盘"
+    "nextTrack": "R155按未验收事务队列；R158复盘"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -343,13 +343,13 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 94,
-    "lastReviewEdition": "2026-10-29-r150",
-    "lastReviewId": "r147-r150",
+    "completedTotal": 96,
+    "lastReviewEdition": "2026-10-29-r154",
+    "lastReviewId": "r151-r154",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
   },
   "stageReviews": [
@@ -1284,10 +1284,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 62,
+    "completedRounds": 64,
     "remainingPlannedRounds": 0,
-    "nextRound": 153,
-    "nextReviewRound": 154,
+    "nextRound": 155,
+    "nextReviewRound": 158,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -2578,47 +2578,95 @@
         "featureId": 17,
         "group": "事务与数据传输",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/17/detail/r153-memory-transaction-checklist",
+                "label": "MRd/MWr查询入口：地址去程、完成回程与分包条件"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/17/detail/r153-memory-transaction-checklist",
+                "label": "MRd/MWr查询入口：地址去程、完成回程与分包条件"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/17/detail/r153-memory-transaction-checklist",
+                "label": "MRd/MWr查询入口：地址去程、完成回程与分包条件"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/17/detail/r153-memory-transaction-checklist",
+                "label": "MRd/MWr查询入口：地址去程、完成回程与分包条件"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/17/detail/r153-memory-transaction-checklist",
+                "label": "MRd/MWr查询入口：地址去程、完成回程与分包条件"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/17/detail/r153-memory-transaction-checklist",
+                "label": "MRd/MWr查询入口：地址去程、完成回程与分包条件"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/17/detail/r153-memory-transaction-checklist",
+                "label": "MRd/MWr查询入口：地址去程、完成回程与分包条件"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/17/detail/r153-memory-transaction-checklist",
+                "label": "MRd/MWr查询入口：地址去程、完成回程与分包条件"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           }
         },
         "baseline": {
@@ -2627,61 +2675,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。",
         "taskId": "v1-task-03",
         "requiredTaskIds": [
           "v1-task-03",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 153
       },
       {
         "id": "v1-feature-18",
         "featureId": 18,
         "group": "事务与数据传输",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/18/detail/r153-config-routing-and-offset",
+                "label": "配置访问查询：Type0/1路由、寄存器偏移与完成状态"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/18/detail/r153-config-routing-and-offset",
+                "label": "配置访问查询：Type0/1路由、寄存器偏移与完成状态"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/18/detail/r153-config-routing-and-offset",
+                "label": "配置访问查询：Type0/1路由、寄存器偏移与完成状态"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/18/detail/r153-config-routing-and-offset",
+                "label": "配置访问查询：Type0/1路由、寄存器偏移与完成状态"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/18/detail/r153-config-routing-and-offset",
+                "label": "配置访问查询：Type0/1路由、寄存器偏移与完成状态"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/18/detail/r153-config-routing-and-offset",
+                "label": "配置访问查询：Type0/1路由、寄存器偏移与完成状态"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/18/detail/r153-config-routing-and-offset",
+                "label": "配置访问查询：Type0/1路由、寄存器偏移与完成状态"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 153,
+            "evidence": [
+              {
+                "href": "#feature/18/detail/r153-config-routing-and-offset",
+                "label": "配置访问查询：Type0/1路由、寄存器偏移与完成状态"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           }
         },
         "baseline": {
@@ -2690,61 +2787,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。",
         "taskId": "v1-task-03",
         "requiredTaskIds": [
           "v1-task-03",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 153
       },
       {
         "id": "v1-feature-19",
         "featureId": 19,
         "group": "事务与数据传输",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/19/detail/r154-io-request-and-completion",
+                "label": "I/O Space请求：字段、BE、返回包与MMIO区别"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/19/detail/r154-io-request-and-completion",
+                "label": "I/O Space请求：字段、BE、返回包与MMIO区别"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/19/detail/r154-io-request-and-completion",
+                "label": "I/O Space请求：字段、BE、返回包与MMIO区别"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/19/detail/r154-io-request-and-completion",
+                "label": "I/O Space请求：字段、BE、返回包与MMIO区别"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/19/detail/r154-io-request-and-completion",
+                "label": "I/O Space请求：字段、BE、返回包与MMIO区别"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/19/detail/r154-io-request-and-completion",
+                "label": "I/O Space请求：字段、BE、返回包与MMIO区别"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/19/detail/r154-io-request-and-completion",
+                "label": "I/O Space请求：字段、BE、返回包与MMIO区别"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/19/detail/r154-io-request-and-completion",
+                "label": "I/O Space请求：字段、BE、返回包与MMIO区别"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           }
         },
         "baseline": {
@@ -2753,14 +2899,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。",
         "taskId": "v1-task-03",
         "requiredTaskIds": [
           "v1-task-03",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 154
       },
       {
         "id": "v1-feature-20",
@@ -2830,47 +2977,95 @@
         "featureId": 21,
         "group": "事务与数据传输",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/21/detail/r154-traffic-credit-and-completion-ledgers",
+                "label": "P/NP/Cpl与六类Credit：按两条轴分类，不把Credit当事务完成"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/21/detail/r154-traffic-credit-and-completion-ledgers",
+                "label": "P/NP/Cpl与六类Credit：按两条轴分类，不把Credit当事务完成"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/21/detail/r154-traffic-credit-and-completion-ledgers",
+                "label": "P/NP/Cpl与六类Credit：按两条轴分类，不把Credit当事务完成"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/21/detail/r154-traffic-credit-and-completion-ledgers",
+                "label": "P/NP/Cpl与六类Credit：按两条轴分类，不把Credit当事务完成"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/21/detail/r154-traffic-credit-and-completion-ledgers",
+                "label": "P/NP/Cpl与六类Credit：按两条轴分类，不把Credit当事务完成"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/21/detail/r154-traffic-credit-and-completion-ledgers",
+                "label": "P/NP/Cpl与六类Credit：按两条轴分类，不把Credit当事务完成"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/21/detail/r154-traffic-credit-and-completion-ledgers",
+                "label": "P/NP/Cpl与六类Credit：按两条轴分类，不把Credit当事务完成"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 154,
+            "evidence": [
+              {
+                "href": "#feature/21/detail/r154-traffic-credit-and-completion-ledgers",
+                "label": "P/NP/Cpl与六类Credit：按两条轴分类，不把Credit当事务完成"
+              }
+            ],
+            "note": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。"
           }
         },
         "baseline": {
@@ -2879,14 +3074,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式Base/独立ECN正文并复用既有详情；按主题契约逐项验收，非全章通读或硬件验证。",
         "taskId": "v1-task-03",
         "requiredTaskIds": [
           "v1-task-03",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 154
       },
       {
         "id": "v1-feature-22",
@@ -28871,6 +29067,174 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项台账；169/170/172/173一致性阻塞保留，原预算快照不变。",
         "publication": "用户授权R151/R152；分别检查，合并发布R152。"
+      },
+      {
+        "round": 153,
+        "kind": "R153 Memory与Configuration事务验收",
+        "deliverables": [
+          "R153 闭合MRd/MWr与配置事务入口、字段形成和返回语义；复用已有包图及查询。"
+        ],
+        "closedDeliverableIds": [
+          "feature-17-v1-accepted",
+          "feature-18-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 17,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 17,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 17,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 17,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 17,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 17,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 17,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 17,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 18,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 18,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 18,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 18,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 18,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 18,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 18,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 18,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          17,
+          18
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项台账及原R138预算快照不变；PHY一致性阻塞仍保留。",
+        "publication": "用户授权R153/R154；两轮独立检查后合并发布R154。"
+      },
+      {
+        "round": 154,
+        "kind": "R154 I/O与信用分类验收、四轮总结",
+        "deliverables": [
+          "R154 闭合I/O字段与六类信用/完成账本，保留UIO及共享FC版本条件；完成四轮复盘。"
+        ],
+        "closedDeliverableIds": [
+          "feature-19-v1-accepted",
+          "feature-21-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 19,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 19,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 19,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 19,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 19,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 19,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 19,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 19,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 21,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 21,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 21,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 21,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 21,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 21,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 21,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 21,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          19,
+          21
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项台账及原R138预算快照不变；PHY一致性阻塞仍保留。",
+        "publication": "用户授权R153/R154；两轮独立检查后合并发布R154。"
       }
     ],
     "backlog": [
@@ -32378,31 +32742,31 @@
       }
     ],
     "nextExecution": {
-      "round": 153,
+      "round": 155,
       "taskId": "v1-task-03",
       "featureIds": [
-        17,
-        18
+        20,
+        22
       ],
-      "goal": "R153转向MRd/MWr及配置事务17/18，按当前未通过维度推进；R154四轮总结。PHY来源阻塞未有新证据不重复猜测。",
-      "reviewRound": 154
+      "goal": "R155优先Completion关联与Tag20/22，再推进BE/MPS/MRRS/RCB剩余维度；四项PHY来源阻塞按新证据处理，不重复猜测。",
+      "reviewRound": 158
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 152,
-      "reestimateRound": 154,
+      "assessedRound": 154,
+      "reestimateRound": 158,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R151/R152推进可确认维度，四项因既有来源问题不整体验收；原预算不延长，不以页数或段落数宣称完成。",
-      "action": "R153转向17/18的内存及配置事务，R154四轮复盘；169/170/172/173一致性阻塞仅在取得明确证据后关闭。",
+      "assessment": "R151～R154关闭4项、通过60维度，累计120/183、1083维度；剩63项。",
+      "action": "下一轮20/22，然后按剩余事务/字段维度集中收尾；R158再复盘。",
       "latestProgress": {
-        "round": 152,
-        "newAcceptedUnits": 0,
-        "cumulativeAcceptedUnits": 116,
-        "newPassedCriteria": 14,
-        "cumulativePassedCriteria": 1051,
+        "round": 154,
+        "newAcceptedUnits": 2,
+        "cumulativeAcceptedUnits": 120,
+        "newPassedCriteria": 16,
+        "cumulativePassedCriteria": 1083,
         "remainingPlannedRounds": 0
       }
     },
@@ -33040,6 +33404,36 @@
           "PHY与SerDes": 10
         },
         "note": "按现有主题契约验收；已验收队列重复已修正，不重算165/166。159背压、181方言及旧来源问题仍保留；未将整本覆盖当完成。"
+      },
+      {
+        "id": "r151-r154",
+        "firstRound": 151,
+        "lastRound": 154,
+        "closedFeatureUnits": [
+          17,
+          18,
+          19,
+          21
+        ],
+        "newPassedCriteria": 60,
+        "remainingFeatureUnits": 63,
+        "cumulativePassedCriteria": 1083,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 16,
+          "事务与数据传输": 15,
+          "中断与消息": 2,
+          "功耗与复位": 4,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 4,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 10
+        },
+        "note": "四项PHY的28个维度已过，一致性仍阻塞；本窗口实际关闭17/18/19/21，不把部分验收重复算整项。下一步20/22与事务字段族，原预算不延长。"
       }
     ],
     "budgetEndAudit": {
@@ -33337,8 +33731,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        151,
-        152
+        153,
+        154
       ],
       "completedRounds": [
         143,
@@ -33350,10 +33744,12 @@
         149,
         150,
         151,
-        152
+        152,
+        153,
+        154
       ],
-      "publication": "checks-before-combined-r152-publication",
-      "note": "每日仍暂停；不扩大范围或改写原R138预算终点。"
+      "publication": "checks-before-combined-r154-publication",
+      "note": "每日仍暂停；原预算终点和未决来源保留。"
     },
     "queueAudit": {
       "round": 150,
