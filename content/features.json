@@ -171924,8 +171924,8 @@
     "prerequisites": "器件的阻抗、增益、带宽与最佳设置取决于工艺、通道和产品；不能从Gen编号得到通用寄存器值。",
     "example": "短通道下把增益和高频提升全部拉高可能反而恶化噪声/线性度；不是所有EQ参数越大越好。",
     "checks": "比较输入信号、增益/饱和、校准、时钟和误码结果；RTL仿真不验证真实模拟裕量。",
-    "status": "已深化 · 所引正文/模型已核，逐版持续完善",
-    "reviewed": "2026-10-22",
+    "status": "一期已验收：R149按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
+    "reviewed": "2026-10-29",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -172592,6 +172592,83 @@
         "title": "产品层次对照：偏置校准、均衡适配、CDR锁定分别观察什么",
         "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R39核读所引相关正文及必要续页，关键产品评估序列、校准与Idle计数/转移页视觉核对。产品2.02a/3.02a只描述所标交付，不是通用PCIe参数。所引印刷页与PDF物理页一致；仅选定规则，不代表整章、全部修订或硬件证明。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.2.1.1",
+        "page": 152,
+        "pdfPage": 152,
+        "title": "ATT/CTLE/VGA",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy5-pma-2.02",
+        "document": "Gen5 PHY Databook",
+        "version": "2.02a",
+        "section": "4.2.1.6.1",
+        "page": 154,
+        "pdfPage": 154,
+        "title": "启动校准与适配",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie5phy_tsmc12ffc_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.1",
+        "page": 42,
+        "pdfPage": 42,
+        "title": "Gen6 AFE职责",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.4",
+        "page": 43,
+        "pdfPage": 43,
+        "title": "子ADC校准",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.5",
+        "page": 44,
+        "pdfPage": 44,
+        "title": "适配顺序",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "8.4.1.7",
+        "page": 1368,
+        "pdfPage": 1368,
+        "title": "参考接收器用途",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.1.7",
+        "page": 1564,
+        "pdfPage": 1564,
+        "title": "128GT/s参考模型边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
@@ -173187,6 +173264,77 @@
             ]
           ]
         }
+      },
+      {
+        "id": "r149-afe-evidence-query",
+        "title": "AFE排查入口：先判幅度、频响、采样与校准分别出了什么问题",
+        "paragraphs": [
+          "本项复用已有AFE、参考CTLE参数与校准版本细则；本轮补一张按问题选证据的入口表，并核Gen5 PHY2.02a、Gen6 PHY3.02a及Base6.0/7.0相应正文。165/166此前已验收，原队列重复已纠正，没有再次计入关闭量。",
+          "接收路径中的ATT、CTLE、VGA、ADC各有目标：ATT给短信道过大信号留出线性工作范围，CTLE改变频率响应，VGA调总体幅度，ADC把采样结果交给后续数字处理。提高所有增益可能增加噪声或过载，不能以“Boost越大越好”替代接收工作点分析。",
+          "Gen5所核产品在AFE后使用DFE与判决器；Gen6所核产品有交织ADC及数字均衡。旧版启动校准文字要求接收有效数据且CDR锁定；新版写复位后转入active，校AFE偏置和子ADC增益/偏置/相位。启动前提和调节顺序按交付核，不将一套实现条件推广到全部PCIe接收器。",
+          "Base中的行为CTLE/CDR/封装模型用于规定测试口径；它们不要求硅内部采用同样tap数或极点。2.5/5 GT/s不需要行为RX EQ模型，也不禁止真实芯片均衡。参考CTLE公式的A_DC是直流增益，不是产品模拟数字转换器ADC。已有各速率曲线、单位换算和参数查询继续作为细节来源。",
+          "产品有片内耦合及基线校正，不等于板级PCIe AC耦合要求被取消；产品支持其他模式，也不自动使其成为PCIe规范允许的连接法。校准完成、CDR锁定、RxValid、MAC对齐、LTSSM和真实BER属于不同证据。此页未执行模拟、板级或实机签核。"
+        ],
+        "referenceIndices": [
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66
+        ],
+        "table": {
+          "columns": [
+            "观察/对象",
+            "判定与处理",
+            "不能据此认定"
+          ],
+          "rows": [
+            [
+              "短信道信号过大",
+              "先核ATT、线性和ADC前动态范围",
+              "CTLE/VGA都应继续增大"
+            ],
+            [
+              "高频损耗与ISI",
+              "核CTLE频响及实际通道",
+              "仅放大幅度就能消除ISI"
+            ],
+            [
+              "采样误差或漂移",
+              "核偏置/增益/采样相位及校准状态",
+              "完成LTSSM就已完成模拟校准"
+            ],
+            [
+              "公式中的A_DC",
+              "按参考CTLE直流增益解释",
+              "等于ADC转换器位数"
+            ],
+            [
+              "参考接收器参数",
+              "按速率和版本选测试模型",
+              "必须照抄为硅内部结构"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 171,
+            "detailId": "ctle-response-query",
+            "label": "各版本CTLE频点响应查询"
+          },
+          {
+            "featureId": 171,
+            "detailId": "rx-calibration-layer-comparison-table",
+            "label": "Gen5/Gen6校准层次对照"
+          },
+          {
+            "featureId": 171,
+            "detailId": "rx-tp2-versus-tp2p",
+            "label": "TP2与TP2P观察点"
+          }
+        ]
       }
     ]
   },
@@ -188213,8 +188361,8 @@
     "prerequisites": "Gen6-capable PHY仍须考虑较低速率运行，不能把64 GT/s的调制方式推广到其所有工作速率；FLIT模式还应独立判断。",
     "example": "32 Gbaud PAM4承载64 Gbit/s标称比特流，而不是128 Gbit/s。并行总线承载的是bit、symbol还是处理后的码字，要看接口定义。",
     "checks": "检查调制模式、编码归属、位序、FEC/重放统计和状态机；PAM4误码不能只用是否进入L0判定。",
-    "status": "选定PHY错误观测与版本规则已深化 · 持续核读",
-    "reviewed": "2026-10-26",
+    "status": "一期已验收：R149按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
+    "reviewed": "2026-10-29",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -188848,6 +188996,61 @@
         "title": "从lock到性能：锁定检测、FOM/内部眼与错误测量是不同证据",
         "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "R89核3.02a产品所列CDR、校准/适应正文及字段续页；视觉核Reference p383/p384。产品条件不当作PCIe通用要求；仅原创功能解释，不发布原始寄存器转储/手册/RTL。印刷与所用PDF物理页一致。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "8.1",
+        "page": 1317,
+        "pdfPage": 1317,
+        "title": "GT/s、PAM4与FBER",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.1",
+        "page": 1505,
+        "pdfPage": 1505,
+        "title": "128GT/s及Nyquist",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.3",
+        "page": 43,
+        "pdfPage": 43,
+        "title": "符号与并行表示",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.6",
+        "page": 44,
+        "pdfPage": 44,
+        "title": "产品速率控制",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.2.2.1",
+        "page": 1580,
+        "pdfPage": 1580,
+        "title": "DUT测试与校准分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R70核Base6/7 FBER、PAM4预编码错误解释和所标产品BERMON；SDK为Preliminary，保留计时冲突；未验证硅片/全代际。",
@@ -189508,6 +189711,75 @@
           55,
           56
         ]
+      },
+      {
+        "id": "r149-rate-unit-and-evidence-query",
+        "title": "从Gen1到Gen7查询速率：bit、symbol、UI和有效载荷分开计算",
+        "paragraphs": [
+          "复用既有Gen1～Gen7速率/UI表、压力眼校准目标及产品表示层细则。本轮核Base6.0/7.0电气引言与产品采样边界，区分规范速率定义、产品并行总线和电气测试结果；不按产品名猜所有编码或协议职责。",
+          "Base以每Lane每方向每秒编码bit数解释GT/s。NRZ每符号1bit，PAM4每符号2bit；64GT/s为32GBd，128GT/s为64GBd。本页UI指符号间隔，分别31.25ps和15.625ps。32GT/s NRZ与64GT/s PAM4的符号UI和Nyquist频率相同，不表示噪声裕量或协议编码相同。",
+          "原始单向带宽按R×Lane数÷8计算十进制GB/s，不再为PAM4乘2。例如64GT/s x4为32GB/s原始单向、64GB/s双向相加；128GT/s x4为64GB/s原始单向。协议、FLIT、校验纠错、重放及业务空隙会影响应用载荷吞吐，原始值不能直接承诺DMA性能。",
+          "并行接口上的一个字段可能代表bit、symbol或驱动码。Gen6产品的ADC输出和DSP中间表示不能直接按总线宽当TLP字节；MAC与PHY的Gray/预编码/协议编码职责需按架构和实际旁路确认。当前产品降速运行也不会自动切换成某个老产品的内部架构。",
+          "6.0/7.0对PAM4采用所定义的10^-6 FBER背景，传统NRZ讨论10^-12；FBER不计突发的口径不能当应用数据损坏率。内部Eye、Lane Margin、受压眼校准和DUT接收测试各有观察位置/统计方法，不能拿某一项结果替代全部可靠性验证。Gen7电气模型与所核Gen6产品实现继续分开标注。"
+        ],
+        "referenceIndices": [
+          57,
+          58,
+          59,
+          60,
+          61
+        ],
+        "table": {
+          "columns": [
+            "观察/对象",
+            "判定与处理",
+            "不能据此认定"
+          ],
+          "rows": [
+            [
+              "64GT/s PAM4",
+              "32GBd、31.25ps符号UI",
+              "再将GT/s乘2"
+            ],
+            [
+              "128GT/s PAM4",
+              "64GBd、15.625ps符号UI",
+              "用128GHz当符号率"
+            ],
+            [
+              "64GT/s x4",
+              "原始单向32GB/s",
+              "等于应用有效载荷32GB/s"
+            ],
+            [
+              "产品并行数据",
+              "按架构确认bit/symbol/驱动码",
+              "总线位数等于有效TLP字节数"
+            ],
+            [
+              "FBER / 完整链路可靠性",
+              "分别看统计定义与FEC/CRC/重放",
+              "将10^-6直接乘应用字节率"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 177,
+            "detailId": "signaling-rate-symbol-ui-table",
+            "label": "Gen1～Gen7完整速率/UI表"
+          },
+          {
+            "featureId": 177,
+            "detailId": "signaling-unit-explorer",
+            "label": "速率与Lane数查询"
+          },
+          {
+            "featureId": 177,
+            "detailId": "pam4-fber-not-postfec-ber",
+            "label": "FBER与后纠错结果区别"
+          }
+        ]
       }
     ]
   },
@@ -189521,8 +189793,8 @@
     "prerequisites": "每个检测机制的触发条件、阈值、过滤和功耗状态依接口与产品；不能把LOS取反就当成完整Link Up。",
     "example": "端口能检测到终端但没有训练序列时，Detect可以通过而Polling失败；有噪声也可能看到signal detect但没有有效数据。",
     "checks": "按终端 → 波形/idle → CDR/valid → 训练序列分段观察；模型的检测行为是否真实模拟需确认。",
-    "status": "选定Polling七版及早期TS字段已深化 · 持续核读",
-    "reviewed": "2026-10-25",
+    "status": "一期已验收：R150按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
+    "reviewed": "2026-10-29",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -190519,6 +190791,72 @@
         "title": "EQ可重置EIEOS间隔，但65536份TS1仍有兜底",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R85核1.0a/2.0/3.0/4.0正式版所列序列或L0s正文与表；视觉核2.0 p226、4.0 p272。版别/速率/编码独立限定，页码按本地副本绑定；非整章、全部中间ECN或实际链路验证。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.7",
+        "page": 130,
+        "pdfPage": 130,
+        "title": "请求与P1/P2完成契约",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.7",
+        "page": 131,
+        "pdfPage": 131,
+        "title": "检测编码",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "RxValid与EI适用边界",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 65,
+        "pdfPage": 65,
+        "title": "RxStatus及SerDes限制",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.7",
+        "page": 69,
+        "pdfPage": 69,
+        "title": "产品Ack、结果及Lane差值",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.12.2",
+        "page": 75,
+        "pdfPage": 75,
+        "title": "信号检测与数据使能",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R74核七份正式版所引Polling、1.0a/2.0/3.0选定TS字段及状态边界；非整章、所有中间修订或真实链路验证。 R85补1.0a/2.0/3.0/4.0选定EIOS/EIEOS、FTS/SDS与L0s窗口/出口，非完整跨代或硬件验收。",
@@ -192484,6 +192822,76 @@
         "referenceIndices": [
           88,
           89
+        ]
+      },
+      {
+        "id": "r150-detect-sampling-query",
+        "title": "检测结果如何采样：操作、电源态、完成指示和编码一起判断",
+        "paragraphs": [
+          "复用现有Receiver Detect、EIOS/EIEOS及早期版本差异细则。本轮核PIPE7.1及Gen6 PHY3.02a的检测/接收数据条件，按主题契约区分远端终端检测、信号检测、电气空闲和接收数据有效。它们不能合成一个“RX ready”bit。",
+          "Receiver Detect从本端TX探测相连的对端接收终端，不是从本端RX解析TS1。PIPE7.1 PCIe模式在P1或可选P2请求检测；请求需保持到完成，并在下一次检测、功耗或速率操作前撤销。P1结果配合一拍PhyStatus采样，PCIe P2保持完成和结果直到请求撤销。",
+          "检测完成时RxStatus=000b表示没有检测到接收器，011b表示检测到；普通接收数据时000b又表示数据OK，所以不能脱离操作上下文解释。SerDes架构仅Receiver detected这一RxStatus状态适用，不沿用Original全部译码/弹性缓冲错误码。",
+          "所核PMA产品在P1/P2请求检测，Ack有效时1bit结果才可信，P0/P0s保持检测请求无效。手册的1µs指不同Lane检测耗时之差，不是每Lane绝对完成时限。不能把产品1bit结果直接当PIPE三位011编码，也不能自设1µs超时后判坏。",
+          "Signal Detect观察输入信号存在，RxValid含义还随接口架构变化；PIPE SerDes中它表示恢复时钟稳定，MAC随后才开始symbol/block lock。高于2.5GT/s的PCIe EI进入按该版要求使用MAC逻辑判断，不能只依赖RxElecIdle。结果采样、异步指示和协议识别要按各自时钟边界处理；检测成功不等于已完成链路训练。"
+        ],
+        "referenceIndices": [
+          90,
+          91,
+          92,
+          93,
+          94,
+          95
+        ],
+        "table": {
+          "columns": [
+            "观察/对象",
+            "判定与处理",
+            "不能据此认定"
+          ],
+          "rows": [
+            [
+              "PIPE PCIe P1",
+              "完成一拍时同时采RxStatus",
+              "等它永久保持高电平"
+            ],
+            [
+              "PIPE PCIe P2（可选）",
+              "保持完成/结果至请求撤销",
+              "复用P1的纯脉冲假设"
+            ],
+            [
+              "检测操作中的000 / 011",
+              "无接收器 / 有接收器",
+              "解释所有数据期000为检测失败"
+            ],
+            [
+              "产品Ack+1bit结果",
+              "Ack有效才采样，另做接口编码映射",
+              "将1bit电平直接接三位状态"
+            ],
+            [
+              "SigDet / RxValid / 对齐",
+              "分别证明信号、相应有效条件及MAC处理",
+              "检测成功就能传TLP"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 178,
+            "detailId": "detect-qualified-result-query",
+            "label": "既有检测时序查询"
+          },
+          {
+            "featureId": 178,
+            "detailId": "r85-early-eios-width",
+            "label": "早期版本EIOS长度"
+          },
+          {
+            "featureId": 178,
+            "detailId": "eieosq-wakeup-context-gen7",
+            "label": "Gen7 EIEOSQ入口差异"
+          }
         ]
       }
     ]
@@ -195193,8 +195601,8 @@
     "prerequisites": "本轮提供概念和分析路径；未执行S参数、IBIS-AMI、晶体管级噪声或真实眼图仿真，不能给出该交付的通道通过结论。",
     "example": "长通道高频损耗可能需要EQ，短通道过度增益也可能导致性能下降；先看通道条件再选策略。",
     "checks": "记录速率、通道、参考时钟、温压角、测试点和误码口径，分清仿真眼图、仪器测量和协议合规测试。",
-    "status": "选定规则/字段已展开 · 持续逐版完善",
-    "reviewed": "2026-10-21",
+    "status": "一期已验收：R150按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
+    "reviewed": "2026-10-29",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -195564,6 +195972,116 @@
         "title": "共模噪声校准/测试开关",
         "verification": "核读对应正式版所引正文/图表，所用副本印刷页与PDF物理页一致；仅覆盖所述规则，非整章、全部测试或七代全部修订完成。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "8.4.2.1.1",
+        "page": 1381,
+        "pdfPage": 1381,
+        "title": "6.0工具一致性",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.2.1.1",
+        "page": 1579,
+        "pdfPage": 1579,
+        "title": "物理/参考封装损耗",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.2.1.1",
+        "page": 1580,
+        "pdfPage": 1580,
+        "title": "7.0采集、匹配与DUT测试",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.1.3",
+        "page": 1562,
+        "pdfPage": 1562,
+        "title": "TP2与TP2P",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.1.7",
+        "page": 1564,
+        "pdfPage": 1564,
+        "title": "参考模型不是硅实现规定",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.3.5.6",
+        "page": 1538,
+        "pdfPage": 1538,
+        "title": "DDJ与不相关抖动",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.3.5.8",
+        "page": 1539,
+        "pdfPage": 1539,
+        "title": "恢复时钟和尾部口径",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.3.5.10",
+        "page": 1540,
+        "pdfPage": 1540,
+        "title": "脉宽压缩",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "3.3.3.7",
+        "page": 44,
+        "pdfPage": 44,
+        "title": "产品内部Eye观察点",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "8.4.4",
+        "page": 1592,
+        "pdfPage": 1592,
+        "title": "Lane Margin电气边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "新块按版本正文/表绑定章节和实际PDF页；产品架构、接口约定与Base规则分开。未声明全代际或整章完成。",
@@ -195859,6 +196377,81 @@
         "referenceIndices": [
           31,
           32
+        ]
+      },
+      {
+        "id": "r150-si-measurement-contract",
+        "title": "眼图与抖动报告如何对照：先固定测点、模型和统计口径",
+        "paragraphs": [
+          "本轮复用既有参考接收器、抖动分解和工具一致性细则，直接核Base6.0/7.0所列正文。目的是让网页能解释一份测量报告在证明什么，不以某个截图、模型或网页计算器代替完整PCIe合规测试。",
+          "TP2是可测的信道端波形，TP2P是按规定行为封装、CDR与均衡后处理得到的参考点。高速原始受压眼可能闭合，参考均衡再用于定义EH/EW；它既不要求硅实现完全照抄模型，也不允许任意换模型后仍使用原阈值。实际封装替换有角色、速率及总损耗条件，不能为了眼图好看自由选择。",
+          "后处理工具一致性与DUT接收测试分开。6.0所核阶跃采集为512 ones/zeros、平均1024次；7.0对应文字为1024 ones或电平3、zeros或电平0、平均10240次，均要求1ps或更好分辨率。它们是不同正式版的采集条件，不能混成一个“所有Gen统一默认值”。",
+          "该一致性程序按规定信道及参考封装产生目标眼，EH与EW须分别匹配到±15%，不只比较面积；两百万UI是各Preset的波形记录要求，不是实际checker零误码证明。7.0还明确校准完将接收DUT接入，再按其测试流程施加图样及压力。",
+          "DDJ与不相关抖动按数据和恢复时钟参考分离，UTJ/UDJDD使用规定CDR及尾部分布口径；PWJ关心相邻边沿导致的脉宽压缩。不能直接相加任意RMS、峰峰值和UI值。参考CDR不同可改变剩余测量抖动，报告必须列出所用模型。",
+          "内部Eye Scan观察产品内部DSP位置，LMR报告链路当前接收位置的裕量，仪器受压眼按规定测试点及参考模型评估。三者互补，均不单独证明整个板卡合规。本页验收只覆盖知识条目及可查询来源，未执行SI仿真、仪器测量或硬件验证。"
+        ],
+        "referenceIndices": [
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ],
+        "table": {
+          "columns": [
+            "观察/对象",
+            "判定与处理",
+            "不能据此认定"
+          ],
+          "rows": [
+            [
+              "比较两张眼图",
+              "先对齐测点、封装、CDR、EQ、BER和单位",
+              "只按哪张眼更大下结论"
+            ],
+            [
+              "工具一致性±15%",
+              "EH/EW各自符合目标",
+              "面积接近即通过"
+            ],
+            [
+              "两百万UI记录",
+              "证明按流程取得波形",
+              "等同BER测试已无错误"
+            ],
+            [
+              "DDJ/UTJ/PWJ",
+              "按各自参考和分布处理",
+              "任意RMS与峰峰数值相加"
+            ],
+            [
+              "LMR / 内部Eye / 示波器",
+              "观察位置与用途不同",
+              "三者数值可互相代替"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 180,
+            "detailId": "si-reference-receiver-models",
+            "label": "参考均衡器速率表"
+          },
+          {
+            "featureId": 180,
+            "detailId": "si-tool-eh-ew-fifteen-percent",
+            "label": "EH/EW一致性细则"
+          },
+          {
+            "featureId": 180,
+            "detailId": "si-diagnostic-evidence-matrix",
+            "label": "诊断证据矩阵"
+          }
         ]
       }
     ]

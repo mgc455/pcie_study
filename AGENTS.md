@@ -218,3 +218,7 @@ R146: manual continuation after verified R144; next review R150; daily paused; o
 R147: authorized manual continuation, independent checks and combined R148 publication; next review R150; daily paused; original budget-end snapshot preserved.
 
 R148: authorized manual continuation, independent checks and combined R148 publication; next review R150; daily paused; original budget-end snapshot preserved.
+
+R149: manual continuation; corrected duplicate acceptance queue; next review R150; daily paused and original budget snapshot preserved.
+
+R150: manual continuation; corrected duplicate acceptance queue; next review R154; daily paused and original budget snapshot preserved.

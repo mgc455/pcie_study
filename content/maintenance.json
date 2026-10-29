@@ -1,7 +1,7 @@
 {
   "nextFeatureIds": [
-    165,
-    166
+    169,
+    170
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,11 +48,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-29",
-    "edition": "2026-10-29-r148",
+    "edition": "2026-10-29-r150",
     "featureIds": [
-      160
+      178,
+      180
     ],
-    "nextTrack": "R149按固定台账；R150四轮总结"
+    "nextTrack": "R151按未验收队列；R154四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -342,13 +343,13 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 90,
-    "lastReviewEdition": "2026-10-29-r146",
-    "lastReviewId": "r143-r146",
+    "completedTotal": 92,
+    "lastReviewEdition": "2026-10-29-r150",
+    "lastReviewId": "r147-r150",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
   },
   "stageReviews": [
@@ -1283,10 +1284,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 58,
+    "completedRounds": 60,
     "remainingPlannedRounds": 0,
-    "nextRound": 149,
-    "nextReviewRound": 150,
+    "nextRound": 151,
+    "nextReviewRound": 154,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -22017,47 +22018,95 @@
         "featureId": 171,
         "group": "PHY与SerDes",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/171/detail/r149-afe-evidence-query",
+                "label": "AFE排查入口：先判幅度、频响、采样与校准分别出了什么问题"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/171/detail/r149-afe-evidence-query",
+                "label": "AFE排查入口：先判幅度、频响、采样与校准分别出了什么问题"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/171/detail/r149-afe-evidence-query",
+                "label": "AFE排查入口：先判幅度、频响、采样与校准分别出了什么问题"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/171/detail/r149-afe-evidence-query",
+                "label": "AFE排查入口：先判幅度、频响、采样与校准分别出了什么问题"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/171/detail/r149-afe-evidence-query",
+                "label": "AFE排查入口：先判幅度、频响、采样与校准分别出了什么问题"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/171/detail/r149-afe-evidence-query",
+                "label": "AFE排查入口：先判幅度、频响、采样与校准分别出了什么问题"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/171/detail/r149-afe-evidence-query",
+                "label": "AFE排查入口：先判幅度、频响、采样与校准分别出了什么问题"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/171/detail/r149-afe-evidence-query",
+                "label": "AFE排查入口：先判幅度、频响、采样与校准分别出了什么问题"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           }
         },
         "baseline": {
@@ -22066,14 +22115,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。",
         "taskId": "v1-task-21",
         "requiredTaskIds": [
           "v1-task-21",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 149
       },
       {
         "id": "v1-feature-172",
@@ -22403,47 +22453,95 @@
         "featureId": 177,
         "group": "PHY与SerDes",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/177/detail/r149-rate-unit-and-evidence-query",
+                "label": "从Gen1到Gen7查询速率：bit、symbol、UI和有效载荷分开计算"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/177/detail/r149-rate-unit-and-evidence-query",
+                "label": "从Gen1到Gen7查询速率：bit、symbol、UI和有效载荷分开计算"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/177/detail/r149-rate-unit-and-evidence-query",
+                "label": "从Gen1到Gen7查询速率：bit、symbol、UI和有效载荷分开计算"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/177/detail/r149-rate-unit-and-evidence-query",
+                "label": "从Gen1到Gen7查询速率：bit、symbol、UI和有效载荷分开计算"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/177/detail/r149-rate-unit-and-evidence-query",
+                "label": "从Gen1到Gen7查询速率：bit、symbol、UI和有效载荷分开计算"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/177/detail/r149-rate-unit-and-evidence-query",
+                "label": "从Gen1到Gen7查询速率：bit、symbol、UI和有效载荷分开计算"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/177/detail/r149-rate-unit-and-evidence-query",
+                "label": "从Gen1到Gen7查询速率：bit、symbol、UI和有效载荷分开计算"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 149,
+            "evidence": [
+              {
+                "href": "#feature/177/detail/r149-rate-unit-and-evidence-query",
+                "label": "从Gen1到Gen7查询速率：bit、symbol、UI和有效载荷分开计算"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           }
         },
         "baseline": {
@@ -22452,61 +22550,110 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。",
         "taskId": "v1-task-21",
         "requiredTaskIds": [
           "v1-task-21",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 149
       },
       {
         "id": "v1-feature-178",
         "featureId": 178,
         "group": "PHY与SerDes",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/178/detail/r150-detect-sampling-query",
+                "label": "检测结果如何采样：操作、电源态、完成指示和编码一起判断"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/178/detail/r150-detect-sampling-query",
+                "label": "检测结果如何采样：操作、电源态、完成指示和编码一起判断"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/178/detail/r150-detect-sampling-query",
+                "label": "检测结果如何采样：操作、电源态、完成指示和编码一起判断"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/178/detail/r150-detect-sampling-query",
+                "label": "检测结果如何采样：操作、电源态、完成指示和编码一起判断"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/178/detail/r150-detect-sampling-query",
+                "label": "检测结果如何采样：操作、电源态、完成指示和编码一起判断"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/178/detail/r150-detect-sampling-query",
+                "label": "检测结果如何采样：操作、电源态、完成指示和编码一起判断"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/178/detail/r150-detect-sampling-query",
+                "label": "检测结果如何采样：操作、电源态、完成指示和编码一起判断"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/178/detail/r150-detect-sampling-query",
+                "label": "检测结果如何采样：操作、电源态、完成指示和编码一起判断"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           }
         },
         "baseline": {
@@ -22515,14 +22662,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。",
         "taskId": "v1-task-21",
         "requiredTaskIds": [
           "v1-task-21",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 150
       },
       {
         "id": "v1-feature-179",
@@ -22592,47 +22740,95 @@
         "featureId": 180,
         "group": "PHY与SerDes",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/180/detail/r150-si-measurement-contract",
+                "label": "眼图与抖动报告如何对照：先固定测点、模型和统计口径"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/180/detail/r150-si-measurement-contract",
+                "label": "眼图与抖动报告如何对照：先固定测点、模型和统计口径"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/180/detail/r150-si-measurement-contract",
+                "label": "眼图与抖动报告如何对照：先固定测点、模型和统计口径"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/180/detail/r150-si-measurement-contract",
+                "label": "眼图与抖动报告如何对照：先固定测点、模型和统计口径"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/180/detail/r150-si-measurement-contract",
+                "label": "眼图与抖动报告如何对照：先固定测点、模型和统计口径"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/180/detail/r150-si-measurement-contract",
+                "label": "眼图与抖动报告如何对照：先固定测点、模型和统计口径"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/180/detail/r150-si-measurement-contract",
+                "label": "眼图与抖动报告如何对照：先固定测点、模型和统计口径"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 150,
+            "evidence": [
+              {
+                "href": "#feature/180/detail/r150-si-measurement-contract",
+                "label": "眼图与抖动报告如何对照：先固定测点、模型和统计口径"
+              }
+            ],
+            "note": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。"
           }
         },
         "baseline": {
@@ -22641,14 +22837,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "复用既有逐块来源及稳定详情，新增入口表核主机制/角色/异常；产品与规范版本分别声明，不等于整本或硬件签核。",
         "taskId": "v1-task-21",
         "requiredTaskIds": [
           "v1-task-21",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 150
       },
       {
         "id": "v1-feature-181",
@@ -28162,6 +28359,174 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "以固定183项台账为准；保持原R138预算终点及历史来源问题。",
         "publication": "用户授权R147/R148；分别检查，合并发布R148。"
+      },
+      {
+        "round": 149,
+        "kind": "R149 AFE与PAM4计量边界验收",
+        "deliverables": [
+          "R149 核读并复用AFE校准/参考模型与各代速率表示，纠正已验收条目重复排队。"
+        ],
+        "closedDeliverableIds": [
+          "feature-171-v1-accepted",
+          "feature-177-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 171,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 171,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 171,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 171,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 171,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 171,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 171,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 171,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 177,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 177,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 177,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 177,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 177,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 177,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 177,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 177,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          171,
+          177
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项验收台账不扩张，原R138预算快照保持。",
+        "publication": "用户授权R149/R150；分别检查，合并发布R150。"
+      },
+      {
+        "round": 150,
+        "kind": "R150 检测与信号完整性验收、四轮总结",
+        "deliverables": [
+          "R150 闭合检测采样与SI证据边界，复用既有版本细则；R147～R150四轮总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-178-v1-accepted",
+          "feature-180-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 178,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 178,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 178,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 178,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 178,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 178,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 178,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 178,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 180,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 180,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 180,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 180,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 180,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 180,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 180,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 180,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          178,
+          180
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项验收台账不扩张，原R138预算快照保持。",
+        "publication": "用户授权R149/R150；分别检查，合并发布R150。"
       }
     ],
     "backlog": [
@@ -31669,31 +32034,31 @@
       }
     ],
     "nextExecution": {
-      "round": 149,
+      "round": 151,
       "taskId": "v1-task-19",
       "featureIds": [
-        165,
-        166
+        169,
+        170
       ],
-      "goal": "R149优先165/166已有PHY交付分层内容验收；R150四轮复盘，同时保留159精确背压及181方言来源等阻塞。",
-      "reviewRound": 150
+      "goal": "按未验收台账推进169/170；不得重复将已验收项排入验收队列，159/181等阻塞按证据保留。",
+      "reviewRound": 154
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 148,
-      "reestimateRound": 150,
+      "assessedRound": 150,
+      "reestimateRound": 154,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "手动续作按已有功能契约关闭；原48轮预算已耗尽，不以新增段落数量假装收尾。",
-      "action": "下一轮161/162；其后按未通过维度集中收尾，真实来源问题单独核证；下次四轮复盘R150。",
+      "assessment": "R147～R150关闭7项、通过49维度，累计116/183、1023维度；剩67项。",
+      "action": "下一轮169/170，再按剩余未通过维度与真实来源阻塞收尾；R154再复盘，不承诺未经验证的完工轮数。",
       "latestProgress": {
-        "round": 148,
-        "newAcceptedUnits": 1,
-        "cumulativeAcceptedUnits": 112,
-        "newPassedCriteria": 1,
-        "cumulativePassedCriteria": 991,
+        "round": 150,
+        "newAcceptedUnits": 2,
+        "cumulativeAcceptedUnits": 116,
+        "newPassedCriteria": 16,
+        "cumulativePassedCriteria": 1023,
         "remainingPlannedRounds": 0
       }
     },
@@ -32298,6 +32663,39 @@
           "PHY与SerDes": 14
         },
         "note": "关闭按主题契约，不含整本独立协议。181语法来源、159背压极性、160其他形态、旧152/153/164来源问题保留。四轮总结不延长原预算。"
+      },
+      {
+        "id": "r147-r150",
+        "firstRound": 147,
+        "lastRound": 150,
+        "closedFeatureUnits": [
+          161,
+          162,
+          160,
+          171,
+          177,
+          178,
+          180
+        ],
+        "newPassedCriteria": 49,
+        "remainingFeatureUnits": 67,
+        "cumulativePassedCriteria": 1023,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 16,
+          "事务与数据传输": 19,
+          "中断与消息": 2,
+          "功耗与复位": 4,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 4,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 10
+        },
+        "note": "按现有主题契约验收；已验收队列重复已修正，不重算165/166。159背压、181方言及旧来源问题仍保留；未将整本覆盖当完成。"
       }
     ],
     "budgetEndAudit": {
@@ -32595,8 +32993,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        147,
-        148
+        149,
+        150
       ],
       "completedRounds": [
         143,
@@ -32604,10 +33002,24 @@
         145,
         146,
         147,
-        148
+        148,
+        149,
+        150
       ],
-      "publication": "checks-before-combined-r148-publication",
-      "note": "每日任务继续暂停，原预算快照保持。"
+      "publication": "checks-before-combined-r150-publication",
+      "note": "每日暂停，原预算不延长。"
+    },
+    "queueAudit": {
+      "round": 150,
+      "removedAlreadyAcceptedFeatureIds": [
+        165,
+        166
+      ],
+      "replacementFeatureIds": [
+        178,
+        180
+      ],
+      "note": "R148下一步重复排入165/166，R149核台账发现并纠正；未重复计数。"
     }
   }
 }

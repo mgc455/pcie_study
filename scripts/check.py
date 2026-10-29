@@ -181,8 +181,23 @@ assert len(public_files)==30
 print(f'PASS: {len(features)} features, Gen1–Gen7, source links, public-content boundary, local-only PDF reader, static assets, JSON and HTML structure.')
 
 # V1 scope is frozen; acceptance requires evidence, never a note-count threshold.
+def check_acceptance_queue(maintenance):
+    plan=maintenance['releasePlan']
+    unit_by_id={u['featureId']:u for u in plan['units']}
+    execution=plan.get('nextExecution',{})
+    queued=execution.get('featureIds',[])
+    assert maintenance.get('nextFeatureIds',[])==queued, 'Maintenance and execution queues disagree'
+    assert len(queued)==len(set(queued)), 'Duplicate feature IDs in execution queue'
+    reviews=execution.get('acceptedFeatureReviewReasons',{})
+    for fid in queued:
+        assert fid in unit_by_id, f'Unknown feature in execution queue: {fid}'
+        if unit_by_id[fid]['status'] in {'accepted','merged-accepted'}:
+            reason=reviews.get(str(fid),'')
+            assert isinstance(reason,str) and reason.strip(), f'Already accepted feature queued without an explicit review reason: {fid}'
+
 m=json.loads((ROOT/'content/maintenance.json').read_text(encoding='utf-8'))
 if 'releasePlan' in m:
+    check_acceptance_queue(m)
     plan=m['releasePlan'];units=plan['units'];keys={x['id'] for x in plan['criteria']}
     assert len(keys)==8 and len(units)==183
     assert plan['scopeFeatureIds']==[u['featureId'] for u in units]==[f['id'] for f in features]
