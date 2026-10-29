@@ -206,3 +206,7 @@ R141: manual continuation; next review R142; daily paused, original budget-end s
 
 R142: accepted[], new criteria10, cumulative105/183 and922 criteria;78 units/0 original budget rounds remain. Scope/roles per new detail blocks,61/89 unresolved sources retained. NextR143[181, 182]; R146 review, daily paused. User authorized R118/R119 after published R117; independent checks, combined R119 publication.
 R142: manual continuation; next review R146; daily paused, original budget-end snapshot unchanged.
+
+R143: manual continuation checked independently; next review R146; daily paused; original R138 budget snapshot unchanged.
+
+R144: manual continuation checked independently; next review R146; daily paused; original R138 budget snapshot unchanged.
