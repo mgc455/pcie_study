@@ -230,3 +230,7 @@ R152: authorized manual continuation; partial criteria only, source consistency 
 R153: manual continuation, transaction acceptance based on existing detail evidence and explicit version boundaries; next review R154; daily paused; original budget snapshot preserved.
 
 R154: manual continuation, transaction acceptance based on existing detail evidence and explicit version boundaries; next review R158; daily paused; original budget snapshot preserved.
+
+R155: manual transaction acceptance; next review R158; daily paused; original budget snapshot preserved.
+
+R156: manual transaction acceptance; next review R158; daily paused; original budget snapshot preserved.
