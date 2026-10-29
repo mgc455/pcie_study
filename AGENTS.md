@@ -258,3 +258,7 @@ R166: manual PHY partial acceptance, consistency blockers retained; next review 
 R167: manual link review; feature3 consistency reopened,3/4/5 share Base6 source blocker; next review R170; daily paused; original budget preserved.
 
 R168: manual link review; feature3 consistency reopened,3/4/5 share Base6 source blocker; next review R170; daily paused; original budget preserved.
+
+R169: lane reversal/polarity/deskew and EQ selected-version review; source blockers retained; next review R170; daily paused; original budget preserved.
+
+R170: lane reversal/polarity/deskew and EQ selected-version review; source blockers retained; next review R174; daily paused; original budget preserved.

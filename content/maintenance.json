@@ -1,8 +1,8 @@
 {
   "nextFeatureIds": [
-    7,
-    8,
-    9
+    10,
+    11,
+    12
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,12 +49,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-29",
-    "edition": "2026-10-29-r168",
+    "edition": "2026-10-29-r170",
     "featureIds": [
-      5,
-      6
+      9
     ],
-    "nextTrack": "链路7/8/9；R170四轮总结"
+    "nextTrack": "10时钟架构、11 Retimer、12编码；R174总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -344,13 +343,13 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 110,
-    "lastReviewEdition": "2026-10-29-r166",
-    "lastReviewId": "r163-r166",
+    "completedTotal": 112,
+    "lastReviewEdition": "2026-10-29-r170",
+    "lastReviewId": "r167-r170",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
   },
   "stageReviews": [
@@ -1285,10 +1284,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 78,
+    "completedRounds": 80,
     "remainingPlannedRounds": 0,
-    "nextRound": 169,
-    "nextReviewRound": 170,
+    "nextRound": 171,
+    "nextReviewRound": 174,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -2415,47 +2414,127 @@
         "featureId": 7,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/7/detail/r169-lane-map-and-role",
+                "label": "Lane反序怎样生效：物理连线、TS编号、逻辑Lane分开看"
+              },
+              {
+                "href": "#feature/7/detail/r169-lane-group-failure-and-versions",
+                "label": "分组失败与七代差分：缺Lane0不保证总能降到x1"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/7/detail/r169-lane-map-and-role",
+                "label": "Lane反序怎样生效：物理连线、TS编号、逻辑Lane分开看"
+              },
+              {
+                "href": "#feature/7/detail/r169-lane-group-failure-and-versions",
+                "label": "分组失败与七代差分：缺Lane0不保证总能降到x1"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/7/detail/r169-lane-map-and-role",
+                "label": "Lane反序怎样生效：物理连线、TS编号、逻辑Lane分开看"
+              },
+              {
+                "href": "#feature/7/detail/r169-lane-group-failure-and-versions",
+                "label": "分组失败与七代差分：缺Lane0不保证总能降到x1"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/7/detail/r169-lane-map-and-role",
+                "label": "Lane反序怎样生效：物理连线、TS编号、逻辑Lane分开看"
+              },
+              {
+                "href": "#feature/7/detail/r169-lane-group-failure-and-versions",
+                "label": "分组失败与七代差分：缺Lane0不保证总能降到x1"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/7/detail/r169-lane-map-and-role",
+                "label": "Lane反序怎样生效：物理连线、TS编号、逻辑Lane分开看"
+              },
+              {
+                "href": "#feature/7/detail/r169-lane-group-failure-and-versions",
+                "label": "分组失败与七代差分：缺Lane0不保证总能降到x1"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/7/detail/r169-lane-map-and-role",
+                "label": "Lane反序怎样生效：物理连线、TS编号、逻辑Lane分开看"
+              },
+              {
+                "href": "#feature/7/detail/r169-lane-group-failure-and-versions",
+                "label": "分组失败与七代差分：缺Lane0不保证总能降到x1"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/7/detail/r169-lane-map-and-role",
+                "label": "Lane反序怎样生效：物理连线、TS编号、逻辑Lane分开看"
+              },
+              {
+                "href": "#feature/7/detail/r169-lane-group-failure-and-versions",
+                "label": "分组失败与七代差分：缺Lane0不保证总能降到x1"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/7/detail/r169-lane-map-and-role",
+                "label": "Lane反序怎样生效：物理连线、TS编号、逻辑Lane分开看"
+              },
+              {
+                "href": "#feature/7/detail/r169-lane-group-failure-and-versions",
+                "label": "分组失败与七代差分：缺Lane0不保证总能降到x1"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           }
         },
         "baseline": {
@@ -2464,61 +2543,142 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。",
         "taskId": "v1-task-01",
         "requiredTaskIds": [
           "v1-task-01",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 169
       },
       {
         "id": "v1-feature-8",
         "featureId": 8,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/8/detail/r169-polarity-seven-revision-boundary",
+                "label": "极性纠正的七版共同要求：P/N交换不等于Lane编号反序"
+              },
+              {
+                "href": "#feature/8/detail/r169-deskew-marker-ambiguity",
+                "label": "Deskew对齐锚点表：连续相似Ordered Set为何会配错"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/8/detail/r169-polarity-seven-revision-boundary",
+                "label": "极性纠正的七版共同要求：P/N交换不等于Lane编号反序"
+              },
+              {
+                "href": "#feature/8/detail/r169-deskew-marker-ambiguity",
+                "label": "Deskew对齐锚点表：连续相似Ordered Set为何会配错"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/8/detail/r169-polarity-seven-revision-boundary",
+                "label": "极性纠正的七版共同要求：P/N交换不等于Lane编号反序"
+              },
+              {
+                "href": "#feature/8/detail/r169-deskew-marker-ambiguity",
+                "label": "Deskew对齐锚点表：连续相似Ordered Set为何会配错"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/8/detail/r169-polarity-seven-revision-boundary",
+                "label": "极性纠正的七版共同要求：P/N交换不等于Lane编号反序"
+              },
+              {
+                "href": "#feature/8/detail/r169-deskew-marker-ambiguity",
+                "label": "Deskew对齐锚点表：连续相似Ordered Set为何会配错"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/8/detail/r169-polarity-seven-revision-boundary",
+                "label": "极性纠正的七版共同要求：P/N交换不等于Lane编号反序"
+              },
+              {
+                "href": "#feature/8/detail/r169-deskew-marker-ambiguity",
+                "label": "Deskew对齐锚点表：连续相似Ordered Set为何会配错"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/8/detail/r169-polarity-seven-revision-boundary",
+                "label": "极性纠正的七版共同要求：P/N交换不等于Lane编号反序"
+              },
+              {
+                "href": "#feature/8/detail/r169-deskew-marker-ambiguity",
+                "label": "Deskew对齐锚点表：连续相似Ordered Set为何会配错"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/8/detail/r169-polarity-seven-revision-boundary",
+                "label": "极性纠正的七版共同要求：P/N交换不等于Lane编号反序"
+              },
+              {
+                "href": "#feature/8/detail/r169-deskew-marker-ambiguity",
+                "label": "Deskew对齐锚点表：连续相似Ordered Set为何会配错"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 169,
+            "evidence": [
+              {
+                "href": "#feature/8/detail/r169-polarity-seven-revision-boundary",
+                "label": "极性纠正的七版共同要求：P/N交换不等于Lane编号反序"
+              },
+              {
+                "href": "#feature/8/detail/r169-deskew-marker-ambiguity",
+                "label": "Deskew对齐锚点表：连续相似Ordered Set为何会配错"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           }
         },
         "baseline": {
@@ -2527,61 +2687,206 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。",
         "taskId": "v1-task-01",
         "requiredTaskIds": [
           "v1-task-01",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 169
       },
       {
         "id": "v1-feature-9",
         "featureId": 9,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 170,
+            "evidence": [
+              {
+                "href": "#feature/9/detail/r170-autonomous-eq-nop2-boundary",
+                "label": "自动均衡门控：Base7允许NOP2，不能用它提前开放DLLP"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-control-and-success-registers",
+                "label": "EQ控制与结果分开：能力、禁用位、请求、Complete各做什么"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-noeq-disable-source-gate",
+                "label": "未闭环来源：No-EQ正文与控制位的关系不能凭字段名称改写"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 170,
+            "evidence": [
+              {
+                "href": "#feature/9/detail/r170-autonomous-eq-nop2-boundary",
+                "label": "自动均衡门控：Base7允许NOP2，不能用它提前开放DLLP"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-control-and-success-registers",
+                "label": "EQ控制与结果分开：能力、禁用位、请求、Complete各做什么"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-noeq-disable-source-gate",
+                "label": "未闭环来源：No-EQ正文与控制位的关系不能凭字段名称改写"
+              },
+              {
+                "href": "#feature/9/detail/eq-role-adjustment-map",
+                "label": "Phase2由USP评估DSP TX，Phase3反过来"
+              },
+              {
+                "href": "#feature/9/detail/eq-dsp-phase-one",
+                "label": "DSP Phase1：两连续EC01，选择细调或直接退出"
+              },
+              {
+                "href": "#feature/9/detail/eq-usp-phase-zero",
+                "label": "USP Phase0：应用已交换preset，两连续EC01后进Phase1"
+              },
+              {
+                "href": "#feature/9/detail/eq-phase-query",
+                "label": "查询：Base5角色/阶段的条件、超时和请求职责"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 170,
+            "evidence": [
+              {
+                "href": "#feature/9/detail/r170-autonomous-eq-nop2-boundary",
+                "label": "自动均衡门控：Base7允许NOP2，不能用它提前开放DLLP"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-control-and-success-registers",
+                "label": "EQ控制与结果分开：能力、禁用位、请求、Complete各做什么"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-noeq-disable-source-gate",
+                "label": "未闭环来源：No-EQ正文与控制位的关系不能凭字段名称改写"
+              },
+              {
+                "href": "#feature/9/detail/eq-status-word-table",
+                "label": "Base5 Status2低6bit：8GT/s状态，不是当前所有速率的EQ状态"
+              },
+              {
+                "href": "#feature/9/detail/block-2",
+                "label": "Preset／Coefficient请求与应答表"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 170,
+            "evidence": [
+              {
+                "href": "#feature/9/detail/r170-autonomous-eq-nop2-boundary",
+                "label": "自动均衡门控：Base7允许NOP2，不能用它提前开放DLLP"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-control-and-success-registers",
+                "label": "EQ控制与结果分开：能力、禁用位、请求、Complete各做什么"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-noeq-disable-source-gate",
+                "label": "未闭环来源：No-EQ正文与控制位的关系不能凭字段名称改写"
+              },
+              {
+                "href": "#feature/9/detail/eq-request-accept-reject",
+                "label": "接受/拒绝都要反映请求值；拒绝时实际TX不变"
+              },
+              {
+                "href": "#feature/9/detail/eq-phase-timeout-role-table",
+                "label": "Base5普通Link的角色/阶段计时总表"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 170,
+            "evidence": [
+              {
+                "href": "#feature/9/detail/r170-autonomous-eq-nop2-boundary",
+                "label": "自动均衡门控：Base7允许NOP2，不能用它提前开放DLLP"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-control-and-success-registers",
+                "label": "EQ控制与结果分开：能力、禁用位、请求、Complete各做什么"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-noeq-disable-source-gate",
+                "label": "未闭环来源：No-EQ正文与控制位的关系不能凭字段名称改写"
+              },
+              {
+                "href": "#feature/9/detail/eq-generation-flow-table",
+                "label": "Gen3、Gen4、Gen5：首次均衡与可选跳过机制逐版看"
+              },
+              {
+                "href": "#feature/9/detail/block-3",
+                "label": "Gen6与Gen7：TS0／TS1使用矩阵"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 170,
+            "evidence": [
+              {
+                "href": "#feature/9/detail/r170-autonomous-eq-nop2-boundary",
+                "label": "自动均衡门控：Base7允许NOP2，不能用它提前开放DLLP"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-control-and-success-registers",
+                "label": "EQ控制与结果分开：能力、禁用位、请求、Complete各做什么"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-noeq-disable-source-gate",
+                "label": "未闭环来源：No-EQ正文与控制位的关系不能凭字段名称改写"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 170,
+            "evidence": [
+              {
+                "href": "#feature/9/detail/r170-autonomous-eq-nop2-boundary",
+                "label": "自动均衡门控：Base7允许NOP2，不能用它提前开放DLLP"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-control-and-success-registers",
+                "label": "EQ控制与结果分开：能力、禁用位、请求、Complete各做什么"
+              },
+              {
+                "href": "#feature/9/detail/r170-eq-noeq-disable-source-gate",
+                "label": "未闭环来源：No-EQ正文与控制位的关系不能凭字段名称改写"
+              }
+            ],
+            "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 170,
+            "evidence": [
+              {
+                "href": "#feature/9/detail/r170-eq-noeq-disable-source-gate",
+                "label": "No-EQ正文与控制字段边界"
+              }
+            ],
+            "note": "No-EQ段引用Bypass Disable，而控制寄存器另定义No-EQ Disable；两者广告门控关系待匹配版本正式澄清，不凭字段名自行改写。"
           }
         },
         "baseline": {
@@ -2590,13 +2895,16 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "No-EQ段引用Bypass Disable，而控制寄存器另定义No-EQ Disable；两者广告门控关系待匹配版本正式澄清，不凭字段名自行改写。",
         "taskId": "v1-task-02",
         "requiredTaskIds": [
           "v1-task-02",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "No-EQ段引用Bypass Disable，而控制寄存器另定义No-EQ Disable；两者广告门控关系待匹配版本正式澄清，不凭字段名自行改写。"
         ]
       },
       {
@@ -32048,6 +32356,132 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项与原预算、38项来源记录保留；3/4/5共享Base6疑点，不计三项独立新冲突。",
         "publication": "R167/R168独立本地检查后合并发布R168；线上与视觉状态按实际记录。"
+      },
+      {
+        "round": 169,
+        "kind": "R169 Lane反序、极性与Deskew详细核读",
+        "deliverables": [
+          "补Lane反序角色/编号/失败及七版来源表，增加原创x4反序图；补极性七版边界与Deskew锚点歧义，7/8通过主题验收。"
+        ],
+        "closedDeliverableIds": [
+          "feature-7-v1-accepted",
+          "feature-8-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 7,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 7,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 7,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 7,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 7,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 7,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 7,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 7,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 8,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 8,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 8,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 8,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 8,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 8,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 8,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 8,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          7,
+          8
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项与原预算、38项历史来源记录保留；3/4/5共享回退阻塞，9复用既有No-EQ措辞问题。",
+        "publication": "R169/R170分别本地检查后合并发布R170，线上和视觉结果单列。"
+      },
+      {
+        "round": 170,
+        "kind": "R170 均衡版本门控、寄存器核对及四轮总结",
+        "deliverables": [
+          "补Base7 NOP2例外及逐速率成功判据/控制字段，保留No-EQ跨位门控一致性阻塞，完成R167～R170复盘。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 9,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 9,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 9,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 9,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 9,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 9,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 9,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项与原预算、38项历史来源记录保留；3/4/5共享回退阻塞，9复用既有No-EQ措辞问题。",
+        "publication": "R169/R170分别本地检查后合并发布R170，线上和视觉结果单列。"
       }
     ],
     "backlog": [
@@ -35555,33 +35989,37 @@
       }
     ],
     "nextExecution": {
-      "round": 169,
-      "taskId": "v1-task-01",
+      "round": 171,
+      "taskId": "v1-task-10",
       "featureIds": [
-        7,
-        8,
-        9
+        10,
+        11,
+        12
       ],
-      "goal": "沿固定队列推进编码/对齐/均衡7/8/9；3/4/5共享来源问题单列，不重复重读代替正式澄清。",
-      "reviewRound": 170
+      "goal": "按实际功能名推进10时钟架构、11 Retimer、12编码；来源阻塞单列，不重复重读代替澄清。",
+      "reviewRound": 174
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 168,
-      "reestimateRound": 170,
+      "assessedRound": 170,
+      "reestimateRound": 174,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R167撤回3的一致性通过，R168关闭6；两轮新增22项维度、撤回1项，净增21。原预算耗尽，来源阻塞不通过延长轮数自动解决。",
-      "action": "下一队列7/8/9；R170四轮总结，统计重开项并保持每日暂停。",
+      "assessment": "本窗口验收6/7/8三项、重开3一项，净关闭2项；新通过45维度、撤回1，净增44。累计140/183、1292维度、剩43。3/4/5共享Base6回退疑点；9保留原No-EQ跨位门控问题，PHY产品疑点不重复验收。",
+      "action": "先完成可核正文的10/11及12/13，再FM/FEC/L0p/测试与桥接DMA剩余组；已知来源阻塞单列外部证据清单。原预算已用完，暂无可保证结束的轮数。",
       "latestProgress": {
-        "round": 168,
-        "newAcceptedUnits": 1,
-        "cumulativeAcceptedUnits": 138,
-        "newPassedCriteria": 15,
-        "cumulativePassedCriteria": 1269,
+        "round": 170,
+        "newAcceptedUnits": 0,
+        "cumulativeAcceptedUnits": 140,
+        "newPassedCriteria": 7,
+        "cumulativePassedCriteria": 1292,
         "remainingPlannedRounds": 0
+      },
+      "unacceptedBreakdown": {
+        "blocked": 21,
+        "awaiting": 22
       }
     },
     "reviewWindows": [
@@ -36342,6 +36780,87 @@
           "PHY与SerDes": 10
         },
         "note": "本窗口关闭1/2/3共3项，45维度通过（其中21维度来自PHY部分验收）；累计138/183、1248维度、剩45。174/175/176各7/8通过，一致性阻塞。不以来源重读次数推算可保证的结束轮数。"
+      },
+      {
+        "id": "r167-r170",
+        "firstRound": 167,
+        "lastRound": 170,
+        "closedFeatureUnits": [
+          6,
+          7,
+          8
+        ],
+        "reopenedFeatureUnits": [
+          3
+        ],
+        "netClosedFeatureUnits": 2,
+        "newPassedCriteria": 45,
+        "revokedPassedCriteria": 1,
+        "netPassedCriteria": 44,
+        "remainingFeatureUnits": 43,
+        "cumulativePassedCriteria": 1292,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 11,
+          "中断与消息": 2,
+          "功耗与复位": 4,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 4,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 10
+        },
+        "blockedFeatureIds": [
+          3,
+          4,
+          5,
+          9,
+          106,
+          114,
+          119,
+          127,
+          129,
+          136,
+          143,
+          152,
+          153,
+          159,
+          169,
+          170,
+          172,
+          173,
+          174,
+          175,
+          176
+        ],
+        "awaitingFeatureIds": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          59,
+          61,
+          89,
+          91,
+          92,
+          137,
+          138,
+          139,
+          146,
+          147,
+          148,
+          164,
+          179,
+          181,
+          183
+        ],
+        "note": "本窗口验收6/7/8三项、重开3一项，净关闭2项；新通过45维度、撤回1，净增44。累计140/183、1292维度、剩43。3/4/5共享Base6回退疑点；9保留原No-EQ跨位门控问题，PHY产品疑点不重复验收。"
       }
     ],
     "budgetEndAudit": {
@@ -36639,8 +37158,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        167,
-        168
+        169,
+        170
       ],
       "completedRounds": [
         143,
@@ -36668,10 +37187,12 @@
         165,
         166,
         167,
-        168
+        168,
+        169,
+        170
       ],
-      "publication": "checks-before-combined-r168-publication",
-      "note": "每日暂停；固定范围与原预算快照保留。"
+      "publication": "checks-before-combined-r170-publication",
+      "note": "每日保持暂停；原预算终点及固定183项不变。"
     },
     "queueAudit": {
       "round": 150,

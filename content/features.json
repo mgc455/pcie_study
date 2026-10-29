@@ -14937,14 +14937,14 @@
     "checks": "核对支持的反转组合、Lane0检测要求以及自动/手动控制，不能只确认差分线有通断。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 7,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R169按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-18",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "4",
@@ -14956,9 +14956,575 @@
         "pdfPage": 307,
         "verification": "已核对该版本目录；正文待逐项核读",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.3.2.2",
+        "page": 179,
+        "pdfPage": 179,
+        "title": "USP编号与可选反序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.3.3.1",
+        "page": 180,
+        "pdfPage": 180,
+        "title": "严格反序及Lane0缺失例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.3.2.2",
+        "page": 206,
+        "pdfPage": 206,
+        "title": "连续分组及编号",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.3.2.2",
+        "page": 207,
+        "pdfPage": 207,
+        "title": "反序支持分工",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.6.3.2.2",
+        "page": 265,
+        "pdfPage": 265,
+        "title": "连续分组与编码等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.6.3.2.2",
+        "page": 266,
+        "pdfPage": 266,
+        "title": "反序及缺Lane0例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.3.2.2",
+        "page": 306,
+        "pdfPage": 306,
+        "title": "USP连续分组",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.3.2.2",
+        "page": 308,
+        "pdfPage": 308,
+        "title": "反序及缺Lane0例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.3.2.2",
+        "page": 330,
+        "pdfPage": 330,
+        "title": "USP编号",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.3.2.2",
+        "page": 331,
+        "pdfPage": 331,
+        "title": "反序及缩宽例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.3.3.1",
+        "page": 332,
+        "pdfPage": 332,
+        "title": "DSP严格反序及出口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.5.11.1",
+        "page": 442,
+        "pdfPage": 442,
+        "title": "可选反序及双向要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.2.2",
+        "page": 469,
+        "pdfPage": 469,
+        "title": "USP编号及Flit相关等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.2.2",
+        "page": 471,
+        "pdfPage": 471,
+        "title": "反序及Lane0缺失例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.5.11.1",
+        "page": 519,
+        "pdfPage": 519,
+        "title": "反序双向与支持宽度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.3.2.2",
+        "page": 552,
+        "pdfPage": 552,
+        "title": "USP连续分组与64GT/s以上等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.3.2.2",
+        "page": 554,
+        "pdfPage": 554,
+        "title": "反序及Lane0缺失例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.3.3.1",
+        "page": 555,
+        "pdfPage": 555,
+        "title": "DSP正常与反序编号出口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.3.2.2",
+        "page": 179,
+        "pdfPage": 179,
+        "title": "USP编号与可选反序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.6.3.3.1",
+        "page": 180,
+        "pdfPage": 180,
+        "title": "严格反序及Lane0缺失例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.3.2.2",
+        "page": 206,
+        "pdfPage": 206,
+        "title": "连续分组及编号",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.6.3.2.2",
+        "page": 207,
+        "pdfPage": 207,
+        "title": "反序支持分工",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.6.3.2.2",
+        "page": 265,
+        "pdfPage": 265,
+        "title": "连续分组与编码等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.6.3.2.2",
+        "page": 266,
+        "pdfPage": 266,
+        "title": "反序及缺Lane0例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.3.2.2",
+        "page": 306,
+        "pdfPage": 306,
+        "title": "USP连续分组",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.6.3.2.2",
+        "page": 308,
+        "pdfPage": 308,
+        "title": "反序及缺Lane0例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.3.2.2",
+        "page": 330,
+        "pdfPage": 330,
+        "title": "USP编号",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.3.2.2",
+        "page": 331,
+        "pdfPage": 331,
+        "title": "反序及缩宽例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.6.3.3.1",
+        "page": 332,
+        "pdfPage": 332,
+        "title": "DSP严格反序及出口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.5.11.1",
+        "page": 442,
+        "pdfPage": 442,
+        "title": "可选反序及双向要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.2.2",
+        "page": 469,
+        "pdfPage": 469,
+        "title": "USP编号及Flit相关等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.3.2.2",
+        "page": 471,
+        "pdfPage": 471,
+        "title": "反序及Lane0缺失例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.5.11.1",
+        "page": 519,
+        "pdfPage": 519,
+        "title": "反序双向与支持宽度",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.3.2.2",
+        "page": 552,
+        "pdfPage": 552,
+        "title": "USP连续分组与64GT/s以上等待",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.3.2.2",
+        "page": 554,
+        "pdfPage": 554,
+        "title": "反序及Lane0缺失例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.3.3.1",
+        "page": 555,
+        "pdfPage": 555,
+        "title": "DSP正常与反序编号出口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "已定位规范目录"
+    "referenceStatus": "所列七版Configuration编号、反序例及Base6/7可选Port行为已核正文；产品任意映射/分叉能力与全部中间修订不作推定。",
+    "details": [
+      {
+        "id": "r169-lane-map-and-role",
+        "title": "Lane反序怎样生效：物理连线、TS编号、逻辑Lane分开看",
+        "paragraphs": [
+          "Lane Reversal解决多Lane链路PCB顺序翻转的问题。物理引脚编号不会因为训练而改变；TS1/TS2中的Lane Number和内部交给条带化逻辑的Lane顺序才需要一致。下面原创x4示意只画完整反序，不代表某具体IP允许所有子宽度、分叉或任意交叉连线。",
+          "Base6.0 p442和Base7.0 p519将反序列为可选能力；一个Port若实现多Lane反序，则该Port的TX与RX都要执行，不能只修RX重排。链路的任一端可以承担所需反序，不要求两端都支持；但不能据此省略产品支持矩阵、Form Factor要求和实际连线约束。",
+          "Configuration.Linkwidth.Accept中DSP为可形成Link的分组分配连续0～n−1编号；USP根据连续两个同一非PAD Link Number且Lane Number非PAD的TS1，选择可配置分组并返回编号。USP支持反序时可以回送收到的编号；若不支持则回送自身反向关系所对应编号，DSP须有能力修正，否则不能按这条路径组成预期Link。",
+          "这些是双方训练行为，不是一个通用的“Lane Reverse Enable”配置空间bit。Base没有在本条提供跨厂商统一的手动强制寄存器；IP中静态lane-map、自动识别、strap或wrapper接口需另查产品。每Lane极性纠正、Deskew和Link拆分是其它机制。"
+        ],
+        "referenceIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "table": {
+          "columns": [
+            "端A物理引脚组",
+            "反向连接到端B",
+            "解释边界"
+          ],
+          "rows": [
+            [
+              "A物理Lane0",
+              "B物理Lane3",
+              "训练后必须恢复统一逻辑编号"
+            ],
+            [
+              "A物理Lane1",
+              "B物理Lane2",
+              "不是把业务byte逐bit反相"
+            ],
+            [
+              "A物理Lane2",
+              "B物理Lane1",
+              "TX和RX对应关系都需一致"
+            ],
+            [
+              "A物理Lane3",
+              "B物理Lane0",
+              "完整x4反序，不推导任意置换"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 8,
+            "detailId": "polarity-reversal-deskew-map",
+            "label": "极性、反序与Deskew的区别"
+          },
+          {
+            "featureId": 6,
+            "detailId": "r168-width-change-contract",
+            "label": "Link宽度与其它Width区别"
+          },
+          {
+            "featureId": 4,
+            "detailId": "cfg-upstream-group-query",
+            "label": "USP分组条件查询"
+          }
+        ]
+      },
+      {
+        "id": "r169-lane-group-failure-and-versions",
+        "title": "分组失败与七代差分：缺Lane0不保证总能降到x1",
+        "paragraphs": [
+          "USP新分配编号为0～m−1，只能取接收非PAD编号的一个连续Lane分组；该分组须包含收到的Lane0或最大编号n−1，且m−1不能超过n−1。没有收到TS1的Lane会打断USP连续分组，剩余Lane发PAD。这与DSP最初编号不因某未收TS1的Lane而破坏最宽顺序编号的规则不同，不能混写。",
+          "在规范的受限例子中，x8 USP只支持x8/x1且收不到本地Lane0的TS1：若支持反序，可把收到的Lane7配置为逻辑Lane0而组成x1，其余Lane发PAD；若不支持则不能组成Link，2ms超时回Detect。这不是所有x8 Port的必然降级方式；支持x4/x2、中间Lane故障、其它接线均须重新核分组。",
+          "DSP在Lanenum.Accept检查连续两个TS1中的Link/Lane编号是否全匹配，或是否为实现支持的严格反序，才进入Complete。Base1.0a p180和Base5.0 p332明确反序两端点：本地Lane0收到n−1、本地Lane n−1收到0。它不授权例如0→2、1→0、2→3、3→1的任意交换。",
+          "七版已核正文都保留可选反序与上述USP回送分工；不能因为Gen7更快便自动得到新的任意映射能力。Base3/4/5对128b/130b错误或丢对齐的等待建议不同于早期只补TS1的描述；Base6扩至1b/1b，Base7 p552允许64GT/s以上为避免Lane skew导致缩宽而等待至多1ms。页表只确认所列版本差分，首次ECN及全部中间修订不作推定。",
+          "反序造成的编号不匹配应查物理连线、双方返回TS1/TS2编号、当前分组和出口条件。低速可通而高速缩宽也可能来自锁定或skew；只看总Link Width无法认定是反序失败。完整接线是否符合产品与连接器规范仍由对应资料约束，本条未做板级或RTL验证。"
+        ],
+        "referenceIndices": [
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36
+        ],
+        "table": {
+          "columns": [
+            "固定Base版本",
+            "已核印刷/PDF页",
+            "确认范围"
+          ],
+          "rows": [
+            [
+              "1.0a",
+              "p179～180",
+              "USP分组/可选反序；DSP严格反序"
+            ],
+            [
+              "2.0",
+              "p206～207",
+              "相同编号分工；早期TS1错误等待上下文"
+            ],
+            [
+              "3.0",
+              "p265～266",
+              "128b/130b丢对齐建议至少额外34个TS1，至多1ms"
+            ],
+            [
+              "4.0",
+              "p306/308",
+              "连续分组与反序例仍在"
+            ],
+            [
+              "5.0",
+              "p330～332",
+              "反序与Modified TS/出口条件分开"
+            ],
+            [
+              "6.0",
+              "p469/471",
+              "1b/1b丢Block/Flit对齐也纳入等待建议"
+            ],
+            [
+              "7.0",
+              "p552/554～555",
+              "64GT/s以上另允许至多1ms防skew缩宽"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 7,
+            "detailId": "r169-lane-map-and-role",
+            "label": "物理连接及两端分工"
+          },
+          {
+            "featureId": 4,
+            "detailId": "cfg-upstream-group-query",
+            "label": "连续分组查询"
+          },
+          {
+            "featureId": 6,
+            "detailId": "l0-upconfigure-original-ceiling",
+            "label": "后续扩宽的原始上限"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "极性反转与Deskew",
@@ -14970,14 +15536,14 @@
     "checks": "确认偏差在PHY/控制器可接受范围内；极性处理不是修复任意错接或超限布线的通用办法。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 8,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R169按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-24",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "4",
@@ -15209,9 +15775,130 @@
         "title": "RxPolarity的20 PCLK响应：不是检测截止时间，也不是20ns",
         "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
         "verification": "R55核读PIPE7.1本地对应正文；视觉核p135/138。所列印刷页与本地PDF物理页一致；本地190页与官网189页副本不假定同页序。仅核所列架构/速率分支，不代表Gen1～Gen7全沿革。"
+      },
+      {
+        "documentId": "pcie-base-1.0a",
+        "document": "PCI Express Base Specification",
+        "version": "1.0a",
+        "section": "4.2.4.2",
+        "page": 163,
+        "pdfPage": 163,
+        "title": "逐Lane极性纠正",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-2.0",
+        "document": "PCI Express Base Specification",
+        "version": "2.0",
+        "section": "4.2.4.4",
+        "page": 184,
+        "pdfPage": 184,
+        "title": "逐Lane极性纠正",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-3.0",
+        "document": "PCI Express Base Specification",
+        "version": "3.0",
+        "section": "4.2.4.4",
+        "page": 237,
+        "pdfPage": 237,
+        "title": "逐Lane极性纠正",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-4.0",
+        "document": "PCI Express Base Specification",
+        "version": "4.0",
+        "section": "4.2.4.4",
+        "page": 276,
+        "pdfPage": 276,
+        "title": "逐Lane极性纠正",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.4.5",
+        "page": 306,
+        "pdfPage": 306,
+        "title": "逐Lane极性纠正",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.5.5",
+        "page": 437,
+        "pdfPage": 437,
+        "title": "Polling极性检测",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.5.5",
+        "page": 514,
+        "pdfPage": 514,
+        "title": "Polling极性检测",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.5.12",
+        "page": 442,
+        "pdfPage": 442,
+        "title": "Deskew范围及8b/10b/128b锚点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.5.12",
+        "page": 443,
+        "pdfPage": 443,
+        "title": "1b锚点及背靠背OS歧义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.5.12",
+        "page": 519,
+        "pdfPage": 519,
+        "title": "允许skew及锚点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.5.12",
+        "page": 520,
+        "pdfPage": 520,
+        "title": "连续OS歧义与1b/1b锚点",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "所引Base6.0/7.0 RX对齐、极性、编码与SKP条款及PIPE7.1接口已按块核读；早期逐版演进、FM数据流完整调度和产品实现仍待核。",
+    "referenceStatus": "七版极性正文、Base6/7 Deskew锚点与原有RX/Idle/SKP选段已核；不代表整章电气预算、完整中间修订或产品FIFO验证。",
     "details": [
       {
         "id": "polarity-training-symbols",
@@ -15380,6 +16067,133 @@
         "referenceIndices": [
           20
         ]
+      },
+      {
+        "id": "r169-polarity-seven-revision-boundary",
+        "title": "极性纠正的七版共同要求：P/N交换不等于Lane编号反序",
+        "paragraphs": [
+          "逐版核读1.0a、2.0、3.0、4.0、5.0、6.0、7.0对应Lane Polarity Inversion正文：均要求所有RX逐Lane独立支持，检测后在接收方向纠正；不能因某Lane反相而让本端TX也随之反相。这个要求不同于Lane Reversal的可选能力。",
+          "训练序列Symbol6～15的TS1期望D10.2、反相表现D21.5，TS2期望D5.2、反相表现D26.5，已有表继续适用。这里核的是训练中的检测上下文；不能把这些8b/10b符号直接当64/128GT/s PAM4业务流的通用bit翻转表。",
+          "PIPE Original与SerDes架构的纠正/控制边界及RxPolarity响应期限，继续查原有PIPE条目；20 PCLK是所引接口动作响应要求，不是20ns、整个Polling超时或所有产品同名状态位。协议有明确行为，不代表软件有统一配置空间极性控制bit。"
+        ],
+        "referenceIndices": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "table": {
+          "columns": [
+            "固定版本",
+            "同版本正文定位"
+          ],
+          "rows": [
+            [
+              "1.0a",
+              "§4.2.4.2 p163"
+            ],
+            [
+              "2.0 / 3.0 / 4.0",
+              "§4.2.4.4 p184 / p237 / p276"
+            ],
+            [
+              "5.0",
+              "§4.2.4.5 p306"
+            ],
+            [
+              "6.0 / 7.0",
+              "§4.2.5.5 p437 / p514"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 8,
+            "detailId": "polarity-training-symbols",
+            "label": "TS1/TS2检测符号表"
+          },
+          {
+            "featureId": 8,
+            "detailId": "pipe-polarity-twenty-pclk",
+            "label": "RxPolarity响应与架构边界"
+          },
+          {
+            "featureId": 7,
+            "detailId": "r169-lane-map-and-role",
+            "label": "可选Lane反序"
+          }
+        ]
+      },
+      {
+        "id": "r169-deskew-marker-ambiguity",
+        "title": "Deskew对齐锚点表：连续相似Ordered Set为何会配错",
+        "paragraphs": [
+          "Base6/7要求接收端在交给Data Link之前补偿允许的Lane间skew，并在Configuration、Recovery和L0s中执行Deskew；允许其它无歧义实现。CDR锁定、各Lane自身Block Alignment、跨Lane Deskew是不同证据，具体容限须查相应速率电气表，不能把所有代际统一设为20ns。",
+          "8b/10b可用训练TS的COM、EIEOS的COM、FTS后首个SKP的COM及非SRIS训练中的SKP的COM。128b/130b可用SDS，或依L0s/速率上下文使用EIEOS/SKP；并不是见到任意SKP即无歧义。1b/1b正文列SDS、EIEOS、Control SKP。",
+          "Base6 p443/Base7 p520的例子说明：2.5GT/s最大待补skew为20ns，而普通4-Symbol SKP长16ns。若背靠背发送SKP，只寻找每Lane“某个COM”可能错配前后两个OS；必须识别同一个序列事件。这个数值例子只适用所述2.5GT/s条件，也不等于PCB允许多走20ns。",
+          "128b/130b退出L0s可能背靠背EIEOS，16GT/s以上训练尾部也可能背靠背Standard SKP与Control SKP；接收算法应辨别前后类型和边界。FM进入Data Stream还必须按既有Configuration.Idle序列和IDLE Flit门槛，不因Deskew完成就宣称L0或DL_Active。",
+          "Deskew处理Lane到达时间差；Elastic Buffer/SKP时钟补偿处理持续频差，二者不能互相替代。已核旧条目的FM/NFM入口与SKP例外保留；逐速率电气预算和具体FIFO深度计算依PHY/Retimer边界另查，未进行硬件FIFO验证。"
+        ],
+        "referenceIndices": [
+          28,
+          29,
+          30,
+          31
+        ],
+        "table": {
+          "columns": [
+            "编码/观察层",
+            "无歧义对齐依据",
+            "注意边界"
+          ],
+          "rows": [
+            [
+              "8b/10b",
+              "按训练/FTS/SRIS上下文选COM",
+              "连续SKP不能只匹配任意COM"
+            ],
+            [
+              "128b/130b",
+              "SDS；上下文允许的EIEOS/SKP",
+              "退出L0s、训练尾部和EDS分隔需分别核"
+            ],
+            [
+              "1b/1b",
+              "SDS、EIEOS、Control SKP",
+              "不是将8b/10b COM算法直接照搬"
+            ],
+            [
+              "通过Deskew",
+              "跨Lane时间关联已建立",
+              "不单独证明L0、DLL初始化或业务可用"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 8,
+            "detailId": "deskew-before-stream",
+            "label": "Data Stream之前必须Deskew"
+          },
+          {
+            "featureId": 8,
+            "detailId": "idle-entry-not-rxvalid",
+            "label": "L0门槛与RxValid区别"
+          },
+          {
+            "featureId": 8,
+            "detailId": "multi-lane-skp-consistency",
+            "label": "SKP与频差补偿"
+          },
+          {
+            "featureId": 8,
+            "detailId": "l0p-skp-lane-exceptions",
+            "label": "L0p新旧活动Lane例外"
+          }
+        ]
       }
     ]
   },
@@ -15393,14 +16207,14 @@
     "checks": "记录均衡阶段、对端和retimer状态；随意强制Preset可能掩盖根因，需按PHY指导验证。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 9,
-    "status": "选定逐版规则/字段已展开 · 持续核读",
+    "status": "R170部分验收：7/8维度通过，No-EQ通告门控来源一致性阻塞",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-20",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "4.2.4",
@@ -15863,9 +16677,174 @@
         "title": "LTSSM默认超时容差",
         "verification": "核读所引版本该页相关正文/字段；不同版本分列，不代表整章/全部中间修订已核。",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3",
+        "page": 276,
+        "pdfPage": 276,
+        "title": "旧版自主EQ门控及集合",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.4",
+        "page": 394,
+        "pdfPage": 394,
+        "title": "自主EQ DLLP门控",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.4",
+        "page": 467,
+        "pdfPage": 467,
+        "title": "非NOP2门控及对端条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.4",
+        "page": 468,
+        "pdfPage": 468,
+        "title": "FM与NOP2例外说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.6.2",
+        "page": 1200,
+        "pdfPage": 1200,
+        "title": "32GT/s能力位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.6.3",
+        "page": 1201,
+        "pdfPage": 1201,
+        "title": "32GT/s两个独立Disable位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.6.4",
+        "page": 1202,
+        "pdfPage": 1202,
+        "title": "32GT/s Complete及成功位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.4",
+        "page": 468,
+        "pdfPage": 468,
+        "title": "五个速率成功判据与软件入口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.2.1.1",
+        "page": 578,
+        "pdfPage": 578,
+        "title": "跳阶段与超时均可置状态",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3",
+        "page": 275,
+        "pdfPage": 275,
+        "title": "No-EQ禁止句原字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.4",
+        "page": 393,
+        "pdfPage": 393,
+        "title": "No-EQ段与Bypass Disable",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.4",
+        "page": 466,
+        "pdfPage": 466,
+        "title": "No-EQ段及协商关系",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.6.3",
+        "page": 1201,
+        "pdfPage": 1201,
+        "title": "独立No-EQ Disable位",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "errata-base5-20211216",
+        "document": "Errata for PCI Express Base Specification Rev. 5.0",
+        "version": "2021-12-16",
+        "section": "4.2.3",
+        "page": 74,
+        "pdfPage": 74,
+        "title": "B118：已核Link Equalization修订范围",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.2",
+        "page": 575,
+        "pdfPage": 575,
+        "title": "TS0/TS1角色矩阵",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "逐块绑定版本、正文与PDF页。Base5三阶段/三抽头细则不直接套用64/128GT/s；不标整章完成。",
+    "referenceStatus": "已核所列Base3～7 EQ选段、Base5角色/阶段查询及Base7 NOP2/控制与成功字段；No-EQ正文和控制位关系待正式澄清，不作整项一致性通过。",
     "details": [
       {
         "title": "均衡阶段职责：到底在调整谁的TX",
@@ -16533,6 +17512,205 @@
           34,
           36,
           41
+        ]
+      },
+      {
+        "id": "r170-autonomous-eq-nop2-boundary",
+        "title": "自动均衡门控：Base7允许NOP2，不能用它提前开放DLLP",
+        "paragraphs": [
+          "此前“自动EQ完成前不得发DLLP”的短说明，应按其Base5引用理解；Base6.0 p394也写普通DLLP门控，但Base7.0 p467～468明确将NOP2列为例外。此条给旧概述增加逐版边界，旧详情ID和原引用保留。",
+          "Base7自动均衡尚未完成预定速率集合时，DSP不能发送非NOP2 DLLP；USP还须等收到DSP的非NOP2 DLLP，才可解除对非NOP2 DLLP的发送门控。收到NOP2本身不能解锁。再次执行均衡也需按本次过程门控，不能用此前一次DLLP当作永久授权。",
+          "FM进入Recovery要等Ordered Set边界，因此在预定自动EQ集合全部完成前可能仍发Flit，里面可承载NOP2。这不证明业务TLP、流控初始化或应用队列已经就绪。Base7实现说明特别指出NOP2例外；不得把它默默倒推成所有旧Base版都写了相同例外，首次ECN链未在本轮核定。",
+          "此处“集合完成”指DSP计划通过自主机制执行的公共速率，不是所有支持速率必然都已训练。未由自主机制覆盖的预期运行速率仍需软件完成相应EQ；不是让系统长期在未经训练的速率工作。"
+        ],
+        "referenceIndices": [
+          42,
+          43,
+          44,
+          45
+        ],
+        "table": {
+          "columns": [
+            "角色/版本",
+            "已核规则",
+            "不能推出"
+          ],
+          "rows": [
+            [
+              "Base5/6所引正文",
+              "自主EQ完成前DLLP门控",
+              "按各自版本与集合解释"
+            ],
+            [
+              "Base7 DSP",
+              "未完成时只允许所述NOP2例外",
+              "Flit发送不代表业务可用"
+            ],
+            [
+              "Base7 USP",
+              "等来自DSP的非NOP2 DLLP再解锁",
+              "收到NOP2不足以解锁"
+            ],
+            [
+              "完成集合",
+              "核自主机制计划覆盖的速率",
+              "其余预期速率需软件机制"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 9,
+            "detailId": "eq-autonomous-dllp-block",
+            "label": "旧概述及其Base5范围"
+          },
+          {
+            "featureId": 9,
+            "detailId": "eq-generation-flow-table",
+            "label": "逐版均衡路径"
+          },
+          {
+            "featureId": 13,
+            "detailId": "dlp-idle-nop-payload",
+            "label": "IDLE Flit、NOP与DLP区别"
+          }
+        ]
+      },
+      {
+        "id": "r170-eq-control-and-success-registers",
+        "title": "EQ控制与结果分开：能力、禁用位、请求、Complete各做什么",
+        "paragraphs": [
+          "均衡通过TS中的EC、Preset/Coefficient请求和接受/拒绝推进，不是软件直接写某一个“EQ成功”bit。Phase2由USP评估DSP TX，Phase3反向；本地RX调参、远端TX设置、训练回显和实际引脚都应分开观察。Base5普通Link的逐Phase计数/超时表继续复用，不能当成Gen6/7全部阶段同样计时。",
+          "Base7.0 Physical Layer 32.0GT/s Extended Capability的ID为002Ah、Version1。以下K相对该能力块起点；K+04h是能力，K+08h是控制，K+0Ch是本速率状态；与PCIe Capability内的Link Status2不是同一组偏移。64/128GT/s必须读其速率专用状态，不能只取32GT/s或8GT/s的Complete。",
+          "Base7.0 p468对8/16/32/64/128GT/s逐项要求本速率Complete与Phase3 Successful同时为1，才是所述过程的成功判据。Complete可在超时出口设置，合法跳过Phase2/3的路径也可能设置成功位，因此状态位不证明每个Phase都实际执行。必要时结合训练日志、实际速率与重置历史。",
+          "软件入口仍需保护在途事务：按Perform Equalization、Target Link Speed、DSP Retrain顺序及前置速率/宽度条件处理。能力支持不等于已协商，Disable清零表示允许通告而不是强迫对端跳过；No-EQ还要求全链路满足保存设置可靠性或无需EQ的条件。以下是字段解读，不提供未知设备的整字写值。"
+        ],
+        "referenceIndices": [
+          46,
+          47,
+          48,
+          49,
+          50
+        ],
+        "table": {
+          "columns": [
+            "坐标/bit",
+            "含义",
+            "属性或边界"
+          ],
+          "rows": [
+            [
+              "K+04h[0] / [1]",
+              "Bypass Supported / No-EQ Supported",
+              "HwInit；两种支持独立"
+            ],
+            [
+              "K+08h[0]",
+              "Bypass to Highest NRZ Rate Disable",
+              "支持时RWS、默认0；限制相应通告"
+            ],
+            [
+              "K+08h[1]",
+              "No Equalization Needed Disable",
+              "支持时RWS、默认0；置1要求宣告需要EQ"
+            ],
+            [
+              "K+0Ch[0] / [3]",
+              "32GT/s Complete / Phase3 Successful",
+              "ROS；二者结合，不写成启动命令"
+            ],
+            [
+              "PCIe Capability +32h",
+              "Link Status2的8GT/s EQ状态",
+              "不能套成32/64/128GT/s状态窗口"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 9,
+            "detailId": "eq-status-word-table",
+            "label": "已有Base5 Status2逐bit表"
+          },
+          {
+            "featureId": 9,
+            "detailId": "eq-phase-query",
+            "label": "Base5逐角色/Phase查询"
+          },
+          {
+            "featureId": 9,
+            "detailId": "eq-request-accept-reject",
+            "label": "请求回显不等于实际采用"
+          },
+          {
+            "featureId": 5,
+            "detailId": "r168-retrain-request-versus-completion",
+            "label": "Retrain请求与完成区别"
+          }
+        ]
+      },
+      {
+        "id": "r170-eq-noeq-disable-source-gate",
+        "title": "未闭环来源：No-EQ正文与控制位的关系不能凭字段名称改写",
+        "paragraphs": [
+          "既有eq-bypass-advertisement-consistency已提示Base5 No-EQ通告禁止条件的字段措辞需核。本轮核Base5 p275、Base6 p393、Base7 p466：No-EQ段的禁止句均写Bypass Disable；而Base7 p1201还独立定义No Equalization Needed Disable，置1必须指示需要均衡。",
+          "两个独立控制位的定义可以逐项解释，但是否还存在正文所写的跨位门控关系、是否有匹配勘误，不能仅凭名字相似认定正文笔误，更不能自动替换成另一个字段。所读Base5 Errata2021-12-16 B118 p74修订了降速/重均衡路径，未在该条给出这个No-EQ禁止句的澄清。不能据此断言所有官方勘误均不存在。",
+          "因此均衡9本轮通过七个可确认维度，一致性保留阻塞，复用既有条目问题，不把它伪装成新发现已解决。需要准确适用的官方勘误或明确控制/广告真值关系的正式说明；原Base和已核勘误都已存在，资料尚未找到澄清不等于缺少Base规范。",
+          "本次还核Base7 TS0/TS1矩阵及相应状态文字：64GT/s以上DSP在Phase2由TS0切TS1，USP在Phase3切换；Base5仅TS1的逐阶段查询不替代这些更高速率分支。Loopback与Retimer内部扩展另按固定版本条款，未做全章或全部中间修订验收。"
+        ],
+        "referenceIndices": [
+          51,
+          52,
+          53,
+          54,
+          55,
+          56
+        ],
+        "table": {
+          "columns": [
+            "证据层",
+            "能确认什么",
+            "仍未确认什么"
+          ],
+          "rows": [
+            [
+              "已确认",
+              "两个控制位存在且定义不同",
+              "不自动证明跨位门控为笔误"
+            ],
+            [
+              "已核勘误B118",
+              "修订降速与重新均衡规则",
+              "本条未给No-EQ禁止句澄清"
+            ],
+            [
+              "本项验收",
+              "7/8通过，consistency阻塞",
+              "不以重读次数计关闭"
+            ],
+            [
+              "后续所需证据",
+              "匹配版本的正式澄清/勘误",
+              "不是重复请求已有Base PDF"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 9,
+            "detailId": "eq-bypass-advertisement-consistency",
+            "label": "此前No-EQ措辞问题"
+          },
+          {
+            "featureId": 9,
+            "detailId": "r170-eq-control-and-success-registers",
+            "label": "两个控制位及成功判据"
+          },
+          {
+            "featureId": 9,
+            "detailId": "block-3",
+            "label": "TS0/TS1逐角色矩阵"
+          }
         ]
       }
     ]
