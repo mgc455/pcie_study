@@ -1,7 +1,7 @@
 {
   "nextFeatureIds": [
-    181,
-    164
+    138,
+    139
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,11 +48,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r180",
+    "edition": "2026-10-30-r182",
     "featureIds": [
-      179
+      164
     ],
-    "nextTrack": "[181, 164]；R182总结"
+    "nextTrack": "[138, 139]；R186总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -342,14 +342,14 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 122,
-    "lastReviewEdition": "2026-10-30-r178",
-    "lastReviewId": "r175-r178",
-    "nextExpectedReview": "若用户继续授权，R182四轮总结；不是新完工期限。"
+    "completedTotal": 124,
+    "lastReviewEdition": "2026-10-30-r182",
+    "lastReviewId": "r179-r182",
+    "nextExpectedReview": "若用户继续授权，R186四轮总结；不是新完工期限。"
   },
   "stageReviews": [
     {
@@ -1283,10 +1283,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 90,
+    "completedRounds": 92,
     "remainingPlannedRounds": 0,
-    "nextRound": 181,
-    "nextReviewRound": 182,
+    "nextRound": 183,
+    "nextReviewRound": 186,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -24594,7 +24594,7 @@
         "featureId": 164,
         "group": "PHY与SerDes",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -24619,24 +24619,116 @@
             "note": "核所列6.50a产品正文、范围/职责/异常和直接定位；非全规范或实机签核。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 182,
+            "evidence": [
+              {
+                "href": "#feature/164/detail/r182-pipe-two-independent-choices",
+                "label": "PIPE先选两条轴：数据架构与控制接口不是同一开关"
+              },
+              {
+                "href": "#feature/164/detail/r182-pipe-rate-context-and-completion",
+                "label": "切速读波形的顺序：时钟所有权、当前操作与完成事件"
+              },
+              {
+                "href": "#feature/164/detail/r182-pipe-source-gates",
+                "label": "保留PIPE来源边界：Ok结束边沿、独立变化与MacCLK位宽"
+              },
+              {
+                "href": "#feature/164/detail/pipe-signal-directory",
+                "label": "PIPE逐信号速查：名称、位定义与版本边界"
+              },
+              {
+                "href": "#feature/164/detail/pipe-signal-data",
+                "label": "TxData / RxData / Valid：每个byte、symbol与时钟域"
+              },
+              {
+                "href": "#feature/164/detail/pipe-signal-messagebus",
+                "label": "Message Bus引脚、命令与bit布局"
+              },
+              {
+                "href": "#feature/164/detail/pipe-signal-macclk",
+                "label": "可选MacCLK lane：七个信号与四相启停"
+              }
+            ],
+            "note": "按工具HTML契约、所列PIPE/产品正式正文及已有细表验收；阅读方法不是CDL兼容性签核，接口主题不是所有旧修订或实机验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 182,
+            "evidence": [
+              {
+                "href": "#feature/164/detail/r182-pipe-two-independent-choices",
+                "label": "PIPE先选两条轴：数据架构与控制接口不是同一开关"
+              },
+              {
+                "href": "#feature/164/detail/r182-pipe-rate-context-and-completion",
+                "label": "切速读波形的顺序：时钟所有权、当前操作与完成事件"
+              },
+              {
+                "href": "#feature/164/detail/r182-pipe-source-gates",
+                "label": "保留PIPE来源边界：Ok结束边沿、独立变化与MacCLK位宽"
+              },
+              {
+                "href": "#feature/164/detail/pipe-signal-scope-errata",
+                "label": "覆盖边界、非PCIe信号与发现的表文矛盾"
+              },
+              {
+                "href": "#feature/164/detail/pipe-margin-nak-limits",
+                "label": "PIPE NAK不是任何非法输入都保证有的回应"
+              }
+            ],
+            "note": "按工具HTML契约、所列PIPE/产品正式正文及已有细表验收；阅读方法不是CDL兼容性签核，接口主题不是所有旧修订或实机验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 182,
+            "evidence": [
+              {
+                "href": "#feature/164/detail/r182-pipe-two-independent-choices",
+                "label": "PIPE先选两条轴：数据架构与控制接口不是同一开关"
+              },
+              {
+                "href": "#feature/164/detail/r182-pipe-rate-context-and-completion",
+                "label": "切速读波形的顺序：时钟所有权、当前操作与完成事件"
+              },
+              {
+                "href": "#feature/164/detail/r182-pipe-source-gates",
+                "label": "保留PIPE来源边界：Ok结束边沿、独立变化与MacCLK位宽"
+              },
+              {
+                "href": "#feature/164/detail/r81-pipe-revision-evidence",
+                "label": "PIPE1.00与7.1：按实际正文比较，不按Gen编号补历史"
+              },
+              {
+                "href": "#feature/164/detail/pipe-signal-revisions",
+                "label": "PIPE版本变化：明确哪些来自修订记录，哪些已核当前正文"
+              }
+            ],
+            "note": "按工具HTML契约、所列PIPE/产品正式正文及已有细表验收；阅读方法不是CDL兼容性签核，接口主题不是所有旧修订或实机验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 182,
+            "evidence": [
+              {
+                "href": "#feature/164/detail/r182-pipe-two-independent-choices",
+                "label": "PIPE先选两条轴：数据架构与控制接口不是同一开关"
+              },
+              {
+                "href": "#feature/164/detail/r182-pipe-rate-context-and-completion",
+                "label": "切速读波形的顺序：时钟所有权、当前操作与完成事件"
+              },
+              {
+                "href": "#feature/164/detail/r182-pipe-source-gates",
+                "label": "保留PIPE来源边界：Ok结束边沿、独立变化与MacCLK位宽"
+              },
+              {
+                "href": "#feature/164/detail/pipe-rate-version-and-table-boundaries",
+                "label": "版本核读边界：PIPE7.1能力表不等于Gen1～7逐版行为证明"
+              }
+            ],
+            "note": "按工具HTML契约、所列PIPE/产品正式正文及已有细表验收；阅读方法不是CDL兼容性签核，接口主题不是所有旧修订或实机验证。"
           },
           "navigation": {
             "status": "passed",
@@ -24650,9 +24742,15 @@
             "note": "核所列6.50a产品正文、范围/职责/异常和直接定位；非全规范或实机签核。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 182,
+            "evidence": [
+              {
+                "href": "#feature/164/detail/r182-pipe-source-gates",
+                "label": "PIPE握手、位宽与副本来源边界"
+              }
+            ],
+            "note": "PIPE7.1 Ok/PhyStatus撤销边沿、Rate稳定独立Width/PCLK适用组合及MacCLK图表位宽仍需澄清；本地/官网副本页映射与其它原来源问题保留，不自行合成RTL合同。"
           }
         },
         "baseline": {
@@ -24663,13 +24761,16 @@
           "pipe"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "PIPE7.1 Ok/PhyStatus撤销边沿、Rate稳定独立Width/PCLK适用组合及MacCLK图表位宽仍需澄清；本地/官网副本页映射与其它原来源问题保留，不自行合成RTL合同。",
         "taskId": "v1-task-20",
         "requiredTaskIds": [
           "v1-task-20",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "PIPE7.1 Ok/PhyStatus撤销边沿、Rate稳定独立Width/PCLK适用组合及MacCLK图表位宽仍需澄清；本地/官网副本页映射与其它原来源问题保留，不自行合成RTL合同。"
         ]
       },
       {
@@ -26774,7 +26875,7 @@
         "featureId": 181,
         "group": "PHY与SerDes",
         "scope": "implementation",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -26832,9 +26933,23 @@
             "note": "核所列正文、角色与版本边界；来源按块定位，非全规范或实机签核。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 181,
+            "evidence": [
+              {
+                "href": "#feature/181/detail/r181-cdl-dialect-reader-contract",
+                "label": "先选读取器方言：不能把CDL后缀当成通用可执行模型"
+              },
+              {
+                "href": "#feature/181/detail/r181-cdl-port-mapping-example",
+                "label": "位置端口怎样追：一个原创小例子与三张核对表"
+              },
+              {
+                "href": "#feature/181/detail/r181-cdl-counts-versus-validation",
+                "label": "结构计数、LVS比较和模拟性能分别能证明什么"
+              }
+            ],
+            "note": "按工具HTML契约、所列PIPE/产品正式正文及已有细表验收；阅读方法不是CDL兼容性签核，接口主题不是所有旧修订或实机验证。"
           },
           "navigation": {
             "status": "passed",
@@ -26848,9 +26963,23 @@
             "note": "核所列正文、角色与版本边界；来源按块定位，非全规范或实机签核。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 181,
+            "evidence": [
+              {
+                "href": "#feature/181/detail/r181-cdl-dialect-reader-contract",
+                "label": "先选读取器方言：不能把CDL后缀当成通用可执行模型"
+              },
+              {
+                "href": "#feature/181/detail/r181-cdl-port-mapping-example",
+                "label": "位置端口怎样追：一个原创小例子与三张核对表"
+              },
+              {
+                "href": "#feature/181/detail/r181-cdl-counts-versus-validation",
+                "label": "结构计数、LVS比较和模拟性能分别能证明什么"
+              }
+            ],
+            "note": "按工具HTML契约、所列PIPE/产品正式正文及已有细表验收；阅读方法不是CDL兼容性签核，接口主题不是所有旧修订或实机验证。"
           }
         },
         "baseline": {
@@ -26859,14 +26988,15 @@
         },
         "reuseGroups": [],
         "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "按工具HTML契约、所列PIPE/产品正式正文及已有细表验收；阅读方法不是CDL兼容性签核，接口主题不是所有旧修订或实机验证。",
         "taskId": "v1-task-19",
         "requiredTaskIds": [
           "v1-task-19",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 181
       },
       {
         "id": "v1-feature-182",
@@ -34595,6 +34725,62 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项、原R138预算与38来源历史保留；PRBS计时口径不猜解，缺口与未核读区分。",
         "publication": "R179/R180分别检查后合并发布R180；线上字节与视觉结果分列。"
+      },
+      {
+        "round": 181,
+        "kind": "R181 CDL方言、端口映射及验证视图复核",
+        "deliverables": [
+          "补工具厂商HTML语法来源、原创位置端口示例及结构/LVS/性能边界；181按阅读方法契约完成验收，HTML来源不编造PDF页码。"
+        ],
+        "closedDeliverableIds": [
+          "feature-181-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 181,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 181,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          181
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项和原R138预算不变；CDL按工具方言与阅读方法验收，PIPE旧来源问题不猜解。",
+        "publication": "R181/R182分别检查后合并发布R182；HTML来源直达、PDF定位与线上/视觉结果分别核验。"
+      },
+      {
+        "round": 182,
+        "kind": "R182 PIPE架构/操作上下文复核与四轮总结",
+        "deliverables": [
+          "补数据架构与控制接口两条轴、切速事件判读及未决源文边界；164七维通过，完成R179～R182四轮复盘。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 164,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 164,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 164,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 164,
+            "criterionId": "sources"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项和原R138预算不变；CDL按工具方言与阅读方法验收，PIPE旧来源问题不猜解。",
+        "publication": "R181/R182分别检查后合并发布R182；HTML来源直达、PDF定位与线上/视觉结果分别核验。"
       }
     ],
     "backlog": [
@@ -35972,8 +36158,21 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "已核本地7.1对应表/操作段与图；查适用正式勘误或MAC/PHY交付合同，不从矛盾文字猜唯一边沿/独立变化支持或删除字段位。",
+        "evidence": [
+          {
+            "href": "#feature/164/detail/r182-pipe-source-gates",
+            "label": "R182 PIPE7.1对应原页再核"
+          }
+        ],
+        "reviewHistory": [
+          {
+            "round": 182,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
+            "previousEvidence": []
+          }
+        ]
       },
       {
         "id": "v1-conflict-23",
@@ -36093,8 +36292,21 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "已核本地7.1对应表/操作段与图；查适用正式勘误或MAC/PHY交付合同，不从矛盾文字猜唯一边沿/独立变化支持或删除字段位。",
+        "evidence": [
+          {
+            "href": "#feature/164/detail/r182-pipe-source-gates",
+            "label": "R182 PIPE7.1对应原页再核"
+          }
+        ],
+        "reviewHistory": [
+          {
+            "round": 182,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
+            "previousEvidence": []
+          }
+        ]
       },
       {
         "id": "v1-conflict-30",
@@ -38156,36 +38368,36 @@
       }
     ],
     "nextExecution": {
-      "round": 181,
-      "taskId": "v1-task-19",
+      "round": 183,
+      "taskId": "v1-task-16",
       "featureIds": [
-        181,
-        164
+        138,
+        139
       ],
-      "goal": "下一步181 CDL验证视图与164 PIPE架构剩余验收，R182四轮总结；随后Hot-plug和桥接DMA，不重复扩展已验收概述。",
-      "reviewRound": 182
+      "goal": "固定剩余范围转138/139 Hot-plug与服务机制，再146/147/148桥接DMA；来源阻塞单列，不扩充183范围。",
+      "reviewRound": 186
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 180,
-      "reestimateRound": 182,
+      "assessedRound": 182,
+      "reestimateRound": 186,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "原预算耗尽，手动按固定范围逐项验收；已知来源阻塞单列，完成新增核读不等于疑点已解决。",
-      "action": "先181/164，R182总结；后续138/139 Hot-plug与146/147/148桥接DMA，61/89等旧来源问题保留。",
+      "assessment": "四轮验收137测试与181 CDL阅读方法，共2项、21新增维度；179 PRBS与164 PIPE分别七维通过，保留计时/接口源文疑点。累计148/183、1393维度，剩35（7待验收/28阻塞）；整章覆盖和实机签核不在此分母。",
+      "action": "下一窗口138/139 Hot-plug、146/147/148桥接DMA；61/89来源问题仍单列。固定35剩余项不自动生长，外部澄清未到齐前不保证结束轮数。",
       "latestProgress": {
-        "round": 180,
+        "round": 182,
         "newAcceptedUnits": 0,
-        "cumulativeAcceptedUnits": 147,
-        "newPassedCriteria": 7,
-        "cumulativePassedCriteria": 1387,
+        "cumulativeAcceptedUnits": 148,
+        "newPassedCriteria": 4,
+        "cumulativePassedCriteria": 1393,
         "remainingPlannedRounds": 0
       },
       "unacceptedBreakdown": {
-        "blocked": 27,
-        "awaiting": 9
+        "blocked": 28,
+        "awaiting": 7
       }
     },
     "reviewWindows": [
@@ -39173,6 +39385,73 @@
           181
         ],
         "note": "四轮验收16 Crosslink、59 PME、183功率预算，共3项、35新增维度（PME原3项不重计）；累计146/183、1372维度、剩37。91 DPA与92 EPR各七维通过，保留原来源疑点。待验收与来源阻塞分开，不用无限新增条目推迟收尾。"
+      },
+      {
+        "id": "r179-r182",
+        "firstRound": 179,
+        "lastRound": 182,
+        "closedFeatureUnits": [
+          137,
+          181
+        ],
+        "reopenedFeatureUnits": [],
+        "newPassedCriteria": 21,
+        "remainingFeatureUnits": 35,
+        "cumulativePassedCriteria": 1393,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 7,
+          "中断与消息": 1,
+          "功耗与复位": 3,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 3,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 9
+        },
+        "blockedFeatureIds": [
+          3,
+          4,
+          5,
+          9,
+          10,
+          12,
+          15,
+          91,
+          92,
+          106,
+          114,
+          119,
+          127,
+          129,
+          136,
+          143,
+          152,
+          153,
+          159,
+          164,
+          169,
+          170,
+          172,
+          173,
+          174,
+          175,
+          176,
+          179
+        ],
+        "awaitingFeatureIds": [
+          61,
+          89,
+          138,
+          139,
+          146,
+          147,
+          148
+        ],
+        "note": "四轮验收137测试与181 CDL阅读方法，共2项、21新增维度；179 PRBS与164 PIPE分别七维通过，保留计时/接口源文疑点。累计148/183、1393维度，剩35（7待验收/28阻塞）；整章覆盖和实机签核不在此分母。"
       }
     ],
     "budgetEndAudit": {
@@ -39470,8 +39749,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        179,
-        180
+        181,
+        182
       ],
       "completedRounds": [
         143,
@@ -39511,10 +39790,12 @@
         177,
         178,
         179,
-        180
+        180,
+        181,
+        182
       ],
-      "publication": "checks-before-combined-r180-publication",
-      "note": "每日暂停，固定183项和原预算快照保留。"
+      "publication": "checks-before-combined-r182-publication",
+      "note": "每日暂停，固定183项与原预算快照保留。"
     },
     "queueAudit": {
       "round": 150,

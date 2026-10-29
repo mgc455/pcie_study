@@ -170558,8 +170558,8 @@
     "prerequisites": "PIPE 7.1 §2.6和表2-1按PHY配置能力规定接口组合；SerDes要求Low Pin Count。提供的Gen5 PCS手册还包含Original模式，Gen6 PCS手册只支持SerDes；旧手册能力描述不能替代新PIPE版本约束。",
     "example": "一个Gen6-capable PHY降速到Gen3，不意味着其内部就可以动态切回Original PIPE。应按配置能力、规范版本和允许的接口组合判定。",
     "checks": "检查时钟方向、RxClk、valid语义、编码归属及Message Bus；PIPE规范版本号不等于PCIe代际。",
-    "status": "选定规则/字段已展开 · 持续逐版完善",
-    "reviewed": "2026-10-29",
+    "status": "R182部分验收：7/8通过，PIPE握手/图表来源一致性阻塞",
+    "reviewed": "2026-10-30",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -172744,6 +172744,193 @@
         "title": "可选项限制",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2.6",
+        "page": 23,
+        "pdfPage": 23,
+        "title": "两条轴、静态配置及引入历史",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "2.6",
+        "page": 24,
+        "pdfPage": 24,
+        "title": "能力矩阵及Original推荐脚注",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "4.1",
+        "page": 36,
+        "pdfPage": 36,
+        "title": "MAC与PHY接口分工",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "4.2",
+        "page": 39,
+        "pdfPage": 39,
+        "title": "SerDes架构",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-1.00",
+        "document": "PHY Interface for the PCI Express Architecture",
+        "version": "1.00",
+        "section": "5.1",
+        "page": 11,
+        "pdfPage": 11,
+        "title": "早期数据接口",
+        "url": "https://www.intel.com/content/www/us/en/io/pci-express/pci-express-architecture-devnet-resources.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17.2.2",
+        "page": 323,
+        "pdfPage": 323,
+        "title": "产品SerDes分工",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17.2.3",
+        "page": 325,
+        "pdfPage": 325,
+        "title": "产品支持限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.2",
+        "page": 59,
+        "pdfPage": 59,
+        "title": "Rate/PCLK/Width条件",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.2",
+        "page": 70,
+        "pdfPage": 70,
+        "title": "RX时钟/宽度路径",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 64,
+        "pdfPage": 64,
+        "title": "PhyStatus复用",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.4.1",
+        "page": 126,
+        "pdfPage": 126,
+        "title": "切速和功耗顺序",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7",
+        "page": 78,
+        "pdfPage": 78,
+        "title": "Message Bus语义",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.1.3",
+        "page": 63,
+        "pdfPage": 63,
+        "title": "Ack文字与Ok撤销",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.4.1",
+        "page": 126,
+        "pdfPage": 126,
+        "title": "尾沿描述与Rate稳定表行",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "6.2.3",
+        "page": 71,
+        "pdfPage": 71,
+        "title": "MacCLKRate显式五位字段",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.1.2",
+        "page": 115,
+        "pdfPage": 115,
+        "title": "图中四位标注",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17.2.2",
+        "page": 324,
+        "pdfPage": 324,
+        "title": "产品SerDes中的Symbol Lock/Block Alignment/Elastic Buffer与厂商扩展",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核本页产品正文；不把产品分工与厂商扩展当所有PIPE强制要求。"
       }
     ],
     "referenceStatus": "R64核PIPE7.1切速/时钟/待机相关选定正文与Gen6 3.02a下层边界；保留p63/p126边沿及副本页数差异。非七代Recovery整章或硬件验证。 R81追加1.00/7.1选定逐版控制/参数依据，保留中间修订与真实硬件缺口。",
@@ -174888,6 +175075,215 @@
             "featureId": 164,
             "detailId": "pipe-signal-directory",
             "label": "逐信号详情"
+          }
+        ]
+      },
+      {
+        "id": "r182-pipe-two-independent-choices",
+        "title": "PIPE先选两条轴：数据架构与控制接口不是同一开关",
+        "paragraphs": [
+          "Original/SerDes决定数据通路职责；Legacy/Low Pin Count决定控制信息用专用信号还是Message Bus。PIPE7.1 §2.6明确SerDes必须用Low Pin Count，不能任意组合成四套都合法。架构按配置能力静态选择，不能从当前跑2.5GT/s就把Gen6-capable PHY改成Legacy。",
+          "表2-1对PCIe4及以下要求Original和Legacy，SerDes可选；Low Pin Count对Gen4 RX margining必需、其余用途可选。PCIe5要求SerDes和Low Pin Count，Original推荐而非强制，Legacy不允许。PCIe6及以上要求SerDes/Low Pin Count，Original/Legacy不允许。这里是PIPE7.1对能力类别的要求，不是说所有历史PCIe实现都采用PIPE7.1。",
+          "Original保留相应byte/K或块边界接口；SerDes把更多协议编码/对齐/弹性缓存职责交给MAC，PHY仍承担适用模拟接收、CDR及串并转换。产品6.50a控制器还有未实现的可选消息和电源控制，标准可选不等于该交付支持。已有逐信号表继续按修订、架构、方向、时钟域和能力查询。",
+          "历史比较已核PIPE1.00的16bit/两个先后Symbol与7.1接口，不把PIPE修订等同Gen编号；PIPE7.1所述Message Bus在4.4引入、SerDes在5.0定义属于其历史说明，未经中间版本正文核对的细节不扩写成逐版完整行为。"
+        ],
+        "referenceIndices": [
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          214
+        ],
+        "table": {
+          "columns": [
+            "选择轴",
+            "含义",
+            "集成边界"
+          ],
+          "rows": [
+            [
+              "Original / SerDes",
+              "决定数据处理职责",
+              "不等于Legacy / Low Pin Count"
+            ],
+            [
+              "Legacy / Low Pin Count",
+              "决定控制信号承载方式",
+              "SerDes配Legacy非法"
+            ],
+            [
+              "能力配置",
+              "静态决定适用矩阵",
+              "不随每次协商速率切换"
+            ],
+            [
+              "标准 / 产品",
+              "可选项另核交付",
+              "写消息不证明实现了该功能"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 164,
+            "detailId": "pipe-signal-architecture",
+            "label": "完整架构/能力矩阵"
+          },
+          {
+            "featureId": 164,
+            "detailId": "pipe-signal-directory",
+            "label": "逐信号目录"
+          },
+          {
+            "featureId": 164,
+            "detailId": "r81-pipe-revision-evidence",
+            "label": "1.00与7.1正文比较"
+          },
+          {
+            "featureId": 164,
+            "detailId": "r142-pipe-reuse-and-product-boundaries",
+            "label": "产品限制入口"
+          }
+        ]
+      },
+      {
+        "id": "r182-pipe-rate-context-and-completion",
+        "title": "切速读波形的顺序：时钟所有权、当前操作与完成事件",
+        "paragraphs": [
+          "先记PCLK是PHY输入还是输出，以及本次请求的Rate、Width、PCLKRate、PowerDown和RX/TX条件。三个编码轴分别解码不等于组合受支持；SerDes还有独立RX宽度/RxCLK路径。PhyStatus服务多种操作，必须先知道未完成的是切速、功耗还是Receiver Detect，才解释那个脉冲。",
+          "PIPE7.1 PCIe模式只允许在P0/P1且TX Electrical Idle满足时改速率/时钟/宽度，P0另需RxStandby。PHY输出PCLK时由PHY完成相关变化并给PhyStatus；PHY输入PCLK时，MAC须按Ok/Ack合同等到允许、完成实际时钟稳定后确认，不能拿Message Bus write_ack当切速或RX训练完成。",
+          "同一模式的切速与功耗改变通常先完成Rate/Width/PCLK再改PowerDown，明确支持合并的PHY才按规定同沿发起。完成前不能提前恢复TX/RX、继续新操作或再切速。具体Ack/Ok结束边沿有源文冲突，已知规则和待澄清组合在下一块分别列出，不伪造唯一时序。"
+        ],
+        "referenceIndices": [
+          205,
+          206,
+          207,
+          208,
+          209
+        ],
+        "table": {
+          "columns": [
+            "观察点",
+            "含义",
+            "限制"
+          ],
+          "rows": [
+            [
+              "PHY输入PCLK",
+              "MAC负责实际时钟变化",
+              "先核Ok/Ack适用条件"
+            ],
+            [
+              "PHY输出PCLK",
+              "PHY完成并报告",
+              "不能照搬输入拓扑责任"
+            ],
+            [
+              "消息write_ack",
+              "消息事务回应",
+              "不等于操作完成"
+            ],
+            [
+              "PhyStatus",
+              "结合本次未完成操作解释",
+              "不是通用Link Up位"
+            ],
+            [
+              "Rate/Width/PCLKRate",
+              "三个轴逐个核支持组合",
+              "解码合法不证明组合可用"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 164,
+            "detailId": "pipe-rate-three-axis-code-reference",
+            "label": "三个编码轴"
+          },
+          {
+            "featureId": 164,
+            "detailId": "pipe-rate-completion-event-routing",
+            "label": "PhyStatus按操作解释"
+          },
+          {
+            "featureId": 164,
+            "detailId": "pipe-rate-write-ack-versus-operation",
+            "label": "消息Ack与操作完成"
+          },
+          {
+            "featureId": 164,
+            "detailId": "pipe-rate-legacy-output-topology-scope",
+            "label": "PCLK所有权区别"
+          }
+        ]
+      },
+      {
+        "id": "r182-pipe-source-gates",
+        "title": "保留PIPE来源边界：Ok结束边沿、独立变化与MacCLK位宽",
+        "paragraphs": [
+          "重新对照本地PIPE7.1：p63的PclkChangeAck字段文字把Ok撤销写成与PhyStatus同时间；p126 PCIe操作段写在PhyStatus尾沿撤Ok。表8-3又对Rate稳定、其它轴变化给Not applicable，不能把它擅自推成所有独立Width/PCLK变化都已规定。没有可适用正式澄清前，网页不把这些合成一条通用RTL时序。",
+          "MacCLKRate在p71专门字段表为[4:0]并有31 override，p115图仍标[3:0]。查询依据显式字段表并显示差异，不把图当作删去第五位的授权；初始接线和工具约束应由双方集成合同确认。MacCLK独立复位域和串行Lane速率也不能混在一起。",
+          "本地PDF与官网副本的页数/物理页映射记录继续保留，当前定位只保证已核副本与所列版本页。新增架构/结构/异常/版本/来源维度不能消除Control0/1转引、位宽及握手等旧疑点；164本轮七维通过，一致性继续阻塞。已有规范并非缺文件，尚需适用正式勘误或双方确认。"
+        ],
+        "referenceIndices": [
+          210,
+          211,
+          212,
+          213
+        ],
+        "table": {
+          "columns": [
+            "来源问题",
+            "已核定位",
+            "当前处理"
+          ],
+          "rows": [
+            [
+              "Ok撤销时点",
+              "p63同时间 / p126尾沿",
+              "保留conflict22"
+            ],
+            [
+              "Rate稳定且其它轴变",
+              "表8-3 Not applicable",
+              "不猜支持矩阵"
+            ],
+            [
+              "MacCLKRate位宽",
+              "显式表5bit / 图4bit",
+              "保留conflict29"
+            ],
+            [
+              "副本页映射",
+              "所核本地副本与官网差异",
+              "保留conflict17，不冒充相同文件"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 164,
+            "detailId": "pipe-signal-scope-errata",
+            "label": "所有已列图表差异"
+          },
+          {
+            "featureId": 164,
+            "detailId": "pipe-signal-rate-handshake",
+            "label": "Ok/Ack逐信号表"
+          },
+          {
+            "featureId": 164,
+            "detailId": "pipe-signal-macclk",
+            "label": "MacCLK完整字段"
+          },
+          {
+            "featureId": 164,
+            "detailId": "pipe-rate-version-and-table-boundaries",
+            "label": "原版本边界记录"
           }
         ]
       }
@@ -208080,8 +208476,8 @@
     "prerequisites": "文件名含fixed不证明已经修复正确；相同子电路数量也不代表等价。本轮只做结构统计和顶层入口定位，没有执行LVS、等价或SPICE性能验证。",
     "example": "一个子电路有大量晶体管，只说明连接规模；不能据此推出其最高速率、CDR稳定性或眼图。",
     "checks": "核对端口顺序、电源/地别名、参数/模型来源和宏版本；不要把标准单元、子电路实例行数当作全芯片唯一晶体管数。",
-    "status": "体系条目已整理 · 按来源范围核读",
-    "reviewed": "2026-10-29",
+    "status": "一期已验收：R181按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
+    "reviewed": "2026-10-30",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -208110,6 +208506,61 @@
         "title": "RTL与PMA行为模型",
         "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "glade-cdlflatten-web",
+        "document": "Glade cdlflatten 官方输入格式说明",
+        "version": "在线文档（2026-10-30核读；页面未声明固定修订号）",
+        "section": "Input netlist",
+        "page": null,
+        "pdfPage": null,
+        "title": "该工具接受的CDL输入形式",
+        "url": "https://peardrop.co.uk/docs/cdlflatten.html",
+        "verification": "已核官方HTML所列标题正文，未将在线可变页面伪装为固定版本PDF；未运行工具或验证用户网表。"
+      },
+      {
+        "documentId": "klayout-lvs-io-web",
+        "document": "KLayout 官方 LVS Input/Output",
+        "version": "在线文档（2026-10-30核读；页面未声明固定修订号）",
+        "section": "Reading netlists",
+        "page": null,
+        "pdfPage": null,
+        "title": "受限SPICE读取与自定义reader",
+        "url": "https://www.klayout.de/doc/manual/lvs_io.html",
+        "verification": "已核官方HTML所列标题正文，未将在线可变页面伪装为固定版本PDF；未运行工具或验证用户网表。"
+      },
+      {
+        "documentId": "glade-gemini-web",
+        "document": "Glade Gemini 官方网表比较说明",
+        "version": "在线文档（2026-10-30核读；页面未声明固定修订号）",
+        "section": "Input netlists / Netlist reduction / Results",
+        "page": null,
+        "pdfPage": null,
+        "title": "比较对象、归约与结果含义",
+        "url": "https://peardrop.co.uk/docs/gemini.html",
+        "verification": "已核官方HTML所列标题正文，未将在线可变页面伪装为固定版本PDF；未运行工具或验证用户网表。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "2.1",
+        "page": 28,
+        "pdfPage": 28,
+        "title": "交付视图分工",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "6.1",
+        "page": 126,
+        "pdfPage": 126,
+        "title": "行为模型及非穷尽测试边界",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "所列选段正文核读；仅对明确的产品/规范版本和本主题边界负责。",
@@ -208122,7 +208573,8 @@
           "通常以.SUBCKT声明子电路及按位置排列的外部端口，以.ENDS结束；续行需并入上一条逻辑语句。阅读子电路实例时先辨实例名、连接节点、被调用子电路与参数，不能仅按空格数量认定端口数，也不能假定所有方言的参数、注释和全局节点规则相同。",
           "从一个顶层端口向下追踪时，先把实例实际节点与被实例化定义的形式端口逐一对应，再辨电源、地、偏置、差分线与数字控制。器件模型名和子电路名承担不同含义；有连接网表但缺模型库、工艺角、温度、供电及激励，仍不能获得有效模拟结果。",
           "建议分三张私有表记录：层次调用关系、顶层端口映射、外部模型/包含依赖。未找到定义可来自外部库或解析遗漏，不直接判交付损坏；重复定义也要核条件和库选择。结构计数不等于展开后的唯一晶体管数量，相同计数更不证明等价。",
-          "本轮未执行供应商脚本、SPICE、LVS、DRC或电气签核，也未修改网表。文件名含fixed不证明更正确。CDL通用方言的权威语法依据尚未补齐，故此项来源与一致性验收仍开放；不把产品手册引用包装成语法验证。"
+          "本轮未执行供应商脚本、SPICE、LVS、DRC或电气签核，也未修改网表。文件名含fixed不证明更正确。CDL通用方言的权威语法依据尚未补齐，故此项来源与一致性验收仍开放；不把产品手册引用包装成语法验证。",
+          "R181后续：已补Glade工具厂商的CDL输入说明及KLayout读取限制，见本页三个新增块。来源验收以明确的工具方言/阅读方法为范围，不宣称存在统一涵盖所有私有CDL扩展的语法标准；原未核来源状态保留为历史记录。"
         ],
         "referenceIndices": [
           0,
@@ -208162,6 +208614,169 @@
             "featureId": 182,
             "detailId": "r143-model-selection",
             "label": "模型选择与结果解释"
+          },
+          {
+            "featureId": 181,
+            "detailId": "r181-cdl-dialect-reader-contract",
+            "label": "R181新增工具语法来源与适用范围"
+          }
+        ]
+      },
+      {
+        "id": "r181-cdl-dialect-reader-contract",
+        "title": "先选读取器方言：不能把CDL后缀当成通用可执行模型",
+        "paragraphs": [
+          "补核Glade cdlflatten的官方Input netlist说明：它接受.SUBCKT/.ENDS定义、X子电路实例、指定器件类别及若干全局/方向注释，前导+为续行；实例可采用带或不带斜线的形式。这里说明的是该工具解析契约，不是把一种工具支持集当作所有CDL标准。",
+          "同页还明确存在默认参数忽略、不支持器件不读取、未定义master实例不进入输出等行为。因此“读完并产生文件”不足以证明原电路被完整保留。KLayout官方文档同样限定默认SPICE读取集，并允许定制reader把某些X子电路识别为器件；不能只按首字母和token数判断实际结构。",
+          "实际交付应先核导出器、目标读取器、大小写、全局节点、参数和模型约定。页面未声明固定版本，来源按核读日期及HTML标题保存；本轮没有导入或转换用户网表。"
+        ],
+        "referenceIndices": [
+          2,
+          3
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "阅读动作",
+            "验证边界"
+          ],
+          "rows": [
+            [
+              "文件后缀",
+              "仅提示可能格式",
+              "不能证明工具兼容"
+            ],
+            [
+              "X实例",
+              "形式端口与实际节点须对应",
+              "参数不能误算成节点"
+            ],
+            [
+              "续行/特殊注释",
+              "按读取器规则归并/解释",
+              "不把所有星号行先删除"
+            ],
+            [
+              "成功导入",
+              "还核忽略项与未解析引用",
+              "不当等价证明"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 181,
+            "detailId": "r143-cdl-reading-boundaries",
+            "label": "原层次阅读方法"
+          },
+          {
+            "featureId": 182,
+            "detailId": "r143-model-selection",
+            "label": "模型选择与证据边界"
+          }
+        ]
+      },
+      {
+        "id": "r181-cdl-port-mapping-example",
+        "title": "位置端口怎样追：一个原创小例子与三张核对表",
+        "paragraphs": [
+          "原创示意：定义“.SUBCKT CELL IN OUT VP VN”，实例“XU a b vdd vss / CELL”。在该位置形式下，依次对应IN→a、OUT→b、VP→vdd、VN→vss；续行与参数应先分离。名称看起来相似不替代顺序，电源别名也不自动短接。这个简例不是来自用户网表，未作为仿真模型执行。",
+          "先做定义/调用表、实际/形式端口表、外部依赖表。找不到定义可能是库未加载、方言未识别或真的缺失，需沿日志和交付依赖区分；不要直接删除实例以消除报错。原始文件、私有层次及模型名称留本地。"
+        ],
+        "referenceIndices": [
+          2,
+          3
+        ],
+        "table": {
+          "columns": [
+            "私有工作表",
+            "核对内容",
+            "限制"
+          ],
+          "rows": [
+            [
+              "定义/调用表",
+              "哪些实例调用哪个定义",
+              "区分原语、子电路和黑盒"
+            ],
+            [
+              "端口表",
+              "逐位置映射并标电源别名",
+              "不按字母排序重排端口"
+            ],
+            [
+              "依赖表",
+              "模型/库/包含与版本",
+              "有连接不等于模型齐全"
+            ],
+            [
+              "原创例子",
+              "四个位置逐一对应",
+              "不表示所有方言都接受斜线"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 181,
+            "detailId": "r181-cdl-dialect-reader-contract",
+            "label": "先选方言与读取器"
+          }
+        ]
+      },
+      {
+        "id": "r181-cdl-counts-versus-validation",
+        "title": "结构计数、LVS比较和模拟性能分别能证明什么",
+        "paragraphs": [
+          "本轮对本地两代交付中的四份CDL只读记录文件指纹及声明/结束/续行特征，统计结果与路径留本地；没有运行供应商脚本、展开电路、修改fixed文件或执行LVS。声明相配也不证明每个实例端口正确。",
+          "Glade Gemini的比较可包含器件归约与黑盒策略；比较结果受输入和选项约束，原始行数相同不是其判定依据。KLayout还区分纯网表、带版图关联的提取数据库和含匹配关系的LVS数据库。只拿一份CDL不能冒充已完成版图对照。",
+          "产品3.02a手册把功能、后端、信号完整性和测试视图区分，PMA行为模型也不代表穷尽测试。即使连接比较通过，CDR稳定性、眼图、BER和角落性能仍需适用模型、激励及分析；本条验收的是阅读方法和来源范围。"
+        ],
+        "referenceIndices": [
+          4,
+          3,
+          5,
+          6
+        ],
+        "table": {
+          "columns": [
+            "证据",
+            "可说明内容",
+            "不能推出"
+          ],
+          "rows": [
+            [
+              "只读结构检查",
+              "定位层次/依赖入口",
+              "非语法全验/晶体管数"
+            ],
+            [
+              "连接/LVS比较",
+              "比较输入与规则约束下的匹配",
+              "本轮未执行"
+            ],
+            [
+              "行为仿真",
+              "检查所建模功能",
+              "非模拟性能签核"
+            ],
+            [
+              "模拟/信号完整性",
+              "模型与条件下的性能",
+              "不由CDL文件名推断"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 181,
+            "detailId": "r143-cdl-reading-boundaries",
+            "label": "原阅读与计数边界"
+          },
+          {
+            "featureId": 182,
+            "detailId": "r143-model-selection",
+            "label": "模型类型选择"
           }
         ]
       }

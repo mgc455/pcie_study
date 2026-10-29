@@ -282,3 +282,7 @@ R178: EPR/Power Budgeting selected-body review; EPR VF conflict11 retained; next
 R179: Compliance/PRBS/NELB selected-body review; timer conflict28 retained with Reference Manual evidence; next review R182; daily paused; original budget preserved.
 
 R180: Compliance/PRBS/NELB selected-body review; timer conflict28 retained with Reference Manual evidence; next review R182; daily paused; original budget preserved.
+
+R181: CDL reader-source/PIPE architecture review; tool-specific syntax and verification limits explicit; PIPE source gates retained; next review R182; daily paused; original budget preserved.
+
+R182: CDL reader-source/PIPE architecture review; tool-specific syntax and verification limits explicit; PIPE source gates retained; next review R186; daily paused; original budget preserved.
