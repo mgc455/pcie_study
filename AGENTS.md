@@ -278,3 +278,7 @@ R176: Crosslink/PME/DPA selected-rule review; DPA conflict07 retained; next revi
 R177: EPR/Power Budgeting selected-body review; EPR VF conflict11 retained; next review R178; daily paused; original budget preserved.
 
 R178: EPR/Power Budgeting selected-body review; EPR VF conflict11 retained; next review R182; daily paused; original budget preserved.
+
+R179: Compliance/PRBS/NELB selected-body review; timer conflict28 retained with Reference Manual evidence; next review R182; daily paused; original budget preserved.
+
+R180: Compliance/PRBS/NELB selected-body review; timer conflict28 retained with Reference Manual evidence; next review R182; daily paused; original budget preserved.
