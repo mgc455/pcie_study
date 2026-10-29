@@ -250,3 +250,7 @@ R162: manual transaction acceptance; next review R166; daily paused; original bu
 R163: manual link-basics acceptance; next review R166; daily paused; original budget snapshot preserved.
 
 R164: manual link-basics acceptance; next review R166; daily paused; original budget snapshot preserved.
+
+R165: manual PHY partial acceptance, consistency blockers retained; next review R166; daily paused; original budget snapshot preserved.
+
+R166: manual PHY partial acceptance, consistency blockers retained; next review R170; daily paused; original budget snapshot preserved.

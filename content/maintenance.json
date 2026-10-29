@@ -1,8 +1,8 @@
 {
   "nextFeatureIds": [
-    174,
-    175,
-    176
+    4,
+    5,
+    6
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,11 +49,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-29",
-    "edition": "2026-10-29-r164",
+    "edition": "2026-10-29-r166",
     "featureIds": [
-      3
+      176
     ],
-    "nextTrack": "PHY174/175/176；R166总结"
+    "nextTrack": "链路4/5/6；R170总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -343,13 +343,13 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 106,
-    "lastReviewEdition": "2026-10-29-r162",
-    "lastReviewId": "r159-r162",
+    "completedTotal": 108,
+    "lastReviewEdition": "2026-10-29-r166",
+    "lastReviewId": "r163-r166",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
   },
   "stageReviews": [
@@ -1284,10 +1284,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 74,
+    "completedRounds": 76,
     "remainingPlannedRounds": 0,
-    "nextRound": 165,
-    "nextReviewRound": 166,
+    "nextRound": 167,
+    "nextReviewRound": 170,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -24010,47 +24010,115 @@
         "featureId": 174,
         "group": "PHY与SerDes",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/174/detail/r165-startup-evidence-gates",
+                "label": "启动判定入口：供电、固件、Lane与协议就绪逐级取证"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/174/detail/r165-startup-evidence-gates",
+                "label": "启动判定入口：供电、固件、Lane与协议就绪逐级取证"
+              },
+              {
+                "href": "#feature/174/detail/startup-snapshot-query",
+                "label": "查询：启动快照的分层排查方向"
+              },
+              {
+                "href": "#feature/174/detail/deep-pm-trace-query",
+                "label": "查询：逐事件检查DeepPM闭环与Restore保护周期"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/174/detail/r165-startup-evidence-gates",
+                "label": "启动判定入口：供电、固件、Lane与协议就绪逐级取证"
+              },
+              {
+                "href": "#feature/174/detail/startup-milestone-observation-table",
+                "label": "启动观察表：每一项能证明什么、还不能证明什么"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/174/detail/r165-startup-evidence-gates",
+                "label": "启动判定入口：供电、固件、Lane与协议就绪逐级取证"
+              },
+              {
+                "href": "#feature/174/detail/pg6-reset-ten-versus-fifteen",
+                "label": "资料差异：PCS图上电>10µs，PMA正文最小15µs，不能合成一个值"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/174/detail/r165-startup-evidence-gates",
+                "label": "启动判定入口：供电、固件、Lane与协议就绪逐级取证"
+              },
+              {
+                "href": "#feature/174/detail/startup-gen5-sim-time-not-silicon",
+                "label": "Gen5的5ms/15ms是仿真上下文，不是所有硅片启动保证"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/174/detail/r165-startup-evidence-gates",
+                "label": "启动判定入口：供电、固件、Lane与协议就绪逐级取证"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/174/detail/r165-startup-evidence-gates",
+                "label": "启动判定入口：供电、固件、Lane与协议就绪逐级取证"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/174/detail/pg6-reset-ten-versus-fifteen",
+                "label": "资料差异：PCS图上电>10µs，PMA正文最小15µs，不能合成一个值"
+              }
+            ],
+            "note": "PCS1.75a图示与PMA3.02a正文的上电复位下界/适用条件仍待正式澄清。"
           }
         },
         "baseline": {
@@ -24061,13 +24129,16 @@
           "clock-reset"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "PCS1.75a图示与PMA3.02a正文的上电复位下界/适用条件仍待正式澄清。",
         "taskId": "v1-task-20",
         "requiredTaskIds": [
           "v1-task-20",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "PCS1.75a图示与PMA3.02a正文的上电复位下界/适用条件仍待正式澄清。"
         ]
       },
       {
@@ -24075,47 +24146,115 @@
         "featureId": 175,
         "group": "PHY与SerDes",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/175/detail/r165-rate-power-operation-boundaries",
+                "label": "切速、功耗与停钟：按请求对象寻找完成，不能共用Done"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/175/detail/r165-rate-power-operation-boundaries",
+                "label": "切速、功耗与停钟：按请求对象寻找完成，不能共用Done"
+              },
+              {
+                "href": "#feature/175/detail/product-shared-pll-query",
+                "label": "查询：共享PLL需求、停输入PCLK和改PLL配置的条件"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/175/detail/r165-rate-power-operation-boundaries",
+                "label": "切速、功耗与停钟：按请求对象寻找完成，不能共用Done"
+              },
+              {
+                "href": "#feature/175/detail/pipe-rate-input-handshake-stages",
+                "label": "PCLK输入模式的四段握手：请求→许可→稳定应答→收尾"
+              },
+              {
+                "href": "#feature/175/detail/rate-clock-architecture-table",
+                "label": "切速架构对照：数据通路宽度、时钟与完成证据"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/175/detail/r165-rate-power-operation-boundaries",
+                "label": "切速、功耗与停钟：按请求对象寻找完成，不能共用Done"
+              },
+              {
+                "href": "#feature/175/detail/product-rate-power-combine-limitation",
+                "label": "PIPE允许的组合不等于PCS支持：此产品不支持切速/切PCLK与功耗同时变"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/175/detail/r165-rate-power-operation-boundaries",
+                "label": "切速、功耗与停钟：按请求对象寻找完成，不能共用Done"
+              },
+              {
+                "href": "#feature/175/detail/product-power-timing-not-one-constant",
+                "label": "功耗转换耗时依赖频率与配置，不用一个通用延时覆盖全部情况"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/175/detail/r165-rate-power-operation-boundaries",
+                "label": "切速、功耗与停钟：按请求对象寻找完成，不能共用Done"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/175/detail/r165-rate-power-operation-boundaries",
+                "label": "切速、功耗与停钟：按请求对象寻找完成，不能共用Done"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 165,
+            "evidence": [
+              {
+                "href": "#feature/175/detail/r165-rate-power-operation-boundaries",
+                "label": "切速、功耗与停钟：按请求对象寻找完成，不能共用Done"
+              }
+            ],
+            "note": "PIPE7.1 P2退出合法状态文字、PHY输出PCLK图示与时延参数目标不一致，复用170既有来源疑点。"
           }
         },
         "baseline": {
@@ -24126,13 +24265,16 @@
           "pipe"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "PIPE7.1 P2退出合法状态文字、PHY输出PCLK图示与时延参数目标不一致，复用170既有来源疑点。",
         "taskId": "v1-task-20",
         "requiredTaskIds": [
           "v1-task-20",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "PIPE7.1 P2退出合法状态文字、PHY输出PCLK图示与时延参数目标不一致，复用170既有来源疑点。"
         ]
       },
       {
@@ -24140,47 +24282,119 @@
         "featureId": 176,
         "group": "PHY与SerDes",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 166,
+            "evidence": [
+              {
+                "href": "#feature/176/detail/r166-firmware-load-and-memory-contract",
+                "label": "固件装载核对：内存坐标、访问所有权、运行和真实完成分开"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 166,
+            "evidence": [
+              {
+                "href": "#feature/176/detail/r166-firmware-load-and-memory-contract",
+                "label": "固件装载核对：内存坐标、访问所有权、运行和真实完成分开"
+              },
+              {
+                "href": "#feature/176/detail/r86-cpu-run-four-phase",
+                "label": "CPU Run四相：请求保持到ack，再撤请求等待ack撤销"
+              },
+              {
+                "href": "#feature/176/detail/r86-cpu-halt-four-phase",
+                "label": "CPU Halt四相：halt_req不是已经暂停，ack也不是存储保持保证"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 166,
+            "evidence": [
+              {
+                "href": "#feature/176/detail/r166-firmware-load-and-memory-contract",
+                "label": "固件装载核对：内存坐标、访问所有权、运行和真实完成分开"
+              },
+              {
+                "href": "#feature/176/detail/r86-ccm-address-geometry-query",
+                "label": "查询：CCM字节偏移、SRAM word索引与32/40bit物理宽度"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 166,
+            "evidence": [
+              {
+                "href": "#feature/176/detail/r166-firmware-load-and-memory-contract",
+                "label": "固件装载核对：内存坐标、访问所有权、运行和真实完成分开"
+              },
+              {
+                "href": "#feature/176/detail/r86-ahb-response-manual-conflict",
+                "label": "AHB错误返回存在手册差异：Databook说Error，Reference写RSRVD"
+              },
+              {
+                "href": "#feature/176/detail/r86-dccm-example-address-conflict",
+                "label": "18000h读取示例与DCCM基址不一致：不把例图当地址映射"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 166,
+            "evidence": [
+              {
+                "href": "#feature/176/detail/r166-firmware-load-and-memory-contract",
+                "label": "固件装载核对：内存坐标、访问所有权、运行和真实完成分开"
+              },
+              {
+                "href": "#feature/176/detail/dynamic-product-generation-boundary",
+                "label": "Gen5 Bank与Gen6 MCU：共同问题可以比较，实现不能互换"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 166,
+            "evidence": [
+              {
+                "href": "#feature/176/detail/r166-firmware-load-and-memory-contract",
+                "label": "固件装载核对：内存坐标、访问所有权、运行和真实完成分开"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 166,
+            "evidence": [
+              {
+                "href": "#feature/176/detail/r166-firmware-load-and-memory-contract",
+                "label": "固件装载核对：内存坐标、访问所有权、运行和真实完成分开"
+              }
+            ],
+            "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 166,
+            "evidence": [
+              {
+                "href": "#feature/176/detail/r86-ahb-response-manual-conflict",
+                "label": "AHB错误返回存在手册差异：Databook说Error，Reference写RSRVD"
+              }
+            ],
+            "note": "AHB HRESP字段冲突、CCM读取例图地址与明确映射差异及JTAG边界措辞仍待匹配交付/正式澄清。"
           }
         },
         "baseline": {
@@ -24189,13 +24403,16 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "AHB HRESP字段冲突、CCM读取例图地址与明确映射差异及JTAG边界措辞仍待匹配交付/正式澄清。",
         "taskId": "v1-task-20",
         "requiredTaskIds": [
           "v1-task-20",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "AHB HRESP字段冲突、CCM读取例图地址与明确映射差异及JTAG边界措辞仍待匹配交付/正式澄清。"
         ]
       },
       {
@@ -31357,6 +31574,118 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项与原R138预算快照不变，来源矛盾保留。",
         "publication": "手动授权R163/R164，分别检查后合并发布R164。"
+      },
+      {
+        "round": 165,
+        "kind": "R165 PHY启动与切速功耗分层复核",
+        "deliverables": [
+          "补启动Ready证据链及切速/停钟操作边界，通过可确认维度，保留上电复位与P2退出来源一致性阻塞。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 174,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 174,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 174,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 174,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 174,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 174,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 174,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 175,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 175,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 175,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 175,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 175,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 175,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 175,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项、原预算与38项来源记录保留；本次仅记通过维度，不计完整功能关闭。",
+        "publication": "先恢复并核验R164上线；R165/R166分别检查后合并发布R166。"
+      },
+      {
+        "round": 166,
+        "kind": "R166 PHY固件内存复核及四轮总结",
+        "deliverables": [
+          "补固件装载/访问/运行证据链与CCM坐标核对，保留AHB/示例地址/调试时钟来源疑点，完成R163～R166复盘。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 176,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 176,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 176,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 176,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 176,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 176,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 176,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项、原预算与38项来源记录保留；本次仅记通过维度，不计完整功能关闭。",
+        "publication": "先恢复并核验R164上线；R165/R166分别检查后合并发布R166。"
       }
     ],
     "backlog": [
@@ -34864,32 +35193,32 @@
       }
     ],
     "nextExecution": {
-      "round": 165,
-      "taskId": "v1-task-20",
+      "round": 167,
+      "taskId": "v1-task-02",
       "featureIds": [
-        174,
-        175,
-        176
+        4,
+        5,
+        6
       ],
-      "goal": "链路1/2/3后转PHY174/175/176，按产品版本和已具备证据验收；R166复盘，不重复扩写已验收事务。",
-      "reviewRound": 166
+      "goal": "三项PHY保留来源阻塞，不重复重读代替澄清；下一步链路4/5/6按剩余验收维度收尾。",
+      "reviewRound": 170
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 164,
-      "reestimateRound": 166,
+      "assessedRound": 166,
+      "reestimateRound": 170,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "原48轮预算耗尽，手动继续；本窗口完整实绩待R166总结，不提前承诺关闭来源阻塞。",
-      "action": "转PHY174/175/176，之后按剩余链路维度收尾。",
+      "assessment": "本窗口关闭1/2/3共3项，45维度通过（其中21维度来自PHY部分验收）；累计138/183、1248维度、剩45。174/175/176各7/8通过，一致性阻塞。不以来源重读次数推算可保证的结束轮数。",
+      "action": "下一窗口链路4/5/6；已有32轮粗估不是承诺，来源阻塞须外部明确证据，不能靠自动延长轮次保证解决。",
       "latestProgress": {
-        "round": 164,
-        "newAcceptedUnits": 1,
+        "round": 166,
+        "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 138,
-        "newPassedCriteria": 8,
-        "cumulativePassedCriteria": 1227,
+        "newPassedCriteria": 7,
+        "cumulativePassedCriteria": 1248,
         "remainingPlannedRounds": 0
       }
     },
@@ -35623,6 +35952,34 @@
           "PHY与SerDes": 10
         },
         "note": "关闭30～35共6项48维度；累计135/183、1203维度、剩48。原R138预算耗尽，不延长；按本窗口1.5项/轮粗估32轮，来源阻塞消除不由轮数保证。"
+      },
+      {
+        "id": "r163-r166",
+        "firstRound": 163,
+        "lastRound": 166,
+        "closedFeatureUnits": [
+          1,
+          2,
+          3
+        ],
+        "newPassedCriteria": 45,
+        "remainingFeatureUnits": 45,
+        "cumulativePassedCriteria": 1248,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 13,
+          "中断与消息": 2,
+          "功耗与复位": 4,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 4,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 10
+        },
+        "note": "本窗口关闭1/2/3共3项，45维度通过（其中21维度来自PHY部分验收）；累计138/183、1248维度、剩45。174/175/176各7/8通过，一致性阻塞。不以来源重读次数推算可保证的结束轮数。"
       }
     ],
     "budgetEndAudit": {
@@ -35920,8 +36277,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        163,
-        164
+        165,
+        166
       ],
       "completedRounds": [
         143,
@@ -35945,10 +36302,12 @@
         161,
         162,
         163,
-        164
+        164,
+        165,
+        166
       ],
-      "publication": "checks-before-combined-r164-publication",
-      "note": "每日暂停；原预算和来源记录保留。"
+      "publication": "checks-before-combined-r166-publication",
+      "note": "每日暂停；原预算快照、历史问题及冲突记录保留。"
     },
     "queueAudit": {
       "round": 150,
