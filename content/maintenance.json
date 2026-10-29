@@ -1,8 +1,8 @@
 {
   "nextFeatureIds": [
-    23,
-    27,
-    28
+    30,
+    31,
+    32
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,13 +49,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-29",
-    "edition": "2026-10-29-r156",
+    "edition": "2026-10-29-r158",
     "featureIds": [
-      24,
-      25,
-      26
+      28,
+      29
     ],
-    "nextTrack": "事务字段23/27/28；R158四轮复盘"
+    "nextTrack": "No Snoop/AtomicOp/DMWr；R162复盘"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -345,13 +344,13 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 98,
-    "lastReviewEdition": "2026-10-29-r154",
-    "lastReviewId": "r151-r154",
+    "completedTotal": 100,
+    "lastReviewEdition": "2026-10-29-r158",
+    "lastReviewId": "r155-r158",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
   },
   "stageReviews": [
@@ -1286,10 +1285,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 66,
+    "completedRounds": 68,
     "remainingPlannedRounds": 0,
-    "nextRound": 157,
-    "nextReviewRound": 158,
+    "nextRound": 159,
+    "nextReviewRound": 162,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -3284,47 +3283,147 @@
         "featureId": 23,
         "group": "事务与数据传输",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/23/detail/r157-byte-enable-and-flush-checklist",
+                "label": "BE与零字节读速查：有效byte、协议占位和flush范围"
+              },
+              {
+                "href": "#feature/23/detail/r157-byte-enable-version-map",
+                "label": "BE七代选段对照：明确文字变化，保留中间修订边界"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/23/detail/r157-byte-enable-and-flush-checklist",
+                "label": "BE与零字节读速查：有效byte、协议占位和flush范围"
+              },
+              {
+                "href": "#feature/23/detail/r157-byte-enable-version-map",
+                "label": "BE七代选段对照：明确文字变化，保留中间修订边界"
+              },
+              {
+                "href": "#feature/23/detail/byte-enable-query",
+                "label": "交互计算：BE合法性、Byte Count与Lower Address"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/23/detail/r157-byte-enable-and-flush-checklist",
+                "label": "BE与零字节读速查：有效byte、协议占位和flush范围"
+              },
+              {
+                "href": "#feature/23/detail/r157-byte-enable-version-map",
+                "label": "BE七代选段对照：明确文字变化，保留中间修订边界"
+              },
+              {
+                "href": "#feature/23/detail/byte-enable-length-contiguity",
+                "label": "First/Last DW BE：1DW、2DW与更长请求分别判断"
+              },
+              {
+                "href": "#feature/23/detail/byte-count-span-not-popcount",
+                "label": "Byte Count按跨度，不是简单统计BE里有几个1"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/23/detail/r157-byte-enable-and-flush-checklist",
+                "label": "BE与零字节读速查：有效byte、协议占位和flush范围"
+              },
+              {
+                "href": "#feature/23/detail/r157-byte-enable-version-map",
+                "label": "BE七代选段对照：明确文字变化，保留中间修订边界"
+              },
+              {
+                "href": "#feature/23/detail/zero-byte-read-completion",
+                "label": "零字节读仍返回1 DW：Byte Count特殊取1"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/23/detail/r157-byte-enable-and-flush-checklist",
+                "label": "BE与零字节读速查：有效byte、协议占位和flush范围"
+              },
+              {
+                "href": "#feature/23/detail/r157-byte-enable-version-map",
+                "label": "BE七代选段对照：明确文字变化，保留中间修订边界"
+              },
+              {
+                "href": "#feature/23/detail/r157-byte-enable-version-map",
+                "label": "BE七代选段对照：明确文字变化，保留中间修订边界"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/23/detail/r157-byte-enable-and-flush-checklist",
+                "label": "BE与零字节读速查：有效byte、协议占位和flush范围"
+              },
+              {
+                "href": "#feature/23/detail/r157-byte-enable-version-map",
+                "label": "BE七代选段对照：明确文字变化，保留中间修订边界"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/23/detail/r157-byte-enable-and-flush-checklist",
+                "label": "BE与零字节读速查：有效byte、协议占位和flush范围"
+              },
+              {
+                "href": "#feature/23/detail/r157-byte-enable-version-map",
+                "label": "BE七代选段对照：明确文字变化，保留中间修订边界"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/23/detail/r157-byte-enable-and-flush-checklist",
+                "label": "BE与零字节读速查：有效byte、协议占位和flush范围"
+              },
+              {
+                "href": "#feature/23/detail/r157-byte-enable-version-map",
+                "label": "BE七代选段对照：明确文字变化，保留中间修订边界"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           }
         },
         "baseline": {
@@ -3333,14 +3432,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。",
         "taskId": "v1-task-03",
         "requiredTaskIds": [
           "v1-task-03",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 157
       },
       {
         "id": "v1-feature-24",
@@ -3719,47 +3819,115 @@
         "featureId": 27,
         "group": "事务与数据传输",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/27/detail/r157-ordering-review-workflow",
+                "label": "排序矩阵使用步骤：先定范围，再判属性和格子"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/27/detail/r157-ordering-review-workflow",
+                "label": "排序矩阵使用步骤：先定范围，再判属性和格子"
+              },
+              {
+                "href": "#feature/27/detail/ordering-pair-query",
+                "label": "查询：后发事务能否越过先发事务"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/27/detail/r157-ordering-review-workflow",
+                "label": "排序矩阵使用步骤：先定范围，再判属性和格子"
+              },
+              {
+                "href": "#feature/27/detail/ordering-four-by-four-matrix",
+                "label": "普通排序4×4矩阵：把条件写进每个表格单元"
+              },
+              {
+                "href": "#feature/27/detail/r88-early-five-class-matrix",
+                "label": "1.0a/2.0五类排序矩阵：条件已写入格子"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/27/detail/r157-ordering-review-workflow",
+                "label": "排序矩阵使用步骤：先定范围，再判属性和格子"
+              },
+              {
+                "href": "#feature/27/detail/ordering-ingress-dependency-table",
+                "label": "接收与发送依赖：分角色检查P、NP、Cpl等待环"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/27/detail/r157-ordering-review-workflow",
+                "label": "排序矩阵使用步骤：先定范围，再判属性和格子"
+              },
+              {
+                "href": "#feature/27/detail/r88-ordering-table-revision-map",
+                "label": "排序表版本索引：表号、类别变化与例外分开核"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/27/detail/r157-ordering-review-workflow",
+                "label": "排序矩阵使用步骤：先定范围，再判属性和格子"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/27/detail/r157-ordering-review-workflow",
+                "label": "排序矩阵使用步骤：先定范围，再判属性和格子"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 157,
+            "evidence": [
+              {
+                "href": "#feature/27/detail/r157-ordering-review-workflow",
+                "label": "排序矩阵使用步骤：先定范围，再判属性和格子"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           }
         },
         "baseline": {
@@ -3768,61 +3936,122 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。",
         "taskId": "v1-task-04",
         "requiredTaskIds": [
           "v1-task-04",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 157
       },
       {
         "id": "v1-feature-28",
         "featureId": 28,
         "group": "事务与数据传输",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/28/detail/r158-ro-permission-checklist",
+                "label": "RO三层检查：使能、报文合法性与具体越过关系"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/28/detail/r158-ro-permission-checklist",
+                "label": "RO三层检查：使能、报文合法性与具体越过关系"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/28/detail/r158-ro-permission-checklist",
+                "label": "RO三层检查：使能、报文合法性与具体越过关系"
+              },
+              {
+                "href": "#feature/28/detail/ro-enable-control-register",
+                "label": "Enable Relaxed Ordering：发起使能与报文RO位分开"
+              },
+              {
+                "href": "#feature/28/detail/ro-no-pr-pr-passing-bit",
+                "label": "No RO-enabled PR-PR Passing是能力信息，不是通用RO关闭位"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/28/detail/r158-ro-permission-checklist",
+                "label": "RO三层检查：使能、报文合法性与具体越过关系"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/28/detail/r158-ro-permission-checklist",
+                "label": "RO三层检查：使能、报文合法性与具体越过关系"
+              },
+              {
+                "href": "#feature/28/detail/r88-early-ro-preserve-and-byte-observation",
+                "label": "RO的转发与byte观察规则很早已有：包序与包内更新仍分两层"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/28/detail/r158-ro-permission-checklist",
+                "label": "RO三层检查：使能、报文合法性与具体越过关系"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/28/detail/r158-ro-permission-checklist",
+                "label": "RO三层检查：使能、报文合法性与具体越过关系"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/28/detail/r158-ro-permission-checklist",
+                "label": "RO三层检查：使能、报文合法性与具体越过关系"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           }
         },
         "baseline": {
@@ -3831,61 +4060,126 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。",
         "taskId": "v1-task-04",
         "requiredTaskIds": [
           "v1-task-04",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 158
       },
       {
         "id": "v1-feature-29",
         "featureId": 29,
         "group": "事务与数据传输",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/29/detail/r158-ido-request-completion-checklist",
+                "label": "IDO双向使能与身份判断表：PASID缺失不能补0"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/29/detail/r158-ido-request-completion-checklist",
+                "label": "IDO双向使能与身份判断表：PASID缺失不能补0"
+              },
+              {
+                "href": "#feature/29/detail/r88-ido-request-identity-query",
+                "label": "查询：输入Requester ID与PASID，逐版检查IDO身份路径"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/29/detail/r158-ido-request-completion-checklist",
+                "label": "IDO双向使能与身份判断表：PASID缺失不能补0"
+              },
+              {
+                "href": "#feature/29/detail/ido-enable-fields-and-vf",
+                "label": "IDO Request Enable与Completion Enable各管一侧，VF使用PF值"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/29/detail/r158-ido-request-completion-checklist",
+                "label": "IDO双向使能与身份判断表：PASID缺失不能补0"
+              },
+              {
+                "href": "#feature/29/detail/ido-reserved-and-malformed-boundary",
+                "label": "IDO在配置/I/O请求保留；接收端却不能仅据IDO判Malformed"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/29/detail/r158-ido-request-completion-checklist",
+                "label": "IDO双向使能与身份判断表：PASID缺失不能补0"
+              },
+              {
+                "href": "#feature/29/detail/r88-ido-three-four-pasid-delta",
+                "label": "IDO身份版本差分：3.0不同Requester，4.0明确增加PASID条件"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/29/detail/r158-ido-request-completion-checklist",
+                "label": "IDO双向使能与身份判断表：PASID缺失不能补0"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/29/detail/r158-ido-request-completion-checklist",
+                "label": "IDO双向使能与身份判断表：PASID缺失不能补0"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 158,
+            "evidence": [
+              {
+                "href": "#feature/29/detail/r158-ido-request-completion-checklist",
+                "label": "IDO双向使能与身份判断表：PASID缺失不能补0"
+              }
+            ],
+            "note": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。"
           }
         },
         "baseline": {
@@ -3894,14 +4188,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式版选段并复用原字段/图表/查询；主题契约验收，不代表全章、中间ECN链或实机验证。",
         "taskId": "v1-task-04",
         "requiredTaskIds": [
           "v1-task-04",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 158
       },
       {
         "id": "v1-feature-30",
@@ -29752,6 +30047,174 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项范围及原R138预算终点不变；来源一致性阻塞继续保留。",
         "publication": "本次手动R155/R156独立检查后合并发布R156。"
+      },
+      {
+        "round": 157,
+        "kind": "R157 BE七代选段、flush与排序矩阵验收",
+        "deliverables": [
+          "补BE版本对照和零字节读flush条件，整理排序查询步骤，复用五类/四类矩阵与已有计算器。"
+        ],
+        "closedDeliverableIds": [
+          "feature-23-v1-accepted",
+          "feature-27-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 23,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 23,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 23,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 23,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 23,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 23,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 23,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 23,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 27,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 27,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 27,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 27,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 27,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 27,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 27,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 27,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          23,
+          27
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项及原R138预算终点不变；来源冲突保留。",
+        "publication": "本次手动R157/R158分别检查后合并发布R158。"
+      },
+      {
+        "round": 158,
+        "kind": "R158 RO与IDO逐项验收及四轮复盘",
+        "deliverables": [
+          "补RO三层许可和IDO双向使能/身份速查，复核寄存器和异常边界，完成R155～R158四轮总结。"
+        ],
+        "closedDeliverableIds": [
+          "feature-28-v1-accepted",
+          "feature-29-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 28,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 28,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 28,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 28,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 28,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 28,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 28,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 28,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 29,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 29,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 29,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 29,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 29,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 29,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 29,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 29,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          28,
+          29
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项及原R138预算终点不变；来源冲突保留。",
+        "publication": "本次手动R157/R158分别检查后合并发布R158。"
       }
     ],
     "backlog": [
@@ -33259,32 +33722,32 @@
       }
     ],
     "nextExecution": {
-      "round": 157,
+      "round": 159,
       "taskId": "v1-task-03",
       "featureIds": [
-        23,
-        27,
-        28
+        30,
+        31,
+        32
       ],
-      "goal": "下一步按未验收事务字段23/27/28逐项复核；不重排已验收条目，R158作四轮总结。",
-      "reviewRound": 158
+      "goal": "继续事务剩余No Snoop/AtomicOp/DMWr，再UIO/Prefix/OHC；来源一致性阻塞仅在有新证据时处理。",
+      "reviewRound": 162
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 156,
-      "reestimateRound": 158,
+      "assessedRound": 158,
+      "reestimateRound": 162,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "原48轮预算已耗尽，按用户手动请求继续收尾；按已验收功能和具体维度记进度。",
-      "action": "先完成事务字段族，R158重新报告关闭量与剩余优先级。",
+      "assessment": "R155～R158关闭9项、72维度，累计129/183、1155维度，剩54项。按本窗口2.25项/轮外推约24轮；这只是成熟度不变的粗估，来源阻塞不能按轮数保证消除。",
+      "action": "优先完成事务属性/特殊请求族，然后转链路与PHY成熟条目；来源冲突另列。",
       "latestProgress": {
-        "round": 156,
-        "newAcceptedUnits": 3,
-        "cumulativeAcceptedUnits": 125,
-        "newPassedCriteria": 24,
-        "cumulativePassedCriteria": 1123,
+        "round": 158,
+        "newAcceptedUnits": 2,
+        "cumulativeAcceptedUnits": 129,
+        "newPassedCriteria": 16,
+        "cumulativePassedCriteria": 1155,
         "remainingPlannedRounds": 0
       }
     },
@@ -33952,6 +34415,41 @@
           "PHY与SerDes": 10
         },
         "note": "四项PHY的28个维度已过，一致性仍阻塞；本窗口实际关闭17/18/19/21，不把部分验收重复算整项。下一步20/22与事务字段族，原预算不延长。"
+      },
+      {
+        "id": "r155-r158",
+        "firstRound": 155,
+        "lastRound": 158,
+        "closedFeatureUnits": [
+          20,
+          22,
+          24,
+          25,
+          26,
+          23,
+          27,
+          28,
+          29
+        ],
+        "newPassedCriteria": 72,
+        "remainingFeatureUnits": 54,
+        "cumulativePassedCriteria": 1155,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 16,
+          "事务与数据传输": 6,
+          "中断与消息": 2,
+          "功耗与复位": 4,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 4,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 10
+        },
+        "note": "本窗口关闭9项72维度；原预算已耗尽，54项仍未完整验收。下一窗口事务剩余，再链路/PHY，阻塞项保留，不保证固定轮数全部解决。"
       }
     ],
     "budgetEndAudit": {
@@ -34249,8 +34747,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        155,
-        156
+        157,
+        158
       ],
       "completedRounds": [
         143,
@@ -34266,10 +34764,12 @@
         153,
         154,
         155,
-        156
+        156,
+        157,
+        158
       ],
-      "publication": "checks-before-combined-r156-publication",
-      "note": "每日暂停，后续轮次待用户手动请求；原预算快照保留。"
+      "publication": "checks-before-combined-r158-publication",
+      "note": "每日暂停；原预算快照和来源疑点保持。"
     },
     "queueAudit": {
       "round": 150,

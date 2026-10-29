@@ -234,3 +234,7 @@ R154: manual continuation, transaction acceptance based on existing detail evide
 R155: manual transaction acceptance; next review R158; daily paused; original budget snapshot preserved.
 
 R156: manual transaction acceptance; next review R158; daily paused; original budget snapshot preserved.
+
+R157: manual transaction acceptance; next review R158; daily paused; original budget snapshot preserved.
+
+R158: manual transaction acceptance; next review R162; daily paused; original budget snapshot preserved.
