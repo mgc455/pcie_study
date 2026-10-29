@@ -569,7 +569,7 @@
     "checks": "分别读取双方的 Link Capabilities/Supported Link Speeds、目标速率及 Link Status 中的当前速率和宽度，并检查训练与均衡失败原因。不能仅看设备宣传的 Gen7 就认为当前工作在 128 GT/s；同样不能仅凭最高代际断言支持 ACS、ATS 或 SR-IOV。带宽按单向/双向、lane 数、编码和协议开销分别计算。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 3,
-    "status": "一期已验收：R164按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
+    "status": "R167更正：7/8维度通过，来源一致性重开；R164历史证据保留",
     "sources": [
       {
         "title": "PCI-SIG Gen1～3 速率与编码 FAQ",
@@ -1351,6 +1351,50 @@
         "title": "自主切速禁用例外",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "page": 487,
+        "pdfPage": 487,
+        "title": "RcvrLock超时与编码相关回退",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "page": 503,
+        "pdfPage": 503,
+        "title": "Speed通用回退句",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 510,
+        "pdfPage": 510,
+        "title": "RcvrCfg失败入口与回退",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 590,
+        "pdfPage": 590,
+        "title": "Speed新增1b/1b回退分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R65核1.0a/2.0 Recovery、6.0/7.0 L0p选定正文和字段；保留中间修订/ECN、6.0平局及软件控制表文差异。非七代整章完成。",
@@ -2099,6 +2143,68 @@
             "label": "早期TS2门槛查询"
           }
         ]
+      },
+      {
+        "id": "r167-base6-fallback-source-gate",
+        "title": "更正验收：Base6回退入口与Speed通用句的衔接仍待核",
+        "paragraphs": [
+          "R164确认了速率发现、Gen7字段以及既有版本差分，但整项一致性通过的结论过宽。本条撤回该维度的通过，不删除R164证据，也不否定已明确的寄存器编码和时序规则。网页查询已提示的来源差异，必须同步反映在验收台账。",
+          "Base6.0 §4.2.7.4.1 p487与§4.2.7.4.4 p510分别在RcvrLock、RcvrCfg失败路径中，区分8b/10b、128b/130b回2.5GT/s和1b/1b回32GT/s。可是§4.2.7.4.3 p503的Speed通用else仍写新速率2.5GT/s。这不是把64GT/s PAM4吞吐换算成符号率的问题，而是同版本不同条款的目标速率衔接。",
+          "Base7.0 p590明确增加最近一次编码为1b/1b时回32GT/s的分支，但不能仅因新版写得明确就推断它自动修正所有Base6实现，也未核定首次ECN。分析Base6训练日志时先标记进入Speed的来源、changed_speed_recovery和此前速率/编码，展示入口的明确规则并附来源疑点；未核明的通用失败来源返回待核。",
+          "需要的是匹配Base6.0的正式勘误、ECN或具有明确适用范围的官方澄清；不是再读相同目录。现有官方Base正文已存在并已核选段，不能写成缺少Base6文档。本次3/4/5共享同一来源阻塞，统计中不新造三项独立规范冲突。"
+        ],
+        "referenceIndices": [
+          70,
+          71,
+          72,
+          73
+        ],
+        "table": {
+          "columns": [
+            "待判断问题",
+            "证据与动作",
+            "边界或排除项"
+          ],
+          "rows": [
+            [
+              "速率支持向量/字段发现",
+              "保留R164已核结果",
+              "不因回退疑点否定无关字段"
+            ],
+            [
+              "Base6：RcvrLock/RcvrCfg失败入口",
+              "按入口明确的编码分支标注",
+              "与Speed通用else衔接未闭环"
+            ],
+            [
+              "Base7：最近编码为1b/1b",
+              "按Base7明确分支回32GT/s",
+              "不倒推Base6全路径"
+            ],
+            [
+              "验收统计",
+              "重开3的一致性；3/4/5共享阻塞",
+              "不是三个新增来源问题"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 3,
+            "detailId": "r164-speed-change-and-diagnostic-checklist",
+            "label": "此前诊断链"
+          },
+          {
+            "featureId": 5,
+            "detailId": "speed-six-seven-fallback-wording",
+            "label": "6/7回退逐版原文边界"
+          },
+          {
+            "featureId": 4,
+            "detailId": "recovery-speed",
+            "label": "LTSSM Speed状态与来源问题"
+          }
+        ]
       }
     ]
   },
@@ -2112,14 +2218,14 @@
     "checks": "先记录停住的完整子状态，再看哪个方向、哪些Lane未满足进入下一状态的条件。PhyStatus、RxValid、LinkUp、DL_Active表示不同层次。表中是Base 6.0主要普通端口规则；Crosslink、Retimer及一致性测试的组合分支另标范围，不声称已经成为所有版本全部条件的可执行模型。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 4,
-    "status": "选定Polling七版及早期TS字段已深化 · 持续核读",
+    "status": "R167部分验收：7/8维度通过，Base6回退来源一致性阻塞",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "4.2.6",
@@ -8566,6 +8672,83 @@
         "title": "抓包对照顺序：先定版本和观察域，再分唤醒、锁定与起流",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R85核1.0a/2.0/3.0/4.0正式版所列序列或L0s正文与表；视觉核2.0 p226、4.0 p272。版别/速率/编码独立限定，页码按本地副本绑定；非整章、全部中间ECN或实际链路验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "page": 487,
+        "pdfPage": 487,
+        "title": "RcvrLock超时与编码相关回退",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "page": 503,
+        "pdfPage": 503,
+        "title": "Speed通用回退句",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 510,
+        "pdfPage": 510,
+        "title": "RcvrCfg失败入口与回退",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 590,
+        "pdfPage": 590,
+        "title": "Speed新增1b/1b回退分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 509,
+        "pdfPage": 509,
+        "title": "RcvrCfg模式相关出口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 598,
+        "pdfPage": 598,
+        "title": "Flit Mode宽度出口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.5",
+        "page": 601,
+        "pdfPage": 601,
+        "title": "Idle成功与重试条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R74核七份正式版所引Polling、1.0a/2.0/3.0选定TS字段及状态边界；非整章、所有中间修订或真实链路验证。 R85补1.0a/2.0/3.0/4.0选定EIOS/EIEOS、FTS/SDS与L0s窗口/出口，非完整跨代或硬件验收。",
@@ -12854,6 +13037,97 @@
           584,
           585
         ]
+      },
+      {
+        "id": "r167-ltssm-transition-evidence-map",
+        "title": "LTSSM查阅入口：状态名之外还要核角色、计数起点与出口优先序",
+        "paragraphs": [
+          "本页串联既有逐状态规则和查询，范围是所列Base固定版本的训练/复位选段，不把一张总状态图当成全部子状态或全部中间修订已核。先选版本、Downstream/Upstream角色、当前速率、编码及Flit Mode；Gen6/Gen7能力不能直接等同当前链路一定1b/1b或已用最高速率。",
+          "读转移条件时分开any Lane与all configured Lanes、连续收到序列与已发序列、状态进入计时与收到首序列后计时。Base6 RcvrLock正常出口是所有已配置Lane收到8个匹配连续TS1/TS2；这与24ms超时后按顺序检查的any Lane条件不是一个判据。Extended Synch另有最少1024个已发TS1门槛，不能把8改为1024个接收序列。",
+          "RcvrCfg的正常接收/发送门槛、超时到Idle以及Flit Mode宽度调整，分别使用下列查询。超时到Idle不是成功证据；Recovery.Idle还须按编码/模式确认IDLE计数、发送下限及deskew。Flit Mode训练控制请求可能锁存于促使进入Idle的TS2，不可在Idle凭空重新计数。",
+          "同一控制请求在L0、Recovery与Configuration中有不同作用。Hot Reset保持/退出依角色、接收条件和上层请求而定，不能把2ms理解成所有情况下的强制保持上限；Disabled与Loopback的入口和退出也必须查各自角色。主LTSSM、均衡内部阶段、L0p和L1子状态的关系按各自专章展开，不能把名字都平铺成同一层状态。",
+          "已核的确定条件可继续查询；Base6回退入口与Speed通用句存在同版本衔接疑点，因此本项只通过七个可确认维度，一致性仍阻塞。早期版本的未核组合、Retimer复杂转发及中间修订也继续保留原有待核范围，不以本条索引冒充通读全章。"
+        ],
+        "referenceIndices": [
+          586,
+          587,
+          588,
+          589,
+          590,
+          591,
+          592
+        ],
+        "table": {
+          "columns": [
+            "待判断问题",
+            "证据与动作",
+            "边界或排除项"
+          ],
+          "rows": [
+            [
+              "RcvrLock正常/超时",
+              "分别查all-Lane计数与超时有序分支",
+              "any Lane不可替代正常all Lane"
+            ],
+            [
+              "RcvrCfg到Configuration",
+              "核模式、首序列和发满16个的起点",
+              "收到8个不是唯一门槛"
+            ],
+            [
+              "Recovery.Idle到L0",
+              "核编码、IDLE计数及deskew",
+              "进入Idle不等于训练成功"
+            ],
+            [
+              "Hot Reset/Disabled",
+              "核角色、请求保持与定时器条件",
+              "不造同周期请求优先级"
+            ],
+            [
+              "Base6失败回退",
+              "保留入口证据和通用句差异",
+              "整项一致性未关闭"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 4,
+            "detailId": "recovery-lock-branch-query",
+            "label": "RcvrLock正常与超时分支"
+          },
+          {
+            "featureId": 4,
+            "detailId": "rcfg-speed-gates-query",
+            "label": "RcvrCfg切速三门槛"
+          },
+          {
+            "featureId": 4,
+            "detailId": "rcfg-fm-configuration-gate-query",
+            "label": "Flit Mode Configuration出口"
+          },
+          {
+            "featureId": 4,
+            "detailId": "recovery-idle-counts-by-mode",
+            "label": "Idle分编码/模式计数"
+          },
+          {
+            "featureId": 4,
+            "detailId": "ridle-control-request-query",
+            "label": "Idle控制请求锁存"
+          },
+          {
+            "featureId": 4,
+            "detailId": "hotreset-role-timer-query",
+            "label": "Hot Reset角色及定时器"
+          },
+          {
+            "featureId": 3,
+            "detailId": "r167-base6-fallback-source-gate",
+            "label": "重开验收与共享阻塞"
+          }
+        ]
       }
     ]
   },
@@ -12867,14 +13141,14 @@
     "checks": "发起控制的端口必须有相应职责和能力；记录切换前后速率、训练状态和错误计数。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 5,
-    "status": "选定规则已展开 · 持续逐版核读",
+    "status": "R168部分验收：7/8维度通过，Base6回退来源一致性阻塞",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "6.11",
@@ -13326,6 +13600,83 @@
         "title": "切速不总要求DL_Active：响应对端与主动均衡的条件不同",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R52核读该版所列Recovery.Idle/L0及相关概述正文；视觉核6.0 p511、7.0 p599/600/603。印刷页与本地PDF物理页一致；选定分支不等于整章/七代沿革或硬件状态优先级已验证。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.7",
+        "page": 1122,
+        "pdfPage": 1122,
+        "title": "Link Control Retrain Link字段",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.8",
+        "page": 1126,
+        "pdfPage": 1126,
+        "title": "重训竞态与推荐写序",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.5",
+        "page": 602,
+        "pdfPage": 602,
+        "title": "L0定向变速及参与条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.1",
+        "page": 487,
+        "pdfPage": 487,
+        "title": "RcvrLock超时与编码相关回退",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "page": 503,
+        "pdfPage": 503,
+        "title": "Speed通用回退句",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 510,
+        "pdfPage": 510,
+        "title": "RcvrCfg失败入口与回退",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.3",
+        "page": 590,
+        "pdfPage": 590,
+        "title": "Speed新增1b/1b回退分支",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "所引Base6.0/7.0 Recovery、Speed及改宽入口正文已核读；早期修订/全部角色/后续ECN及整章覆盖仍待继续。",
@@ -13696,6 +14047,87 @@
             ]
           ]
         }
+      },
+      {
+        "id": "r168-retrain-request-versus-completion",
+        "title": "Retrain使用顺序：写请求、训练结束与实际速率分别核对",
+        "paragraphs": [
+          "本条以Base7.0 Link Control和L0训练分支为操作依据，并复用既有Base6/7回退、等待窗和状态字段表。软件写Retrain只是请求Recovery，不是直接给串行器写一个新速率，也不保证最后达到目标速率。硬件支持、对端广告、Target Link Speed、均衡和训练结果必须分别取证。",
+          "Link Control（PCIe Capability基址+10h）bit5为Retrain Link，请求写1，读取恒0，不能轮询它等完成。Base7.0 p1126建议先配置所需参数而不置Retrain，轮询Link Training为0，再单独置Retrain而不同时改变其它Link Control字段，以免之前训练已读旧参数。规范允许同写修改其它字段，不等于这种做法没有竞态。",
+          "Base7.0 L0的Downstream Port定向切速分支还核对端曾广告高于2.5GT/s和Target Link Speed与当前不同等条件。已在Recovery/Configuration收到Retrain时允许重新进入，但不强制；DPC已触发期间该控制行为未定义，不能作为可靠恢复步骤。请求不会直接证明新的速率或Data Link可传业务。",
+          "进入Recovery.Speed还要满足规定的Electrical Idle检测/推断及等待窗；收到允许的新训练序列、真正退出EI和实际换速不是同一事件。正常变速、第二次回到原速、失败回退和Detect超时分别查现有表，不把800ns/6µs等待窗当整个Retrain固定完成时间。",
+          "Base6的1b/1b失败入口与Speed通用else衔接疑点同样约束本项，故只通过七维、一致性阻塞。这里没有执行配置空间写入、真实链路训练或设备恢复；软件步骤用于读协议和分析日志，不是实机通过声明。"
+        ],
+        "referenceIndices": [
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47
+        ],
+        "table": {
+          "columns": [
+            "待判断问题",
+            "证据与动作",
+            "边界或排除项"
+          ],
+          "rows": [
+            [
+              "准备参数",
+              "先配置，不置Retrain",
+              "支持能力与使能不是同一字段"
+            ],
+            [
+              "排除已有训练",
+              "按Link Training轮询",
+              "不能读回Retrain位等完成"
+            ],
+            [
+              "提交请求",
+              "置Link Control bit5",
+              "不保证目标速率一定达到"
+            ],
+            [
+              "判定结果",
+              "结合训练状态、实际速率/宽度和DL状态",
+              "L0不自动等于业务队列就绪"
+            ],
+            [
+              "Base6失败路径",
+              "入口条件与Speed正文分列",
+              "共享一致性仍待澄清"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 5,
+            "detailId": "speed-window-target-query",
+            "label": "等待窗与目标速率查询"
+          },
+          {
+            "featureId": 5,
+            "detailId": "speed-status-management-autonomous",
+            "label": "管理/自治与结果状态"
+          },
+          {
+            "featureId": 5,
+            "detailId": "speed-seven-timeout-table",
+            "label": "Base7超时条件表"
+          },
+          {
+            "featureId": 5,
+            "detailId": "speed-six-seven-fallback-wording",
+            "label": "Base6/7回退措辞差异"
+          },
+          {
+            "featureId": 3,
+            "detailId": "r167-base6-fallback-source-gate",
+            "label": "共享一致性阻塞"
+          }
+        ]
       }
     ]
   },
@@ -13709,14 +14141,14 @@
     "checks": "先判断这是训练降宽、主动重训练还是L0p；不要把所有宽度变化都当成物理故障。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 6,
-    "status": "选定规则已展开 · 持续逐版核读",
+    "status": "一期已验收：R168按本主题契约和所列版本/产品范围完成，不等于整章或实机验证",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-23",
+    "reviewed": "2026-10-29",
     "protocolReferences": [
       {
         "section": "4",
@@ -14047,6 +14479,83 @@
         "title": "NFM缩宽：可靠性原因、upconfigure能力与Hardware Autonomous Width Disable",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R52核读该版所列Recovery.Idle/L0及相关概述正文；视觉核6.0 p511、7.0 p599/600/603。印刷页与本地PDF物理页一致；选定分支不等于整章/七代沿革或硬件状态优先级已验证。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.4",
+        "page": 509,
+        "pdfPage": 509,
+        "title": "NFM与FM配置出口",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 591,
+        "pdfPage": 591,
+        "title": "只对删除Lane发PAD及互斥",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 597,
+        "pdfPage": 597,
+        "title": "NFM编号/计数门槛",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.4",
+        "page": 598,
+        "pdfPage": 598,
+        "title": "FM新增PAD TS1路径",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.5",
+        "page": 600,
+        "pdfPage": 600,
+        "title": "Idle快路径及Data Stream结束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.4.5",
+        "page": 601,
+        "pdfPage": 601,
+        "title": "Idle成功与deskew",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.7.5",
+        "page": 602,
+        "pdfPage": 602,
+        "title": "Upconfigure上限与自治降宽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "所引Base6.0/7.0 Recovery、Speed及改宽入口正文已核读；早期修订/全部角色/后续ECN及整章覆盖仍待继续。",
@@ -14328,6 +14837,92 @@
         "referenceIndices": [
           28,
           29
+        ]
+      },
+      {
+        "id": "r168-width-change-contract",
+        "title": "宽度调整使用边界：Link xN、PIPE Width与L0p分别判断",
+        "paragraphs": [
+          "Link宽度是参与链路的Lane数，PIPE Width是MAC/PHY并行数据接口宽度，L0p又是Flit Mode链路的专用机制；三者不能因为都叫宽度就共用一个控制或完成信号。本条验收范围是既有Recovery/Configuration宽度重配置与L0触发规则，L0p内部握手仍查独立主题。",
+          "L0 Upconfigure受原先配置的最大宽度上限及对端支持等条件约束，不能任意把当前xN变成物理所有Lane。可靠性原因可触发降宽；Hardware Autonomous Width Disable约束非可靠性原因的硬件自主减宽，不可理解为禁止一切降宽。原宽度、当前活动Lane和配置时上限应分别记录。",
+          "Non-Flit Mode的RcvrCfg到Configuration出口包含：某已配置Lane连续8个TS1的Link或Lane编号不匹配，以及收到首个TS1后已发16个TS2，另核speed_change等条件。编号为PAD的含义与本地已发送字段上下文一并核，不把8个接收序列独立当作完整出口。",
+          "Flit Mode另有至少1ms的等待起点、接收序列和发送下限。Base7.0 p598增加未收到任何TS2时连续8个PAD Link/Lane TS1的路径，并将相应发送16个TS2的起点扩展到首个PAD TS1或首个TS2；Base6.0 p509所列条件不同，不能回填成七代同表。发起删Lane时只在要移除的Lane发PAD，并受切速/均衡路径互斥约束。",
+          "NFM Recovery.Idle的PAD TS1快路径与FM推荐经RcvrCfg到Configuration分别处理；128b/130b活动Data Stream先按规则以EDS结束再发TS。最终还要核Idle计数与deskew才能进入L0。这里只通过所列确定版本规则的主题验收，不宣称全章、首次ECN链、实际训练或PHY Lane故障注入已完成。"
+        ],
+        "referenceIndices": [
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36
+        ],
+        "table": {
+          "columns": [
+            "待判断问题",
+            "证据与动作",
+            "边界或排除项"
+          ],
+          "rows": [
+            [
+              "要增Lane还是改并行口",
+              "先分Link xN/PIPE Width/L0p",
+              "三个不同机制"
+            ],
+            [
+              "Upconfigure",
+              "核对端广告和最初配置上限",
+              "当前空闲Lane不自动可加入"
+            ],
+            [
+              "NFM转Configuration",
+              "8接收/16发送及编号条件分列",
+              "发送计数从首个TS1起"
+            ],
+            [
+              "FM Base6与7",
+              "用逐版门槛表核1ms、TS和PAD",
+              "不将Base7新增路径倒推Base6"
+            ],
+            [
+              "降宽完成",
+              "核后续Idle、deskew与最终宽度",
+              "已发PAD不是成功完成"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 6,
+            "detailId": "width-entry-version-query",
+            "label": "NFM/FM宽度出口版本查询"
+          },
+          {
+            "featureId": 6,
+            "detailId": "width-fm-sixteen-origin-version-table",
+            "label": "发满16个TS2的起点差分"
+          },
+          {
+            "featureId": 6,
+            "detailId": "width-seven-no-rate-or-eq-concurrent",
+            "label": "切速/均衡互斥"
+          },
+          {
+            "featureId": 6,
+            "detailId": "width-recovery-idle-pad-fast-path",
+            "label": "Idle PAD快路径"
+          },
+          {
+            "featureId": 6,
+            "detailId": "l0-upconfigure-original-ceiling",
+            "label": "Upconfigure原始上限"
+          },
+          {
+            "featureId": 6,
+            "detailId": "l0-downsize-reliability-permission",
+            "label": "可靠性降宽与自治限制"
+          }
         ]
       }
     ]

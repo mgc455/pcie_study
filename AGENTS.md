@@ -254,3 +254,7 @@ R164: manual link-basics acceptance; next review R166; daily paused; original bu
 R165: manual PHY partial acceptance, consistency blockers retained; next review R166; daily paused; original budget snapshot preserved.
 
 R166: manual PHY partial acceptance, consistency blockers retained; next review R170; daily paused; original budget snapshot preserved.
+
+R167: manual link review; feature3 consistency reopened,3/4/5 share Base6 source blocker; next review R170; daily paused; original budget preserved.
+
+R168: manual link review; feature3 consistency reopened,3/4/5 share Base6 source blocker; next review R170; daily paused; original budget preserved.

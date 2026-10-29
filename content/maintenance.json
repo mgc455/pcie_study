@@ -1,8 +1,8 @@
 {
   "nextFeatureIds": [
-    4,
-    5,
-    6
+    7,
+    8,
+    9
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,11 +49,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-29",
-    "edition": "2026-10-29-r166",
+    "edition": "2026-10-29-r168",
     "featureIds": [
-      176
+      5,
+      6
     ],
-    "nextTrack": "链路4/5/6；R170总结"
+    "nextTrack": "链路7/8/9；R170四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -343,11 +344,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 2,
+    "nextReviewAfterRounds": 2,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 108,
+    "completedTotal": 110,
     "lastReviewEdition": "2026-10-29-r166",
     "lastReviewId": "r163-r166",
     "nextExpectedReview": "若用户继续授权，则R142四轮总结；不是新完工期限。"
@@ -1284,9 +1285,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 76,
+    "completedRounds": 78,
     "remainingPlannedRounds": 0,
-    "nextRound": 167,
+    "nextRound": 169,
     "nextReviewRound": 170,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -1828,7 +1829,7 @@
         "featureId": 3,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "accepted",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -1956,19 +1957,15 @@
             "note": "核所列正式版正文并复用既有版本表/状态查询；本主题验收，不等于全章、首次ECN链或硬件验证。"
           },
           "consistency": {
-            "status": "passed",
-            "reviewedRound": 164,
+            "status": "blocked",
+            "reviewedRound": 167,
             "evidence": [
               {
-                "href": "#feature/3/detail/r164-gen7-vector2-speed-fields",
-                "label": "Gen7速率发现：Vector2与1000b编码，不能直接填“7”"
-              },
-              {
-                "href": "#feature/3/detail/r164-speed-change-and-diagnostic-checklist",
-                "label": "切速与降速检查：训练动作、状态证据与6/7回退差分"
+                "href": "#feature/3/detail/r167-base6-fallback-source-gate",
+                "label": "Base6回退来源衔接待核"
               }
             ],
-            "note": "核所列正式版正文并复用既有版本表/状态查询；本主题验收，不等于全章、首次ECN链或硬件验证。"
+            "note": "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。"
           }
         },
         "baseline": {
@@ -1977,7 +1974,7 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "核所列正式版正文并复用既有版本表/状态查询；本主题验收，不等于全章、首次ECN链或硬件验证。",
+        "reviewNote": "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。",
         "taskId": "v1-task-02",
         "requiredTaskIds": [
           "v1-task-02",
@@ -1985,54 +1982,152 @@
           "v1-task-23",
           "v1-task-24"
         ],
-        "acceptedRound": 164
+        "acceptanceHistory": [
+          {
+            "acceptedRound": 164,
+            "reopenedRound": 167,
+            "previousStatus": "accepted",
+            "previousConsistencyReview": {
+              "status": "passed",
+              "reviewedRound": 164,
+              "evidence": [
+                {
+                  "href": "#feature/3/detail/r164-gen7-vector2-speed-fields",
+                  "label": "Gen7速率发现：Vector2与1000b编码，不能直接填“7”"
+                },
+                {
+                  "href": "#feature/3/detail/r164-speed-change-and-diagnostic-checklist",
+                  "label": "切速与降速检查：训练动作、状态证据与6/7回退差分"
+                }
+              ],
+              "note": "核所列正式版正文并复用既有版本表/状态查询；本主题验收，不等于全章、首次ECN链或硬件验证。"
+            },
+            "reason": "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。"
+          }
+        ],
+        "blockers": [
+          "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。"
+        ],
+        "reopenedRound": 167
       },
       {
         "id": "v1-feature-4",
         "featureId": 4,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 167,
+            "evidence": [
+              {
+                "href": "#feature/4/detail/r167-ltssm-transition-evidence-map",
+                "label": "LTSSM查阅入口：状态名之外还要核角色、计数起点与出口优先序"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 167,
+            "evidence": [
+              {
+                "href": "#feature/4/detail/r167-ltssm-transition-evidence-map",
+                "label": "LTSSM查阅入口：状态名之外还要核角色、计数起点与出口优先序"
+              },
+              {
+                "href": "#feature/4/detail/recovery-lock-branch-query",
+                "label": "查询：RcvrLock正常门槛与24ms出口的逐版分支"
+              },
+              {
+                "href": "#feature/4/detail/rcfg-speed-gates-query",
+                "label": "升速出口查询：8份接收证据之外，还要发32或128份TS2"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 167,
+            "evidence": [
+              {
+                "href": "#feature/4/detail/r167-ltssm-transition-evidence-map",
+                "label": "LTSSM查阅入口：状态名之外还要核角色、计数起点与出口优先序"
+              },
+              {
+                "href": "#feature/4/detail/recovery-idle-counts-by-mode",
+                "label": "Idle成功计数按模式/编码分：NFM 8收16发；FM 2收4或8发"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 167,
+            "evidence": [
+              {
+                "href": "#feature/4/detail/r167-ltssm-transition-evidence-map",
+                "label": "LTSSM查阅入口：状态名之外还要核角色、计数起点与出口优先序"
+              },
+              {
+                "href": "#feature/4/detail/hotreset-role-timer-query",
+                "label": "交互查询：Hot Reset由谁发起、何时去Detect、何时重置计时"
+              },
+              {
+                "href": "#feature/4/detail/rcfg-fm-configuration-gate-query",
+                "label": "FM重配门槛查询与时序图：三个计数起点独立判断"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 167,
+            "evidence": [
+              {
+                "href": "#feature/4/detail/r167-ltssm-transition-evidence-map",
+                "label": "LTSSM查阅入口：状态名之外还要核角色、计数起点与出口优先序"
+              },
+              {
+                "href": "#feature/4/detail/block-37",
+                "label": "Gen1～Gen7：本轮已对照正文的差异"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 167,
+            "evidence": [
+              {
+                "href": "#feature/4/detail/r167-ltssm-transition-evidence-map",
+                "label": "LTSSM查阅入口：状态名之外还要核角色、计数起点与出口优先序"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 167,
+            "evidence": [
+              {
+                "href": "#feature/4/detail/r167-ltssm-transition-evidence-map",
+                "label": "LTSSM查阅入口：状态名之外还要核角色、计数起点与出口优先序"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 167,
+            "evidence": [
+              {
+                "href": "#feature/4/detail/r167-ltssm-transition-evidence-map",
+                "label": "Base6共享来源衔接问题"
+              }
+            ],
+            "note": "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。"
           }
         },
         "baseline": {
@@ -2041,13 +2136,16 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。",
         "taskId": "v1-task-02",
         "requiredTaskIds": [
           "v1-task-02",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。"
         ]
       },
       {
@@ -2055,47 +2153,111 @@
         "featureId": 5,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/5/detail/r168-retrain-request-versus-completion",
+                "label": "Retrain使用顺序：写请求、训练结束与实际速率分别核对"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/5/detail/r168-retrain-request-versus-completion",
+                "label": "Retrain使用顺序：写请求、训练结束与实际速率分别核对"
+              },
+              {
+                "href": "#feature/5/detail/speed-window-target-query",
+                "label": "查询：Recovery.Speed额外EI窗口、回退目标与48/96ms适用条件"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/5/detail/r168-retrain-request-versus-completion",
+                "label": "Retrain使用顺序：写请求、训练结束与实际速率分别核对"
+              },
+              {
+                "href": "#feature/5/detail/speed-status-management-autonomous",
+                "label": "变更日志：Current Link Speed、管理带宽状态、自主带宽状态要分开"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/5/detail/r168-retrain-request-versus-completion",
+                "label": "Retrain使用顺序：写请求、训练结束与实际速率分别核对"
+              },
+              {
+                "href": "#feature/5/detail/speed-six-seven-fallback-wording",
+                "label": "6.0保留1b/1b回退表述差异；7.0在Speed正文明确回32GT/s"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/5/detail/r168-retrain-request-versus-completion",
+                "label": "Retrain使用顺序：写请求、训练结束与实际速率分别核对"
+              },
+              {
+                "href": "#feature/5/detail/speed-seven-timeout-table",
+                "label": "7.0 Speed 48/96ms表：64GT/s非增强允许二选一，强烈推荐96ms"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/5/detail/r168-retrain-request-versus-completion",
+                "label": "Retrain使用顺序：写请求、训练结束与实际速率分别核对"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/5/detail/r168-retrain-request-versus-completion",
+                "label": "Retrain使用顺序：写请求、训练结束与实际速率分别核对"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/5/detail/r168-retrain-request-versus-completion",
+                "label": "Base6共享来源衔接问题"
+              }
+            ],
+            "note": "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。"
           }
         },
         "baseline": {
@@ -2104,13 +2266,16 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。",
         "taskId": "v1-task-02",
         "requiredTaskIds": [
           "v1-task-02",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。"
         ]
       },
       {
@@ -2118,47 +2283,115 @@
         "featureId": 6,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/6/detail/r168-width-change-contract",
+                "label": "宽度调整使用边界：Link xN、PIPE Width与L0p分别判断"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/6/detail/r168-width-change-contract",
+                "label": "宽度调整使用边界：Link xN、PIPE Width与L0p分别判断"
+              },
+              {
+                "href": "#feature/6/detail/width-entry-version-query",
+                "label": "查询：NFM/FM重配置入口、PAD模式与6.0/7.0计数起点"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/6/detail/r168-width-change-contract",
+                "label": "宽度调整使用边界：Link xN、PIPE Width与L0p分别判断"
+              },
+              {
+                "href": "#feature/6/detail/width-fm-sixteen-origin-version-table",
+                "label": "FM发送16个TS2的起点：6.0只列首TS2，7.0加首PAD TS1"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/6/detail/r168-width-change-contract",
+                "label": "宽度调整使用边界：Link xN、PIPE Width与L0p分别判断"
+              },
+              {
+                "href": "#feature/6/detail/width-seven-no-rate-or-eq-concurrent",
+                "label": "7.0明确禁止speed_change=1或刚经EQ返回RcvrLock后发起宽度改变"
+              },
+              {
+                "href": "#feature/6/detail/l0-downsize-reliability-permission",
+                "label": "NFM缩宽：可靠性原因、upconfigure能力与Hardware Autonomous Width Disable"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/6/detail/r168-width-change-contract",
+                "label": "宽度调整使用边界：Link xN、PIPE Width与L0p分别判断"
+              },
+              {
+                "href": "#feature/6/detail/width-fm-sixteen-origin-version-table",
+                "label": "FM发送16个TS2的起点：6.0只列首TS2，7.0加首PAD TS1"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/6/detail/r168-width-change-contract",
+                "label": "宽度调整使用边界：Link xN、PIPE Width与L0p分别判断"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/6/detail/r168-width-change-contract",
+                "label": "宽度调整使用边界：Link xN、PIPE Width与L0p分别判断"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 168,
+            "evidence": [
+              {
+                "href": "#feature/6/detail/r168-width-change-contract",
+                "label": "宽度调整使用边界：Link xN、PIPE Width与L0p分别判断"
+              }
+            ],
+            "note": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。"
           }
         },
         "baseline": {
@@ -2167,14 +2400,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式Base正文选段，复用原有状态图/计数表/版本查询；仅本主题契约，不代表全章、全部ECN或实机验证。",
         "taskId": "v1-task-01",
         "requiredTaskIds": [
           "v1-task-01",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 168
       },
       {
         "id": "v1-feature-7",
@@ -31686,6 +31920,134 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项、原预算与38项来源记录保留；本次仅记通过维度，不计完整功能关闭。",
         "publication": "先恢复并核验R164上线；R165/R166分别检查后合并发布R166。"
+      },
+      {
+        "round": 167,
+        "kind": "R167 LTSSM出口证据复核及速率一致性更正",
+        "deliverables": [
+          "串联LTSSM计数/角色/异常出口，4通过七维；重开3的一致性，保留Base6共享来源阻塞。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 4,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 4,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 4,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 4,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 4,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 4,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 4,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [
+          3
+        ],
+        "remainingRequiredWork": "固定183项与原预算、38项来源记录保留；3/4/5共享Base6疑点，不计三项独立新冲突。",
+        "publication": "R167/R168独立本地检查后合并发布R168；线上与视觉状态按实际记录。",
+        "reopenedCriterionIds": [
+          {
+            "featureId": 3,
+            "criterionId": "consistency"
+          }
+        ]
+      },
+      {
+        "round": 168,
+        "kind": "R168 Retrain与Link宽度使用边界复核",
+        "deliverables": [
+          "补Retrain字段和推荐操作顺序，5通过七维并保留共享来源阻塞；6按NFM/FM与Base6/7差分通过主题验收。"
+        ],
+        "closedDeliverableIds": [
+          "feature-6-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 5,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 5,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 5,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 5,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 5,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 5,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 5,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 6,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 6,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 6,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 6,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 6,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 6,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 6,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 6,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          6
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项与原预算、38项来源记录保留；3/4/5共享Base6疑点，不计三项独立新冲突。",
+        "publication": "R167/R168独立本地检查后合并发布R168；线上与视觉状态按实际记录。"
       }
     ],
     "backlog": [
@@ -35193,32 +35555,32 @@
       }
     ],
     "nextExecution": {
-      "round": 167,
-      "taskId": "v1-task-02",
+      "round": 169,
+      "taskId": "v1-task-01",
       "featureIds": [
-        4,
-        5,
-        6
+        7,
+        8,
+        9
       ],
-      "goal": "三项PHY保留来源阻塞，不重复重读代替澄清；下一步链路4/5/6按剩余验收维度收尾。",
+      "goal": "沿固定队列推进编码/对齐/均衡7/8/9；3/4/5共享来源问题单列，不重复重读代替正式澄清。",
       "reviewRound": 170
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 166,
+      "assessedRound": 168,
       "reestimateRound": 170,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "本窗口关闭1/2/3共3项，45维度通过（其中21维度来自PHY部分验收）；累计138/183、1248维度、剩45。174/175/176各7/8通过，一致性阻塞。不以来源重读次数推算可保证的结束轮数。",
-      "action": "下一窗口链路4/5/6；已有32轮粗估不是承诺，来源阻塞须外部明确证据，不能靠自动延长轮次保证解决。",
+      "assessment": "R167撤回3的一致性通过，R168关闭6；两轮新增22项维度、撤回1项，净增21。原预算耗尽，来源阻塞不通过延长轮数自动解决。",
+      "action": "下一队列7/8/9；R170四轮总结，统计重开项并保持每日暂停。",
       "latestProgress": {
-        "round": 166,
-        "newAcceptedUnits": 0,
+        "round": 168,
+        "newAcceptedUnits": 1,
         "cumulativeAcceptedUnits": 138,
-        "newPassedCriteria": 7,
-        "cumulativePassedCriteria": 1248,
+        "newPassedCriteria": 15,
+        "cumulativePassedCriteria": 1269,
         "remainingPlannedRounds": 0
       }
     },
@@ -36277,8 +36639,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        165,
-        166
+        167,
+        168
       ],
       "completedRounds": [
         143,
@@ -36304,10 +36666,12 @@
         163,
         164,
         165,
-        166
+        166,
+        167,
+        168
       ],
-      "publication": "checks-before-combined-r166-publication",
-      "note": "每日暂停；原预算快照、历史问题及冲突记录保留。"
+      "publication": "checks-before-combined-r168-publication",
+      "note": "每日暂停；固定范围与原预算快照保留。"
     },
     "queueAudit": {
       "round": 150,
