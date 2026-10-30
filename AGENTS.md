@@ -302,3 +302,7 @@ R188: targeted RTR/LTR source review; no new authoritative resolution, zero new 
 R189: reset lower bounds are compatible when each timing origin is preserved;174 accepted inR189. R190 official PIPE page alignment resolves question17, fixes170 misquotation;P2 mode/end-point source difference remains.151/183,1431 criteria,32 blocked;nextR190[170],reviewR190;daily paused,original budget retained. No forced expansion or treating mechanical alignment as semantic full-read.
 
 R190: reset lower bounds are compatible when each timing origin is preserved;174 accepted inR189. R190 official PIPE page alignment resolves question17, fixes170 misquotation;P2 mode/end-point source difference remains.151/183,1431 criteria,32 blocked;nextR191[169, 172],reviewR194;daily paused,original budget retained. No forced expansion or treating mechanical alignment as semantic full-read.
+
+R191: targeted RX/FFE review; later PIPE text does not retroactively correct1.00. R192 literal64GT/s enumeration is usable despite gap34;Message Bus timing limits retain distinct endpoints. Accepted[];151/183,1431criteria,32blocked;nextR192[172],reviewR194;daily paused,original budget retained.
+
+R192: targeted RX/FFE review; later PIPE text does not retroactively correct1.00. R192 literal64GT/s enumeration is usable despite gap34;Message Bus timing limits retain distinct endpoints. Accepted[172];152/183,1432criteria,31blocked;nextR193[173, 179],reviewR194;daily paused,original budget retained.

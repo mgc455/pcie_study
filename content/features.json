@@ -178513,7 +178513,7 @@
     "example": "PLL锁定但RX无有效数据时，检查输入信号、接收使能、CDR、恢复时钟及对齐，而不是只看PLL lock。",
     "checks": "按signal present → RX使能 → 时钟/CDR → valid → 协议对齐 → LTSSM逐层定位，丢信号后的恢复流程按手册核对。",
     "status": "一期部分验收：R151七个维度通过；来源一致性仍阻塞，见详情",
-    "reviewed": "2026-10-29",
+    "reviewed": "2026-10-30",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -179972,6 +179972,61 @@
         "title": "旧Underflow续页差异",
         "url": "https://www.intel.com/content/www/us/en/io/pci-express/pci-express-architecture-devnet-resources.html",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-1.00",
+        "document": "PHY Interface for the PCI Express Architecture",
+        "version": "1.00",
+        "section": "6.8.3",
+        "page": 19,
+        "pdfPage": 19,
+        "title": "Underflow所插入符号的前文",
+        "url": "https://www.intel.com/content/www/us/en/io/pci-express/pci-express-architecture-devnet-resources.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-1.00",
+        "document": "PHY Interface for the PCI Express Architecture",
+        "version": "1.00",
+        "section": "6.8.3",
+        "page": 20,
+        "pdfPage": 20,
+        "title": "EDB图与SKP孤立用词",
+        "url": "https://www.intel.com/content/www/us/en/io/pci-express/pci-express-architecture-devnet-resources.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.14",
+        "page": 135,
+        "pdfPage": 135,
+        "title": "Nominal Empty的三种有效性/状态信号",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15",
+        "page": 137,
+        "pdfPage": 137,
+        "title": "错误优先级及Nominal Empty排除",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.15.3",
+        "page": 139,
+        "pdfPage": 139,
+        "title": "新版Underflow正文与图8-29",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "所列正式正文选段与既有细则可查询；未闭合的来源矛盾明确保留。",
@@ -181205,7 +181260,17 @@
         ],
         "referenceIndices": [
           124,
-          125
+          125,
+          134,
+          135,
+          136
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 169,
+            "detailId": "r191-underflow-version-source-boundary",
+            "label": "新版直接正文与旧版勘误边界"
+          }
         ]
       },
       {
@@ -181275,6 +181340,74 @@
             "featureId": 169,
             "detailId": "r81-underflow-old-text-conflict",
             "label": "旧版来源矛盾"
+          }
+        ]
+      },
+      {
+        "id": "r191-underflow-version-source-boundary",
+        "title": "Underflow版本对照：新版明确EDB，不等于替旧版发布勘误",
+        "paragraphs": [
+          "定向核PIPE1.00 p19～20与官网7.1 p135/137/139：旧版前文规定插EDB，续页描述也说插EDB，图把EDB与110b放在同一拍；只有续页末句称SKP。新版§8.15.3明确把PCIe的EDB与USB的SUB分开，描述报告对应插入符号的周期。因此网页可以给出版本绑定的读法，不能把旧版孤立SKP改述为另一套必须行为。",
+          "后版正式正文可证明7.1的要求，不能自动作为1.00的追溯勘误。169保留旧版来源一致性阻塞；本轮没有声称取得2003版官方勘误。此次新增的是直接正文定位，避免只用Rx Control寄存器入口支持整个Underflow结论。",
+          "7.1另有明确模式门槛：Nominal Empty因漂移/SOS移除而暂时无数据时，RxValid保持高、RxDataValid拉低、RxStatus为0；该模式不报告普通Underflow，但EB full仍可构成错误。SOS通知使用010b，错误与SKP处理同拍时按规定错误优先级处理。这里必须区分“没有一拍有效数据”和“错误插入符号”，不能用旧1.00的110b对所有现代空拍告警。",
+          "这些规则针对相关的Original PIPE/弹性缓冲上下文。SerDes架构的恢复时钟有效性、MAC自行完成对齐/解码、Receiver Detect的状态解释另查既有入口；看到RxStatus位图本身不足以知道操作阶段。本次核所列正文和原图，没有做整章或实机接收验证。"
+        ],
+        "referenceIndices": [
+          132,
+          133,
+          134,
+          135,
+          136
+        ],
+        "table": {
+          "columns": [
+            "情形",
+            "已核规则",
+            "限制"
+          ],
+          "rows": [
+            [
+              "PIPE1.00普通Underflow",
+              "p19/20前文与图为EDB+110b",
+              "续页孤立SKP用词未获旧版勘误"
+            ],
+            [
+              "PIPE7.1普通PCIe Underflow",
+              "§8.15.3明确EDB与对应周期",
+              "USB SUB不能搬到PCIe"
+            ],
+            [
+              "PIPE7.1 Nominal Empty空拍",
+              "RxValid=1 / RxDataValid=0 / RxStatus=000b",
+              "不是普通110b Underflow"
+            ],
+            [
+              "PIPE7.1 SOS移除通知",
+              "按§8.14报告010b",
+              "不能把SKP动作都当错误"
+            ],
+            [
+              "跨修订使用",
+              "正文结论绑定相应版本",
+              "新版清楚不等于旧版已被正式更正"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 169,
+            "detailId": "r81-underflow-old-text-conflict",
+            "label": "旧版原有来源分歧"
+          },
+          {
+            "featureId": 169,
+            "detailId": "pipe-rxstatus-context-and-bypass",
+            "label": "先确定架构与操作上下文"
+          },
+          {
+            "featureId": 169,
+            "detailId": "pipe-rxerror-event-query",
+            "label": "既有错误竞争查询"
           }
         ]
       }
@@ -186349,8 +186482,8 @@
     "prerequisites": "系数更新须遵守该版本幅度/系数约束与产品更新时序，不能把手册里的某组数当成通用最佳值。",
     "example": "软件或训练状态要求同一Preset编号，两种PHY的实际输入码可能不同；应比较定义和映射后的物理权重。",
     "checks": "沿MAC请求 → PIPE控制 → uPCS映射 → PHY输入/寄存器 → 完成状态追踪，并核对适用速率。",
-    "status": "一期部分验收：R152七个维度通过；来源一致性仍阻塞，见详情",
-    "reviewed": "2026-10-29",
+    "status": "一期已验收：R192按原表恢复非连续索引查询，区分计时上下文；非模拟/BER签核",
+    "reviewed": "2026-10-30",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -187556,6 +187689,50 @@
         "title": "产品控制码仅适用该交付",
         "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "7.1.16",
+        "page": 90,
+        "pdfPage": 90,
+        "title": "官网表7-17明确枚举与其余保留",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.6",
+        "page": 130,
+        "pdfPage": 130,
+        "title": "按速率规定TX更改上限",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "9.9",
+        "page": 181,
+        "pdfPage": 181,
+        "title": "即时取映射与提交后生效的两个端点",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "9.9",
+        "page": 182,
+        "pdfPage": 182,
+        "title": "图9-12操作序列",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "所列正式正文选段与既有细则可查询；未闭合的来源矛盾明确保留。",
@@ -187979,10 +188156,14 @@
         "title": "LocalPresetIndex是速率与Preset联合索引，不是P编号",
         "paragraphs": [
           "8/16/32 GT/s的P0～P10分别占0～10、11～21、22～32。128 GT/s的P0～P10在所引表中为45～55。不能把所有速率都只传P编号。",
-          "64 GT/s段存在正文表疑点：表7-17明列P0=33、P1=35，34未列，随后P2=36直到P10=44；与“11个preset”的连续分配直觉不一致。本地页面已视觉核对，不能自行改成34。本页查询遇到64 GT/s会提示待核，不输出猜测编码。"
+          "R192已核官网表7-17：64GT/s的P0=33，P1=35，P2～P10=36～44；未列34按表末其余保留处理。非连续编号本身不构成相互矛盾，查询按显式列表返回，不擅改P1为34，也不声称获得勘误。"
         ],
         "referenceIndices": [
-          32
+          32,
+          109,
+          110,
+          111,
+          112
         ],
         "table": {
           "columns": [
@@ -188008,8 +188189,8 @@
             ],
             [
               "64 GT/s",
-              "P0=33；P1=35；…；P10=44",
-              "存在跳号，待官方勘误/确认"
+              "P0=33；P1～P10=35～44；34保留",
+              "按PIPE7.1表7-17显式编码查询"
             ],
             [
               "128 GT/s",
@@ -188017,7 +188198,14 @@
               "本表已核；非连续推算64段"
             ]
           ]
-        }
+        },
+        "relatedDetails": [
+          {
+            "featureId": 172,
+            "detailId": "r192-preset-literal-map-and-timers",
+            "label": "显式索引和计时端点的R192修正"
+          }
+        ]
       },
       {
         "id": "pipe-local-preset-response-registers",
@@ -188127,12 +188315,16 @@
         "title": "128 ns和256 ns：按需取映射与实际TX生效不能混算",
         "paragraphs": [
           "§8.6正文：5 GT/s更改TxDeemph后新设置须在128 ns内可发送；8/16/32/64/128 GT/s为256 ns。2.5 GT/s另有固定选择要求，不能凭该表生成动态更新时间。",
-          "§9.9又给即时取映射128 ns响应窗口，且举例在TxDeemph写提交后128 ns内反映到引脚；同页通用图8-18也标128 ns。这里保留各自上下文，不能把示例128 ns改写成所有高速的通用上限。接口适用性和勘误未确认前，不用本查询作合规断言。"
+          "§9.9对即时取映射的请求提交结束到结果提交结束给128ns响应窗口，提前获取可避开该即时分支要求；同节另要求TX设置写提交后128ns内反映到引脚。它与§8.6的高速256ns通用上限不互斥：特定流程还要满足较紧上限。两种计时端点分开，write_ack不替映射返回或引脚生效，不从两个窗口直接承诺端到端总时延。"
         ],
         "referenceIndices": [
           52,
           53,
-          54
+          54,
+          109,
+          110,
+          111,
+          112
         ],
         "table": {
           "columns": [
@@ -188162,7 +188354,14 @@
               "不免除实际TX更新要求"
             ]
           ]
-        }
+        },
+        "relatedDetails": [
+          {
+            "featureId": 172,
+            "detailId": "r192-preset-literal-map-and-timers",
+            "label": "显式索引和计时端点的R192修正"
+          }
+        ]
       },
       {
         "id": "pipe-eq-eval-phase-lifetime",
@@ -188279,14 +188478,25 @@
         "id": "pipe-preset-query",
         "title": "查询：本地Preset索引、系数接口和时间边界",
         "paragraphs": [
-          "选择当前速率与P编号，显示PIPE7.1已核的LocalPresetIndex、三/四tap返回路径，以及参数bank。64 GT/s索引跳号保留为待核，不静默修表。",
+          "选择当前速率与PIPE表中的P编号，显示7.1明确列出的LocalPresetIndex、三/四tap返回路径和参数bank。64GT/s按显式非连续列表查询，34保留；不用猜测补码。",
           "这是接口读表工具，不决定最佳preset，不验证产品DAC、电压或完整Base7均衡算法；该IP支持某速率也不表示当前运行在那个速率。"
         ],
         "referenceIndices": [
           64,
           65,
           66,
-          67
+          67,
+          109,
+          110,
+          111,
+          112
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 172,
+            "detailId": "r192-preset-literal-map-and-timers",
+            "label": "显式索引和计时端点的R192修正"
+          }
         ]
       },
       {
@@ -188841,7 +189051,7 @@
           "本版请求前同时核：|C-1|≤floor(FS/4)，|C-2|+|C-1|+C0+|C+1|=FS，C0−|C-1|+|C-2|−|C+1|≥LF，以及|C-2|≤floor(FS/8)。低于64GT/s令C-2为0。只有某一条满足不构成合法请求；接收新系数请求的端口要拒绝违反条件的请求。",
           "Preset按电压比例及容差定义，并非统一厂商DAC码。本版Full Swing支持对应全部Preset，Reduced Swing的P类和Q类必需子集不同；选FS及整数系数还需满足量化后Preset精度。数字合法、电气比例合格与接收BER达标是三层检查。",
           "产品实现可用自己的控制码、缩放和输入更新机制，但必须建立与规范系数的对应关系。Retimer存在时，训练字段及相邻TX能力按各链路段理解；不能把远端应用设备的FS/LF直接当整条路径所有TX的共同值。",
-          "PIPE7.1已有64GT/s LocalPresetIndex跳号记录：网页保留表中数值及待核范围，不用“应当连续”的直觉自行补码，也不宣称得到官方修正。该接口索引疑点与规范P/Q Preset定义分开，仍阻塞本项一致性验收。"
+          "R192修正原一致性阻塞：PIPE7.1的64GT/s显式索引非连续，但未列编码由表末定义为保留，不能因不连续就拒绝已列项查询。另将通用TX更改、Message Bus提交与即时映射响应分别绑定计时端点，较紧上限不能被较宽上限替代；不声称规范已被勘误。"
         ],
         "referenceIndices": [
           102,
@@ -188850,7 +189060,11 @@
           105,
           106,
           107,
-          108
+          108,
+          109,
+          110,
+          111,
+          112
         ],
         "table": {
           "columns": [
@@ -188901,6 +189115,89 @@
             "featureId": 172,
             "detailId": "pipe-preset-query",
             "label": "PIPE索引查询及待核提示"
+          },
+          {
+            "featureId": 172,
+            "detailId": "r192-preset-literal-map-and-timers",
+            "label": "显式索引和计时端点的R192修正"
+          }
+        ]
+      },
+      {
+        "id": "r192-preset-literal-map-and-timers",
+        "title": "按原表查非连续索引：34保留；取映射和TX生效分开计时",
+        "paragraphs": [
+          "R192修正本站此前因索引不连续而阻止64GT/s查询的做法。官网7.1表7-17逐项给出P0=33，P1～P10=35～44，并把其它未列编码规定为保留。因而100010b（34）可按本表归为保留，不必猜成P1，也不需要先证明“为何跳号”才能读取明确列出的数值。这里没有声称原表经过勘误或编号必须连续。",
+          "工具按本版文字枚举返回六位LocalPresetIndex；8/16/32/128GT/s原有映射保持。PIPE表使用P0～P10这个接口标签，不能仅按标签把Base电气层P/Q定义、FIR有符号系数、训练字段和厂商DAC码混为同一对象；查到索引也不代表已执行请求或测得最佳Preset。",
+          "时间限制也不按数字不同直接认定冲突。§8.6给5GT/s更改后的128ns以及8～128GT/s的256ns通用上限；§9.9另按Message Bus write_committed到引脚生效规定128ns。满足特定流程较紧的上限，也满足相应较宽的上限，不会因存在较宽值就获准忽略较紧值。查询分别列适用流程，不把256ns用作所有接口场景的统一合规门限。",
+          "取映射是另一计时区间：§9.9的即时获取分支从请求提交结束计到结果提交结束，128ns响应要求针对该分支；提前获取可避开这一即时请求时限。提前获取并不等于取消后续TX设置生效要求，也不能随意把两个窗口相加作一次端到端保证。write_ack只表示消息写缓冲的闭环，不替系数返回或引脚生效。",
+          "本轮恢复64GT/s读表查询，并修正旧详情中的“非连续必然待裁决”及时间窗口混淆。172最后的一致性维度按原表显式编码和各自条件通过；不认定厂商实现自动合规，不验证模拟波形、量化精度或BER。旧阻塞理由保留在验收历史。"
+        ],
+        "referenceIndices": [
+          109,
+          110,
+          111,
+          112
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "值/端点",
+            "判读"
+          ],
+          "rows": [
+            [
+              "64GT/s PIPE P0",
+              "33 / 100001b",
+              "表中明确列出"
+            ],
+            [
+              "64GT/s PIPE P1",
+              "35 / 100011b",
+              "不自行改成34"
+            ],
+            [
+              "64GT/s PIPE P2～P10",
+              "36～44",
+              "逐项查表，不靠连续编号假设"
+            ],
+            [
+              "34 / 100010b",
+              "未列 → 保留",
+              "不作为合法P1发出"
+            ],
+            [
+              "§8.6通用TX更改",
+              "5GT/s:128ns；高速:256ns",
+              "按本节场景"
+            ],
+            [
+              "§9.9 Message Bus TX提交",
+              "提交结束到引脚生效:128ns",
+              "较紧条件不能被通用256ns覆盖"
+            ],
+            [
+              "§9.9即时取映射",
+              "请求提交结束到结果提交结束:128ns",
+              "提前获取例外只针对该映射响应窗口"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 172,
+            "detailId": "pipe-preset-query",
+            "label": "恢复后的索引查询"
+          },
+          {
+            "featureId": 172,
+            "detailId": "pipe-tx-response-time-caveats",
+            "label": "分开的计时上下文"
+          },
+          {
+            "featureId": 172,
+            "detailId": "pam4-four-tap-query",
+            "label": "Base电气系数查询"
           }
         ]
       }
