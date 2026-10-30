@@ -181291,7 +181291,7 @@
     "example": "两条同link lane频率相同不代表相位关系满足要求；各自的RX时钟也不能当成一个普通同相时钟。",
     "checks": "列出频率、来源、启动条件、是否停钟及domain；跨域使用同步器/FIFO/握手，不能只按时钟名字相同就设为同步。",
     "status": "一期部分验收：R151七个维度通过；来源一致性仍阻塞，见详情",
-    "reviewed": "2026-10-29",
+    "reviewed": "2026-10-30",
     "sources": [
       {
         "title": "Intel · PIPE 7.1 官方接口规范",
@@ -183234,6 +183234,28 @@
         "title": "恢复域分频边界",
         "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.3.1",
+        "page": 118,
+        "pdfPage": 118,
+        "title": "转换清单与两种PCLK方向图",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R190下载Intel官网7.1原件并对照本地对应物理页；核118/147正文和图。两者这些页码相同，不代表全规范语义核读。"
+      },
+      {
+        "documentId": "pipe-7.1",
+        "document": "PIPE Architecture Specification",
+        "version": "7.1",
+        "section": "8.22",
+        "page": 147,
+        "pdfPage": 147,
+        "title": "表8-4的PCIe P2计时行",
+        "url": "https://cdrdv2-public.intel.com/643108/643108_PIPE_Arch_Spec_Rev_7_1.pdf",
+        "verification": "R190下载Intel官网7.1原件并对照本地对应物理页；核118/147正文和图。两者这些页码相同，不代表全规范语义核读。"
       }
     ],
     "referenceStatus": "所列正式正文选段与既有细则可查询；未闭合的来源矛盾明确保留。",
@@ -184608,13 +184630,20 @@
         "id": "r81-p2-latency-row-conflict",
         "title": "7.1表8-4的P2→P0条目与正文P1终点冲突，必须保留",
         "paragraphs": [
-          "7.1 p147的PCIe参数行标题写P2 to P0 transition time，但同一行测量文字又写PowerDown设为P1，直到PhyStatus撤销。§8.3.1的正常转换清单和旧1.00 §6.13则有P2→P1路径。不能仅凭表格标题宣称新增加了通用P2直达P0握手。",
-          "网站把它作为来源内部矛盾保留，分别列标题与动作；实际实现需查明确的P-state/时钟方向和产品给出的转换图/勘误。这里未取得官方更正，不自行替规范决定是标题还是描述笔误。"
+          "7.1 p147的PCIe参数行标题写P2 to P0 transition time，但测量描述写PowerDown设为P1，直到PhyStatus撤销。R190修正旧转引：§8.3.1文字清单实际列P2→P0；p118图8-8在PHY输出PCLK分支画P2→P1，输入PCLK图8-9画P2→P0。旧1.00须另按其版本处理，不能声称7.1文字清单也列P2→P1。",
+          "R190已在Intel官网原件核到相同表述，分歧不是本地水印附加造成。分别列时钟方向、图/文字与测量端点；未取得解决此项的正式勘误，保持170来源一致性阻塞。"
         ],
         "referenceIndices": [
           159,
           160,
           161
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 170,
+            "detailId": "r190-pipe-official-alignment-and-p2",
+            "label": "官网页码校准与四类证据"
+          }
         ]
       },
       {
@@ -184811,6 +184840,76 @@
             "featureId": 170,
             "detailId": "r81-p2-latency-row-conflict",
             "label": "P2来源问题"
+          }
+        ]
+      },
+      {
+        "id": "r190-pipe-official-alignment-and-p2",
+        "title": "PIPE 7.1官网对照：页码已校准，P2模式分歧仍在；修正本站一处转引",
+        "paragraphs": [
+          "R190实际下载Intel官网Revision7.1（September2025）原件，189个物理页；本地副本190页。对官网1～189页与本地同号页逐页抽取比较：去除本地附加宣传尾注、统一空白及一个抽取字符的连字符表示后文本均匹配。第190页为本地附加内容，不映射为规范页。该机械校准解决页序追踪问题，不是189页全部语义通读，也不证明图像像素完全一致。",
+          "重新核118页原图/正文：§8.3.1的合法转换文字确实列P2→P0；PCLK为PHY输出的图8-8退出片段却标P2→P1，而PCLK为PHY输入的图8-9画P2→P0。147页PCIe参数行标题指P2→P0，但起始动作写PowerDown设为P1、结束为PhyStatus撤销。官网原件也有这些文字，不能归咎于本地水印副本或用USB那一行替代PCIe。",
+          "本站旧块r81-p2-latency-row-conflict曾把§8.3.1清单也写成P2→P1，这是转引错误，本轮已在原ID下修正；另一处refclk-source-inconsistency-p2-p1原本正确，继续保留。现在区分标准清单、输出PCLK图、输入PCLK图与参数测量端点，不再把它们混成一个“规范新增路径”结论。",
+          "集成时须把PCLK方向、受支持P-state及厂商给出的测量起终点一起写入接口约定。官网页序已经核清，不能据此顺带宣布P2目标状态分歧获官方勘误；170一致性继续阻塞。本轮没有按标题编造唯一握手、默认延迟或把旧1.00规则自动覆盖7.1。"
+        ],
+        "referenceIndices": [
+          176,
+          177
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "核到的内容",
+            "边界"
+          ],
+          "rows": [
+            [
+              "本地1～189 ↔ 官网1～189",
+              "逐页文本机械校准",
+              "页序可复核；不等于正文全读"
+            ],
+            [
+              "本地190",
+              "本地附加页",
+              "不当官网规范正文"
+            ],
+            [
+              "§8.3.1转换清单",
+              "P2→P0",
+              "不能误抄为清单含P2→P1"
+            ],
+            [
+              "图8-8：PHY输出PCLK",
+              "退出标到P1",
+              "与清单/参数行并列核，未自行纠正原图"
+            ],
+            [
+              "图8-9：PHY输入PCLK",
+              "退出到P0",
+              "不可忽略时钟方向"
+            ],
+            [
+              "表8-4 PCIe计时行",
+              "标题到P0，动作设P1直到PhyStatus撤销",
+              "官网仍如此，来源一致性未关闭"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 170,
+            "detailId": "r81-p2-latency-row-conflict",
+            "label": "已修正的稳定入口"
+          },
+          {
+            "featureId": 170,
+            "detailId": "refclk-source-inconsistency-p2-p1",
+            "label": "原本正确的分歧说明"
+          },
+          {
+            "featureId": 175,
+            "detailId": "r165-rate-power-operation-boundaries",
+            "label": "切速/功耗操作边界"
           }
         ]
       }
@@ -192175,8 +192274,8 @@
     "prerequisites": "异步置位复位可以不依赖工作时钟，但同步释放和握手需要目标域时钟恢复。每种复位保留哪些寄存器和固件状态取决于具体IP。",
     "example": "数字复位已释放却一直不ready，可能是固件未启动、参考时钟未启用、lane reset还在阻塞状态机或校准等待条件未满足。",
     "checks": "给每个阶段设置可观察状态与超时，先找最早未完成的依赖，不要用固定延时替代全部握手。",
-    "status": "R165部分验收：7/8维度通过，来源一致性仍阻塞，未整体验收",
-    "reviewed": "2026-10-29",
+    "status": "一期已验收：R189修正复位下限的过严阻塞，范围限所列接口/产品版本，非实机签核",
+    "reviewed": "2026-10-30",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -194603,6 +194702,28 @@
         "title": "启动图与时序差异",
         "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pcs-1.75",
+        "document": "Gen6 PCS Wrapper Databook",
+        "version": "1.75a",
+        "section": "5.1",
+        "page": 138,
+        "pdfPage": 138,
+        "title": "同一wrapper的上电和warm reset图",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.2",
+        "page": 54,
+        "pdfPage": 54,
+        "title": "供电爬升后保持下限及后续启动步骤",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R73核PIPE7.1所列复位、MacCLK/SRIS及RxCLK正文与关键波形；本地与官网PDF分开定位，不声明所有旧修订/Gen1～7或产品硅片已验证。 R81追加1.00/7.1选定逐版控制/参数依据，保留中间修订与真实硬件缺口。 R86交叉核3.02a Reference的CPU/CCM/ROM/AHB信号与Databook；复位、boot、地址示例及错误脚差异显式保留。",
@@ -195589,14 +195710,21 @@
       },
       {
         "id": "pg6-reset-ten-versus-fifteen",
-        "title": "资料差异：PCS图上电>10µs，PMA正文最小15µs，不能合成一个值",
+        "title": "复位下限合取：PCS图>10µs、PMA正文≥15µs可同时满足",
         "paragraphs": [
-          "PCS1.75a图5-1标上电复位>10µs；配套PMA3.02a §4.2文字要求供电爬升后至少15µs。两者已对照原图/正文，不能把图中10µs宣传为整个组合的充分条件。",
-          "PMA正文最小15µs仍须满足；此外还要满足wrapper的其它约束。它们不是Gen5到Gen6的普遍代际变化，最终设计应核交付勘误/厂商澄清。本轮未修改原始文件。"
+          "PCS1.75a图5-1给上电复位>10µs，配套PMA3.02a §4.2要求供电爬升后至少15µs。二者均为下限，不是两个互斥的精确脉宽；须同时满足各自区间与其它wrapper约束，不能把图中10µs当成组合的充分条件。",
+          "R189修正此前把这组数字继续作为一致性阻塞的判定。本站不声称厂商已改手册，也不合并计时原点；详细的不等式、warm reset严格大于及计数量化见关联入口。产品约束不能外推为Gen1～Gen7的PERST#统一要求。"
         ],
         "referenceIndices": [
           85,
           86
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 174,
+            "detailId": "r189-reset-lower-bounds-compatible",
+            "label": "各自计时原点与下限判断"
+          }
         ]
       },
       {
@@ -196613,7 +196741,7 @@
           "上电先满足电源/参考时钟、复位与静态配置条件。PMA3.02a流程在释放全局复位后装载ICCM/DCCM、应用所需配置，再启动CPU；CPU默认停止。Run请求得到对应应答后撤请求，随后等待Lane启动应答撤销，才说明先前目标参数已应用。不能拿CPU Run Ack替Lane Ack，也不能把启动时Ack为1当作已完成。",
           "该产品按P1上电，再由PCS发起功耗/速率变更至P0，然后进入上层PCIe训练与数据传输。PIPE7.1 Reset#的初始控制和复位完成语义要按PCLK方向解释：PCLK为PHY输出时以复位释放后的PhyStatus撤销说明规定时钟和功耗条件，不是所有操作都等待同一种一拍高脉冲。",
           "SerDes架构RxValid只确认恢复RxCLK稳定，随后MAC才开始symbol/block lock；Original架构则按对齐控制解释。时钟有效也未证明LTSSM已L0、Data Link已初始化、软件已建立队列。关断/恢复涉及固件保留时，PIPE的Restore窗口和32周期保护不替产品保证所有SRAM/校准状态仍有效。",
-          "一致性暂不关闭：PCS1.75a启动图标上电复位大于10µs，PMA3.02a正文要求供电爬升后至少15µs。较长保持可同时满足这两个数值下界，但不能据此宣称两份资料的起算点、适用条件和完整集成时序已由厂商澄清；仍须满足PMA正文及其余wrapper约束。本页不把10µs图示当成组合的充分条件，也未改原始资料。"
+          "R189复核后修正旧阻塞：>10µs与≥15µs都是可同时满足的下限，保持各自起算点并合取即可，不要求两份文字数字相同。此处未获得新的厂商勘误；通过的是本页解释的一致性，不是完整集成时序的实机证明。PMA正文及其余wrapper、固件与时钟条件仍分别适用。"
         ],
         "referenceIndices": [
           215,
@@ -196655,9 +196783,9 @@
               "不是同名同义状态"
             ],
             [
-              "上电10µs图示 / 15µs正文",
-              "记录原版本与起算条件",
-              "一致性仍待正式澄清"
+              "上电>10µs图示 / ≥15µs正文",
+              "分别记录原点，同时满足两个下限",
+              "不等于15µs后所有启动环节完成"
             ]
           ]
         },
@@ -196681,6 +196809,71 @@
             "featureId": 174,
             "detailId": "pg6-reset-ten-versus-fifteen",
             "label": "复位时长来源差异"
+          },
+          {
+            "featureId": 174,
+            "detailId": "r189-reset-lower-bounds-compatible",
+            "label": "R189下限合取与旧阻塞修正"
+          }
+        ]
+      },
+      {
+        "id": "r189-reset-lower-bounds-compatible",
+        "title": "复位下限可以同时满足：>10µs与≥15µs不是互斥要求",
+        "paragraphs": [
+          "R189修正本站此前的阻塞判定：对PCS1.75a配套PMA3.02a，两份资料给的是复位保持下限，不是精确且必须相等的脉宽。PCS图中上电>10µs与PMA在供电爬升后≥15µs可同时满足；没有必要先取得“两个数字必须改成一样”的勘误，才能解释这组约束。这里没有声称厂商已发布澄清，也没有降低其它启动条件。",
+          "检查时各自保留计时原点。令tS为相关PMA供电完成爬升的时刻，tC为wrapper图对应保持区间的起点，tR为全局复位撤销：同时要求tR−tS≥15µs，以及tR−tC>10µs；不是先假定tS=tC后只看一个脉宽。还须逐项满足参考时钟、其它复位、配置、固件与CPU/Lane应答。较晚释放复位不能补救缺失的供电或时钟前提，也不证明PHY Ready。",
+          "Warm reset也同时核：PMA文字为≥10ns，PCS图为>10ns。恰好10ns只满足前者；若实现由100MHz且持续运行的控制时钟计数，两个完整周期为20ns，可满足这两个数值下限。这个原创算例仅演示严格不等号与计数量化，实际仍需计入控制时钟精度、观测同步、边沿及实现余量，不替具体复位控制器签核。",
+          "本主题的一致性验收因此关闭：已有七个维度的启动/恢复/校准解释继续保留，最后一维按可合取下限和分开的计时原点通过。验收的是所列版本知识说明的一致性，不是证明整份产品手册无错或完成硅片启动、CDC/RDC和模拟验证。旧阻塞理由保存在验收历史，原始手册不改动。"
+        ],
+        "referenceIndices": [
+          220,
+          221
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "条件",
+            "判断"
+          ],
+          "rows": [
+            [
+              "冷启动PCS图",
+              "对应区间 >10µs",
+              "保留其原点与严格大于"
+            ],
+            [
+              "冷启动PMA步骤",
+              "供电完成爬升后 ≥15µs",
+              "不能从电源尚未稳定时开始抵扣"
+            ],
+            [
+              "两份冷启动约束",
+              "同时成立",
+              "没有上限冲突，不能误判为两个互斥精确值"
+            ],
+            [
+              "Warm reset",
+              "≥10ns 且 >10ns",
+              "10ns不充分；20ns只是数值示例"
+            ],
+            [
+              "复位撤销后",
+              "装载/配置、CPU、Lane、时钟、训练",
+              "满足保持下限不等于整个链路可用"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 174,
+            "detailId": "startup-milestone-observation-table",
+            "label": "后续里程碑"
+          },
+          {
+            "featureId": 174,
+            "detailId": "r165-startup-evidence-gates",
+            "label": "启动流程入口"
           }
         ]
       }

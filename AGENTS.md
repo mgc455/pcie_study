@@ -298,3 +298,7 @@ R186: iATU/HDMA selected-rule review; confirmed paths reused, source conflicts r
 R187: targeted RTR/LTR source review; no new authoritative resolution, zero new accepted units/criteria;150/183 and1430 criteria,33 blocked. Preserve original budget/history; nextR188[89], reviewR190; daily paused. Do not repeatedly reread identical unresolved sources as new acceptance.
 
 R188: targeted RTR/LTR source review; no new authoritative resolution, zero new accepted units/criteria;150/183 and1430 criteria,33 blocked. Preserve original budget/history; nextR189[174, 170], reviewR190; daily paused. Do not repeatedly reread identical unresolved sources as new acceptance.
+
+R189: reset lower bounds are compatible when each timing origin is preserved;174 accepted inR189. R190 official PIPE page alignment resolves question17, fixes170 misquotation;P2 mode/end-point source difference remains.151/183,1431 criteria,32 blocked;nextR190[170],reviewR190;daily paused,original budget retained. No forced expansion or treating mechanical alignment as semantic full-read.
+
+R190: reset lower bounds are compatible when each timing origin is preserved;174 accepted inR189. R190 official PIPE page alignment resolves question17, fixes170 misquotation;P2 mode/end-point source difference remains.151/183,1431 criteria,32 blocked;nextR191[169, 172],reviewR194;daily paused,original budget retained. No forced expansion or treating mechanical alignment as semantic full-read.

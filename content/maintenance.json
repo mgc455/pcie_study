@@ -1,7 +1,7 @@
 {
   "nextFeatureIds": [
-    174,
-    170
+    169,
+    172
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,11 +48,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r188",
+    "edition": "2026-10-30-r190",
     "featureIds": [
-      89
+      170
     ],
-    "nextTrack": "[174, 170]定向来源核对；R190四轮总结"
+    "nextTrack": "[169, 172]定向追证；R194总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -342,14 +342,14 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 130,
-    "lastReviewEdition": "2026-10-30-r186",
-    "lastReviewId": "r183-r186",
-    "nextExpectedReview": "若继续授权并有实质追证，R190四轮总结；不是新完工期限。"
+    "completedTotal": 132,
+    "lastReviewEdition": "2026-10-30-r190",
+    "lastReviewId": "r187-r190",
+    "nextExpectedReview": "若继续授权并有实质进展，R194总结；不是新完工期限。"
   },
   "stageReviews": [
     {
@@ -1283,10 +1283,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 98,
+    "completedRounds": 100,
     "remainingPlannedRounds": 0,
-    "nextRound": 189,
-    "nextReviewRound": 190,
+    "nextRound": 191,
+    "nextReviewRound": 194,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -26270,14 +26270,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 151,
+            "reviewedRound": 190,
             "evidence": [
               {
                 "href": "#feature/170/detail/r81-p2-latency-row-conflict",
                 "label": "既有明确待核来源"
+              },
+              {
+                "href": "#feature/170/detail/r190-pipe-official-alignment-and-p2",
+                "label": "PIPE 7.1官网对照：页码已校准，P2模式分歧仍在；修正本站一处转引"
               }
             ],
-            "note": "PIPE7.1表8-4 PCIe P2转换条目标题与测量动作不一致。"
+            "note": "官网原件仍有P2模式/计时端点分歧；本站清单转引已修，页码问题单独解决。"
           }
         },
         "baseline": {
@@ -26299,6 +26303,23 @@
         ],
         "blockers": [
           "PIPE7.1表8-4 PCIe P2转换条目标题与测量动作不一致。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 190,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 151,
+              "evidence": [
+                {
+                  "href": "#feature/170/detail/r81-p2-latency-row-conflict",
+                  "label": "既有明确待核来源"
+                }
+              ],
+              "note": "PIPE7.1表8-4 PCIe P2转换条目标题与测量动作不一致。"
+            },
+            "result": "official-copy-confirms-p2-difference;site-miscitation-corrected"
+          }
         ]
       },
       {
@@ -26650,7 +26671,7 @@
         "featureId": 174,
         "group": "PHY与SerDes",
         "scope": "protocol-or-phy",
-        "status": "blocked",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -26750,15 +26771,15 @@
             "note": "核所列PIPE7.1和产品固定版本正文，复用原图表/查询；七项维度通过，一致性仍阻塞。未做产品实机/仿真、CDC或固件执行验证。"
           },
           "consistency": {
-            "status": "blocked",
-            "reviewedRound": 165,
+            "status": "passed",
+            "reviewedRound": 189,
             "evidence": [
               {
-                "href": "#feature/174/detail/pg6-reset-ten-versus-fifteen",
-                "label": "资料差异：PCS图上电>10µs，PMA正文最小15µs，不能合成一个值"
+                "href": "#feature/174/detail/r189-reset-lower-bounds-compatible",
+                "label": "复位下限可以同时满足：>10µs与≥15µs不是互斥要求"
               }
             ],
-            "note": "PCS1.75a图示与PMA3.02a正文的上电复位下界/适用条件仍待正式澄清。"
+            "note": "同一组合中的下限可合取，计时原点不混合；不要求厂家澄清不存在的互斥脉宽，也不等于真实启动/模拟验证。"
           }
         },
         "baseline": {
@@ -26769,7 +26790,7 @@
           "clock-reset"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "PCS1.75a图示与PMA3.02a正文的上电复位下界/适用条件仍待正式澄清。",
+        "reviewNote": "R189按保留各自起点的下限合取修正过严阻塞；本条既有八维在所列版本范围通过。",
         "taskId": "v1-task-20",
         "requiredTaskIds": [
           "v1-task-20",
@@ -26777,9 +26798,28 @@
           "v1-task-23",
           "v1-task-24"
         ],
-        "blockers": [
-          "PCS1.75a图示与PMA3.02a正文的上电复位下界/适用条件仍待正式澄清。"
-        ]
+        "blockers": [],
+        "sourceReviewHistory": [
+          {
+            "round": 189,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 165,
+              "evidence": [
+                {
+                  "href": "#feature/174/detail/pg6-reset-ten-versus-fifteen",
+                  "label": "资料差异：PCS图上电>10µs，PMA正文最小15µs，不能合成一个值"
+                }
+              ],
+              "note": "PCS1.75a图示与PMA3.02a正文的上电复位下界/适用条件仍待正式澄清。"
+            },
+            "previousBlockers": [
+              "PCS1.75a图示与PMA3.02a正文的上电复位下界/适用条件仍待正式澄清。"
+            ],
+            "result": "corrected-overstrict-conflict-classification"
+          }
+        ],
+        "acceptedRound": 189
       },
       {
         "id": "v1-feature-175",
@@ -35746,6 +35786,41 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "累计150/183与1430维度；33项来源阻塞仍在，不以算术核算或官方条目代替正文裁决。",
         "publication": "R187/R188分别构建检查后合并发布R188；线上字节与视觉分列。"
+      },
+      {
+        "round": 189,
+        "kind": "R189 复位下限兼容性修正",
+        "deliverables": [
+          "修正174复位下限的过严阻塞：>10µs和≥15µs可按各自起点同时满足；补warm reset严格不等号判断，验收174，新增1个通过维度。"
+        ],
+        "closedDeliverableIds": [
+          "feature-174-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 174,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          174
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围151/183与1431维度，剩32项来源阻塞；修正过严阻塞不代表降低版本/角色证据要求。",
+        "publication": "R189/R190分别构建检查后合并发布R190；线上字节与视觉结果分列。"
+      },
+      {
+        "round": 190,
+        "kind": "R190 PIPE官网对照及四轮总结",
+        "deliverables": [
+          "官网PIPE7.1与本地页序校准完成，解决来源问题17；修正170对§8.3.1的旧转引，P2图/文字与计时端点分歧仍保留；完成R187～R190总结。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定范围151/183与1431维度，剩32项来源阻塞；修正过严阻塞不代表降低版本/角色证据要求。",
+        "publication": "R189/R190分别构建检查后合并发布R190；线上字节与视觉结果分列。"
       }
     ],
     "backlog": [
@@ -37060,10 +37135,25 @@
         "legacyRecordIndices": [
           74
         ],
-        "status": "needs-corroboration",
+        "status": "resolved",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "本次页码映射已解决；以后换版本或替换副本需重新校准，不把此项当其它PIPE来源问题的裁决。",
+        "evidence": [
+          {
+            "href": "#feature/170/detail/r190-pipe-official-alignment-and-p2",
+            "label": "官网原件与本地对应页核对"
+          }
+        ],
+        "reviewHistory": [
+          {
+            "round": 190,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
+            "previousEvidence": []
+          }
+        ],
+        "resolvedRound": 190,
+        "resolution": "官网1～189与本地同号页机械校准，本地190为附加页；不改现有本地引用页序，不外推全文阅读或图像一致。"
       },
       {
         "id": "v1-conflict-18",
@@ -37361,8 +37451,21 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "官网7.1原件118/147仍有P2清单/输出PCLK图/参数动作端点分歧；核适用正式勘误或交付接口契约。其余Underflow/多Lane字段问题按已有记录分别保留，不因页序校准一并关闭。",
+        "evidence": [
+          {
+            "href": "#feature/170/detail/r190-pipe-official-alignment-and-p2",
+            "label": "官网原件与本地对应页核对"
+          }
+        ],
+        "reviewHistory": [
+          {
+            "round": 190,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
+            "previousEvidence": []
+          }
+        ]
       },
       {
         "id": "v1-conflict-35",
@@ -39367,36 +39470,36 @@
       }
     ],
     "nextExecution": {
-      "round": 189,
-      "taskId": "v1-task-20",
+      "round": 191,
+      "taskId": "v1-task-21",
       "featureIds": [
-        174,
-        170
+        169,
+        172
       ],
-      "goal": "按既有PIPE问题簇核对适用版本及正式勘误；有新依据才修正文，无新依据不重复造轮次。",
-      "reviewRound": 190,
+      "goal": "按已有RX/均衡问题簇检查真正来源冲突与可同时满足的约束；有新证据或实错才修改，不重复核相同阻塞凑轮次。",
+      "reviewRound": 194,
       "mode": "targeted-source-corroboration"
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 188,
-      "reestimateRound": 190,
+      "assessedRound": 190,
+      "reestimateRound": 194,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "LTR定向追证：核官方条目底本/日期与正式7.0原图，补Version门槛及bit0/bit1原始值对照；最终ECN正文未取得，零新增验收。累计150/183，剩33；没有延长原R138预算或承诺外部澄清到达轮数。",
-      "action": "下一轮按既有来源问题簇追证；确认过且无新材料的问题不重复扩写。",
+      "assessment": "R190：官网PIPE7.1与本地页序校准完成，解决来源问题17；修正170对§8.3.1的旧转引，P2图/文字与计时端点分歧仍保留；完成R187～R190总结。累计151/183、1431维度，剩32；原预算耗尽事实保留，不按剩余功能数承诺相同轮数。",
+      "action": "先既有RX/均衡问题，再按来源簇核其它阻塞；重复证据无新裁决时停止扩写。",
       "latestProgress": {
-        "round": 188,
+        "round": 190,
         "newAcceptedUnits": 0,
-        "cumulativeAcceptedUnits": 150,
+        "cumulativeAcceptedUnits": 151,
         "newPassedCriteria": 0,
-        "cumulativePassedCriteria": 1430,
+        "cumulativePassedCriteria": 1431,
         "remainingPlannedRounds": 0
       },
       "unacceptedBreakdown": {
-        "blocked": 33,
+        "blocked": 32,
         "awaiting": 0
       }
     },
@@ -40516,6 +40619,71 @@
         ],
         "awaitingFeatureIds": [],
         "note": "四轮验收138 Hot-plug与139 NPEM，共2项、37新增维度；本次146/147/148各七维通过，一致性阻塞。累计150/183、1430维度、剩33，均已列明阻塞；61/89是旧备注与状态对齐，不计新增研究或通过。接下来停止强制概述扩写，只定向追证/修错，未宣称一期完成。"
+      },
+      {
+        "id": "r187-r190",
+        "firstRound": 187,
+        "lastRound": 190,
+        "closedFeatureUnits": [
+          174
+        ],
+        "reopenedFeatureUnits": [],
+        "newPassedCriteria": 1,
+        "remainingFeatureUnits": 32,
+        "cumulativePassedCriteria": 1431,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 7,
+          "中断与消息": 1,
+          "功耗与复位": 3,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 1,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 8
+        },
+        "blockedFeatureIds": [
+          3,
+          4,
+          5,
+          9,
+          10,
+          12,
+          15,
+          61,
+          89,
+          91,
+          92,
+          106,
+          114,
+          119,
+          127,
+          129,
+          136,
+          143,
+          146,
+          147,
+          148,
+          152,
+          153,
+          159,
+          164,
+          169,
+          170,
+          172,
+          173,
+          175,
+          176,
+          179
+        ],
+        "awaitingFeatureIds": [],
+        "resolvedSourceQuestionsThisWindow": [
+          "v1-conflict-17"
+        ],
+        "note": "R187～R190新增验收174、通过1维度；修正上电复位下限过严阻塞与PIPE转换清单旧转引，解决17号页码映射问题。RTR算例、LTR最终ECN链及PIPE P2来源分歧仍在。累计151/183、1431维度，剩32项均有阻塞记录。下一优先级169/172已有RX/均衡来源问题；没有新证据不反复扩写成熟概述。外部澄清到达时间不能给可靠轮数，原R138预算保持耗尽，不降低验收要求。"
       }
     ],
     "budgetEndAudit": {
