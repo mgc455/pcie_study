@@ -189214,7 +189214,7 @@
     "example": "冷启动通过而温度变化后误码增加时，应检查持续适应、校准状态和时钟/电源条件，不能仅重新跑一次LTSSM掩盖问题。",
     "checks": "记录校准完成、适应阶段、失败原因和BER；更改EQ前确认固件是否会覆盖手工设置。",
     "status": "一期部分验收：R152七个维度通过；来源一致性仍阻塞，见详情",
-    "reviewed": "2026-10-29",
+    "reviewed": "2026-10-30",
     "sources": [
       {
         "title": "PCI-SIG 官方规范目录",
@@ -191201,6 +191201,28 @@
         "title": "窗口与统计条件",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.1.1",
+        "page": 62,
+        "pdfPage": 62,
+        "title": "候选数量、初值及循环分支",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "4.6.1.1",
+        "page": 63,
+        "pdfPage": 63,
+        "title": "最佳项复测与退出分支",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "所列正式正文选段与既有细则可查询；未闭合的来源矛盾明确保留。",
@@ -192013,6 +192035,13 @@
         "referenceIndices": [
           79,
           80
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 173,
+            "detailId": "r193-fom-boundary-trace",
+            "label": "额外候选和复测的边界追踪"
+          }
         ]
       },
       {
@@ -192556,6 +192585,71 @@
             "featureId": 173,
             "detailId": "g5-fom-loop-count-text-caveat",
             "label": "两版循环边界待核"
+          }
+        ]
+      },
+      {
+        "id": "r193-fom-boundary-trace",
+        "title": "FOM示例边界追踪：额外的第12个候选在哪里出现？",
+        "paragraphs": [
+          "这是对3.02a产品示例的边界核对，不是本站推荐的PCIe训练算法。前文描述11个预定义候选，再复测最佳项，共12次评估；初始候选索引为0。若候选确为11个，正常编号应覆盖0～10。数量、编号和额外复测的含义必须分开。",
+          "原文分支使用N<11后先加1再提交下一候选，因此完成N=10时仍会产生N=11的候选请求；N=11完成后才转到N=12的最佳项复测。按这些分支的字面含义计数，候选评估经过0～11共12次，另加最佳项复测，共13次。这是对印刷示例的机械追踪，不是运行供应商代码或证明真实硬件会这样执行。",
+          "不能因为找到了边界就自动把比较符改为<10、删除一次请求或把Preset(11)当成合法训练编码。还需澄清N是候选编号还是评估次数，以及哪一步实际属于复测；示例中复测仍参与最佳值更新，也不能将其运行序号当成新的Preset身份。合法候选集合继续按对应Base修订、速率、角色与能力核对。",
+          "查阅这类FOM流程时还须保留请求/完成配对、候选设置稳定时间、同一评估上下文和超时退出规则。产品示例里的2µs建议等待或24ms说明不能直接成为所有Gen1～Gen7、全部EQ阶段的统一定时器。当前已定位具体冲突，但未取得修订该示例的正式澄清，因此173一致性仍阻塞。"
+        ],
+        "referenceIndices": [
+          180,
+          181
+        ],
+        "table": {
+          "columns": [
+            "核对点",
+            "字面结果",
+            "边界"
+          ],
+          "rows": [
+            [
+              "意图描述",
+              "11候选 + 最佳项复测1次",
+              "12次评估"
+            ],
+            [
+              "字面循环：完成N=10",
+              "10<11成立，生成候选11",
+              "额外候选出现的位置"
+            ],
+            [
+              "字面循环：完成N=11",
+              "转N=12，复测最佳候选",
+              "不是第13个新Preset"
+            ],
+            [
+              "字面路径总计",
+              "候选0～11的12次 + 复测1次",
+              "13次，与意图12次不同"
+            ],
+            [
+              "需要澄清",
+              "候选编号、次数及复测转移",
+              "不擅改比较符或扩大合法候选集合"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 173,
+            "detailId": "adapt-fom-example-count-ambiguity",
+            "label": "原有FOM来源问题"
+          },
+          {
+            "featureId": 173,
+            "detailId": "r152-rx-adaptation-result-validity",
+            "label": "结果何时有效"
+          },
+          {
+            "featureId": 172,
+            "detailId": "r192-preset-literal-map-and-timers",
+            "label": "不要混用Preset与接口索引"
           }
         ]
       }
@@ -208685,6 +208779,94 @@
         "title": "上部计时字段重复口径",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.2",
+        "page": 91,
+        "pdfPage": 91,
+        "title": "Preliminary SDK非零窗口定义",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.2",
+        "page": 92,
+        "pdfPage": 92,
+        "title": "报告结构中的计时快照，仅字段存在",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.5",
+        "page": 98,
+        "pdfPage": 98,
+        "title": "Done查询适用于窗口模式",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.6",
+        "page": 100,
+        "pdfPage": 100,
+        "title": "报告API入口",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-sdk-1.00pre3",
+        "document": "Gen6 PHY SDK Application Note（Preliminary）",
+        "version": "1.00a_pre3",
+        "section": "6.6",
+        "page": 101,
+        "pdfPage": 101,
+        "title": "输出表未定义计时快照单位与分母换算",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-pma-3.02",
+        "document": "Gen6 PHY Databook",
+        "version": "3.02a",
+        "section": "5.6",
+        "page": 119,
+        "pdfPage": 119,
+        "title": "128bit比较单位与有效种子前提",
+        "url": "https://www.synopsys.com/dw/ipdir.php?c=dwc_pcie6phy_tsmc6ff12_x4ns",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-reference-3.02",
+        "document": "Gen6 PHY Reference Manual",
+        "version": "3.02a",
+        "section": "2.1.129",
+        "page": 403,
+        "pdfPage": 403,
+        "title": "同页+1计时及timer乘128公式",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "phy6-reference-3.02",
+        "document": "Gen6 PHY Reference Manual",
+        "version": "3.02a",
+        "section": "2.1.130",
+        "page": 404,
+        "pdfPage": 404,
+        "title": "续字段的相同计时说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R70核Base6/7 FBER、PAM4预编码错误解释和所标产品BERMON；SDK为Preliminary，保留计时冲突；未验证硅片/全代际。",
@@ -209963,6 +210145,11 @@
             "featureId": 179,
             "detailId": "r180-bermon-reference-timer-source-gate",
             "label": "R180 Reference Manual新增证据"
+          },
+          {
+            "featureId": 179,
+            "detailId": "r194-ber-denominator-evidence",
+            "label": "计时快照与所需SDK换算契约"
           }
         ]
       },
@@ -210262,6 +210449,83 @@
             "featureId": 179,
             "detailId": "r180-prbs-measurement-evidence-chain",
             "label": "有效窗口证据链"
+          }
+        ]
+      },
+      {
+        "id": "r194-ber-denominator-evidence",
+        "title": "BER分母追证：计时快照字段存在，不等于其单位和换算已明确",
+        "paragraphs": [
+          "继续核Preliminary SDK1.00a_pre3的配置、Done检查及报告页，而不再笼统称缺少Reference Manual。报告结构列有计时快照、错误计数和BER结果，但所核输出说明只给错误数、BER及错误返回等概括，没有定义计时快照究竟是剩余计数、已过计数、配置回读还是有效比较周期。因此字段存在和调用成功都不足以证明可由它独立重算分母。",
+          "疑点的影响可作条件化算术演示：假定同一计数时钟、每个有效计数周期正好比较128bit、未暂停或提前结束，配置T=1时，128T与128(T+1)分别为128和256bit；观察1个错误会得到1/128与1/256。该例只显示口径差异可能影响结果，不能证明哪一种就是本产品的真实分母；reference clock是否等于有效比较时钟仍待契约说明。",
+          "T=0在所列资料中表示连续模式，不能套用上述候选式得出零分母或128bit固定窗口。阈值提前终止、种子尚未有效、中途复位/清零、失锁和计数饱和也需要单独判断。既有BER查询只接收用户已确认的实际比较bit分母，不应偷偷从配置timer推出唯一N。",
+          "Reference3.02a的最大窗口示例用约2199秒描述40bit窗口；两种候选在最大值附近只差一个计数单位，粗略秒数不足以裁决边沿差异。也不能凭SDK有浮点BER返回，就推测内部一定预减timer或使用某种未说明的快照换算。",
+          "待补的是匹配PHY3.02a交付的SDK/固件BER计算契约或正式澄清，具体应说明：配置值到实际比较周期的映射、快照单位及端点、种子有效后的计数起点、暂停/提前结束的有效bit数、清零/饱和语义。现有SDK文档和Reference已读到；本轮检查到的产品readme没有提供此项裁决，未执行供应商脚本、固件或真实PHY。conflict28和179一致性继续阻塞。"
+        ],
+        "referenceIndices": [
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "已核情况",
+            "限制"
+          ],
+          "rows": [
+            [
+              "配置timer",
+              "非零值的停止描述与分母公式不同",
+              "不能自行加1或预减"
+            ],
+            [
+              "计时快照",
+              "字段存在；输出表未定义单位/端点",
+              "不能仅看名称当实际bit数"
+            ],
+            [
+              "T=1的条件演示",
+              "128bit与256bit两候选",
+              "1个错误分别1/128与1/256"
+            ],
+            [
+              "T=0",
+              "连续模式",
+              "不是零bit或固定128bit"
+            ],
+            [
+              "报告成功 / Done / Seed",
+              "分别判断调用、窗口结束、比较有效",
+              "三者不替实际比较分母"
+            ],
+            [
+              "所需交付说明",
+              "SDK/固件计算、时钟、窗口端点、提前终止",
+              "不以粗略最大秒数代替精确计数契约"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 179,
+            "detailId": "r180-bermon-reference-timer-source-gate",
+            "label": "同版Reference中的计时差异"
+          },
+          {
+            "featureId": 179,
+            "detailId": "bermon-evidence-query",
+            "label": "已有窗口有效性查询"
+          },
+          {
+            "featureId": 179,
+            "detailId": "ber-window-query",
+            "label": "实际分母下的统计查询"
           }
         ]
       }

@@ -306,3 +306,7 @@ R190: reset lower bounds are compatible when each timing origin is preserved;174
 R191: targeted RX/FFE review; later PIPE text does not retroactively correct1.00. R192 literal64GT/s enumeration is usable despite gap34;Message Bus timing limits retain distinct endpoints. Accepted[];151/183,1431criteria,32blocked;nextR192[172],reviewR194;daily paused,original budget retained.
 
 R192: targeted RX/FFE review; later PIPE text does not retroactively correct1.00. R192 literal64GT/s enumeration is usable despite gap34;Message Bus timing limits retain distinct endpoints. Accepted[172];152/183,1432criteria,31blocked;nextR193[173, 179],reviewR194;daily paused,original budget retained.
+
+R193: targeted FOM/BER source review, no new acceptance. Literal FOM example yields13 evaluations versus intended12;SDK timer snapshot is not a defined valid-bit denominator.152/183,1432criteria,31blocked;nextR194[179],reviewR194;daily paused,original budget retained. Need matched implementation contract or clarification, not repeated speculative formula edits.
+
+R194: targeted FOM/BER source review, no new acceptance. Literal FOM example yields13 evaluations versus intended12;SDK timer snapshot is not a defined valid-bit denominator.152/183,1432criteria,31blocked;nextR195[91, 92],reviewR198;daily paused,original budget retained. Need matched implementation contract or clarification, not repeated speculative formula edits.

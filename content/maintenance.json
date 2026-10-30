@@ -1,7 +1,7 @@
 {
   "nextFeatureIds": [
-    173,
-    179
+    91,
+    92
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,11 +48,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r192",
+    "edition": "2026-10-30-r194",
     "featureIds": [
-      172
+      179
     ],
-    "nextTrack": "[173, 179]定向追证；R194总结"
+    "nextTrack": "[91, 92]定向核对；R198总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -342,14 +342,14 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 134,
-    "lastReviewEdition": "2026-10-30-r190",
-    "lastReviewId": "r187-r190",
-    "nextExpectedReview": "若继续授权并有实质进展，R194总结；不是新完工期限。"
+    "completedTotal": 136,
+    "lastReviewEdition": "2026-10-30-r194",
+    "lastReviewId": "r191-r194",
+    "nextExpectedReview": "有后续授权及实质进展时R198总结；非新的完成期限。"
   },
   "stageReviews": [
     {
@@ -1283,10 +1283,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 102,
+    "completedRounds": 104,
     "remainingPlannedRounds": 0,
-    "nextRound": 193,
-    "nextReviewRound": 194,
+    "nextRound": 195,
+    "nextReviewRound": 198,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -26676,14 +26676,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 152,
+            "reviewedRound": 193,
             "evidence": [
               {
                 "href": "#feature/173/detail/g5-fom-loop-count-text-caveat",
                 "label": "既有明确待核来源"
+              },
+              {
+                "href": "#feature/173/detail/r193-fom-boundary-trace",
+                "label": "FOM示例边界追踪：额外的第12个候选在哪里出现？"
               }
             ],
-            "note": "所列产品FOM示例的Preset数量与循环索引边界不一致。"
+            "note": "将FOM示例数量疑点定位为具体分支：字面路径产生12个候选再复测，共13次，而前文意图为12次；不自动修循环，173保持阻塞。"
           }
         },
         "baseline": {
@@ -26704,6 +26708,23 @@
         ],
         "blockers": [
           "所列产品FOM示例的Preset数量与循环索引边界不一致。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 193,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 152,
+              "evidence": [
+                {
+                  "href": "#feature/173/detail/g5-fom-loop-count-text-caveat",
+                  "label": "既有明确待核来源"
+                }
+              ],
+              "note": "所列产品FOM示例的Preset数量与循环索引边界不一致。"
+            },
+            "result": "specific-source-boundary-localized;no-new-authoritative-resolution"
+          }
         ]
       },
       {
@@ -27537,14 +27558,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 180,
+            "reviewedRound": 194,
             "evidence": [
               {
                 "href": "#feature/179/detail/r180-bermon-reference-timer-source-gate",
                 "label": "Reference Manual新增计时口径追证"
+              },
+              {
+                "href": "#feature/179/detail/r194-ber-denominator-evidence",
+                "label": "BER分母追证：计时快照字段存在，不等于其单位和换算已明确"
               }
             ],
-            "note": "conflict28：SDK timer+1与Databook timer×128尚未闭环；新增Reference Manual3.02a p403/404同页也保留两口径，不能自行统一分母或推测API预减。"
+            "note": "核SDK报告输出边界，明确计时快照字段不等于已知有效bit分母；补条件化换算示例和精确交付问题单，179保持阻塞；完成R191～R194总结。"
           }
         },
         "baseline": {
@@ -27563,6 +27588,23 @@
         ],
         "blockers": [
           "conflict28：SDK timer+1与Databook timer×128尚未闭环；新增Reference Manual3.02a p403/404同页也保留两口径，不能自行统一分母或推测API预减。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 194,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 180,
+              "evidence": [
+                {
+                  "href": "#feature/179/detail/r180-bermon-reference-timer-source-gate",
+                  "label": "Reference Manual新增计时口径追证"
+                }
+              ],
+              "note": "conflict28：SDK timer+1与Databook timer×128尚未闭环；新增Reference Manual3.02a p403/404同页也保留两口径，不能自行统一分母或推测API预减。"
+            },
+            "result": "specific-source-boundary-localized;no-new-authoritative-resolution"
+          }
         ]
       },
       {
@@ -35896,6 +35938,32 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定范围152/183与1432维度，剩31项；不以新版正文替旧版勘误，不因非连续编号制造未知。",
         "publication": "R191/R192分别构建检查，合并发布R192，线上与视觉结果分列。"
+      },
+      {
+        "round": 193,
+        "kind": "R193 FOM示例边界核对",
+        "deliverables": [
+          "将FOM示例数量疑点定位为具体分支：字面路径产生12个候选再复测，共13次，而前文意图为12次；不自动修循环，173保持阻塞。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "累计152/183与1432通过维度，剩31项阻塞；两处均缺精确裁决，不用算术示例冒充硬件/厂商确认。",
+        "publication": "R193/R194分别构建检查后合并发布R194；线上与视觉结果分列。"
+      },
+      {
+        "round": 194,
+        "kind": "R194 BER分母契约与四轮总结",
+        "deliverables": [
+          "核SDK报告输出边界，明确计时快照字段不等于已知有效bit分母；补条件化换算示例和精确交付问题单，179保持阻塞；完成R191～R194总结。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "累计152/183与1432通过维度，剩31项阻塞；两处均缺精确裁决，不用算术示例冒充硬件/厂商确认。",
+        "publication": "R193/R194分别构建检查后合并发布R194；线上与视觉结果分列。"
       }
     ],
     "backlog": [
@@ -37414,11 +37482,15 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "Reference Manual3.02a p403/404已核且同页两口径并存；下一步核匹配交付SDK/固件的预减/捕获计时/实际比较bit分母契约或正式澄清，不能仅凭API命名统一换算。",
+        "nextAction": "取得匹配PHY3.02a的SDK/固件BER计算契约或正式澄清：timer映射、快照单位和端点、reference/有效比较周期关系、有效种子后起算、提前终止及清零/饱和语义。SDK报告字段已核，不凭名称推测分母或预减。",
         "evidence": [
           {
             "href": "#feature/179/detail/r180-bermon-reference-timer-source-gate",
             "label": "SDK/Databook/Reference Manual三份计时证据与原页核对"
+          },
+          {
+            "href": "#feature/179/detail/r194-ber-denominator-evidence",
+            "label": "SDK报告快照字段与未定义单位的界线"
           }
         ],
         "reviewHistory": [
@@ -37427,6 +37499,17 @@
             "previousStatus": "needs-corroboration",
             "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
             "previousEvidence": []
+          },
+          {
+            "round": 194,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "Reference Manual3.02a p403/404已核且同页两口径并存；下一步核匹配交付SDK/固件的预减/捕获计时/实际比较bit分母契约或正式澄清，不能仅凭API命名统一换算。",
+            "previousEvidence": [
+              {
+                "href": "#feature/179/detail/r180-bermon-reference-timer-source-gate",
+                "label": "SDK/Databook/Reference Manual三份计时证据与原页核对"
+              }
+            ]
           }
         ]
       },
@@ -39545,31 +39628,31 @@
       }
     ],
     "nextExecution": {
-      "round": 193,
-      "taskId": "v1-task-21",
+      "round": 195,
+      "taskId": "v1-task-10",
       "featureIds": [
-        173,
-        179
+        91,
+        92
       ],
-      "goal": "定向核既有FOM示例循环和PRBS计时口径，优先区分真实冲突与适用条件；无新证据不重复扩写。",
-      "reviewRound": 194,
+      "goal": "转功耗来源问题91/92，核示例/能力字段的版本和角色条件；有实错或新依据才修改，不能反复研究相同已定位阻塞。",
+      "reviewRound": 198,
       "mode": "targeted-source-corroboration"
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 192,
-      "reestimateRound": 194,
-      "observedAcceptedUnitsPerRound": 1.0,
+      "assessedRound": 194,
+      "reestimateRound": 198,
+      "observedAcceptedUnitsPerRound": 0.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "按官网显式列表恢复64GT/s Preset查询，34保留；分开映射响应与TX生效时间约束，修正过严阻塞并验收172，新增1个通过维度。累计152/183，剩31；原预算耗尽记录不改。",
-      "action": "后续按既有FOM/PRBS来源问题定向核对，R194四轮总结；外部勘误到达时间不作轮数保证。",
+      "assessment": "核SDK报告输出边界，明确计时快照字段不等于已知有效bit分母；补条件化换算示例和精确交付问题单，179保持阻塞；完成R191～R194总结。累计152/183，剩31；固定范围和原预算耗尽事实保留。",
+      "action": "下一批转功耗版本/角色问题；FOM/BER问题已具体定位，等待匹配交付契约或正式澄清，不重复扩写成熟概述。",
       "latestProgress": {
-        "round": 192,
-        "newAcceptedUnits": 1,
+        "round": 194,
+        "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 152,
-        "newPassedCriteria": 1,
+        "newPassedCriteria": 0,
         "cumulativePassedCriteria": 1432,
         "remainingPlannedRounds": 0
       },
@@ -40759,6 +40842,67 @@
           "v1-conflict-17"
         ],
         "note": "R187～R190新增验收174、通过1维度；修正上电复位下限过严阻塞与PIPE转换清单旧转引，解决17号页码映射问题。RTR算例、LTR最终ECN链及PIPE P2来源分歧仍在。累计151/183、1431维度，剩32项均有阻塞记录。下一优先级169/172已有RX/均衡来源问题；没有新证据不反复扩写成熟概述。外部澄清到达时间不能给可靠轮数，原R138预算保持耗尽，不降低验收要求。"
+      },
+      {
+        "id": "r191-r194",
+        "firstRound": 191,
+        "lastRound": 194,
+        "closedFeatureUnits": [
+          172
+        ],
+        "reopenedFeatureUnits": [],
+        "newPassedCriteria": 1,
+        "remainingFeatureUnits": 31,
+        "cumulativePassedCriteria": 1432,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 7,
+          "中断与消息": 1,
+          "功耗与复位": 3,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 1,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 7
+        },
+        "blockedFeatureIds": [
+          3,
+          4,
+          5,
+          9,
+          10,
+          12,
+          15,
+          61,
+          89,
+          91,
+          92,
+          106,
+          114,
+          119,
+          127,
+          129,
+          136,
+          143,
+          146,
+          147,
+          148,
+          152,
+          153,
+          159,
+          164,
+          169,
+          170,
+          173,
+          175,
+          176,
+          179
+        ],
+        "awaitingFeatureIds": [],
+        "note": "R191～R194验收172 TX FFE/Preset映射，新增1个通过维度；恢复64GT/s显式索引查询并核55条表项。169旧版用词分歧保留；173定位字面13次与意图12次的分支差异，179核SDK快照未定义分母契约。后两轮零新增整项验收，未用重复核读冒充关闭。累计152/183与1432维度、剩31项均阻塞；下一优先级91/92功耗版本和角色条件。外部澄清到达时间不能给可靠轮数，原R138预算仍耗尽，不自动扩范围或降低验收要求。"
       }
     ],
     "budgetEndAudit": {
