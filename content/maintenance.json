@@ -1,8 +1,7 @@
 {
   "nextFeatureIds": [
-    146,
-    147,
-    148
+    61,
+    89
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,11 +48,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r184",
+    "edition": "2026-10-30-r186",
     "featureIds": [
-      139
+      148
     ],
-    "nextTrack": "[146, 147, 148]；R186总结"
+    "nextTrack": "[61, 89]定向追证；R190总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -343,14 +342,14 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 126,
-    "lastReviewEdition": "2026-10-30-r182",
-    "lastReviewId": "r179-r182",
-    "nextExpectedReview": "若用户继续授权，R186四轮总结；不是新完工期限。"
+    "completedTotal": 128,
+    "lastReviewEdition": "2026-10-30-r186",
+    "lastReviewId": "r183-r186",
+    "nextExpectedReview": "若继续授权并有实质追证，R190四轮总结；不是新完工期限。"
   },
   "stageReviews": [
     {
@@ -1284,10 +1283,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 94,
+    "completedRounds": 96,
     "remainingPlannedRounds": 0,
-    "nextRound": 185,
-    "nextReviewRound": 186,
+    "nextRound": 187,
+    "nextReviewRound": 190,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -10530,7 +10529,7 @@
         "featureId": 61,
         "group": "中断与消息",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -10662,9 +10661,15 @@
             "note": "R99核本条所列正式正文/图表，复用相应路由、AER和复位专章，补消息独有字段与必须/可选边界；不把目录、段落数或上层私有协议当验收依据。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "R100版本维度已通过；仅保留RTR80Ah旁注与倍率表不一致，B235未解决毫秒数。后续定向核官方澄清，不重复核整个RN。"
+            "status": "blocked",
+            "reviewedRound": 186,
+            "evidence": [
+              {
+                "href": "#feature/61/detail/r100-rtr-errata-boundary",
+                "label": "已有来源疑点证据；非本轮新增核读"
+              }
+            ],
+            "note": "R100已记录RTR80Ah时间旁注与公式不一致，待官方澄清；本轮仅对齐阻塞分类。"
           }
         },
         "baseline": {
@@ -10680,6 +10685,21 @@
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "classificationHistory": [
+          {
+            "round": 186,
+            "previousStatus": "awaiting-acceptance",
+            "previousConsistency": {
+              "status": "pending",
+              "evidence": [],
+              "note": "R100版本维度已通过；仅保留RTR80Ah旁注与倍率表不一致，B235未解决毫秒数。后续定向核官方澄清，不重复核整个RN。"
+            },
+            "reason": "旧备注已明确阻塞，状态与事实对齐，不计新增验收。"
+          }
+        ],
+        "blockers": [
+          "R100已记录RTR80Ah时间旁注与公式不一致，待官方澄清；本轮仅对齐阻塞分类。"
         ]
       },
       {
@@ -14337,7 +14357,7 @@
         "featureId": 89,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -14457,9 +14477,15 @@
             "note": "R93按所列原创正文/位表与直接来源核对本项要求；不将此维度通过推成七代全部条款完成。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "R100旧版机制与版本维度通过；2025 ECN bit0与正式7.0 bit1来源链仍待官方裁决，不降低验收标准。"
+            "status": "blocked",
+            "reviewedRound": 186,
+            "evidence": [
+              {
+                "href": "#feature/89/detail/r93-ltr-flr-version-map",
+                "label": "已有来源疑点证据；非本轮新增核读"
+              }
+            ],
+            "note": "R100已记录2025 ECN与Base7 LTR跨FLR位号来源链待澄清；本轮仅对齐阻塞分类。"
           }
         },
         "baseline": {
@@ -14475,6 +14501,21 @@
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "classificationHistory": [
+          {
+            "round": 186,
+            "previousStatus": "awaiting-acceptance",
+            "previousConsistency": {
+              "status": "pending",
+              "evidence": [],
+              "note": "R100旧版机制与版本维度通过；2025 ECN bit0与正式7.0 bit1来源链仍待官方裁决，不降低验收标准。"
+            },
+            "reason": "旧备注已明确阻塞，状态与事实对齐，不计新增验收。"
+          }
+        ],
+        "blockers": [
+          "R100已记录2025 ECN与Base7 LTR跨FLR位号来源链待澄清；本轮仅对齐阻塞分类。"
         ]
       },
       {
@@ -22798,47 +22839,151 @@
         "featureId": 146,
         "group": "IP集成与片内接口",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/146/detail/r185-iatu-address-ownership-walk",
+                "label": "iATU使用顺序：先确定地址空间，再核窗口、属性和更新时机"
+              },
+              {
+                "href": "#feature/146/detail/r185-iatu-bypass-source-gate",
+                "label": "iATU与HDMA旁路：三种控制位置及bit9来源边界"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/146/detail/r185-iatu-address-ownership-walk",
+                "label": "iATU使用顺序：先确定地址空间，再核窗口、属性和更新时机"
+              },
+              {
+                "href": "#feature/146/detail/r185-iatu-bypass-source-gate",
+                "label": "iATU与HDMA旁路：三种控制位置及bit9来源边界"
+              },
+              {
+                "href": "#feature/146/detail/iatu-inbound-bar-match",
+                "label": "Inbound BAR-match：先BAR命中，再匹配区域，保留BAR偏移"
+              },
+              {
+                "href": "#feature/146/detail/iatu-match-filters-and-no-match",
+                "label": "匹配不只看地址：全部启用条件要满足，未命中可能直通"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/146/detail/r185-iatu-address-ownership-walk",
+                "label": "iATU使用顺序：先确定地址空间，再核窗口、属性和更新时机"
+              },
+              {
+                "href": "#feature/146/detail/r185-iatu-bypass-source-gate",
+                "label": "iATU与HDMA旁路：三种控制位置及bit9来源边界"
+              },
+              {
+                "href": "#feature/146/detail/iatu-window-query",
+                "label": "iATU窗口查询：算字节偏移，同时标出模型边界"
+              },
+              {
+                "href": "#feature/146/detail/iatu-unroll-window-and-update",
+                "label": "Unroll寻址与修改顺序：窗口偏移不等于CPU MMIO地址"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/146/detail/r185-iatu-address-ownership-walk",
+                "label": "iATU使用顺序：先确定地址空间，再核窗口、属性和更新时机"
+              },
+              {
+                "href": "#feature/146/detail/r185-iatu-bypass-source-gate",
+                "label": "iATU与HDMA旁路：三种控制位置及bit9来源边界"
+              },
+              {
+                "href": "#feature/146/detail/iatu-region-size-generated-parameters",
+                "label": "区域粒度与最大范围是生成配置，不是统一固定4KB"
+              },
+              {
+                "href": "#feature/146/detail/iatu-hdma-bypass-and-double-translation",
+                "label": "HDMA与iATU：先确定SAR/DAR是翻译前地址还是线上地址"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/146/detail/r185-iatu-address-ownership-walk",
+                "label": "iATU使用顺序：先确定地址空间，再核窗口、属性和更新时机"
+              },
+              {
+                "href": "#feature/146/detail/r185-iatu-bypass-source-gate",
+                "label": "iATU与HDMA旁路：三种控制位置及bit9来源边界"
+              },
+              {
+                "href": "#feature/146/detail/iatu-direction-type-mode-limits",
+                "label": "Outbound改类型与Inbound匹配类型：尤其注意FM编码"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/146/detail/r185-iatu-address-ownership-walk",
+                "label": "iATU使用顺序：先确定地址空间，再核窗口、属性和更新时机"
+              },
+              {
+                "href": "#feature/146/detail/r185-iatu-bypass-source-gate",
+                "label": "iATU与HDMA旁路：三种控制位置及bit9来源边界"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/146/detail/r185-iatu-address-ownership-walk",
+                "label": "iATU使用顺序：先确定地址空间，再核窗口、属性和更新时机"
+              },
+              {
+                "href": "#feature/146/detail/r185-iatu-bypass-source-gate",
+                "label": "iATU与HDMA旁路：三种控制位置及bit9来源边界"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/146/detail/r185-iatu-bypass-source-gate",
+                "label": "本轮来源边界与原问题定位"
+              }
+            ],
+            "note": "通道ATU_BYPASS bit9主体、Databook与值1枚举句相互措辞；三种旁路位置可解释，最终交付语义仍待核。"
           }
         },
         "baseline": {
@@ -22847,13 +22992,16 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "通道ATU_BYPASS bit9主体、Databook与值1枚举句相互措辞；三种旁路位置可解释，最终交付语义仍待核。",
         "taskId": "v1-task-17",
         "requiredTaskIds": [
           "v1-task-17",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "通道ATU_BYPASS bit9主体、Databook与值1枚举句相互措辞；三种旁路位置可解释，最终交付语义仍待核。"
         ]
       },
       {
@@ -22861,47 +23009,155 @@
         "featureId": 147,
         "group": "IP集成与片内接口",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/147/detail/r185-hdma-descriptor-publish-consume",
+                "label": "HDMA提交到消费：Direct、6DW描述符、所有权与预取分别看"
+              },
+              {
+                "href": "#feature/147/detail/r185-hdma-recycle-progress-source-gates",
+                "label": "回收和进度不能猜：PCS、Watermark指针与4GiB边界"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/147/detail/r185-hdma-descriptor-publish-consume",
+                "label": "HDMA提交到消费：Direct、6DW描述符、所有权与预取分别看"
+              },
+              {
+                "href": "#feature/147/detail/r185-hdma-recycle-progress-source-gates",
+                "label": "回收和进度不能猜：PCS、Watermark指针与4GiB边界"
+              },
+              {
+                "href": "#feature/147/detail/hdma-cycle-register-and-software-pcs",
+                "label": "CYCLE寄存器CB/CCS与软件PCS：三个值属于不同主体"
+              },
+              {
+                "href": "#feature/147/detail/hdma-descriptor-publication-order",
+                "label": "发布顺序：先内容，后控制字，最后交出周期位"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/147/detail/r185-hdma-descriptor-publish-consume",
+                "label": "HDMA提交到消费：Direct、6DW描述符、所有权与预取分别看"
+              },
+              {
+                "href": "#feature/147/detail/r185-hdma-recycle-progress-source-gates",
+                "label": "回收和进度不能猜：PCS、Watermark指针与4GiB边界"
+              },
+              {
+                "href": "#feature/147/detail/r83-descriptor-query",
+                "label": "查询：六个DWORD区分数据/Link，展开地址和控制位"
+              },
+              {
+                "href": "#feature/147/detail/r83-data-six-dwords",
+                "label": "数据描述符6DW/24Byte：按数值字段看，不当作PCIe Packet"
+              },
+              {
+                "href": "#feature/147/detail/r83-prefetch-plan-query",
+                "label": "查询：预取容量、活动编号和PF_DEPTH修改窗口"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/147/detail/r185-hdma-descriptor-publish-consume",
+                "label": "HDMA提交到消费：Direct、6DW描述符、所有权与预取分别看"
+              },
+              {
+                "href": "#feature/147/detail/r185-hdma-recycle-progress-source-gates",
+                "label": "回收和进度不能猜：PCS、Watermark指针与4GiB边界"
+              },
+              {
+                "href": "#feature/147/detail/r83-prefetch-restart-block",
+                "label": "在预取组中间停止后，不能只改LLP就原样重启"
+              },
+              {
+                "href": "#feature/147/detail/r83-length-four-gib-ambiguity",
+                "label": "4 GB上限与32bit计数：没有依据就不能把0编码成4GiB"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/147/detail/r185-hdma-descriptor-publish-consume",
+                "label": "HDMA提交到消费：Direct、6DW描述符、所有权与预取分别看"
+              },
+              {
+                "href": "#feature/147/detail/r185-hdma-recycle-progress-source-gates",
+                "label": "回收和进度不能猜：PCS、Watermark指针与4GiB边界"
+              },
+              {
+                "href": "#feature/147/detail/hdma-directions-and-request-paths",
+                "label": "HDMA Write/Read方向：以远端PCIe访问命名"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/147/detail/r185-hdma-descriptor-publish-consume",
+                "label": "HDMA提交到消费：Direct、6DW描述符、所有权与预取分别看"
+              },
+              {
+                "href": "#feature/147/detail/r185-hdma-recycle-progress-source-gates",
+                "label": "回收和进度不能猜：PCS、Watermark指针与4GiB边界"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/147/detail/r185-hdma-descriptor-publish-consume",
+                "label": "HDMA提交到消费：Direct、6DW描述符、所有权与预取分别看"
+              },
+              {
+                "href": "#feature/147/detail/r185-hdma-recycle-progress-source-gates",
+                "label": "回收和进度不能猜：PCS、Watermark指针与4GiB边界"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 185,
+            "evidence": [
+              {
+                "href": "#feature/147/detail/r185-hdma-recycle-progress-source-gates",
+                "label": "本轮来源边界与原问题定位"
+              }
+            ],
+            "note": "conflict21：CB=PCS与~PCS、Watermark LLP含义及4GiB零编码没有一致闭环；不生成自动循环回收/恢复脚本。"
           }
         },
         "baseline": {
@@ -22910,13 +23166,16 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "conflict21：CB=PCS与~PCS、Watermark LLP含义及4GiB零编码没有一致闭环；不生成自动循环回收/恢复脚本。",
         "taskId": "v1-task-17",
         "requiredTaskIds": [
           "v1-task-17",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "conflict21：CB=PCS与~PCS、Watermark LLP含义及4GiB零编码没有一致闭环；不生成自动循环回收/恢复脚本。"
         ]
       },
       {
@@ -22924,47 +23183,163 @@
         "featureId": 148,
         "group": "IP集成与片内接口",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "blocked",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 186,
+            "evidence": [
+              {
+                "href": "#feature/148/detail/r186-hdma-stop-notification-release",
+                "label": "HDMA服务闭环：Start、事件、Stop确认与资源释放分别判断"
+              },
+              {
+                "href": "#feature/148/detail/r186-hdma-notification-source-gates",
+                "label": "HDMA通知来源待澄清：地址、MSI-X限制与请求分段上限"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 186,
+            "evidence": [
+              {
+                "href": "#feature/148/detail/r186-hdma-stop-notification-release",
+                "label": "HDMA服务闭环：Start、事件、Stop确认与资源释放分别判断"
+              },
+              {
+                "href": "#feature/148/detail/r186-hdma-notification-source-gates",
+                "label": "HDMA通知来源待澄清：地址、MSI-X限制与请求分段上限"
+              },
+              {
+                "href": "#feature/148/detail/hdma-stop-confirmation-sequence",
+                "label": "停止检查顺序：请求、确认、上下文、资源归还"
+              },
+              {
+                "href": "#feature/148/detail/hdma-local-remote-interrupt-setup",
+                "label": "HDMA通知：本地中断与远端IMWr独立于标准MSI寄存器"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 186,
+            "evidence": [
+              {
+                "href": "#feature/148/detail/r186-hdma-stop-notification-release",
+                "label": "HDMA服务闭环：Start、事件、Stop确认与资源释放分别判断"
+              },
+              {
+                "href": "#feature/148/detail/r186-hdma-notification-source-gates",
+                "label": "HDMA通知来源待澄清：地址、MSI-X限制与请求分段上限"
+              },
+              {
+                "href": "#feature/148/detail/hdma-channel-state-bits",
+                "label": "STATUS[1:0]：运行、异常停止和正常停止不是同一结论"
+              },
+              {
+                "href": "#feature/148/detail/hdma-doorbell-command-bits",
+                "label": "Doorbell[1:0]：Start/Stop命令与确认状态分离"
+              },
+              {
+                "href": "#feature/148/detail/hdma-interrupt-status-bits",
+                "label": "INT_STATUS：事件3bit与4bit错误码分开看"
+              },
+              {
+                "href": "#feature/148/detail/hdma-status-error-query",
+                "label": "HDMA状态/错误查询：解码快照，不直接批准释放缓冲"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 186,
+            "evidence": [
+              {
+                "href": "#feature/148/detail/r186-hdma-stop-notification-release",
+                "label": "HDMA服务闭环：Start、事件、Stop确认与资源释放分别判断"
+              },
+              {
+                "href": "#feature/148/detail/r186-hdma-notification-source-gates",
+                "label": "HDMA通知来源待澄清：地址、MSI-X限制与请求分段上限"
+              },
+              {
+                "href": "#feature/148/detail/hdma-read-error-recovery",
+                "label": "Read引擎错误：远端MRd失败与本地写失败要分开"
+              },
+              {
+                "href": "#feature/148/detail/hdma-write-error-recovery",
+                "label": "Write引擎错误：本地源读取失败不会变成远端坏数据包"
+              },
+              {
+                "href": "#feature/148/detail/r83-enable-pending-gate",
+                "label": "停止请求之后，ENABLE清零还须等edma_xfer_pending撤销"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 186,
+            "evidence": [
+              {
+                "href": "#feature/148/detail/r186-hdma-stop-notification-release",
+                "label": "HDMA服务闭环：Start、事件、Stop确认与资源释放分别判断"
+              },
+              {
+                "href": "#feature/148/detail/r186-hdma-notification-source-gates",
+                "label": "HDMA通知来源待澄清：地址、MSI-X限制与请求分段上限"
+              },
+              {
+                "href": "#feature/148/detail/hdma-source-discrepancies",
+                "label": "6.50a文档差异清单：偏移、进度、错误与分段"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 186,
+            "evidence": [
+              {
+                "href": "#feature/148/detail/r186-hdma-stop-notification-release",
+                "label": "HDMA服务闭环：Start、事件、Stop确认与资源释放分别判断"
+              },
+              {
+                "href": "#feature/148/detail/r186-hdma-notification-source-gates",
+                "label": "HDMA通知来源待澄清：地址、MSI-X限制与请求分段上限"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 186,
+            "evidence": [
+              {
+                "href": "#feature/148/detail/r186-hdma-stop-notification-release",
+                "label": "HDMA服务闭环：Start、事件、Stop确认与资源释放分别判断"
+              },
+              {
+                "href": "#feature/148/detail/r186-hdma-notification-source-gates",
+                "label": "HDMA通知来源待澄清：地址、MSI-X限制与请求分段上限"
+              }
+            ],
+            "note": "按Controller6.50a所列正文/字段与已有查询验收确定部分；不代表所有IP、七代通用机制或真实DMA/一致性验证，来源疑点不凭既有细节数量消除。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "blocked",
+            "reviewedRound": 186,
+            "evidence": [
+              {
+                "href": "#feature/148/detail/r186-hdma-notification-source-gates",
+                "label": "本轮来源边界与原问题定位"
+              }
+            ],
+            "note": "conflict21：Watermark/Abort地址、Write错误方向、Read请求上限以及同版远端MSI-X限制仍待交付/正式澄清。"
           }
         },
         "baseline": {
@@ -22973,13 +23348,16 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "conflict21：Watermark/Abort地址、Write错误方向、Read请求上限以及同版远端MSI-X限制仍待交付/正式澄清。",
         "taskId": "v1-task-17",
         "requiredTaskIds": [
           "v1-task-17",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
+        ],
+        "blockers": [
+          "conflict21：Watermark/Abort地址、Write错误方向、Read请求上限以及同版远端MSI-X限制仍待交付/正式澄清。"
         ]
       },
       {
@@ -35188,6 +35566,118 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项、原R138预算与38来源记录保留；修正比较对象不等于取得正式勘误，NPEM RO首次增加点仍按范围声明。",
         "publication": "R183/R184分别检查后合并发布R184；公开差异、线上字节与视觉结果分列。"
+      },
+      {
+        "round": 185,
+        "kind": "R185 iATU地址阶段与HDMA描述符消费链复核",
+        "deliverables": [
+          "补地址翻译/更新、三种旁路和描述符发布/消费/预取链；146/147各七维通过，已有旁路/回收/指针来源疑点继续阻塞。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 146,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 146,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 146,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 146,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 146,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 146,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 146,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 147,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 147,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 147,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 147,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 147,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 147,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 147,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项、原R138预算与38问题记录保留；本次不以文档存在或七维通过掩盖一致性阻塞。",
+        "publication": "R185/R186分别检查后合并发布R186，线上字节与视觉结果分列。"
+      },
+      {
+        "round": 186,
+        "kind": "R186 HDMA停止/通知闭环复核及四轮总结",
+        "deliverables": [
+          "补停止确认、留证清除和资源归还判读，复核通知地址/MSI-X/请求上限来源差异；148七维通过，R183～R186进入剩余阻塞追证阶段。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 148,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 148,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 148,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 148,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 148,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 148,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 148,
+            "criterionId": "navigation"
+          }
+        ],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项、原R138预算与38问题记录保留；本次不以文档存在或七维通过掩盖一致性阻塞。",
+        "publication": "R185/R186分别检查后合并发布R186，线上字节与视觉结果分列。"
       }
     ],
     "backlog": [
@@ -36553,8 +37043,25 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "按匹配6.50a交付的正式澄清/勘误、生成寄存器模型或验证契约逐项追证；现有相互文字不足以决定回收CB、Watermark含义和98h/A0h映射。该任务内其它原已记录的旁路/IMWr问题按各功能阻塞记录处理，不扩功能范围。",
+        "evidence": [
+          {
+            "href": "#feature/147/detail/r185-hdma-recycle-progress-source-gates",
+            "label": "CB/PCS、Watermark指针和长度边界再核"
+          },
+          {
+            "href": "#feature/148/detail/r186-hdma-notification-source-gates",
+            "label": "地址/请求上限/通知支持差异再核"
+          }
+        ],
+        "reviewHistory": [
+          {
+            "round": 186,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
+            "previousEvidence": []
+          }
+        ]
       },
       {
         "id": "v1-conflict-22",
@@ -38775,37 +39282,37 @@
       }
     ],
     "nextExecution": {
-      "round": 185,
-      "taskId": "v1-task-17",
+      "round": 187,
+      "taskId": "v1-task-06",
       "featureIds": [
-        146,
-        147,
-        148
+        61,
+        89
       ],
-      "goal": "固定剩余范围下一步146/147/148桥接DMA；R186四轮总结。61/89及其它来源阻塞另列，不扩183范围。",
-      "reviewRound": 186
+      "goal": "转已有来源疑点定向追证，先61 RTR算例与89 LTR位号；有新证据才修订，不再强制扩写成熟概述或增加功能。",
+      "reviewRound": 190,
+      "mode": "targeted-source-corroboration"
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 184,
-      "reestimateRound": 186,
+      "assessedRound": 186,
+      "reestimateRound": 190,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "按固定范围验收Hot-plug/NPEM，优先复用成熟表与查询，仅补证据与实际缺口；原预算耗尽、每日暂停不变。",
-      "action": "下一步桥接DMA146/147/148，R186总结；剩余来源阻塞不凭重读次数关闭。",
+      "assessment": "四轮验收138 Hot-plug与139 NPEM，共2项、37新增维度；本次146/147/148各七维通过，一致性阻塞。累计150/183、1430维度、剩33，均已列明阻塞；61/89是旧备注与状态对齐，不计新增研究或通过。接下来停止强制概述扩写，只定向追证/修错，未宣称一期完成。",
+      "action": "剩余追证优先：61 RTR算例、89 LTR正式ECN来源链；随后按共用PIPE/HDMA/PHY问题簇核适用勘误或交付契约。无新依据不重写概述，不能保证外部答复到达轮次。",
       "latestProgress": {
-        "round": 184,
-        "newAcceptedUnits": 1,
+        "round": 186,
+        "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 150,
-        "newPassedCriteria": 8,
-        "cumulativePassedCriteria": 1409,
+        "newPassedCriteria": 7,
+        "cumulativePassedCriteria": 1430,
         "remainingPlannedRounds": 0
       },
       "unacceptedBreakdown": {
-        "blocked": 28,
-        "awaiting": 5
+        "blocked": 33,
+        "awaiting": 0
       }
     },
     "reviewWindows": [
@@ -39860,6 +40367,70 @@
           148
         ],
         "note": "四轮验收137测试与181 CDL阅读方法，共2项、21新增维度；179 PRBS与164 PIPE分别七维通过，保留计时/接口源文疑点。累计148/183、1393维度，剩35（7待验收/28阻塞）；整章覆盖和实机签核不在此分母。"
+      },
+      {
+        "id": "r183-r186",
+        "firstRound": 183,
+        "lastRound": 186,
+        "closedFeatureUnits": [
+          138,
+          139
+        ],
+        "reopenedFeatureUnits": [],
+        "newPassedCriteria": 37,
+        "remainingFeatureUnits": 33,
+        "cumulativePassedCriteria": 1430,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 7,
+          "中断与消息": 1,
+          "功耗与复位": 3,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 1,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 9
+        },
+        "blockedFeatureIds": [
+          3,
+          4,
+          5,
+          9,
+          10,
+          12,
+          15,
+          61,
+          89,
+          91,
+          92,
+          106,
+          114,
+          119,
+          127,
+          129,
+          136,
+          143,
+          146,
+          147,
+          148,
+          152,
+          153,
+          159,
+          164,
+          169,
+          170,
+          172,
+          173,
+          174,
+          175,
+          176,
+          179
+        ],
+        "awaitingFeatureIds": [],
+        "note": "四轮验收138 Hot-plug与139 NPEM，共2项、37新增维度；本次146/147/148各七维通过，一致性阻塞。累计150/183、1430维度、剩33，均已列明阻塞；61/89是旧备注与状态对齐，不计新增研究或通过。接下来停止强制概述扩写，只定向追证/修错，未宣称一期完成。"
       }
     ],
     "budgetEndAudit": {
@@ -40157,8 +40728,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        183,
-        184
+        185,
+        186
       ],
       "completedRounds": [
         143,
@@ -40202,10 +40773,12 @@
         181,
         182,
         183,
-        184
+        184,
+        185,
+        186
       ],
-      "publication": "checks-before-combined-r184-publication",
-      "note": "每日暂停，原预算与固定183范围保留。"
+      "publication": "checks-before-combined-r186-publication",
+      "note": "每日暂停，固定183项与原预算保留；未达验收终点，后续仅按实质追证推进。"
     },
     "queueAudit": {
       "round": 150,
@@ -40218,6 +40791,7 @@
         180
       ],
       "note": "R148下一步重复排入165/166，R149核台账发现并纠正；未重复计数。"
-    }
+    },
+    "continuationMode": "targeted-source-corroboration-and-fixes"
   }
 }

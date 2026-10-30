@@ -290,3 +290,7 @@ R182: CDL reader-source/PIPE architecture review; tool-specific syntax and verif
 R183: Hot-plug/NPEM selected-rule review; reserved-object comparison corrected,2017 NPEM ECN and later Complete exception distinguished; next review R186; daily paused; original budget preserved.
 
 R184: Hot-plug/NPEM selected-rule review; reserved-object comparison corrected,2017 NPEM ECN and later Complete exception distinguished; next review R186; daily paused; original budget preserved.
+
+R185: iATU/HDMA selected-rule review; confirmed paths reused, source conflicts retained; next review R186; daily paused; original budget preserved; R186 continuation switches to targeted source corroboration, no compulsory overview expansion.
+
+R186: iATU/HDMA selected-rule review; confirmed paths reused, source conflicts retained; next review R190; daily paused; original budget preserved; R186 continuation switches to targeted source corroboration, no compulsory overview expansion.

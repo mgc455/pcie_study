@@ -164977,14 +164977,14 @@
     "checks": "先说明地址所属空间；region开关、优先级、对齐和运行中修改限制都要检查，iATU不替代IOMMU权限。",
     "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
     "id": 146,
-    "status": "6.50a选定实现规则已展开 · 持续核读",
+    "status": "R185部分验收：7/8通过，6.50a来源一致性阻塞",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "documentId": "controller-dm-6.50a",
@@ -165403,6 +165403,116 @@
         "title": "SAR/DAR是翻译前还是线上地址，必须与三个旁路选择一起记录",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
         "verification": "R83核6.50a产品资料所列正文/字段；视觉核Databook p635及Reference p4554/p4548。所引印刷页与PDF物理页一致，仅所列角色和字段，不是PCIe通用规范或真实DMA/一致性验证。原手册/RTL不公开。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "11.2",
+        "page": 584,
+        "pdfPage": 584,
+        "title": "直通/目标回卷边界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "11.4",
+        "page": 586,
+        "pdfPage": 586,
+        "title": "地址算式与低编号优先",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "11.6.1",
+        "page": 595,
+        "pdfPage": 595,
+        "title": "Viewport历史与运行中更新限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "11.9.1",
+        "page": 599,
+        "pdfPage": 599,
+        "title": "Inbound类型及过滤",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "11.9.2",
+        "page": 600,
+        "pdfPage": 600,
+        "title": "BAR两级匹配",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.1",
+        "page": 639,
+        "pdfPage": 639,
+        "title": "SAR/DAR方向",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.1",
+        "page": 641,
+        "pdfPage": 641,
+        "title": "三种旁路方法",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.60.14",
+        "page": 4548,
+        "pdfPage": 4548,
+        "title": "bit9主体与值1枚举冲突",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "11.2.1",
+        "page": 584,
+        "pdfPage": 584,
+        "title": "MultiStream类型限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "11.3",
+        "page": 585,
+        "pdfPage": 585,
+        "title": "FM Type零值与NOP",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R62核Controller 6.50a相关AXI/iATU/HDMA正文；实现规则与Base分开，保留完整寄存器/模式/平台和硬件验证缺口。 R83核6.50a描述符/预取/Write控制字段与边界；不外推Gen1～7或其它交付。",
@@ -165560,6 +165670,141 @@
           36,
           37
         ]
+      },
+      {
+        "id": "r185-iatu-address-ownership-walk",
+        "title": "iATU使用顺序：先确定地址空间，再核窗口、属性和更新时机",
+        "paragraphs": [
+          "以下按Controller6.50a实现解释，iATU不是PCIe Base强制组件。先分CPU虚拟地址、本地总线地址、设备DMA地址和线上TLP地址，再选Outbound或Inbound；主机分配的DMA地址还受平台映射/权限约束，不能拿CPU指针直接填入Target。Write引擎的远端地址是DAR，Read引擎的远端地址是SAR，描述符本地指针是另一对象。",
+          "普通Address Match中先核Region Enable、Base/含端点Limit、生成粒度及其它匹配条件，再按Target+(Original−Base)计算；多区域命中取编号最低的启用区域。原创例：Base=40000000h、Limit=4000FFFFh、Target=00000001_20000000h，起址40001234h且长256Byte时，简化映射得到首00000001_20001234h、末00000001_20001333h。该例假设对齐、模式和目标边界均合法，不证明一个TLP可直接承载整个范围。",
+          "Inbound BAR-match先经标准BAR窗口匹配，再按BAR ID及其它启用条件选择区域；不能仅以Target正确就绕过BAR/Function过滤。Outbound未命中可能保持原地址，但Inbound还受BAR与接收过滤约束，不是统一“未命中就拒绝”或“未命中就允许”。Completion不作为普通新MEM请求重走本模型。",
+          "更新前须暂停所有依赖窗口的新请求并确认相关在途操作排空，不能只Stop一个DMA通道而忽略CPU/其它通道。6.50a禁止AXI bridge subordinate操作进行时修改iATU；DBI写回应也不是旧事务排空证明。Unroll块内偏移与SoC实际MMIO基址分开，早于4.80a的Viewport方法不能直接照搬。"
+        ],
+        "referenceIndices": [
+          38,
+          39,
+          40,
+          41,
+          42,
+          43
+        ],
+        "table": {
+          "columns": [
+            "核对步骤",
+            "规则",
+            "边界"
+          ],
+          "rows": [
+            [
+              "地址空间",
+              "本地/设备DMA/线上分别记录",
+              "CPU指针不是通用Target"
+            ],
+            [
+              "普通窗口",
+              "含端点Limit与最低区域号",
+              "简化加法有模式/边界前提"
+            ],
+            [
+              "Inbound BAR",
+              "先标准BAR，再区域条件",
+              "不绕过Function过滤"
+            ],
+            [
+              "运行中更新",
+              "暂停全部相关流量并排空",
+              "Stop单通道不足以证明"
+            ],
+            [
+              "版本/布局",
+              "6.50a Unroll和生成参数",
+              "不当所有IP通用MMIO表"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 146,
+            "detailId": "iatu-window-query",
+            "label": "已有窗口查询"
+          },
+          {
+            "featureId": 146,
+            "detailId": "iatu-region-size-generated-parameters",
+            "label": "生成粒度与最大范围"
+          },
+          {
+            "featureId": 146,
+            "detailId": "iatu-unroll-window-and-update",
+            "label": "布局与更新细则"
+          },
+          {
+            "featureId": 146,
+            "detailId": "iatu-match-filters-and-no-match",
+            "label": "未命中和匹配条件"
+          }
+        ]
+      },
+      {
+        "id": "r185-iatu-bypass-source-gate",
+        "title": "iATU与HDMA旁路：三种控制位置及bit9来源边界",
+        "paragraphs": [
+          "Databook列三种避免HDMA重复翻译的方法：用地址/窗口安排不命中、区域DMA Bypass、通道ATU_BYPASS。Header/Function旁路另有职责，不自动取消地址翻译；HDMA也不会自然关闭iATU、BAR或系统权限检查。线上地址分析须把实际命中区域、旁路选择与SAR/DAR快照一起保存。",
+          "重新核Reference6.50a p4548：bit9字段主体说启用后不翻译，值1的枚举句却说正在翻译；Databook p641明确写置1旁路。当前可以解释预期用途，但不能把相互措辞静默合并成已获厂商确认的自动配置脚本。此问题属于既有HDMA/iATU来源核对范围，本轮不新建功能或宣称取得勘误。",
+          "版本还需核当前架构与FM/NFM：6.50a MultiStream对Posted/Non-Posted类型转换有限制，FM读Type不能照搬NFM零值；旁路不修复错误类型。146本轮七维通过，一致性保留，已有公式/边界查询仍可在明确模型内使用。"
+        ],
+        "referenceIndices": [
+          44,
+          45,
+          46,
+          47
+        ],
+        "table": {
+          "columns": [
+            "控制位置",
+            "用途",
+            "限制"
+          ],
+          "rows": [
+            [
+              "不命中区域",
+              "地址/匹配条件安排",
+              "后续过滤仍存在"
+            ],
+            [
+              "区域DMA Bypass",
+              "区域侧识别HDMA",
+              "不是所有流量全局旁路"
+            ],
+            [
+              "通道ATU_BYPASS",
+              "按通道控制预期旁路",
+              "bit9枚举句仍待澄清"
+            ],
+            [
+              "Header/Function bypass",
+              "属性来源选择",
+              "不自动等于地址旁路"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 146,
+            "detailId": "r83-atu-bypass-bit-conflict",
+            "label": "原bit9来源记录"
+          },
+          {
+            "featureId": 146,
+            "detailId": "r83-iatu-path-and-address-epoch",
+            "label": "地址阶段与三种旁路"
+          },
+          {
+            "featureId": 146,
+            "detailId": "iatu-direction-type-mode-limits",
+            "label": "模式/类型限制"
+          }
+        ]
       }
     ]
   },
@@ -165573,14 +165818,14 @@
     "checks": "确认源/目的地址空间、权限、描述符所有权、通道状态和通知语义；独立核对DMA支持的事务属性，不由控制器的通用能力推导。",
     "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
     "id": 147,
-    "status": "6.50a选定实现规则已展开 · 持续核读",
+    "status": "R185部分验收：7/8通过，6.50a来源一致性阻塞",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "documentId": "controller-dm-6.50a",
@@ -166648,6 +166893,160 @@
         "title": "QoS.WEIGHT[7:3]按MRd请求计权，不是Byte配额或固定带宽比例",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
         "verification": "R83核6.50a产品资料所列正文/字段；视觉核Databook p635及Reference p4554/p4548。所引印刷页与PDF物理页一致，仅所列角色和字段，不是PCIe通用规范或真实DMA/一致性验证。原手册/RTL不公开。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.1.2",
+        "page": 631,
+        "pdfPage": 631,
+        "title": "Write/Read方向",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.3",
+        "page": 635,
+        "pdfPage": 635,
+        "title": "6DW与每通道列表",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.3.1",
+        "page": 636,
+        "pdfPage": 636,
+        "title": "元素到上下文映射",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.3.1",
+        "page": 637,
+        "pdfPage": 637,
+        "title": "Link重载与专用字段",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.3",
+        "page": 673,
+        "pdfPage": 673,
+        "title": "消费者判断及软件PCS",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.4",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "先内容后控制原则",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.1.1",
+        "page": 629,
+        "pdfPage": 629,
+        "title": "容量生命周期",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.60.16",
+        "page": 4554,
+        "pdfPage": 4554,
+        "title": "PF_DEPTH限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.3",
+        "page": 673,
+        "pdfPage": 673,
+        "title": "示例CB=PCS",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.9.4",
+        "page": 674,
+        "pdfPage": 674,
+        "title": "回收段CB为反PCS",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.1.5",
+        "page": 632,
+        "pdfPage": 632,
+        "title": "Watermark快照",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.60.5",
+        "page": 4535,
+        "pdfPage": 4535,
+        "title": "Watermark指针定义",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.2",
+        "page": 641,
+        "pdfPage": 641,
+        "title": "4GB措辞",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.60.8",
+        "page": 4540,
+        "pdfPage": 4540,
+        "title": "32bit长度与尚待请求字节",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R63核6.50a停止/错误/链表回收相关正文与USP/DSP选定字段。原有条目保留；CB/PCS、Watermark LLP、地址偏移与部分错误方向差异显式待核，无仿真/驱动验证。 R83核6.50a描述符/预取/Write控制字段与边界；不外推Gen1～7或其它交付。",
@@ -167208,6 +167607,150 @@
           95,
           96
         ]
+      },
+      {
+        "id": "r185-hdma-descriptor-publish-consume",
+        "title": "HDMA提交到消费：Direct、6DW描述符、所有权与预取分别看",
+        "paragraphs": [
+          "HDMA Write把本地源搬到远端，HDMA Read反向；命名按远端PCIe访问而不是CPU load/store方向。Direct模式用通道上下文提交任务；LL模式用每通道独立的本地列表，Start后硬件从元素载入上下文。描述符是产品定义的6DW/24Byte结构，不是TLP Header或线上指令集。",
+          "数据元素保存控制、长度、64bit SAR和DAR；Link元素重载相同槽位保存下一列表地址及预取信息，没有数据元素的SAR/DAR/长度，TCB只适用于Link。数据CB与硬件CCS相等是可消费判断，PCS是软件变量，不是隐藏的第三个寄存器位；收到预取或读到CYCLE都不证明数据已写完。",
+          "发布原则是先写描述符内容、再控制信息、最后交出周期位，并按平台保证这些写入对设备可见；不能同时改仍归硬件的元素。预取使“已经取到”“正在消费”“可回收”分离。ELEMENT_PREFETCH+1是一次取数的元素量，PF_DEPTH+1是容量；同方向容量分配需在空闲时统一完成，不能作为运行中随意调的性能旋钮。",
+          "已有离线查询按这些边界解码6DW、所有权候选和预取容量。它们不模拟缓存一致性、所有乱序和完整环回，也不能从每次Doorbell成功推断数据对远端CPU已可见；本主题限定6.50a所核角色/配置，不对应某代PCIe必须支持的DMA协议。"
+        ],
+        "referenceIndices": [
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104
+        ],
+        "table": {
+          "columns": [
+            "阶段/对象",
+            "含义",
+            "边界"
+          ],
+          "rows": [
+            [
+              "Direct",
+              "上下文→Enable→Doorbell",
+              "不是通用PCIe命令"
+            ],
+            [
+              "LL数据元素",
+              "6DW描述一块搬运",
+              "不是TLP"
+            ],
+            [
+              "Link元素",
+              "指针/周期/预取信息",
+              "不按数据元素解释"
+            ],
+            [
+              "CB / CCS / PCS",
+              "元素 / 消费者 / 软件周期",
+              "相等不代表全流程Done"
+            ],
+            [
+              "预取 / 回收",
+              "取到与可重写分别判断",
+              "不能改硬件所有的元素"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 147,
+            "detailId": "r83-descriptor-query",
+            "label": "已有六DWORD查询"
+          },
+          {
+            "featureId": 147,
+            "detailId": "hdma-data-element-ownership-query",
+            "label": "已有所有权查询"
+          },
+          {
+            "featureId": 147,
+            "detailId": "r83-prefetch-plan-query",
+            "label": "已有预取规划"
+          },
+          {
+            "featureId": 147,
+            "detailId": "hdma-descriptor-publication-order",
+            "label": "发布顺序"
+          }
+        ]
+      },
+      {
+        "id": "r185-hdma-recycle-progress-source-gates",
+        "title": "回收和进度不能猜：PCS、Watermark指针与4GiB边界",
+        "paragraphs": [
+          "同一6.50a Databook的回收示例写CB=PCS，而Element Recycling段又写最后置CB为~PCS；本轮重新核p673/674，仍未找到足以统一二者的变量时点说明。已确认的先内容后控制原则不等于整个循环算法已经消歧，不生成自动循环回收代码。",
+          "Databook p632对Watermark LLP给回收快照语义，Reference p4535则明确指触发Watermark的描述符地址。不能用一个LLP裸值推断整个预取队列实时位置，或照一个未确认的“含/不含端点”释放后续缓冲。停止后还需按状态、错误阶段与有效上下文判断恢复位置。",
+          "长度亦保留边界：Databook用4GB上限措辞，Reference的32bit字段列最大FFFFFFFFh且零用于无待请求字节。本轮没有得到启动写零代表2^32Byte的规则，查询仅直接表示1～2^32−1Byte，不能把4GiB回绕成零。147七维通过，来源一致性问题仍留在既有conflict21证据链。"
+        ],
+        "referenceIndices": [
+          105,
+          106,
+          107,
+          108,
+          109,
+          110
+        ],
+        "table": {
+          "columns": [
+            "疑点",
+            "所核证据",
+            "当前查询限制"
+          ],
+          "rows": [
+            [
+              "CB回收值",
+              "PCS / ~PCS两种表述",
+              "不静默选一套环算法"
+            ],
+            [
+              "Watermark LLP",
+              "事件快照与触发描述符语义差异",
+              "不直接释放整段队列"
+            ],
+            [
+              "运行中上下文",
+              "不保证实时/原子进度",
+              "不当持久化字节数"
+            ],
+            [
+              "2^32Byte",
+              "普通32bit非零字段不可表示",
+              "不擅自定义0=4GiB"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 147,
+            "detailId": "hdma-recycling-pcs-ambiguity",
+            "label": "原周期回收疑点"
+          },
+          {
+            "featureId": 147,
+            "detailId": "hdma-watermark-recycle-boundary",
+            "label": "Watermark回收范围"
+          },
+          {
+            "featureId": 147,
+            "detailId": "r83-length-four-gib-ambiguity",
+            "label": "原长度边界"
+          },
+          {
+            "featureId": 147,
+            "detailId": "r83-transfer-length-query",
+            "label": "长度离线查询"
+          }
+        ]
       }
     ]
   },
@@ -167221,14 +167764,14 @@
     "checks": "保存STATUS/ERROR再清事件，区分本地edma_int和远端IMWr；STOPPED还可能表示LL为空而非整个业务结束。",
     "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
     "id": 148,
-    "status": "6.50a选定实现规则已展开 · 持续核读",
+    "status": "R186部分验收：7/8通过，6.50a来源一致性阻塞",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-25",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "documentId": "controller-dm-6.50a",
@@ -168065,6 +168608,215 @@
         "title": "远端IMWr与MSI-X：限制表和通知正文并不一致",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
         "verification": "R83核6.50a产品资料所列正文/字段；视觉核Databook p635及Reference p4554/p4548。所引印刷页与PDF物理页一致，仅所列角色和字段，不是PCIe通用规范或真实DMA/一致性验证。原手册/RTL不公开。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.3",
+        "page": 641,
+        "pdfPage": 641,
+        "title": "启动/上下文/pending门槛",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.4",
+        "page": 642,
+        "pdfPage": 642,
+        "title": "正常/异常终态",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.6.1",
+        "page": 643,
+        "pdfPage": 643,
+        "title": "Software Stop和FLR边界",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.6.2",
+        "page": 643,
+        "pdfPage": 643,
+        "title": "Hard Stop和重复请求",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.1.5",
+        "page": 632,
+        "pdfPage": 632,
+        "title": "上下文有效时点",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.2",
+        "page": 633,
+        "pdfPage": 633,
+        "title": "通知独立配置",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.17",
+        "page": 20791,
+        "pdfPage": 20791,
+        "title": "状态编码",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.18",
+        "page": 20792,
+        "pdfPage": 20792,
+        "title": "错误及事件",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.20",
+        "page": 20798,
+        "pdfPage": 20798,
+        "title": "清事件和错误",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 666,
+        "pdfPage": 666,
+        "title": "错误排空与流中首错",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.3.7",
+        "page": 644,
+        "pdfPage": 644,
+        "title": "通知地址总表",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.23",
+        "page": 20802,
+        "pdfPage": 20802,
+        "title": "Watermark地址",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.25",
+        "page": 20804,
+        "pdfPage": 20804,
+        "title": "Abort地址",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.1.2",
+        "page": 625,
+        "pdfPage": 625,
+        "title": "MSI-X限制表",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.2",
+        "page": 633,
+        "pdfPage": 633,
+        "title": "IMWr通知文字",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.2.1.3",
+        "page": 631,
+        "pdfPage": 631,
+        "title": "MRd上限主体",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.7",
+        "page": 667,
+        "pdfPage": 667,
+        "title": "MRd例段上限",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.5.559.18",
+        "page": 20792,
+        "pdfPage": 20792,
+        "title": "Write错误编码",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "13.4.6",
+        "page": 665,
+        "pdfPage": 665,
+        "title": "Write源读错误路径",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R63核6.50a停止/错误/链表回收相关正文与USP/DSP选定字段。原有条目保留；CB/PCS、Watermark LLP、地址偏移与部分错误方向差异显式待核，无仿真/驱动验证。 R83核6.50a描述符/预取/Write控制字段与边界；不外推Gen1～7或其它交付。",
@@ -168449,6 +169201,162 @@
         "referenceIndices": [
           74,
           75
+        ]
+      },
+      {
+        "id": "r186-hdma-stop-notification-release",
+        "title": "HDMA服务闭环：Start、事件、Stop确认与资源释放分别判断",
+        "paragraphs": [
+          "按Controller6.50a先核通道角色、方向、Direct/LL模式、地址/长度与翻译策略，设置通知后Enable再Doorbell Start。Start后不能改正在使用的通道上下文；本地中断和远端IMWr有独立配置，标准MSI/MSI-X能力不是硬件自动取出通知地址的来源。",
+          "通道STATUS低两位为1 RUNNING、2 ABORTED、3 STOPPED，0保留。STOPPED可能来自正常Direct结束、LL暂无可消费元素、Software Stop或Hard Stop；首个描述符CB不符也可能零搬运就Stop。INT_STATUS的STOP/WATERMARK/ABORT是事件，ERROR为编码，不能把任一个事件当成通用完成计数器。",
+          "软件Stop只提交请求，所核流程只在L0使用；等待停止处理确认和相关在途处理后才解释有效上下文，清Enable还要满足pending撤销要求。Hard Stop/Software Stop背靠背时第二个可被忽略。FLR不替此产品完成HDMA停机，需按交付先停止再发起；清中断也不会停止或修复传输。",
+          "错误时硬件停止生成、处置后续/在途、保存流中首错后置ABORTED。服务先留存状态、错误和有效上下文，再清对应事件；ABORT_CLEAR还会清ERROR。运行中SAR/DAR/长度不可靠，64bit分两次读亦不天然原子。即使XFERSIZE=0也只说明相应字段的待请求量，不独立证明远端可见、缓存同步或数据持久化。",
+          "资源归还应分别确认停止原因、相关事务排空、上下文有效性和平台DMA/缓存所有权；本文只给判读顺序，不向硬件写入，不凭STOP或IMWr准许解除映射。Read远端MRd失败与本地目标写失败、Write本地源读失败的恢复条件不同，继续查已有逐错误表。"
+        ],
+        "referenceIndices": [
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85
+        ],
+        "table": {
+          "columns": [
+            "观察",
+            "解释",
+            "服务边界"
+          ],
+          "rows": [
+            [
+              "Start / Stop写入",
+              "提交命令",
+              "不是最终状态确认"
+            ],
+            [
+              "STOPPED",
+              "结合原因/模式/残量",
+              "不都表示数据传完"
+            ],
+            [
+              "ABORTED",
+              "先留存ERROR与有效上下文",
+              "不能先清再调查"
+            ],
+            [
+              "pending撤销",
+              "Enable清零的必要门槛",
+              "不由软件写响应代替"
+            ],
+            [
+              "资源归还",
+              "还核平台同步/映射所有权",
+              "状态位不直接授权释放"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 148,
+            "detailId": "hdma-status-error-query",
+            "label": "已有状态/错误查询"
+          },
+          {
+            "featureId": 148,
+            "detailId": "hdma-stop-confirmation-sequence",
+            "label": "完整停止观察顺序"
+          },
+          {
+            "featureId": 148,
+            "detailId": "hdma-interrupt-status-bits",
+            "label": "事件与错误编码"
+          },
+          {
+            "featureId": 148,
+            "detailId": "hdma-interrupt-clear-bits",
+            "label": "清事件副作用"
+          },
+          {
+            "featureId": 148,
+            "detailId": "hdma-read-error-recovery",
+            "label": "Read错误路径"
+          },
+          {
+            "featureId": 148,
+            "detailId": "hdma-write-error-recovery",
+            "label": "Write错误路径"
+          }
+        ]
+      },
+      {
+        "id": "r186-hdma-notification-source-gates",
+        "title": "HDMA通知来源待澄清：地址、MSI-X限制与请求分段上限",
+        "paragraphs": [
+          "重核6.50a Databook p644与Reference USP页20802/20804：Watermark/Abort两组地址的对应仍相反。本页保留现象和角色，不能从另一个角色的权限或猜表格顺序生成最终写序列。实际交付需给匹配配置的寄存器模型/正式澄清。",
+          "限制表p625说远端中断不支持MSI-X，p633通知段却说IMWr可解释为MSI/MSI-X，并要求按关联Function信息配置。可确认IMWr来自专用地址/数据且是Posted MWr，不等于完整实现标准Table/PBA/mask流程；仍不能据其中一段宣称所有远端MSI-X用法受支持。",
+          "Read分段上限的所核描述也不同：p631用MRRS与MPS Supported的最小值，p667例段改用当前MPS。已有远端包规划仅在声明的假设下给候选，不当真实发包预测。Reference的Write DATA_MWR错误与Databook Write源读/描述符错误路径亦继续保留，不推导远端Posted Write有Completion。",
+          "这些是同一6.50a产品资料的待澄清点，不是Gen1～Gen7协议规则冲突；换速率、同值重试或读更多相同页面不能替代交付证据。148七维通过，一致性仍阻塞，未把现有33项剩余范围变成新的功能列表。"
+        ],
+        "referenceIndices": [
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94
+        ],
+        "table": {
+          "columns": [
+            "来源问题",
+            "已核差异",
+            "当前边界"
+          ],
+          "rows": [
+            [
+              "Watermark/Abort地址",
+              "同版总表与字段页对应相反",
+              "不输出最终写地址"
+            ],
+            [
+              "远端MSI-X支持",
+              "限制表与通知段措辞不同",
+              "不等同Table/PBA实现"
+            ],
+            [
+              "Read请求上限",
+              "MPS Supported / 当前MPS",
+              "候选规划保留假设"
+            ],
+            [
+              "Write错误阶段",
+              "源读/描述符与目标写字段差异",
+              "不虚构远端写Completion"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 148,
+            "detailId": "hdma-source-discrepancies",
+            "label": "原差异清单"
+          },
+          {
+            "featureId": 148,
+            "detailId": "r83-imwr-msix-document-conflict",
+            "label": "原IMWr/MSI-X疑点"
+          },
+          {
+            "featureId": 147,
+            "detailId": "hdma-remote-packet-plan-query",
+            "label": "带假设的候选分段"
+          }
         ]
       }
     ]
