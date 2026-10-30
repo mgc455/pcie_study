@@ -100944,7 +100944,7 @@
     "checks": "检查支持能力、控制策略和实际功率响应；报告某个瓦数不等于电源系统能安全供给该功率。",
     "prerequisites": "先定义在途事务、DMA和中断如何停机，再执行状态转换；确认板级信号、常开域、状态保持和恢复顺序。",
     "id": 91,
-    "status": "R176部分验收：7/8通过，DPA原例越界来源一致性阻塞",
+    "status": "一期已验收：R195按明确范围规则关闭过严阻塞；源例未校订事实保留，非实机功率签核",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
@@ -101412,6 +101412,72 @@
         "page": 1414,
         "pdfPage": 1414,
         "title": "Power数组Max+1项",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.16",
+        "page": 891,
+        "pdfPage": 891,
+        "title": "连续编号要求与越界举例分别看",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.16.1",
+        "page": 892,
+        "pdfPage": 892,
+        "title": "转换过程和PF/VF职责",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.12.2",
+        "page": 1411,
+        "pdfPage": 1411,
+        "title": "Max为支持档数减一",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.12.3",
+        "page": 1412,
+        "pdfPage": 1412,
+        "title": "Indicator仅Max以下位有效",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.12.6",
+        "page": 1414,
+        "pdfPage": 1414,
+        "title": "数组长度必须为Max+1",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.16",
+        "page": 777,
+        "pdfPage": 777,
+        "title": "旧版相同范围规则与例句",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
@@ -101986,11 +102052,11 @@
       },
       {
         "id": "r176-dpa-example-source-gate",
-        "title": "DPA示例越界仍留待澄清：不能把“四档”解释为0～4",
+        "title": "DPA源例越界保留：合法范围由Max与数组明确规定",
         "paragraphs": [
           "复核Base6 p777和Base7 p891：正文先明确四档为0/1/2/3，随后又称前例可转状态4。Capability的Max定义却明确为档数减一，Power数组也只实现Max+1项；因此本页与查询都以实际能力定义的0～Max作输入范围，不把这个示例当成额外第五档授权。",
           "可以明确拒绝越界输入，但不能从这点推断原例状态4究竟应替换成0、2或3，亦不能声称已取得单独正式勘误。已有来源记录conflict07继续保留，并用本轮能力/控制正文补足定位。这里不是缺少Base6/7文档，而是该例的正式澄清尚未确认。",
-          "DPA本轮七项可确认维度通过，一致性仍阻塞。合法输入的小例子与字段规则可用于学习；完整源例修订、首次引入/中间ECN及真实设备功率行为不因本轮而标成已完成。"
+          "R195修正此前过严的验收阻塞：源例应如何修订仍未知，但合法控制范围已由连续编号、Max定义、Indicator范围和数组长度明确规定，不依赖猜测源例替换值。91的必需说明因此通过一致性验收；来源问题07继续记录未校订的例句，不宣称取得勘误，也不将所列选段外推成全部版本/实机行为验收。"
         ],
         "referenceIndices": [
           38,
@@ -102022,8 +102088,8 @@
             ],
             [
               "验收",
-              "7/8通过，来源一致性待核",
-              "保留conflict07历史"
+              "R195按明确的必需规则通过91",
+              "源例官方校订仍未知，不猜替换值"
             ]
           ]
         },
@@ -102042,6 +102108,85 @@
             "featureId": 91,
             "detailId": "dpa-allocation-array-monotonic",
             "label": "数组长度与单调性"
+          },
+          {
+            "featureId": 91,
+            "detailId": "r195-dpa-normative-range",
+            "label": "验收判断修正与独立规范依据"
+          }
+        ]
+      },
+      {
+        "id": "r195-dpa-normative-range",
+        "title": "DPA查范围先读Max：越界举例不增加第五档，也不妨碍明确规则的使用",
+        "paragraphs": [
+          "R195修正此前验收判断：本站必须明确解释可用状态范围，但不必先猜出错误源例究竟应改成哪个编号，才能给出这个已有明确依据的结论。§6.16要求状态从0连续编号到Substate_Max，Capability把Max定义为档数减一，功率数组必须恰有Max+1项，Indicator也只定义到Max。这几处独立规定足以确定合法范围。",
+          "原文四档举例列0～3，随后却称可以转到4，来源异常继续保留；这里没有取得修订该例的官方勘误，也不声称4已被官方替换成某个数。Max=3时合法目标只有0/1/2/3；5bit控制字段能编码4不等于当前Function支持4。数组中相邻档功率相同，也不会合并档号或产生新档。",
+          "合法任意顺序的原创示意可选0→3→1→2，目的只是说明不必逐级经过中间档，不是改写源例。目标档、Status所示功率上界、Control Enabled和目标档最大进入延迟要分别判断；目标合法也不说明转换已完成，Enabled为0时更不能因Control读回改变就认定硬件已切档。",
+          "本页核心机制和输入范围已由明确的规范要求绑定，因此关闭91的一致性验收；原例如何由发布方修订仍留在来源问题07，不把它宣称成已获官方解决。该问题的影响重新限定为源例校订，不再阻塞已经没有歧义的合法范围说明。Power Budgeting逐字段仍由183承接，DPA与PCI-PM/EPR、VF通过PF管理等边界保持。"
+        ],
+        "referenceIndices": [
+          42,
+          43,
+          44,
+          45,
+          46,
+          47
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "明确规则",
+            "限制"
+          ],
+          "rows": [
+            [
+              "Max=0",
+              "1档，仅0",
+              "不表示没有DPA支持"
+            ],
+            [
+              "Max=3",
+              "4档，0～3",
+              "控制值4越界，不能以原例放行"
+            ],
+            [
+              "Max=31",
+              "32档，0～31",
+              "5bit最大值与实现上限在此才相同"
+            ],
+            [
+              "功率数组",
+              "Max+1个BYTE",
+              "每项是档位功率，不是额外控制项"
+            ],
+            [
+              "Latency Indicator",
+              "仅[Max:0]有定义",
+              "上面的位不能选择额外档"
+            ],
+            [
+              "源例校订",
+              "仍未取得官方修订",
+              "不猜替换值；合法范围不依赖这个猜测"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 91,
+            "detailId": "dpa-register-explorer",
+            "label": "既有DPA寄存器查询"
+          },
+          {
+            "featureId": 91,
+            "detailId": "dpa-valid-index-and-text-error",
+            "label": "源例异常记录"
+          },
+          {
+            "featureId": 91,
+            "detailId": "r176-dpa-discovery-register-contract",
+            "label": "字段和范围契约"
           }
         ]
       }
@@ -102428,6 +102573,72 @@
         "title": "中间正式修订VF跟随与字段保留选段",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "定位后核读本页正文；未将全文件搜索当作通读或整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.24",
+        "page": 926,
+        "pdfPage": 926,
+        "title": "VF跟随PF与字段保留的两类文字",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1144,
+        "pdfPage": 1144,
+        "title": "Supported字段起始",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.15",
+        "page": 1145,
+        "pdfPage": 1145,
+        "title": "VF能力同PF和Init同PF要求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.16",
+        "page": 1148,
+        "pdfPage": 1148,
+        "title": "Request所属Function与VF保留",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.5.3.5",
+        "page": 1116,
+        "pdfPage": 1116,
+        "title": "VF Detected硬连0",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "6.24",
+        "page": 813,
+        "pdfPage": 813,
+        "title": "旧版同类VF字段分歧",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "已定位规范目录",
@@ -102784,7 +102995,8 @@
         "title": "查询：EPR支持矩阵、Request归属与Detected快照",
         "paragraphs": [
           "输入DevCap2 DWORD、DevControl2 WORD和Device Status WORD，并明确USP/VF/DSP与Request归属，解码选定字段和恢复语义。",
-          "工具不根据Detected推断精确当前态，不强制清除/退出，不解释保留的VF/DSP控制，不为缺少的形态时序生成数值。"
+          "工具不根据Detected推断精确当前态，不强制清除/退出，不解释保留的VF/DSP控制，不为缺少的形态时序生成数值。",
+          "R196补充观察点：此查询按所引物理配置字段解释；虚拟化层仿真的VF事件视图应先与真实VF寄存器读值分开，不能仅凭仿真读值判硬件违规。"
         ],
         "referenceIndices": [
           1,
@@ -102797,6 +103009,13 @@
           10,
           11,
           12
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 92,
+            "detailId": "r196-epr-vf-field-matrix",
+            "label": "逐字段PF/VF与仿真观察边界"
+          }
         ]
       },
       {
@@ -103009,6 +103228,81 @@
             "featureId": 92,
             "detailId": "r177-epr-capability-request-history",
             "label": "寄存器查询顺序"
+          }
+        ]
+      },
+      {
+        "id": "r196-epr-vf-field-matrix",
+        "title": "EPR逐字段看PF与VF：能力、软件请求、物理事件和仿真视图不能互换",
+        "paragraphs": [
+          "本轮把EPR的VF来源问题拆到具体字段，而不把整段都标成无法使用。Device Capabilities2的Supported[25:24]与InitRequired[26]在字段表要求VF与关联PF相同；§6.24后部却说VF对应配置字段保留。该能力实现分歧继续存在，本轮没有取得能裁决它的正式澄清。",
+          "Request是另一对象：Device Control2[11]只在最低编号且支持EPR的非VF USP Function实现，其余Function包括VF均保留。这个所属者不必是Function0；不能从Supported非零直接推导任意Function可写Request，更不能把VF随PF进入当成VF拥有独立请求位。",
+          "Detected位于Device Status[6]，物理VF必须读零；非VF适用Function的位才按事件/RW1C规则解释。§6.24允许软件用关联PF的记录仿真VF事件视图，因此诊断输入还要标清是物理配置观察、PF快照还是虚拟化层生成的视图。虚拟视图里出现事件信息，不等于真实VF硬件位应读1；真实VF读零也不证明VF没有随PF进入EPR。",
+          "PF的Detected=1仍可能是未清历史，不能据此直接给VF标“当前处于紧急状态”；Request=0也不排除外部或自主触发。若需要恢复，还须判断InitRequired与USP是否曾DL_Down；Device范围重配不能用清历史、单个VF FLR或只改软件请求替代。",
+          "这样可以独立使用已明确的请求归属、跟随关系和事件位规则，同时把尚未确认的能力实现单独留给来源问题11。92一致性仍阻塞；已有快照查询按物理配置字段解释，不读取硬件、不操作设备，也不把虚拟机观察值当物理违规的直接证明。"
+        ],
+        "referenceIndices": [
+          33,
+          34,
+          35,
+          36,
+          37,
+          38
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "已核规则",
+            "限制"
+          ],
+          "rows": [
+            [
+              "Supported[25:24] / Init[26]",
+              "DevCap2字段表：VF同PF",
+              "§6.24保留措辞仍待裁决"
+            ],
+            [
+              "Request[11]",
+              "最低编号、支持EPR的非VF USP Function",
+              "VF及其它Function保留；未必Function0"
+            ],
+            [
+              "物理VF Detected[6]",
+              "硬连0",
+              "读零不否认跟随PF"
+            ],
+            [
+              "适用非VF Detected[6]",
+              "RW1C事件记录",
+              "1不单独证明当前态"
+            ],
+            [
+              "软件仿真VF事件视图",
+              "可依据关联PF事件记录",
+              "与真实VF配置寄存器读值分开"
+            ],
+            [
+              "恢复判断",
+              "触发条件、Init与USP链路历史",
+              "能力/请求/历史位不能相互替代"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 92,
+            "detailId": "epr-register-explorer",
+            "label": "已有物理字段快照查询"
+          },
+          {
+            "featureId": 92,
+            "detailId": "r177-epr-vf-source-boundary",
+            "label": "能力字段来源分歧"
+          },
+          {
+            "featureId": 92,
+            "detailId": "r177-epr-recovery-decision-chain",
+            "label": "恢复条件链"
           }
         ]
       }

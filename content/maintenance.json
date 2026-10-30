@@ -1,7 +1,7 @@
 {
   "nextFeatureIds": [
-    91,
-    92
+    106,
+    114
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,11 +48,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r194",
+    "edition": "2026-10-30-r196",
     "featureIds": [
-      179
+      92
     ],
-    "nextTrack": "[91, 92]定向核对；R198总结"
+    "nextTrack": "[106, 114]定向核对；R198总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -342,11 +342,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 2,
+    "nextReviewAfterRounds": 2,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 136,
+    "completedTotal": 138,
     "lastReviewEdition": "2026-10-30-r194",
     "lastReviewId": "r191-r194",
     "nextExpectedReview": "有后续授权及实质进展时R198总结；非新的完成期限。"
@@ -1283,9 +1283,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 104,
+    "completedRounds": 106,
     "remainingPlannedRounds": 0,
-    "nextRound": 195,
+    "nextRound": 197,
     "nextReviewRound": 198,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -14805,7 +14805,7 @@
         "featureId": 91,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "blocked",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -14969,15 +14969,15 @@
             "note": "核所列正式版选段并复用原查询/字段表；16增加早期角色差分，59范围为所列6/7 PME路径；不代表全章、所有ECN或硬件验证。"
           },
           "consistency": {
-            "status": "blocked",
-            "reviewedRound": 176,
+            "status": "passed",
+            "reviewedRound": 195,
             "evidence": [
               {
-                "href": "#feature/91/detail/r176-dpa-example-source-gate",
-                "label": "DPA越界示例及能力范围"
+                "href": "#feature/91/detail/r195-dpa-normative-range",
+                "label": "DPA查范围先读Max：越界举例不增加第五档，也不妨碍明确规则的使用"
               }
             ],
-            "note": "Base6/7四档0～3示例后提状态4，与能力Max/数组范围不一致；合法输入按0～Max检查，原例应如何修订仍待正式澄清（conflict07）。"
+            "note": "连续编号、Max定义及数组规则独立确定合法范围，不猜源例替换值；未获勘误事实继续记录。"
           }
         },
         "baseline": {
@@ -14988,7 +14988,7 @@
           "budget"
         ],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "Base6/7四档0～3示例后提状态4，与能力Max/数组范围不一致；合法输入按0～Max检查，原例应如何修订仍待正式澄清（conflict07）。",
+        "reviewNote": "R195修正要求先校订源例的过严阻塞；必需合法范围已有独立明确规范依据，未宣称发布方已改原例。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
@@ -14996,9 +14996,28 @@
           "v1-task-23",
           "v1-task-24"
         ],
-        "blockers": [
-          "Base6/7四档0～3示例后提状态4，与能力Max/数组范围不一致；合法输入按0～Max检查，原例应如何修订仍待正式澄清（conflict07）。"
-        ]
+        "blockers": [],
+        "sourceReviewHistory": [
+          {
+            "round": 195,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 176,
+              "evidence": [
+                {
+                  "href": "#feature/91/detail/r176-dpa-example-source-gate",
+                  "label": "DPA越界示例及能力范围"
+                }
+              ],
+              "note": "Base6/7四档0～3示例后提状态4，与能力Max/数组范围不一致；合法输入按0～Max检查，原例应如何修订仍待正式澄清（conflict07）。"
+            },
+            "previousBlockers": [
+              "Base6/7四档0～3示例后提状态4，与能力Max/数组范围不一致；合法输入按0～Max检查，原例应如何修订仍待正式澄清（conflict07）。"
+            ],
+            "result": "normative-input-range-unambiguous;source-example-correction-not-required-for-core-contract"
+          }
+        ],
+        "acceptedRound": 195
       },
       {
         "id": "v1-feature-92",
@@ -15170,14 +15189,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 177,
+            "reviewedRound": 196,
             "evidence": [
               {
                 "href": "#feature/92/detail/r177-epr-vf-source-boundary",
                 "label": "EPR VF字段来源边界"
+              },
+              {
+                "href": "#feature/92/detail/r196-epr-vf-field-matrix",
+                "label": "EPR逐字段看PF与VF：能力、软件请求、物理事件和仿真视图不能互换"
               }
             ],
-            "note": "Base6/7 §6.24 VF对应字段保留与Device Capabilities2的VF同PF要求并存；跟随/Request/Detected可确认，能力字段实现细则保留conflict11待正式澄清。"
+            "note": "请求归属和物理VF事件位可独立确认；Supported/Init字段表与章正文保留措辞仍影响实现说明，继续阻塞。"
           }
         },
         "baseline": {
@@ -15196,6 +15219,23 @@
         ],
         "blockers": [
           "Base6/7 §6.24 VF对应字段保留与Device Capabilities2的VF同PF要求并存；跟随/Request/Detected可确认，能力字段实现细则保留conflict11待正式澄清。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 196,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 177,
+              "evidence": [
+                {
+                  "href": "#feature/92/detail/r177-epr-vf-source-boundary",
+                  "label": "EPR VF字段来源边界"
+                }
+              ],
+              "note": "Base6/7 §6.24 VF对应字段保留与Device Capabilities2的VF同PF要求并存；跟随/Request/Detected可确认，能力字段实现细则保留conflict11待正式澄清。"
+            },
+            "result": "field-and-observation-boundary-confirmed;capability-implementation-unresolved"
+          }
         ]
       },
       {
@@ -35964,6 +36004,41 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "累计152/183与1432通过维度，剩31项阻塞；两处均缺精确裁决，不用算术示例冒充硬件/厂商确认。",
         "publication": "R193/R194分别构建检查后合并发布R194；线上与视觉结果分列。"
+      },
+      {
+        "round": 195,
+        "kind": "R195 DPA必需范围与源例分离",
+        "deliverables": [
+          "DPA按连续编号、Max与数组的明确规则修正过严阻塞，验收91；原越界例句仍待发布方校订，不猜替换值，新增1个通过维度。"
+        ],
+        "closedDeliverableIds": [
+          "feature-91-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 91,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          91
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "153/183与1433通过维度、剩30项阻塞；DPA源例校订仍未知，但必需范围明确；EPR能力实现分歧不回避。",
+        "publication": "R195/R196分别构建检查后合并发布R196；线上核验和视觉结果分列。"
+      },
+      {
+        "round": 196,
+        "kind": "R196 EPR逐字段与观察点复核",
+        "deliverables": [
+          "EPR补逐字段PF/VF矩阵及物理/仿真事件观察边界；请求与事件规则可独立查询，VF能力实现分歧仍阻塞92，无新增整项验收。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "153/183与1433通过维度、剩30项阻塞；DPA源例校订仍未知，但必需范围明确；EPR能力实现分歧不回避。",
+        "publication": "R195/R196分别构建检查后合并发布R196；线上核验和视觉结果分列。"
       }
     ],
     "backlog": [
@@ -37107,12 +37182,16 @@
           36
         ],
         "status": "needs-corroboration",
-        "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "核匹配版本正式勘误或中间修订的源例；合法控制值仍按0～Substate_Max，不能凭猜测选择应替换4的编号。",
+        "impact": "源例四档0～3后提4的异常保留；必需合法控制范围已由连续编号、Max、Indicator及数组规则独立确定，不依赖猜测源例替换值，R195修正此前过严的条目阻塞。不得据此放行越界或宣称已有官方校订。",
+        "nextAction": "若发布方提供源例正式校订则更新来源记录；当前不猜应替换为哪个档号。该未校订例句不再阻塞已明确的0～Max必需说明，也不新增验收范围。",
         "evidence": [
           {
             "href": "#feature/91/detail/r176-dpa-example-source-gate",
             "label": "Base6/7越界例与Max/数组字段定位"
+          },
+          {
+            "href": "#feature/91/detail/r195-dpa-normative-range",
+            "label": "明确的规范范围与未校订源例分开处理"
           }
         ],
         "reviewHistory": [
@@ -37121,8 +37200,21 @@
             "previousStatus": "needs-corroboration",
             "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
             "previousEvidence": []
+          },
+          {
+            "round": 195,
+            "previousStatus": "needs-corroboration",
+            "previousImpact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
+            "previousNextAction": "核匹配版本正式勘误或中间修订的源例；合法控制值仍按0～Substate_Max，不能凭猜测选择应替换4的编号。",
+            "previousEvidence": [
+              {
+                "href": "#feature/91/detail/r176-dpa-example-source-gate",
+                "label": "Base6/7越界例与Max/数组字段定位"
+              }
+            ]
           }
-        ]
+        ],
+        "sourceAnomalyUncorrected": true
       },
       {
         "id": "v1-conflict-08",
@@ -37169,11 +37261,15 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "核适用正式勘误/ECN/官方澄清；本轮6.1 p839与6.4 p906选段仍有相互措辞，不能自行选边。",
+        "nextAction": "核明确适用于VF Supported/Init字段的正式澄清或勘误；物理VF Request保留、Detected读零和PF事件仿真规则不能作为能力字段已消歧的证据。",
         "evidence": [
           {
             "href": "#feature/92/detail/r177-epr-vf-source-boundary",
             "label": "Base6/6.1/6.4/7 EPR VF字段冲突及明确规则"
+          },
+          {
+            "href": "#feature/92/detail/r196-epr-vf-field-matrix",
+            "label": "能力实现与请求/事件/仿真视图分开"
           }
         ],
         "reviewHistory": [
@@ -37182,6 +37278,17 @@
             "previousStatus": "needs-corroboration",
             "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
             "previousEvidence": []
+          },
+          {
+            "round": 196,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "核适用正式勘误/ECN/官方澄清；本轮6.1 p839与6.4 p906选段仍有相互措辞，不能自行选边。",
+            "previousEvidence": [
+              {
+                "href": "#feature/92/detail/r177-epr-vf-source-boundary",
+                "label": "Base6/6.1/6.4/7 EPR VF字段冲突及明确规则"
+              }
+            ]
           }
         ]
       },
@@ -39628,36 +39735,36 @@
       }
     ],
     "nextExecution": {
-      "round": 195,
-      "taskId": "v1-task-10",
+      "round": 197,
+      "taskId": "v1-task-12",
       "featureIds": [
-        91,
-        92
+        106,
+        114
       ],
-      "goal": "转功耗来源问题91/92，核示例/能力字段的版本和角色条件；有实错或新依据才修改，不能反复研究相同已定位阻塞。",
+      "goal": "转既有DPC日志长度与VC重配问题，核范围/条件和真正影响必需实现的差异；无新证据不重复扩写。",
       "reviewRound": 198,
       "mode": "targeted-source-corroboration"
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 194,
+      "assessedRound": 196,
       "reestimateRound": 198,
       "observedAcceptedUnitsPerRound": 0.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "核SDK报告输出边界，明确计时快照字段不等于已知有效bit分母；补条件化换算示例和精确交付问题单，179保持阻塞；完成R191～R194总结。累计152/183，剩31；固定范围和原预算耗尽事实保留。",
-      "action": "下一批转功耗版本/角色问题；FOM/BER问题已具体定位，等待匹配交付契约或正式澄清，不重复扩写成熟概述。",
+      "assessment": "EPR补逐字段PF/VF矩阵及物理/仿真事件观察边界；请求与事件规则可独立查询，VF能力实现分歧仍阻塞92，无新增整项验收。累计153/183，30项阻塞，原预算耗尽记录保留。",
+      "action": "接下来106/114现有来源问题；R198四轮总结，不按待核数量承诺同样轮数，不增加功能范围。",
       "latestProgress": {
-        "round": 194,
+        "round": 196,
         "newAcceptedUnits": 0,
-        "cumulativeAcceptedUnits": 152,
+        "cumulativeAcceptedUnits": 153,
         "newPassedCriteria": 0,
-        "cumulativePassedCriteria": 1432,
+        "cumulativePassedCriteria": 1433,
         "remainingPlannedRounds": 0
       },
       "unacceptedBreakdown": {
-        "blocked": 31,
+        "blocked": 30,
         "awaiting": 0
       }
     },
