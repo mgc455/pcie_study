@@ -294,3 +294,7 @@ R184: Hot-plug/NPEM selected-rule review; reserved-object comparison corrected,2
 R185: iATU/HDMA selected-rule review; confirmed paths reused, source conflicts retained; next review R186; daily paused; original budget preserved; R186 continuation switches to targeted source corroboration, no compulsory overview expansion.
 
 R186: iATU/HDMA selected-rule review; confirmed paths reused, source conflicts retained; next review R190; daily paused; original budget preserved; R186 continuation switches to targeted source corroboration, no compulsory overview expansion.
+
+R187: targeted RTR/LTR source review; no new authoritative resolution, zero new accepted units/criteria;150/183 and1430 criteria,33 blocked. Preserve original budget/history; nextR188[89], reviewR190; daily paused. Do not repeatedly reread identical unresolved sources as new acceptance.
+
+R188: targeted RTR/LTR source review; no new authoritative resolution, zero new accepted units/criteria;150/183 and1430 criteria,33 blocked. Preserve original budget/history; nextR189[174, 170], reviewR190; daily paused. Do not repeatedly reread identical unresolved sources as new acceptance.

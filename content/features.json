@@ -78501,6 +78501,50 @@
         "title": "D3Hot到D0的VF例外",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R100核所列正式版选定正文/表图；勘误只适用于明确受影响版本，保留未裁决数值/位号，不代表整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.16",
+        "page": 1438,
+        "pdfPage": 1438,
+        "title": "图7-334倍率、位域与旁注并排核对",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.16.3",
+        "page": 1440,
+        "pdfPage": 1440,
+        "title": "RTR2字段编码上限",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "errata-base31a-20171213",
+        "document": "Errata for PCI Express Base Specification Rev. 3.1a",
+        "version": "2017-12-13",
+        "section": "7.35",
+        "page": 17,
+        "pdfPage": 17,
+        "title": "删除40Ah、插入80Ah",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "errata-base4-20190819",
+        "document": "Errata for PCI Express Base Specification Rev. 4.0",
+        "version": "2019-08-19",
+        "section": "9.3.7.15",
+        "page": 34,
+        "pdfPage": 34,
+        "title": "VF句子归属修正，非时间倍率勘误",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R100选定正式版/独立ECN/勘误正文核对，版本差异与未裁决问题分开；非整章通读",
@@ -78923,6 +78967,68 @@
             "featureId": 61,
             "detailId": "r100-rn-version-contract",
             "label": "版本、勘误和VF边界"
+          }
+        ]
+      },
+      {
+        "id": "r187-rtr-arithmetic-and-errata-gate",
+        "title": "RTR数值核对：80Ah若按10.240ms等待，会比倍率表少245.760µs",
+        "paragraphs": [
+          "这是对既有RTR疑点的定向数值检查，不重新介绍RN。Base7.0印刷/PDF物理p1438同页的图7-334给Value[8:0]、Scale[11:9]及倍率32^Scale ns；页面上方80Ah旁注仍写10.240ms。直接核图后确认差异不是把PDF上下标、十六进制或小数单位抽取错了。",
+          "80Ah拆出Value=10、Scale=4，按表得到10,485,760ns；10.240ms是10,240,000ns，少245,760ns，即245.760µs，相对倍率表结果少2.34375%。因此“二者都约10ms”不足以把这处差异视为精确计时等价。该算式是字段数值核算，不替代有效位、事件起算点和其它访问前提。",
+          "3.1a的B235明确修正40Ah→80Ah编码；所核4.0勘误C46处理VF段落句子归属，所核5.0 B34处理RTR字段角色描述。它们不能当作修正10.240ms旁注的证据。本轮检索本地3.1a、4.0两份及5.0三份勘误中的RTR相关命中并核正文；没有声称核完所有其它勘误，也没有取得裁决数值的新正式澄清。",
+          "待澄清问题收敛为：对指定正式版本，80Ah的精确时值应按现有倍率表还是应有一份修改倍率/旁注的勘误？在回答前，本站分别呈现位域计算结果与原旁注，不输出缩短等待的驱动建议。61仍为7/8通过，一致性阻塞；重复看见同一旁注不增加验收维度。"
+        ],
+        "referenceIndices": [
+          45,
+          46,
+          47,
+          48
+        ],
+        "table": {
+          "columns": [
+            "编码/检查",
+            "分解/门槛",
+            "结果/限制"
+          ],
+          "rows": [
+            [
+              "40Ah",
+              "Value10 / Scale2",
+              "10,240ns = 10.240µs；不是10ms"
+            ],
+            [
+              "80Ah",
+              "Value10 / Scale4",
+              "10,485,760ns = 10.485760ms"
+            ],
+            [
+              "原旁注10.240ms",
+              "10,240,000ns",
+              "比倍率表少245,760ns（2.34375%）"
+            ],
+            [
+              "A1Eh",
+              "Value30 / Scale5",
+              "1,006,632,960ns；约1.006633s"
+            ],
+            [
+              "澄清所需",
+              "指定版本正式勘误/规范答复",
+              "须指明修旁注还是修改编码/倍率"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 61,
+            "detailId": "r100-rtr-errata-boundary",
+            "label": "原B235与版本记录"
+          },
+          {
+            "featureId": 61,
+            "detailId": "r99-rtr-time-fields",
+            "label": "Valid及事件起算前提"
           }
         ]
       }
@@ -99302,6 +99408,72 @@
         "title": "4.0 RC更新时限",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "R100核所列正式版选定正文/表图；勘误只适用于明确受影响版本，保留未裁决数值/位号，不代表整章完成。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.2.1",
+        "page": 1267,
+        "pdfPage": 1267,
+        "title": "Version决定+08h是否存在",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.8.2.4",
+        "page": 1269,
+        "pdfPage": 1269,
+        "title": "图7-158/表7-141实际bit1",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ltr-mfd-20250529-local",
+        "document": "LTR Enhancements for MFD ECN（本地2025-05-29变更标记副本）",
+        "version": "2025-05-29（官网条目2025-06-11）",
+        "section": "Part I",
+        "page": 1,
+        "pdfPage": 1,
+        "title": "本地ECN底本6.3与可选性",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ltr-mfd-20250529-local",
+        "document": "LTR Enhancements for MFD ECN（本地2025-05-29变更标记副本）",
+        "version": "2025-05-29（官网条目2025-06-11）",
+        "section": "7.8.2.4",
+        "page": 3,
+        "pdfPage": 3,
+        "title": "本地ECN图中的bit0",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "ecn-ltr-mfd-20250529-local",
+        "document": "LTR Enhancements for MFD ECN（本地2025-05-29变更标记副本）",
+        "version": "2025-05-29（官网条目2025-06-11）",
+        "section": "7.8.2.4",
+        "page": 4,
+        "pdfPage": 4,
+        "title": "本地ECN表中的bit0",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcisig-ltr-mfd-entry-20250611",
+        "document": "PCI-SIG：LTR Enhancements for MFD发布条目",
+        "version": "2025-06-11条目；2026-10-30核读",
+        "section": "LTR Enhancements for MFD / ECN Affected Document / Date",
+        "page": null,
+        "pdfPage": null,
+        "title": "官方条目元数据；不是最终ECN正文",
+        "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+        "verification": "本轮核官方HTML：底本Base6.3、日期06/11/2025；下载最终PDF未取得，不能据元数据核位号。"
       }
     ],
     "referenceStatus": "R100选定正式版/独立ECN/勘误正文核对，版本差异与未裁决问题分开；非整章通读",
@@ -99754,6 +99926,81 @@
             "featureId": 89,
             "detailId": "r93-ltr-flr-version-map",
             "label": "bit0/bit1未决边界"
+          }
+        ]
+      },
+      {
+        "id": "r188-ltr-preserve-mask-source-gate",
+        "title": "LTR跨FLR位查询：同一原始DWORD，按7.0或6.3底本ECN会得到不同结论",
+        "paragraphs": [
+          "核Base7.0原图7-158和表7-141：+08h[1]为LTR Enable Preserved Across FLR，bit0为RsvdP。这里的1是位号，对应掩码00000002h；不是把寄存器读值与1直接比较。只有先在LTR扩展能力0018h的Header中确认Capability Version，才能决定是否存在+08h；Version1不能读越界后把下一个对象当本能力。",
+          "下表是原始DWORD的两种来源解码对照，不是平台自动探测算法。Version2表示该能力结构布局，不等于“PCIe Gen2”，也不足以在两个有分歧的来源之间自动选bit。Base7.0的该字段是HwInit；无FLR能力时为RsvdP，软件不能把RO能力指示当RW使能去设置。实际LTR Mechanism Enable位仍在PCIe Capability的Device Control2[10]。",
+          "本轮从PCI-SIG官方发布条目核得底本Base6.3、日期2025-06-11及其F0 FLR保留目的。本地May29 ECN的图和表均用bit0，官方条目本身不显示位号；尝试获取最终下载件尚未取得正文。因此不能只按官网日期较晚、本地文件名FINAL或支持Version2就裁定位号迁移原因。公开来源分为官方元数据、正式7.0正文和本地ECN差异证据，三者不混作同一修订。",
+          "待核文件具体为：PCI-SIG发布条目2025-06-11对应的LTR Enhancements for MFD最终ECN，以及若存在、解释Base7.0 §7.8.2.4位号的正式勘误/澄清。现有文件已经读到，不再笼统称缺少LTR规范；缺的是这条版本裁决链。89仍为7/8通过，一致性阻塞，不把找到下载入口计为读过最终PDF。"
+        ],
+        "referenceIndices": [
+          62,
+          63,
+          64,
+          65,
+          66,
+          67
+        ],
+        "table": {
+          "columns": [
+            "条件/原始DWORD",
+            "分解/门槛",
+            "正式Base7.0解码",
+            "本地May29 ECN解码"
+          ],
+          "rows": [
+            [
+              "Version1",
+              "不存在+08h",
+              "不能解码",
+              "不能解码"
+            ],
+            [
+              "Version≥2，原始00000000h",
+              "两个候选位都为0",
+              "bit1=0",
+              "bit0=0"
+            ],
+            [
+              "Version≥2，原始00000001h",
+              "低位图样01b",
+              "bit1=0；bit0保留",
+              "bit0=1（仅本地ECN语义）"
+            ],
+            [
+              "Version≥2，原始00000002h",
+              "低位图样10b",
+              "bit1=1；bit0保留",
+              "bit0=0（bit1不作本地ECN保留标志）"
+            ],
+            [
+              "Version≥2，原始00000003h",
+              "两个候选位都为1",
+              "不能用保留位判版本",
+              "不能用相同布尔结果证明来源一致"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 89,
+            "detailId": "r93-ltr-flr-version-map",
+            "label": "原逐版差异记录"
+          },
+          {
+            "featureId": 89,
+            "detailId": "r93-ltr-discovery-enable",
+            "label": "真正的支持与使能位"
+          },
+          {
+            "featureId": 89,
+            "detailId": "r93-ltr-retire-reestablish",
+            "label": "预算撤销与重建"
           }
         ]
       }

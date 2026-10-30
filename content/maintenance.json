@@ -1,7 +1,7 @@
 {
   "nextFeatureIds": [
-    61,
-    89
+    174,
+    170
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,11 +48,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r186",
+    "edition": "2026-10-30-r188",
     "featureIds": [
-      148
+      89
     ],
-    "nextTrack": "[61, 89]定向追证；R190总结"
+    "nextTrack": "[174, 170]定向来源核对；R190四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -342,11 +342,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 2,
+    "nextReviewAfterRounds": 2,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 128,
+    "completedTotal": 130,
     "lastReviewEdition": "2026-10-30-r186",
     "lastReviewId": "r183-r186",
     "nextExpectedReview": "若继续授权并有实质追证，R190四轮总结；不是新完工期限。"
@@ -1283,9 +1283,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 96,
+    "completedRounds": 98,
     "remainingPlannedRounds": 0,
-    "nextRound": 187,
+    "nextRound": 189,
     "nextReviewRound": 190,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -10662,14 +10662,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 186,
+            "reviewedRound": 187,
             "evidence": [
               {
                 "href": "#feature/61/detail/r100-rtr-errata-boundary",
                 "label": "已有来源疑点证据；非本轮新增核读"
+              },
+              {
+                "href": "#feature/61/detail/r187-rtr-arithmetic-and-errata-gate",
+                "label": "RTR数值核对：80Ah若按10.240ms等待，会比倍率表少245.760µs"
               }
             ],
-            "note": "R100已记录RTR80Ah时间旁注与公式不一致，待官方澄清；本轮仅对齐阻塞分类。"
+            "note": "RTR定向追证：核原图确认80Ah旁注与倍率表差异，补精确误差及勘误适用边界；未取得新数值裁决，零新增验收。"
           }
         },
         "baseline": {
@@ -10700,6 +10704,23 @@
         ],
         "blockers": [
           "R100已记录RTR80Ah时间旁注与公式不一致，待官方澄清；本轮仅对齐阻塞分类。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 187,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 186,
+              "evidence": [
+                {
+                  "href": "#feature/61/detail/r100-rtr-errata-boundary",
+                  "label": "已有来源疑点证据；非本轮新增核读"
+                }
+              ],
+              "note": "R100已记录RTR80Ah时间旁注与公式不一致，待官方澄清；本轮仅对齐阻塞分类。"
+            },
+            "result": "no-new-authoritative-resolution"
+          }
         ]
       },
       {
@@ -14478,14 +14499,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 186,
+            "reviewedRound": 188,
             "evidence": [
               {
                 "href": "#feature/89/detail/r93-ltr-flr-version-map",
                 "label": "已有来源疑点证据；非本轮新增核读"
+              },
+              {
+                "href": "#feature/89/detail/r188-ltr-preserve-mask-source-gate",
+                "label": "LTR跨FLR位查询：同一原始DWORD，按7.0或6.3底本ECN会得到不同结论"
               }
             ],
-            "note": "R100已记录2025 ECN与Base7 LTR跨FLR位号来源链待澄清；本轮仅对齐阻塞分类。"
+            "note": "LTR定向追证：核官方条目底本/日期与正式7.0原图，补Version门槛及bit0/bit1原始值对照；最终ECN正文未取得，零新增验收。"
           }
         },
         "baseline": {
@@ -14516,6 +14541,23 @@
         ],
         "blockers": [
           "R100已记录2025 ECN与Base7 LTR跨FLR位号来源链待澄清；本轮仅对齐阻塞分类。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 188,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 186,
+              "evidence": [
+                {
+                  "href": "#feature/89/detail/r93-ltr-flr-version-map",
+                  "label": "已有来源疑点证据；非本轮新增核读"
+                }
+              ],
+              "note": "R100已记录2025 ECN与Base7 LTR跨FLR位号来源链待澄清；本轮仅对齐阻塞分类。"
+            },
+            "result": "no-new-authoritative-resolution"
+          }
         ]
       },
       {
@@ -35678,6 +35720,32 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项、原R138预算与38问题记录保留；本次不以文档存在或七维通过掩盖一致性阻塞。",
         "publication": "R185/R186分别检查后合并发布R186，线上字节与视觉结果分列。"
+      },
+      {
+        "round": 187,
+        "kind": "R187 定向来源核对及判读修订",
+        "deliverables": [
+          "RTR定向追证：核原图确认80Ah旁注与倍率表差异，补精确误差及勘误适用边界；未取得新数值裁决，零新增验收。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "累计150/183与1430维度；33项来源阻塞仍在，不以算术核算或官方条目代替正文裁决。",
+        "publication": "R187/R188分别构建检查后合并发布R188；线上字节与视觉分列。"
+      },
+      {
+        "round": 188,
+        "kind": "R188 定向来源核对及判读修订",
+        "deliverables": [
+          "LTR定向追证：核官方条目底本/日期与正式7.0原图，补Version门槛及bit0/bit1原始值对照；最终ECN正文未取得，零新增验收。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "累计150/183与1430维度；33项来源阻塞仍在，不以算术核算或官方条目代替正文裁决。",
+        "publication": "R187/R188分别构建检查后合并发布R188；线上字节与视觉分列。"
       }
     ],
     "backlog": [
@@ -37349,11 +37417,28 @@
         "status": "needs-corroboration",
         "raisedRound": 93,
         "impact": "正式Base7.0图/表均为bit1，页面已按其解释；本地May29副本bit0不适用于该版。最终ECN副本及接受/勘误链仍待确认，保持版本/交叉验收未通过。",
-        "nextAction": "在后续来源核对任务取得官网最终ECN正文，或有明确版本说明的官方发布/勘误；不根据FINAL文件名或目录日期裁定bit0/bit1变更原因。",
+        "nextAction": "取得PCI-SIG发布条目2025-06-11对应的最终LTR Enhancements for MFD ECN正文，及解释正式Base7.0 §7.8.2.4位号的勘误/澄清（若存在）；官网元数据只证底本6.3与日期，不证bit0到bit1的修订原因。",
         "evidence": [
           {
             "href": "#feature/89/detail/r93-ltr-flr-version-map",
             "label": "逐版本位号与来源边界"
+          },
+          {
+            "href": "#feature/89/detail/r188-ltr-preserve-mask-source-gate",
+            "label": "官方元数据与逐来源掩码判读"
+          }
+        ],
+        "reviewHistory": [
+          {
+            "round": 188,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "在后续来源核对任务取得官网最终ECN正文，或有明确版本说明的官方发布/勘误；不根据FINAL文件名或目录日期裁定bit0/bit1变更原因。",
+            "previousEvidence": [
+              {
+                "href": "#feature/89/detail/r93-ltr-flr-version-map",
+                "label": "逐版本位号与来源边界"
+              }
+            ]
           }
         ]
       }
@@ -39282,31 +39367,31 @@
       }
     ],
     "nextExecution": {
-      "round": 187,
-      "taskId": "v1-task-06",
+      "round": 189,
+      "taskId": "v1-task-20",
       "featureIds": [
-        61,
-        89
+        174,
+        170
       ],
-      "goal": "转已有来源疑点定向追证，先61 RTR算例与89 LTR位号；有新证据才修订，不再强制扩写成熟概述或增加功能。",
+      "goal": "按既有PIPE问题簇核对适用版本及正式勘误；有新依据才修正文，无新依据不重复造轮次。",
       "reviewRound": 190,
       "mode": "targeted-source-corroboration"
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 186,
+      "assessedRound": 188,
       "reestimateRound": 190,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "四轮验收138 Hot-plug与139 NPEM，共2项、37新增维度；本次146/147/148各七维通过，一致性阻塞。累计150/183、1430维度、剩33，均已列明阻塞；61/89是旧备注与状态对齐，不计新增研究或通过。接下来停止强制概述扩写，只定向追证/修错，未宣称一期完成。",
-      "action": "剩余追证优先：61 RTR算例、89 LTR正式ECN来源链；随后按共用PIPE/HDMA/PHY问题簇核适用勘误或交付契约。无新依据不重写概述，不能保证外部答复到达轮次。",
+      "assessment": "LTR定向追证：核官方条目底本/日期与正式7.0原图，补Version门槛及bit0/bit1原始值对照；最终ECN正文未取得，零新增验收。累计150/183，剩33；没有延长原R138预算或承诺外部澄清到达轮数。",
+      "action": "下一轮按既有来源问题簇追证；确认过且无新材料的问题不重复扩写。",
       "latestProgress": {
-        "round": 186,
+        "round": 188,
         "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 150,
-        "newPassedCriteria": 7,
+        "newPassedCriteria": 0,
         "cumulativePassedCriteria": 1430,
         "remainingPlannedRounds": 0
       },
