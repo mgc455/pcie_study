@@ -709,11 +709,12 @@ function ptmSnapshot(capRaw,ctrlRaw,role,flitSupported,upstreamDspEnabled){
  if(rootCap&&!resp)issues.push('Root Capable要求Responder Capable');if(['ep','rciep'].includes(role)&&rootCap)issues.push('普通EP/RCiEP不能报告Root Capable');if(role==='switch'&&(!req||!resp))issues.push('PTM Switch需Requester和Responder能力');if(['ep','rciep'].includes(role)&&!req)issues.push('本查询所选Endpoint角色需Requester能力');if(['rp','rcrb'].includes(role)&&!resp)issues.push('本查询所选RP/RCRB角色需Responder能力');
  if(rootSelect&&!rootCap)issues.push('Root Select不能据此建立不支持的Root角色');if(flitSupported&&!eptm)issues.push('MUST@FLIT按支持能力判定：需ePTM，即使当前运行NFM');
  if(enabled&&['ep','switch'].includes(role)&&!rootSelect&&!upstreamDspEnabled)issues.push('向上请求时间前，同Link的DSP需已使能');
- if(enabled&&role==='switch'&&rootSelect&&!upstreamDspEnabled)notes.push('独立Switch Root与通用使能顺序的结合需完整层级信息；本工具不作裁决');
- return {req,resp,rootCap,eptm,adapt,enabled,rootSelect,local,effective,localApplicable:rootCap,effectiveApplicable:req,activeRoot:enabled&&rootSelect&&rootCap&&resp,valid:issues.length===0,issues,notes,contextValid:null};
+ const topologyPending=enabled&&role==='switch'&&rootSelect&&rootCap&&resp&&!upstreamDspEnabled;
+ if(topologyPending)notes.push('独立Switch Root与通用使能顺序的结合需完整层级信息；本工具不作裁决');
+ return {req,resp,rootCap,eptm,adapt,enabled,rootSelect,local,effective,localApplicable:rootCap,effectiveApplicable:req,activeRoot:enabled&&rootSelect&&rootCap&&resp,fieldValid:issues.length===0,topologyPending,valid:issues.length?false:(topologyPending?null:true),issues,notes,contextValid:null};
 }
 function ptmGranularityLabel(code,field='effective'){return code===0?(field==='local'?'无本地时钟、传播上游信息':'未知粒度'):code===255?'>254 ns':code+' ns';}
-function ptmSnapshotText(...args){const r=ptmSnapshot(...args);return r?`Requester=${+r.req}，Responder=${+r.resp}，Root Capable=${+r.rootCap}，ePTM=${+r.eptm}，Adaptation=${+r.adapt}；Enable=${+r.enabled}，Root Select=${+r.rootSelect}。Local=${r.localApplicable?ptmGranularityLabel(r.local,'local'):'字段保留，不据读值猜时钟周期'}；Effective=${r.effectiveApplicable?ptmGranularityLabel(r.effective):'此角色不作Requester粒度解释'}。${r.issues.length?r.issues.join('；'):'所检查条件未见冲突'}。${r.notes.join('；')} 不推导Context Valid、精度或全部拓扑合法性。`:'请输入两个32bit十六进制DWORD和明确的角色、Flit Mode Supported及上方DSP使能条件。';}
+function ptmSnapshotText(...args){const r=ptmSnapshot(...args);return r?`Requester=${+r.req}，Responder=${+r.resp}，Root Capable=${+r.rootCap}，ePTM=${+r.eptm}，Adaptation=${+r.adapt}；Enable=${+r.enabled}，Root Select=${+r.rootSelect}。Local=${r.localApplicable?ptmGranularityLabel(r.local,'local'):'字段保留，不据读值猜时钟周期'}；Effective=${r.effectiveApplicable?ptmGranularityLabel(r.effective):'此角色不作Requester粒度解释'}。${r.issues.length?r.issues.join('；'):(r.topologyPending?'字段条件未见已知冲突；独立Switch Root拓扑使能资格未裁定':'所检查字段条件未见冲突')}。${r.notes.join('；')} 不推导Context Valid、精度或全部拓扑合法性。`:'请输入两个32bit十六进制DWORD和明确的角色、Flit Mode Supported及上方DSP使能条件。';}
 function ptmUnsigned(raw,bits){const s=String(raw).trim();if(!/^\d{1,20}$/.test(s))return null;const n=BigInt(s);return n<(1n<<BigInt(bits))?n:null;}
 function ptmHalfNs(n){return (n/2n).toString()+(n%2n?'.5':'');}
 function ptmTimeEstimate(t1Raw,t4Raw,pRaw,t2CurrentRaw){

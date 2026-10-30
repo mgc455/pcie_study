@@ -136449,7 +136449,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-28",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "section": "6.21",
@@ -137055,6 +137055,72 @@
         "title": "Root Select与Enable",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.21.1",
+        "page": 908,
+        "pdfPage": 908,
+        "title": "PTM Root与时间域定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.21.1",
+        "page": 909,
+        "pdfPage": 909,
+        "title": "图6-21示意的多个时间层级",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.21.3",
+        "page": 913,
+        "pdfPage": 913,
+        "title": "上行关联Function的普通使能前提",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.21.3.3",
+        "page": 917,
+        "pdfPage": 917,
+        "title": "Switch公共控制结构与Root/向上取时两种用途",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.15.3",
+        "page": 1436,
+        "pdfPage": 1436,
+        "title": "Root Select与Enable角色条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "linux-v612-pcie-ptm-source",
+        "document": "Linux上游v6.12：PCIe PTM实现",
+        "version": "v6.12（固定标签）",
+        "section": "pci_upstream_ptm(); pci_ptm_init(); __pci_enable_ptm()",
+        "page": null,
+        "pdfPage": null,
+        "title": "固定v6.12软件实现：Root选择与非Root使能检查",
+        "url": "https://github.com/torvalds/linux/blob/v6.12/drivers/pci/pcie/ptm.c",
+        "verification": "R199核上游固定标签源码所列函数；不是运行驱动、最新版本调查或PCI-SIG正式澄清。"
       }
     ],
     "referenceStatus": "已核读所引Base6.0/7.0 PTM机制/字段/消息；早期演进及完整交叉分支继续核读。",
@@ -137560,7 +137626,8 @@
         "title": "查询：能力、控制、角色和使能前提",
         "paragraphs": [
           "输入Capability/Control、Function角色、Flit Mode Supported支持能力和同Link的DSP使能条件，解码已列字段并检查Root/Responder依赖、Switch角色和支持Flit Mode时的ePTM要求。",
-          "结果只是输入快照的条件检查，不推导Context Valid、同步精度或系统选Root算法，不执行任何配置写操作。"
+          "结果只是输入快照的条件检查，不推导Context Valid、同步精度或系统选Root算法，不执行任何配置写操作。",
+          "R199补充：独立Switch Root的上游使能资格未裁定时，字段检查可通过，但整体资格结果为待核；该提示不是宣称拓扑违规，也不是安全配置许可。"
         ],
         "referenceIndices": [
           17,
@@ -137573,6 +137640,13 @@
           34,
           35,
           36
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 119,
+            "detailId": "r199-ptm-linux-root-policy",
+            "label": "Linux固定版本实现与规范边界"
+          }
         ]
       },
       {
@@ -137687,6 +137761,82 @@
             "featureId": 120,
             "detailId": "r125-ptm-equation-erratum-and-scale",
             "label": "公式/单位/勘误"
+          }
+        ]
+      },
+      {
+        "id": "r199-ptm-linux-root-policy",
+        "title": "PTM Root与向上取时间分开：Linux v6.12实现路径及规范边界",
+        "paragraphs": [
+          "PTM Root是某个PTM Hierarchy的Master Time来源，不是把全系统所有时间域自动并成一个时钟。Base7.0图6-21允许Switch各自作为Root，示例中的两个层级可有独立Master Time；两边都完成PTM对话也不意味着时间值可直接相减。图是拓扑说明，不是完整软件配置算法。",
+          "Switch全部PTM功能通过关联上行口的一份公共扩展能力控制，下游Responder并不是各有一份可独立寻找的PTM Enable。Switch可从本地时间源作为Root，也可经上行PTM对话获得Master Time后用于下游响应；两种时间来源的语义要先确定，再讨论路径使能与内部延迟。",
+          "作为可复查的实现证据，本轮核Linux上游固定v6.12的PTM代码：寻找上游PTM控制对象时，遇到Switch下游端口会再向上一层找公共控制结构；不能只看直接父DSP没有独立PTM能力便判断链路不支持。这个查找是软件对象定位，不改变物理对话仍在同一Link两个Port之间进行。",
+          "该版本初始化策略在找不到上游PTM控制对象、且本设备有Root能力时，将本设备标记为PTM Root；随后使能函数对非Root检查上游存在且已使能，对已经选为Root的设备走不同分支。如果上游对象存在但尚未使能，并不是自动改选本设备为Root。这里描述固定版本的实现行为，不把它扩写成所有操作系统必须采用的选根策略。",
+          "这份实现提供了可用的对照路径，但不能单凭Linux的条件分支宣称Base普通使能句已经被官方补上Root例外。来源问题15仍待正式澄清；119一致性继续阻塞。网页快照查询也已改进：字段没有已知冲突、但独立Switch Root的上游使能资格尚未裁定时，显示待核，而不是给一个可被误读为完整拓扑已通过的肯定结果。",
+          "Root Select与Enable寄存器组合、Requester上下文有效、ePTM重放恢复、实际同步精度是不同层次。查询不执行配置写入、不读取硬件；v6.12源码核读不等于已启动Linux或完成硬件PTM测试。"
+        ],
+        "referenceIndices": [
+          55,
+          56,
+          57,
+          58,
+          59,
+          60
+        ],
+        "table": {
+          "columns": [
+            "情形",
+            "证据/行为",
+            "限制"
+          ],
+          "rows": [
+            [
+              "普通非Root向上取时间",
+              "v6.12检查上游PTM控制对象存在且已使能",
+              "不能凭本端Root Capable跳过上游"
+            ],
+            [
+              "无上游PTM对象且本端具Root能力",
+              "v6.12初始化可选本端为Root",
+              "固定实现策略，不是新规范例外"
+            ],
+            [
+              "上游对象存在但未使能",
+              "v6.12不因此自动改选本端Root",
+              "对象存在性与Enable分开"
+            ],
+            [
+              "直接父对象是Switch DSP",
+              "再定位其上游公共PTM控制",
+              "不为DSP伪造独立能力"
+            ],
+            [
+              "独立Switch Root快照",
+              "字段通过、拓扑待核可同时成立",
+              "未裁定不标为安全使能许可"
+            ],
+            [
+              "不同PTM Hierarchy",
+              "可有不同Master Time",
+              "PTM开启不等于统一墙钟"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 119,
+            "detailId": "ptm-capability-query",
+            "label": "更新后的快照查询"
+          },
+          {
+            "featureId": 119,
+            "detailId": "ptm-enable-downstream-first",
+            "label": "普通使能前提"
+          },
+          {
+            "featureId": 119,
+            "detailId": "r125-ptm-history-capture-and-root-boundary",
+            "label": "原版本与Root边界"
           }
         ]
       }
@@ -143326,7 +143476,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-28",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "section": "6.30",
@@ -144482,6 +144632,50 @@
         "title": "状态字段",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.30.1.2",
+        "page": 963,
+        "pdfPage": 963,
+        "title": "Async机制及完整对象封装",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.30.1.2",
+        "page": 964,
+        "pdfPage": 964,
+        "title": "Variety、单消息闭环及多消息分歧",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.30.2",
+        "page": 965,
+        "pdfPage": 965,
+        "title": "整对象传输、FLR与独占边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.30.3",
+        "page": 966,
+        "pdfPage": 966,
+        "title": "邮箱读写示例与对象级协议闭环",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R129复核6.4/7.0邮箱正文，七维有据；Async连续REQUEST与仅响应GET的冲突仍阻塞一致性。",
@@ -145202,6 +145396,85 @@
             "featureId": 127,
             "detailId": "r82-doe-async-register-chain",
             "label": "能力/使能/状态"
+          },
+          {
+            "featureId": 127,
+            "detailId": "r200-doe-async-layer-directions",
+            "label": "单消息闭环与两层方向标签"
+          }
+        ]
+      },
+      {
+        "id": "r200-doe-async-layer-directions",
+        "title": "DOE Async单消息闭环：REQUEST标签不等于设备主动发PCIe请求",
+        "paragraphs": [
+          "Async GET/REQUEST/RESPONSE/DONE是对象中的Variety标签，不能直接当成PCIe TLP的Requester/Completer角色。设备在上层提出异步请求，不意味着它向主机发Configuration Request：邮箱仍由主机通过配置读写操作，设备返回的Async REQUEST是供主机读出的DOE对象。",
+          "在支持、Enable和待取Status都符合、软件已取得实例所有权且准备好服务的正常单消息场景，可读到闭环：主机提交GET，设备提供REQUEST，主机提交RESPONSE；若设备已无更多异步消息，则提供DONE并清待取Status。这里每个对象都要完成其邮箱传输和确认，不能只看到一个Variety字节便跳到下一对象。",
+          "REQUEST和RESPONSE后跟的是完整封装DOE对象，包含内层自己的DOE Header，而不是只拼一段SPDM负载；内层类型还必须被允许采用Async，且禁止再嵌套Async。GET/DONE与有内层对象的两个Variety不能按同一种长度去读。对象长度、最大对象长度机制、Ready和Busy各有独立职责。",
+          "多消息分歧可以精确定位在主机提交RESPONSE之后：同页一处让设备继续返回另一个REQUEST，另一处只允许收到GET后返回REQUEST。若直接继续REQUEST会遇到后一句限制；若自行补一个GET，又加入了前段未明确的交换。因此本页只把单消息正常分支作为已核说明，不生成确定的多消息继续状态机。",
+          "软件互斥应覆盖需要独占的整个请求/响应契约，不只保护每次DWORD读写；Connection ID不同也不能自动允许共享同一邮箱并发写。Async通知不是额外的对象缓存、第二条邮箱通路或DMA完成通知；有待服务标志不授权打断未完成的对象。",
+          "此次澄清对象角色与已核单消息路径，不宣称问题记录24的DOE子问题已经解决，更不顺带关闭该记录的TDISP子问题。127一致性仍阻塞。这里只读规则和条件，不操作实际配置空间，也不把错误/Abort、FLR与独占前提省略成一串自动驱动写入。"
+        ],
+        "referenceIndices": [
+          105,
+          106,
+          107,
+          108
+        ],
+        "table": {
+          "columns": [
+            "Variety/分支",
+            "邮箱/对象含义",
+            "限制"
+          ],
+          "rows": [
+            [
+              "主机→设备：GET",
+              "主机提交一个DOE对象",
+              "先满足所有权及待服务条件"
+            ],
+            [
+              "设备→主机：REQUEST",
+              "设备提供供主机读取的DOE对象",
+              "标签不是设备主动发PCIe配置请求"
+            ],
+            [
+              "主机→设备：RESPONSE",
+              "主机提交对应的上层回应对象",
+              "与DOE传输层方向名称分开"
+            ],
+            [
+              "设备→主机：DONE",
+              "无更多消息的结束分支",
+              "清Async Status不替逐DWORD读确认"
+            ],
+            [
+              "还有消息",
+              "继续REQUEST与仅响应GET两句需协调",
+              "不私加GET或忽略限制"
+            ],
+            [
+              "内层对象",
+              "REQUEST/RESPONSE携完整DOE对象",
+              "禁止只传上层负载或再嵌Async"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 127,
+            "detailId": "r82-doe-async-framing",
+            "label": "第三DW与内层完整对象"
+          },
+          {
+            "featureId": 127,
+            "detailId": "r82-doe-service-query",
+            "label": "先核服务资格与实例所有权"
+          },
+          {
+            "featureId": 127,
+            "detailId": "r129-doe-async-open-contract",
+            "label": "多消息源文问题"
           }
         ]
       }

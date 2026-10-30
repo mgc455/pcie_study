@@ -318,3 +318,7 @@ R196: DPA valid range independently fixed by contiguous0..Max,Max definition and
 R197: DPC size-unit checks retain source06;VC necessary disable/drain conditions do not grant FM re-enable permission. Corrected overly broad site restart prose and Base/ECN qualification;source12 remains open.153/183,1433criteria,30blocked;nextR198[114],reviewR198;daily paused,original budget/history retained.
 
 R198: DPC size-unit checks retain source06;VC necessary disable/drain conditions do not grant FM re-enable permission. Corrected overly broad site restart prose and Base/ECN qualification;source12 remains open.153/183,1433criteria,30blocked;nextR199[119, 127],reviewR202;daily paused,original budget/history retained.
+
+R199: fixed Linuxv6.12 PTM implementation is corroboration,not PCI-SIG erratum;independent Switch Root snapshot qualification is pending rather than affirmative. DOE Async labels differ from transport direction;single-message path does not resolve multi-message GET issue or TDISP.153/183,1433criteria,30blocked;nextR200[127],reviewR202;daily paused,original budget retained.
+
+R200: fixed Linuxv6.12 PTM implementation is corroboration,not PCI-SIG erratum;independent Switch Root snapshot qualification is pending rather than affirmative. DOE Async labels differ from transport direction;single-message path does not resolve multi-message GET issue or TDISP.153/183,1433criteria,30blocked;nextR201[129, 136],reviewR202;daily paused,original budget retained.

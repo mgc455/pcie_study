@@ -1,7 +1,7 @@
 {
   "nextFeatureIds": [
-    119,
-    127
+    129,
+    136
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,11 +48,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r198",
+    "edition": "2026-10-30-r200",
     "featureIds": [
-      114
+      127
     ],
-    "nextTrack": "[119, 127]定向核对；R202总结"
+    "nextTrack": "[129, 136]定向核对；R202总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -342,11 +342,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 2,
+    "nextReviewAfterRounds": 2,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 140,
+    "completedTotal": 142,
     "lastReviewEdition": "2026-10-30-r198",
     "lastReviewId": "r195-r198",
     "nextExpectedReview": "有后续授权和实质进展时R202总结；非新完成期限。"
@@ -1283,9 +1283,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 108,
+    "completedRounds": 110,
     "remainingPlannedRounds": 0,
-    "nextRound": 199,
+    "nextRound": 201,
     "nextReviewRound": 202,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -18532,14 +18532,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 125,
+            "reviewedRound": 199,
             "evidence": [
               {
                 "href": "#feature/119/detail/r125-ptm-history-capture-and-root-boundary",
                 "label": "角色/图与普通使能句分开保留"
+              },
+              {
+                "href": "#feature/119/detail/r199-ptm-linux-root-policy",
+                "label": "PTM Root与向上取时间分开：Linux v6.12实现路径及规范边界"
               }
             ],
-            "note": "普通链路规则可查，不把它扩成所有Switch Root拓扑的通用配置脚本。"
+            "note": "补Linux v6.12固定实现的PTM Root/非Root路径，查询区分字段通过与特殊拓扑待核；实现证据不冒充PCI-SIG澄清，119保持阻塞。"
           }
         },
         "baseline": {
@@ -18558,6 +18562,23 @@
         ],
         "blockers": [
           "v1-conflict-15：Switch作为PTM Root的特殊拓扑与普通Upstream Enable前提如何协调，仍需明确配置澄清。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 199,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 125,
+              "evidence": [
+                {
+                  "href": "#feature/119/detail/r125-ptm-history-capture-and-root-boundary",
+                  "label": "角色/图与普通使能句分开保留"
+                }
+              ],
+              "note": "普通链路规则可查，不把它扩成所有Switch Root拓扑的通用配置脚本。"
+            },
+            "result": "specific-implementation-or-layer-evidence-added;normative-question-unresolved"
+          }
         ]
       },
       {
@@ -19782,14 +19803,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 129,
+            "reviewedRound": 200,
             "evidence": [
               {
                 "href": "#feature/127/detail/r129-doe-async-open-contract",
                 "label": "两份正式版冲突并列"
+              },
+              {
+                "href": "#feature/127/detail/r200-doe-async-layer-directions",
+                "label": "DOE Async单消息闭环：REQUEST标签不等于设备主动发PCIe请求"
               }
             ],
-            "note": "未因寄存器齐全而验收有争议的多消息状态机。"
+            "note": "DOE Async补单消息闭环、邮箱与Variety两层方向对照，定位RESPONSE之后的未解分支；不编多消息状态机，127及记录24的其它子问题继续保留。"
           }
         },
         "baseline": {
@@ -19808,6 +19833,23 @@
         ],
         "blockers": [
           "v1-conflict-24 DOE子问题：6.4/7.0连续Async REQUEST与仅响应GET原文冲突，待明确澄清。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 200,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 129,
+              "evidence": [
+                {
+                  "href": "#feature/127/detail/r129-doe-async-open-contract",
+                  "label": "两份正式版冲突并列"
+                }
+              ],
+              "note": "未因寄存器齐全而验收有争议的多消息状态机。"
+            },
+            "result": "specific-implementation-or-layer-evidence-added;normative-question-unresolved"
+          }
         ]
       },
       {
@@ -36111,6 +36153,32 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "累计153/183、1433维度，剩30项；DPC结构/一致性和VC流程源文疑点未据网页纠错而关闭。",
         "publication": "R197/R198分别检查后合并发布R198，线上与视觉核验分列。"
+      },
+      {
+        "round": 199,
+        "kind": "R199 PTM实现佐证与拓扑资格",
+        "deliverables": [
+          "补Linux v6.12固定实现的PTM Root/非Root路径，查询区分字段通过与特殊拓扑待核；实现证据不冒充PCI-SIG澄清，119保持阻塞。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "153/183与1433维度，剩30项；实现证据与正常分支不代替仍缺失的规范裁决。",
+        "publication": "R199/R200分别检查后合并发布R200；线上和视觉结果分列。"
+      },
+      {
+        "round": 200,
+        "kind": "R200 DOE Async单消息与层次方向",
+        "deliverables": [
+          "DOE Async补单消息闭环、邮箱与Variety两层方向对照，定位RESPONSE之后的未解分支；不编多消息状态机，127及记录24的其它子问题继续保留。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "153/183与1433维度，剩30项；实现证据与正常分支不代替仍缺失的规范裁决。",
+        "publication": "R199/R200分别检查后合并发布R200；线上和视觉结果分列。"
       }
     ],
     "backlog": [
@@ -37456,14 +37524,31 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "需要针对Switch Root特殊配置的正式澄清，已有普通使能前提不自动豁免；不无新证据重复扫同页。",
+        "nextAction": "Linux v6.12 Root/非Root分支已核，仅作实现佐证；仍需针对Base普通上游使能句与Switch Root特殊拓扑的正式澄清，不用软件实现替代规范修订。",
         "evidence": [
           {
             "href": "#feature/119/detail/r125-ptm-history-capture-and-root-boundary",
             "label": "6.4/7.0普通使能前提与Switch Root图"
+          },
+          {
+            "href": "#feature/119/detail/r199-ptm-linux-root-policy",
+            "label": "v6.12实现佐证与三态快照资格"
           }
         ],
-        "lastReviewedRound": 125
+        "lastReviewedRound": 125,
+        "reviewHistory": [
+          {
+            "round": 199,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "需要针对Switch Root特殊配置的正式澄清，已有普通使能前提不自动豁免；不无新证据重复扫同页。",
+            "previousEvidence": [
+              {
+                "href": "#feature/119/detail/r125-ptm-history-capture-and-root-boundary",
+                "label": "6.4/7.0普通使能前提与Switch Root图"
+              }
+            ]
+          }
+        ]
       },
       {
         "id": "v1-conflict-16",
@@ -37624,7 +37709,7 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "TDISP子问题经正式6.4/7.0同条款核对仍在，等待针对性正式澄清；原DOE子问题同样保留，不重复扫同版。",
+        "nextAction": "TDISP子问题经正式6.4/7.0同条款核对仍在，等待针对性正式澄清；原DOE子问题同样保留，不重复扫同版。 R200补明确单消息闭环和邮箱/Variety角色，DOE继续消息边界仍待针对性澄清；不以这些已知规则代替GET/连续REQUEST裁决，也不关闭TDISP子问题。",
         "evidence": [
           {
             "href": "#feature/127/detail/r129-doe-async-open-contract",
@@ -37633,9 +37718,30 @@
           {
             "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
             "label": "R130 TDISP版本交叉核对"
+          },
+          {
+            "href": "#feature/127/detail/r200-doe-async-layer-directions",
+            "label": "DOE单消息分支与未解决的继续消息边界"
           }
         ],
-        "lastReviewedRound": 130
+        "lastReviewedRound": 130,
+        "reviewHistory": [
+          {
+            "round": 200,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "TDISP子问题经正式6.4/7.0同条款核对仍在，等待针对性正式澄清；原DOE子问题同样保留，不重复扫同版。",
+            "previousEvidence": [
+              {
+                "href": "#feature/127/detail/r129-doe-async-open-contract",
+                "label": "R129 DOE连续交换版本核对"
+              },
+              {
+                "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+                "label": "R130 TDISP版本交叉核对"
+              }
+            ]
+          }
+        ]
       },
       {
         "id": "v1-conflict-25",
@@ -39841,28 +39947,28 @@
       }
     ],
     "nextExecution": {
-      "round": 199,
-      "taskId": "v1-task-14",
+      "round": 201,
+      "taskId": "v1-task-15",
       "featureIds": [
-        119,
-        127
+        129,
+        136
       ],
-      "goal": "转现有PTM Root特殊拓扑与DOE Async来源问题；有明确依据或网页实错才更新，不重复扩写相同阻塞。",
+      "goal": "继续记录24的TDISP子问题，再核Lane Margining Retimer访问支持条件；有新依据或实错才更新，R202总结。",
       "reviewRound": 202,
       "mode": "targeted-source-corroboration"
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 198,
+      "assessedRound": 200,
       "reestimateRound": 202,
       "observedAcceptedUnitsPerRound": 0.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "修正VC网页中“修改并重启”的过宽描述，分开机制切换、资源配置和启用资格，补原Base/ECN边界；流程对象源文仍待澄清，114继续阻塞。累计153/183与1433维度，原预算耗尽记录保留。",
-      "action": "下一批119/127既有来源问题；不把网页纠错或必要条件推理冒充正式澄清。",
+      "assessment": "DOE Async补单消息闭环、邮箱与Variety两层方向对照，定位RESPONSE之后的未解分支；不编多消息状态机，127及记录24的其它子问题继续保留。累计153/183；不以新的实现来源或更清楚的正常分支冒充整项关闭。",
+      "action": "按既有来源问题继续，R202四轮总结；固定范围、原预算耗尽记录和每日暂停状态保留。",
       "latestProgress": {
-        "round": 198,
+        "round": 200,
         "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 153,
         "newPassedCriteria": 0,
