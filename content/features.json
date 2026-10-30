@@ -118777,7 +118777,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-28",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "section": "6.2.11.3",
@@ -119372,6 +119372,61 @@
         "title": "容量分裂字段",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.2",
+        "page": 1422,
+        "pdfPage": 1422,
+        "title": "Log Size[11:8]直接DWORD分配计数",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11.3",
+        "page": 807,
+        "pdfPage": 807,
+        "title": "Header Base与OHC的最大实现需求",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.2.11.3",
+        "page": 808,
+        "pdfPage": 808,
+        "title": "续页与未用Header DWORD",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.11",
+        "page": 1431,
+        "pdfPage": 1431,
+        "title": "FM 52～76Byte及分段说明",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.14.12",
+        "page": 1432,
+        "pdfPage": 1432,
+        "title": "ImpSpec独立分配槽",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "新增块按对应版正文/字段定位；保留原有背景入口，不声明全代际、完整恢复栈或整章已完成。",
@@ -119956,6 +120011,75 @@
             "featureId": 105,
             "detailId": "r104-dpc-version-contract",
             "label": "ECN/版本历史"
+          }
+        ]
+      },
+      {
+        "id": "r197-rppio-size-unit-check",
+        "title": "RP PIO日志核对：4bit容量、Header字节数与分段地址是三件事",
+        "paragraphs": [
+          "本轮把旧疑点进一步拆成可复核的单位检查。DPC Capability的RP PIO Log Size[11:8]是4bit字段，正文称其值为Header、ImpSpec及Prefix日志共同分配的DWORD数。它不是收到的这条TLP的Header字节数；读取日志前先记录原始字段、FM能力/运行模式及RP Extensions资格，再按Type/OHC重建本条记录。",
+          "若按字段所述的直接DWORD计数理解，四位字面值最大15，对应总分配60Byte；76Byte本身则是19DWORD，不能直接装入这个四位计数。另一方面§6.2.11.3按Port实现的最大Header Base与最大OHC需求确定最小日志需求，所列两个最大值各7DWORD，相加为14DWORD即56Byte上界。这里是对所列文字的算术核对，不是新增编码规则，也不假定每个Port都实现全部最大格式。",
+          "§7.9.14.11仍写FM Header为52～76Byte。仅说“容量与实际长度不同”尚不足以解释上述所有数字；本轮未找到该段是否另有计数扩展或范围修订的明确裁决。不能擅改为52～56、把76改成DWORD，或把ImpSpec加两遍来凑数；106的结构和一致性维度继续阻塞。",
+          "分段地址却可以独立确定：逻辑Header的前4DWORD在B+20h～2Ch，B+30h是独立ImpSpec槽，后续Header从B+34h开始。原创的6DWORD偏移示意为20h/24h/28h/2Ch/34h/38h，Header数据共24Byte，地址跨度却含中间4Byte槽。这个示意只演示位置算法，不断言某个TLP Type恰有6DWORD，也不授权读超出实际分配的地址。",
+          "向规范发布方确认时可精确询问：FM的52～76Byte指哪个对象、与Log Size的直接DWORD计数如何对应、最大实现Header/OHC与未用日志槽如何决定能力长度。四份已核正式版本并不等于获得该问题答案；原版数值和来源记录06继续保留。"
+        ],
+        "referenceIndices": [
+          54,
+          55,
+          56,
+          57,
+          58
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "单位/位置",
+            "限制"
+          ],
+          "rows": [
+            [
+              "Log Size[11:8]",
+              "4bit，字面0～15 DWORD",
+              "若无额外约定，总字节上界60"
+            ],
+            [
+              "Header Base/OHC所列最大值",
+              "各7DWORD，相加14DWORD",
+              "56Byte；不是每条Header固定长"
+            ],
+            [
+              "字段段落52～76Byte",
+              "13～19DWORD",
+              "与上述口径仍需明确对应"
+            ],
+            [
+              "B+30h",
+              "独立ImpSpec槽",
+              "不能拼入逻辑Header"
+            ],
+            [
+              "逻辑Header DWORD4（从0计）",
+              "B+34h",
+              "不是B+30h"
+            ],
+            [
+              "实际解析",
+              "资格、Log Size、Type/OHC、模式",
+              "不按一个固定FM长度盲读"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 106,
+            "detailId": "r120-rppio-log-layout-and-open-span",
+            "label": "原跨版跨度问题"
+          },
+          {
+            "featureId": 106,
+            "detailId": "rp-pio-fm-layout",
+            "label": "已有FM分段布局"
           }
         ]
       }
@@ -129204,7 +129328,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-28",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "section": "6.3",
@@ -131031,6 +131155,61 @@
         "title": "Pending有效范围",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "6.3.5",
+        "page": 822,
+        "pdfPage": 822,
+        "title": "共存机制与原流程对象措辞",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.29.5",
+        "page": 1497,
+        "pdfPage": 1497,
+        "title": "Use VC/MFVC的明确RW1C后果",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.29.7",
+        "page": 1499,
+        "pdfPage": 1499,
+        "title": "资源Control的模式/使能约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.29.8",
+        "page": 1500,
+        "pdfPage": 1500,
+        "title": "Pending的定义资格",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "2.6.1",
+        "page": 293,
+        "pdfPage": 293,
+        "title": "FM禁用VC1～7后的重新启用未定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R67核6/7初始FC分配/有限最小广告、7.0 Shared总量/块记账与SVC边界；保留重新启用表文、单位措辞和中间修订缺口。",
@@ -131756,14 +131935,21 @@
         "id": "svc-disable-drain-reenable",
         "title": "关闭前停流；再次开启前Link两端都要完全关闭",
         "paragraphs": [
-          "关闭VC时软件必须保证没有流量使用它，并在两端都关闭。重新启用前先确保两端已完全禁用，不能只反复toggle本端Enable。",
+          "关闭VC时软件必须保证没有流量使用它，并在两端关闭。对适用规则允许的重新启用，双端先完全禁用只是必要条件；不能反复toggle本端Enable，也不能据此绕过FM下重新启用未定义的限制。",
           "这与Capability Mode的一次性SVC切换是不同层次；VC资源关闭不自动将Use VC/MFVC恢复到1，也不能替代Conventional Reset。",
-          "R67补充版本/模式边界：Base7.0 §2.6.1 p293明确FM关闭VC1～7后再次启用行为未定义；本条寄存器的双端关闭前提不能当FM可安全重启的充分条件。见“FM关闭后Shared账本保留”详情及两处同版来源，待正式勘误核验。"
+          "Base7.0 §2.6.1 p293明确FM下VC1～7禁用后再次启用行为未定义；通用寄存器的双端关闭前提不构成豁免。本站按这个模式限制给出条件化说明，不将前提自动改述成重启许可。"
         ],
         "referenceIndices": [
           64,
           65,
           158
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 114,
+            "detailId": "r198-vc-reconfigure-gates",
+            "label": "R198补全重配条件"
+          }
         ]
       },
       {
@@ -131806,12 +131992,24 @@
         "id": "svc-shared-limit-change-guards",
         "title": "运行期重配有两个限制：Enable位与Limit值各自条件不同",
         "paragraphs": [
-          "VC Enable=1时改变Limit Enable[30]，行为未定义；VC Enable=1且Limit Enable=1时改变Limit[29:27]，行为未定义。不能仅把Limit Enable关掉再在线随意改值，因为第一步已违反条件。",
-          "应先按完整停流/双端禁用流程进入可配置阶段，再修改并重启。本轮解码器只分析快照，不根据最终值证明过去的写入顺序正确。"
+          "以下按所引原Base7.0字段解释：VC Enable=1时改变Limit Enable[30]行为未定义；VC Enable=1且Limit Enable=1时改变Limit[29:27]行为未定义。不能先违规关Limit Enable再在线改值。若采用后续Shared Credit Control ECN，须改按该ECN的动态能力/实现特定规则，见关联入口。",
+          "修改前应满足适用的停流/双端禁用和映射条件，但这不授权所有模式随后重启。尤其FM下VC1～7禁用后再次启用行为未定义；未确认适用规则时，不把“再修改并重启”当通用步骤。快照解码不证明过去写入顺序安全。"
         ],
         "referenceIndices": [
           72,
           73
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 114,
+            "detailId": "r198-vc-reconfigure-gates",
+            "label": "三道重配关口"
+          },
+          {
+            "featureId": 114,
+            "detailId": "svc-ecn-live-update-rule",
+            "label": "采用ECN时的独立规则"
+          }
         ]
       },
       {
@@ -131896,7 +132094,7 @@
         "paragraphs": [
           "先枚举SVC/Device3与已有映射，确认Fabric Manager约定；需要从传统机制切到SVC时理解RW1C及不可逆至Conventional Reset的边界。随后按实际资源ID选择支持的协议和TC映射。",
           "配置两端对应VC并启用，Link为DL_Active时等待两端Pending清0；UIO另核全路径FM、VC3/可选VC4和Requester Enable+BME。只有这些阶段满足后才按合法请求边界发起业务。",
-          "此为核查依赖，不是未经停流即可在线执行的一串寄存器写；关闭/重配还要满足排空、双端完全关闭和上限字段更新限制。"
+          "此为依赖核查，不是未经停流即可在线执行的寄存器写序列。初次启用与关闭后再启用分开：后者先确认版本/模式是否允许，再核排空、双端关闭与限额更新条件；FM下VC1～7重新启用未定义，不能使用本段绕过。"
         ],
         "referenceIndices": [
           89,
@@ -131904,6 +132102,13 @@
           90,
           91,
           92
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 114,
+            "detailId": "r198-vc-reconfigure-gates",
+            "label": "R198补全重配条件"
+          }
         ]
       },
       {
@@ -132218,7 +132423,7 @@
         "title": "重要表文边界：FM关闭后Shared账本保留，再启用有未定义限制",
         "paragraphs": [
           "7.0 §2.6.1明确：FM关闭VC1～7清Dedicated计数，Shared不受影响，已收TLP消费后仍按原VC返回信用并给剩余VC使用；随后重新启用VC1～7的行为未定义。不能靠清Enable重建一份Shared初值。",
-          "同版VC/SVC Control字段又要求重新启用前两端完整关闭。这里保留两处规则：通用寄存器重启前提不自动豁免FM流控章节的未定义限制，也不能仅凭章节号擅自宣布某句已被删除。先查正式勘误、具体修订和实现约束。",
+          "同版资源Control给出的是重新启用前两端完整关闭的必要条件；它不单独授予FM重新启用许可。软件应同时遵守通用前提和FM的未定义限制，不以完成了必要条件为由忽略限制，也不声称发布方删除了任一条文。",
           "旧条目已补这项警示。共享SHARED_CREDIT_LIMIT、SCCC、TOTAL_SHARED_CREDITS_AVAILABLE和RX累计量的保留字段分别看；不是一条VC关闭就释放全部Shared物理池。"
         ],
         "referenceIndices": [
@@ -132228,6 +132433,13 @@
           145,
           146,
           147
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 114,
+            "detailId": "r198-vc-reconfigure-gates",
+            "label": "R198补全重配条件"
+          }
         ]
       },
       {
@@ -132337,6 +132549,85 @@
             "featureId": 111,
             "detailId": "r122-fc-seven-revision-and-unit-contract",
             "label": "已解决的单位问题"
+          }
+        ]
+      },
+      {
+        "id": "r198-vc-reconfigure-gates",
+        "title": "VC重配的三道关口：切机制、改资源和重新启用不能合成一步",
+        "paragraphs": [
+          "本轮修正本站旧段落的过宽操作描述：停流且双端关闭是相关操作的前提，不是所有模式都允许随后重新启用的授权。Base7.0 §2.6.1对FM下VC1～7禁用后重新启用规定行为未定义；不能拿通用资源寄存器的“双端已完全关闭”条件豁免这一限制。初次启用和停用后的再次启用也不能混称为同一初始化。",
+          "第一道关口是机制选择。有传统能力时Use VC/MFVC默认为1，传统VC0启用、SVC资源关闭；该位是RW1C，写1使其清零，传统资源立即关闭、SVC VC0立即启用，直到Conventional Reset才可回默认。写0不是把该位清零的动作。没有传统能力时该位硬连0，不能把共存切换流程照搬到此类Port。",
+          "第二道关口是资源配置：协议Selected、TC映射、Enable及Shared限额分别核，不能因机制已切SVC便推断UIO资源或全链路已可用。原Base7.0的运行中Limit修改限制与采用后续Shared Credit Control ECN的动态能力规则要绑定各自版本；ECN不自动取消其它停流、映射或流控条件。",
+          "第三道关口是启用资格与协商结果：仍需确认相应模式下该次启用是否允许，再满足双端资源/协议/TC与Pending前提。Pending仅在DL_Active且该资源Enable时有定义；关掉资源后读到Pending=0不能证明旧事务已经排空。VC Enablement Completed是可选完成提示，也不能作为运行中任意增减资源的总开关。",
+          "源文§6.3.5的“配置VC/MFVC前清Use”流程对象措辞仍保留；字段给出的切换后果可以明确解释，但本站没有把原句悄改成配置SVC并宣称已有勘误。114一致性仍由来源问题12阻塞，本轮纠正的是网页自身遗漏条件的说明，不输出自动配置写入脚本或保证无损在线重配。"
+        ],
+        "referenceIndices": [
+          166,
+          167,
+          168,
+          169,
+          170
+        ],
+        "table": {
+          "columns": [
+            "关口",
+            "条件/效果",
+            "限制"
+          ],
+          "rows": [
+            [
+              "机制Use=1",
+              "传统机制活动，SVC资源关闭",
+              "保持1不是RW写1；先辨RW1C"
+            ],
+            [
+              "机制位写1清0",
+              "关闭传统资源，启用SVC VC0",
+              "不可软件写回1；Conventional Reset边界"
+            ],
+            [
+              "资源初次启用",
+              "按版本、模式和双端配置判资格",
+              "Enable不独立证明可用"
+            ],
+            [
+              "FM VC1～7禁用后再启用",
+              "§2.6.1规定行为未定义",
+              "双端关闭条件不能豁免"
+            ],
+            [
+              "Pending=0",
+              "只有在DL_Active且Enable时有定义",
+              "禁用状态的0不证明排空"
+            ],
+            [
+              "Shared限额更新",
+              "原Base与适用ECN分别解释",
+              "不拼成通用停用/重启处方"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 114,
+            "detailId": "svc-register-decoder",
+            "label": "已有单资源快照查询"
+          },
+          {
+            "featureId": 114,
+            "detailId": "svc-fm-disable-preserve-and-reenable-conflict",
+            "label": "FM禁用与保留账本"
+          },
+          {
+            "featureId": 114,
+            "detailId": "svc-ecn-live-update-rule",
+            "label": "后续ECN版本边界"
+          },
+          {
+            "featureId": 114,
+            "detailId": "r123-svc-switch-direction-open-wording",
+            "label": "流程对象措辞来源问题"
           }
         ]
       }

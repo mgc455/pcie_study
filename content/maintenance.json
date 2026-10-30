@@ -1,7 +1,7 @@
 {
   "nextFeatureIds": [
-    106,
-    114
+    119,
+    127
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,11 +48,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r196",
+    "edition": "2026-10-30-r198",
     "featureIds": [
-      92
+      114
     ],
-    "nextTrack": "[106, 114]定向核对；R198总结"
+    "nextTrack": "[119, 127]定向核对；R202总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -342,14 +342,14 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 138,
-    "lastReviewEdition": "2026-10-30-r194",
-    "lastReviewId": "r191-r194",
-    "nextExpectedReview": "有后续授权及实质进展时R198总结；非新的完成期限。"
+    "completedTotal": 140,
+    "lastReviewEdition": "2026-10-30-r198",
+    "lastReviewId": "r195-r198",
+    "nextExpectedReview": "有后续授权和实质进展时R202总结；非新完成期限。"
   },
   "stageReviews": [
     {
@@ -1283,10 +1283,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 106,
+    "completedRounds": 108,
     "remainingPlannedRounds": 0,
-    "nextRound": 197,
-    "nextReviewRound": 198,
+    "nextRound": 199,
+    "nextReviewRound": 202,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -16963,11 +16963,15 @@
           },
           "structure": {
             "status": "blocked",
-            "reviewedRound": 120,
+            "reviewedRound": 197,
             "evidence": [
               {
                 "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
                 "label": "四份正式原版仍保留的长度歧义"
+              },
+              {
+                "href": "#feature/106/detail/r197-rppio-size-unit-check",
+                "label": "容量/布局复算仍未解决所有范围差异"
               }
             ],
             "note": "可用偏移和限制已说明，未据推测改规范，不满足完整验收。"
@@ -17018,14 +17022,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 120,
+            "reviewedRound": 197,
             "evidence": [
               {
                 "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
                 "label": "四份正式原版仍保留的长度歧义"
+              },
+              {
+                "href": "#feature/106/detail/r197-rppio-size-unit-check",
+                "label": "RP PIO日志核对：4bit容量、Header字节数与分段地址是三件事"
               }
             ],
-            "note": "可用偏移和限制已说明，未据推测改规范，不满足完整验收。"
+            "note": "DPC日志补四位DWORD容量、Header范围及分段地址的独立复算，明确不能靠容量/长度混用消除源文差异；106两项阻塞维度保留。"
           }
         },
         "baseline": {
@@ -17044,6 +17052,23 @@
         ],
         "blockers": [
           "v1-conflict-06：四份正式版52～76字节与最大实现Header/OHC日志需求的对应未澄清。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 197,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 120,
+              "evidence": [
+                {
+                  "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+                  "label": "四份正式原版仍保留的长度歧义"
+                }
+              ],
+              "note": "可用偏移和限制已说明，未据推测改规范，不满足完整验收。"
+            },
+            "result": "specific-check-and-site-correction;normative-source-question-unresolved"
+          }
         ]
       },
       {
@@ -17924,14 +17949,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 123,
+            "reviewedRound": 198,
             "evidence": [
               {
                 "href": "#feature/114/detail/r123-svc-switch-direction-open-wording",
                 "label": "6.4/7.0正文与RW1C字段"
+              },
+              {
+                "href": "#feature/114/detail/r198-vc-reconfigure-gates",
+                "label": "VC重配的三道关口：切机制、改资源和重新启用不能合成一步"
               }
             ],
-            "note": "字段后果已核；不把猜测的流程修正冒充官方勘误。"
+            "note": "修正VC网页中“修改并重启”的过宽描述，分开机制切换、资源配置和启用资格，补原Base/ECN边界；流程对象源文仍待澄清，114继续阻塞。"
           }
         },
         "baseline": {
@@ -17950,6 +17979,23 @@
         ],
         "blockers": [
           "v1-conflict-12：6.4/7.0 §6.3.5配置VC/MFVC前清Use的流程措辞与随后字段后果未获明确澄清。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 198,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 123,
+              "evidence": [
+                {
+                  "href": "#feature/114/detail/r123-svc-switch-direction-open-wording",
+                  "label": "6.4/7.0正文与RW1C字段"
+                }
+              ],
+              "note": "字段后果已核；不把猜测的流程修正冒充官方勘误。"
+            },
+            "result": "specific-check-and-site-correction;normative-source-question-unresolved"
+          }
         ]
       },
       {
@@ -36039,6 +36085,32 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "153/183与1433通过维度、剩30项阻塞；DPA源例校订仍未知，但必需范围明确；EPR能力实现分歧不回避。",
         "publication": "R195/R196分别构建检查后合并发布R196；线上核验和视觉结果分列。"
+      },
+      {
+        "round": 197,
+        "kind": "R197 DPC日志容量与地址复算",
+        "deliverables": [
+          "DPC日志补四位DWORD容量、Header范围及分段地址的独立复算，明确不能靠容量/长度混用消除源文差异；106两项阻塞维度保留。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "累计153/183、1433维度，剩30项；DPC结构/一致性和VC流程源文疑点未据网页纠错而关闭。",
+        "publication": "R197/R198分别检查后合并发布R198，线上与视觉核验分列。"
+      },
+      {
+        "round": 198,
+        "kind": "R198 VC重配条件修正及四轮总结",
+        "deliverables": [
+          "修正VC网页中“修改并重启”的过宽描述，分开机制切换、资源配置和启用资格，补原Base/ECN边界；流程对象源文仍待澄清，114继续阻塞。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "累计153/183、1433维度，剩30项；DPC结构/一致性和VC流程源文疑点未据网页纠错而关闭。",
+        "publication": "R197/R198分别检查后合并发布R198，线上与视觉核验分列。"
       }
     ],
     "backlog": [
@@ -37165,14 +37237,31 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "等待明确针对该段的PCI-SIG正式澄清或匹配产品说明；四份已核原版不因同一问题反复扫描。",
+        "nextAction": "核明确对应Log Size[11:8]直接DWORD计数、Header Base/OHC需求和§7.9.14.11的52～76Byte范围的正式澄清；不猜扩展编码、不自行修数或重复计入ImpSpec。",
         "evidence": [
           {
             "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
             "label": "6.0/6.1/6.4/7.0正文与原页视觉核对"
+          },
+          {
+            "href": "#feature/106/detail/r197-rppio-size-unit-check",
+            "label": "DWORD/Byte、四位容量和分段地址的独立检查"
           }
         ],
-        "lastReviewedRound": 120
+        "lastReviewedRound": 120,
+        "reviewHistory": [
+          {
+            "round": 197,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "等待明确针对该段的PCI-SIG正式澄清或匹配产品说明；四份已核原版不因同一问题反复扫描。",
+            "previousEvidence": [
+              {
+                "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+                "label": "6.0/6.1/6.4/7.0正文与原页视觉核对"
+              }
+            ]
+          }
+        ]
       },
       {
         "id": "v1-conflict-07",
@@ -37301,14 +37390,31 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "等待明确针对§6.3.5前置清零流程的正式澄清，既有字段后果可查；不无新证据重复扫描同两版。",
+        "nextAction": "继续核明确针对§6.3.5流程对象措辞的正式澄清；字段后果、FM重启限制和网页必要条件遗漏已分别解释，不把修正文案当源文已修订。",
         "evidence": [
           {
             "href": "#feature/114/detail/r123-svc-switch-direction-open-wording",
             "label": "正式6.4及7.0同一流程措辞"
+          },
+          {
+            "href": "#feature/114/detail/r198-vc-reconfigure-gates",
+            "label": "网页重启条件修正，不冒充源文勘误"
           }
         ],
-        "lastReviewedRound": 123
+        "lastReviewedRound": 123,
+        "reviewHistory": [
+          {
+            "round": 198,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "等待明确针对§6.3.5前置清零流程的正式澄清，既有字段后果可查；不无新证据重复扫描同两版。",
+            "previousEvidence": [
+              {
+                "href": "#feature/114/detail/r123-svc-switch-direction-open-wording",
+                "label": "正式6.4及7.0同一流程措辞"
+              }
+            ]
+          }
+        ]
       },
       {
         "id": "v1-conflict-13",
@@ -39735,28 +39841,28 @@
       }
     ],
     "nextExecution": {
-      "round": 197,
-      "taskId": "v1-task-12",
+      "round": 199,
+      "taskId": "v1-task-14",
       "featureIds": [
-        106,
-        114
+        119,
+        127
       ],
-      "goal": "转既有DPC日志长度与VC重配问题，核范围/条件和真正影响必需实现的差异；无新证据不重复扩写。",
-      "reviewRound": 198,
+      "goal": "转现有PTM Root特殊拓扑与DOE Async来源问题；有明确依据或网页实错才更新，不重复扩写相同阻塞。",
+      "reviewRound": 202,
       "mode": "targeted-source-corroboration"
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 196,
-      "reestimateRound": 198,
+      "assessedRound": 198,
+      "reestimateRound": 202,
       "observedAcceptedUnitsPerRound": 0.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "EPR补逐字段PF/VF矩阵及物理/仿真事件观察边界；请求与事件规则可独立查询，VF能力实现分歧仍阻塞92，无新增整项验收。累计153/183，30项阻塞，原预算耗尽记录保留。",
-      "action": "接下来106/114现有来源问题；R198四轮总结，不按待核数量承诺同样轮数，不增加功能范围。",
+      "assessment": "修正VC网页中“修改并重启”的过宽描述，分开机制切换、资源配置和启用资格，补原Base/ECN边界；流程对象源文仍待澄清，114继续阻塞。累计153/183与1433维度，原预算耗尽记录保留。",
+      "action": "下一批119/127既有来源问题；不把网页纠错或必要条件推理冒充正式澄清。",
       "latestProgress": {
-        "round": 196,
+        "round": 198,
         "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 153,
         "newPassedCriteria": 0,
@@ -41010,6 +41116,66 @@
         ],
         "awaitingFeatureIds": [],
         "note": "R191～R194验收172 TX FFE/Preset映射，新增1个通过维度；恢复64GT/s显式索引查询并核55条表项。169旧版用词分歧保留；173定位字面13次与意图12次的分支差异，179核SDK快照未定义分母契约。后两轮零新增整项验收，未用重复核读冒充关闭。累计152/183与1432维度、剩31项均阻塞；下一优先级91/92功耗版本和角色条件。外部澄清到达时间不能给可靠轮数，原R138预算仍耗尽，不自动扩范围或降低验收要求。"
+      },
+      {
+        "id": "r195-r198",
+        "firstRound": 195,
+        "lastRound": 198,
+        "closedFeatureUnits": [
+          91
+        ],
+        "reopenedFeatureUnits": [],
+        "newPassedCriteria": 1,
+        "remainingFeatureUnits": 30,
+        "cumulativePassedCriteria": 1433,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 7,
+          "中断与消息": 1,
+          "功耗与复位": 2,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 1,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 7
+        },
+        "blockedFeatureIds": [
+          3,
+          4,
+          5,
+          9,
+          10,
+          12,
+          15,
+          61,
+          89,
+          92,
+          106,
+          114,
+          119,
+          127,
+          129,
+          136,
+          143,
+          146,
+          147,
+          148,
+          152,
+          153,
+          159,
+          164,
+          169,
+          170,
+          173,
+          175,
+          176,
+          179
+        ],
+        "awaitingFeatureIds": [],
+        "note": "R195～R198验收91 DPA，新增1个通过维度：必需合法范围有明确规范依据，原例未校订事实仍保留。EPR补PF/VF与物理/仿真观察边界；DPC补容量/地址复算；VC修正过宽重启说明和Base/ECN边界。后两轮零新增整项验收，来源疑点不冒充关闭。累计153/183、1433维度，剩30项均阻塞；下一优先级119 PTM Root与127 DOE Async。原R138预算保持耗尽，不保证外部澄清到达轮数，不扩大固定范围。"
       }
     ],
     "budgetEndAudit": {
