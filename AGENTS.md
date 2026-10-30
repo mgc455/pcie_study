@@ -286,3 +286,7 @@ R180: Compliance/PRBS/NELB selected-body review; timer conflict28 retained with 
 R181: CDL reader-source/PIPE architecture review; tool-specific syntax and verification limits explicit; PIPE source gates retained; next review R182; daily paused; original budget preserved.
 
 R182: CDL reader-source/PIPE architecture review; tool-specific syntax and verification limits explicit; PIPE source gates retained; next review R186; daily paused; original budget preserved.
+
+R183: Hot-plug/NPEM selected-rule review; reserved-object comparison corrected,2017 NPEM ECN and later Complete exception distinguished; next review R186; daily paused; original budget preserved.
+
+R184: Hot-plug/NPEM selected-rule review; reserved-object comparison corrected,2017 NPEM ECN and later Complete exception distinguished; next review R186; daily paused; original budget preserved.

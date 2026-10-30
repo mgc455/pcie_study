@@ -1,7 +1,8 @@
 {
   "nextFeatureIds": [
-    138,
-    139
+    146,
+    147,
+    148
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -48,11 +49,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r182",
+    "edition": "2026-10-30-r184",
     "featureIds": [
-      164
+      139
     ],
-    "nextTrack": "[138, 139]；R186总结"
+    "nextTrack": "[146, 147, 148]；R186总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -342,11 +343,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 2,
+    "nextReviewAfterRounds": 2,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 124,
+    "completedTotal": 126,
     "lastReviewEdition": "2026-10-30-r182",
     "lastReviewId": "r179-r182",
     "nextExpectedReview": "若用户继续授权，R186四轮总结；不是新完工期限。"
@@ -1283,9 +1284,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 92,
+    "completedRounds": 94,
     "remainingPlannedRounds": 0,
-    "nextRound": 183,
+    "nextRound": 185,
     "nextReviewRound": 186,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -21281,47 +21282,203 @@
         "featureId": 138,
         "group": "诊断、测试与管理",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 183,
+            "evidence": [
+              {
+                "href": "#feature/138/detail/r183-hotplug-register-command-service",
+                "label": "Native Hot-plug服务顺序：先核槽能力，再分命令、事件与当前状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-time-and-removal-boundaries",
+                "label": "插入与移除的时间线：三个一秒、100ms与当前Link状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-seven-revision-selected-rules",
+                "label": "七版对照与保留位修正：区分版本演进和比较对象"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 183,
+            "evidence": [
+              {
+                "href": "#feature/138/detail/r183-hotplug-register-command-service",
+                "label": "Native Hot-plug服务顺序：先核槽能力，再分命令、事件与当前状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-time-and-removal-boundaries",
+                "label": "插入与移除的时间线：三个一秒、100ms与当前Link状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-seven-revision-selected-rules",
+                "label": "七版对照与保留位修正：区分版本演进和比较对象"
+              },
+              {
+                "href": "#feature/138/detail/hotplug-command-serialization",
+                "label": "支持Complete时等待；1秒后未完成才有重试/下一条例外"
+              },
+              {
+                "href": "#feature/138/detail/hotplug-event-enable-map",
+                "label": "六种事件的status/enable位置并不全相同"
+              },
+              {
+                "href": "#feature/138/detail/hotplug-sfi-ownership",
+                "label": "Firmware与OS不能同时无协调操作Native Hot-plug寄存器"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 183,
+            "evidence": [
+              {
+                "href": "#feature/138/detail/r183-hotplug-register-command-service",
+                "label": "Native Hot-plug服务顺序：先核槽能力，再分命令、事件与当前状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-time-and-removal-boundaries",
+                "label": "插入与移除的时间线：三个一秒、100ms与当前Link状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-seven-revision-selected-rules",
+                "label": "七版对照与保留位修正：区分版本演进和比较对象"
+              },
+              {
+                "href": "#feature/138/detail/hotplug-capability-bit-table",
+                "label": "Slot Capability C+14h DWORD逐字段"
+              },
+              {
+                "href": "#feature/138/detail/hotplug-control-field-table",
+                "label": "Slot Control C+18h WORD：动作与事件enable混在同一命令寄存器"
+              },
+              {
+                "href": "#feature/138/detail/hotplug-status-field-table",
+                "label": "Slot Status C+1Ah WORD：历史事件与当前传感状态不同"
+              },
+              {
+                "href": "#feature/138/detail/hotplug-slot-query",
+                "label": "查询：Slot能力、控制意图、传感状态与版本化OOB字段"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 183,
+            "evidence": [
+              {
+                "href": "#feature/138/detail/r183-hotplug-register-command-service",
+                "label": "Native Hot-plug服务顺序：先核槽能力，再分命令、事件与当前状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-time-and-removal-boundaries",
+                "label": "插入与移除的时间线：三个一秒、100ms与当前Link状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-seven-revision-selected-rules",
+                "label": "七版对照与保留位修正：区分版本演进和比较对象"
+              },
+              {
+                "href": "#feature/138/detail/hotplug-command-complete-not-action",
+                "label": "Command Completed表示可接收下一条，不保证外部动作已完成"
+              },
+              {
+                "href": "#feature/138/detail/hotplug-no-command-completed",
+                "label": "No Command Completed Support=1不是“不支持命令”"
+              },
+              {
+                "href": "#feature/138/detail/hotplug-power-fault-latches",
+                "label": "主/辅助电源故障锁存独立，软件开电不能强压故障"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 183,
+            "evidence": [
+              {
+                "href": "#feature/138/detail/r183-hotplug-register-command-service",
+                "label": "Native Hot-plug服务顺序：先核槽能力，再分命令、事件与当前状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-time-and-removal-boundaries",
+                "label": "插入与移除的时间线：三个一秒、100ms与当前Link状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-seven-revision-selected-rules",
+                "label": "七版对照与保留位修正：区分版本演进和比较对象"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 183,
+            "evidence": [
+              {
+                "href": "#feature/138/detail/r183-hotplug-register-command-service",
+                "label": "Native Hot-plug服务顺序：先核槽能力，再分命令、事件与当前状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-time-and-removal-boundaries",
+                "label": "插入与移除的时间线：三个一秒、100ms与当前Link状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-seven-revision-selected-rules",
+                "label": "七版对照与保留位修正：区分版本演进和比较对象"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 183,
+            "evidence": [
+              {
+                "href": "#feature/138/detail/r183-hotplug-register-command-service",
+                "label": "Native Hot-plug服务顺序：先核槽能力，再分命令、事件与当前状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-time-and-removal-boundaries",
+                "label": "插入与移除的时间线：三个一秒、100ms与当前Link状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-seven-revision-selected-rules",
+                "label": "七版对照与保留位修正：区分版本演进和比较对象"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 183,
+            "evidence": [
+              {
+                "href": "#feature/138/detail/r183-hotplug-register-command-service",
+                "label": "Native Hot-plug服务顺序：先核槽能力，再分命令、事件与当前状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-time-and-removal-boundaries",
+                "label": "插入与移除的时间线：三个一秒、100ms与当前Link状态"
+              },
+              {
+                "href": "#feature/138/detail/r183-hotplug-seven-revision-selected-rules",
+                "label": "七版对照与保留位修正：区分版本演进和比较对象"
+              },
+              {
+                "href": "#feature/138/detail/hotplug-reserved-attribute-note",
+                "label": "Slot Status保留位：高位保留区与未实现状态字段分开看"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           }
         },
         "baseline": {
@@ -21330,61 +21487,210 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。",
         "taskId": "v1-task-16",
         "requiredTaskIds": [
           "v1-task-16",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 183
       },
       {
         "id": "v1-feature-139",
         "featureId": 139,
         "group": "诊断、测试与管理",
         "scope": "protocol-or-phy",
-        "status": "awaiting-acceptance",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 184,
+            "evidence": [
+              {
+                "href": "#feature/139/detail/r184-npem-register-to-indication",
+                "label": "NPEM查什么、写什么：逻辑指示位不是设备健康与动作命令"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-command-lifecycle",
+                "label": "NPEM命令生命周期：旧完成、同值写、串行等待与保留字段"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-ecn-to-base-evolution",
+                "label": "NPEM引入依据与修订差异：2017 ECN不是“Gen7新功能”"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "mechanism": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 184,
+            "evidence": [
+              {
+                "href": "#feature/139/detail/r184-npem-register-to-indication",
+                "label": "NPEM查什么、写什么：逻辑指示位不是设备健康与动作命令"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-command-lifecycle",
+                "label": "NPEM命令生命周期：旧完成、同值写、串行等待与保留字段"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-ecn-to-base-evolution",
+                "label": "NPEM引入依据与修订差异：2017 ECN不是“Gen7新功能”"
+              },
+              {
+                "href": "#feature/139/detail/npem-every-write-command",
+                "label": "写相同Control值也构成命令，不是天然无副作用读改写"
+              },
+              {
+                "href": "#feature/139/detail/npem-command-serial-timeout",
+                "label": "NPEM等完成再下一条；1秒例外不是固定安全延迟"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "structure": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 184,
+            "evidence": [
+              {
+                "href": "#feature/139/detail/r184-npem-register-to-indication",
+                "label": "NPEM查什么、写什么：逻辑指示位不是设备健康与动作命令"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-command-lifecycle",
+                "label": "NPEM命令生命周期：旧完成、同值写、串行等待与保留字段"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-ecn-to-base-evolution",
+                "label": "NPEM引入依据与修订差异：2017 ECN不是“Gen7新功能”"
+              },
+              {
+                "href": "#feature/139/detail/npem-register-map",
+                "label": "NPEM扩展能力ID0029h、Version1，三个DWORD寄存器"
+              },
+              {
+                "href": "#feature/139/detail/npem-capability-bitmap",
+                "label": "NPEM Capable置位时必须支持OK/Locate/Fail/Rebuild"
+              },
+              {
+                "href": "#feature/139/detail/npem-control-state-table",
+                "label": "NPEM指示控制位与能力逐项对应"
+              },
+              {
+                "href": "#feature/139/detail/npem-query",
+                "label": "查询：NPEM能力、指示控制和完成快照"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "exceptions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 184,
+            "evidence": [
+              {
+                "href": "#feature/139/detail/r184-npem-register-to-indication",
+                "label": "NPEM查什么、写什么：逻辑指示位不是设备健康与动作命令"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-command-lifecycle",
+                "label": "NPEM命令生命周期：旧完成、同值写、串行等待与保留字段"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-ecn-to-base-evolution",
+                "label": "NPEM引入依据与修订差异：2017 ECN不是“Gen7新功能”"
+              },
+              {
+                "href": "#feature/139/detail/npem-complete-ro-exception",
+                "label": "Complete可硬连1以支持无延迟写；否则通常RW1C"
+              },
+              {
+                "href": "#feature/139/detail/npem-enclosure-specific-control",
+                "label": "Enclosure-specific Control高字节需保留，状态写则不同"
+              },
+              {
+                "href": "#feature/139/detail/npem-reset-write-read",
+                "label": "Initiate Reset写1发起，读永远0；目标是LED控制元素"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "versions": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 184,
+            "evidence": [
+              {
+                "href": "#feature/139/detail/r184-npem-register-to-indication",
+                "label": "NPEM查什么、写什么：逻辑指示位不是设备健康与动作命令"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-command-lifecycle",
+                "label": "NPEM命令生命周期：旧完成、同值写、串行等待与保留字段"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-ecn-to-base-evolution",
+                "label": "NPEM引入依据与修订差异：2017 ECN不是“Gen7新功能”"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "sources": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 184,
+            "evidence": [
+              {
+                "href": "#feature/139/detail/r184-npem-register-to-indication",
+                "label": "NPEM查什么、写什么：逻辑指示位不是设备健康与动作命令"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-command-lifecycle",
+                "label": "NPEM命令生命周期：旧完成、同值写、串行等待与保留字段"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-ecn-to-base-evolution",
+                "label": "NPEM引入依据与修订差异：2017 ECN不是“Gen7新功能”"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "navigation": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 184,
+            "evidence": [
+              {
+                "href": "#feature/139/detail/r184-npem-register-to-indication",
+                "label": "NPEM查什么、写什么：逻辑指示位不是设备健康与动作命令"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-command-lifecycle",
+                "label": "NPEM命令生命周期：旧完成、同值写、串行等待与保留字段"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-ecn-to-base-evolution",
+                "label": "NPEM引入依据与修订差异：2017 ECN不是“Gen7新功能”"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           },
           "consistency": {
-            "status": "pending",
-            "evidence": [],
-            "note": "待逐项验收；适用性须人工确认。"
+            "status": "passed",
+            "reviewedRound": 184,
+            "evidence": [
+              {
+                "href": "#feature/139/detail/r184-npem-register-to-indication",
+                "label": "NPEM查什么、写什么：逻辑指示位不是设备健康与动作命令"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-command-lifecycle",
+                "label": "NPEM命令生命周期：旧完成、同值写、串行等待与保留字段"
+              },
+              {
+                "href": "#feature/139/detail/r184-npem-ecn-to-base-evolution",
+                "label": "NPEM引入依据与修订差异：2017 ECN不是“Gen7新功能”"
+              }
+            ],
+            "note": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。"
           }
         },
         "baseline": {
@@ -21393,14 +21699,15 @@
         },
         "reuseGroups": [],
         "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "reviewNote": "核所列正式Base/已获final release批准ECN正文，并复用原字段表和离线查询；功能契约验收不等于整章、全部ECN或实机插拔/供电/指示验证。",
         "taskId": "v1-task-16",
         "requiredTaskIds": [
           "v1-task-16",
           "v1-task-22",
           "v1-task-23",
           "v1-task-24"
-        ]
+        ],
+        "acceptedRound": 184
       },
       {
         "id": "v1-feature-140",
@@ -34781,6 +35088,106 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项和原R138预算不变；CDL按工具方言与阅读方法验收，PIPE旧来源问题不猜解。",
         "publication": "R181/R182分别检查后合并发布R182；HTML来源直达、PDF定位与线上/视觉结果分别核验。"
+      },
+      {
+        "round": 183,
+        "kind": "R183 Hot-plug命令/事件/供电时间链及七版边界复核",
+        "deliverables": [
+          "补Slot服务与插拔时间线、七个正式Base选段对照，修正不同保留对象被混比的说明；138通过主题验收。"
+        ],
+        "closedDeliverableIds": [
+          "feature-138-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 138,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 138,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 138,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 138,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 138,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 138,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 138,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 138,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          138
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项、原R138预算与38来源记录保留；修正比较对象不等于取得正式勘误，NPEM RO首次增加点仍按范围声明。",
+        "publication": "R183/R184分别检查后合并发布R184；公开差异、线上字节与视觉结果分列。"
+      },
+      {
+        "round": 184,
+        "kind": "R184 NPEM寄存器使用、命令生命周期与引入ECN复核",
+        "deliverables": [
+          "补NPEM发现→能力→指示命令→完成流程、离线位组合和2017引入ECN/后期RO差异；139通过主题验收。"
+        ],
+        "closedDeliverableIds": [
+          "feature-139-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 139,
+            "criterionId": "purpose"
+          },
+          {
+            "featureId": 139,
+            "criterionId": "mechanism"
+          },
+          {
+            "featureId": 139,
+            "criterionId": "structure"
+          },
+          {
+            "featureId": 139,
+            "criterionId": "exceptions"
+          },
+          {
+            "featureId": 139,
+            "criterionId": "versions"
+          },
+          {
+            "featureId": 139,
+            "criterionId": "sources"
+          },
+          {
+            "featureId": 139,
+            "criterionId": "navigation"
+          },
+          {
+            "featureId": 139,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          139
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "固定183项、原R138预算与38来源记录保留；修正比较对象不等于取得正式勘误，NPEM RO首次增加点仍按范围声明。",
+        "publication": "R183/R184分别检查后合并发布R184；公开差异、线上字节与视觉结果分列。"
       }
     ],
     "backlog": [
@@ -38368,36 +38775,37 @@
       }
     ],
     "nextExecution": {
-      "round": 183,
-      "taskId": "v1-task-16",
+      "round": 185,
+      "taskId": "v1-task-17",
       "featureIds": [
-        138,
-        139
+        146,
+        147,
+        148
       ],
-      "goal": "固定剩余范围转138/139 Hot-plug与服务机制，再146/147/148桥接DMA；来源阻塞单列，不扩充183范围。",
+      "goal": "固定剩余范围下一步146/147/148桥接DMA；R186四轮总结。61/89及其它来源阻塞另列，不扩183范围。",
       "reviewRound": 186
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 182,
+      "assessedRound": 184,
       "reestimateRound": 186,
       "observedAcceptedUnitsPerRound": 1.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "四轮验收137测试与181 CDL阅读方法，共2项、21新增维度；179 PRBS与164 PIPE分别七维通过，保留计时/接口源文疑点。累计148/183、1393维度，剩35（7待验收/28阻塞）；整章覆盖和实机签核不在此分母。",
-      "action": "下一窗口138/139 Hot-plug、146/147/148桥接DMA；61/89来源问题仍单列。固定35剩余项不自动生长，外部澄清未到齐前不保证结束轮数。",
+      "assessment": "按固定范围验收Hot-plug/NPEM，优先复用成熟表与查询，仅补证据与实际缺口；原预算耗尽、每日暂停不变。",
+      "action": "下一步桥接DMA146/147/148，R186总结；剩余来源阻塞不凭重读次数关闭。",
       "latestProgress": {
-        "round": 182,
-        "newAcceptedUnits": 0,
-        "cumulativeAcceptedUnits": 148,
-        "newPassedCriteria": 4,
-        "cumulativePassedCriteria": 1393,
+        "round": 184,
+        "newAcceptedUnits": 1,
+        "cumulativeAcceptedUnits": 150,
+        "newPassedCriteria": 8,
+        "cumulativePassedCriteria": 1409,
         "remainingPlannedRounds": 0
       },
       "unacceptedBreakdown": {
         "blocked": 28,
-        "awaiting": 7
+        "awaiting": 5
       }
     },
     "reviewWindows": [
@@ -39749,8 +40157,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        181,
-        182
+        183,
+        184
       ],
       "completedRounds": [
         143,
@@ -39792,10 +40200,12 @@
         179,
         180,
         181,
-        182
+        182,
+        183,
+        184
       ],
-      "publication": "checks-before-combined-r182-publication",
-      "note": "每日暂停，固定183项与原预算快照保留。"
+      "publication": "checks-before-combined-r184-publication",
+      "note": "每日暂停，原预算与固定183范围保留。"
     },
     "queueAudit": {
       "round": 150,
