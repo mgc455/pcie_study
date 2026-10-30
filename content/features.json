@@ -77998,14 +77998,14 @@
     "checks": "区分Function-ready、Device-ready与应用队列ready；避免提前发通知后又对合法配置访问返回未就绪。",
     "prerequisites": "核端口/Function的DRS/FRS/RTR能力及事件，选择接收后的中断/FRS报告或有效等待机制；DRS没有协议使能开关，配置就绪与应用就绪分开。",
     "id": 61,
-    "status": "R100逐版契约已补；仅RTR示例数值一致性待澄清，未完整验收",
+    "status": "一期已验收：R203明确编码合同与原例异常分开；不等于硬件验证或原例已获官方勘误",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-26",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "section": "2.2.8.6.2",
@@ -78545,6 +78545,61 @@
         "title": "VF句子归属修正，非时间倍率勘误",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.16",
+        "page": 1437,
+        "pdfPage": 1437,
+        "title": "访问许可与缓存前提",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.16",
+        "page": 1438,
+        "pdfPage": 1438,
+        "title": "明确公式/位域/倍率与不同数值的举例",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.16.2",
+        "page": 1439,
+        "pdfPage": 1439,
+        "title": "Reset时间的编码上限",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.9.16.3",
+        "page": 1440,
+        "pdfPage": 1440,
+        "title": "FLR/D3Hot到D0编码上限及Valid条件",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.9.16",
+        "page": 1265,
+        "pdfPage": 1265,
+        "title": "同版明确编码公式与旁注问题分开",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R100选定正式版/独立ECN/勘误正文核对，版本差异与未裁决问题分开；非整章通读",
@@ -78721,7 +78776,7 @@
           "12bit时间字段由Value[8:0]与Scale[11:9]组成：时间=Value×32^Scale ns，Scale0～5有效，6/7保留。例如80Ah中Scale4、Value10，得到10.48576 ms；这与原文示例10.240 ms不一致，本轮保留矛盾，不把例子抄成已核正确数值。A1Eh的Scale5、Value30得到约1.006633 s。",
           "RTR1 Valid=0时所有时间值未定义，不可用0表示立即就绪。Valid可能依赖设备配置/驱动初始化，原文允许所有相关驱动启动1分钟后仍为0时软件假定不会报告；这不是要求系统必须空等1分钟。",
           "Reset Time从Conventional Reset完成起算，DL_Up Time从上方DSP报告DLL Link Active起算，FLR Time从发起FLR起算，D3Hot→D0时间从被指示回D0起算。Immediate Readiness、FLR不支持、端口/VF角色等会使相应字段保留或不适用，不能把四个时间套成一个万能延迟。",
-          "R100已核RN相关3.1/3.1a及4/5/6/7选定正式正文和3.1a/5.0勘误，版本契约见下方关联块；80Ah旁注与倍率表差异依然存在，一致性验收未通过。后续只做该问题的定向来源核对，不重复补写已充分的字段说明。"
+          "R100已核RN相关正式正文和勘误；80Ah旁注的来源异常仍保留。R203复核确认明确位域、倍率和实际时间公式足以确定解码合同，已撤销以异常举例阻塞整项验收的旧判断；不声称获得了旁注勘误。"
         ],
         "referenceIndices": [
           2,
@@ -78902,7 +78957,7 @@
           "本轮已回看3.1a Errata B235原图：删除40Ah、增加80Ah，同时把D3Hot→D0 Time允许的编码上限改为80Ah。红色删除/蓝色插入不能在纯文本抽取时串成“40Ah80Ah”一个值。这份勘误修的是明确的编码与字段上限，不能声称它已修正所有数值。",
           "Base4.0 p996、6.0 p1265及7.0 p1438仍给80Ah配同一毫秒示例；7.0图7-334清楚规定Value[8:0]、Scale[11:9]和倍率32^Scale ns。按字段解码，80Ah的Value=10、Scale=4，结果10.48576ms；原文旁注10.240ms仍与该表不一致。40Ah按同一编码只有10.240µs，尤其不能直接用于10ms等待。",
           "供学习和计算器核对的数值按明确位定义/倍率表展示，同时把原示例疑点单列；硬件/驱动的规范符合性不能由本站替代官方澄清。6/7的D3Hot→D0上限写的是编码80Ah，不将它改写成10.240ms这一错误换算上限，也不借此任意缩短其它规定等待。",
-          "本次没有找到能够裁决该毫秒旁注的新官方勘误：已提供的3.1a勘误解决了旧编码问题，后续正式版证明旁注仍存在。61版本维度可独立记进展，但一致性验收继续阻塞；后续只需定向查这一个数值问题，不重复补写整套RN机制。"
+          "R100时未找到修订该毫秒旁注的官方勘误；该来源事实保留。R203重新区分直接规范公式与举例：位域、倍率和字段上限独立明确，足以完成本站解码说明的一致性验收，不再要求先修订举例；详见下方R203裁决。"
         ],
         "referenceIndices": [
           23,
@@ -78977,7 +79032,7 @@
           "这是对既有RTR疑点的定向数值检查，不重新介绍RN。Base7.0印刷/PDF物理p1438同页的图7-334给Value[8:0]、Scale[11:9]及倍率32^Scale ns；页面上方80Ah旁注仍写10.240ms。直接核图后确认差异不是把PDF上下标、十六进制或小数单位抽取错了。",
           "80Ah拆出Value=10、Scale=4，按表得到10,485,760ns；10.240ms是10,240,000ns，少245,760ns，即245.760µs，相对倍率表结果少2.34375%。因此“二者都约10ms”不足以把这处差异视为精确计时等价。该算式是字段数值核算，不替代有效位、事件起算点和其它访问前提。",
           "3.1a的B235明确修正40Ah→80Ah编码；所核4.0勘误C46处理VF段落句子归属，所核5.0 B34处理RTR字段角色描述。它们不能当作修正10.240ms旁注的证据。本轮检索本地3.1a、4.0两份及5.0三份勘误中的RTR相关命中并核正文；没有声称核完所有其它勘误，也没有取得裁决数值的新正式澄清。",
-          "待澄清问题收敛为：对指定正式版本，80Ah的精确时值应按现有倍率表还是应有一份修改倍率/旁注的勘误？在回答前，本站分别呈现位域计算结果与原旁注，不输出缩短等待的驱动建议。61仍为7/8通过，一致性阻塞；重复看见同一旁注不增加验收维度。"
+          "R187时曾把旁注未修订作为61的一致性阻塞。R203重新审查后撤销这一过度阻塞：实际时间公式、位域及倍率表为直接定义，按它们解释编码具有充分依据；原旁注未获勘误的事实继续保留。只有新依据确实修改这些定义时才重开该合同，不以同页反复核读维持阻塞。"
         ],
         "referenceIndices": [
           45,
@@ -79029,6 +79084,74 @@
             "featureId": 61,
             "detailId": "r99-rtr-time-fields",
             "label": "Valid及事件起算前提"
+          }
+        ]
+      },
+      {
+        "id": "r203-rtr-normative-contract-acceptance",
+        "title": "RTR验收纠正：明确编码公式可以执行，异常举例保留为来源问题",
+        "paragraphs": [
+          "R203修正此前把功能验收与修订举例绑定的做法。Base7.0 §7.9.16明确规定实际时间由Value乘以Scale对应倍率计算；图7-334又独立给出Value[8:0]、Scale[11:9]及各倍率。字段表还用编码A1Eh和80Ah规定上限。这些直接定义足以确定本站必须解释的解码合同，不需要先猜出发布方最终会如何改写异常举例。",
+          "按这些直接规则，80Ah为Value10、Scale4，对应10,485,760ns；A1Eh为Value30、Scale5，对应1,006,632,960ns。所核6.0/7.0举例的10.240ms仍与公式不符，未取得修订这句旁注的官方勘误；不声称原文已经被发布方更正，也不改动明确的80Ah编码上限。",
+          "本站按公式解释时间，保留原例异常及版本定位，关闭61最后的一致性验收。此前已核的通知、队列、版本、字段、角色及例外内容复用；这是消除过度阻塞，不是把相互冲突的两条必须要求多数表决。TDISP状态、Retimer不回应许可等仍影响操作合同的争议不适用此处理。",
+          "算出纳秒数不等于已经允许访问：仍要Valid=1、对应字段适用、规定事件起算点和设备运行方式未改变。Scale6/7保留，Valid=0时各时间未定义，不能用零代替立即就绪；选择四类许可入口时按各自前提处理。这里不运行驱动、不缩短真实设备等待，也不宣称完成硬件符合性测试。"
+        ],
+        "referenceIndices": [
+          49,
+          50,
+          51,
+          52,
+          53
+        ],
+        "table": {
+          "columns": [
+            "检查",
+            "直接依据",
+            "结果/边界"
+          ],
+          "rows": [
+            [
+              "编码80Ah",
+              "Value10 / Scale4",
+              "10,485,760ns，按明确公式"
+            ],
+            [
+              "编码A1Eh",
+              "Value30 / Scale5",
+              "1,006,632,960ns，按明确公式"
+            ],
+            [
+              "D3Hot到D0上限",
+              "字段表编码80Ah",
+              "不改写成异常旁注的10.240ms"
+            ],
+            [
+              "Valid=0或字段不适用",
+              "解码值不是访问许可",
+              "按对应条款处理"
+            ],
+            [
+              "原举例异常",
+              "仍未获发布方修订",
+              "保留来源异常，不再阻塞已明确的编码说明"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 61,
+            "detailId": "r99-rtr-time-fields",
+            "label": "字段和起算点"
+          },
+          {
+            "featureId": 61,
+            "detailId": "r100-rn-version-contract",
+            "label": "版本契约"
+          },
+          {
+            "featureId": 61,
+            "detailId": "r187-rtr-arithmetic-and-errata-gate",
+            "label": "原数值差异及来源记录"
           }
         ]
       }
@@ -98725,7 +98848,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-26",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "section": "2.2.8.8",
@@ -99474,6 +99597,17 @@
         "title": "官方条目元数据；不是最终ECN正文",
         "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
         "verification": "本轮核官方HTML：底本Base6.3、日期06/11/2025；下载最终PDF未取得，不能据元数据核位号。"
+      },
+      {
+        "documentId": "pcisig-base-overview-20261030",
+        "document": "PCI-SIG Base规范官方目录：R203访问核对",
+        "version": "2026-10-30访问快照",
+        "section": "Current/Previous Approved Specification;Change Bar;LTR Enhancements for MFD",
+        "page": null,
+        "pdfPage": null,
+        "title": "仅核发布条目与下载边界，不是正文",
+        "url": "https://pcisig.com/specification-overview/pci-express-base",
+        "verification": "R203核官方6.5/7.1及LTR条目，下载均要求会员登录；未核这些新正文。"
       }
     ],
     "referenceStatus": "R100选定正式版/独立ECN/勘误正文核对，版本差异与未裁决问题分开；非整章通读",
@@ -100001,6 +100135,59 @@
             "featureId": 89,
             "detailId": "r93-ltr-retire-reestablish",
             "label": "预算撤销与重建"
+          }
+        ]
+      },
+      {
+        "id": "r203-official-source-requests",
+        "title": "官方追证清单：Base6.5/7.1及LTR最终ECN正文待取得",
+        "paragraphs": [
+          "R203联网核PCI-SIG官方条目，Base6.5、7.1及其Showing Changes均列2026-09-17；LTR Enhancements for MFD列2025-06-11、底本为6.3。下载入口要求会员登录，尚未取得这些正文；发布存在不证明其中修复了哪一条阻塞。",
+          "本地已有5月29日LTR副本，不能再笼统称LTR资料不存在；缺的是与6月11日官网发布下载对应的正文或足以确认两者同一性/修订关系的证据。Base7.0目前按bit1解释，旧副本bit0不倒填到7.0；89保持阻塞。",
+          "所需正式文档及对应疑点已列在一期验收页。新版仅用于已有功能的定向核对，不自动扩展一期功能范围，也不把整份新版文件列成新增全文通读任务。"
+        ],
+        "referenceIndices": [
+          68
+        ],
+        "table": {
+          "columns": [
+            "官方文档",
+            "条目日期",
+            "待解决问题"
+          ],
+          "rows": [
+            [
+              "PCI Express Base Specification Revision 7.1",
+              "2026-09-17",
+              "优先核后续修订是否改变现有阻塞条款；新规则不得无说明倒填旧版。"
+            ],
+            [
+              "PCI Express Base Specification Revision 6.5",
+              "2026-09-17",
+              "对照6.0/6.4阻塞的后续修订；不能假定新版已经修正。"
+            ],
+            [
+              "LTR Enhancements for MFD（官网2025-06-11发布条目对应最终PDF）",
+              "2025-06-11",
+              "核保留跨Function0 FLR能力bit号；现有May29副本与Base7.0 bit0/bit1差异仍待修订链。"
+            ],
+            [
+              "PCI Express Base Specification Revision 7.1 Showing Changes",
+              "2026-09-17",
+              "辅助定位修订差异；须与正式正文配套，不单靠色条推断解决。"
+            ],
+            [
+              "PCI Express Base Specification Revision 6.5 Showing Changes",
+              "2026-09-17",
+              "辅助定位6.4之后变化；须与正式正文配套。"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 89,
+            "detailId": "r188-ltr-preserve-mask-source-gate",
+            "label": "原LTR位号与来源边界"
           }
         ]
       }
