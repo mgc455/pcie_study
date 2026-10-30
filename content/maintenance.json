@@ -1,8 +1,5 @@
 {
-  "nextFeatureIds": [
-    129,
-    136
-  ],
+  "nextFeatureIds": [],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
     "修正事实错误",
@@ -48,11 +45,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-30",
-    "edition": "2026-10-30-r200",
+    "edition": "2026-10-30-r202",
     "featureIds": [
-      127
+      136
     ],
-    "nextTrack": "[129, 136]定向核对；R202总结"
+    "nextTrack": "验收优先；无新证据不循环"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -342,14 +339,14 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 142,
-    "lastReviewEdition": "2026-10-30-r198",
-    "lastReviewId": "r195-r198",
-    "nextExpectedReview": "有后续授权和实质进展时R202总结；非新完成期限。"
+    "completedTotal": 144,
+    "lastReviewEdition": "2026-10-30-r202",
+    "lastReviewId": "r199-r202",
+    "nextExpectedReview": "仅有后续手动授权且完成4个实质验收/修错轮次时R206复盘，不是新工期承诺。"
   },
   "stageReviews": [
     {
@@ -1283,10 +1280,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 110,
+    "completedRounds": 112,
     "remainingPlannedRounds": 0,
-    "nextRound": 201,
-    "nextReviewRound": 202,
+    "nextRound": 203,
+    "nextReviewRound": 206,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -20082,14 +20079,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 130,
+            "reviewedRound": 201,
             "evidence": [
               {
                 "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
                 "label": "正式6.4/7.0并列"
+              },
+              {
+                "href": "#feature/129/detail/r201-tdisp-range-image-verification",
+                "label": "验收纠错：Range ID是31:16，文字提取异常不是规范印字错误"
               }
             ],
-            "note": "字段说明保留可用结论，状态冲突不当作已解决。"
+            "note": "Range ID原图明确、撤销提取假阻塞；RUN读报告仍有真实表文冲突，保持阻塞。"
           }
         },
         "baseline": {
@@ -20107,7 +20108,27 @@
           "v1-task-24"
         ],
         "blockers": [
-          "v1-conflict-24：GET_REPORT在RUN的正常状态与错误表冲突；v1-conflict-27印字正式澄清尚缺。"
+          "v1-conflict-24 TDISP子问题：GET_REPORT在RUN的正常状态与错误表冲突；记录27已由原图关闭。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 201,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 130,
+              "evidence": [
+                {
+                  "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+                  "label": "正式6.4/7.0并列"
+                }
+              ],
+              "note": "字段说明保留可用结论，状态冲突不当作已解决。"
+            },
+            "previousBlockers": [
+              "v1-conflict-24：GET_REPORT在RUN的正常状态与错误表冲突；v1-conflict-27印字正式澄清尚缺。"
+            ],
+            "result": "conflict27-resolved-by-page-image;conflict24-remains"
+          }
         ]
       },
       {
@@ -21260,14 +21281,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 131,
+            "reviewedRound": 202,
             "evidence": [
               {
                 "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
                 "label": "标准LMR可查、寄存器访问争议保留"
+              },
+              {
+                "href": "#feature/136/detail/r202-retimer-access-acceptance-decision",
+                "label": "验收保留项：不支持Retimer寄存器访问时，不把超时判成规范允许或违规"
               }
             ],
-            "note": "不因已有33块正文就判整个条目完成。"
+            "note": "原图确认同条件下许可不回应与必须00h并存；记录软件超时不裁定合规，待新正式证据，不自动循环。"
           }
         },
         "baseline": {
@@ -36179,6 +36204,36 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "153/183与1433维度，剩30项；实现证据与正常分支不代替仍缺失的规范裁决。",
         "publication": "R199/R200分别检查后合并发布R200；线上和视觉结果分列。"
+      },
+      {
+        "round": 201,
+        "kind": "R201 TDISP原页视觉验收纠错",
+        "deliverables": [
+          "原图确认TDISP Range ID[31:16]，关闭来源问题27的提取假阻塞；RUN读报告查询改为待核。129仍受真实状态冲突阻塞，零新增整项/维度。"
+        ],
+        "closedDeliverableIds": [
+          "source-question-27-extraction-false-blocker"
+        ],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "153/183与1433通过维度；30项阻塞、31个未通过维度，不降低验收要求。不把剩余数直接换成轮数。",
+        "publication": "R201/R202分别构建检查后合并发布R202；线上字节验证与视觉复核分列。"
+      },
+      {
+        "round": 202,
+        "kind": "R202 LMR验收裁决与收尾止损复盘",
+        "deliverables": [
+          "Lane Margining回应冲突按原图保留；完成R199～R202复盘与30项验收阻塞看板，取消无新证据的轮换队列，修正收尾页只显示R138旧预测的问题。零新增整项/维度。"
+        ],
+        "closedDeliverableIds": [
+          "acceptance-dependency-board-and-no-repeat-gate"
+        ],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "153/183与1433通过维度；30项阻塞、31个未通过维度，不降低验收要求。不把剩余数直接换成轮数。",
+        "publication": "R201/R202分别构建检查后合并发布R202；线上字节验证与视觉复核分列。"
       }
     ],
     "backlog": [
@@ -37275,14 +37330,31 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "标准LMR规则可查，Retimer Register不支持访问的强度需针对性官方澄清，不反复扫同页。",
+        "nextAction": "需明确协调Base7.0表4-77 p648与§4.2.18.2 p654未支持回应要求的正式勘误/条款/书面澄清；同页复读、驱动超时处理和产品行为均不足以代替规范裁决。",
         "evidence": [
           {
             "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
             "label": "R131保留一致性阻塞"
+          },
+          {
+            "href": "#feature/136/detail/r202-retimer-access-acceptance-decision",
+            "label": "验收保留项：不支持Retimer寄存器访问时，不把超时判成规范允许或违规"
           }
         ],
-        "lastReviewedRound": 131
+        "lastReviewedRound": 202,
+        "reviewHistory": [
+          {
+            "round": 202,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "标准LMR规则可查，Retimer Register不支持访问的强度需针对性官方澄清，不反复扫同页。",
+            "previousEvidence": [
+              {
+                "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
+                "label": "R131保留一致性阻塞"
+              }
+            ]
+          }
+        ]
       },
       {
         "id": "v1-conflict-05",
@@ -37781,16 +37853,34 @@
         "legacyRecordIndices": [
           95
         ],
-        "status": "needs-corroboration",
+        "status": "resolved-pdf-text-extraction",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "TDISP子问题经正式6.4/7.0同条款核对仍在，等待针对性正式澄清；原DOE子问题同样保留，不重复扫同版。",
+        "nextAction": "无需索取该字段排印勘误；保留历史与原页定位。129仍受记录24的RUN状态分歧阻塞。",
         "evidence": [
           {
             "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
             "label": "R130 TDISP版本交叉核对"
+          },
+          {
+            "href": "#feature/129/detail/r201-tdisp-range-image-verification",
+            "label": "验收纠错：Range ID是31:16，文字提取异常不是规范印字错误"
           }
         ],
-        "lastReviewedRound": 130
+        "lastReviewedRound": 201,
+        "reviewHistory": [
+          {
+            "round": 201,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "TDISP子问题经正式6.4/7.0同条款核对仍在，等待针对性正式澄清；原DOE子问题同样保留，不重复扫同版。",
+            "previousEvidence": [
+              {
+                "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+                "label": "R130 TDISP版本交叉核对"
+              }
+            ]
+          }
+        ],
+        "resolution": "Base6.4 p1724、Base7.0 p1770原图均明确Bits31:16。31:!6是提取异常；字段解释直接有据，撤销排印争议，不声称正式勘误。"
       },
       {
         "id": "v1-conflict-28",
@@ -39947,28 +40037,25 @@
       }
     ],
     "nextExecution": {
-      "round": 201,
-      "taskId": "v1-task-15",
-      "featureIds": [
-        129,
-        136
-      ],
-      "goal": "继续记录24的TDISP子问题，再核Lane Margining Retimer访问支持条件；有新依据或实错才更新，R202总结。",
-      "reviewRound": 202,
-      "mode": "targeted-source-corroboration"
+      "round": 203,
+      "taskId": "v1-task-24",
+      "featureIds": [],
+      "goal": "先核新证据或可复现网站缺陷；无新材料不循环来源争议、不以扩写代替验收。",
+      "reviewRound": 206,
+      "mode": "acceptance-evidence-gated"
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 200,
-      "reestimateRound": 202,
-      "observedAcceptedUnitsPerRound": 0.25,
+      "assessedRound": 202,
+      "reestimateRound": 206,
+      "observedAcceptedUnitsPerRound": 0.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "DOE Async补单消息闭环、邮箱与Variety两层方向对照，定位RESPONSE之后的未解分支；不编多消息状态机，127及记录24的其它子问题继续保留。累计153/183；不以新的实现来源或更清楚的正常分支冒充整项关闭。",
-      "action": "按既有来源问题继续，R202四轮总结；固定范围、原预算耗尽记录和每日暂停状态保留。",
+      "assessment": "Lane Margining回应冲突按原图保留；完成R199～R202复盘与30项验收阻塞看板，取消无新证据的轮换队列，修正收尾页只显示R138旧预测的问题。零新增整项/维度。 R199～R202零新增验收，不能继续外推完工轮数。",
+      "action": "等待明确新证据时才重开对应阻塞；保留固定183项、原R138预算耗尽及每日暂停。",
       "latestProgress": {
-        "round": 200,
+        "round": 202,
         "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 153,
         "newPassedCriteria": 0,
@@ -41282,6 +41369,64 @@
         ],
         "awaitingFeatureIds": [],
         "note": "R195～R198验收91 DPA，新增1个通过维度：必需合法范围有明确规范依据，原例未校订事实仍保留。EPR补PF/VF与物理/仿真观察边界；DPC补容量/地址复算；VC修正过宽重启说明和Base/ECN边界。后两轮零新增整项验收，来源疑点不冒充关闭。累计153/183、1433维度，剩30项均阻塞；下一优先级119 PTM Root与127 DOE Async。原R138预算保持耗尽，不保证外部澄清到达轮数，不扩大固定范围。"
+      },
+      {
+        "id": "r199-r202",
+        "firstRound": 199,
+        "lastRound": 202,
+        "closedFeatureUnits": [],
+        "reopenedFeatureUnits": [],
+        "newPassedCriteria": 0,
+        "remainingFeatureUnits": 30,
+        "cumulativePassedCriteria": 1433,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "链路与物理层": 7,
+          "中断与消息": 1,
+          "功耗与复位": 2,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 1,
+          "IP集成与片内接口": 6,
+          "相关协议与平台扩展": 1,
+          "PHY与SerDes": 7
+        },
+        "blockedFeatureIds": [
+          3,
+          4,
+          5,
+          9,
+          10,
+          12,
+          15,
+          61,
+          89,
+          92,
+          106,
+          114,
+          119,
+          127,
+          129,
+          136,
+          143,
+          146,
+          147,
+          148,
+          152,
+          153,
+          159,
+          164,
+          169,
+          170,
+          173,
+          175,
+          176,
+          179
+        ],
+        "awaitingFeatureIds": [],
+        "note": "四轮零新增整项/维度；R201关闭问题27：原图31:16，撤销提取假阻塞。PTM/DOE实现与层次说明不代替规范裁决。30项均有阻塞，按16项PCI-SIG、4项PIPE、10项产品交付分组，冻结无新证据轮换；不承诺虚假剩余轮数、不降低标准。"
       }
     ],
     "budgetEndAudit": {
@@ -41579,10 +41724,14 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        185,
-        186
+        201,
+        202
       ],
       "completedRounds": [
+        139,
+        140,
+        141,
+        142,
         143,
         144,
         145,
@@ -41626,23 +41775,606 @@
         183,
         184,
         185,
-        186
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202
       ],
-      "publication": "checks-before-combined-r186-publication",
-      "note": "每日暂停，固定183项与原预算保留；未达验收终点，后续仅按实质追证推进。"
+      "publication": "checks-before-combined-r202-publication",
+      "note": "当前201/202已授权；历史完成轮次按账本补齐，不暗示后续授权；每日暂停。",
+      "historyPreservedR202": {
+        "authorizedRounds": [
+          185,
+          186
+        ],
+        "completedRounds": [
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186
+        ],
+        "publication": "checks-before-combined-r186-publication",
+        "note": "每日暂停，固定183项与原预算保留；未达验收终点，后续仅按实质追证推进。"
+      }
     },
     "queueAudit": {
-      "round": 150,
-      "removedAlreadyAcceptedFeatureIds": [
-        165,
-        166
+      "round": 202,
+      "previousFeatureIds": [
+        136
       ],
-      "replacementFeatureIds": [
-        178,
-        180
-      ],
-      "note": "R148下一步重复排入165/166，R149核台账发现并纠正；未重复计数。"
+      "queuedFeatureIds": [],
+      "note": "所有剩余项已有来源阻塞；保留明确问题/证据/重开条件。无新证据不以轮换扩写维持进度。"
     },
-    "continuationMode": "targeted-source-corroboration-and-fixes"
+    "continuationMode": "acceptance-evidence-gated-no-repeat",
+    "acceptanceGate": {
+      "asOfRound": 202,
+      "acceptedFeatures": 153,
+      "blockedFeatures": 30,
+      "unpassedCriteria": 31,
+      "newAcceptedInLastFour": 0,
+      "sourceQuestionsResolvedThisWindow": [
+        "v1-conflict-27"
+      ],
+      "summary": "正文验收已走完一遍；剩30项均有具体阻塞。R199～R202零整项关闭，停止无新依据的轮换，不再把专题扩写当收尾进度。",
+      "causes": [
+        "原48轮是未校准的预算，并非可靠完成预测；到R202已比R138多64轮。",
+        "最近主要反复处理规范/产品文档冲突，新增说明却无法关闭一致性门槛。",
+        "此前文字提取异常误当原页排印错误；收尾页还因旧预算快照提前返回而隐藏当前预测。"
+      ],
+      "decision": "保持严格验收；当前内容可继续查阅，30项仍明确未验收。无新证据不再机械排队跑一轮；有新材料或网站缺陷才重开。 下表是证据依赖，不是声称相应文档均缺失；已存在资料保留，需针对尚未裁定问题的新增依据。",
+      "roundEstimate": "无法对外部澄清到达时间承诺轮数；若无新证据，重复再跑也不能完成。",
+      "categories": [
+        {
+          "kind": "PCI-SIG正式条款澄清",
+          "featureIds": [
+            3,
+            4,
+            5,
+            9,
+            10,
+            12,
+            15,
+            61,
+            89,
+            92,
+            106,
+            114,
+            119,
+            127,
+            129,
+            136
+          ]
+        },
+        {
+          "kind": "Intel PIPE版本澄清",
+          "featureIds": [
+            164,
+            169,
+            170,
+            175
+          ]
+        },
+        {
+          "kind": "匹配产品交付证据",
+          "featureIds": [
+            143,
+            146,
+            147,
+            148,
+            152,
+            153,
+            159,
+            173,
+            176,
+            179
+          ]
+        }
+      ],
+      "items": [
+        {
+          "featureId": 3,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/3/detail/r167-base6-fallback-source-gate",
+              "label": "Base6回退来源衔接待核"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 4,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/4/detail/r167-ltssm-transition-evidence-map",
+              "label": "Base6共享来源衔接问题"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 5,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "Base6.0 RcvrLock/RcvrCfg的1b/1b失败入口指定32GT/s，但Recovery.Speed通用else写2.5GT/s；同版本路径衔接待正式勘误或澄清，不能用Base7.0规则静默覆盖。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/5/detail/r168-retrain-request-versus-completion",
+              "label": "Base6共享来源衔接问题"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 9,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "No-EQ段引用Bypass Disable，而控制寄存器另定义No-EQ Disable；两者广告门控关系待匹配版本正式澄清，不凭字段名自行改写。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/9/detail/r170-eq-noeq-disable-source-gate",
+              "label": "No-EQ正文与控制字段边界"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 10,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/10/detail/r171-lower-skp-version-source-gate",
+              "label": "Base6 Lower SKP共享来源门槛"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 12,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/12/detail/r172-throughput-units-and-shared-gate",
+              "label": "Base6 Lower SKP共享来源门槛"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 15,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "Base6双方Priority且同宽的赢家未由所核条款明确；Base7明确DSP，不能静默回填，需匹配正式澄清。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/15/detail/r174-base6-l0p-equal-priority-source-gate",
+              "label": "Base6同宽优先仲裁边界"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 61,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "R100已记录RTR80Ah时间旁注与公式不一致，待官方澄清；本轮仅对齐阻塞分类。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/61/detail/r100-rtr-errata-boundary",
+              "label": "已有来源疑点证据；非本轮新增核读"
+            },
+            {
+              "href": "#feature/61/detail/r187-rtr-arithmetic-and-errata-gate",
+              "label": "RTR数值核对：80Ah若按10.240ms等待，会比倍率表少245.760µs"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 89,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "R100已记录2025 ECN与Base7 LTR跨FLR位号来源链待澄清；本轮仅对齐阻塞分类。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/89/detail/r93-ltr-flr-version-map",
+              "label": "已有来源疑点证据；非本轮新增核读"
+            },
+            {
+              "href": "#feature/89/detail/r188-ltr-preserve-mask-source-gate",
+              "label": "LTR跨FLR位查询：同一原始DWORD，按7.0或6.3底本ECN会得到不同结论"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 92,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "Base6/7 §6.24 VF对应字段保留与Device Capabilities2的VF同PF要求并存；跟随/Request/Detected可确认，能力字段实现细则保留conflict11待正式澄清。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/92/detail/r177-epr-vf-source-boundary",
+              "label": "EPR VF字段来源边界"
+            },
+            {
+              "href": "#feature/92/detail/r196-epr-vf-field-matrix",
+              "label": "EPR逐字段看PF与VF：能力、软件请求、物理事件和仿真视图不能互换"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 106,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "v1-conflict-06：四份正式版52～76字节与最大实现Header/OHC日志需求的对应未澄清。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+              "label": "四份正式原版仍保留的长度歧义"
+            },
+            {
+              "href": "#feature/106/detail/r197-rppio-size-unit-check",
+              "label": "容量/布局复算仍未解决所有范围差异"
+            },
+            {
+              "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+              "label": "四份正式原版仍保留的长度歧义"
+            },
+            {
+              "href": "#feature/106/detail/r197-rppio-size-unit-check",
+              "label": "RP PIO日志核对：4bit容量、Header字节数与分段地址是三件事"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 114,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "v1-conflict-12：6.4/7.0 §6.3.5配置VC/MFVC前清Use的流程措辞与随后字段后果未获明确澄清。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/114/detail/r123-svc-switch-direction-open-wording",
+              "label": "6.4/7.0正文与RW1C字段"
+            },
+            {
+              "href": "#feature/114/detail/r198-vc-reconfigure-gates",
+              "label": "VC重配的三道关口：切机制、改资源和重新启用不能合成一步"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 119,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "v1-conflict-15：Switch作为PTM Root的特殊拓扑与普通Upstream Enable前提如何协调，仍需明确配置澄清。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/119/detail/r125-ptm-history-capture-and-root-boundary",
+              "label": "角色/图与普通使能句分开保留"
+            },
+            {
+              "href": "#feature/119/detail/r199-ptm-linux-root-policy",
+              "label": "PTM Root与向上取时间分开：Linux v6.12实现路径及规范边界"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 127,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "v1-conflict-24 DOE子问题：6.4/7.0连续Async REQUEST与仅响应GET原文冲突，待明确澄清。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/127/detail/r129-doe-async-open-contract",
+              "label": "两份正式版冲突并列"
+            },
+            {
+              "href": "#feature/127/detail/r200-doe-async-layer-directions",
+              "label": "DOE Async单消息闭环：REQUEST标签不等于设备主动发PCIe请求"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 129,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "v1-conflict-24 TDISP子问题：GET_REPORT在RUN的正常状态与错误表冲突；记录27已由原图关闭。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/129/detail/r130-tdisp-acceptance-and-source-boundary",
+              "label": "正式6.4/7.0并列"
+            },
+            {
+              "href": "#feature/129/detail/r201-tdisp-range-image-verification",
+              "label": "验收纠错：Range ID是31:16，文字提取异常不是规范印字错误"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 136,
+          "kind": "PCI-SIG正式条款澄清",
+          "issue": "v1-conflict-04：Retimer Register Access不支持时的回复强度尚待明确澄清。",
+          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
+          "evidence": [
+            {
+              "href": "#feature/136/detail/r131-margining-use-contract-and-open-access",
+              "label": "标准LMR可查、寄存器访问争议保留"
+            },
+            {
+              "href": "#feature/136/detail/r202-retimer-access-acceptance-decision",
+              "label": "验收保留项：不支持Retimer寄存器访问时，不把超时判成规范允许或违规"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 143,
+          "kind": "匹配产品交付证据",
+          "issue": "本页保留的HDMA ATU_BYPASS bit9枚举矛盾未获澄清；关联146原记录。",
+          "requiredEvidence": "匹配IP/PHY版本的接口、寄存器或API合同、修订手册/实现证据；产品事实不泛化为PCIe规范。",
+          "evidence": [
+            {
+              "href": "#feature/143/detail/r138-axi-acceptance-open-dependency",
+              "label": "HDMA附加字段一致性阻塞"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 146,
+          "kind": "匹配产品交付证据",
+          "issue": "通道ATU_BYPASS bit9主体、Databook与值1枚举句相互措辞；三种旁路位置可解释，最终交付语义仍待核。",
+          "requiredEvidence": "匹配IP/PHY版本的接口、寄存器或API合同、修订手册/实现证据；产品事实不泛化为PCIe规范。",
+          "evidence": [
+            {
+              "href": "#feature/146/detail/r185-iatu-bypass-source-gate",
+              "label": "本轮来源边界与原问题定位"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 147,
+          "kind": "匹配产品交付证据",
+          "issue": "conflict21：CB=PCS与~PCS、Watermark LLP含义及4GiB零编码没有一致闭环；不生成自动循环回收/恢复脚本。",
+          "requiredEvidence": "匹配IP/PHY版本的接口、寄存器或API合同、修订手册/实现证据；产品事实不泛化为PCIe规范。",
+          "evidence": [
+            {
+              "href": "#feature/147/detail/r185-hdma-recycle-progress-source-gates",
+              "label": "本轮来源边界与原问题定位"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 148,
+          "kind": "匹配产品交付证据",
+          "issue": "conflict21：Watermark/Abort地址、Write错误方向、Read请求上限以及同版远端MSI-X限制仍待交付/正式澄清。",
+          "requiredEvidence": "匹配IP/PHY版本的接口、寄存器或API合同、修订手册/实现证据；产品事实不泛化为PCIe规范。",
+          "evidence": [
+            {
+              "href": "#feature/148/detail/r186-hdma-notification-source-gates",
+              "label": "本轮来源边界与原问题定位"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 152,
+          "kind": "匹配产品交付证据",
+          "issue": "所核6.50a路由阈值表未明示等于边界，不能猜测比较编码。",
+          "requiredEvidence": "匹配IP/PHY版本的接口、寄存器或API合同、修订手册/实现证据；产品事实不泛化为PCIe规范。",
+          "evidence": [
+            {
+              "href": "#feature/152/detail/r140-filter-route-map",
+              "label": "阈值相等边界保留"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 153,
+          "kind": "匹配产品交付证据",
+          "issue": "FlexiPIPE别名与所核产品模式的精确对应尚未建立。",
+          "requiredEvidence": "匹配IP/PHY版本的接口、寄存器或API合同、修订手册/实现证据；产品事实不泛化为PCIe规范。",
+          "evidence": [
+            {
+              "href": "#feature/153/detail/r142-pipe-integration-contract",
+              "label": "命名映射限制"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 159,
+          "kind": "匹配产品交付证据",
+          "issue": "6.50a第850页背压文字与ready命名的精确极性/采样需交付接口证据确认。",
+          "requiredEvidence": "匹配IP/PHY版本的接口、寄存器或API合同、修订手册/实现证据；产品事实不泛化为PCIe规范。",
+          "evidence": [
+            {
+              "href": "#feature/159/detail/r145-usb4-tunnel",
+              "label": "背压极性边界"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 164,
+          "kind": "Intel PIPE版本澄清",
+          "issue": "PIPE7.1 Ok/PhyStatus撤销边沿、Rate稳定独立Width/PCLK适用组合及MacCLK图表位宽仍需澄清；本地/官网副本页映射与其它原来源问题保留，不自行合成RTL合同。",
+          "requiredEvidence": "对应PIPE版本的勘误、明确时序/位宽合同或发布方澄清；新版仅作版本对照。",
+          "evidence": [
+            {
+              "href": "#feature/164/detail/r182-pipe-source-gates",
+              "label": "PIPE握手、位宽与副本来源边界"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 169,
+          "kind": "Intel PIPE版本澄清",
+          "issue": "PIPE1.00 Underflow续页SKP用词与前文/图的EDB不一致。",
+          "requiredEvidence": "对应PIPE版本的勘误、明确时序/位宽合同或发布方澄清；新版仅作版本对照。",
+          "evidence": [
+            {
+              "href": "#feature/169/detail/r81-underflow-old-text-conflict",
+              "label": "既有明确待核来源"
+            },
+            {
+              "href": "#feature/169/detail/r191-underflow-version-source-boundary",
+              "label": "Underflow版本对照：新版明确EDB，不等于替旧版发布勘误"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 170,
+          "kind": "Intel PIPE版本澄清",
+          "issue": "PIPE7.1表8-4 PCIe P2转换条目标题与测量动作不一致。",
+          "requiredEvidence": "对应PIPE版本的勘误、明确时序/位宽合同或发布方澄清；新版仅作版本对照。",
+          "evidence": [
+            {
+              "href": "#feature/170/detail/r81-p2-latency-row-conflict",
+              "label": "既有明确待核来源"
+            },
+            {
+              "href": "#feature/170/detail/r190-pipe-official-alignment-and-p2",
+              "label": "PIPE 7.1官网对照：页码已校准，P2模式分歧仍在；修正本站一处转引"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 173,
+          "kind": "匹配产品交付证据",
+          "issue": "所列产品FOM示例的Preset数量与循环索引边界不一致。",
+          "requiredEvidence": "匹配IP/PHY版本的接口、寄存器或API合同、修订手册/实现证据；产品事实不泛化为PCIe规范。",
+          "evidence": [
+            {
+              "href": "#feature/173/detail/g5-fom-loop-count-text-caveat",
+              "label": "既有明确待核来源"
+            },
+            {
+              "href": "#feature/173/detail/r193-fom-boundary-trace",
+              "label": "FOM示例边界追踪：额外的第12个候选在哪里出现？"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 175,
+          "kind": "Intel PIPE版本澄清",
+          "issue": "PIPE7.1 P2退出合法状态文字、PHY输出PCLK图示与时延参数目标不一致，复用170既有来源疑点。",
+          "requiredEvidence": "对应PIPE版本的勘误、明确时序/位宽合同或发布方澄清；新版仅作版本对照。",
+          "evidence": [
+            {
+              "href": "#feature/175/detail/r165-rate-power-operation-boundaries",
+              "label": "切速、功耗与停钟：按请求对象寻找完成，不能共用Done"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 176,
+          "kind": "匹配产品交付证据",
+          "issue": "AHB HRESP字段冲突、CCM读取例图地址与明确映射差异及JTAG边界措辞仍待匹配交付/正式澄清。",
+          "requiredEvidence": "匹配IP/PHY版本的接口、寄存器或API合同、修订手册/实现证据；产品事实不泛化为PCIe规范。",
+          "evidence": [
+            {
+              "href": "#feature/176/detail/r86-ahb-response-manual-conflict",
+              "label": "AHB错误返回存在手册差异：Databook说Error，Reference写RSRVD"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        },
+        {
+          "featureId": 179,
+          "kind": "匹配产品交付证据",
+          "issue": "conflict28：SDK timer+1与Databook timer×128尚未闭环；新增Reference Manual3.02a p403/404同页也保留两口径，不能自行统一分母或推测API预减。",
+          "requiredEvidence": "匹配IP/PHY版本的接口、寄存器或API合同、修订手册/实现证据；产品事实不泛化为PCIe规范。",
+          "evidence": [
+            {
+              "href": "#feature/179/detail/r180-bermon-reference-timer-source-gate",
+              "label": "Reference Manual新增计时口径追证"
+            },
+            {
+              "href": "#feature/179/detail/r194-ber-denominator-evidence",
+              "label": "BER分母追证：计时快照字段存在，不等于其单位和换算已明确"
+            }
+          ],
+          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
+        }
+      ]
+    }
   }
 }

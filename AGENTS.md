@@ -322,3 +322,7 @@ R198: DPC size-unit checks retain source06;VC necessary disable/drain conditions
 R199: fixed Linuxv6.12 PTM implementation is corroboration,not PCI-SIG erratum;independent Switch Root snapshot qualification is pending rather than affirmative. DOE Async labels differ from transport direction;single-message path does not resolve multi-message GET issue or TDISP.153/183,1433criteria,30blocked;nextR200[127],reviewR202;daily paused,original budget retained.
 
 R200: fixed Linuxv6.12 PTM implementation is corroboration,not PCI-SIG erratum;independent Switch Root snapshot qualification is pending rather than affirmative. DOE Async labels differ from transport direction;single-message path does not resolve multi-message GET issue or TDISP.153/183,1433criteria,30blocked;nextR201[129, 136],reviewR202;daily paused,original budget retained.
+
+R201: acceptance first; PDF page images resolve conflict27 as text-extraction error, not printed typo. GET_REPORT in RUN query must return pending, not affirmative.153/183,1433criteria,30blocked. R202 freezes evidence-free rotation, exposes all30 dependencies and current forecast beside historical R138 audit. Preserve budget/legacy; daily paused.
+
+R202: acceptance first; PDF page images resolve conflict27 as text-extraction error, not printed typo. GET_REPORT in RUN query must return pending, not affirmative.153/183,1433criteria,30blocked. R202 freezes evidence-free rotation, exposes all30 dependencies and current forecast beside historical R138 audit. Preserve budget/legacy; daily paused.

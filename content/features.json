@@ -147668,14 +147668,14 @@
     "checks": "IDE、IOMMU、接口隔离和协议状态都需配合，不能只有一个可信T位就宣称完整支持。",
     "prerequisites": "先定义信任边界与威胁模型，确认安全模块、凭据/密钥、平台协议和撤销/复位流程；不存在通用的一位开启整套安全。",
     "id": 129,
-    "status": "一期阻塞：R130七维通过，GET_REPORT状态及MMIO印字问题保留",
+    "status": "一期阻塞：七维通过；Range ID提取误判已修正，GET_REPORT在RUN状态冲突保留",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-28",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "documentId": "pcie-base-7.0",
@@ -149466,7 +149466,7 @@
         "section": "11.3.22",
         "page": 1724,
         "pdfPage": 1724,
-        "title": "同样31:!6印字",
+        "title": "R201更正：原页图像为31:16，文字提取异常",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       },
@@ -149522,6 +149522,61 @@
         "page": 1750,
         "pdfPage": 1750,
         "title": "规范跟踪要求与informative示例边界",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.4",
+        "document": "PCI Express Base Specification",
+        "version": "6.4",
+        "section": "11.3.22",
+        "page": 1724,
+        "pdfPage": 1724,
+        "title": "原页图像明确Bits31:16",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "11.3.22",
+        "page": 1770,
+        "pdfPage": 1770,
+        "title": "原页图像明确Bits31:16",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "11.3.11",
+        "page": 1763,
+        "pdfPage": 1763,
+        "title": "报告属性也明确上16bit Range ID",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "11.3.10",
+        "page": 1761,
+        "pdfPage": 1761,
+        "title": "RUN正常状态规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "11.3.11",
+        "page": 1764,
+        "pdfPage": 1764,
+        "title": "表11-17的状态错误条件仍冲突",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
@@ -149878,7 +149933,8 @@
         "title": "查询：给定状态，哪些TDISP命令可以进入参数检查",
         "paragraphs": [
           "按Base7.0表11-4查询命令状态门控，可选命令还检查是否支持，START额外检查nonce；未安全封装的消息直接标为不得使用/不得响应。通过仅表示可继续检查参数，不表示设备已成功执行或数据可访问。",
-          "GET_REPORT在RUN给出正文与表11-17冲突提示。工具不生成管理命令、不建立SPDM会话、不验证IDE密钥/完整锁定条件，也不替代报告分片与并发历史核验。"
+          "GET_REPORT在RUN给出正文与表11-17冲突提示。工具不生成管理命令、不建立SPDM会话、不验证IDE密钥/完整锁定条件，也不替代报告分片与并发历史核验。",
+          "R201：RUN+GET_REPORT为来源待核分支，不给状态门控通过结论；非安全、未支持与其它明确错误仍先行判定。"
         ],
         "referenceIndices": [
           45,
@@ -150255,7 +150311,7 @@
         "title": "MMIO属性更新位图：报告bit3可更新，但请求中bit3保留",
         "paragraphs": [
           "SET_MMIO_ATTRIBUTE仅RUN、接口/范围归属和支持的属性/值均满足才接受，失败本身不致命、不改变TDI状态。Byte16起16Byte范围：8Byte首4KiB页号（已加reporting offset）、4Byte页数、4ByteRange Attributes。",
-          "请求属性[1:0]保留且置0，bit2 IS_NON_TEE_MEM，[15:3]保留，[31:16]Range ID。PDF p1770原文把31:16印作31:!6；这里结合报告结构上半16bit Range ID列出并保留该排印问题，不称已经有官方勘误。",
+          "请求属性[1:0]保留且置0，bit2 IS_NON_TEE_MEM，[15:3]保留，[31:16] Range ID。R201渲染核对Base6.4 p1724与Base7.0 p1770原页图像，两版均明确印作31:16；旧提取文字31:!6是文字层/提取异常，撤销此前排印争议判断。",
           "报告格式不同：bit0/1表示锁定MSI-X Table/PBA，bit2共享属性，bit3 IS_MEM_ATTR_UPDATABLE，[31:16]Range ID；可更新范围报告的bit2反映LOCK时的属性，不保证是后续实时状态。不要原封不动把报告属性word当更新请求。"
         ],
         "referenceIndices": [
@@ -150333,7 +150389,7 @@
                   "label": "RangeID Hi",
                   "width": 8,
                   "key": "rid1",
-                  "help": "属性[31:24] Range ID高Byte；原表31:!6排印问题见正文"
+                  "help": "属性[31:24] Range ID高Byte；原页图像确认[31:16]完整字段"
                 }
               ]
             ],
@@ -150939,7 +150995,7 @@
         "paragraphs": [
           "本页既有状态、命令码、消息头、LOCK/START/STOP、报告、XT/T数据面、P2P和错误处理继续有效；它们限定在所列正式Base/TDISP范围，未将RUN等同于无条件DMA或MMIO授权。状态转移必须结合会话、默认IDE流密钥、报告接纳和每类请求规则。",
           "6.4与7.0均在GET_REPORT正文及请求总表允许CONFIG_LOCKED/RUN，却在错误表中只写不在CONFIG_LOCKED就INVALID_INTERFACE_STATE。不同版本的相同冲突不能靠多数表决消除，网站保留可查的字段和正常状态证据，但一致性维度不通过，也不生成保证各实现接受RUN读报告的脚本。",
-          "SET_MMIO_ATTRIBUTE请求属性中Range ID在7.0印作31:!6，6.4同样如此；报告格式明确上16bit Range ID，现有解释按[31:16]给出上下文推断，并始终标注尚无针对该印字的正式澄清。不能把推断改名为已发布官方勘误。",
+          "R201更正本段旧结论：重新渲染Base6.4 p1724和Base7.0 p1770后，原页图像均明确Bits31:16。31:!6是文字提取异常，不是原页印字错误；Range ID字段具有直接依据，来源问题27已关闭。GET_REPORT状态问题仍按上一段保留，不因此整项验收。",
           "寄存器访问跟踪是另一层：11.2.6要求DSM在CONFIG_LOCKED/RUN跟踪影响TDI安全的配置变化，但表11-3明确为一般指导和Example。R131单独补访问过滤分类，不把示例表当成唯一强制白名单，也不借此消除报告状态冲突。"
         ],
         "referenceIndices": [
@@ -150971,8 +151027,8 @@
             ],
             [
               "Range ID[31:16]",
-              "上下文推断明确",
-              "原印字31:!6及问题记录保留"
+              "两版原页图像直接确认",
+              "R201撤销提取异常造成的假阻塞"
             ],
             [
               "配置跟踪",
@@ -150996,6 +151052,59 @@
             "featureId": 129,
             "detailId": "tdisp-mmio-attribute-field-map",
             "label": "属性请求字段"
+          }
+        ]
+      },
+      {
+        "id": "r201-tdisp-range-image-verification",
+        "title": "验收纠错：Range ID是31:16，文字提取异常不是规范印字错误",
+        "paragraphs": [
+          "R201纠正此前核读方法：对Base6.4印刷/物理页1724和Base7.0印刷/物理页1770重新渲染后，SET_MMIO_ATTRIBUTE_REQUEST属性字段原图均明确写Bits31:16。提取文字中的31:!6是文字层/提取异常，不能据此宣称原页排印错误，更不应要求用户提供修正这个假问题的官方勘误。",
+          "请求属性为32bit：[1:0]保留且置0，bit2为IS_NON_TEE_MEM，[15:3]保留，[31:16]为Range ID。报告与请求各有自己的低位语义，但Range ID上16bit在所核原图中都有直接依据；不再标为只靠报告格式推测的字段。包图仍按消息Byte16～31给出16Byte范围，不更改既有位布局。",
+          "来源问题27关闭，保留原问题和修正经过；不声称PCI-SIG发布了勘误。129仍未整项验收，因为GET_REPORT在RUN的正常状态要求与错误表条件是真实表文分歧，不能用这次字段纠错替它消歧。",
+          "命令查询同时纠正：GET_REPORT在RUN返回来源待核，不再先显示状态门控通过再附警告。CONFIG_LOCKED正常路径、未支持命令、非安全封装和START nonce失败仍分别处理；查询不执行硬件操作，也不保证实现兼容。"
+        ],
+        "referenceIndices": [
+          168,
+          169,
+          170,
+          171,
+          172
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "核对结果",
+            "验收后果"
+          ],
+          "rows": [
+            [
+              "Base6.4 p1724 / Base7.0 p1770",
+              "原页图像均为31:16",
+              "直接视觉证据，字段争议关闭"
+            ],
+            [
+              "提取文字31:!6",
+              "不代表原页印字",
+              "不得要求不存在的排印勘误"
+            ],
+            [
+              "GET_REPORT in RUN",
+              "正常规则/错误表仍不同",
+              "查询待核、129仍阻塞"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 129,
+            "detailId": "tdisp-mmio-attribute-field-map",
+            "label": "已纠正的请求位图"
+          },
+          {
+            "featureId": 129,
+            "detailId": "tdisp-command-state-query",
+            "label": "命令状态查询"
           }
         ]
       }
@@ -154330,7 +154439,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-28",
+    "reviewed": "2026-10-30",
     "protocolReferences": [
       {
         "section": "4.2.18",
@@ -155055,6 +155164,39 @@
         "page": 1595,
         "pdfPage": 1595,
         "title": "采样/并发Lane和独立采样器",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.1",
+        "page": 648,
+        "pdfPage": 648,
+        "title": "表4-77允许不回应并建议00h",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.18.2",
+        "page": 654,
+        "pdfPage": 654,
+        "title": "同条件正文要求返回00h",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.18.2",
+        "page": 560,
+        "pdfPage": 560,
+        "title": "早版也有返回00h要求",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
@@ -155919,6 +156061,62 @@
             "featureId": 136,
             "detailId": "margin-reserved-and-retimer-access",
             "label": "保留值/Retimer访问争议"
+          }
+        ]
+      },
+      {
+        "id": "r202-retimer-access-acceptance-decision",
+        "title": "验收保留项：不支持Retimer寄存器访问时，不把超时判成规范允许或违规",
+        "paragraphs": [
+          "R202以验收裁决为目的复核原页：Base7.0表4-77允许未支持寄存器访问的Retimer不回应、建议返回00h；同版§4.2.18.2又要求该目标Receiver返回00h。两处涉及同类命令与未支持条件，不能只把建议与必须当不同实现档位，也不能因正文排在后面就自行宣称覆盖命令表。",
+          "这不是常规Step Margin返回NAK的规则：Access Retimer Register是Type001，Receiver010/100，Payload地址00h～87h或A0h～FFh。查询88h～90h标准测量能力和Step命令不因这条争议整体失效；不得用该不回应许可去豁免普通测量命令，也不得把读到00h直接当作目标寄存器真实值。",
+          "软件仍可将未收到匹配回应记录为超时/无有效结果，但那是观察结果，不是合规裁决；不能由超时单独推断Retimer不存在、不支持、链路故障或已获规范许可。本轮不新增自动访问脚本，也不假设回00h/NAK能统一所有命令。",
+          "136的其余七个维度保持已核，最后一致性维度仍阻塞。后续只在取得明确协调这两处文字的PCI-SIG勘误、修订条款或针对性正式澄清时重新裁定；没有新证据不自动把同页重读排成下一轮。"
+        ],
+        "referenceIndices": [
+          66,
+          67,
+          68
+        ],
+        "table": {
+          "columns": [
+            "条件",
+            "可记录的结论",
+            "不能推导的结论"
+          ],
+          "rows": [
+            [
+              "不支持Access Retimer Register",
+              "表4-77建议00h、允许不回应",
+              "同版正文必须00h，仍待协调"
+            ],
+            [
+              "支持寄存器访问",
+              "按所支持寄存器/地址规则读取",
+              "不由未支持分支推导"
+            ],
+            [
+              "未收到匹配回应",
+              "超时/无有效结果",
+              "不单独裁定存在性、支持性或合规"
+            ],
+            [
+              "标准能力/Step命令",
+              "各自规则继续适用",
+              "不套用寄存器访问的争议例外"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 136,
+            "detailId": "margin-reserved-and-retimer-access",
+            "label": "原命令与保留范围"
+          },
+          {
+            "featureId": 136,
+            "detailId": "margin-one-step-workflow",
+            "label": "标准Step路径"
           }
         ]
       }
