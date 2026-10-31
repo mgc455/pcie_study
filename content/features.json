@@ -569,7 +569,7 @@
     "checks": "分别读取双方的 Link Capabilities/Supported Link Speeds、目标速率及 Link Status 中的当前速率和宽度，并检查训练与均衡失败原因。不能仅看设备宣传的 Gen7 就认为当前工作在 128 GT/s；同样不能仅凭最高代际断言支持 ACS、ATS 或 SR-IOV。带宽按单向/双向、lane 数、编码和协议开销分别计算。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 3,
-    "status": "R167更正：7/8维度通过，来源一致性重开；R164历史证据保留",
+    "status": "一期已验收：R206正式勘误修订链确认；未修订旧原文和硬件实现另列",
     "sources": [
       {
         "title": "PCI-SIG Gen1～3 速率与编码 FAQ",
@@ -580,7 +580,7 @@
         "url": "https://pcisig.com/faq?field_category_value%5B%5D=pci_express_7.0"
       }
     ],
-    "reviewed": "2026-10-29",
+    "reviewed": "2026-10-31",
     "protocolReferences": [
       {
         "section": "4",
@@ -1395,6 +1395,31 @@
         "title": "Speed新增1b/1b回退分支",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.1-cb",
+        "document": "PCI Express Base Specification 6.1 vs 6.0.1 — Change Bar",
+        "version": "6.1 Change Bar",
+        "section": "4.2.7.4.3",
+        "page": 542,
+        "pdfPage": 542,
+        "title": "针对Base6.0.1的正式修订标记",
+        "url": "https://pcisig.com/PCIExpress/ChangeBar/Base/_6.1",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。",
+        "errata": [
+          "B310"
+        ]
+      },
+      {
+        "documentId": "pcie-base-6.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.1",
+        "section": "4.2.7.4.3",
+        "page": 536,
+        "pdfPage": 536,
+        "title": "纳入勘误的6.1正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R65核1.0a/2.0 Recovery、6.0/7.0 L0p选定正文和字段；保留中间修订/ECN、6.0平局及软件控制表文差异。非七代整章完成。",
@@ -2151,7 +2176,8 @@
           "R164确认了速率发现、Gen7字段以及既有版本差分，但整项一致性通过的结论过宽。本条撤回该维度的通过，不删除R164证据，也不否定已明确的寄存器编码和时序规则。网页查询已提示的来源差异，必须同步反映在验收台账。",
           "Base6.0 §4.2.7.4.1 p487与§4.2.7.4.4 p510分别在RcvrLock、RcvrCfg失败路径中，区分8b/10b、128b/130b回2.5GT/s和1b/1b回32GT/s。可是§4.2.7.4.3 p503的Speed通用else仍写新速率2.5GT/s。这不是把64GT/s PAM4吞吐换算成符号率的问题，而是同版本不同条款的目标速率衔接。",
           "Base7.0 p590明确增加最近一次编码为1b/1b时回32GT/s的分支，但不能仅因新版写得明确就推断它自动修正所有Base6实现，也未核定首次ECN。分析Base6训练日志时先标记进入Speed的来源、changed_speed_recovery和此前速率/编码，展示入口的明确规则并附来源疑点；未核明的通用失败来源返回待核。",
-          "需要的是匹配Base6.0的正式勘误、ECN或具有明确适用范围的官方澄清；不是再读相同目录。现有官方Base正文已存在并已核选段，不能写成缺少Base6文档。本次3/4/5共享同一来源阻塞，统计中不新造三项独立规范冲突。"
+          "需要的是匹配Base6.0的正式勘误、ECN或具有明确适用范围的官方澄清；不是再读相同目录。现有官方Base正文已存在并已核选段，不能写成缺少Base6文档。本次3/4/5共享同一来源阻塞，统计中不新造三项独立规范冲突。",
+          "R206更新：已核Base6.1 Change Bar的B310（针对Base6.0.1）及6.1正文，修订链已建立。原始6.0纸面分歧不删除；6.1选项按纳入勘误的正文查询，详见功能5的r206-b310-versioned-fallback-contract。"
         ],
         "referenceIndices": [
           70,
@@ -2203,6 +2229,49 @@
             "featureId": 4,
             "detailId": "recovery-speed",
             "label": "LTSSM Speed状态与来源问题"
+          },
+          {
+            "featureId": 5,
+            "detailId": "r206-b310-versioned-fallback-contract",
+            "label": "B310正式修订链"
+          }
+        ]
+      },
+      {
+        "id": "r206-b310-shared-acceptance",
+        "title": "共同阻塞已定位：Recovery.Speed采用B310修订链",
+        "paragraphs": [
+          "R206核到Base6.1 Change Bar明确标记的B310，修订对象为Base6.0.1，并核对6.1落地正文；速率协商、LTSSM和切速三页共享同一证据，不再把这一个问题计成三次独立追证。",
+          "原6.0/6.0.1纸面、应用勘误的版本与硬件实际实现仍须区分。完整目标分支、changed变量优先级和B384计时修订集中在功能5，旧ID/引用保持。由此关闭本页最后一致性维度，未将整章或所有实现宣告通过。"
+        ],
+        "referenceIndices": [
+          74,
+          75
+        ],
+        "table": {
+          "columns": [
+            "对象/版本",
+            "直接证据",
+            "读法/边界"
+          ],
+          "rows": [
+            [
+              "共同证据",
+              "B310及6.1正文",
+              "功能5集中解释"
+            ],
+            [
+              "原6.0查询",
+              "不自动应用后续勘误",
+              "旧文分歧仍可查"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 5,
+            "detailId": "r206-b310-versioned-fallback-contract",
+            "label": "B310/B384修订及查询"
           }
         ]
       }
@@ -2218,14 +2287,14 @@
     "checks": "先记录停住的完整子状态，再看哪个方向、哪些Lane未满足进入下一状态的条件。PhyStatus、RxValid、LinkUp、DL_Active表示不同层次。表中是Base 6.0主要普通端口规则；Crosslink、Retimer及一致性测试的组合分支另标范围，不声称已经成为所有版本全部条件的可执行模型。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 4,
-    "status": "R167部分验收：7/8维度通过，Base6回退来源一致性阻塞",
+    "status": "一期已验收：R206正式勘误修订链确认；未修订旧原文和硬件实现另列",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-29",
+    "reviewed": "2026-10-31",
     "protocolReferences": [
       {
         "section": "4.2.6",
@@ -8749,6 +8818,31 @@
         "title": "Idle成功与重试条件",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.1-cb",
+        "document": "PCI Express Base Specification 6.1 vs 6.0.1 — Change Bar",
+        "version": "6.1 Change Bar",
+        "section": "4.2.7.4.3",
+        "page": 542,
+        "pdfPage": 542,
+        "title": "针对Base6.0.1的正式修订标记",
+        "url": "https://pcisig.com/PCIExpress/ChangeBar/Base/_6.1",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。",
+        "errata": [
+          "B310"
+        ]
+      },
+      {
+        "documentId": "pcie-base-6.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.1",
+        "section": "4.2.7.4.3",
+        "page": 536,
+        "pdfPage": 536,
+        "title": "纳入勘误的6.1正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R74核七份正式版所引Polling、1.0a/2.0/3.0选定TS字段及状态边界；非整章、所有中间修订或真实链路验证。 R85补1.0a/2.0/3.0/4.0选定EIOS/EIEOS、FTS/SDS与L0s窗口/出口，非完整跨代或硬件验收。",
@@ -9237,7 +9331,8 @@
       {
         "title": "Recovery.Speed",
         "paragraphs": [
-          "同一版6.0的RcvrLock/RcvrCfg已明列1b/1b失败回32 GT/s，而503页末通用回退句仍写2.5 GT/s；网页保留上下文并提示该表述差异，后续需核对6.x勘误。7.0正文已明确latest encoding=1b/1b时回32 GT/s。"
+          "同一版6.0的RcvrLock/RcvrCfg已明列1b/1b失败回32 GT/s，而503页末通用回退句仍写2.5 GT/s；网页保留上下文并提示该表述差异，后续需核对6.x勘误。7.0正文已明确latest encoding=1b/1b时回32 GT/s。",
+          "R206更新：已核Base6.1 Change Bar的B310（针对Base6.0.1）及6.1正文，修订链已建立。原始6.0纸面分歧不删除；6.1选项按纳入勘误的正文查询，详见功能5的r206-b310-versioned-fallback-contract。"
         ],
         "table": {
           "columns": [
@@ -9266,7 +9361,14 @@
         "referenceIndices": [
           28
         ],
-        "id": "recovery-speed"
+        "id": "recovery-speed",
+        "relatedDetails": [
+          {
+            "featureId": 5,
+            "detailId": "r206-b310-versioned-fallback-contract",
+            "label": "B310正式修订链"
+          }
+        ]
       },
       {
         "title": "Recovery.RcvrCfg",
@@ -13128,6 +13230,44 @@
             "label": "重开验收与共享阻塞"
           }
         ]
+      },
+      {
+        "id": "r206-b310-shared-acceptance",
+        "title": "共同阻塞已定位：Recovery.Speed采用B310修订链",
+        "paragraphs": [
+          "R206核到Base6.1 Change Bar明确标记的B310，修订对象为Base6.0.1，并核对6.1落地正文；速率协商、LTSSM和切速三页共享同一证据，不再把这一个问题计成三次独立追证。",
+          "原6.0/6.0.1纸面、应用勘误的版本与硬件实际实现仍须区分。完整目标分支、changed变量优先级和B384计时修订集中在功能5，旧ID/引用保持。由此关闭本页最后一致性维度，未将整章或所有实现宣告通过。"
+        ],
+        "referenceIndices": [
+          593,
+          594
+        ],
+        "table": {
+          "columns": [
+            "对象/版本",
+            "直接证据",
+            "读法/边界"
+          ],
+          "rows": [
+            [
+              "共同证据",
+              "B310及6.1正文",
+              "功能5集中解释"
+            ],
+            [
+              "原6.0查询",
+              "不自动应用后续勘误",
+              "旧文分歧仍可查"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 5,
+            "detailId": "r206-b310-versioned-fallback-contract",
+            "label": "B310/B384修订及查询"
+          }
+        ]
       }
     ]
   },
@@ -13141,14 +13281,14 @@
     "checks": "发起控制的端口必须有相应职责和能力；记录切换前后速率、训练状态和错误计数。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 5,
-    "status": "R168部分验收：7/8维度通过，Base6回退来源一致性阻塞",
+    "status": "一期已验收：R206正式勘误修订链确认；未修订旧原文和硬件实现另列",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-29",
+    "reviewed": "2026-10-31",
     "protocolReferences": [
       {
         "section": "6.11",
@@ -13677,6 +13817,65 @@
         "title": "Speed新增1b/1b回退分支",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.7.4.3",
+        "page": 503,
+        "pdfPage": 503,
+        "title": "原6.0通用else",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.0.1",
+        "section": "4.2.7.4.3",
+        "page": 515,
+        "pdfPage": 515,
+        "title": "6.0.1未修该else，仍48ms",
+        "url": "https://pcisig.com/specification-overview/pci-express-base",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.1-cb",
+        "document": "PCI Express Base Specification 6.1 vs 6.0.1 — Change Bar",
+        "version": "6.1 Change Bar",
+        "section": "4.2.7.4.3",
+        "page": 542,
+        "pdfPage": 542,
+        "title": "标明针对Base6.0.1的新增回退与超时修订",
+        "url": "https://pcisig.com/PCIExpress/ChangeBar/Base/_6.1",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。",
+        "errata": [
+          "B310",
+          "B384"
+        ]
+      },
+      {
+        "documentId": "pcie-base-6.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.1",
+        "section": "4.2.7.4.3",
+        "page": 535,
+        "pdfPage": 535,
+        "title": "6.1 Speed进入及EI保持",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.1",
+        "section": "4.2.7.4.3",
+        "page": 536,
+        "pdfPage": 536,
+        "title": "纳入B310/B384的正文",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "所引Base6.0/7.0 Recovery、Speed及改宽入口正文已核读；早期修订/全部角色/后续ECN及整章覆盖仍待继续。",
@@ -13921,7 +14120,8 @@
         "title": "6.0保留1b/1b回退表述差异；7.0在Speed正文明确回32GT/s",
         "paragraphs": [
           "6.0 RcvrLock/RcvrCfg明确1b/1b失败回32GT/s，但Speed末尾通用else写2.5GT/s；7.0增加latest encoding=1b/1b则回32GT/s的分支。",
-          "工具对6.0来源为RcvrLock/RcvrCfg时显示明确的32GT/s入口依据，同时提示Speed通用句差异；对未核明的其它1b/1b失败来源返回待核，不静默“修正规范”。"
+          "工具对6.0来源为RcvrLock/RcvrCfg时显示明确的32GT/s入口依据，同时提示Speed通用句差异；对未核明的其它1b/1b失败来源返回待核，不静默“修正规范”。",
+          "R206更新：已核Base6.1 Change Bar的B310（针对Base6.0.1）及6.1正文，修订链已建立。原始6.0纸面分歧不删除；6.1选项按纳入勘误的正文查询，详见功能5的r206-b310-versioned-fallback-contract。"
         ],
         "referenceIndices": [
           3,
@@ -13932,6 +14132,13 @@
           24,
           25,
           26
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 5,
+            "detailId": "r206-b310-versioned-fallback-contract",
+            "label": "B310正式修订链"
+          }
         ]
       },
       {
@@ -13976,7 +14183,8 @@
         "title": "查询：Recovery.Speed额外EI窗口、回退目标与48/96ms适用条件",
         "paragraphs": [
           "输入版本、从哪里进Speed、成功/changed变量、Speed与原Recovery入口速率、共同目标、EI证据及额外保持ns。查询分别显示频率改变的前提、离开EI的窗口和目标速率。",
-          "7.0增强与普通模式分别列超时选择，6.0有上下文差异的失败来源保留待核。工具不决定PLL锁定，不推断真实EI或整个LTSSM的竞态优先级。"
+          "7.0增强与普通模式分别列超时选择，6.0有上下文差异的失败来源保留待核。工具不决定PLL锁定，不推断真实EI或整个LTSSM的竞态优先级。",
+          "R206更新：已核Base6.1 Change Bar的B310（针对Base6.0.1）及6.1正文，修订链已建立。原始6.0纸面分歧不删除；6.1选项按纳入勘误的正文查询，详见功能5的r206-b310-versioned-fallback-contract。"
         ],
         "referenceIndices": [
           3,
@@ -13990,6 +14198,13 @@
           24,
           25,
           26
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 5,
+            "detailId": "r206-b310-versioned-fallback-contract",
+            "label": "B310正式修订链"
+          }
         ]
       },
       {
@@ -14126,6 +14341,75 @@
             "featureId": 3,
             "detailId": "r167-base6-fallback-source-gate",
             "label": "共享一致性阻塞"
+          }
+        ]
+      },
+      {
+        "id": "r206-b310-versioned-fallback-contract",
+        "title": "B310修订链：6.1已把1b/1b失败回退写入Speed正文，不必等待Gen7",
+        "paragraphs": [
+          "R206找到此前验收缺少的中间修订链：已有Base6.0.1 NCB仍保留通用else回2.5GT/s；已有Base6.1 Change Bar在新增1b/1b回32GT/s的句子旁直接标注Errata: Base6.0.1、B310。对应6.1 NCB已纳入该分支。这是正式勘误标记及落地正文，不只是较新7.0的相似表述。",
+          "B310分支有先后关系：从RcvrCfg成功协商进入时先取共同最高速率并置changed_speed_recovery；否则本次已经成功改速时先回原Recovery入口速率；再否则，进入Speed之前最后使用1b/1b编码才回32GT/s并保持changed变量为0；其余情况回2.5GT/s。不能把所有64GT/s失败都越过第二个分支强制降到32GT/s。",
+          "同一Change Bar的B384独立修订Speed到Detect计时：6.1在Speed入口速率低于64GT/s时为48ms；入口速率至少64GT/s时允许96ms或48ms，强烈推荐96ms。它与B310目标速率是两个独立修订，不把96ms称成所有旧6.0状态或所有均衡阶段的统一计时。",
+          "查询增加明确的6.1选项，按所核6.1句子处理回退与计时；原始6.0选项继续保留文本差异和待核分支，不把选择6.0自动升级成已应用B310。对旧实现需确认所依据的修订/勘误集合，不能只凭Gen6速率宣称硬件已经采用B310。6.1分支不使用本工具的7.0增强编码输入推导额外规则。",
+          "3/4/5共享阻塞现在已有可追溯的修订答案，因此通过其一致性验收：旧文问题、补丁针对的Base6.0.1和6.1正文分别可查。没有宣称未修订的6.0原纸面已消失，也不把局部Speed核读标成完整LTSSM实现验证。"
+        ],
+        "referenceIndices": [
+          48,
+          49,
+          50,
+          51,
+          52
+        ],
+        "table": {
+          "columns": [
+            "对象/版本",
+            "直接证据",
+            "读法/边界"
+          ],
+          "rows": [
+            [
+              "6.0 / 6.0.1原文",
+              "通用else仍为2.5GT/s",
+              "保留旧文上下文差异"
+            ],
+            [
+              "6.1 Change Bar",
+              "B310针对Base6.0.1",
+              "新增最后编码为1b/1b的32GT/s分支"
+            ],
+            [
+              "成功协商 / changed=1",
+              "优先于编码回退",
+              "共同最高 / 原Recovery入口速率"
+            ],
+            [
+              "6.1入口速率≥64GT/s",
+              "B384：96ms或48ms",
+              "强烈推荐96ms；非所有旧版统一要求"
+            ],
+            [
+              "页码",
+              "6.1 NCB536 / CB542",
+              "物理页和印刷页各自绑定副本"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 3,
+            "detailId": "r167-base6-fallback-source-gate",
+            "label": "原验收重开记录"
+          },
+          {
+            "featureId": 4,
+            "detailId": "recovery-speed",
+            "label": "LTSSM Speed主入口"
+          },
+          {
+            "featureId": 5,
+            "detailId": "speed-window-target-query",
+            "label": "更新后的查询"
           }
         ]
       }
@@ -29369,14 +29653,14 @@
     "checks": "检查双方能力、请求/确认和退出延迟；吞吐波动时结合活动宽度观察，不只看最大x8配置。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 15,
-    "status": "R174部分验收：7/8通过，Base6同宽Priority仲裁来源一致性阻塞",
+    "status": "一期已验收：R207正式勘误修订链确认；未修订旧原文和硬件实现另列",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-30",
+    "reviewed": "2026-10-31",
     "protocolReferences": [
       {
         "section": "4.2.6.7",
@@ -30389,6 +30673,65 @@
         "title": "Base7 Enable/Target角色",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.6.7",
+        "page": 446,
+        "pdfPage": 446,
+        "title": "旧双方Priority较窄规则",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.0.1",
+        "section": "4.2.6.7",
+        "page": 458,
+        "pdfPage": 458,
+        "title": "6.0.1仍未明确该同宽平局",
+        "url": "https://pcisig.com/specification-overview/pci-express-base",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.1",
+        "section": "4.2.6.7",
+        "page": 479,
+        "pdfPage": 479,
+        "title": "6.1仍保留旧仲裁句",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.2-cb",
+        "document": "PCI Express Base Specification 6.2 vs 6.1 — Change Bar",
+        "version": "6.2 Change Bar",
+        "section": "4.2.6.7",
+        "page": 506,
+        "pdfPage": 506,
+        "title": "针对Base6.1的正式修订标记",
+        "url": "https://pcisig.com/PCIExpress/ChangeBar/Base/_6.2",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。",
+        "errata": [
+          "B541",
+          "B564"
+        ]
+      },
+      {
+        "documentId": "pcie-base-6.2",
+        "document": "PCI Express Base Specification",
+        "version": "6.2",
+        "section": "4.2.6.7",
+        "page": 492,
+        "pdfPage": 492,
+        "title": "纳入B541/B564的正文",
+        "url": "https://pcisig.com/PCIExpress/Specs/Base/_6.2",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R65核1.0a/2.0 Recovery、6.0/7.0 L0p选定正文和字段；保留中间修订/ECN、6.0平局及软件控制表文差异。非七代整章完成。",
@@ -30642,11 +30985,19 @@
         "paragraphs": [
           "普通同时请求取较宽目标；一侧Priority置位则该侧赢；两侧Priority均置位取较窄目标。7.0明确同宽时由DSP赢，包含双方Priority均置位的平局。",
           "7.0还明确Priority设在Up-size上行为未定义；它不是所有扩宽请求的抢占按钮。温控或可靠性缩窄可使用Priority，但仍有本地Enable/HAWD及同时请求例外。",
-          "被视作同时的待发请求须安排在发送引脚100ns内出现。输方Ack赢家；7.0赢家可Nak或忽略输方请求。6.0对双方Priority同宽未在该条给出7.0那样明确平局句，工具保留待核。"
+          "被视作同时的待发请求须安排在发送引脚100ns内出现。输方Ack赢家；7.0赢家可Nak或忽略输方请求。6.0对双方Priority同宽未在该条给出7.0那样明确平局句，工具保留待核。",
+          "R207更新：Base6.2 Change Bar p506已明确B541/B564（针对Base6.1），NCB6.2 p492已纳入同宽Priority与恢复宽度澄清；旧原文不自动改写，按版本/勘误集合区分，问题23的修订链已建立。"
         ],
         "referenceIndices": [
           37,
           38
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 15,
+            "detailId": "r207-l0p-b541-b564-versioned-contract",
+            "label": "B541/B564正式修订链"
+          }
         ]
       },
       {
@@ -30655,7 +31006,8 @@
         "paragraphs": [
           "选择6.0/7.0、已配置和当前活动宽度、DSP/USP目标与Priority，得到赢家及应答职责。工具假定请求已合法形成、满足同时窗口及使能条件；不替代完整接收状态机。",
           "7.0的Priority Up-size输出未定义；6.0双方Priority同宽不擅自套用7.0平局规则。超配置目标、当前宽度不一致或无实际宽度改变均不进入简化仲裁。",
-          "这里的L0p Ack/Nak属于管理请求应答，不是数据链路重放Ack/Nak或TLP Completion。"
+          "这里的L0p Ack/Nak属于管理请求应答，不是数据链路重放Ack/Nak或TLP Completion。",
+          "R207新增6.1原文及6.2含B541选项：旧同宽分支保留未明确，修订后按DSP平局处理。"
         ],
         "referenceIndices": [
           39,
@@ -30770,7 +31122,8 @@
         "title": "6.0→7.0选定差异速查：哪些仍待中间修订证据",
         "paragraphs": [
           "以下是对两版已核正文的差分，不推断每项第一次加入6.x或哪份ECN。功能首次引入与修订历史仍要单独追溯。",
-          "同一功能内部，包格式可保持而计时、软件角色、并发和异常规则发生变化。只比较GT/s或能力名会漏掉真正影响实现的差异。"
+          "同一功能内部，包格式可保持而计时、软件角色、并发和异常规则发生变化。只比较GT/s或能力名会漏掉真正影响实现的差异。",
+          "R207更新：Base6.2 Change Bar p506已明确B541/B564（针对Base6.1），NCB6.2 p492已纳入同宽Priority与恢复宽度澄清；旧原文不自动改写，按版本/勘误集合区分，问题23的修订链已建立。"
         ],
         "referenceIndices": [
           67,
@@ -30821,7 +31174,14 @@
               "不按名称判能力首次出现"
             ]
           ]
-        }
+        },
+        "relatedDetails": [
+          {
+            "featureId": 15,
+            "detailId": "r207-l0p-b541-b564-versioned-contract",
+            "label": "B541/B564正式修订链"
+          }
+        ]
       },
       {
         "id": "r174-l0p-control-to-wire-walk",
@@ -30994,7 +31354,8 @@
         "paragraphs": [
           "既有仲裁查询保留的Base6分支本轮再次核读：p446对双方Priority请求只写较低宽度赢；同一页把DSP同宽胜出明确放在双方均无Priority的分支。Base7 p525则在双方Priority且同宽时也明确DSP赢。",
           "这足以确认两个正式版的文字边界不同，但不足以从Base6较低宽度规则推出相等时赢家，也不能借用Base7给所有Base6实现增加同周期优先级。问题并非缺少Base6正文；需要可适用的正式勘误、ECN或官方澄清来关闭这个组合。",
-          "Base6 Control3 Enable=0的禁止请求/Nak规则，与Base7在HAWD/Disable条件下恢复全配置宽度的规则也必须分版呈现，不合成为一套无版本驱动步骤。当前条目已有确定条件、正常/失败路径与结构可供查询；本轮七维通过，一致性仍阻塞，未把未核组合标记成已完成。"
+          "Base6 Control3 Enable=0的禁止请求/Nak规则，与Base7在HAWD/Disable条件下恢复全配置宽度的规则也必须分版呈现，不合成为一套无版本驱动步骤。当前条目已有确定条件、正常/失败路径与结构可供查询；本轮七维通过，一致性仍阻塞，未把未核组合标记成已完成。",
+          "R207更新：Base6.2 Change Bar p506已明确B541/B564（针对Base6.1），NCB6.2 p492已纳入同宽Priority与恢复宽度澄清；旧原文不自动改写，按版本/勘误集合区分，问题23的修订链已建立。"
         ],
         "referenceIndices": [
           88,
@@ -31046,6 +31407,79 @@
             "featureId": 15,
             "detailId": "l0p-six-seven-change-index",
             "label": "Base6到7差异索引"
+          },
+          {
+            "featureId": 15,
+            "detailId": "r207-l0p-b541-b564-versioned-contract",
+            "label": "B541/B564正式修订链"
+          }
+        ]
+      },
+      {
+        "id": "r207-l0p-b541-b564-versioned-contract",
+        "title": "L0p修订链：B541补双方Priority同宽DSP胜，B564澄清Recovery恢复宽度",
+        "paragraphs": [
+          "R207核到Base6.2 Change Bar：B541明确标注针对Base6.1，在双方L0p.Priority均置位的分支加入同宽DSP胜、不同宽较窄请求胜。对应6.2正文已纳入；6.0、6.0.1和6.1所核原文仍只有双方Priority较窄胜，不能把未应用修订的旧选项静默改成DSP。",
+          "仲裁查询现在分6.0原文、6.1原文、6.2（含B541）和7.0。两侧Priority同宽时，前两版返回该原文分支未明确，后两版给DSP；单侧Priority、双方普通请求以及双方Priority不同宽的原有比较保持。Priority不能用于扩宽；所核6.1/6.2正文明确这种用法未定义，查询不给赢家。",
+          "同页B564把进入Recovery恢复的宽度明确成最近一次Configuration到L0转移时配置的Link宽度。它不是Max Link Width能力字段，也不是L0p收窄后的当前活动宽度；遇到例如能力x16、最近配置x8、当前L0p活动x4时，按6.2的这条规则参照x8，不直接恢复到能力x16。此例只说明三个宽度坐标，不预测实际链路训练结果。",
+          "这建立了问题23的版本化修订答案，15完成最后一致性验收。B541/B564标记针对Base6.1，不宣称全部未修订6.0硬件自动采用；原文、修订对象和纳入版分别列明。这里不运行物理Lane开关、RTL或完整LTSSM仿真，所核少数条款也不代表整份6.2已通读。"
+        ],
+        "referenceIndices": [
+          92,
+          93,
+          94,
+          95,
+          96
+        ],
+        "table": {
+          "columns": [
+            "对象/版本",
+            "直接证据",
+            "读法/边界"
+          ],
+          "rows": [
+            [
+              "6.0 / 6.0.1 / 6.1原文",
+              "双方Priority较窄赢",
+              "同宽不静默补DSP"
+            ],
+            [
+              "6.2 Change Bar B541",
+              "针对Base6.1",
+              "双方Priority同宽DSP赢"
+            ],
+            [
+              "6.2/7.0查询",
+              "按已核相应正文",
+              "其它角色/使能/100ns前提仍需满足"
+            ],
+            [
+              "6.2 Change Bar B564",
+              "最近Configuration→L0配置宽度",
+              "区分能力最大值/配置宽度/当前活动宽度"
+            ],
+            [
+              "页码",
+              "NCB6.2 492 / CB6.2 506",
+              "版本和副本分别绑定"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 15,
+            "detailId": "l0p-arbitration-query",
+            "label": "更新后的仲裁查询"
+          },
+          {
+            "featureId": 15,
+            "detailId": "r174-base6-l0p-equal-priority-source-gate",
+            "label": "原问题与历史"
+          },
+          {
+            "featureId": 15,
+            "detailId": "l0p-six-seven-change-index",
+            "label": "既有版本差分入口"
           }
         ]
       }
