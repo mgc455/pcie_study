@@ -230,6 +230,23 @@ if 'releasePlan' in m:
             assert all(r['status'] in {'passed','not-applicable'} for r in u['criterionReviews'].values())
         if u['status']=='merged-accepted':assert u.get('mergeTargets') and u.get('uniqueSemanticsReviewed')
         if u['status']=='blocked':assert u.get('blockers')
+    # A user-approved product scope is acceptance evidence, not technical proof.
+    product_scope=plan.get('userAcceptedProductScope')
+    if product_scope:
+        assert product_scope['technicalQuestionsResolved'] is False
+        assert product_scope['evidence']['href']=='#feature/143/detail/r214-user-product-scope-acceptance'
+        product_ids=set(product_scope['featureIds'])
+        assert product_ids=={143,146,147,148,152,159,173,176,179}
+        for u in units:
+            if u.get('acceptanceBasis')=='user-accepted-product-scope':
+                assert u['featureId'] in product_ids and u['status']=='accepted'
+                review=u['criterionReviews']['consistency']
+                assert review['acceptanceBasis']=='user-accepted-product-scope'
+                assert review['technicalQuestionResolved'] is False
+        assert product_ids=={u['featureId'] for u in units if u.get('acceptanceBasis')=='user-accepted-product-scope'}
+        assert not product_ids.intersection(x['featureId'] for x in plan['acceptanceGate']['items'])
+        assert not plan['documentRequests'].get('deferredItems'), 'Do not request confidential product evidence again'
+        assert '验收依据分开统计' in raw
     for r in plan['reuseGroups']:assert set(r['featureIds'])<=set(plan['scopeFeatureIds'])
     assert '#completion' in raw and 'function renderCompletion(' in raw
     print('PASS: fixed V1 acceptance scope, evidence gates and round budget.')
