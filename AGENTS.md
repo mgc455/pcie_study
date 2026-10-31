@@ -340,3 +340,9 @@ R207: official-only priority per user;product requests deferred. R206 B310/B384 
 R208: No-EQ两个Disable条件并行适用，新增四组合表并纠正过度阻塞；功能9完成验收。累计160/183、1440维度，剩23项/24维度。 User continuously permits online official-source research; inventory/read existing local official PDFs and Change Bars as well. No-EQ constraints are concurrent, not a claimed typo; B45 in6.0.1CB1048 mapsNCB1036. Daily stays paused; reviewR210; product requests deferred.
 
 R209: B45正式修订链补齐64GT/s Lower SKP控制向量，新增6.0.1快照查询并按本版正文拦截FM非法修改；10/12验收。累计162/183、1442维度，剩21项/22维度。 User continuously permits online official-source research; inventory/read existing local official PDFs and Change Bars as well. No-EQ constraints are concurrent, not a claimed typo; B45 in6.0.1CB1048 mapsNCB1036. Daily stays paused; reviewR210; product requests deferred.
+
+R210: 纠正RP PIO容量笔记遗漏bit13：支持FM时为5位Log Size，删除最多60Byte的错误推导；52～76Byte Header关系仍待澄清。R207～R210四轮验收4项/4维度，累计162/183、1442维度，剩21项/22维度。 RP PIO Log Size high bit13 applies with FM support;low4-only60Byte claim removed.106 stays blocked for Header range,not encoding. ReviewR210 closes[9,10,12,15],4criteria;nextreview214,daily paused,product evidence deferred.
+
+R211: 新增RP PIO分配边界查询：区分FM支持/当前模式，按五位容量检查Header拼接并跳过30h，拒绝容量不足；不把容量足够当规范合规。累计162/183、1442维度，剩21项/22维度，来源问题06继续保留。 RP PIO Log Size high bit13 applies with FM support;low4-only60Byte claim removed.106 stays blocked for Header range,not encoding. ReviewR210 closes[9,10,12,15],4criteria;nextreview214,daily paused,product evidence deferred.
+
+Publication repair R211: keep content/features.json compact UTF-8 JSON at publication (semantic equality required); pretty-printed file exceeded10MB and connector uploads repeatedly returnedHTTP500. Rebuilding/checking must preserve all183 IDs/reference prefixes; this formatting-only repair is not another research round.
