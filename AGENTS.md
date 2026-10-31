@@ -346,3 +346,7 @@ R210: 纠正RP PIO容量笔记遗漏bit13：支持FM时为5位Log Size，删除�
 R211: 新增RP PIO分配边界查询：区分FM支持/当前模式，按五位容量检查Header拼接并跳过30h，拒绝容量不足；不把容量足够当规范合规。累计162/183、1442维度，剩21项/22维度，来源问题06继续保留。 RP PIO Log Size high bit13 applies with FM support;low4-only60Byte claim removed.106 stays blocked for Header range,not encoding. ReviewR210 closes[9,10,12,15],4criteria;nextreview214,daily paused,product evidence deferred.
 
 Publication repair R211: keep content/features.json compact UTF-8 JSON at publication (semantic equality required); pretty-printed file exceeded10MB and connector uploads repeatedly returnedHTTP500. Rebuilding/checking must preserve all183 IDs/reference prefixes; this formatting-only repair is not another research round.
+
+R212: 新提供6.5/7.1正文及Showing Changes核到B148：LTR跨FLR保留字段改为[1:0]非零兼容旧bit0/bit1，89完成验收。累计163/183、1443维度，剩20项/21维度；此前官方资料请求转为已收到/问题已解决。 New official6.5/7.1 NCB+CB and4pageLTR ECN supplied. B148 explicitly resolves approvedECN bit0 vs6.4/7.0 bit1 with[1:0] nonzero. A132/7.1REPORT ECN distinguish byteBase and pageCount;preserve legacy query. Nextreview214,daily paused;product evidence deferred;keep featureJSON compact.
+
+R213: 新6.5/7.1的A132及报告修订明确TDISP Base为字节地址、Size为4KiB页数；更新已有Range查询并保留旧页号兼容模式，避免4096倍误读。GET_REPORT在RUN的来源分歧仍在，累计163/183、1443维度，剩20项/21维度。 New official6.5/7.1 NCB+CB and4pageLTR ECN supplied. B148 explicitly resolves approvedECN bit0 vs6.4/7.0 bit1 with[1:0] nonzero. A132/7.1REPORT ECN distinguish byteBase and pageCount;preserve legacy query. Nextreview214,daily paused;product evidence deferred;keep featureJSON compact.

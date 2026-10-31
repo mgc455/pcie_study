@@ -1,5 +1,13 @@
 {
-  "nextFeatureIds": [],
+  "nextFeatureIds": [
+    92,
+    106,
+    114,
+    119,
+    127,
+    129,
+    136
+  ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
     "修正事实错误",
@@ -46,11 +54,11 @@
   ],
   "lastCompleted": {
     "date": "2026-10-31",
-    "edition": "2026-10-31-r211",
+    "edition": "2026-10-31-r213",
     "featureIds": [
-      106
+      129
     ],
-    "nextTrack": "官方来源依赖优先，R214复盘；不是反复扩写成熟条目"
+    "nextTrack": "新6.5/7.1局部条款与R214复盘"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -340,11 +348,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 1,
-    "nextReviewAfterRounds": 3,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 153,
+    "completedTotal": 155,
     "lastReviewEdition": "2026-10-31-r210",
     "lastReviewId": "r207-r210",
     "nextExpectedReview": "下次四轮复盘R214；不是新完工期限。"
@@ -1281,9 +1289,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 121,
+    "completedRounds": 123,
     "remainingPlannedRounds": 0,
-    "nextRound": 212,
+    "nextRound": 214,
     "nextReviewRound": 214,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -14547,7 +14555,7 @@
         "featureId": 89,
         "group": "功耗与复位",
         "scope": "protocol-or-phy",
-        "status": "blocked",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -14667,19 +14675,15 @@
             "note": "R93按所列原创正文/位表与直接来源核对本项要求；不将此维度通过推成七代全部条款完成。"
           },
           "consistency": {
-            "status": "blocked",
-            "reviewedRound": 188,
+            "status": "passed",
+            "reviewedRound": 212,
             "evidence": [
               {
-                "href": "#feature/89/detail/r93-ltr-flr-version-map",
-                "label": "已有来源疑点证据；非本轮新增核读"
-              },
-              {
-                "href": "#feature/89/detail/r188-ltr-preserve-mask-source-gate",
-                "label": "LTR跨FLR位查询：同一原始DWORD，按7.0或6.3底本ECN会得到不同结论"
+                "href": "#feature/89/detail/r212-ltr-b148-two-bit-preservation",
+                "label": "B148正式裁决：LTR跨FLR保留改为[1:0]，非零都表示保留"
               }
             ],
-            "note": "LTR定向追证：核官方条目底本/日期与正式7.0原图，补Version门槛及bit0/bit1原始值对照；最终ECN正文未取得，零新增验收。"
+            "note": "B148及6.5脚注203/7.1脚注211明确说明ECN bit0与6.4/7.0 bit1错误，并以[1:0]非零兼容；旧原文历史保留。"
           }
         },
         "baseline": {
@@ -14688,7 +14692,7 @@
         },
         "reuseGroups": [],
         "triageHint": "详细块较少；优先查是否解释充分及来源直接。",
-        "reviewNote": "R100核心与版本7维通过，仅2025 ECN与正式7.0 FLR位号来源链阻塞一致性；未完整验收。",
+        "reviewNote": "B148及6.5脚注203/7.1脚注211明确说明ECN bit0与6.4/7.0 bit1错误，并以[1:0]非零兼容；旧原文历史保留。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
@@ -14708,9 +14712,7 @@
             "reason": "旧备注已明确阻塞，状态与事实对齐，不计新增验收。"
           }
         ],
-        "blockers": [
-          "R100已记录2025 ECN与Base7 LTR跨FLR位号来源链待澄清；本轮仅对齐阻塞分类。"
-        ],
+        "blockers": [],
         "sourceReviewHistory": [
           {
             "round": 188,
@@ -14726,8 +14728,32 @@
               "note": "R100已记录2025 ECN与Base7 LTR跨FLR位号来源链待澄清；本轮仅对齐阻塞分类。"
             },
             "result": "no-new-authoritative-resolution"
+          },
+          {
+            "round": 212,
+            "previousStatus": "blocked",
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 188,
+              "evidence": [
+                {
+                  "href": "#feature/89/detail/r93-ltr-flr-version-map",
+                  "label": "已有来源疑点证据；非本轮新增核读"
+                },
+                {
+                  "href": "#feature/89/detail/r188-ltr-preserve-mask-source-gate",
+                  "label": "LTR跨FLR位查询：同一原始DWORD，按7.0或6.3底本ECN会得到不同结论"
+                }
+              ],
+              "note": "LTR定向追证：核官方条目底本/日期与正式7.0原图，补Version门槛及bit0/bit1原始值对照；最终ECN正文未取得，零新增验收。"
+            },
+            "previousBlockers": [
+              "R100已记录2025 ECN与Base7 LTR跨FLR位号来源链待澄清；本轮仅对齐阻塞分类。"
+            ],
+            "result": "B148及6.5脚注203/7.1脚注211明确说明ECN bit0与6.4/7.0 bit1错误，并以[1:0]非零兼容；旧原文历史保留。"
           }
-        ]
+        ],
+        "acceptedRound": 212
       },
       {
         "id": "v1-feature-90",
@@ -36659,6 +36685,41 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "固定183项中162通过，21项/22维度阻塞；不是新增文段就增加验收数。",
         "publication": "R210/R211分别构建和针对性检查后合并发布R211；视觉复核与线上字节核验分列。"
+      },
+      {
+        "round": 212,
+        "kind": "R212 B148正式裁决：LTR跨FLR保留改为[1:0]，非零都表示保留",
+        "deliverables": [
+          "新提供6.5/7.1正文及Showing Changes核到B148：LTR跨FLR保留字段改为[1:0]非零兼容旧bit0/bit1，89完成验收。累计163/183、1443维度，剩20项/21维度；此前官方资料请求转为已收到/问题已解决。"
+        ],
+        "closedDeliverableIds": [
+          "feature-89-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 89,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          89
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "163/183通过，20项/21维度仍阻塞。新资料进入局部正文核读，不等于所有来源问题已关闭。",
+        "publication": "R212/R213分别构建/查询检查后合并发布R213；只上传原创笔记及允许网站文件。"
+      },
+      {
+        "round": 213,
+        "kind": "R213 TDISP MMIO：Base是字节地址，Size仍是4KiB页数；按修订选单位",
+        "deliverables": [
+          "新6.5/7.1的A132及报告修订明确TDISP Base为字节地址、Size为4KiB页数；更新已有Range查询并保留旧页号兼容模式，避免4096倍误读。GET_REPORT在RUN的来源分歧仍在，累计163/183、1443维度，剩20项/21维度。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "163/183通过，20项/21维度仍阻塞。新资料进入局部正文核读，不等于所有来源问题已关闭。",
+        "publication": "R212/R213分别构建/查询检查后合并发布R213；只上传原创笔记及允许网站文件。"
       }
     ],
     "backlog": [
@@ -38648,10 +38709,10 @@
         "legacyRecordIndices": [
           24
         ],
-        "status": "needs-corroboration",
+        "status": "resolved-versioned-official-errata",
         "raisedRound": 93,
         "impact": "正式Base7.0图/表均为bit1，页面已按其解释；本地May29副本bit0不适用于该版。最终ECN副本及接受/勘误链仍待确认，保持版本/交叉验收未通过。",
-        "nextAction": "取得PCI-SIG发布条目2025-06-11对应的最终LTR Enhancements for MFD ECN正文，及解释正式Base7.0 §7.8.2.4位号的勘误/澄清（若存在）；官网元数据只证底本6.3与日期，不证bit0到bit1的修订原因。",
+        "nextAction": "按修订后两位规则查询；不再索取已具直接依据的同一位号澄清。",
         "evidence": [
           {
             "href": "#feature/89/detail/r93-ltr-flr-version-map",
@@ -38660,6 +38721,10 @@
           {
             "href": "#feature/89/detail/r188-ltr-preserve-mask-source-gate",
             "label": "官方元数据与逐来源掩码判读"
+          },
+          {
+            "href": "#feature/89/detail/r212-ltr-b148-two-bit-preservation",
+            "label": "B148正式裁决：LTR跨FLR保留改为[1:0]，非零都表示保留"
           }
         ],
         "reviewHistory": [
@@ -38673,8 +38738,25 @@
                 "label": "逐版本位号与来源边界"
               }
             ]
+          },
+          {
+            "round": 212,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "取得PCI-SIG发布条目2025-06-11对应的最终LTR Enhancements for MFD ECN正文，及解释正式Base7.0 §7.8.2.4位号的勘误/澄清（若存在）；官网元数据只证底本6.3与日期，不证bit0到bit1的修订原因。",
+            "previousEvidence": [
+              {
+                "href": "#feature/89/detail/r93-ltr-flr-version-map",
+                "label": "逐版本位号与来源边界"
+              },
+              {
+                "href": "#feature/89/detail/r188-ltr-preserve-mask-source-gate",
+                "label": "官方元数据与逐来源掩码判读"
+              }
+            ]
           }
-        ]
+        ],
+        "lastReviewedRound": 212,
+        "resolution": "B148及6.5脚注203/7.1脚注211明确说明ECN bit0与6.4/7.0 bit1错误，并以[1:0]非零兼容；旧原文历史保留。"
       }
     ],
     "legacyTriage": [
@@ -40601,33 +40683,41 @@
       }
     ],
     "nextExecution": {
-      "round": 212,
+      "round": 214,
       "taskId": "v1-task-23",
-      "featureIds": [],
-      "goal": "修复已有错误优先；核剩余官方来源的新证据，有现成文件先核正文，外部澄清未取得不重复扩写。",
-      "mode": "official-specification-first",
+      "featureIds": [
+        92,
+        106,
+        114,
+        119,
+        127,
+        129,
+        136
+      ],
+      "goal": "先核新资料的直接勘误和剩余确切条款；R214四轮复盘，不把新文件存在当问题已解决。",
+      "mode": "new-official-documents-targeted-review",
       "reviewRound": 214
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 211,
+      "assessedRound": 213,
       "reestimateRound": 214,
       "observedAcceptedUnitsPerRound": 1.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "新增RP PIO分配边界查询：区分FM支持/当前模式，按五位容量检查Header拼接并跳过30h，拒绝容量不足；不把容量足够当规范合规。累计162/183、1442维度，剩21项/22维度，来源问题06继续保留。",
-      "action": "R210修本站容量错误、R211提供边界核对；没有新验收证据不放行。优先补官方缺口资料，产品资料暂缓；无法给外部资料到达时间承诺轮数。",
+      "assessment": "新6.5/7.1的A132及报告修订明确TDISP Base为字节地址、Size为4KiB页数；更新已有Range查询并保留旧页号兼容模式，避免4096倍误读。GET_REPORT在RUN的来源分歧仍在，累计163/183、1443维度，剩20项/21维度。",
+      "action": "新收到6.5/7.1及Showing Changes，按剩余问题逐条核正文；已有文件不再列缺失。优先直接修订，未解决问题不放行；产品资料暂缓。",
       "latestProgress": {
-        "round": 211,
+        "round": 213,
         "newAcceptedUnits": 0,
-        "cumulativeAcceptedUnits": 162,
+        "cumulativeAcceptedUnits": 163,
         "newPassedCriteria": 0,
-        "cumulativePassedCriteria": 1442,
+        "cumulativePassedCriteria": 1443,
         "remainingPlannedRounds": 0
       },
       "unacceptedBreakdown": {
-        "blocked": 21,
+        "blocked": 20,
         "awaiting": 0
       }
     },
@@ -42402,8 +42492,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        210,
-        211
+        212,
+        213
       ],
       "completedRounds": [
         139,
@@ -42478,10 +42568,12 @@
         208,
         209,
         210,
-        211
+        211,
+        212,
+        213
       ],
-      "publication": "checks-before-combined-r211-publication",
-      "note": "每日保持暂停，网上官方来源和本地正式规范共同核读；未取得新证据不虚增验收。",
+      "publication": "checks-before-combined-r213-publication",
+      "note": "用户新提供官方资料；每日保持暂停、产品资料暂缓。",
       "historyPreservedR202": {
         "authorizedRounds": [
           185,
@@ -42642,6 +42734,30 @@
             211
           ],
           "instruction": "继续两轮；允许网上搜，兼顾已有本地资料。"
+        },
+        {
+          "round": 212,
+          "previousAuthorizedRounds": [
+            210,
+            211
+          ],
+          "currentAuthorizedRounds": [
+            212,
+            213
+          ],
+          "instruction": "doc/new已补充，继续；按上一批规模处理两轮实质内容。"
+        },
+        {
+          "round": 213,
+          "previousAuthorizedRounds": [
+            212,
+            213
+          ],
+          "currentAuthorizedRounds": [
+            212,
+            213
+          ],
+          "instruction": "doc/new已补充，继续；按上一批规模处理两轮实质内容。"
         }
       ]
     },
@@ -42655,16 +42771,16 @@
     },
     "continuationMode": "acceptance-evidence-gated-no-repeat",
     "acceptanceGate": {
-      "asOfRound": 211,
-      "acceptedFeatures": 162,
-      "blockedFeatures": 21,
-      "unpassedCriteria": 22,
-      "newAcceptedInLastFour": 3,
+      "asOfRound": 213,
+      "acceptedFeatures": 163,
+      "blockedFeatures": 20,
+      "unpassedCriteria": 21,
+      "newAcceptedInLastFour": 1,
       "sourceQuestionsResolvedThisWindow": [
         "v1-conflict-10",
         "v1-conflict-23"
       ],
-      "summary": "新增RP PIO分配边界查询：区分FM支持/当前模式，按五位容量检查Header拼接并跳过30h，拒绝容量不足；不把容量足够当规范合规。累计162/183、1442维度，剩21项/22维度，来源问题06继续保留。",
+      "summary": "新6.5/7.1的A132及报告修订明确TDISP Base为字节地址、Size为4KiB页数；更新已有Range查询并保留旧页号兼容模式，避免4096倍误读。GET_REPORT在RUN的来源分歧仍在，累计163/183、1443维度，剩20项/21维度。",
       "causes": [
         "原48轮是未校准的预算，并非可靠完成预测；到R202已比R138多64轮。",
         "最近主要反复处理规范/产品文档冲突，新增说明却无法关闭一致性门槛。",
@@ -42676,7 +42792,6 @@
         {
           "kind": "PCI-SIG正式条款澄清",
           "featureIds": [
-            89,
             92,
             106,
             114,
@@ -42711,23 +42826,6 @@
         }
       ],
       "items": [
-        {
-          "featureId": 89,
-          "kind": "PCI-SIG正式条款澄清",
-          "issue": "R100已记录2025 ECN与Base7 LTR跨FLR位号来源链待澄清；本轮仅对齐阻塞分类。",
-          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
-          "evidence": [
-            {
-              "href": "#feature/89/detail/r93-ltr-flr-version-map",
-              "label": "已有来源疑点证据；非本轮新增核读"
-            },
-            {
-              "href": "#feature/89/detail/r188-ltr-preserve-mask-source-gate",
-              "label": "LTR跨FLR位查询：同一原始DWORD，按7.0或6.3底本ECN会得到不同结论"
-            }
-          ],
-          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
-        },
         {
           "featureId": 92,
           "kind": "PCI-SIG正式条款澄清",
@@ -42832,7 +42930,7 @@
         {
           "featureId": 129,
           "kind": "PCI-SIG正式条款澄清",
-          "issue": "v1-conflict-24 TDISP子问题：GET_REPORT在RUN的正常状态与错误表冲突；记录27已由原图关闭。",
+          "issue": "6.5/7.1的MMIO Base字节单位已核；GET_REPORT正常状态含RUN、错误表仍仅CONFIG_LOCKED，最后一致性阻塞。",
           "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
           "evidence": [
             {
@@ -42842,6 +42940,10 @@
             {
               "href": "#feature/129/detail/r201-tdisp-range-image-verification",
               "label": "验收纠错：Range ID是31:16，文字提取异常不是规范印字错误"
+            },
+            {
+              "href": "#feature/129/detail/r213-tdisp-mmio-byte-base-contract",
+              "label": "TDISP MMIO：Base是字节地址，Size仍是4KiB页数；按修订选单位"
             }
           ],
           "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
@@ -43590,140 +43692,9 @@
       ]
     },
     "documentRequests": {
-      "asOfRound": 211,
-      "summary": "当前只保留Base6.5/7.1及配套Showing Changes、LTR最终发布正文五项官方资料请求。已有6.0.1/6.1/6.2及对应Change Bar继续核读，无需重复提供；IP产品三项请求按用户指示暂缓。",
-      "items": [
-        {
-          "id": "pcie-base-7.1",
-          "title": "PCI Express Base Specification Revision 7.1",
-          "officialDate": "2026-09-17",
-          "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71",
-          "memberDocumentId": "24165",
-          "featureIds": [
-            3,
-            4,
-            5,
-            9,
-            10,
-            12,
-            15,
-            92,
-            106,
-            114,
-            119,
-            127,
-            129,
-            136
-          ],
-          "purpose": "优先核后续修订是否改变现有阻塞条款；新规则不得无说明倒填旧版。",
-          "priority": "优先",
-          "availability": "官方条目已核；下载要求会员登录，未取得正文",
-          "localStatus": "文件名盘点未发现该版PDF",
-          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
-        },
-        {
-          "id": "pcie-base-6.5",
-          "title": "PCI Express Base Specification Revision 6.5",
-          "officialDate": "2026-09-17",
-          "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65",
-          "memberDocumentId": "24163",
-          "featureIds": [
-            3,
-            4,
-            5,
-            9,
-            10,
-            12,
-            15,
-            89,
-            92,
-            106,
-            114,
-            119,
-            127,
-            129,
-            136
-          ],
-          "purpose": "对照6.0/6.4阻塞的后续修订；不能假定新版已经修正。",
-          "priority": "优先",
-          "availability": "官方条目已核；下载要求会员登录，未取得正文",
-          "localStatus": "文件名盘点未发现该版PDF",
-          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
-        },
-        {
-          "id": "ltr-mfd-final-entry",
-          "title": "LTR Enhancements for MFD（官网2025-06-11发布条目对应最终PDF）",
-          "officialDate": "2025-06-11",
-          "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
-          "memberDocumentId": "22469",
-          "featureIds": [
-            89
-          ],
-          "purpose": "核保留跨Function0 FLR能力bit号；现有May29副本与Base7.0 bit0/bit1差异仍待修订链。",
-          "priority": "优先",
-          "availability": "官方条目已核；下载要求会员登录，未取得正文",
-          "localStatus": "现有2025-05-29副本已读；与该发布下载正文的同一性未确认",
-          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
-        },
-        {
-          "id": "pcie-base-7.1-change",
-          "title": "PCI Express Base Specification Revision 7.1 Showing Changes",
-          "officialDate": "2026-09-17",
-          "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71-showing-changes",
-          "memberDocumentId": "24166",
-          "featureIds": [
-            3,
-            4,
-            5,
-            9,
-            10,
-            12,
-            15,
-            89,
-            92,
-            106,
-            114,
-            119,
-            127,
-            129,
-            136
-          ],
-          "purpose": "辅助定位修订差异；须与正式正文配套，不单靠色条推断解决。",
-          "priority": "配套差异定位",
-          "availability": "官方条目已核；下载要求会员登录，未取得正文",
-          "localStatus": "文件名盘点未发现该版PDF",
-          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
-        },
-        {
-          "id": "pcie-base-6.5-change",
-          "title": "PCI Express Base Specification Revision 6.5 Showing Changes",
-          "officialDate": "2026-09-17",
-          "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65-showing-changes",
-          "memberDocumentId": "24164",
-          "featureIds": [
-            3,
-            4,
-            5,
-            9,
-            10,
-            12,
-            15,
-            89,
-            92,
-            106,
-            114,
-            119,
-            127,
-            129,
-            136
-          ],
-          "purpose": "辅助定位6.4之后变化；须与正式正文配套。",
-          "priority": "配套差异定位",
-          "availability": "官方条目已核；下载要求会员登录，未取得正文",
-          "localStatus": "文件名盘点未发现该版PDF",
-          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
-        }
-      ],
+      "asOfRound": 213,
+      "summary": "此前五项官方资料请求均已收到或由正式B148解决对应目的；转入所列局部条款核读。产品三项仍按用户指示暂缓，不再索取已有Base文件。",
+      "items": [],
       "history": [
         {
           "asOfRound": 203,
@@ -44840,6 +44811,1318 @@
               "reason": "IP产品资料暂时没有；用户要求当前只提出官方规范资料。"
             }
           ]
+        },
+        {
+          "asOfRound": 211,
+          "summary": "当前只保留Base6.5/7.1及配套Showing Changes、LTR最终发布正文五项官方资料请求。已有6.0.1/6.1/6.2及对应Change Bar继续核读，无需重复提供；IP产品三项请求按用户指示暂缓。",
+          "items": [
+            {
+              "id": "pcie-base-7.1",
+              "title": "PCI Express Base Specification Revision 7.1",
+              "officialDate": "2026-09-17",
+              "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71",
+              "memberDocumentId": "24165",
+              "featureIds": [
+                3,
+                4,
+                5,
+                9,
+                10,
+                12,
+                15,
+                92,
+                106,
+                114,
+                119,
+                127,
+                129,
+                136
+              ],
+              "purpose": "优先核后续修订是否改变现有阻塞条款；新规则不得无说明倒填旧版。",
+              "priority": "优先",
+              "availability": "官方条目已核；下载要求会员登录，未取得正文",
+              "localStatus": "文件名盘点未发现该版PDF",
+              "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+            },
+            {
+              "id": "pcie-base-6.5",
+              "title": "PCI Express Base Specification Revision 6.5",
+              "officialDate": "2026-09-17",
+              "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65",
+              "memberDocumentId": "24163",
+              "featureIds": [
+                3,
+                4,
+                5,
+                9,
+                10,
+                12,
+                15,
+                89,
+                92,
+                106,
+                114,
+                119,
+                127,
+                129,
+                136
+              ],
+              "purpose": "对照6.0/6.4阻塞的后续修订；不能假定新版已经修正。",
+              "priority": "优先",
+              "availability": "官方条目已核；下载要求会员登录，未取得正文",
+              "localStatus": "文件名盘点未发现该版PDF",
+              "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+            },
+            {
+              "id": "ltr-mfd-final-entry",
+              "title": "LTR Enhancements for MFD（官网2025-06-11发布条目对应最终PDF）",
+              "officialDate": "2025-06-11",
+              "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+              "memberDocumentId": "22469",
+              "featureIds": [
+                89
+              ],
+              "purpose": "核保留跨Function0 FLR能力bit号；现有May29副本与Base7.0 bit0/bit1差异仍待修订链。",
+              "priority": "优先",
+              "availability": "官方条目已核；下载要求会员登录，未取得正文",
+              "localStatus": "现有2025-05-29副本已读；与该发布下载正文的同一性未确认",
+              "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+            },
+            {
+              "id": "pcie-base-7.1-change",
+              "title": "PCI Express Base Specification Revision 7.1 Showing Changes",
+              "officialDate": "2026-09-17",
+              "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71-showing-changes",
+              "memberDocumentId": "24166",
+              "featureIds": [
+                3,
+                4,
+                5,
+                9,
+                10,
+                12,
+                15,
+                89,
+                92,
+                106,
+                114,
+                119,
+                127,
+                129,
+                136
+              ],
+              "purpose": "辅助定位修订差异；须与正式正文配套，不单靠色条推断解决。",
+              "priority": "配套差异定位",
+              "availability": "官方条目已核；下载要求会员登录，未取得正文",
+              "localStatus": "文件名盘点未发现该版PDF",
+              "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+            },
+            {
+              "id": "pcie-base-6.5-change",
+              "title": "PCI Express Base Specification Revision 6.5 Showing Changes",
+              "officialDate": "2026-09-17",
+              "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65-showing-changes",
+              "memberDocumentId": "24164",
+              "featureIds": [
+                3,
+                4,
+                5,
+                9,
+                10,
+                12,
+                15,
+                89,
+                92,
+                106,
+                114,
+                119,
+                127,
+                129,
+                136
+              ],
+              "purpose": "辅助定位6.4之后变化；须与正式正文配套。",
+              "priority": "配套差异定位",
+              "availability": "官方条目已核；下载要求会员登录，未取得正文",
+              "localStatus": "文件名盘点未发现该版PDF",
+              "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+            }
+          ],
+          "history": [
+            {
+              "asOfRound": 203,
+              "summary": "优先提供Base7.1、Base6.5及LTR最终发布PDF；Showing Changes配套有助定位。不声称新版本已解决旧版问题，也不要求提供已存在的旧版。",
+              "items": [
+                {
+                  "id": "pcie-base-7.1",
+                  "title": "PCI Express Base Specification Revision 7.1",
+                  "officialDate": "2026-09-17",
+                  "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71",
+                  "memberDocumentId": "24165",
+                  "featureIds": [
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    12,
+                    15,
+                    92,
+                    106,
+                    114,
+                    119,
+                    127,
+                    129,
+                    136
+                  ],
+                  "purpose": "优先核后续修订是否改变现有阻塞条款；新规则不得无说明倒填旧版。",
+                  "priority": "优先",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "文件名盘点未发现该版PDF",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "pcie-base-6.5",
+                  "title": "PCI Express Base Specification Revision 6.5",
+                  "officialDate": "2026-09-17",
+                  "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65",
+                  "memberDocumentId": "24163",
+                  "featureIds": [
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    12,
+                    15,
+                    89,
+                    92,
+                    106,
+                    114,
+                    119,
+                    127,
+                    129,
+                    136
+                  ],
+                  "purpose": "对照6.0/6.4阻塞的后续修订；不能假定新版已经修正。",
+                  "priority": "优先",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "文件名盘点未发现该版PDF",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "ltr-mfd-final-entry",
+                  "title": "LTR Enhancements for MFD（官网2025-06-11发布条目对应最终PDF）",
+                  "officialDate": "2025-06-11",
+                  "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+                  "memberDocumentId": "22469",
+                  "featureIds": [
+                    89
+                  ],
+                  "purpose": "核保留跨Function0 FLR能力bit号；现有May29副本与Base7.0 bit0/bit1差异仍待修订链。",
+                  "priority": "优先",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "现有2025-05-29副本已读；与该发布下载正文的同一性未确认",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "pcie-base-7.1-change",
+                  "title": "PCI Express Base Specification Revision 7.1 Showing Changes",
+                  "officialDate": "2026-09-17",
+                  "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71-showing-changes",
+                  "memberDocumentId": "24166",
+                  "featureIds": [
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    12,
+                    15,
+                    89,
+                    92,
+                    106,
+                    114,
+                    119,
+                    127,
+                    129,
+                    136
+                  ],
+                  "purpose": "辅助定位修订差异；须与正式正文配套，不单靠色条推断解决。",
+                  "priority": "配套差异定位",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "文件名盘点未发现该版PDF",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "pcie-base-6.5-change",
+                  "title": "PCI Express Base Specification Revision 6.5 Showing Changes",
+                  "officialDate": "2026-09-17",
+                  "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65-showing-changes",
+                  "memberDocumentId": "24164",
+                  "featureIds": [
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    12,
+                    15,
+                    89,
+                    92,
+                    106,
+                    114,
+                    119,
+                    127,
+                    129,
+                    136
+                  ],
+                  "purpose": "辅助定位6.4之后变化；须与正式正文配套。",
+                  "priority": "配套差异定位",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "文件名盘点未发现该版PDF",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                }
+              ]
+            },
+            {
+              "asOfRound": 205,
+              "summary": "原Base6.5/7.1/LTR请求保留。补充优先级：Controller6.50a针对性STAR记录、匹配Gen6 PHY/PCS的Release Notes及正式SDK/API兼容性资料。已有控制器Databook/Reference Manual/User Guide/Release Notes均不重复索取。",
+              "items": [
+                {
+                  "id": "pcie-base-7.1",
+                  "title": "PCI Express Base Specification Revision 7.1",
+                  "officialDate": "2026-09-17",
+                  "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71",
+                  "memberDocumentId": "24165",
+                  "featureIds": [
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    12,
+                    15,
+                    92,
+                    106,
+                    114,
+                    119,
+                    127,
+                    129,
+                    136
+                  ],
+                  "purpose": "优先核后续修订是否改变现有阻塞条款；新规则不得无说明倒填旧版。",
+                  "priority": "优先",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "文件名盘点未发现该版PDF",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "pcie-base-6.5",
+                  "title": "PCI Express Base Specification Revision 6.5",
+                  "officialDate": "2026-09-17",
+                  "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65",
+                  "memberDocumentId": "24163",
+                  "featureIds": [
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    12,
+                    15,
+                    89,
+                    92,
+                    106,
+                    114,
+                    119,
+                    127,
+                    129,
+                    136
+                  ],
+                  "purpose": "对照6.0/6.4阻塞的后续修订；不能假定新版已经修正。",
+                  "priority": "优先",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "文件名盘点未发现该版PDF",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "ltr-mfd-final-entry",
+                  "title": "LTR Enhancements for MFD（官网2025-06-11发布条目对应最终PDF）",
+                  "officialDate": "2025-06-11",
+                  "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+                  "memberDocumentId": "22469",
+                  "featureIds": [
+                    89
+                  ],
+                  "purpose": "核保留跨Function0 FLR能力bit号；现有May29副本与Base7.0 bit0/bit1差异仍待修订链。",
+                  "priority": "优先",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "现有2025-05-29副本已读；与该发布下载正文的同一性未确认",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "pcie-base-7.1-change",
+                  "title": "PCI Express Base Specification Revision 7.1 Showing Changes",
+                  "officialDate": "2026-09-17",
+                  "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71-showing-changes",
+                  "memberDocumentId": "24166",
+                  "featureIds": [
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    12,
+                    15,
+                    89,
+                    92,
+                    106,
+                    114,
+                    119,
+                    127,
+                    129,
+                    136
+                  ],
+                  "purpose": "辅助定位修订差异；须与正式正文配套，不单靠色条推断解决。",
+                  "priority": "配套差异定位",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "文件名盘点未发现该版PDF",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "pcie-base-6.5-change",
+                  "title": "PCI Express Base Specification Revision 6.5 Showing Changes",
+                  "officialDate": "2026-09-17",
+                  "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65-showing-changes",
+                  "memberDocumentId": "24164",
+                  "featureIds": [
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    12,
+                    15,
+                    89,
+                    92,
+                    106,
+                    114,
+                    119,
+                    127,
+                    129,
+                    136
+                  ],
+                  "purpose": "辅助定位6.4之后变化；须与正式正文配套。",
+                  "priority": "配套差异定位",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "文件名盘点未发现该版PDF",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "controller650-star-targeted",
+                  "title": "PCI Express Controller 6.50a：对应版本STAR记录或针对性厂商答复",
+                  "officialDate": "同6.50a交付；记录日期以实际为准",
+                  "url": "https://www.synopsys.com/designware-ip/interface-ip/pci-express/pcie6-controller.html",
+                  "featureIds": [
+                    143,
+                    146,
+                    147,
+                    148,
+                    152,
+                    159
+                  ],
+                  "purpose": "ATU_BYPASS bit9、HDMA CB/PCS/Watermark/Abort/请求上限、CONFIG_LIMIT等号及USB4 ready极性。",
+                  "availability": "Release Notes§1.4/1.5已确认STAR入口需SolvNetPlus；未取得报告正文，不声称特定问题已修复。",
+                  "localStatus": "已有6.50a四类手册；本轮核Release Notes选段及Reference字段，缺针对上述疑点的记录/答复。",
+                  "priority": "针对现有产品阻塞",
+                  "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。"
+                },
+                {
+                  "id": "phy6-matched-release-evidence",
+                  "title": "Gen6 PHY 3.02a／PCS Wrapper 1.75a：同交付Release Notes或Known Issues",
+                  "officialDate": "需与现有2025-05-06手册及具体交付匹配",
+                  "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+                  "featureIds": [
+                    173,
+                    176,
+                    179
+                  ],
+                  "purpose": "FOM循环边界、AHB HRESP/CCM地址以及BER计时口径；须注明适用版本/条件。",
+                  "availability": "补充证据请求，尚未确认具体公开文件名、独立版本号或发布地址；不把它当成已找到的新正式版。",
+                  "localStatus": "Databook、Reference Manual与PCS Wrapper手册已有；未找到与交付匹配的PHY Release Notes候选。",
+                  "priority": "针对现有产品阻塞",
+                  "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。"
+                },
+                {
+                  "id": "phy6-matched-sdk-contract",
+                  "title": "与PHY 3.02a／PCS 1.75a匹配的正式SDK Application Note、API说明及SDK/固件兼容表",
+                  "officialDate": "最终版本号由对应交付资料确认",
+                  "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+                  "featureIds": [
+                    176,
+                    179
+                  ],
+                  "purpose": "核SDK计时输入/输出、单位和timer预处理、固件/API版本及读数有效性；不能自行统一timer+1与timer×128。",
+                  "availability": "补充证据请求；没有已核的公开最终版本号，不能编造一个版本要求用户寻找。",
+                  "localStatus": "现有SDK Application Note为1.00a_pre3、2024-07-15、Preliminary；尚无与2025交付匹配的正式API/兼容关系证据。",
+                  "priority": "针对现有产品阻塞",
+                  "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。"
+                }
+              ],
+              "history": [
+                {
+                  "asOfRound": 203,
+                  "summary": "优先提供Base7.1、Base6.5及LTR最终发布PDF；Showing Changes配套有助定位。不声称新版本已解决旧版问题，也不要求提供已存在的旧版。",
+                  "items": [
+                    {
+                      "id": "pcie-base-7.1",
+                      "title": "PCI Express Base Specification Revision 7.1",
+                      "officialDate": "2026-09-17",
+                      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71",
+                      "memberDocumentId": "24165",
+                      "featureIds": [
+                        3,
+                        4,
+                        5,
+                        9,
+                        10,
+                        12,
+                        15,
+                        92,
+                        106,
+                        114,
+                        119,
+                        127,
+                        129,
+                        136
+                      ],
+                      "purpose": "优先核后续修订是否改变现有阻塞条款；新规则不得无说明倒填旧版。",
+                      "priority": "优先",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "文件名盘点未发现该版PDF",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "pcie-base-6.5",
+                      "title": "PCI Express Base Specification Revision 6.5",
+                      "officialDate": "2026-09-17",
+                      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65",
+                      "memberDocumentId": "24163",
+                      "featureIds": [
+                        3,
+                        4,
+                        5,
+                        9,
+                        10,
+                        12,
+                        15,
+                        89,
+                        92,
+                        106,
+                        114,
+                        119,
+                        127,
+                        129,
+                        136
+                      ],
+                      "purpose": "对照6.0/6.4阻塞的后续修订；不能假定新版已经修正。",
+                      "priority": "优先",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "文件名盘点未发现该版PDF",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "ltr-mfd-final-entry",
+                      "title": "LTR Enhancements for MFD（官网2025-06-11发布条目对应最终PDF）",
+                      "officialDate": "2025-06-11",
+                      "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+                      "memberDocumentId": "22469",
+                      "featureIds": [
+                        89
+                      ],
+                      "purpose": "核保留跨Function0 FLR能力bit号；现有May29副本与Base7.0 bit0/bit1差异仍待修订链。",
+                      "priority": "优先",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "现有2025-05-29副本已读；与该发布下载正文的同一性未确认",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "pcie-base-7.1-change",
+                      "title": "PCI Express Base Specification Revision 7.1 Showing Changes",
+                      "officialDate": "2026-09-17",
+                      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71-showing-changes",
+                      "memberDocumentId": "24166",
+                      "featureIds": [
+                        3,
+                        4,
+                        5,
+                        9,
+                        10,
+                        12,
+                        15,
+                        89,
+                        92,
+                        106,
+                        114,
+                        119,
+                        127,
+                        129,
+                        136
+                      ],
+                      "purpose": "辅助定位修订差异；须与正式正文配套，不单靠色条推断解决。",
+                      "priority": "配套差异定位",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "文件名盘点未发现该版PDF",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "pcie-base-6.5-change",
+                      "title": "PCI Express Base Specification Revision 6.5 Showing Changes",
+                      "officialDate": "2026-09-17",
+                      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65-showing-changes",
+                      "memberDocumentId": "24164",
+                      "featureIds": [
+                        3,
+                        4,
+                        5,
+                        9,
+                        10,
+                        12,
+                        15,
+                        89,
+                        92,
+                        106,
+                        114,
+                        119,
+                        127,
+                        129,
+                        136
+                      ],
+                      "purpose": "辅助定位6.4之后变化；须与正式正文配套。",
+                      "priority": "配套差异定位",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "文件名盘点未发现该版PDF",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "asOfRound": 206,
+              "summary": "当前只保留Base6.5/7.1及配套Showing Changes、LTR最终发布正文五项官方资料请求。已有6.0.1/6.1/6.2及对应Change Bar继续核读，无需重复提供；IP产品三项请求按用户指示暂缓。",
+              "items": [
+                {
+                  "id": "pcie-base-7.1",
+                  "title": "PCI Express Base Specification Revision 7.1",
+                  "officialDate": "2026-09-17",
+                  "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71",
+                  "memberDocumentId": "24165",
+                  "featureIds": [
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    12,
+                    15,
+                    92,
+                    106,
+                    114,
+                    119,
+                    127,
+                    129,
+                    136
+                  ],
+                  "purpose": "优先核后续修订是否改变现有阻塞条款；新规则不得无说明倒填旧版。",
+                  "priority": "优先",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "文件名盘点未发现该版PDF",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "pcie-base-6.5",
+                  "title": "PCI Express Base Specification Revision 6.5",
+                  "officialDate": "2026-09-17",
+                  "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65",
+                  "memberDocumentId": "24163",
+                  "featureIds": [
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    12,
+                    15,
+                    89,
+                    92,
+                    106,
+                    114,
+                    119,
+                    127,
+                    129,
+                    136
+                  ],
+                  "purpose": "对照6.0/6.4阻塞的后续修订；不能假定新版已经修正。",
+                  "priority": "优先",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "文件名盘点未发现该版PDF",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "ltr-mfd-final-entry",
+                  "title": "LTR Enhancements for MFD（官网2025-06-11发布条目对应最终PDF）",
+                  "officialDate": "2025-06-11",
+                  "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+                  "memberDocumentId": "22469",
+                  "featureIds": [
+                    89
+                  ],
+                  "purpose": "核保留跨Function0 FLR能力bit号；现有May29副本与Base7.0 bit0/bit1差异仍待修订链。",
+                  "priority": "优先",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "现有2025-05-29副本已读；与该发布下载正文的同一性未确认",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "pcie-base-7.1-change",
+                  "title": "PCI Express Base Specification Revision 7.1 Showing Changes",
+                  "officialDate": "2026-09-17",
+                  "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71-showing-changes",
+                  "memberDocumentId": "24166",
+                  "featureIds": [
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    12,
+                    15,
+                    89,
+                    92,
+                    106,
+                    114,
+                    119,
+                    127,
+                    129,
+                    136
+                  ],
+                  "purpose": "辅助定位修订差异；须与正式正文配套，不单靠色条推断解决。",
+                  "priority": "配套差异定位",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "文件名盘点未发现该版PDF",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                },
+                {
+                  "id": "pcie-base-6.5-change",
+                  "title": "PCI Express Base Specification Revision 6.5 Showing Changes",
+                  "officialDate": "2026-09-17",
+                  "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65-showing-changes",
+                  "memberDocumentId": "24164",
+                  "featureIds": [
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    12,
+                    15,
+                    89,
+                    92,
+                    106,
+                    114,
+                    119,
+                    127,
+                    129,
+                    136
+                  ],
+                  "purpose": "辅助定位6.4之后变化；须与正式正文配套。",
+                  "priority": "配套差异定位",
+                  "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                  "localStatus": "文件名盘点未发现该版PDF",
+                  "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                }
+              ],
+              "history": [
+                {
+                  "asOfRound": 203,
+                  "summary": "优先提供Base7.1、Base6.5及LTR最终发布PDF；Showing Changes配套有助定位。不声称新版本已解决旧版问题，也不要求提供已存在的旧版。",
+                  "items": [
+                    {
+                      "id": "pcie-base-7.1",
+                      "title": "PCI Express Base Specification Revision 7.1",
+                      "officialDate": "2026-09-17",
+                      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71",
+                      "memberDocumentId": "24165",
+                      "featureIds": [
+                        3,
+                        4,
+                        5,
+                        9,
+                        10,
+                        12,
+                        15,
+                        92,
+                        106,
+                        114,
+                        119,
+                        127,
+                        129,
+                        136
+                      ],
+                      "purpose": "优先核后续修订是否改变现有阻塞条款；新规则不得无说明倒填旧版。",
+                      "priority": "优先",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "文件名盘点未发现该版PDF",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "pcie-base-6.5",
+                      "title": "PCI Express Base Specification Revision 6.5",
+                      "officialDate": "2026-09-17",
+                      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65",
+                      "memberDocumentId": "24163",
+                      "featureIds": [
+                        3,
+                        4,
+                        5,
+                        9,
+                        10,
+                        12,
+                        15,
+                        89,
+                        92,
+                        106,
+                        114,
+                        119,
+                        127,
+                        129,
+                        136
+                      ],
+                      "purpose": "对照6.0/6.4阻塞的后续修订；不能假定新版已经修正。",
+                      "priority": "优先",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "文件名盘点未发现该版PDF",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "ltr-mfd-final-entry",
+                      "title": "LTR Enhancements for MFD（官网2025-06-11发布条目对应最终PDF）",
+                      "officialDate": "2025-06-11",
+                      "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+                      "memberDocumentId": "22469",
+                      "featureIds": [
+                        89
+                      ],
+                      "purpose": "核保留跨Function0 FLR能力bit号；现有May29副本与Base7.0 bit0/bit1差异仍待修订链。",
+                      "priority": "优先",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "现有2025-05-29副本已读；与该发布下载正文的同一性未确认",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "pcie-base-7.1-change",
+                      "title": "PCI Express Base Specification Revision 7.1 Showing Changes",
+                      "officialDate": "2026-09-17",
+                      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71-showing-changes",
+                      "memberDocumentId": "24166",
+                      "featureIds": [
+                        3,
+                        4,
+                        5,
+                        9,
+                        10,
+                        12,
+                        15,
+                        89,
+                        92,
+                        106,
+                        114,
+                        119,
+                        127,
+                        129,
+                        136
+                      ],
+                      "purpose": "辅助定位修订差异；须与正式正文配套，不单靠色条推断解决。",
+                      "priority": "配套差异定位",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "文件名盘点未发现该版PDF",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "pcie-base-6.5-change",
+                      "title": "PCI Express Base Specification Revision 6.5 Showing Changes",
+                      "officialDate": "2026-09-17",
+                      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65-showing-changes",
+                      "memberDocumentId": "24164",
+                      "featureIds": [
+                        3,
+                        4,
+                        5,
+                        9,
+                        10,
+                        12,
+                        15,
+                        89,
+                        92,
+                        106,
+                        114,
+                        119,
+                        127,
+                        129,
+                        136
+                      ],
+                      "purpose": "辅助定位6.4之后变化；须与正式正文配套。",
+                      "priority": "配套差异定位",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "文件名盘点未发现该版PDF",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    }
+                  ]
+                },
+                {
+                  "asOfRound": 205,
+                  "summary": "原Base6.5/7.1/LTR请求保留。补充优先级：Controller6.50a针对性STAR记录、匹配Gen6 PHY/PCS的Release Notes及正式SDK/API兼容性资料。已有控制器Databook/Reference Manual/User Guide/Release Notes均不重复索取。",
+                  "items": [
+                    {
+                      "id": "pcie-base-7.1",
+                      "title": "PCI Express Base Specification Revision 7.1",
+                      "officialDate": "2026-09-17",
+                      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71",
+                      "memberDocumentId": "24165",
+                      "featureIds": [
+                        3,
+                        4,
+                        5,
+                        9,
+                        10,
+                        12,
+                        15,
+                        92,
+                        106,
+                        114,
+                        119,
+                        127,
+                        129,
+                        136
+                      ],
+                      "purpose": "优先核后续修订是否改变现有阻塞条款；新规则不得无说明倒填旧版。",
+                      "priority": "优先",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "文件名盘点未发现该版PDF",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "pcie-base-6.5",
+                      "title": "PCI Express Base Specification Revision 6.5",
+                      "officialDate": "2026-09-17",
+                      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65",
+                      "memberDocumentId": "24163",
+                      "featureIds": [
+                        3,
+                        4,
+                        5,
+                        9,
+                        10,
+                        12,
+                        15,
+                        89,
+                        92,
+                        106,
+                        114,
+                        119,
+                        127,
+                        129,
+                        136
+                      ],
+                      "purpose": "对照6.0/6.4阻塞的后续修订；不能假定新版已经修正。",
+                      "priority": "优先",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "文件名盘点未发现该版PDF",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "ltr-mfd-final-entry",
+                      "title": "LTR Enhancements for MFD（官网2025-06-11发布条目对应最终PDF）",
+                      "officialDate": "2025-06-11",
+                      "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+                      "memberDocumentId": "22469",
+                      "featureIds": [
+                        89
+                      ],
+                      "purpose": "核保留跨Function0 FLR能力bit号；现有May29副本与Base7.0 bit0/bit1差异仍待修订链。",
+                      "priority": "优先",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "现有2025-05-29副本已读；与该发布下载正文的同一性未确认",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "pcie-base-7.1-change",
+                      "title": "PCI Express Base Specification Revision 7.1 Showing Changes",
+                      "officialDate": "2026-09-17",
+                      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71-showing-changes",
+                      "memberDocumentId": "24166",
+                      "featureIds": [
+                        3,
+                        4,
+                        5,
+                        9,
+                        10,
+                        12,
+                        15,
+                        89,
+                        92,
+                        106,
+                        114,
+                        119,
+                        127,
+                        129,
+                        136
+                      ],
+                      "purpose": "辅助定位修订差异；须与正式正文配套，不单靠色条推断解决。",
+                      "priority": "配套差异定位",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "文件名盘点未发现该版PDF",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "pcie-base-6.5-change",
+                      "title": "PCI Express Base Specification Revision 6.5 Showing Changes",
+                      "officialDate": "2026-09-17",
+                      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65-showing-changes",
+                      "memberDocumentId": "24164",
+                      "featureIds": [
+                        3,
+                        4,
+                        5,
+                        9,
+                        10,
+                        12,
+                        15,
+                        89,
+                        92,
+                        106,
+                        114,
+                        119,
+                        127,
+                        129,
+                        136
+                      ],
+                      "purpose": "辅助定位6.4之后变化；须与正式正文配套。",
+                      "priority": "配套差异定位",
+                      "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                      "localStatus": "文件名盘点未发现该版PDF",
+                      "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                    },
+                    {
+                      "id": "controller650-star-targeted",
+                      "title": "PCI Express Controller 6.50a：对应版本STAR记录或针对性厂商答复",
+                      "officialDate": "同6.50a交付；记录日期以实际为准",
+                      "url": "https://www.synopsys.com/designware-ip/interface-ip/pci-express/pcie6-controller.html",
+                      "featureIds": [
+                        143,
+                        146,
+                        147,
+                        148,
+                        152,
+                        159
+                      ],
+                      "purpose": "ATU_BYPASS bit9、HDMA CB/PCS/Watermark/Abort/请求上限、CONFIG_LIMIT等号及USB4 ready极性。",
+                      "availability": "Release Notes§1.4/1.5已确认STAR入口需SolvNetPlus；未取得报告正文，不声称特定问题已修复。",
+                      "localStatus": "已有6.50a四类手册；本轮核Release Notes选段及Reference字段，缺针对上述疑点的记录/答复。",
+                      "priority": "针对现有产品阻塞",
+                      "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。"
+                    },
+                    {
+                      "id": "phy6-matched-release-evidence",
+                      "title": "Gen6 PHY 3.02a／PCS Wrapper 1.75a：同交付Release Notes或Known Issues",
+                      "officialDate": "需与现有2025-05-06手册及具体交付匹配",
+                      "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+                      "featureIds": [
+                        173,
+                        176,
+                        179
+                      ],
+                      "purpose": "FOM循环边界、AHB HRESP/CCM地址以及BER计时口径；须注明适用版本/条件。",
+                      "availability": "补充证据请求，尚未确认具体公开文件名、独立版本号或发布地址；不把它当成已找到的新正式版。",
+                      "localStatus": "Databook、Reference Manual与PCS Wrapper手册已有；未找到与交付匹配的PHY Release Notes候选。",
+                      "priority": "针对现有产品阻塞",
+                      "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。"
+                    },
+                    {
+                      "id": "phy6-matched-sdk-contract",
+                      "title": "与PHY 3.02a／PCS 1.75a匹配的正式SDK Application Note、API说明及SDK/固件兼容表",
+                      "officialDate": "最终版本号由对应交付资料确认",
+                      "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+                      "featureIds": [
+                        176,
+                        179
+                      ],
+                      "purpose": "核SDK计时输入/输出、单位和timer预处理、固件/API版本及读数有效性；不能自行统一timer+1与timer×128。",
+                      "availability": "补充证据请求；没有已核的公开最终版本号，不能编造一个版本要求用户寻找。",
+                      "localStatus": "现有SDK Application Note为1.00a_pre3、2024-07-15、Preliminary；尚无与2025交付匹配的正式API/兼容关系证据。",
+                      "priority": "针对现有产品阻塞",
+                      "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。"
+                    }
+                  ],
+                  "history": [
+                    {
+                      "asOfRound": 203,
+                      "summary": "优先提供Base7.1、Base6.5及LTR最终发布PDF；Showing Changes配套有助定位。不声称新版本已解决旧版问题，也不要求提供已存在的旧版。",
+                      "items": [
+                        {
+                          "id": "pcie-base-7.1",
+                          "title": "PCI Express Base Specification Revision 7.1",
+                          "officialDate": "2026-09-17",
+                          "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71",
+                          "memberDocumentId": "24165",
+                          "featureIds": [
+                            3,
+                            4,
+                            5,
+                            9,
+                            10,
+                            12,
+                            15,
+                            92,
+                            106,
+                            114,
+                            119,
+                            127,
+                            129,
+                            136
+                          ],
+                          "purpose": "优先核后续修订是否改变现有阻塞条款；新规则不得无说明倒填旧版。",
+                          "priority": "优先",
+                          "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                          "localStatus": "文件名盘点未发现该版PDF",
+                          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                        },
+                        {
+                          "id": "pcie-base-6.5",
+                          "title": "PCI Express Base Specification Revision 6.5",
+                          "officialDate": "2026-09-17",
+                          "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65",
+                          "memberDocumentId": "24163",
+                          "featureIds": [
+                            3,
+                            4,
+                            5,
+                            9,
+                            10,
+                            12,
+                            15,
+                            89,
+                            92,
+                            106,
+                            114,
+                            119,
+                            127,
+                            129,
+                            136
+                          ],
+                          "purpose": "对照6.0/6.4阻塞的后续修订；不能假定新版已经修正。",
+                          "priority": "优先",
+                          "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                          "localStatus": "文件名盘点未发现该版PDF",
+                          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                        },
+                        {
+                          "id": "ltr-mfd-final-entry",
+                          "title": "LTR Enhancements for MFD（官网2025-06-11发布条目对应最终PDF）",
+                          "officialDate": "2025-06-11",
+                          "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+                          "memberDocumentId": "22469",
+                          "featureIds": [
+                            89
+                          ],
+                          "purpose": "核保留跨Function0 FLR能力bit号；现有May29副本与Base7.0 bit0/bit1差异仍待修订链。",
+                          "priority": "优先",
+                          "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                          "localStatus": "现有2025-05-29副本已读；与该发布下载正文的同一性未确认",
+                          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                        },
+                        {
+                          "id": "pcie-base-7.1-change",
+                          "title": "PCI Express Base Specification Revision 7.1 Showing Changes",
+                          "officialDate": "2026-09-17",
+                          "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71-showing-changes",
+                          "memberDocumentId": "24166",
+                          "featureIds": [
+                            3,
+                            4,
+                            5,
+                            9,
+                            10,
+                            12,
+                            15,
+                            89,
+                            92,
+                            106,
+                            114,
+                            119,
+                            127,
+                            129,
+                            136
+                          ],
+                          "purpose": "辅助定位修订差异；须与正式正文配套，不单靠色条推断解决。",
+                          "priority": "配套差异定位",
+                          "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                          "localStatus": "文件名盘点未发现该版PDF",
+                          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                        },
+                        {
+                          "id": "pcie-base-6.5-change",
+                          "title": "PCI Express Base Specification Revision 6.5 Showing Changes",
+                          "officialDate": "2026-09-17",
+                          "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65-showing-changes",
+                          "memberDocumentId": "24164",
+                          "featureIds": [
+                            3,
+                            4,
+                            5,
+                            9,
+                            10,
+                            12,
+                            15,
+                            89,
+                            92,
+                            106,
+                            114,
+                            119,
+                            127,
+                            129,
+                            136
+                          ],
+                          "purpose": "辅助定位6.4之后变化；须与正式正文配套。",
+                          "priority": "配套差异定位",
+                          "availability": "官方条目已核；下载要求会员登录，未取得正文",
+                          "localStatus": "文件名盘点未发现该版PDF",
+                          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "deferredItems": [
+                {
+                  "id": "controller650-star-targeted",
+                  "title": "PCI Express Controller 6.50a：对应版本STAR记录或针对性厂商答复",
+                  "officialDate": "同6.50a交付；记录日期以实际为准",
+                  "url": "https://www.synopsys.com/designware-ip/interface-ip/pci-express/pcie6-controller.html",
+                  "featureIds": [
+                    143,
+                    146,
+                    147,
+                    148,
+                    152,
+                    159
+                  ],
+                  "purpose": "ATU_BYPASS bit9、HDMA CB/PCS/Watermark/Abort/请求上限、CONFIG_LIMIT等号及USB4 ready极性。",
+                  "availability": "Release Notes§1.4/1.5已确认STAR入口需SolvNetPlus；未取得报告正文，不声称特定问题已修复。",
+                  "localStatus": "已有6.50a四类手册；本轮核Release Notes选段及Reference字段，缺针对上述疑点的记录/答复。",
+                  "priority": "针对现有产品阻塞",
+                  "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。",
+                  "requestState": "deferred-by-user",
+                  "reason": "IP产品资料暂时没有；用户要求当前只提出官方规范资料。"
+                },
+                {
+                  "id": "phy6-matched-release-evidence",
+                  "title": "Gen6 PHY 3.02a／PCS Wrapper 1.75a：同交付Release Notes或Known Issues",
+                  "officialDate": "需与现有2025-05-06手册及具体交付匹配",
+                  "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+                  "featureIds": [
+                    173,
+                    176,
+                    179
+                  ],
+                  "purpose": "FOM循环边界、AHB HRESP/CCM地址以及BER计时口径；须注明适用版本/条件。",
+                  "availability": "补充证据请求，尚未确认具体公开文件名、独立版本号或发布地址；不把它当成已找到的新正式版。",
+                  "localStatus": "Databook、Reference Manual与PCS Wrapper手册已有；未找到与交付匹配的PHY Release Notes候选。",
+                  "priority": "针对现有产品阻塞",
+                  "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。",
+                  "requestState": "deferred-by-user",
+                  "reason": "IP产品资料暂时没有；用户要求当前只提出官方规范资料。"
+                },
+                {
+                  "id": "phy6-matched-sdk-contract",
+                  "title": "与PHY 3.02a／PCS 1.75a匹配的正式SDK Application Note、API说明及SDK/固件兼容表",
+                  "officialDate": "最终版本号由对应交付资料确认",
+                  "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+                  "featureIds": [
+                    176,
+                    179
+                  ],
+                  "purpose": "核SDK计时输入/输出、单位和timer预处理、固件/API版本及读数有效性；不能自行统一timer+1与timer×128。",
+                  "availability": "补充证据请求；没有已核的公开最终版本号，不能编造一个版本要求用户寻找。",
+                  "localStatus": "现有SDK Application Note为1.00a_pre3、2024-07-15、Preliminary；尚无与2025交付匹配的正式API/兼容关系证据。",
+                  "priority": "针对现有产品阻塞",
+                  "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。",
+                  "requestState": "deferred-by-user",
+                  "reason": "IP产品资料暂时没有；用户要求当前只提出官方规范资料。"
+                }
+              ]
+            }
+          ],
+          "deferredItems": [
+            {
+              "id": "controller650-star-targeted",
+              "title": "PCI Express Controller 6.50a：对应版本STAR记录或针对性厂商答复",
+              "officialDate": "同6.50a交付；记录日期以实际为准",
+              "url": "https://www.synopsys.com/designware-ip/interface-ip/pci-express/pcie6-controller.html",
+              "featureIds": [
+                143,
+                146,
+                147,
+                148,
+                152,
+                159
+              ],
+              "purpose": "ATU_BYPASS bit9、HDMA CB/PCS/Watermark/Abort/请求上限、CONFIG_LIMIT等号及USB4 ready极性。",
+              "availability": "Release Notes§1.4/1.5已确认STAR入口需SolvNetPlus；未取得报告正文，不声称特定问题已修复。",
+              "localStatus": "已有6.50a四类手册；本轮核Release Notes选段及Reference字段，缺针对上述疑点的记录/答复。",
+              "priority": "针对现有产品阻塞",
+              "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。",
+              "requestState": "deferred-by-user",
+              "reason": "IP产品资料暂时没有；用户要求当前只提出官方规范资料。"
+            },
+            {
+              "id": "phy6-matched-release-evidence",
+              "title": "Gen6 PHY 3.02a／PCS Wrapper 1.75a：同交付Release Notes或Known Issues",
+              "officialDate": "需与现有2025-05-06手册及具体交付匹配",
+              "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+              "featureIds": [
+                173,
+                176,
+                179
+              ],
+              "purpose": "FOM循环边界、AHB HRESP/CCM地址以及BER计时口径；须注明适用版本/条件。",
+              "availability": "补充证据请求，尚未确认具体公开文件名、独立版本号或发布地址；不把它当成已找到的新正式版。",
+              "localStatus": "Databook、Reference Manual与PCS Wrapper手册已有；未找到与交付匹配的PHY Release Notes候选。",
+              "priority": "针对现有产品阻塞",
+              "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。",
+              "requestState": "deferred-by-user",
+              "reason": "IP产品资料暂时没有；用户要求当前只提出官方规范资料。"
+            },
+            {
+              "id": "phy6-matched-sdk-contract",
+              "title": "与PHY 3.02a／PCS 1.75a匹配的正式SDK Application Note、API说明及SDK/固件兼容表",
+              "officialDate": "最终版本号由对应交付资料确认",
+              "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+              "featureIds": [
+                176,
+                179
+              ],
+              "purpose": "核SDK计时输入/输出、单位和timer预处理、固件/API版本及读数有效性；不能自行统一timer+1与timer×128。",
+              "availability": "补充证据请求；没有已核的公开最终版本号，不能编造一个版本要求用户寻找。",
+              "localStatus": "现有SDK Application Note为1.00a_pre3、2024-07-15、Preliminary；尚无与2025交付匹配的正式API/兼容关系证据。",
+              "priority": "针对现有产品阻塞",
+              "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。",
+              "requestState": "deferred-by-user",
+              "reason": "IP产品资料暂时没有；用户要求当前只提出官方规范资料。"
+            }
+          ]
         }
       ],
       "deferredItems": [
@@ -44898,6 +46181,148 @@
           "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。",
           "requestState": "deferred-by-user",
           "reason": "IP产品资料暂时没有；用户要求当前只提出官方规范资料。"
+        }
+      ],
+      "fulfilledItems": [
+        {
+          "id": "pcie-base-7.1",
+          "title": "PCI Express Base Specification Revision 7.1",
+          "officialDate": "2026-09-17",
+          "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71",
+          "memberDocumentId": "24165",
+          "featureIds": [
+            3,
+            4,
+            5,
+            9,
+            10,
+            12,
+            15,
+            92,
+            106,
+            114,
+            119,
+            127,
+            129,
+            136
+          ],
+          "purpose": "优先核后续修订是否改变现有阻塞条款；新规则不得无说明倒填旧版。",
+          "priority": "优先",
+          "availability": "官方条目已核；下载要求会员登录，未取得正文",
+          "localStatus": "文件名盘点未发现该版PDF",
+          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。",
+          "fulfilledRound": 212,
+          "result": "本轮已提供6.5/7.1及Showing Changes；LTR位号疑点由B148直接解释，4页ECN原bit0也已核，不声称官网会员下载字节同一性。"
+        },
+        {
+          "id": "pcie-base-6.5",
+          "title": "PCI Express Base Specification Revision 6.5",
+          "officialDate": "2026-09-17",
+          "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65",
+          "memberDocumentId": "24163",
+          "featureIds": [
+            3,
+            4,
+            5,
+            9,
+            10,
+            12,
+            15,
+            89,
+            92,
+            106,
+            114,
+            119,
+            127,
+            129,
+            136
+          ],
+          "purpose": "对照6.0/6.4阻塞的后续修订；不能假定新版已经修正。",
+          "priority": "优先",
+          "availability": "官方条目已核；下载要求会员登录，未取得正文",
+          "localStatus": "文件名盘点未发现该版PDF",
+          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。",
+          "fulfilledRound": 212,
+          "result": "本轮已提供6.5/7.1及Showing Changes；LTR位号疑点由B148直接解释，4页ECN原bit0也已核，不声称官网会员下载字节同一性。"
+        },
+        {
+          "id": "ltr-mfd-final-entry",
+          "title": "LTR Enhancements for MFD（官网2025-06-11发布条目对应最终PDF）",
+          "officialDate": "2025-06-11",
+          "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+          "memberDocumentId": "22469",
+          "featureIds": [
+            89
+          ],
+          "purpose": "核保留跨Function0 FLR能力bit号；现有May29副本与Base7.0 bit0/bit1差异仍待修订链。",
+          "priority": "优先",
+          "availability": "官方条目已核；下载要求会员登录，未取得正文",
+          "localStatus": "现有2025-05-29副本已读；与该发布下载正文的同一性未确认",
+          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。",
+          "fulfilledRound": 212,
+          "result": "本轮已提供6.5/7.1及Showing Changes；LTR位号疑点由B148直接解释，4页ECN原bit0也已核，不声称官网会员下载字节同一性。"
+        },
+        {
+          "id": "pcie-base-7.1-change",
+          "title": "PCI Express Base Specification Revision 7.1 Showing Changes",
+          "officialDate": "2026-09-17",
+          "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71-showing-changes",
+          "memberDocumentId": "24166",
+          "featureIds": [
+            3,
+            4,
+            5,
+            9,
+            10,
+            12,
+            15,
+            89,
+            92,
+            106,
+            114,
+            119,
+            127,
+            129,
+            136
+          ],
+          "purpose": "辅助定位修订差异；须与正式正文配套，不单靠色条推断解决。",
+          "priority": "配套差异定位",
+          "availability": "官方条目已核；下载要求会员登录，未取得正文",
+          "localStatus": "文件名盘点未发现该版PDF",
+          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。",
+          "fulfilledRound": 212,
+          "result": "本轮已提供6.5/7.1及Showing Changes；LTR位号疑点由B148直接解释，4页ECN原bit0也已核，不声称官网会员下载字节同一性。"
+        },
+        {
+          "id": "pcie-base-6.5-change",
+          "title": "PCI Express Base Specification Revision 6.5 Showing Changes",
+          "officialDate": "2026-09-17",
+          "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65-showing-changes",
+          "memberDocumentId": "24164",
+          "featureIds": [
+            3,
+            4,
+            5,
+            9,
+            10,
+            12,
+            15,
+            89,
+            92,
+            106,
+            114,
+            119,
+            127,
+            129,
+            136
+          ],
+          "purpose": "辅助定位6.4之后变化；须与正式正文配套。",
+          "priority": "配套差异定位",
+          "availability": "官方条目已核；下载要求会员登录，未取得正文",
+          "localStatus": "文件名盘点未发现该版PDF",
+          "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。",
+          "fulfilledRound": 212,
+          "result": "本轮已提供6.5/7.1及Showing Changes；LTR位号疑点由B148直接解释，4页ECN原bit0也已核，不声称官网会员下载字节同一性。"
         }
       ]
     }
