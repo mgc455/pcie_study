@@ -16491,14 +16491,14 @@
     "checks": "记录均衡阶段、对端和retimer状态；随意强制Preset可能掩盖根因，需按PHY指导验证。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 9,
-    "status": "R170部分验收：7/8维度通过，No-EQ通告门控来源一致性阻塞",
+    "status": "一期已验收：R208版本化正文/约束核对；实现验证另列",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-29",
+    "reviewed": "2026-10-31",
     "protocolReferences": [
       {
         "section": "4.2.4",
@@ -17126,6 +17126,50 @@
         "title": "TS0/TS1角色矩阵",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-5.0",
+        "document": "PCI Express Base Specification",
+        "version": "5.0",
+        "section": "4.2.3",
+        "page": 275,
+        "pdfPage": 275,
+        "title": "旧版No-EQ与Bypass Disable共同约束",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "4.2.4",
+        "page": 393,
+        "pdfPage": 393,
+        "title": "No-EQ通告、Modified TS依赖与低速重新均衡",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "4.2.4",
+        "page": 466,
+        "pdfPage": 466,
+        "title": "两个机制的通告禁止及Modified TS组合",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-7.0",
+        "document": "PCI Express Base Specification",
+        "version": "7.0",
+        "section": "7.7.6.3",
+        "page": 1201,
+        "pdfPage": 1201,
+        "title": "Table7-77 bit0与bit1控制定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "已核所列Base3～7 EQ选段、Base5角色/阶段查询及Base7 NOP2/控制与成功字段；No-EQ正文和控制位关系待正式澄清，不作整项一致性通过。",
@@ -17414,11 +17458,19 @@
         "id": "eq-bypass-advertisement-consistency",
         "title": "No-EQ与bypass混合协商及Modified TS的一致性",
         "paragraphs": [
+          "R208当前结论：下文是旧待核记录；两个禁止条件同时适用即可满足，不存在必须二选一的前提。当前四组合表及关闭依据见本页r208-noeq-concurrent-disable-gates；不改写原规范字段名。",
           "Base5说一端No-EQ、另一端仅bypass时可按bypass运行；Modified TS设置No-EQ时还须设置bypass支持，反向组合可能未定义。",
           "同页No-EQ禁止通告条件的Disable字段名称与附近说明存在需结合寄存器核验的措辞。本轮不据该句生成自动写寄存器脚本。"
         ],
         "referenceIndices": [
           22
+        ],
+        "relatedDetails": [
+          {
+            "featureId": 9,
+            "detailId": "r208-noeq-concurrent-disable-gates",
+            "label": "R208当前核对结论"
+          }
         ]
       },
       {
@@ -17937,6 +17989,7 @@
         "id": "r170-eq-noeq-disable-source-gate",
         "title": "未闭环来源：No-EQ正文与控制位的关系不能凭字段名称改写",
         "paragraphs": [
+          "R208当前结论：下文是旧待核记录；两个禁止条件同时适用即可满足，不存在必须二选一的前提。当前四组合表及关闭依据见本页r208-noeq-concurrent-disable-gates；不改写原规范字段名。",
           "既有eq-bypass-advertisement-consistency已提示Base5 No-EQ通告禁止条件的字段措辞需核。本轮核Base5 p275、Base6 p393、Base7 p466：No-EQ段的禁止句均写Bypass Disable；而Base7 p1201还独立定义No Equalization Needed Disable，置1必须指示需要均衡。",
           "两个独立控制位的定义可以逐项解释，但是否还存在正文所写的跨位门控关系、是否有匹配勘误，不能仅凭名字相似认定正文笔误，更不能自动替换成另一个字段。所读Base5 Errata2021-12-16 B118 p74修订了降速/重均衡路径，未在该条给出这个No-EQ禁止句的澄清。不能据此断言所有官方勘误均不存在。",
           "因此均衡9本轮通过七个可确认维度，一致性保留阻塞，复用既有条目问题，不把它伪装成新发现已解决。需要准确适用的官方勘误或明确控制/广告真值关系的正式说明；原Base和已核勘误都已存在，资料尚未找到澄清不等于缺少Base规范。",
@@ -17994,6 +18047,74 @@
             "featureId": 9,
             "detailId": "block-3",
             "label": "TS0/TS1逐角色矩阵"
+          },
+          {
+            "featureId": 9,
+            "detailId": "r208-noeq-concurrent-disable-gates",
+            "label": "R208当前核对结论"
+          }
+        ]
+      },
+      {
+        "id": "r208-noeq-concurrent-disable-gates",
+        "title": "No-EQ两个Disable位共同约束：四种组合与通告边界",
+        "paragraphs": [
+          "R208纠正此前验收过度阻塞：No-EQ段落使用Bypass Disable、寄存器表又定义No-EQ Disable，并不自动构成矛盾。两个独立禁止可以同时适用；不能因第二个控制位存在，就把第一处字段名改掉或等待一个未被证明需要的勘误。下表是对7.0两处已核要求的逻辑合取，是本站归纳，不是官方原表。",
+          "B代表Equalization Bypass to Highest NRZ Rate Disable（Physical Layer 32.0 GT/s Control bit0），N代表No Equalization Needed Disable（bit1）。B=1时§4.2.4禁止Bypass通告，也明确禁止No-EQ通告；N=1时§7.7.6.3要求始终指示需要均衡。因此No-EQ候选通告同时要求B=0、N=0。Clear只表示该控制位不禁止，不保证硬件支持、双方协商成功或当前能可靠工作。",
+          "Modified TS的No-EQ=1还必须伴随Bypass Support=1；1/0组合行为未定义。这与B控制的交叉禁止一致。普通TS和Modified TS的编码及协商仍按各版训练序列表执行，不能把两个软件Disable位当作直接写入TS的两个广告位。",
+          "例如软件要回低速重新均衡时，已核5.0/6.0/7.0正文要求两Disable位都置1，再按目标速率流程从低速重建均衡。不能仅清N就越过仍置1的B恢复No-EQ。5.0的最高共同速率机制和6.0/7.0最高NRZ机制的差异继续保留；本四组合表明确绑定7.0控制定义，不向未逐项核表的全部旧代扩展。",
+          "原问题10按“同时适用约束”关闭，旧问题和证据保留为历史；没有发现或宣称PCI-SIG修改了这个字段名。功能9的阶段、角色、定时器和逐版机制沿用已核正文，仅修正最后一致性维度。"
+        ],
+        "referenceIndices": [
+          57,
+          58,
+          59,
+          60
+        ],
+        "table": {
+          "columns": [
+            "B bit0",
+            "N bit1",
+            "Bypass广告",
+            "No-EQ广告"
+          ],
+          "rows": [
+            [
+              "0",
+              "0",
+              "两个位均不禁止；仍须其它支持/可靠性/协商条件",
+              "两个位均不禁止；仍须其它条件"
+            ],
+            [
+              "0",
+              "1",
+              "可作为候选；不代表实际协商成功",
+              "禁止，必须指示需要EQ"
+            ],
+            [
+              "1",
+              "0",
+              "禁止",
+              "禁止；清N不能覆盖B"
+            ],
+            [
+              "1",
+              "1",
+              "禁止",
+              "禁止"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 9,
+            "detailId": "r170-eq-control-and-success-registers",
+            "label": "寄存器控制与结果"
+          },
+          {
+            "featureId": 9,
+            "detailId": "eq-bypass-versus-no-eq",
+            "label": "两个机制的区别"
           }
         ]
       }
@@ -18009,14 +18130,14 @@
     "checks": "核对板级时钟来源、SSC、Common Clock相关字段及PHY支持，不能靠一个寄存器产生缺失的参考时钟。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 10,
-    "status": "R171部分验收：7/8维度通过，Base6 Lower SKP控制来源一致性阻塞",
+    "status": "一期已验收：R209版本化正文/约束核对；实现验证另列",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-29",
+    "reviewed": "2026-10-31",
     "protocolReferences": [
       {
         "section": "4",
@@ -18677,6 +18798,83 @@
         "title": "FM修改窗口限制",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.3.2",
+        "page": 1030,
+        "pdfPage": 1030,
+        "title": "未纳入B45的原始控制向量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0.1-cb",
+        "document": "PCI Express Base Specification 6.0.1 vs 6.0 — Change Bar",
+        "version": "6.0.1 Change Bar",
+        "section": "7.7.3.2",
+        "page": 1048,
+        "pdfPage": 1048,
+        "title": "Errata Base6.0 B45新增内部bit5的64GT/s定义",
+        "url": "https://pcisig.com/PCIExpress/ChangeBar/Base/_6.0.1_1.0",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.0.1",
+        "section": "7.7.3.2",
+        "page": 1036,
+        "pdfPage": 1036,
+        "title": "NCB纳入B45的Enable向量",
+        "url": "https://pcisig.com/specification-overview/pci-express-base",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.0.1",
+        "section": "4.2.8.4",
+        "page": 552,
+        "pdfPage": 552,
+        "title": "低SKP间隔使用条件与L0",
+        "url": "https://pcisig.com/specification-overview/pci-express-base",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.0.1",
+        "section": "4.2.8.4",
+        "page": 553,
+        "pdfPage": 553,
+        "title": "1b/1b时非数据流间隔与FM修改禁止",
+        "url": "https://pcisig.com/specification-overview/pci-express-base",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.1",
+        "section": "7.7.3.2",
+        "page": 1068,
+        "pdfPage": 1068,
+        "title": "后续6.1保留64GT/s控制定义",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.2",
+        "document": "PCI Express Base Specification",
+        "version": "6.2",
+        "section": "7.7.3.2",
+        "page": 1108,
+        "pdfPage": 1108,
+        "title": "后续6.2保留64GT/s控制定义",
+        "url": "https://pcisig.com/PCIExpress/Specs/Base/_6.2",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "所列详细块已核读对应正文，并独立绑定版本/章节/页码；旧背景引用与未展开条款不冒充完整核读。",
@@ -18827,6 +19025,7 @@
         "id": "lower-skp-register-bit-map",
         "title": "Lower SKP寄存器位置：字段内bit号与寄存器bit号差9或16",
         "paragraphs": [
+          "R209当前结论：下文原6.0对比/待核记录保留；已核针对6.0的B45及6.0.1纳入正文，64GT/s控制缺口已建立直接修订链。选择未修原6.0仍显示Reserved，选择6.0.1按B45处理。",
           "PCI Express Capability内Link Capabilities 2位于cap基址+2Ch；Secondary PCI Express Extended Capability（ID0019h）内Link Control 3位于该扩展cap基址+04h。二者基址不同，不是配置空间绝对地址02Ch/004h，也不是PIPE Message Bus地址。",
           "在7.0，Lower SKP Generation字段[15:9]的内部bit0～6对应寄存器bit9～15；Reception字段[22:16]内部bit0～6对应寄存器bit16～22。2.5/5/8/16/32/64GT/s分别用内部bit0～5；128及以上由内部bit6指示并进一步读Vector2。",
           "Control3使能字段[15:9]默认全0。非保留位若广告生成支持则必须RW，否则可RW或硬连0；即使读回能置1，也不能在生成能力未广告时使用。6.0表7-58只定义到32GT/s，内部bit5/6保留，而其Capabilities2表却列出64GT/s能力；本页保留这个跨表边界，不擅自给6.0 bit14补编码。"
@@ -18874,7 +19073,14 @@
               "不能整DWORD覆盖其他配置，更不能把RO能力字段当使能写"
             ]
           ]
-        }
+        },
+        "relatedDetails": [
+          {
+            "featureId": 10,
+            "detailId": "r209-lower-skp-b45-version-chain",
+            "label": "R209当前核对结论"
+          }
+        ]
       },
       {
         "id": "lower-skp-gen7-vector2",
@@ -19152,6 +19358,7 @@
         "id": "r171-lower-skp-version-source-gate",
         "title": "Lower SKP检查顺序与Base6使能表的未闭环边界",
         "paragraphs": [
+          "R209当前结论：下文原6.0对比/待核记录保留；已核针对6.0的B45及6.0.1纳入正文，64GT/s控制缺口已建立直接修订链。选择未修原6.0仍显示Reserved，选择6.0.1按B45处理。",
           "Lower SKP改变发送SKP的调度频度，不改变物理时钟架构。对A→B要核A生成能力、B接收能力、当前速率以及所有透明扩展器件支持；反向独立核。使能只在规定L0上下文生效，训练中仍按实际时钟架构处理，不能把SRNS低频度带到所有LTSSM状态。",
           "能力与控制的基址分别是PCIe Capability内LinkCap2 C+2Ch，以及Secondary PCIe Extended Capability内LinkControl3 S+04h。字段内部bit5对应64GT/s时，生成能力与使能寄存器位置为bit14，接收能力为bit21；字段位号不等于配置DWORD位号。",
           "Base6 p999能力表定义64GT/s，但p1030使能字段内部bit6:5仍为保留；Base7 p1183明确内部bit5=64、bit6=128GT/s。对Base6的64GT/s不得因寄存器可能可写、Base7已有定义或设备标Gen6就自动通过使能资格。既有离线查询已保留此门槛，本轮把它同步记入整项一致性阻塞。",
@@ -19219,6 +19426,82 @@
             "featureId": 10,
             "detailId": "skp-schedule-query",
             "label": "调度上下文查询"
+          },
+          {
+            "featureId": 10,
+            "detailId": "r209-lower-skp-b45-version-chain",
+            "label": "R209当前核对结论"
+          }
+        ]
+      },
+      {
+        "id": "r209-lower-skp-b45-version-chain",
+        "title": "64GT/s Lower SKP：B45正式勘误、bit映射与FM修改限制",
+        "paragraphs": [
+          "R209核到此前缺少的直接修订链：Base6.0.1 Change Bar在控制向量旁标注Errata: Base6.0 B45，将原始6.0保留的内部bit5定义为64GT/s，只保留内部bit6。NCB6.0.1已纳入；所核6.1/6.2相同字段继续保留。不是只拿7.0新增字段反推6.0，也不要求用户重复提供已有正式文档。",
+          "Enable向量位于Link Control3[15:9]，内部bit5即寄存器绝对bit14。不要把Supported Link Speeds Vector内部bit、Lower SKP能力向量内部bit和寄存器绝对位置混为同一个编号。64GT/s的本端生成能力为Link Capabilities2 bit14、对端接收能力为该对端Link Capabilities2 bit21；使能另看本端Link Control3 bit14。能力不等于当前生效，路径还可能包含须支持的中间组件。",
+          "6.0.1 §4.2.8.4已明确：FM且速率不是2.5GT/s时修改Enable向量，行为未定义。本轮直接核了该版本正文，未借用7.0替代。查询新增6.0.1含B45选项；64GT/s必须FM，并先拦截该修改动作，再按本端生成/对端接收/路径/使能/L0逐项解释。只观察寄存器不会等于发起修改，也不操作硬件。",
+          "6.0.1所核1b/1b、非Data Stream时：非SRIS，或对应Enable位置1且LTSSM=L0，调度间隔为740～750 Blocks；SRIS且位清0或不在L0时小于76 Blocks。Data Stream内、进入前或结束后转按§4.2.3.1.5，不能把此表当成所有FLIT数据流的定期间隔。这里的Block数也不能直接当应用有效载荷带宽。",
+          "功能10/12原共享阻塞由B45及纳入正文共同关闭；保留原6.0选项在64GT/s返回Reserved，避免把旧文自动升级。此处不宣称所有Gen6实现都应用了B45，不从速率推断任何可选能力，也不把局部核读当成整章完成。"
+        ],
+        "referenceIndices": [
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "位/正文",
+            "条件与限制"
+          ],
+          "rows": [
+            [
+              "64GT/s速率支持",
+              "Link Capabilities2 bit6",
+              "本端和对端分别核对"
+            ],
+            [
+              "Lower SKP发送能力",
+              "本端Link Capabilities2 bit14",
+              "不是控制位，不能靠软件创造能力"
+            ],
+            [
+              "Lower SKP接收能力",
+              "对端Link Capabilities2 bit21",
+              "路径内组件能力仍需确认"
+            ],
+            [
+              "Enable / B45",
+              "本端Link Control3 bit14",
+              "向量内部bit5；原6.0保留"
+            ],
+            [
+              "FM更改向量",
+              "6.0.1 p553",
+              "非2.5GT/s时行为未定义"
+            ],
+            [
+              "页码",
+              "CB1048 / NCB1036",
+              "各自印刷=物理，两个副本页码不相同"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 10,
+            "detailId": "lower-skp-snapshot-query",
+            "label": "版本化快照查询"
+          },
+          {
+            "featureId": 10,
+            "detailId": "lower-skp-gen7-vector2",
+            "label": "128GT/s另用7.0向量扩展"
           }
         ]
       }
@@ -21171,14 +21454,14 @@
     "checks": "不要简单用GT/s乘lane数就宣称应用带宽；PAM4是调制方式，不是PCIe事务类型。",
     "prerequisites": "先确认板级供电/时钟/复位、PHY及两端角色，再检查双方和路径的速率/宽度/模式支持；只改数字控制器寄存器不能补齐电气条件。",
     "id": 12,
-    "status": "R172部分验收：7/8维度通过，Base6 Lower SKP控制来源一致性阻塞",
+    "status": "一期已验收：R209版本化正文/约束核对；实现验证另列",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-30",
+    "reviewed": "2026-10-31",
     "protocolReferences": [
       {
         "section": "4",
@@ -23686,6 +23969,39 @@
         "pdfPage": 1030,
         "title": "共享使能表问题",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0",
+        "document": "PCI Express Base Specification",
+        "version": "6.0",
+        "section": "7.7.3.2",
+        "page": 1030,
+        "pdfPage": 1030,
+        "title": "未纳入B45的原始控制向量",
+        "url": "https://pcisig.com/specifications?order=field_revision&sort=asc",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0.1-cb",
+        "document": "PCI Express Base Specification 6.0.1 vs 6.0 — Change Bar",
+        "version": "6.0.1 Change Bar",
+        "section": "7.7.3.2",
+        "page": 1048,
+        "pdfPage": 1048,
+        "title": "Errata Base6.0 B45新增内部bit5的64GT/s定义",
+        "url": "https://pcisig.com/PCIExpress/ChangeBar/Base/_6.0.1_1.0",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "pcie-base-6.0.1",
+        "document": "PCI Express Base Specification",
+        "version": "6.0.1",
+        "section": "7.7.3.2",
+        "page": 1036,
+        "pdfPage": 1036,
+        "title": "NCB纳入B45的Enable向量",
+        "url": "https://pcisig.com/specification-overview/pci-express-base",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
@@ -26492,6 +26808,7 @@
         "id": "r172-throughput-units-and-shared-gate",
         "title": "Gen1～Gen7带宽口径：编码后预算、TLP区与应用Payload分开",
         "paragraphs": [
+          "R209当前结论：原共享Lower SKP阻塞已由6.0.1的B45直接修订链关闭；保留旧版对比，不再作为缺少官方依据的未解决问题。",
           "下表为十进制GB/s、单Lane、单向的计算口径。NRZ各档先GT/s÷8再乘编码效率；PAM4的64/128GT/s已计入每电平符号两bit，分别为32/64GBaud，不能再次乘2。全双工总量是两方向之和，不是任一方向能独占两倍速率。",
           "8b/10b的80%与128b/130b的128/130只给编码层预算，尚未扣OS、包头、CRC及空闲。64/128GT/s单Lane的8/16GB/s是原始位流等价字节率，不能套128/130；即使只扣256B Flit中的非TLP区，得到的7.375/14.75GB/s也只是TLP区理论容量，仍未扣TLP头、NOP/填充、OS与业务限制。",
           "例如128GT/s x16单向原始256GB/s，双向合计512GB/s；只按236/256区域比计算时，单向TLP区域理论236GB/s，仍不是应用净载荷吞吐。计算由已核编码和Flit布局导出，不把理论上限当设备实测。链路当前宽度/速率、读完成往返、FC和Replay也会进一步影响可见性能。",
@@ -26560,6 +26877,50 @@
             "featureId": 12,
             "detailId": "coding-version-audit-boundary",
             "label": "逐版核读与首版历史边界"
+          },
+          {
+            "featureId": 12,
+            "detailId": "r209-throughput-lower-skp-b45-shared-gate",
+            "label": "R209当前核对结论"
+          }
+        ]
+      },
+      {
+        "id": "r209-throughput-lower-skp-b45-shared-gate",
+        "title": "吞吐共同阻塞关闭：Lower SKP B45，不把SKP间隔当载荷带宽",
+        "paragraphs": [
+          "功能12原来最后一致性阻塞与功能10是同一问题：原6.0 Enable向量保留64GT/s的位置。R209直接核到6.0.1 Change Bar B45（针对Base6.0）和纳入正文，因此按版本化修订链关闭，不要求旧纸面改成新版。",
+          "控制位图、能力/使能/路径/L0门控、FM修改限制集中在功能10复用。降低SKP频率可能减少开销，但该能力不等于有效载荷带宽保证；既有吞吐单位、FLIT、协议/软件开销解释继续适用，不用740～750 Blocks代替任意数据流的载荷公式。"
+        ],
+        "referenceIndices": [
+          228,
+          229,
+          230
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "直接证据",
+            "限制"
+          ],
+          "rows": [
+            [
+              "来源",
+              "CB6.0.1 p1048 / NCBp1036",
+              "B45修订链"
+            ],
+            [
+              "复用",
+              "功能10的B45详情和快照查询",
+              "不另复制易失配的完整门控表"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 10,
+            "detailId": "r209-lower-skp-b45-version-chain",
+            "label": "B45完整解释及查询"
           }
         ]
       }

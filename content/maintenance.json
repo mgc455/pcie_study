@@ -18,7 +18,8 @@
     "构建与检查通过后再提交",
     "每轮记录实际变更和仍未解决的问题",
     "按用户确认的priorityPlan推进；每4个实质常规轮次做一次阶段总结，累计计数并说明下一优先级。",
-    "R91起以releasePlan为当前一期范围与轮次依据；旧研究优先级仅作历史记录，不得持续扩写绕过收尾。"
+    "R91起以releasePlan为当前一期范围与轮次依据；旧研究优先级仅作历史记录，不得持续扩写绕过收尾。",
+    "用户持续允许网上搜索确认；本地资料与正式中间修订/Change Bar先盘点核读，不把已有未读文件称为缺失。"
   ],
   "dailyWorkflow": [
     "先读releasePlan/roundLedger及审计，确认当前固定任务和远端修改。",
@@ -45,11 +46,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-31",
-    "edition": "2026-10-31-r207",
+    "edition": "2026-10-31-r209",
     "featureIds": [
-      15
+      10,
+      12
     ],
-    "nextTrack": "官方规范修订链；下次四轮复盘R210"
+    "nextTrack": "R210四轮复盘；剩余官方来源验收优先"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -339,11 +341,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 1,
-    "nextReviewAfterRounds": 3,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 149,
+    "completedTotal": 151,
     "lastReviewEdition": "2026-10-31-r206",
     "lastReviewId": "r203-r206",
     "nextExpectedReview": "后续获授权并有实质工作时R210总结，不是新完工期限。"
@@ -1280,9 +1282,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 117,
+    "completedRounds": 119,
     "remainingPlannedRounds": 0,
-    "nextRound": 208,
+    "nextRound": 210,
     "nextReviewRound": 210,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -2758,7 +2760,7 @@
         "featureId": 9,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "blocked",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -2934,15 +2936,15 @@
             "note": "按所列正式版正文和既有查询验收；范围为本主题规则，不代表整章、电气预算、全部ECN或硬件验证。"
           },
           "consistency": {
-            "status": "blocked",
-            "reviewedRound": 170,
+            "status": "passed",
+            "reviewedRound": 208,
             "evidence": [
               {
-                "href": "#feature/9/detail/r170-eq-noeq-disable-source-gate",
-                "label": "No-EQ正文与控制字段边界"
+                "href": "#feature/9/detail/r208-noeq-concurrent-disable-gates",
+                "label": "No-EQ两个Disable位共同约束：四种组合与通告边界"
               }
             ],
-            "note": "No-EQ段引用Bypass Disable，而控制寄存器另定义No-EQ Disable；两者广告门控关系待匹配版本正式澄清，不凭字段名自行改写。"
+            "note": "原阻塞把两个同时适用的禁止条件误当成互斥字段。7.0 §4.2.4和§7.7.6.3可并行满足：BypassDisable=1禁止Bypass及No-EQ；NoEQDisable=1另行禁止No-EQ。Clear仅为有条件许可，不覆盖其它禁止。不是官方笔误或新勘误。"
           }
         },
         "baseline": {
@@ -2950,8 +2952,8 @@
           "referenceCount": 42
         },
         "reuseGroups": [],
-        "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "No-EQ段引用Bypass Disable，而控制寄存器另定义No-EQ Disable；两者广告门控关系待匹配版本正式澄清，不凭字段名自行改写。",
+        "triageHint": "本条八维通过；不是整章或硬件实现验证。",
+        "reviewNote": "原阻塞把两个同时适用的禁止条件误当成互斥字段。7.0 §4.2.4和§7.7.6.3可并行满足：BypassDisable=1禁止Bypass及No-EQ；NoEQDisable=1另行禁止No-EQ。Clear仅为有条件许可，不覆盖其它禁止。不是官方笔误或新勘误。",
         "taskId": "v1-task-02",
         "requiredTaskIds": [
           "v1-task-02",
@@ -2959,16 +2961,36 @@
           "v1-task-23",
           "v1-task-24"
         ],
-        "blockers": [
-          "No-EQ段引用Bypass Disable，而控制寄存器另定义No-EQ Disable；两者广告门控关系待匹配版本正式澄清，不凭字段名自行改写。"
-        ]
+        "blockers": [],
+        "sourceReviewHistory": [
+          {
+            "round": 208,
+            "previousStatus": "blocked",
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 170,
+              "evidence": [
+                {
+                  "href": "#feature/9/detail/r170-eq-noeq-disable-source-gate",
+                  "label": "No-EQ正文与控制字段边界"
+                }
+              ],
+              "note": "No-EQ段引用Bypass Disable，而控制寄存器另定义No-EQ Disable；两者广告门控关系待匹配版本正式澄清，不凭字段名自行改写。"
+            },
+            "previousBlockers": [
+              "No-EQ段引用Bypass Disable，而控制寄存器另定义No-EQ Disable；两者广告门控关系待匹配版本正式澄清，不凭字段名自行改写。"
+            ],
+            "result": "原阻塞把两个同时适用的禁止条件误当成互斥字段。7.0 §4.2.4和§7.7.6.3可并行满足：BypassDisable=1禁止Bypass及No-EQ；NoEQDisable=1另行禁止No-EQ。Clear仅为有条件许可，不覆盖其它禁止。不是官方笔误或新勘误。"
+          }
+        ],
+        "acceptedRound": 208
       },
       {
         "id": "v1-feature-10",
         "featureId": 10,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "blocked",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -3096,15 +3118,15 @@
             "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "consistency": {
-            "status": "blocked",
-            "reviewedRound": 171,
+            "status": "passed",
+            "reviewedRound": 209,
             "evidence": [
               {
-                "href": "#feature/10/detail/r171-lower-skp-version-source-gate",
-                "label": "Base6 Lower SKP共享来源门槛"
+                "href": "#feature/10/detail/r209-lower-skp-b45-version-chain",
+                "label": "64GT/s Lower SKP：B45正式勘误、bit映射与FM修改限制"
               }
             ],
-            "note": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。"
+            "note": "6.0.1 Change Bar p1048直接标注针对Base6.0的B45，将Enable Lower SKP OS Generation Vector内部bit5定义为64GT/s、bit6保留；NCB6.0.1 p1036已纳入。原6.0未修定义与纳入勘误的版本分列，FM修改限制另按6.0.1 p553核读。"
           }
         },
         "baseline": {
@@ -3114,8 +3136,8 @@
         "reuseGroups": [
           "clock-reset"
         ],
-        "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。",
+        "triageHint": "本条八维通过；不是整章或硬件实现验证。",
+        "reviewNote": "6.0.1 Change Bar p1048直接标注针对Base6.0的B45，将Enable Lower SKP OS Generation Vector内部bit5定义为64GT/s、bit6保留；NCB6.0.1 p1036已纳入。原6.0未修定义与纳入勘误的版本分列，FM修改限制另按6.0.1 p553核读。",
         "taskId": "v1-task-10",
         "requiredTaskIds": [
           "v1-task-10",
@@ -3123,9 +3145,29 @@
           "v1-task-23",
           "v1-task-24"
         ],
-        "blockers": [
-          "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。"
-        ]
+        "blockers": [],
+        "sourceReviewHistory": [
+          {
+            "round": 209,
+            "previousStatus": "blocked",
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 171,
+              "evidence": [
+                {
+                  "href": "#feature/10/detail/r171-lower-skp-version-source-gate",
+                  "label": "Base6 Lower SKP共享来源门槛"
+                }
+              ],
+              "note": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。"
+            },
+            "previousBlockers": [
+              "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。"
+            ],
+            "result": "6.0.1 Change Bar p1048直接标注针对Base6.0的B45，将Enable Lower SKP OS Generation Vector内部bit5定义为64GT/s、bit6保留；NCB6.0.1 p1036已纳入。原6.0未修定义与纳入勘误的版本分列，FM修改限制另按6.0.1 p553核读。"
+          }
+        ],
+        "acceptedRound": 209
       },
       {
         "id": "v1-feature-11",
@@ -3308,7 +3350,7 @@
         "featureId": 12,
         "group": "链路与物理层",
         "scope": "protocol-or-phy",
-        "status": "blocked",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -3476,15 +3518,15 @@
             "note": "核所列正式Base6/7正文与字段，复用既有版本表/阶段查询；本主题选定规则，不是全章、全部ECN或硬件验证。"
           },
           "consistency": {
-            "status": "blocked",
-            "reviewedRound": 172,
+            "status": "passed",
+            "reviewedRound": 209,
             "evidence": [
               {
-                "href": "#feature/12/detail/r172-throughput-units-and-shared-gate",
-                "label": "Base6 Lower SKP共享来源门槛"
+                "href": "#feature/12/detail/r209-throughput-lower-skp-b45-shared-gate",
+                "label": "吞吐共同阻塞关闭：Lower SKP B45，不把SKP间隔当载荷带宽"
               }
             ],
-            "note": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。"
+            "note": "6.0.1 Change Bar p1048直接标注针对Base6.0的B45，将Enable Lower SKP OS Generation Vector内部bit5定义为64GT/s、bit6保留；NCB6.0.1 p1036已纳入。原6.0未修定义与纳入勘误的版本分列，FM修改限制另按6.0.1 p553核读。"
           }
         },
         "baseline": {
@@ -3492,8 +3534,8 @@
           "referenceCount": 210
         },
         "reuseGroups": [],
-        "triageHint": "已有较多内容；按验收项检查并复用，不按数量认定完成。",
-        "reviewNote": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。",
+        "triageHint": "本条八维通过；不是整章或硬件实现验证。",
+        "reviewNote": "6.0.1 Change Bar p1048直接标注针对Base6.0的B45，将Enable Lower SKP OS Generation Vector内部bit5定义为64GT/s、bit6保留；NCB6.0.1 p1036已纳入。原6.0未修定义与纳入勘误的版本分列，FM修改限制另按6.0.1 p553核读。",
         "taskId": "v1-task-03",
         "requiredTaskIds": [
           "v1-task-03",
@@ -3501,9 +3543,29 @@
           "v1-task-23",
           "v1-task-24"
         ],
-        "blockers": [
-          "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。"
-        ]
+        "blockers": [],
+        "sourceReviewHistory": [
+          {
+            "round": 209,
+            "previousStatus": "blocked",
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 172,
+              "evidence": [
+                {
+                  "href": "#feature/12/detail/r172-throughput-units-and-shared-gate",
+                  "label": "Base6 Lower SKP共享来源门槛"
+                }
+              ],
+              "note": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。"
+            },
+            "previousBlockers": [
+              "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。"
+            ],
+            "result": "6.0.1 Change Bar p1048直接标注针对Base6.0的B45，将Enable Lower SKP OS Generation Vector内部bit5定义为64GT/s、bit6保留；NCB6.0.1 p1036已纳入。原6.0未修定义与纳入勘误的版本分列，FM修改限制另按6.0.1 p553核读。"
+          }
+        ],
+        "acceptedRound": 209
       },
       {
         "id": "v1-feature-13",
@@ -36508,6 +36570,56 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "159/183与1439维度通过；剩24项/25维度，不以原版历史文本消失作为验收条件，实际实现仍须核采用的修订。",
         "publication": "R206/R207分别构建/查询检查后合并发布R207；线上与视觉结果分列。"
+      },
+      {
+        "round": 208,
+        "kind": "R208 No-EQ两个Disable位共同约束：四种组合与通告边界",
+        "deliverables": [
+          "No-EQ两个Disable条件并行适用，新增四组合表并纠正过度阻塞；功能9完成验收。累计160/183、1440维度，剩23项/24维度。"
+        ],
+        "closedDeliverableIds": [
+          "feature-9-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 9,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          9
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "23项/24维度；官方资料优先，产品请求暂缓，R210四轮复盘。",
+        "publication": "R208/R209分别构建检查，合并发布R209；线上字节核验与视觉分列。"
+      },
+      {
+        "round": 209,
+        "kind": "R209 64GT/s Lower SKP：B45正式勘误、bit映射与FM修改限制",
+        "deliverables": [
+          "B45正式修订链补齐64GT/s Lower SKP控制向量，新增6.0.1快照查询并按本版正文拦截FM非法修改；10/12验收。累计162/183、1442维度，剩21项/22维度。"
+        ],
+        "closedDeliverableIds": [
+          "feature-10-v1-accepted",
+          "feature-12-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 10,
+            "criterionId": "consistency"
+          },
+          {
+            "featureId": 12,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          10,
+          12
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "21项/22维度；官方资料优先，产品请求暂缓，R210四轮复盘。",
+        "publication": "R208/R209分别构建检查，合并发布R209；线上字节核验与视觉分列。"
       }
     ],
     "backlog": [
@@ -36583,7 +36695,7 @@
           11
         ],
         "phase": "core",
-        "status": "open",
+        "status": "closed",
         "focus": "逐子状态/入口/正常异常出口、计数和定时；复用已展开状态，核剩余角色和修订差异。",
         "exit": "所列条目八维验收的适用项逐一有证据通过；可复用既有正文，独有语义、版本限制及相关冲突不可遗漏。",
         "legacyRecordIndices": [
@@ -36600,8 +36712,17 @@
           104,
           111
         ],
-        "evidence": [],
-        "closedRound": null
+        "evidence": [
+          {
+            "href": "#feature/9/detail/r208-noeq-concurrent-disable-gates",
+            "label": "R208 No-EQ共同禁止条件"
+          },
+          {
+            "href": "#feature/5/detail/r206-b310-versioned-fallback-contract",
+            "label": "R206 B310/B384修订链"
+          }
+        ],
+        "closedRound": 208
       },
       {
         "id": "v1-task-03",
@@ -37773,10 +37894,25 @@
         "legacyRecordIndices": [
           40
         ],
-        "status": "needs-corroboration",
+        "status": "resolved-concurrent-normative-constraints",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
-        "evidence": []
+        "nextAction": "按两个禁止条件的合取解释；无需等待假定的字段名勘误。",
+        "evidence": [
+          {
+            "href": "#feature/9/detail/r208-noeq-concurrent-disable-gates",
+            "label": "No-EQ两个Disable位共同约束：四种组合与通告边界"
+          }
+        ],
+        "reviewHistory": [
+          {
+            "round": 208,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
+            "previousEvidence": []
+          }
+        ],
+        "lastReviewedRound": 208,
+        "resolution": "原阻塞把两个同时适用的禁止条件误当成互斥字段。7.0 §4.2.4和§7.7.6.3可并行满足：BypassDisable=1禁止Bypass及No-EQ；NoEQDisable=1另行禁止No-EQ。Clear仅为有条件许可，不覆盖其它禁止。不是官方笔误或新勘误。"
       },
       {
         "id": "v1-conflict-11",
@@ -40384,33 +40520,33 @@
       }
     ],
     "nextExecution": {
-      "round": 208,
+      "round": 210,
       "taskId": "v1-task-23",
       "featureIds": [],
-      "goal": "官方规范优先，优先已有6.x Change Bar的可追溯修订；产品资料请求暂缓，待用户补充Base6.5/7.1/LTR再核。",
+      "goal": "已有本地正式规范与Change Bar优先核读，同时网上查官方资料确认；先关闭剩余官方来源阻塞，不机械新增工具。",
       "mode": "official-specification-first",
       "reviewRound": 210
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 207,
+      "assessedRound": 209,
       "reestimateRound": 210,
       "observedAcceptedUnitsPerRound": 1.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "正式6.2 Change Bar B541/B564建立L0p同宽Priority及Recovery配置宽度修订链，15完成最后验收并扩展仲裁查询；原6.0/6.1选项不静默套修订。累计159/183、1439维度，剩24项。",
-      "action": "优先PCI-SIG与Intel官方规范及已有中间修订；用户暂缓IP产品资料，不再主动索取STAR/产品SDK。原183项/48轮预算及每日暂停保留。",
+      "assessment": "B45正式修订链补齐64GT/s Lower SKP控制向量，新增6.0.1快照查询并按本版正文拦截FM非法修改；10/12验收。累计162/183、1442维度，剩21项/22维度。",
+      "action": "用户持续允许网上搜索确认；先盘点并核已有本地正式正文和Change Bar，真正缺失才提出具体官方文档。产品资料暂缓；原预算不延长为新承诺。",
       "latestProgress": {
-        "round": 207,
-        "newAcceptedUnits": 1,
-        "cumulativeAcceptedUnits": 159,
-        "newPassedCriteria": 1,
-        "cumulativePassedCriteria": 1439,
+        "round": 209,
+        "newAcceptedUnits": 2,
+        "cumulativeAcceptedUnits": 162,
+        "newPassedCriteria": 2,
+        "cumulativePassedCriteria": 1442,
         "remainingPlannedRounds": 0
       },
       "unacceptedBreakdown": {
-        "blocked": 24,
+        "blocked": 21,
         "awaiting": 0
       }
     },
@@ -42129,8 +42265,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        206,
-        207
+        208,
+        209
       ],
       "completedRounds": [
         139,
@@ -42201,10 +42337,12 @@
         204,
         205,
         206,
-        207
+        207,
+        208,
+        209
       ],
-      "publication": "checks-before-combined-r207-publication",
-      "note": "官方规范优先；产品资料请求暂缓；每日保持暂停。",
+      "publication": "checks-before-combined-r209-publication",
+      "note": "每日保持暂停；网上官方来源与本地正式文档交叉核读，产品资料暂缓。",
       "historyPreservedR202": {
         "authorizedRounds": [
           185,
@@ -42317,6 +42455,30 @@
             207
           ],
           "instruction": "两轮；当前只提出官方规范资料，IP产品资料暂缓。"
+        },
+        {
+          "round": 208,
+          "previousAuthorizedRounds": [
+            206,
+            207
+          ],
+          "currentAuthorizedRounds": [
+            208,
+            209
+          ],
+          "instruction": "先上线再两轮；后续可网上搜索确认，也需充分核已有本地资料。"
+        },
+        {
+          "round": 209,
+          "previousAuthorizedRounds": [
+            208,
+            209
+          ],
+          "currentAuthorizedRounds": [
+            208,
+            209
+          ],
+          "instruction": "先上线再两轮；后续可网上搜索确认，也需充分核已有本地资料。"
         }
       ]
     },
@@ -42330,16 +42492,16 @@
     },
     "continuationMode": "acceptance-evidence-gated-no-repeat",
     "acceptanceGate": {
-      "asOfRound": 207,
-      "acceptedFeatures": 159,
-      "blockedFeatures": 24,
-      "unpassedCriteria": 25,
-      "newAcceptedInLastFour": 5,
+      "asOfRound": 209,
+      "acceptedFeatures": 162,
+      "blockedFeatures": 21,
+      "unpassedCriteria": 22,
+      "newAcceptedInLastFour": 7,
       "sourceQuestionsResolvedThisWindow": [
         "v1-conflict-20",
         "v1-conflict-23"
       ],
-      "summary": "正式6.2 Change Bar B541/B564建立L0p同宽Priority及Recovery配置宽度修订链，15完成最后验收并扩展仲裁查询；原6.0/6.1选项不静默套修订。累计159/183、1439维度，剩24项。",
+      "summary": "B45正式修订链补齐64GT/s Lower SKP控制向量，新增6.0.1快照查询并按本版正文拦截FM非法修改；10/12验收。累计162/183、1442维度，剩21项/22维度。",
       "causes": [
         "原48轮是未校准的预算，并非可靠完成预测；到R202已比R138多64轮。",
         "最近主要反复处理规范/产品文档冲突，新增说明却无法关闭一致性门槛。",
@@ -42351,9 +42513,6 @@
         {
           "kind": "PCI-SIG正式条款澄清",
           "featureIds": [
-            9,
-            10,
-            12,
             89,
             92,
             106,
@@ -42389,45 +42548,6 @@
         }
       ],
       "items": [
-        {
-          "featureId": 9,
-          "kind": "PCI-SIG正式条款澄清",
-          "issue": "No-EQ段引用Bypass Disable，而控制寄存器另定义No-EQ Disable；两者广告门控关系待匹配版本正式澄清，不凭字段名自行改写。",
-          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
-          "evidence": [
-            {
-              "href": "#feature/9/detail/r170-eq-noeq-disable-source-gate",
-              "label": "No-EQ正文与控制字段边界"
-            }
-          ],
-          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
-        },
-        {
-          "featureId": 10,
-          "kind": "PCI-SIG正式条款澄清",
-          "issue": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。",
-          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
-          "evidence": [
-            {
-              "href": "#feature/10/detail/r171-lower-skp-version-source-gate",
-              "label": "Base6 Lower SKP共享来源门槛"
-            }
-          ],
-          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
-        },
-        {
-          "featureId": 12,
-          "kind": "PCI-SIG正式条款澄清",
-          "issue": "Base6.0 LinkCap2 p999定义64GT/s Lower SKP能力，但LinkControl3 p1030对应使能位置保留；已核Base7有定义，不能倒填Base6。复用既有10来源问题，待匹配正式勘误/修订澄清。",
-          "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
-          "evidence": [
-            {
-              "href": "#feature/12/detail/r172-throughput-units-and-shared-gate",
-              "label": "Base6 Lower SKP共享来源门槛"
-            }
-          ],
-          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
-        },
         {
           "featureId": 89,
           "kind": "PCI-SIG正式条款澄清",
@@ -43283,11 +43403,23 @@
               "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
             }
           ]
+        },
+        {
+          "asOfRound": 207,
+          "summary": "正式6.2 Change Bar B541/B564建立L0p同宽Priority及Recovery配置宽度修订链，15完成最后验收并扩展仲裁查询；原6.0/6.1选项不静默套修订。累计159/183、1439维度，剩24项。",
+          "acceptedFeatures": 159,
+          "blockedFeatures": 24
+        },
+        {
+          "asOfRound": 208,
+          "summary": "No-EQ两个Disable条件并行适用，新增四组合表并纠正过度阻塞；功能9完成验收。累计160/183、1440维度，剩23项/24维度。",
+          "acceptedFeatures": 160,
+          "blockedFeatures": 23
         }
       ]
     },
     "documentRequests": {
-      "asOfRound": 207,
+      "asOfRound": 209,
       "summary": "当前只保留Base6.5/7.1及配套Showing Changes、LTR最终发布正文五项官方资料请求。已有6.0.1/6.1/6.2及对应Change Bar继续核读，无需重复提供；IP产品三项请求按用户指示暂缓。",
       "items": [
         {
