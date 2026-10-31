@@ -1,5 +1,10 @@
 {
-  "nextFeatureIds": [],
+  "nextFeatureIds": [
+    4,
+    12,
+    89,
+    129
+  ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
     "修正事实错误",
@@ -19,7 +24,8 @@
     "每轮记录实际变更和仍未解决的问题",
     "按用户确认的priorityPlan推进；每4个实质常规轮次做一次阶段总结，累计计数并说明下一优先级。",
     "R91起以releasePlan为当前一期范围与轮次依据；旧研究优先级仅作历史记录，不得持续扩写绕过收尾。",
-    "用户持续允许网上搜索确认；本地资料与正式中间修订/Change Bar先盘点核读，不把已有未读文件称为缺失。"
+    "用户持续允许网上搜索确认；本地资料与正式中间修订/Change Bar先盘点核读，不把已有未读文件称为缺失。",
+    "R215起按用户要求进入纠错与完善维护：已知规范疑点单列，不以局部未裁决阻止已核主体内容使用；不反复重读同页凑轮次，不新增未经核实的技术结论。"
   ],
   "dailyWorkflow": [
     "先读releasePlan/roundLedger及审计，确认当前固定任务和远端修改。",
@@ -46,20 +52,12 @@
   ],
   "lastCompleted": {
     "date": "2026-10-31",
-    "edition": "2026-10-31-r214",
+    "edition": "2026-10-31-r215",
     "featureIds": [
-      143,
-      146,
-      147,
-      148,
-      152,
-      159,
-      173,
-      176,
-      179,
-      92
+      106,
+      164
     ],
-    "nextTrack": "公开PCI-SIG/PIPE定向澄清；产品范围已接受"
+    "nextTrack": "纠错与实际缺口完善；R218四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -349,11 +347,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 1,
+    "nextReviewAfterRounds": 3,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 156,
+    "completedTotal": 157,
     "lastReviewEdition": "2026-10-31-r214",
     "lastReviewId": "r211-r214",
     "nextExpectedReview": "有实质授权推进时R218再复盘；无新证据不机械运行。"
@@ -1290,9 +1288,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 124,
+    "completedRounds": 125,
     "remainingPlannedRounds": 0,
-    "nextRound": 215,
+    "nextRound": 216,
     "nextReviewRound": 218,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -17159,7 +17157,7 @@
           },
           "structure": {
             "status": "blocked",
-            "reviewedRound": 197,
+            "reviewedRound": 215,
             "evidence": [
               {
                 "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
@@ -17167,10 +17165,14 @@
               },
               {
                 "href": "#feature/106/detail/r197-rppio-size-unit-check",
-                "label": "容量/布局复算仍未解决所有范围差异"
+                "label": "RP PIO五位容量、Header长度与分段地址（R210已纠错）"
+              },
+              {
+                "href": "#feature/106/detail/r210-rppio-five-bit-capacity-correction",
+                "label": "R210已核五位容量；范围疑点另列"
               }
             ],
-            "note": "可用偏移和限制已说明，未据推测改规范，不满足完整验收。"
+            "note": "支持FM时Log Size由bit13和[11:8]拼成五位，R210已修正本站旧四位推导；当前只保留FM Header52～76Byte与最大Header/OHC日志要求的对应疑点，不将编码宽度列为未解问题。"
           },
           "exceptions": {
             "status": "passed",
@@ -17218,7 +17220,7 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 197,
+            "reviewedRound": 215,
             "evidence": [
               {
                 "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
@@ -17226,10 +17228,14 @@
               },
               {
                 "href": "#feature/106/detail/r197-rppio-size-unit-check",
-                "label": "RP PIO日志核对：4bit容量、Header字节数与分段地址是三件事"
+                "label": "RP PIO五位容量、Header长度与分段地址（R210已纠错）"
+              },
+              {
+                "href": "#feature/106/detail/r210-rppio-five-bit-capacity-correction",
+                "label": "R210已核五位容量；范围疑点另列"
               }
             ],
-            "note": "DPC日志补四位DWORD容量、Header范围及分段地址的独立复算，明确不能靠容量/长度混用消除源文差异；106两项阻塞维度保留。"
+            "note": "支持FM时Log Size由bit13和[11:8]拼成五位，R210已修正本站旧四位推导；当前只保留FM Header52～76Byte与最大Header/OHC日志要求的对应疑点，不将编码宽度列为未解问题。"
           }
         },
         "baseline": {
@@ -17247,7 +17253,7 @@
           "v1-task-24"
         ],
         "blockers": [
-          "v1-conflict-06：四份正式版52～76字节与最大实现Header/OHC日志需求的对应未澄清。"
+          "仅v1-conflict-06的FM Header范围与最大Header/OHC日志要求对应未协调；五位容量不再作为阻塞理由。"
         ],
         "sourceReviewHistory": [
           {
@@ -17278,6 +17284,40 @@
               "v1-conflict-06：四份正式版52～76字节与最大实现Header/OHC日志需求的对应未澄清。"
             ],
             "result": "新增RP PIO分配边界查询：区分FM支持/当前模式，按五位容量检查Header拼接并跳过30h，拒绝容量不足；不把容量足够当规范合规。累计162/183、1442维度，剩21项/22维度，来源问题06继续保留。"
+          },
+          {
+            "round": 215,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 197,
+              "evidence": [
+                {
+                  "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+                  "label": "四份正式原版仍保留的长度歧义"
+                },
+                {
+                  "href": "#feature/106/detail/r197-rppio-size-unit-check",
+                  "label": "RP PIO日志核对：4bit容量、Header字节数与分段地址是三件事"
+                }
+              ],
+              "note": "DPC日志补四位DWORD容量、Header范围及分段地址的独立复算，明确不能靠容量/长度混用消除源文差异；106两项阻塞维度保留。"
+            },
+            "previousStructure": {
+              "status": "blocked",
+              "reviewedRound": 197,
+              "evidence": [
+                {
+                  "href": "#feature/106/detail/r120-rppio-log-layout-and-open-span",
+                  "label": "四份正式原版仍保留的长度歧义"
+                },
+                {
+                  "href": "#feature/106/detail/r197-rppio-size-unit-check",
+                  "label": "容量/布局复算仍未解决所有范围差异"
+                }
+              ],
+              "note": "可用偏移和限制已说明，未据推测改规范，不满足完整验收。"
+            },
+            "result": "同步R210已经核实的五位容量；不改变尚未协调的Header范围结论"
           }
         ]
       },
@@ -26026,14 +26066,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 182,
+            "reviewedRound": 215,
             "evidence": [
               {
                 "href": "#feature/164/detail/r182-pipe-source-gates",
                 "label": "PIPE握手、位宽与副本来源边界"
+              },
+              {
+                "href": "#feature/170/detail/r190-pipe-official-alignment-and-p2",
+                "label": "已解决：官方与本地PDF页序映射；P2疑点另列"
               }
             ],
-            "note": "PIPE7.1 Ok/PhyStatus撤销边沿、Rate稳定独立Width/PCLK适用组合及MacCLK图表位宽仍需澄清；本地/官网副本页映射与其它原来源问题保留，不自行合成RTL合同。"
+            "note": "PIPE7.1时序、独立Width/PCLK适用组合及MacCLK图表位宽仍有待澄清分支；PDF页码映射已于R190核清，不再列为当前缺口。"
           }
         },
         "baseline": {
@@ -26053,7 +26097,27 @@
           "v1-task-24"
         ],
         "blockers": [
-          "PIPE7.1 Ok/PhyStatus撤销边沿、Rate稳定独立Width/PCLK适用组合及MacCLK图表位宽仍需澄清；本地/官网副本页映射与其它原来源问题保留，不自行合成RTL合同。"
+          "PIPE7.1时序、独立Width/PCLK适用组合及MacCLK图表位宽仍有待澄清分支；PDF页码映射已于R190核清，不再列为当前缺口。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 215,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 182,
+              "evidence": [
+                {
+                  "href": "#feature/164/detail/r182-pipe-source-gates",
+                  "label": "PIPE握手、位宽与副本来源边界"
+                }
+              ],
+              "note": "PIPE7.1 Ok/PhyStatus撤销边沿、Rate稳定独立Width/PCLK适用组合及MacCLK图表位宽仍需澄清；本地/官网副本页映射与其它原来源问题保留，不自行合成RTL合同。"
+            },
+            "previousBlockers": [
+              "PIPE7.1 Ok/PhyStatus撤销边沿、Rate稳定独立Width/PCLK适用组合及MacCLK图表位宽仍需澄清；本地/官网副本页映射与其它原来源问题保留，不自行合成RTL合同。"
+            ],
+            "result": "同步R190已解决的PDF页码映射，剩余时序/位宽疑点不变"
+          }
         ]
       },
       {
@@ -37018,6 +37082,22 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "11项/12维度，7PCI-SIG+4PIPE；不再索取任何产品保密交付资料。",
         "publication": "本轮构建/针对性验收统计与原查询限制回归后发布R214。"
+      },
+      {
+        "round": 215,
+        "kind": "R215纠错维护：当前说明与已完成修正同步",
+        "deliverables": [
+          "R215转入纠错与完善维护，修正两处旧审计未同步：RP PIO当前备注改为已核五位容量，PIPE当前说明标明R190页码映射已解决。11项局部规范疑点继续独立保留，172/183严格验收结果不变。"
+        ],
+        "closedDeliverableIds": [
+          "rp-pio-current-capacity-note-synchronized",
+          "pipe-pdf-mapping-current-note-synchronized"
+        ],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "保留11项/12维度严格验收疑点；维护重心为事实、版本、单位、包图、查询与导航自身错误，不等待未知澄清才完善。",
+        "publication": "本轮构建/检查及说明同步回归后发布R215。"
       }
     ],
     "backlog": [
@@ -41262,28 +41342,39 @@
       }
     ],
     "nextExecution": {
-      "round": 215,
+      "round": 216,
       "taskId": "v1-task-24",
-      "featureIds": [],
-      "goal": "只在新官方证据或可复现网站错误出现时推进剩余11项；没有新证据不安排机械扩写。产品资料不再作为重开要求。",
-      "mode": "evidence-triggered-convergence",
-      "reviewRound": 218
+      "featureIds": [
+        4,
+        12,
+        89,
+        129
+      ],
+      "goal": "从已核内容抽查文字/图表/查询的版本、单位和适用条件，优先可复现网站错误；选实际缺口深化，源文疑点遇新证据再核。",
+      "mode": "review-and-improve",
+      "reviewRound": 218,
+      "acceptedFeatureReviewReasons": {
+        "4": "抽查已核LTSSM文字/流程图/查询对版本和计时的表述一致性；没有新错误不改写、不重开验收。",
+        "12": "抽查带宽口径：单向/双向、lane、编码/有效载荷、PAM4倍数；没有新错误不改写。",
+        "89": "抽查B148新两位兼容规则与旧版图/概述是否明确分版；不重复等待已解决位号勘误。",
+        "129": "抽查新字节Base/旧页号兼容与字段图是否明确适用版本；RUN源文疑点另存，不影响其余内容维护。"
+      }
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 214,
+      "assessedRound": 215,
       "reestimateRound": 218,
       "observedAcceptedUnitsPerRound": 1.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R214产品资料边界按用户决定验收9项；累计172/183，其中163项按技术证据通过、9项按用户接受范围通过。剩7项PCI-SIG与4项公开PIPE，共11项/12维度。 同步关闭8个已满足条件但状态滞后的任务；R211～R214合计10项（1项技术证据、9项用户接受范围）。",
-      "action": "产品范围已由用户接受；公开协议/PIPE仅在新证据或本站错误出现时推进，不再无新依据轮询扩写。未发现缺整本Base/PIPE，不要求公司资料。",
+      "assessment": "R215转入纠错与完善维护，修正两处旧审计未同步：RP PIO当前备注改为已核五位容量，PIPE当前说明标明R190页码映射已解决。11项局部规范疑点继续独立保留，172/183严格验收结果不变。",
+      "action": "按用户决定持续纠错与完善；11项只限定对应分支，不再以疑点数量驱动反复扩写或索取资料。",
       "latestProgress": {
-        "round": 214,
-        "newAcceptedUnits": 9,
+        "round": 215,
+        "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 172,
-        "newPassedCriteria": 9,
+        "newPassedCriteria": 0,
         "cumulativePassedCriteria": 1452,
         "remainingPlannedRounds": 0
       },
@@ -43136,7 +43227,7 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        214
+        215
       ],
       "completedRounds": [
         139,
@@ -43214,10 +43305,11 @@
         211,
         212,
         213,
-        214
+        214,
+        215
       ],
-      "publication": "publish-r214-after-validation",
-      "note": "每日暂停；产品范围验收依用户明确授权，公开协议/PIPE不自动豁免。",
+      "publication": "publish-r215-after-validation",
+      "note": "用户手动授权一轮纠错维护；每日仍暂停，产品范围接受不变。",
       "historyPreservedR202": {
         "authorizedRounds": [
           185,
@@ -43413,6 +43505,16 @@
             214
           ],
           "instruction": "让问题收敛，使用已有资料；产品Controller/PHY可自动视为验收成功，不要求公司资料。"
+        },
+        {
+          "round": 215,
+          "previousAuthorizedRounds": [
+            214
+          ],
+          "currentAuthorizedRounds": [
+            215
+          ],
+          "instruction": "规范剩余暂存；后续按完善和检查网站是否写错推进，本次一轮。"
         }
       ]
     },
@@ -43426,7 +43528,7 @@
     },
     "continuationMode": "acceptance-evidence-gated-no-repeat",
     "acceptanceGate": {
-      "asOfRound": 214,
+      "asOfRound": 215,
       "acceptedFeatures": 172,
       "blockedFeatures": 11,
       "unpassedCriteria": 12,
@@ -43434,14 +43536,14 @@
       "sourceQuestionsResolvedThisWindow": [
         "v1-conflict-38"
       ],
-      "summary": "R214产品资料边界按用户决定验收9项；累计172/183，其中163项按技术证据通过、9项按用户接受范围通过。剩7项PCI-SIG与4项公开PIPE，共11项/12维度。",
+      "summary": "R215转入纠错与完善维护，修正两处旧审计未同步：RP PIO当前备注改为已核五位容量，PIPE当前说明标明R190页码映射已解决。11项局部规范疑点继续独立保留，172/183严格验收结果不变。",
       "causes": [
         "原48轮是未校准的预算，并非可靠完成预测；到R202已比R138多64轮。",
         "最近主要反复处理规范/产品文档冲突，新增说明却无法关闭一致性门槛。",
         "此前文字提取异常误当原页排印错误；收尾页还因旧预算快照提前返回而隐藏当前预测。"
       ],
-      "decision": "产品交付依赖不再阻塞，不索取公司材料；原技术疑点/查询限制保留。公开PCI-SIG/PIPE仍按官方证据核对。",
-      "roundEstimate": "未发现需要重复提供的整本Base/PIPE文件；剩余需要针对条款的正式协调，而非机械增加轮次。无新证据时不重复扩写。",
+      "decision": "当前以修正网站错误、补充可查细节和图文/查询核对为主。已核主体内容可继续使用；未裁决分支明确标注，不自行变成肯定结论。产品资料范围已由用户接受。",
+      "roundEstimate": "局部规范疑点不是整项内容未写完，也不是每轮必须关闭的数量目标。按用户手动授权维护，每四轮总结实际修错和补充结果。",
       "categories": [
         {
           "kind": "PCI-SIG正式条款澄清",
@@ -43490,7 +43592,7 @@
         {
           "featureId": 106,
           "kind": "PCI-SIG正式条款澄清",
-          "issue": "五位容量扩展已核并修正本站遗漏；剩余Header52～76Byte与最大实现Header/OHC需求的关系待明确，结构/一致性仍阻塞。",
+          "issue": "五位容量已核并完成网站纠错；只剩FM Header范围与最大Header/OHC日志要求的对应未协调。",
           "requiredEvidence": "匹配原版条款的勘误、修订内容或针对性正式解释；不能用后代规则倒填。",
           "evidence": [
             {
@@ -43636,7 +43738,7 @@
         {
           "featureId": 164,
           "kind": "Intel PIPE版本澄清",
-          "issue": "PIPE7.1 Ok/PhyStatus撤销边沿、Rate稳定独立Width/PCLK适用组合及MacCLK图表位宽仍需澄清；本地/官网副本页映射与其它原来源问题保留，不自行合成RTL合同。",
+          "issue": "PIPE7.1时序、独立Width/PCLK适用组合及MacCLK图表位宽仍有待澄清分支；PDF页码映射已于R190核清，不再列为当前缺口。",
           "requiredEvidence": "对应PIPE版本的勘误、明确时序/位宽合同或发布方澄清；新版仅作版本对照。",
           "evidence": [
             {
@@ -44226,11 +44328,12 @@
         }
       ],
       "evidenceAcceptedFeatures": 163,
-      "userAcceptedProductFeatures": 9
+      "userAcceptedProductFeatures": 9,
+      "maintenanceMode": "review-and-improve"
     },
     "documentRequests": {
-      "asOfRound": 214,
-      "summary": "整本Base6.5/7.1、Showing Changes和已有PIPE资料不缺；下列是具体澄清目标，不是已确认缺失/存在的文件清单。产品三项资料请求按用户决定关闭，后续不索取公司材料。",
+      "asOfRound": 215,
+      "summary": "以下是已有规范疑点的查证线索，不是本轮要求上传的文档。Base与PIPE本体已具备；日常完善不等待这些澄清，产品保密资料不再索取。",
       "items": [
         {
           "id": "pcisig-targeted-seven-clarifications",
@@ -49554,7 +49657,8 @@
           "reason": "IP产品资料暂时没有；用户要求当前只提出官方规范资料。",
           "closedRound": 214
         }
-      ]
+      ],
+      "mode": "reference-leads"
     },
     "userAcceptedProductScope": {
       "round": 214,
@@ -49577,6 +49681,19 @@
       "basis": "用户明确接受Controller/PHY产品资料边界，无需公司资料",
       "technicalQuestionsResolved": false,
       "policy": "范围验收成功；不生成未知技术值、不改变原工具阻塞、不公开保密材料"
+    },
+    "maintenanceMode": {
+      "id": "review-and-improve",
+      "sinceRound": 215,
+      "basis": "用户要求改为持续完善及核查网站是否写错，规范疑点暂存",
+      "priorities": [
+        "优先修复网站自身事实、版本、单位、图文或查询错误",
+        "针对实际说明缺口补充可查细节，不为增加数量重复改写正确内容",
+        "规范已知疑点单独限定分支；只有新证据才重新裁决",
+        "产品资料范围接受保持，不索取公司资料"
+      ],
+      "knownIssuesAreNotWholeFeatureIncomplete": true,
+      "unresolvedTechnicalClaimsRemainQualified": true
     }
   }
 }
