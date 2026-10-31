@@ -44,13 +44,13 @@
     "功能首次引入版本与ECN证据"
   ],
   "lastCompleted": {
-    "date": "2026-10-30",
-    "edition": "2026-10-30-r203",
+    "date": "2026-10-31",
+    "edition": "2026-10-31-r205",
     "featureIds": [
-      61,
-      89
+      152,
+      148
     ],
-    "nextTrack": "官方修订/具体文档追证；R206四轮总结"
+    "nextTrack": "现有资料与新证据优先；R206复盘"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -340,11 +340,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 1,
-    "nextReviewAfterRounds": 3,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 145,
+    "completedTotal": 147,
     "lastReviewEdition": "2026-10-30-r202",
     "lastReviewId": "r199-r202",
     "nextExpectedReview": "仅有后续手动授权且完成4个实质验收/修错轮次时R206复盘，不是新工期承诺。"
@@ -1272,7 +1272,7 @@
     "id": "v1-r91-r138",
     "title": "一期收尾：从持续扩写转为逐项验收",
     "baselineEdition": "2026-10-26-r90",
-    "updated": "2026-10-30",
+    "updated": "2026-10-31",
     "targetRounds": 48,
     "estimateRange": [
       40,
@@ -1281,9 +1281,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 113,
+    "completedRounds": 115,
     "remainingPlannedRounds": 0,
-    "nextRound": 204,
+    "nextRound": 206,
     "nextReviewRound": 206,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -23559,14 +23559,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 186,
+            "reviewedRound": 205,
             "evidence": [
               {
                 "href": "#feature/148/detail/r186-hdma-notification-source-gates",
                 "label": "本轮来源边界与原问题定位"
+              },
+              {
+                "href": "#feature/148/detail/r205-hdma-release-limit-and-star-evidence",
+                "label": "HDMA交付限制：6.50a Release Notes明确远程中断不支持MSI-X"
               }
             ],
-            "note": "conflict21：Watermark/Abort地址、Write错误方向、Read请求上限以及同版远端MSI-X限制仍待交付/正式澄清。"
+            "note": "同版Release Notes明确HDMA远程MSI-X不支持；余下地址/方向/上限等合同未闭环，148仍阻塞。"
           }
         },
         "baseline": {
@@ -23584,7 +23588,27 @@
           "v1-task-24"
         ],
         "blockers": [
-          "conflict21：Watermark/Abort地址、Write错误方向、Read请求上限以及同版远端MSI-X限制仍待交付/正式澄清。"
+          "conflict21其余子问题：Watermark/Abort地址、Write错误方向与Read请求上限仍待明确交付合同；6.50a远程中断不支持MSI-X已由Release Notes确认。"
+        ],
+        "sourceReviewHistory": [
+          {
+            "round": 205,
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 186,
+              "evidence": [
+                {
+                  "href": "#feature/148/detail/r186-hdma-notification-source-gates",
+                  "label": "本轮来源边界与原问题定位"
+                }
+              ],
+              "note": "conflict21：Watermark/Abort地址、Write错误方向、Read请求上限以及同版远端MSI-X限制仍待交付/正式澄清。"
+            },
+            "previousBlockers": [
+              "conflict21：Watermark/Abort地址、Write错误方向、Read请求上限以及同版远端MSI-X限制仍待交付/正式澄清。"
+            ],
+            "result": "remoteMSIX-release-limitation-confirmed;otherHDMA-subproblems-remain"
+          }
         ]
       },
       {
@@ -24041,14 +24065,18 @@
           },
           "consistency": {
             "status": "blocked",
-            "reviewedRound": 140,
+            "reviewedRound": 205,
             "evidence": [
               {
                 "href": "#feature/152/detail/r140-filter-route-map",
                 "label": "阈值相等边界保留"
+              },
+              {
+                "href": "#feature/152/detail/r205-routing-threshold-field-contract",
+                "label": "路由验收追证：阈值、目标选择与旁路是三个字段，等号仍需交付澄清"
               }
             ],
-            "note": "大于/小于规则已核，等号未获直接证据；未整项关闭。"
+            "note": "Reference Manual同版字段与retry覆盖已核；大于/小于仍不定义等号，152保持阻塞，需要针对性STAR/答复。"
           }
         },
         "baseline": {
@@ -24074,7 +24102,7 @@
         "featureId": 153,
         "group": "IP集成与片内接口",
         "scope": "implementation",
-        "status": "blocked",
+        "status": "accepted",
         "criterionReviews": {
           "purpose": {
             "status": "passed",
@@ -24154,15 +24182,15 @@
             "note": "核所列6.50a产品正文、范围/职责/异常和直接定位；非全规范或实机签核。"
           },
           "consistency": {
-            "status": "blocked",
-            "reviewedRound": 142,
+            "status": "passed",
+            "reviewedRound": 204,
             "evidence": [
               {
-                "href": "#feature/153/detail/r142-pipe-integration-contract",
-                "label": "命名映射限制"
+                "href": "#feature/153/detail/r204-pipe-name-and-integration-acceptance",
+                "label": "PIPE集成验收：撤销未经证实的别名，按同版控制器和PHY合同匹配"
               }
             ],
-            "note": "不把未经证实的集成别名等同标准模式。"
+            "note": "撤销网站自身无依据命名，不要求证明未经来源确认的别名；外部PHY/架构/版本/生成选项/仿真边界由同版手册直接支持，164问题单独保留。"
           }
         },
         "baseline": {
@@ -24172,8 +24200,8 @@
         "reuseGroups": [
           "pipe"
         ],
-        "triageHint": "缺少独立详细块；先查跨页复用，再确认实际正文缺口。",
-        "reviewNote": "未做一期逐项验收；不表示已有内容无效或全部需要重写。",
+        "triageHint": "已有同版集成合同与直接定位；标准逐信号复用164。",
+        "reviewNote": "R204完成八维：前七维证据复用，修正无来源别名后通过一致性。",
         "taskId": "v1-task-17",
         "requiredTaskIds": [
           "v1-task-17",
@@ -24181,9 +24209,29 @@
           "v1-task-23",
           "v1-task-24"
         ],
-        "blockers": [
-          "FlexiPIPE别名与所核产品模式的精确对应尚未建立。"
-        ]
+        "blockers": [],
+        "sourceReviewHistory": [
+          {
+            "round": 204,
+            "previousStatus": "blocked",
+            "previousConsistency": {
+              "status": "blocked",
+              "reviewedRound": 142,
+              "evidence": [
+                {
+                  "href": "#feature/153/detail/r142-pipe-integration-contract",
+                  "label": "命名映射限制"
+                }
+              ],
+              "note": "不把未经证实的集成别名等同标准模式。"
+            },
+            "previousBlockers": [
+              "FlexiPIPE别名与所核产品模式的精确对应尚未建立。"
+            ],
+            "result": "website unsupported alias removed;existing integration contract reviewed"
+          }
+        ],
+        "acceptedRound": 204
       },
       {
         "id": "v1-feature-154",
@@ -36290,6 +36338,41 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "154/183通过，29项/30维度阻塞；不按条目数承诺轮数，待具体新证据。",
         "publication": "R203检查后发布，线上与视觉分列。"
+      },
+      {
+        "round": 204,
+        "kind": "R204 PIPE集成误名纠正与验收",
+        "deliverables": [
+          "153纠正无依据FlexiPIPE定义，复核Controller6.50a同版集成指南后完成验收；仿真PHY/Custom PHY及可选消息支持界限明确。新增1项/1维度，累计155/183、1435维度，剩28项。"
+        ],
+        "closedDeliverableIds": [
+          "feature-153-v1-accepted"
+        ],
+        "acceptedCriterionIds": [
+          {
+            "featureId": 153,
+            "criterionId": "consistency"
+          }
+        ],
+        "acceptedUnitIds": [
+          153
+        ],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "155/183与1435维度通过；剩28项/29维度，关键规范/交付冲突保留；不承诺文档到达时间。",
+        "publication": "R204/R205分别检查后合并发布R205，线上与视觉分列。"
+      },
+      {
+        "round": 205,
+        "kind": "R205 同版Release Notes/路由字段追证与资料清单",
+        "deliverables": [
+          "同版Reference Manual补配置路由三字段及retry覆盖，等号仍待明确；Release Notes确认6.50a HDMA远程中断不支持MSI-X，整项其余问题保留。新增STAR/PHY发布说明/正式SDK三类具体资料请求，不重复索取已有手册；零新增整项。"
+        ],
+        "closedDeliverableIds": [],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "155/183与1435维度通过；剩28项/29维度，关键规范/交付冲突保留；不承诺文档到达时间。",
+        "publication": "R204/R205分别检查后合并发布R205，线上与视觉分列。"
       }
     ],
     "backlog": [
@@ -37793,7 +37876,7 @@
         ],
         "status": "needs-corroboration",
         "impact": "先核版本/上下文、已有限定和所依赖结论；未经证据不裁决哪方正确。影响一期必需结论时必须作为验收阻塞，不能移到可选项。",
-        "nextAction": "按匹配6.50a交付的正式澄清/勘误、生成寄存器模型或验证契约逐项追证；现有相互文字不足以决定回收CB、Watermark含义和98h/A0h映射。该任务内其它原已记录的旁路/IMWr问题按各功能阻塞记录处理，不扩功能范围。",
+        "nextAction": "按匹配6.50a交付的正式澄清/勘误、生成寄存器模型或验证契约逐项追证；现有相互文字不足以决定回收CB、Watermark含义和98h/A0h映射。该任务内其它原已记录的旁路/IMWr问题按各功能阻塞记录处理，不扩功能范围。 R205同版Release Notes已明确HDMA远程MSI-X不支持；不再为该已知交付限制重复索取Databook。其余CB/PCS、Watermark/Abort、错误方向及请求上限追对应6.50a STAR/答复，未知修复编号不编造。",
         "evidence": [
           {
             "href": "#feature/147/detail/r185-hdma-recycle-progress-source-gates",
@@ -37802,6 +37885,10 @@
           {
             "href": "#feature/148/detail/r186-hdma-notification-source-gates",
             "label": "地址/请求上限/通知支持差异再核"
+          },
+          {
+            "href": "#feature/148/detail/r205-hdma-release-limit-and-star-evidence",
+            "label": "6.50a远程中断MSI-X限制与STAR入口"
           }
         ],
         "reviewHistory": [
@@ -37810,8 +37897,24 @@
             "previousStatus": "needs-corroboration",
             "previousNextAction": "复用现有逐块来源，回原页核图/表/脚注，再核正式修订/官方勘误或其他官方一手来源；无澄清则明确可用结论与无法确定部分。",
             "previousEvidence": []
+          },
+          {
+            "round": 205,
+            "previousStatus": "needs-corroboration",
+            "previousNextAction": "按匹配6.50a交付的正式澄清/勘误、生成寄存器模型或验证契约逐项追证；现有相互文字不足以决定回收CB、Watermark含义和98h/A0h映射。该任务内其它原已记录的旁路/IMWr问题按各功能阻塞记录处理，不扩功能范围。",
+            "previousEvidence": [
+              {
+                "href": "#feature/147/detail/r185-hdma-recycle-progress-source-gates",
+                "label": "CB/PCS、Watermark指针和长度边界再核"
+              },
+              {
+                "href": "#feature/148/detail/r186-hdma-notification-source-gates",
+                "label": "地址/请求上限/通知支持差异再核"
+              }
+            ]
           }
-        ]
+        ],
+        "lastReviewedRound": 205
       },
       {
         "id": "v1-conflict-22",
@@ -40116,33 +40219,33 @@
       }
     ],
     "nextExecution": {
-      "round": 204,
+      "round": 206,
       "taskId": "v1-task-23",
       "featureIds": [],
-      "goal": "优先核新提供Base6.5/7.1/对应最终LTR ECN及修订链；无新证据不重复旧页循环。",
+      "goal": "优先消化用户补充Base6.5/7.1/LTR或对应STAR/SDK交付证据；R206四轮复盘，无新证据不循环。",
       "mode": "acceptance-evidence-gated-web-and-local",
       "reviewRound": 206
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 203,
+      "assessedRound": 205,
       "reestimateRound": 206,
       "observedAcceptedUnitsPerRound": 0.0,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R203关闭61及任务06，新增1维度。明确公式足以确定解码，未修订举例事实保留；已查明新增正式资料入口，未取得正文不计验收。",
-      "action": "按具体资料请求追证；用户已允许联网查与列出缺失文档。保持固定范围、原预算和每日暂停，不自动增加轮次。",
+      "assessment": "同版Reference Manual补配置路由三字段及retry覆盖，等号仍待明确；Release Notes确认6.50a HDMA远程中断不支持MSI-X，整项其余问题保留。新增STAR/PHY发布说明/正式SDK三类具体资料请求，不重复索取已有手册；零新增整项。累计155/183，28项/29维度阻塞。",
+      "action": "已明确允许联网追证；优先新官方修订或匹配交付答复，不扩大183项范围、不自动恢复每日。",
       "latestProgress": {
-        "round": 203,
-        "newAcceptedUnits": 1,
-        "cumulativeAcceptedUnits": 154,
-        "newPassedCriteria": 1,
-        "cumulativePassedCriteria": 1434,
+        "round": 205,
+        "newAcceptedUnits": 0,
+        "cumulativeAcceptedUnits": 155,
+        "newPassedCriteria": 0,
+        "cumulativePassedCriteria": 1435,
         "remainingPlannedRounds": 0
       },
       "unacceptedBreakdown": {
-        "blocked": 29,
+        "blocked": 28,
         "awaiting": 0
       }
     },
@@ -41803,7 +41906,8 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        203
+        204,
+        205
       ],
       "completedRounds": [
         139,
@@ -41870,9 +41974,11 @@
         200,
         201,
         202,
-        203
+        203,
+        204,
+        205
       ],
-      "publication": "checks-before-r203-publication",
+      "publication": "checks-before-combined-r205-publication",
       "note": "当前201/202已授权；历史完成轮次按账本补齐，不暗示后续授权；每日暂停。",
       "historyPreservedR202": {
         "authorizedRounds": [
@@ -41939,6 +42045,29 @@
             203
           ],
           "instruction": "用户授权联网追证、列所需文档及手动一轮；不恢复每日任务。"
+        },
+        {
+          "round": 204,
+          "previousAuthorizedRounds": [
+            203
+          ],
+          "currentAuthorizedRounds": [
+            204,
+            205
+          ],
+          "instruction": "用户授权两轮并核缺少什么文档；上轮Base6.5/7.1/LTR将后续补充，保持每日暂停。"
+        },
+        {
+          "round": 205,
+          "previousAuthorizedRounds": [
+            204,
+            205
+          ],
+          "currentAuthorizedRounds": [
+            204,
+            205
+          ],
+          "instruction": "用户授权两轮并核缺少什么文档；上轮Base6.5/7.1/LTR将后续补充，保持每日暂停。"
         }
       ]
     },
@@ -41952,15 +42081,15 @@
     },
     "continuationMode": "acceptance-evidence-gated-no-repeat",
     "acceptanceGate": {
-      "asOfRound": 203,
-      "acceptedFeatures": 154,
-      "blockedFeatures": 29,
-      "unpassedCriteria": 30,
-      "newAcceptedInLastFour": 1,
+      "asOfRound": 205,
+      "acceptedFeatures": 155,
+      "blockedFeatures": 28,
+      "unpassedCriteria": 29,
+      "newAcceptedInLastFour": 2,
       "sourceQuestionsResolvedThisWindow": [
         "v1-conflict-27"
       ],
-      "summary": "R203验收61 RN/RTR并关闭任务06；剩29项均有阻塞。允许联网定向查官方资料，缺失正文列具体请求，无新证据不循环。",
+      "summary": "R203完成61、R204完成153，剩28项均有明确阻塞；R205收窄HDMA交付限制并核已有路由字段。缺资料按具体版本/问题列明，不重复索取已有手册。",
       "causes": [
         "原48轮是未校准的预算，并非可靠完成预测；到R202已比R138多64轮。",
         "最近主要反复处理规范/产品文档冲突，新增说明却无法关闭一致性门槛。",
@@ -42006,7 +42135,6 @@
             147,
             148,
             152,
-            153,
             159,
             173,
             176,
@@ -42292,12 +42420,16 @@
         {
           "featureId": 148,
           "kind": "匹配产品交付证据",
-          "issue": "conflict21：Watermark/Abort地址、Write错误方向、Read请求上限以及同版远端MSI-X限制仍待交付/正式澄清。",
+          "issue": "conflict21其余子问题：Watermark/Abort地址、Write错误方向与Read请求上限仍待明确交付合同；6.50a远程中断不支持MSI-X已由Release Notes确认。",
           "requiredEvidence": "匹配IP/PHY版本的接口、寄存器或API合同、修订手册/实现证据；产品事实不泛化为PCIe规范。",
           "evidence": [
             {
               "href": "#feature/148/detail/r186-hdma-notification-source-gates",
               "label": "本轮来源边界与原问题定位"
+            },
+            {
+              "href": "#feature/148/detail/r205-hdma-release-limit-and-star-evidence",
+              "label": "HDMA交付限制：6.50a Release Notes明确远程中断不支持MSI-X"
             }
           ],
           "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
@@ -42311,19 +42443,10 @@
             {
               "href": "#feature/152/detail/r140-filter-route-map",
               "label": "阈值相等边界保留"
-            }
-          ],
-          "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
-        },
-        {
-          "featureId": 153,
-          "kind": "匹配产品交付证据",
-          "issue": "FlexiPIPE别名与所核产品模式的精确对应尚未建立。",
-          "requiredEvidence": "匹配IP/PHY版本的接口、寄存器或API合同、修订手册/实现证据；产品事实不泛化为PCIe规范。",
-          "evidence": [
+            },
             {
-              "href": "#feature/153/detail/r142-pipe-integration-contract",
-              "label": "命名映射限制"
+              "href": "#feature/152/detail/r205-routing-threshold-field-contract",
+              "label": "路由验收追证：阈值、目标选择与旁路是三个字段，等号仍需交付澄清"
             }
           ],
           "resumeWhen": "出现针对该疑点的新证据，或复现本站自身解释/工具错误；仅重读旧页不重排。"
@@ -42970,8 +43093,8 @@
       ]
     },
     "documentRequests": {
-      "asOfRound": 203,
-      "summary": "优先提供Base7.1、Base6.5及LTR最终发布PDF；Showing Changes配套有助定位。不声称新版本已解决旧版问题，也不要求提供已存在的旧版。",
+      "asOfRound": 205,
+      "summary": "原Base6.5/7.1/LTR请求保留。补充优先级：Controller6.50a针对性STAR记录、匹配Gen6 PHY/PCS的Release Notes及正式SDK/API兼容性资料。已有控制器Databook/Reference Manual/User Guide/Release Notes均不重复索取。",
       "items": [
         {
           "id": "pcie-base-7.1",
@@ -43102,6 +43225,194 @@
           "availability": "官方条目已核；下载要求会员登录，未取得正文",
           "localStatus": "文件名盘点未发现该版PDF",
           "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+        },
+        {
+          "id": "controller650-star-targeted",
+          "title": "PCI Express Controller 6.50a：对应版本STAR记录或针对性厂商答复",
+          "officialDate": "同6.50a交付；记录日期以实际为准",
+          "url": "https://www.synopsys.com/designware-ip/interface-ip/pci-express/pcie6-controller.html",
+          "featureIds": [
+            143,
+            146,
+            147,
+            148,
+            152,
+            159
+          ],
+          "purpose": "ATU_BYPASS bit9、HDMA CB/PCS/Watermark/Abort/请求上限、CONFIG_LIMIT等号及USB4 ready极性。",
+          "availability": "Release Notes§1.4/1.5已确认STAR入口需SolvNetPlus；未取得报告正文，不声称特定问题已修复。",
+          "localStatus": "已有6.50a四类手册；本轮核Release Notes选段及Reference字段，缺针对上述疑点的记录/答复。",
+          "priority": "针对现有产品阻塞",
+          "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。"
+        },
+        {
+          "id": "phy6-matched-release-evidence",
+          "title": "Gen6 PHY 3.02a／PCS Wrapper 1.75a：同交付Release Notes或Known Issues",
+          "officialDate": "需与现有2025-05-06手册及具体交付匹配",
+          "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+          "featureIds": [
+            173,
+            176,
+            179
+          ],
+          "purpose": "FOM循环边界、AHB HRESP/CCM地址以及BER计时口径；须注明适用版本/条件。",
+          "availability": "补充证据请求，尚未确认具体公开文件名、独立版本号或发布地址；不把它当成已找到的新正式版。",
+          "localStatus": "Databook、Reference Manual与PCS Wrapper手册已有；未找到与交付匹配的PHY Release Notes候选。",
+          "priority": "针对现有产品阻塞",
+          "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。"
+        },
+        {
+          "id": "phy6-matched-sdk-contract",
+          "title": "与PHY 3.02a／PCS 1.75a匹配的正式SDK Application Note、API说明及SDK/固件兼容表",
+          "officialDate": "最终版本号由对应交付资料确认",
+          "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+          "featureIds": [
+            176,
+            179
+          ],
+          "purpose": "核SDK计时输入/输出、单位和timer预处理、固件/API版本及读数有效性；不能自行统一timer+1与timer×128。",
+          "availability": "补充证据请求；没有已核的公开最终版本号，不能编造一个版本要求用户寻找。",
+          "localStatus": "现有SDK Application Note为1.00a_pre3、2024-07-15、Preliminary；尚无与2025交付匹配的正式API/兼容关系证据。",
+          "priority": "针对现有产品阻塞",
+          "resumeWhen": "取得匹配版本的合法资料或正式答复后核相应条款；只提供已有相同手册不重复计验收。"
+        }
+      ],
+      "history": [
+        {
+          "asOfRound": 203,
+          "summary": "优先提供Base7.1、Base6.5及LTR最终发布PDF；Showing Changes配套有助定位。不声称新版本已解决旧版问题，也不要求提供已存在的旧版。",
+          "items": [
+            {
+              "id": "pcie-base-7.1",
+              "title": "PCI Express Base Specification Revision 7.1",
+              "officialDate": "2026-09-17",
+              "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71",
+              "memberDocumentId": "24165",
+              "featureIds": [
+                3,
+                4,
+                5,
+                9,
+                10,
+                12,
+                15,
+                92,
+                106,
+                114,
+                119,
+                127,
+                129,
+                136
+              ],
+              "purpose": "优先核后续修订是否改变现有阻塞条款；新规则不得无说明倒填旧版。",
+              "priority": "优先",
+              "availability": "官方条目已核；下载要求会员登录，未取得正文",
+              "localStatus": "文件名盘点未发现该版PDF",
+              "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+            },
+            {
+              "id": "pcie-base-6.5",
+              "title": "PCI Express Base Specification Revision 6.5",
+              "officialDate": "2026-09-17",
+              "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65",
+              "memberDocumentId": "24163",
+              "featureIds": [
+                3,
+                4,
+                5,
+                9,
+                10,
+                12,
+                15,
+                89,
+                92,
+                106,
+                114,
+                119,
+                127,
+                129,
+                136
+              ],
+              "purpose": "对照6.0/6.4阻塞的后续修订；不能假定新版已经修正。",
+              "priority": "优先",
+              "availability": "官方条目已核；下载要求会员登录，未取得正文",
+              "localStatus": "文件名盘点未发现该版PDF",
+              "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+            },
+            {
+              "id": "ltr-mfd-final-entry",
+              "title": "LTR Enhancements for MFD（官网2025-06-11发布条目对应最终PDF）",
+              "officialDate": "2025-06-11",
+              "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+              "memberDocumentId": "22469",
+              "featureIds": [
+                89
+              ],
+              "purpose": "核保留跨Function0 FLR能力bit号；现有May29副本与Base7.0 bit0/bit1差异仍待修订链。",
+              "priority": "优先",
+              "availability": "官方条目已核；下载要求会员登录，未取得正文",
+              "localStatus": "现有2025-05-29副本已读；与该发布下载正文的同一性未确认",
+              "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+            },
+            {
+              "id": "pcie-base-7.1-change",
+              "title": "PCI Express Base Specification Revision 7.1 Showing Changes",
+              "officialDate": "2026-09-17",
+              "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71-showing-changes",
+              "memberDocumentId": "24166",
+              "featureIds": [
+                3,
+                4,
+                5,
+                9,
+                10,
+                12,
+                15,
+                89,
+                92,
+                106,
+                114,
+                119,
+                127,
+                129,
+                136
+              ],
+              "purpose": "辅助定位修订差异；须与正式正文配套，不单靠色条推断解决。",
+              "priority": "配套差异定位",
+              "availability": "官方条目已核；下载要求会员登录，未取得正文",
+              "localStatus": "文件名盘点未发现该版PDF",
+              "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+            },
+            {
+              "id": "pcie-base-6.5-change",
+              "title": "PCI Express Base Specification Revision 6.5 Showing Changes",
+              "officialDate": "2026-09-17",
+              "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65-showing-changes",
+              "memberDocumentId": "24164",
+              "featureIds": [
+                3,
+                4,
+                5,
+                9,
+                10,
+                12,
+                15,
+                89,
+                92,
+                106,
+                114,
+                119,
+                127,
+                129,
+                136
+              ],
+              "purpose": "辅助定位6.4之后变化；须与正式正文配套。",
+              "priority": "配套差异定位",
+              "availability": "官方条目已核；下载要求会员登录，未取得正文",
+              "localStatus": "文件名盘点未发现该版PDF",
+              "resumeWhen": "用户提供对应合法取得的PDF，或出现可访问的正式正文/针对性澄清；先核版本及修订记录。"
+            }
+          ]
         }
       ]
     }

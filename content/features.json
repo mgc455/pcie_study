@@ -169261,7 +169261,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-30",
+    "reviewed": "2026-10-31",
     "protocolReferences": [
       {
         "documentId": "controller-dm-6.50a",
@@ -170307,6 +170307,39 @@
         "title": "Write源读错误路径",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-release-6.50a",
+        "document": "PCI Express Controller Release Notes",
+        "version": "6.50a",
+        "section": "1.4",
+        "page": 12,
+        "pdfPage": 12,
+        "title": "完整修正记录需对应版本STAR报告",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pci-express/pcie6-controller.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-release-6.50a",
+        "document": "PCI Express Controller Release Notes",
+        "version": "6.50a",
+        "section": "1.5",
+        "page": 13,
+        "pdfPage": 13,
+        "title": "完整已知问题与同版限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pci-express/pcie6-controller.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-release-6.50a",
+        "document": "PCI Express Controller Release Notes",
+        "version": "6.50a",
+        "section": "1.5.6",
+        "page": 13,
+        "pdfPage": 13,
+        "title": "HDMA远程中断不支持MSI-X",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pci-express/pcie6-controller.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "R63核6.50a停止/错误/链表回收相关正文与USP/DSP选定字段。原有条目保留；CB/PCS、Watermark LLP、地址偏移与部分错误方向差异显式待核，无仿真/驱动验证。 R83核6.50a描述符/预取/Write控制字段与边界；不外推Gen1～7或其它交付。",
@@ -170848,6 +170881,57 @@
             "label": "带假设的候选分段"
           }
         ]
+      },
+      {
+        "id": "r205-hdma-release-limit-and-star-evidence",
+        "title": "HDMA交付限制：6.50a Release Notes明确远程中断不支持MSI-X",
+        "paragraphs": [
+          "R205核用户已经提供的Controller6.50a Release Notes：§1.5.6明确列出HDMA远程中断不支持MSI-X。寄存器说明或机制章节出现MSI-X相关地址/表项，不足以覆盖这份同版本交付限制；网站按这份限制解释6.50a，不把它泛化为PCIe或所有HDMA版本永远不能实现MSI-X。",
+          "远程DMA中断机制、控制器对主机的普通MSI-X功能、应用自行发出的MSI-X写事务是不同对象。这里限制的是Release Notes标注的HDMA远程中断，不能反向宣称整个端点的MSI-X能力都失效，也不能用已配置普通MSI-X能力证明HDMA远程路径可用。",
+          "该Release Notes的§1.4/1.5明确把完整已修复缺陷和发布后问题导向SolvNetPlus STAR报告，需按控制器版本查看。所需补充资料因此可以具体列为6.50a对应STAR记录或针对疑点的厂商答复；公开产品页只提供入口，未取得STAR正文，不能声称存在某个编号或已经修复。",
+          "这次收窄148的一个子问题，但Abort/Watermark地址、错误方向和请求上限等其余问题仍保留，整项不通过。只核资料，没有配置DMA、写Doorbell或运行厂商脚本；原始修订说明与任何后续STAR报告只留本地，网站发布原创结论和定位。"
+        ],
+        "referenceIndices": [
+          95,
+          96,
+          97
+        ],
+        "table": {
+          "columns": [
+            "对象",
+            "已核结论",
+            "验收边界"
+          ],
+          "rows": [
+            [
+              "HDMA远程中断",
+              "6.50a Release Notes明确不支持MSI-X",
+              "不泛化为所有版本/整个端点MSI-X"
+            ],
+            [
+              "机制/寄存器描述",
+              "不能单独证明交付已支持",
+              "须与同版Release Notes/STAR结合"
+            ],
+            [
+              "STAR记录",
+              "对应6.50a及实际配置",
+              "正文未取得，不猜问题编号/修复状态"
+            ],
+            [
+              "148其余子问题",
+              "继续阻塞",
+              "不以一个子结论关闭整项"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 148,
+            "detailId": "hdma-local-remote-interrupt-setup",
+            "label": "HDMA现有控制与中断正文"
+          }
+        ]
       }
     ]
   },
@@ -171260,7 +171344,7 @@
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-28",
+    "reviewed": "2026-10-31",
     "protocolReferences": [
       {
         "documentId": "controller-dm-6.50a",
@@ -171327,6 +171411,50 @@
         "title": "错误目标及阈值",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.44.44",
+        "page": 3698,
+        "pdfPage": 3698,
+        "title": "MISC_CONTROL_1_OFF偏移与字段布局",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.44.44",
+        "page": 3701,
+        "pdfPage": 3701,
+        "title": "目标选择19:18与已定义编码",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-ref-6.50a",
+        "document": "PCI Express Controller Reference Manual",
+        "version": "6.50a",
+        "section": "3.2.44.44",
+        "page": 3702,
+        "pdfPage": 3702,
+        "title": "阈值17:8、旁路bit7与retry覆盖",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "I.5",
+        "page": 973,
+        "pdfPage": 973,
+        "title": "CFG路由表的大于/小于条件",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
     "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节",
@@ -171383,27 +171511,84 @@
           ]
         },
         "relatedDetails": []
+      },
+      {
+        "id": "r205-routing-threshold-field-contract",
+        "title": "路由验收追证：阈值、目标选择与旁路是三个字段，等号仍需交付澄清",
+        "paragraphs": [
+          "R205在已有Reference Manual找到同版字段合同，不再只依据Databook附录路由表。MISC_CONTROL_1_OFF位于该寄存器块基址B加1BCh；B是产品寄存器块基址符号，不是主机BAR地址常量。阈值CONFIG_LIMIT_REG为[17:8]，TARGET_ABOVE_CONFIG_LIMIT_REG为[19:18]，CFG_TLP_BYPASS_EN_REG为bit7，三个字段不能混作一个BAR窗口或iATU偏移。",
+          "目标选择字段明确列出1=ELBI、2=TRGT1；未由这段资料定义的编码不猜作额外目标。常规比较路径中，小于阈值送CDM，大于阈值按目标选择字段送ELBI/TRGT1；Reference Manual仍没有在这些句子中补等于条件。字段更详细不等于等号已经裁定，也不能仅凭10bit字段宽度自行确定地址比较的粒度。",
+          "旁路bit7为1时，不比较阈值而按目标选择字段路由配置TLP；但同字段明确说app_req_retry_en为1时忽略这个旁路设置。这个覆盖关系不能省略成“bit7为1就无条件转发所有配置请求”，更不意味着可以绕过过滤、有效Function或Completion责任。",
+          "152最后一致性仍阻塞，后续所需已缩成具体交付问题：同版本、实际生成配置中，正常比较路径在地址等于阈值时选哪一路，比较对象/粒度是什么。已有Databook和Reference Manual均在本地；需要针对该边界的修订条款、STAR或厂商答复，而不是再要求一份相同手册。"
+        ],
+        "referenceIndices": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "table": {
+          "columns": [
+            "字段/条件",
+            "可核含义",
+            "限制"
+          ],
+          "rows": [
+            [
+              "CONFIG_LIMIT_REG[17:8]",
+              "正常比较阈值",
+              "小于/大于已核；等号未明示"
+            ],
+            [
+              "TARGET_ABOVE_CONFIG_LIMIT_REG[19:18]",
+              "1=ELBI，2=TRGT1",
+              "其它编码不推断"
+            ],
+            [
+              "CFG_TLP_BYPASS_EN_REG[7]",
+              "1时不按阈值比较",
+              "不代表跳过其它合法性/过滤条件"
+            ],
+            [
+              "app_req_retry_en=1",
+              "旁路字段设置被忽略",
+              "先处理覆盖条件"
+            ],
+            [
+              "需要的证据",
+              "同版等号/粒度合同",
+              "不是缺现有Reference Manual"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 152,
+            "detailId": "r140-filter-route-map",
+            "label": "过滤与路由主线"
+          }
+        ]
       }
     ]
   },
   {
-    "name": "PIPE / FlexiPIPE / PHY Integration",
+    "name": "PIPE / PHY Integration",
     "group": "IP集成与片内接口",
     "intro": "控制器与PHY之间的实现接口与适配方式。",
     "usage": "确认PHY、PIPE版本、时钟和lane宽度匹配；PCIe串行口不等于PIPE。",
-    "mechanism": "PIPE连接控制器MAC与PHY并承载数据、状态及控制；FlexiPIPE等是实现适配方式。串行电气、时钟与训练依赖真实PHY。",
+    "mechanism": "PIPE承载控制器MAC与外部PHY之间的数据、状态和控制；Original/SerDes架构、低引脚控制载体、版本与生成选项需分别匹配。串行电气、时钟与训练依赖实际PHY。",
     "example": "只实例化PCIe控制器和RAM的例子不能自动在txp/rxp上产生完整可用链路，还需PHY及板级连接。",
     "checks": "核对PHY类型、PIPE版本、每lane宽度、速率、时钟模式和板级连接；示例顶层声明串行端口不代表PHY集成已完成。",
     "prerequisites": "实际支持与使能状态需要按具体设备能力、控制器版本及运行配置确认。",
     "id": 153,
-    "status": "已整理 · 待持续深化",
+    "status": "一期已验收：R204按Controller6.50a集成合同；标准164时序疑点与实机签核另列",
     "sources": [
       {
         "title": "PCI-SIG 规范目录",
         "url": "https://pcisig.com/specifications?order=field_revision&sort=asc"
       }
     ],
-    "reviewed": "2026-10-29",
+    "reviewed": "2026-10-31",
     "protocolReferences": [
       {
         "documentId": "controller-dm-6.50a",
@@ -171437,9 +171622,75 @@
         "title": "可选消息限制",
         "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
         "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17",
+        "page": 319,
+        "pdfPage": 319,
+        "title": "外部PHY、Lane拼接及产品额外要求",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17.2",
+        "page": 321,
+        "pdfPage": 321,
+        "title": "低引脚与SerDes架构分层",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-dm-6.50a",
+        "document": "PCI Express DM Controller Databook",
+        "version": "6.50a",
+        "section": "4.17.2.1",
+        "page": 322,
+        "pdfPage": 322,
+        "title": "可选消息寄存器支持限制",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-user-6.50a",
+        "document": "PCI Express Controller User Guide",
+        "version": "6.50a",
+        "section": "7.2.1",
+        "page": 106,
+        "pdfPage": 106,
+        "title": "标准PIPE与仅供仿真的示例PHY",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-user-6.50a",
+        "document": "PCI Express Controller User Guide",
+        "version": "6.50a",
+        "section": "7.2.4.1",
+        "page": 117,
+        "pdfPage": 117,
+        "title": "同交付PHY集成与参数匹配",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
+      },
+      {
+        "documentId": "controller-user-6.50a",
+        "document": "PCI Express Controller User Guide",
+        "version": "6.50a",
+        "section": "7.2.5",
+        "page": 120,
+        "pdfPage": 120,
+        "title": "第三方/自定义PHY集成责任",
+        "url": "https://www.synopsys.com/designware-ip/interface-ip/pcie.html",
+        "verification": "本轮核所列正式版/接口规范/产品选段，版本和角色范围分别声明；引用到目录不算正文，产品Preliminary保留标签。"
       }
     ],
-    "referenceStatus": "需补充对应独立规范/实现资料，未猜测Base章节",
+    "referenceStatus": "同版Controller6.50a Databook/User Guide局部正文已核，标准逐信号复用164；不是完整交付或实机签核。",
     "details": [
       {
         "id": "r142-pipe-integration-contract",
@@ -171448,7 +171699,7 @@
           "限定Controller6.50a。外部PHY通过PIPE连接，多Lane拼接的低位对应Lane0；应分别核协议代际、PIPE修订、Original/SerDes架构、数据宽度、时钟方向和实际实现的可选特性。不能用PIPE版本号推PCIe代际，不能仅凭两个端口同名判断可以互接。",
           "本版列PIPE4.4.1/5.1.1/6.1.1/7.1接口支持，具体信号和Message Bus采用实际生成选项。存在额外控制器要求：PHY复位撤销后，Message Bus至少20个pipe_clk周期保持0再开始写访问。它不是通用PIPE最小时序，也不能用PhyStatus撤销替代这段产品约束。",
           "Controller不使用的部分PIPE模式/终端控制信号需外部按要求驱动；默认PCIe模式和终端连接还要核PHY特殊要求。本控制器不同时切Rate和Power，即使PHY本身支持同时改变也不能据此组合请求。低引脚接口把部分控制搬到Message Bus，不意味着所有可选消息寄存器都实现。",
-          "本轮可核的命名是PIPE/SerDes PIPE。目录中的FlexiPIPE称谓未在所核产品段落建立精确对应，不据名称把它强行等同某个模式；这个集成别名的证据缺口保留在一致性验收。详细逐信号查询复用164，不再复制整套位表。"
+          "R204纠正：此前网站把未经证实的FlexiPIPE别名写进肯定概述并作为验收前提，现已撤销该表述。按本页有来源的PIPE/SerDes/低引脚集成合同验收；不声称检索未命中证明所有产品中均无此名称。详细逐信号继续复用164，ID和旧链接保留。"
         ],
         "referenceIndices": [
           0,
@@ -171478,9 +171729,9 @@
               "PHY支持也不等于控制器支持"
             ],
             [
-              "FlexiPIPE别名",
-              "未核精确对应",
-              "保留一致性缺口"
+              "旧称FlexiPIPE",
+              "撤销无依据的肯定定义",
+              "R204按可核集成合同验收"
             ]
           ]
         },
@@ -171491,7 +171742,75 @@
             "label": "已有PIPE逐信号索引"
           }
         ]
+      },
+      {
+        "id": "r204-pipe-name-and-integration-acceptance",
+        "title": "PIPE集成验收：撤销未经证实的别名，按同版控制器和PHY合同匹配",
+        "paragraphs": [
+          "R204纠正网站目录及概述：此前把FlexiPIPE写成已确认的实现适配方式，却没有对应来源，随后又把核实这个名字当作验收前提。应当撤销这条无依据的肯定表述，按可核的PIPE集成对象验收；不能要求用户提供资料证明网站自行加入的名称。原功能ID153及旧详情链接保持可访问，搜索该旧名仍能找到本纠错说明。",
+          "同版6.50a Databook和User Guide明确的对象是外部PHY、标准PIPE、Original/SerDes架构及低引脚消息接口。架构决定PCS等逻辑的责任分配，低引脚改变控制载体，版本和生成选项决定实际实现的宽度/信号/可选消息；这些维度要分别核对，不能用一个别名或一个版本号代替完整集成合同。",
+          "同版指南还明确区分Example PIPE PHY与Custom PHY：前者是临时数字仿真例子，不可作为ASIC实现/综合用PHY；自定义PHY必须完成相应wrapper连接与选项匹配。示例能在仿真中连通，不证明有可流片模拟收发器，也不证明板级时钟、复位或电气约束已经满足。这里只核集成责任，不执行供应商脚本或更改原交付文件。",
+          "产品额外要求继续保留：复位撤销后消息总线至少20个pipe_clk周期为0、控制器不同时切Rate与Power、Lane拼接低位对应Lane0；同版列明若干可选消息寄存器未实现，不能因通用PIPE有定义就自动发访问。详细逐信号与标准时序复用164；164自己的规范来源问题仍单独阻塞，153不替它宣称全套PIPE时序已获澄清。",
+          "153此前七个维度已有同版证据，本轮修正唯一的无依据命名表述后通过一致性维度。网站不声称这个名称在所有厂商资料中不存在；若未来有明确产品资料定义该名，再按该来源增加有版本的释义，不把检索未命中当不存在的证明。"
+        ],
+        "referenceIndices": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "table": {
+          "columns": [
+            "检查对象",
+            "已核合同",
+            "限制"
+          ],
+          "rows": [
+            [
+              "PIPE标准/架构",
+              "按实际版本与Original/SerDes匹配",
+              "153为集成入口，标准逐信号复用164"
+            ],
+            [
+              "低引脚消息接口",
+              "核双方实际可选寄存器支持",
+              "不是全部消息寄存器默认实现"
+            ],
+            [
+              "Example PHY",
+              "临时数字仿真模型",
+              "不是ASIC实现PHY"
+            ],
+            [
+              "Custom PHY",
+              "完成wrapper及同交付选项匹配",
+              "仿真通过不等于模拟/时序签核"
+            ],
+            [
+              "旧称FlexiPIPE",
+              "撤销网站无依据的肯定定义",
+              "不要求提供证明该名字的文档"
+            ]
+          ]
+        },
+        "relatedDetails": [
+          {
+            "featureId": 153,
+            "detailId": "r142-pipe-integration-contract",
+            "label": "既有集成合同"
+          },
+          {
+            "featureId": 164,
+            "detailId": "pipe-signal-directory",
+            "label": "标准信号查询"
+          }
+        ]
       }
+    ],
+    "formerNames": [
+      "PIPE / FlexiPIPE / PHY Integration"
     ]
   },
   {
