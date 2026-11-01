@@ -1,7 +1,9 @@
 {
   "nextFeatureIds": [
-    174,
-    177
+    36,
+    48,
+    53,
+    54
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -50,12 +52,12 @@
   ],
   "lastCompleted": {
     "date": "2026-11-01",
-    "edition": "2026-11-01-r218",
+    "edition": "2026-11-01-r219",
     "featureIds": [
-      4,
-      13
+      174,
+      177
     ],
-    "nextTrack": "R219 PHY观察域与单位抽查；R222下一次四轮总结"
+    "nextTrack": "R220枚举/中断抽查；R222总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -250,11 +252,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 1,
+    "nextReviewAfterRounds": 3,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 160,
+    "completedTotal": 161,
     "lastReviewEdition": "2026-11-01-r218",
     "lastReviewId": "r215-r218",
     "nextExpectedReview": "R222：实际纠错、阅读缺口与已知疑点处理结果复盘；不是自动延期承诺。"
@@ -1273,9 +1275,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 128,
+    "completedRounds": 129,
     "remainingPlannedRounds": 0,
-    "nextRound": 219,
+    "nextRound": 220,
     "nextReviewRound": 222,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -37133,6 +37135,21 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "维护以可复现网站错误、图文单位和实际阅读缺口为主；已知规范疑点有新证据才裁决，不继续承诺机械若干轮消除外部歧义。",
         "publication": "构建/当前与历史模式渲染回归、包图布局与长度抽查后发布R218。"
+      },
+      {
+        "round": 219,
+        "kind": "R219 PHY单位可视化与启动观察域抽查",
+        "deliverables": [
+          "R219轮换PHY观察域与单位：核6.5/7.1电气定义，补同一62.5ps时间窗的原创符号格图，对照32GT/s NRZ、64/128GT/s PAM4的2/4/8编码bit。抽查启动快照、符号UI与原始带宽未发现可确认算法错误，保留原计算和Ready/Link Up保护。"
+        ],
+        "closedDeliverableIds": [
+          "nrz-pam4-symbol-window-visual-explained"
+        ],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "11项/12维度既有公开规范疑点保留；本轮没有新官方裁决或实机验证，不扩展一期必验范围。",
+        "publication": "构建/单位常量与图形布局、启动观察边界回归后发布R219。"
       }
     ],
     "backlog": [
@@ -41377,32 +41394,36 @@
       }
     ],
     "nextExecution": {
-      "round": 219,
+      "round": 220,
       "taskId": "v1-task-24",
       "featureIds": [
-        174,
-        177
+        36,
+        48,
+        53,
+        54
       ],
-      "goal": "轮换PHY/SerDes：抽查Ready与Link Up、bit/symbol/UI和观察域的文字/图/查询一致性；只修实际问题或有依据阅读缺口，不索取公司资料。",
+      "goal": "轮换枚举/中断：抽查地址/消息字段、角色、配置条件与深链接的实际一致性，不机械扩写已正确内容。",
       "mode": "review-and-improve",
       "reviewRound": 222,
       "acceptedFeatureReviewReasons": {
-        "174": "维护抽查已验收内容图文/单位与适用条件，不重开原验收或产品保密证据要求",
-        "177": "维护抽查已验收内容图文/单位与适用条件，不重开原验收或产品保密证据要求"
+        "36": "维护复核地址/位图/角色条件与导航，不重开已验收内容",
+        "48": "维护复核地址/位图/角色条件与导航，不重开已验收内容",
+        "53": "维护复核地址/位图/角色条件与导航，不重开已验收内容",
+        "54": "维护复核地址/位图/角色条件与导航，不重开已验收内容"
       }
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 218,
+      "assessedRound": 219,
       "reestimateRound": 222,
       "observedAcceptedUnitsPerRound": 1.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R218完成R215～R218四轮复盘，修正维护看板仍把R138当当前目标、优先级仍停R94及LTSSM入口旧阻塞说明。四轮以位图版本、报告偏移、LTR查询边界和当前状态一致性为主，未新增严格验收；累计172/183=163技术证据+9用户范围接受，11项/12维度局部疑点不变。",
-      "action": "下轮优先PHY启动/复位和NRZ/PAM4单位的图文检查，随后轮换枚举/中断；维护不自动增加必验范围，公开规范疑点遇新证据再重审。",
+      "assessment": "R219轮换PHY观察域与单位：核6.5/7.1电气定义，补同一62.5ps时间窗的原创符号格图，对照32GT/s NRZ、64/128GT/s PAM4的2/4/8编码bit。抽查启动快照、符号UI与原始带宽未发现可确认算法错误，保留原计算和Ready/Link Up保护。",
+      "action": "后续轮换枚举/中断入口的字段、地址和角色条件；发现实际问题才改，保持R222复盘和产品资料接受边界。",
       "latestProgress": {
-        "round": 218,
+        "round": 219,
         "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 172,
         "newPassedCriteria": 0,
@@ -43384,7 +43405,7 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        218
+        219
       ],
       "completedRounds": [
         139,
@@ -43466,10 +43487,11 @@
         215,
         216,
         217,
-        218
+        218,
+        219
       ],
-      "publication": "publish-r218-after-validation",
-      "note": "本轮手动维护与总结；每日09:00任务保持启用。",
+      "publication": "publish-r219-after-validation",
+      "note": "本轮手动维护，保持每日09:00任务启用；R222四轮总结。",
       "historyPreservedR202": {
         "authorizedRounds": [
           185,
@@ -43705,6 +43727,16 @@
             218
           ],
           "instruction": "用户授权跑一轮，按约四轮复盘"
+        },
+        {
+          "round": 219,
+          "previousAuthorizedRounds": [
+            218
+          ],
+          "currentAuthorizedRounds": [
+            219
+          ],
+          "instruction": "用户授权跑一轮"
         }
       ]
     },
@@ -43718,7 +43750,7 @@
     },
     "continuationMode": "acceptance-evidence-gated-no-repeat",
     "acceptanceGate": {
-      "asOfRound": 218,
+      "asOfRound": 219,
       "acceptedFeatures": 172,
       "blockedFeatures": 11,
       "unpassedCriteria": 12,
@@ -43726,7 +43758,7 @@
       "sourceQuestionsResolvedThisWindow": [
         "v1-conflict-38"
       ],
-      "summary": "R218完成R215～R218四轮复盘，修正维护看板仍把R138当当前目标、优先级仍停R94及LTSSM入口旧阻塞说明。四轮以位图版本、报告偏移、LTR查询边界和当前状态一致性为主，未新增严格验收；累计172/183=163技术证据+9用户范围接受，11项/12维度局部疑点不变。",
+      "summary": "R219轮换PHY观察域与单位：核6.5/7.1电气定义，补同一62.5ps时间窗的原创符号格图，对照32GT/s NRZ、64/128GT/s PAM4的2/4/8编码bit。抽查启动快照、符号UI与原始带宽未发现可确认算法错误，保留原计算和Ready/Link Up保护。",
       "causes": [
         "原48轮是未校准的预算，并非可靠完成预测；到R202已比R138多64轮。",
         "最近主要反复处理规范/产品文档冲突，新增说明却无法关闭一致性门槛。",
@@ -44522,7 +44554,7 @@
       "maintenanceMode": "review-and-improve"
     },
     "documentRequests": {
-      "asOfRound": 218,
+      "asOfRound": 219,
       "summary": "以下是已有规范疑点的查证线索，不是本轮要求上传的文档。Base与PIPE本体已具备；日常完善不等待这些澄清，产品保密资料不再索取。",
       "items": [
         {
