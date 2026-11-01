@@ -1,7 +1,7 @@
 {
   "nextFeatureIds": [
-    4,
-    13
+    174,
+    177
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -50,12 +50,12 @@
   ],
   "lastCompleted": {
     "date": "2026-11-01",
-    "edition": "2026-11-01-r217",
+    "edition": "2026-11-01-r218",
     "featureIds": [
-      89,
-      12
+      4,
+      13
     ],
-    "nextTrack": "R218四轮总结与按问题抽查"
+    "nextTrack": "R219 PHY观察域与单位抽查；R222下一次四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -206,155 +206,142 @@
   },
   "priorityPlan": [
     {
-      "id": "link-reliability-init",
-      "title": "1. 传统NFM重放与链路层初始化",
-      "status": "R79补早期正式版选定差分",
+      "id": "maintenance-phy-units",
+      "title": "1. PHY/SerDes的图文、单位与观察域",
+      "status": "下一轮按真实错误或阅读缺口抽查",
       "featureIds": [
-        97,
-        141,
-        111
+        174,
+        177
       ],
-      "remaining": "保留1.1/3.1/中间ECN、5.0计数变更历史、完整ACK时限/FC最小广告、并发重放和硬件证据；R79只补所列早期计数、初始化门控/发送频度及4.0 Feature。"
+      "remaining": "优先Ready/Link Up、NRZ/PAM4的bit/symbol/UI及观测边界；不重复追问已由用户接受的公司产品资料，不因维护必须新增段落。"
     },
     {
-      "id": "interrupts",
-      "title": "2. INTx / MSI / MSI-X完整通路",
-      "status": "R80补早期Base角色与4.0字段/时序",
+      "id": "maintenance-transaction-path",
+      "title": "2. 枚举/中断及事务入口的版本与角色",
+      "status": "后续轮换，实际问题优先",
       "featureIds": [
-        52,
+        36,
+        48,
         53,
-        54,
-        55,
-        56
+        54
       ],
-      "remaining": "保留PCI2.3/传统PCI3.0与MSI-X ECN完整正文、EMD ECN历史、早期BME/PVM角色中间修订、真实平台中断映射和驱动/RTL并发；本轮不把Base转引当已读独立规范。"
+      "remaining": "抽查地址/消息位图、Requester/Completer与软件配置条件和深链接；保留已验收结论，仅凭新证据或可复现网站错误修改。"
     },
     {
-      "id": "axi-atu-dma",
-      "title": "3. AXI → iATU → TLP → DMA",
-      "status": "R83追加描述符位图、预取/QoS与普通长度边界",
+      "id": "maintenance-known-source-branches",
+      "title": "3. 局部规范疑点按新证据处理",
+      "status": "11项已知疑点限定分支；不作为机械扩写目标",
       "featureIds": [
-        143,
-        146,
-        147,
-        148
-      ],
-      "remaining": "数据控制位、Write CONTROL1、预取计划与长度查询已补；Link预取编码、0=4GiB特殊编码、CB/PCS时点、Watermark/Abort偏移及错误方向冲突、平台DMA一致性和实测仍待核。"
-    },
-    {
-      "id": "cross-track",
-      "title": "4. 穿插L0p、DOE/TDISP、早期代际及PHY",
-      "status": "持续穿插",
-      "featureIds": [
-        15,
+        92,
+        106,
+        114,
+        119,
         127,
         129,
-        3,
-        170
-      ],
-      "remaining": "避免单一功能家族长期占用；按已有正式资料补机制和版本。"
-    },
-    {
-      "title": "5. 配置身份/Header → 翻译失效 → PHY/Retimer轮换",
-      "status": "R75～R78窗口完成选定核心与早期训练差分",
-      "featureIds": [
-        37,
-        40,
-        38,
-        68,
-        69,
-        130,
-        11
-      ],
-      "remaining": "完整枚举/ARI/VF视图、ATS并发失效、完整Retimer状态、全部EQ请求/中间修订和硬件证据保留；不以23个新块视作整章完成。"
-    },
-    {
-      "title": "6. R83～R86：数据通路缺口 → 身份/测量 → 早期OS/PHY轮换",
-      "status": "R83～R86选定主题已完成并阶段复盘",
-      "featureIds": [
-        143,
-        146,
-        147,
-        148,
-        128,
-        4,
-        12,
-        175,
-        176
-      ],
-      "remaining": "四轮全部未解契约保留在stageReviews与self-audit，不因窗口完成当作整章完成。"
-    },
-    {
-      "title": "7. R87～R90：FC/VC → 事务排序/原子性 → PHY均衡/错误轮换",
-      "status": "R87～R90选定主题完成并复盘",
-      "featureIds": [
-        111,
-        114,
-        141,
-        27,
-        28,
-        29,
-        31,
-        33,
-        173,
-        177,
-        103,
-        104
-      ],
-      "remaining": "本窗口所有未解分支保留在stageReviews/self-audit，不因阶段完成视作整章完成。"
-    },
-    {
-      "title": "8. R91～R94：L1SS/LTR/PME → 枚举/BAR → PHY训练轮换",
-      "status": "待推进",
-      "featureIds": [
-        87,
-        89,
-        59,
-        85,
-        36,
-        38,
-        41,
-        48,
-        172,
+        136,
+        164,
+        169,
         170,
-        177,
-        114
+        175
       ],
-      "remaining": "按本轮nextPriorities推进，4个实质轮次后R94总结；不重复计算上传重试。"
-    },
-    {
-      "title": "一期收尾R95～R98：成熟内容批验、枚举资源与PHY薄弱分层",
-      "status": "按固定任务执行，不扩大范围",
-      "featureIds": [
-        36,
-        38,
-        39,
-        41,
-        43,
-        47,
-        48,
-        163,
-        165,
-        166,
-        167,
-        168
-      ],
-      "remaining": "目标R138保留但余44轮足够性待校准；不以段落/引用数代替通过的验收项，R98报告偏差。"
+      "remaining": "已有Base6.5/7.1和PIPE资料不再笼统称缺失；没有新证据不反复重读同页，公开澄清若出现再裁决。产品9项范围接受保留，非技术证明。"
     }
   ],
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 159,
-    "lastReviewEdition": "2026-10-31-r214",
-    "lastReviewId": "r211-r214",
-    "nextExpectedReview": "有实质授权推进时R218再复盘；无新证据不机械运行。"
+    "completedTotal": 160,
+    "lastReviewEdition": "2026-11-01-r218",
+    "lastReviewId": "r215-r218",
+    "nextExpectedReview": "R222：实际纠错、阅读缺口与已知疑点处理结果复盘；不是自动延期承诺。"
   },
   "stageReviews": [
+    {
+      "id": "r215-r218",
+      "edition": "2026-11-01-r218",
+      "title": "R215～R218：纠错与完善四轮总结",
+      "completedRounds": 4,
+      "rounds": [
+        {
+          "edition": "R215",
+          "topic": "同步RP PIO已核五位容量和PIPE已解决页码映射，局部疑点不再冒充整项未写完。",
+          "featureIds": [
+            106,
+            164
+          ],
+          "remaining": "11项公开规范局部疑点保留；本轮不增加新必验范围。"
+        },
+        {
+          "edition": "R216",
+          "topic": "区分7.0/6.5旧位图与7.1 bit6；补DEVICE_CLASS_INFO、三层偏移和长度示例，源表局部疑点单列。",
+          "featureIds": [
+            129
+          ],
+          "remaining": "11项公开规范局部疑点保留；本轮不增加新必验范围。"
+        },
+        {
+          "edition": "R217",
+          "topic": "补Switch USP Max三种常见模型、17FFh有效编码；保留DSP数值算法，标明不预测实际包；同步LTR/Lower SKP旧状态。",
+          "featureIds": [
+            89,
+            12
+          ],
+          "remaining": "11项公开规范局部疑点保留；本轮不增加新必验范围。"
+        },
+        {
+          "edition": "R218",
+          "topic": "修正当前目标仍显示R138和当前优先级停留R94的问题，保留历史预算/路线；LTSSM旧入口同步R206已验收结论，抽查包图与长度边界。",
+          "featureIds": [
+            4,
+            13
+          ],
+          "remaining": "11项公开规范局部疑点保留；本轮不增加新必验范围。"
+        }
+      ],
+      "result": "R218完成R215～R218四轮复盘，修正维护看板仍把R138当当前目标、优先级仍停R94及LTSSM入口旧阻塞说明。四轮以位图版本、报告偏移、LTR查询边界和当前状态一致性为主，未新增严格验收；累计172/183=163技术证据+9用户范围接受，11项/12维度局部疑点不变。",
+      "nextPriorities": [
+        {
+          "title": "1. PHY/SerDes的图文、单位与观察域",
+          "featureIds": [
+            174,
+            177
+          ],
+          "reason": "优先Ready/Link Up、NRZ/PAM4的bit/symbol/UI及观测边界；不重复追问已由用户接受的公司产品资料，不因维护必须新增段落。"
+        },
+        {
+          "title": "2. 枚举/中断及事务入口的版本与角色",
+          "featureIds": [
+            36,
+            48,
+            53,
+            54
+          ],
+          "reason": "抽查地址/消息位图、Requester/Completer与软件配置条件和深链接；保留已验收结论，仅凭新证据或可复现网站错误修改。"
+        },
+        {
+          "title": "3. 局部规范疑点按新证据处理",
+          "featureIds": [
+            92,
+            106,
+            114,
+            119,
+            127,
+            129,
+            136,
+            164,
+            169,
+            170,
+            175
+          ],
+          "reason": "已有Base6.5/7.1和PIPE资料不再笼统称缺失；没有新证据不反复重读同页，公开澄清若出现再裁决。产品9项范围接受保留，非技术证明。"
+        }
+      ],
+      "limitations": "严格验收163项按技术证据、9项按用户接受产品资料范围；本四轮新增均为0。不是协议全文覆盖率或硬件证明。R138为历史原预算，不是当前维护截止期；未核/源文疑点仍按块保留。"
+    },
     {
       "id": "r99-r102",
       "date": "2026-10-27",
@@ -1286,10 +1273,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 127,
+    "completedRounds": 128,
     "remainingPlannedRounds": 0,
-    "nextRound": 218,
-    "nextReviewRound": 218,
+    "nextRound": 219,
+    "nextReviewRound": 222,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -37129,6 +37116,23 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "11项既有规范疑点/12维度仍限定对应分支；不扩大范围，不新增无依据完工轮数。R218四轮总结。",
         "publication": "构建/查询边界与计算不变回归后发布R217。"
+      },
+      {
+        "round": 218,
+        "kind": "R218四轮总结、当前规划显示与LTSSM状态纠错",
+        "deliverables": [
+          "R218完成R215～R218四轮复盘，修正维护看板仍把R138当当前目标、优先级仍停R94及LTSSM入口旧阻塞说明。四轮以位图版本、报告偏移、LTR查询边界和当前状态一致性为主，未新增严格验收；累计172/183=163技术证据+9用户范围接受，11项/12维度局部疑点不变。"
+        ],
+        "closedDeliverableIds": [
+          "maintenance-dashboard-current-vs-historical-plan-corrected",
+          "four-round-maintenance-review-visible",
+          "ltssm-current-shared-acceptance-synchronized"
+        ],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "维护以可复现网站错误、图文单位和实际阅读缺口为主；已知规范疑点有新证据才裁决，不继续承诺机械若干轮消除外部歧义。",
+        "publication": "构建/当前与历史模式渲染回归、包图布局与长度抽查后发布R218。"
       }
     ],
     "backlog": [
@@ -41373,32 +41377,32 @@
       }
     ],
     "nextExecution": {
-      "round": 218,
+      "round": 219,
       "taskId": "v1-task-24",
       "featureIds": [
-        4,
-        13
+        174,
+        177
       ],
-      "goal": "R215～R218四轮复盘：总结实际修错/补充、严格技术与用户范围验收分开；抽查LTSSM和包图/导航，按真实问题选下一优先级，不机械增加验收目标。",
+      "goal": "轮换PHY/SerDes：抽查Ready与Link Up、bit/symbol/UI和观察域的文字/图/查询一致性；只修实际问题或有依据阅读缺口，不索取公司资料。",
       "mode": "review-and-improve",
-      "reviewRound": 218,
+      "reviewRound": 222,
       "acceptedFeatureReviewReasons": {
-        "4": "维护抽查已验收内容的图文/角色/单位，并复盘实际错误；不重开原验收",
-        "13": "维护抽查已验收内容的图文/角色/单位，并复盘实际错误；不重开原验收"
+        "174": "维护抽查已验收内容图文/单位与适用条件，不重开原验收或产品保密证据要求",
+        "177": "维护抽查已验收内容图文/单位与适用条件，不重开原验收或产品保密证据要求"
       }
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 217,
-      "reestimateRound": 218,
+      "assessedRound": 218,
+      "reestimateRound": 222,
       "observedAcceptedUnitsPerRound": 1.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R217补齐LTR Switch USP Max寄存器三种常见使用模型，区分数值聚合、Max参与和超限无要求，明确现有查询不预测实际上行包；补有效最大编码17FFh，纠正89资料待取得与12旧共享阻塞的过期表述。172/183验收保持。",
-      "action": "按用户决定持续纠错与完善；11项只限定对应分支，不再以疑点数量驱动反复扩写或索取资料。",
+      "assessment": "R218完成R215～R218四轮复盘，修正维护看板仍把R138当当前目标、优先级仍停R94及LTSSM入口旧阻塞说明。四轮以位图版本、报告偏移、LTR查询边界和当前状态一致性为主，未新增严格验收；累计172/183=163技术证据+9用户范围接受，11项/12维度局部疑点不变。",
+      "action": "下轮优先PHY启动/复位和NRZ/PAM4单位的图文检查，随后轮换枚举/中断；维护不自动增加必验范围，公开规范疑点遇新证据再重审。",
       "latestProgress": {
-        "round": 217,
+        "round": 218,
         "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 172,
         "newPassedCriteria": 0,
@@ -42957,6 +42961,132 @@
           "v1-task-23"
         ],
         "note": "R214产品资料边界按用户决定验收9项；累计172/183，其中163项按技术证据通过、9项按用户接受范围通过。剩7项PCI-SIG与4项公开PIPE，共11项/12维度。 同步关闭8个已满足条件但状态滞后的任务；R211～R214合计10项（1项技术证据、9项用户接受范围）。 用户范围验收不等于公司产品技术问题已解决；官方新正文仍保留的矛盾继续阻塞，不新增无证据完工轮数承诺。"
+      },
+      {
+        "id": "r215-r218",
+        "firstRound": 215,
+        "lastRound": 218,
+        "kind": "review-and-improve",
+        "closedFeatureUnits": [],
+        "reopenedFeatureUnits": [],
+        "newPassedCriteria": 0,
+        "evidenceAcceptedUnits": [],
+        "userScopeAcceptedUnits": [],
+        "remainingFeatureUnits": 11,
+        "cumulativePassedCriteria": 1452,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "功耗与复位": 1,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 1,
+          "PHY与SerDes": 4
+        },
+        "blockedFeatureIds": [
+          92,
+          106,
+          114,
+          119,
+          127,
+          129,
+          136,
+          164,
+          169,
+          170,
+          175
+        ],
+        "awaitingFeatureIds": [],
+        "resolvedSourceQuestionsThisWindow": [],
+        "closedTaskIds": [],
+        "maintenanceOutcomes": [
+          {
+            "round": 215,
+            "title": "纠错维护起点",
+            "result": "同步RP PIO已核五位容量和PIPE已解决页码映射，局部疑点不再冒充整项未写完。",
+            "featureIds": [
+              106,
+              164
+            ]
+          },
+          {
+            "round": 216,
+            "title": "TDISP报告版本与字段坐标",
+            "result": "区分7.0/6.5旧位图与7.1 bit6；补DEVICE_CLASS_INFO、三层偏移和长度示例，源表局部疑点单列。",
+            "featureIds": [
+              129
+            ]
+          },
+          {
+            "round": 217,
+            "title": "LTR聚合器角色边界",
+            "result": "补Switch USP Max三种常见模型、17FFh有效编码；保留DSP数值算法，标明不预测实际包；同步LTR/Lower SKP旧状态。",
+            "featureIds": [
+              89,
+              12
+            ]
+          },
+          {
+            "round": 218,
+            "title": "维护看板与LTSSM旧状态",
+            "result": "修正当前目标仍显示R138和当前优先级停留R94的问题，保留历史预算/路线；LTSSM旧入口同步R206已验收结论，抽查包图与长度边界。",
+            "featureIds": [
+              4,
+              13
+            ]
+          }
+        ],
+        "acceptanceBreakdown": {
+          "evidence": 163,
+          "userScope": 9,
+          "total": 172
+        },
+        "newNormativeVerdicts": 0,
+        "nextPriorities": [
+          {
+            "id": "maintenance-phy-units",
+            "title": "1. PHY/SerDes的图文、单位与观察域",
+            "status": "下一轮按真实错误或阅读缺口抽查",
+            "featureIds": [
+              174,
+              177
+            ],
+            "remaining": "优先Ready/Link Up、NRZ/PAM4的bit/symbol/UI及观测边界；不重复追问已由用户接受的公司产品资料，不因维护必须新增段落。"
+          },
+          {
+            "id": "maintenance-transaction-path",
+            "title": "2. 枚举/中断及事务入口的版本与角色",
+            "status": "后续轮换，实际问题优先",
+            "featureIds": [
+              36,
+              48,
+              53,
+              54
+            ],
+            "remaining": "抽查地址/消息位图、Requester/Completer与软件配置条件和深链接；保留已验收结论，仅凭新证据或可复现网站错误修改。"
+          },
+          {
+            "id": "maintenance-known-source-branches",
+            "title": "3. 局部规范疑点按新证据处理",
+            "status": "11项已知疑点限定分支；不作为机械扩写目标",
+            "featureIds": [
+              92,
+              106,
+              114,
+              119,
+              127,
+              129,
+              136,
+              164,
+              169,
+              170,
+              175
+            ],
+            "remaining": "已有Base6.5/7.1和PIPE资料不再笼统称缺失；没有新证据不反复重读同页，公开澄清若出现再裁决。产品9项范围接受保留，非技术证明。"
+          }
+        ],
+        "note": "R218完成R215～R218四轮复盘，修正维护看板仍把R138当当前目标、优先级仍停R94及LTSSM入口旧阻塞说明。四轮以位图版本、报告偏移、LTR查询边界和当前状态一致性为主，未新增严格验收；累计172/183=163技术证据+9用户范围接受，11项/12维度局部疑点不变。 没有把文字纠错计成新功能验收，没有新增完成轮数承诺；原48轮预算和历史审计保留。R216的7.1报告两处源表疑点仅限定新补块，不扩成新一期必验任务。"
       }
     ],
     "budgetEndAudit": {
@@ -43254,7 +43384,7 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        217
+        218
       ],
       "completedRounds": [
         139,
@@ -43335,10 +43465,11 @@
         214,
         215,
         216,
-        217
+        217,
+        218
       ],
-      "publication": "publish-r217-after-validation",
-      "note": "手动一轮，保持每日09:00启用；下轮R218复盘。",
+      "publication": "publish-r218-after-validation",
+      "note": "本轮手动维护与总结；每日09:00任务保持启用。",
       "historyPreservedR202": {
         "authorizedRounds": [
           185,
@@ -43564,6 +43695,16 @@
             217
           ],
           "instruction": "用户授权跑一轮"
+        },
+        {
+          "round": 218,
+          "previousAuthorizedRounds": [
+            217
+          ],
+          "currentAuthorizedRounds": [
+            218
+          ],
+          "instruction": "用户授权跑一轮，按约四轮复盘"
         }
       ]
     },
@@ -43577,22 +43718,22 @@
     },
     "continuationMode": "acceptance-evidence-gated-no-repeat",
     "acceptanceGate": {
-      "asOfRound": 217,
+      "asOfRound": 218,
       "acceptedFeatures": 172,
       "blockedFeatures": 11,
       "unpassedCriteria": 12,
-      "newAcceptedInLastFour": 9,
+      "newAcceptedInLastFour": 0,
       "sourceQuestionsResolvedThisWindow": [
         "v1-conflict-38"
       ],
-      "summary": "R217补齐LTR Switch USP Max寄存器三种常见使用模型，区分数值聚合、Max参与和超限无要求，明确现有查询不预测实际上行包；补有效最大编码17FFh，纠正89资料待取得与12旧共享阻塞的过期表述。172/183验收保持。",
+      "summary": "R218完成R215～R218四轮复盘，修正维护看板仍把R138当当前目标、优先级仍停R94及LTSSM入口旧阻塞说明。四轮以位图版本、报告偏移、LTR查询边界和当前状态一致性为主，未新增严格验收；累计172/183=163技术证据+9用户范围接受，11项/12维度局部疑点不变。",
       "causes": [
         "原48轮是未校准的预算，并非可靠完成预测；到R202已比R138多64轮。",
         "最近主要反复处理规范/产品文档冲突，新增说明却无法关闭一致性门槛。",
         "此前文字提取异常误当原页排印错误；收尾页还因旧预算快照提前返回而隐藏当前预测。"
       ],
-      "decision": "当前以修正网站错误、补充可查细节和图文/查询核对为主。已核主体内容可继续使用；未裁决分支明确标注，不自行变成肯定结论。产品资料范围已由用户接受。",
-      "roundEstimate": "局部规范疑点不是整项内容未写完，也不是每轮必须关闭的数量目标。按用户手动授权维护，每四轮总结实际修错和补充结果。",
+      "decision": "当前进行纠错与完善维护，最新四轮成果在看板展示。11项局部规范疑点继续限定分支；已核主体内容可查，不把未裁决分支变成肯定结论。",
+      "roundEstimate": "原R138目标与48轮预算只作历史。后续按授权和实际问题维护，每4个实质轮次总结；没有必须再跑固定轮数的完工承诺。",
       "categories": [
         {
           "kind": "PCI-SIG正式条款澄清",
@@ -44381,7 +44522,7 @@
       "maintenanceMode": "review-and-improve"
     },
     "documentRequests": {
-      "asOfRound": 217,
+      "asOfRound": 218,
       "summary": "以下是已有规范疑点的查证线索，不是本轮要求上传的文档。Base与PIPE本体已具备；日常完善不等待这些澄清，产品保密资料不再索取。",
       "items": [
         {
@@ -49744,5 +49885,149 @@
       "knownIssuesAreNotWholeFeatureIncomplete": true,
       "unresolvedTechnicalClaimsRemainQualified": true
     }
-  }
+  },
+  "priorityPlanHistory": [
+    {
+      "archivedAtRound": 218,
+      "reason": "页面仍展示R79～R98历史路线为当前优先级，现按维护模式校正；旧对象原样保留",
+      "plan": [
+        {
+          "id": "link-reliability-init",
+          "title": "1. 传统NFM重放与链路层初始化",
+          "status": "R79补早期正式版选定差分",
+          "featureIds": [
+            97,
+            141,
+            111
+          ],
+          "remaining": "保留1.1/3.1/中间ECN、5.0计数变更历史、完整ACK时限/FC最小广告、并发重放和硬件证据；R79只补所列早期计数、初始化门控/发送频度及4.0 Feature。"
+        },
+        {
+          "id": "interrupts",
+          "title": "2. INTx / MSI / MSI-X完整通路",
+          "status": "R80补早期Base角色与4.0字段/时序",
+          "featureIds": [
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "remaining": "保留PCI2.3/传统PCI3.0与MSI-X ECN完整正文、EMD ECN历史、早期BME/PVM角色中间修订、真实平台中断映射和驱动/RTL并发；本轮不把Base转引当已读独立规范。"
+        },
+        {
+          "id": "axi-atu-dma",
+          "title": "3. AXI → iATU → TLP → DMA",
+          "status": "R83追加描述符位图、预取/QoS与普通长度边界",
+          "featureIds": [
+            143,
+            146,
+            147,
+            148
+          ],
+          "remaining": "数据控制位、Write CONTROL1、预取计划与长度查询已补；Link预取编码、0=4GiB特殊编码、CB/PCS时点、Watermark/Abort偏移及错误方向冲突、平台DMA一致性和实测仍待核。"
+        },
+        {
+          "id": "cross-track",
+          "title": "4. 穿插L0p、DOE/TDISP、早期代际及PHY",
+          "status": "持续穿插",
+          "featureIds": [
+            15,
+            127,
+            129,
+            3,
+            170
+          ],
+          "remaining": "避免单一功能家族长期占用；按已有正式资料补机制和版本。"
+        },
+        {
+          "title": "5. 配置身份/Header → 翻译失效 → PHY/Retimer轮换",
+          "status": "R75～R78窗口完成选定核心与早期训练差分",
+          "featureIds": [
+            37,
+            40,
+            38,
+            68,
+            69,
+            130,
+            11
+          ],
+          "remaining": "完整枚举/ARI/VF视图、ATS并发失效、完整Retimer状态、全部EQ请求/中间修订和硬件证据保留；不以23个新块视作整章完成。"
+        },
+        {
+          "title": "6. R83～R86：数据通路缺口 → 身份/测量 → 早期OS/PHY轮换",
+          "status": "R83～R86选定主题已完成并阶段复盘",
+          "featureIds": [
+            143,
+            146,
+            147,
+            148,
+            128,
+            4,
+            12,
+            175,
+            176
+          ],
+          "remaining": "四轮全部未解契约保留在stageReviews与self-audit，不因窗口完成当作整章完成。"
+        },
+        {
+          "title": "7. R87～R90：FC/VC → 事务排序/原子性 → PHY均衡/错误轮换",
+          "status": "R87～R90选定主题完成并复盘",
+          "featureIds": [
+            111,
+            114,
+            141,
+            27,
+            28,
+            29,
+            31,
+            33,
+            173,
+            177,
+            103,
+            104
+          ],
+          "remaining": "本窗口所有未解分支保留在stageReviews/self-audit，不因阶段完成视作整章完成。"
+        },
+        {
+          "title": "8. R91～R94：L1SS/LTR/PME → 枚举/BAR → PHY训练轮换",
+          "status": "待推进",
+          "featureIds": [
+            87,
+            89,
+            59,
+            85,
+            36,
+            38,
+            41,
+            48,
+            172,
+            170,
+            177,
+            114
+          ],
+          "remaining": "按本轮nextPriorities推进，4个实质轮次后R94总结；不重复计算上传重试。"
+        },
+        {
+          "title": "一期收尾R95～R98：成熟内容批验、枚举资源与PHY薄弱分层",
+          "status": "按固定任务执行，不扩大范围",
+          "featureIds": [
+            36,
+            38,
+            39,
+            41,
+            43,
+            47,
+            48,
+            163,
+            165,
+            166,
+            167,
+            168
+          ],
+          "remaining": "目标R138保留但余44轮足够性待校准；不以段落/引用数代替通过的验收项，R98报告偏差。"
+        }
+      ]
+    }
+  ]
 }
