@@ -2,8 +2,7 @@
   "nextFeatureIds": [
     4,
     12,
-    89,
-    129
+    89
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -51,13 +50,12 @@
     "功能首次引入版本与ECN证据"
   ],
   "lastCompleted": {
-    "date": "2026-10-31",
-    "edition": "2026-10-31-r215",
+    "date": "2026-11-01",
+    "edition": "2026-11-01-r216",
     "featureIds": [
-      106,
-      164
+      129
     ],
-    "nextTrack": "纠错与实际缺口完善；R218四轮总结"
+    "nextTrack": "R217继续抽查；R218四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -347,11 +345,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 1,
-    "nextReviewAfterRounds": 3,
+    "completedSinceReview": 2,
+    "nextReviewAfterRounds": 2,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 157,
+    "completedTotal": 158,
     "lastReviewEdition": "2026-10-31-r214",
     "lastReviewId": "r211-r214",
     "nextExpectedReview": "有实质授权推进时R218再复盘；无新证据不机械运行。"
@@ -1279,7 +1277,7 @@
     "id": "v1-r91-r138",
     "title": "一期收尾：从持续扩写转为逐项验收",
     "baselineEdition": "2026-10-26-r90",
-    "updated": "2026-10-31",
+    "updated": "2026-11-01",
     "targetRounds": 48,
     "estimateRange": [
       40,
@@ -1288,9 +1286,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 125,
+    "completedRounds": 126,
     "remainingPlannedRounds": 0,
-    "nextRound": 216,
+    "nextRound": 217,
     "nextReviewRound": 218,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -37098,6 +37096,22 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "保留11项/12维度严格验收疑点；维护重心为事实、版本、单位、包图、查询与导航自身错误，不等待未知澄清才完善。",
         "publication": "本轮构建/检查及说明同步回归后发布R215。"
+      },
+      {
+        "round": 216,
+        "kind": "R216报告位图版本纠错与结构化报告补充",
+        "deliverables": [
+          "R216修正TDISP INTERFACE_INFO位图的版本混用风险：并列7.0/6.5与7.1 bit6，新增7.1 DEVICE_CLASS_INFO字段、三层偏移及长度示例。原图确认的Reserved/尾部偏移疑点明确隔离，不猜修订；验收172/183不变。"
+        ],
+        "closedDeliverableIds": [
+          "tdisp-interface-info-version-scope-corrected",
+          "tdisp-device-class-info-layout-explained"
+        ],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "11项/12维度既有严格验收疑点仍保留；本轮局部7.1表格疑点只限定新结构，不扩大一期必验范围。",
+        "publication": "本轮检查后发布R216；不把资源字节一致核验称作视觉复核。"
       }
     ],
     "backlog": [
@@ -41342,36 +41356,34 @@
       }
     ],
     "nextExecution": {
-      "round": 216,
+      "round": 217,
       "taskId": "v1-task-24",
       "featureIds": [
         4,
         12,
-        89,
-        129
+        89
       ],
-      "goal": "从已核内容抽查文字/图表/查询的版本、单位和适用条件，优先可复现网站错误；选实际缺口深化，源文疑点遇新证据再核。",
+      "goal": "继续抽查已核文字/图表/查询的版本、单位与角色；优先实际网站错误和有用细节，不为轮次重复改写正确内容。R218总结。",
       "mode": "review-and-improve",
       "reviewRound": 218,
       "acceptedFeatureReviewReasons": {
-        "4": "抽查已核LTSSM文字/流程图/查询对版本和计时的表述一致性；没有新错误不改写、不重开验收。",
-        "12": "抽查带宽口径：单向/双向、lane、编码/有效载荷、PAM4倍数；没有新错误不改写。",
-        "89": "抽查B148新两位兼容规则与旧版图/概述是否明确分版；不重复等待已解决位号勘误。",
-        "129": "抽查新字节Base/旧页号兼容与字段图是否明确适用版本；RUN源文疑点另存，不影响其余内容维护。"
+        "4": "维护抽查已验收内容，检查版本/单位/图文一致性，不重开原验收",
+        "12": "维护抽查已验收内容，检查版本/单位/图文一致性，不重开原验收",
+        "89": "维护抽查已验收内容，检查版本/单位/图文一致性，不重开原验收"
       }
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 215,
+      "assessedRound": 216,
       "reestimateRound": 218,
       "observedAcceptedUnitsPerRound": 1.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R215转入纠错与完善维护，修正两处旧审计未同步：RP PIO当前备注改为已核五位容量，PIPE当前说明标明R190页码映射已解决。11项局部规范疑点继续独立保留，172/183严格验收结果不变。",
+      "assessment": "R216修正TDISP INTERFACE_INFO位图的版本混用风险：并列7.0/6.5与7.1 bit6，新增7.1 DEVICE_CLASS_INFO字段、三层偏移及长度示例。原图确认的Reserved/尾部偏移疑点明确隔离，不猜修订；验收172/183不变。",
       "action": "按用户决定持续纠错与完善；11项只限定对应分支，不再以疑点数量驱动反复扩写或索取资料。",
       "latestProgress": {
-        "round": 215,
+        "round": 216,
         "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 172,
         "newPassedCriteria": 0,
@@ -43227,7 +43239,7 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        215
+        216
       ],
       "completedRounds": [
         139,
@@ -43306,10 +43318,11 @@
         212,
         213,
         214,
-        215
+        215,
+        216
       ],
-      "publication": "publish-r215-after-validation",
-      "note": "用户手动授权一轮纠错维护；每日仍暂停，产品范围接受不变。",
+      "publication": "publish-r216-after-validation",
+      "note": "本轮手动推进；每日09:00任务已按用户要求恢复，不改变该排程。",
       "historyPreservedR202": {
         "authorizedRounds": [
           185,
@@ -43515,6 +43528,16 @@
             215
           ],
           "instruction": "规范剩余暂存；后续按完善和检查网站是否写错推进，本次一轮。"
+        },
+        {
+          "round": 216,
+          "previousAuthorizedRounds": [
+            215
+          ],
+          "currentAuthorizedRounds": [
+            216
+          ],
+          "instruction": "用户授权跑一轮纠错与完善"
         }
       ]
     },
@@ -43528,15 +43551,15 @@
     },
     "continuationMode": "acceptance-evidence-gated-no-repeat",
     "acceptanceGate": {
-      "asOfRound": 215,
+      "asOfRound": 216,
       "acceptedFeatures": 172,
       "blockedFeatures": 11,
       "unpassedCriteria": 12,
-      "newAcceptedInLastFour": 10,
+      "newAcceptedInLastFour": 9,
       "sourceQuestionsResolvedThisWindow": [
         "v1-conflict-38"
       ],
-      "summary": "R215转入纠错与完善维护，修正两处旧审计未同步：RP PIO当前备注改为已核五位容量，PIPE当前说明标明R190页码映射已解决。11项局部规范疑点继续独立保留，172/183严格验收结果不变。",
+      "summary": "R216修正TDISP INTERFACE_INFO位图的版本混用风险：并列7.0/6.5与7.1 bit6，新增7.1 DEVICE_CLASS_INFO字段、三层偏移及长度示例。原图确认的Reserved/尾部偏移疑点明确隔离，不猜修订；验收172/183不变。",
       "causes": [
         "原48轮是未校准的预算，并非可靠完成预测；到R202已比R138多64轮。",
         "最近主要反复处理规范/产品文档冲突，新增说明却无法关闭一致性门槛。",
@@ -44332,7 +44355,7 @@
       "maintenanceMode": "review-and-improve"
     },
     "documentRequests": {
-      "asOfRound": 215,
+      "asOfRound": 216,
       "summary": "以下是已有规范疑点的查证线索，不是本轮要求上传的文档。Base与PIPE本体已具备；日常完善不等待这些澄清，产品保密资料不再索取。",
       "items": [
         {
