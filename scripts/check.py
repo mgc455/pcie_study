@@ -202,6 +202,17 @@ def check_acceptance_queue(maintenance):
             assert isinstance(reason,str) and reason.strip(), f'Already accepted feature queued without an explicit review reason: {fid}'
 
 m=json.loads((ROOT/'content/maintenance.json').read_text(encoding='utf-8'))
+
+def check_maintenance_detail_links(maintenance, feature_list):
+    by_id={f['id']:f for f in feature_list}
+    for window in maintenance.get('releasePlan',{}).get('reviewWindows',[]):
+        for outcome in window.get('maintenanceOutcomes',[]):
+            for link in outcome.get('detailLinks',[]):
+                target=by_id.get(link.get('featureId'))
+                assert target and isinstance(link.get('label'),str) and link['label'].strip(), 'Invalid maintenance detail link'
+                assert any(d.get('id')==link.get('detailId') for d in target.get('details',[])), 'Dead maintenance detail link'
+
+check_maintenance_detail_links(m,features)
 if 'releasePlan' in m:
     check_acceptance_queue(m)
     plan=m['releasePlan'];units=plan['units'];keys={x['id'] for x in plan['criteria']}

@@ -1,11 +1,7 @@
 {
   "nextFeatureIds": [
-    174,
-    177,
-    48,
-    53,
-    97,
-    111
+    87,
+    95
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -53,13 +49,17 @@
     "功能首次引入版本与ECN证据"
   ],
   "lastCompleted": {
-    "date": "2026-11-01",
-    "edition": "2026-11-01-r221",
+    "date": "2026-11-02",
+    "edition": "2026-11-02-r222",
     "featureIds": [
+      174,
+      177,
+      48,
+      53,
       97,
       111
     ],
-    "nextTrack": "R222四轮总结与实际一致性检查"
+    "nextTrack": "R223功耗/复位抽查；R226四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -210,31 +210,30 @@
   },
   "priorityPlan": [
     {
-      "id": "maintenance-phy-units",
-      "title": "1. PHY/SerDes的图文、单位与观察域",
-      "status": "按实际问题轮换；具体下一轮见当前维护队列",
+      "id": "maintenance-power-reset",
+      "title": "1. 功耗／复位的时序起点与作用范围",
+      "status": "下轮按实际问题抽查",
       "featureIds": [
-        174,
-        177
+        87,
+        95
       ],
-      "remaining": "优先Ready/Link Up、NRZ/PAM4的bit/symbol/UI及观测边界；不重复追问已由用户接受的公司产品资料，不因维护必须新增段落。"
+      "remaining": "检查L1子状态、FLR等条款的进入/退出条件、计时起点和软件/Function/Link边界；不将已正确内容重复扩写，不索取公司资料。"
     },
     {
-      "id": "maintenance-transaction-path",
-      "title": "2. 枚举/中断及事务入口的版本与角色",
-      "status": "后续轮换，实际问题优先",
+      "id": "maintenance-query-navigation",
+      "title": "2. 既有图表、查询和版本导航轮换",
+      "status": "维护阅读与查找体验",
       "featureIds": [
+        13,
         36,
-        48,
-        53,
-        54
+        111
       ],
-      "remaining": "抽查地址/消息位图、Requester/Completer与软件配置条件和深链接；保留已验收结论，仅凭新证据或可复现网站错误修改。"
+      "remaining": "抽查包图坐标、配置身份和信用单位的正文/图/查询一致性；优先可复现错误和稳定深链接，不增加重复工具。"
     },
     {
-      "id": "maintenance-known-source-branches",
-      "title": "3. 局部规范疑点按新证据处理",
-      "status": "11项已知疑点限定分支；不作为机械扩写目标",
+      "id": "maintenance-source-questions",
+      "title": "3. 已知规范疑点按新证据重审",
+      "status": "11项局部分支保留",
       "featureIds": [
         92,
         106,
@@ -248,22 +247,103 @@
         170,
         175
       ],
-      "remaining": "已有Base6.5/7.1和PIPE资料不再笼统称缺失；没有新证据不反复重读同页，公开澄清若出现再裁决。产品9项范围接受保留，非技术证明。"
+      "remaining": "既有Base/PIPE正文不缺；遇针对性正式修订、新原图证据或网站自身错误才重审。9项产品资料范围接受继续保持，不冒充技术验证。"
     }
   ],
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 3,
-    "nextReviewAfterRounds": 1,
+    "completedSinceReview": 0,
+    "nextReviewAfterRounds": 4,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 163,
-    "lastReviewEdition": "2026-11-01-r218",
-    "lastReviewId": "r215-r218",
-    "nextExpectedReview": "R222：实际纠错、阅读缺口与已知疑点处理结果复盘；不是自动延期承诺。"
+    "completedTotal": 164,
+    "lastReviewEdition": "2026-11-02-r222",
+    "lastReviewId": "r219-r222",
+    "nextExpectedReview": "R226按实质轮次总结实际修错、阅读补充和疑点处理；不是自动延期或新完工承诺。"
   },
   "stageReviews": [
+    {
+      "id": "r219-r222",
+      "edition": "2026-11-02-r222",
+      "title": "R219～R222：图、地址与两套账的维护总结",
+      "completedRounds": 4,
+      "rounds": [
+        {
+          "edition": "R219",
+          "topic": "补62.5ps符号格图：32GT/s NRZ与64/128GT/s PAM4对应2/4/8编码bit；单位与Ready/Link观察域回归，未确认旧算法有错。",
+          "featureIds": [
+            174,
+            177
+          ],
+          "remaining": "已核内容可用；已知规范疑点按对应分支保留，不扩为整项空白。"
+        },
+        {
+          "edition": "R220",
+          "topic": "ECAM寄存器地址、寄存器保存的MSI目标与设备发送的Data连成完整例子；当前下一轮由最新队列生成，复盘路线标为历史快照。",
+          "featureIds": [
+            36,
+            48,
+            53,
+            54
+          ],
+          "remaining": "已核内容可用；已知规范疑点按对应分支保留，不扩为整项空白。"
+        },
+        {
+          "edition": "R221",
+          "topic": "用FFF→000累计NAK说明Retry Buffer释放、重放不重扣信用；用PH/PD数值区分UpdateFC累计限额、释放增量和当前可用量。",
+          "featureIds": [
+            97,
+            111
+          ],
+          "remaining": "已核内容可用；已知规范疑点按对应分支保留，不扩为整项空白。"
+        },
+        {
+          "edition": "R222",
+          "topic": "复查三项图/算例、关键边界与来源范围，未发现新增数值矛盾；四轮总结增加稳定详情直达，并把失效链接检查纳入构建。",
+          "featureIds": [],
+          "remaining": "已核内容可用；已知规范疑点按对应分支保留，不扩为整项空白。"
+        }
+      ],
+      "result": "R222完成R219～R222四轮复盘：符号时间图、MSI地址域算例、NFM重放/信用账本及当前队列显示已核；未发现新增数值矛盾，补总结到具体知识块的稳定直达和构建链接校验。本窗口新增技术验收/用户范围接受/验收维度均为0；累计172/183=163证据+9用户范围，11项/12维度局部规范疑点保持。",
+      "nextPriorities": [
+        {
+          "title": "1. 功耗／复位的时序起点与作用范围",
+          "featureIds": [
+            87,
+            95
+          ],
+          "reason": "检查L1子状态、FLR等条款的进入/退出条件、计时起点和软件/Function/Link边界；不将已正确内容重复扩写，不索取公司资料。"
+        },
+        {
+          "title": "2. 既有图表、查询和版本导航轮换",
+          "featureIds": [
+            13,
+            36,
+            111
+          ],
+          "reason": "抽查包图坐标、配置身份和信用单位的正文/图/查询一致性；优先可复现错误和稳定深链接，不增加重复工具。"
+        },
+        {
+          "title": "3. 已知规范疑点按新证据重审",
+          "featureIds": [
+            92,
+            106,
+            114,
+            119,
+            127,
+            129,
+            136,
+            164,
+            169,
+            170,
+            175
+          ],
+          "reason": "既有Base/PIPE正文不缺；遇针对性正式修订、新原图证据或网站自身错误才重审。9项产品资料范围接受继续保持，不冒充技术验证。"
+        }
+      ],
+      "limitations": "本窗口新增验收为0；163项依据技术证据、9项按用户接受产品资料范围。不是协议全文覆盖率、完整新版查询认证或硬件验证。页面整页视觉未完成；源图、原创SVG局部渲染与线上字节检查分别记录。"
+    },
     {
       "id": "r215-r218",
       "edition": "2026-11-01-r218",
@@ -1268,7 +1348,7 @@
     "id": "v1-r91-r138",
     "title": "一期收尾：从持续扩写转为逐项验收",
     "baselineEdition": "2026-10-26-r90",
-    "updated": "2026-11-01",
+    "updated": "2026-11-02",
     "targetRounds": 48,
     "estimateRange": [
       40,
@@ -1277,10 +1357,10 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 131,
+    "completedRounds": 132,
     "remainingPlannedRounds": 0,
-    "nextRound": 222,
-    "nextReviewRound": 222,
+    "nextRound": 223,
+    "nextReviewRound": 226,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
       1,
@@ -37183,6 +37263,22 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "11项局部规范疑点/12维度及172/183验收保持；本例不扩展FM或新版工具认证范围。R222复盘最近四轮实际改进。",
         "publication": "构建、跨序号/重复确认和Credit累计账独立回归后发布R221。"
+      },
+      {
+        "round": 222,
+        "kind": "R222四轮复盘、稳定直达与构建链接检查",
+        "deliverables": [
+          "R222完成R219～R222四轮复盘：符号时间图、MSI地址域算例、NFM重放/信用账本及当前队列显示已核；未发现新增数值矛盾，补总结到具体知识块的稳定直达和构建链接校验。本窗口新增技术验收/用户范围接受/验收维度均为0；累计172/183=163证据+9用户范围，11项/12维度局部规范疑点保持。"
+        ],
+        "closedDeliverableIds": [
+          "r219-r222-maintenance-review-published",
+          "maintenance-review-stable-detail-links-validated"
+        ],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "局部规范疑点继续按新证据处理；维护以实际错误/阅读缺口为准，不把正文或引用数量变成覆盖率，不承诺固定轮数自动清除外部歧义。",
+        "publication": "构建、三轮算例联合回归、详情直达和负向死链测试后发布R222。"
       }
     ],
     "backlog": [
@@ -41427,40 +41523,32 @@
       }
     ],
     "nextExecution": {
-      "round": 222,
+      "round": 223,
       "taskId": "v1-task-24",
       "featureIds": [
-        174,
-        177,
-        48,
-        53,
-        97,
-        111
+        87,
+        95
       ],
-      "goal": "R219～R222四轮复盘：核实际补充/修正和发布，保留验收边界；从最近图表/例子/来源中检查一致性，不重复读取正确内容凑轮数。",
+      "goal": "轮换功耗/复位：核L1子状态与FLR的时间起点、进入/退出条件、软件/Function/Link作用范围，优先实际错误或阅读缺口。",
       "mode": "review-and-improve",
-      "reviewRound": 222,
+      "reviewRound": 226,
       "acceptedFeatureReviewReasons": {
-        "174": "复盘已有图表、例子和算法边界，核实际结果而非重开验收",
-        "177": "复盘已有图表、例子和算法边界，核实际结果而非重开验收",
-        "48": "复盘已有图表、例子和算法边界，核实际结果而非重开验收",
-        "53": "复盘已有图表、例子和算法边界，核实际结果而非重开验收",
-        "97": "复盘已有图表、例子和算法边界，核实际结果而非重开验收",
-        "111": "复盘已有图表、例子和算法边界，核实际结果而非重开验收"
+        "87": "维护抽查已验收正文与查询的计时、角色和范围，不重开原验收或索取公司产品资料",
+        "95": "维护抽查已验收正文与查询的计时、角色和范围，不重开原验收或索取公司产品资料"
       }
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 221,
-      "reestimateRound": 222,
+      "assessedRound": 222,
+      "reestimateRound": 226,
       "observedAcceptedUnitsPerRound": 1.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R221补NFM重放与信用流控联合账本：三包跨FFF→000，NAK=000累计确认前两包、只重放001且不重扣信用；用PH/PD数值演示ACK不等于返还缓冲、UpdateFC为累计限额、重复同值不再次加额度。抽查未发现可确认的原查询算法错误，保留版本范围。",
-      "action": "R222按约复盘R219～R222，区分实际阅读补充、网站纠错、技术证据与用户范围接受；不为总结重复验收或机械扩写。",
+      "assessment": "R222完成R219～R222四轮复盘：符号时间图、MSI地址域算例、NFM重放/信用账本及当前队列显示已核；未发现新增数值矛盾，补总结到具体知识块的稳定直达和构建链接校验。本窗口新增技术验收/用户范围接受/验收维度均为0；累计172/183=163证据+9用户范围，11项/12维度局部规范疑点保持。",
+      "action": "下一轮轮换L1子状态/FLR的计时与作用范围，之后继续图表/查询/导航交叉核对；R226复盘，不增加公司资料要求或机械完工轮数。",
       "latestProgress": {
-        "round": 221,
+        "round": 222,
         "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 172,
         "newPassedCriteria": 0,
@@ -43145,6 +43233,153 @@
           }
         ],
         "note": "R218完成R215～R218四轮复盘，修正维护看板仍把R138当当前目标、优先级仍停R94及LTSSM入口旧阻塞说明。四轮以位图版本、报告偏移、LTR查询边界和当前状态一致性为主，未新增严格验收；累计172/183=163技术证据+9用户范围接受，11项/12维度局部疑点不变。 没有把文字纠错计成新功能验收，没有新增完成轮数承诺；原48轮预算和历史审计保留。R216的7.1报告两处源表疑点仅限定新补块，不扩成新一期必验任务。"
+      },
+      {
+        "id": "r219-r222",
+        "firstRound": 219,
+        "lastRound": 222,
+        "kind": "review-and-improve",
+        "closedFeatureUnits": [],
+        "reopenedFeatureUnits": [],
+        "newPassedCriteria": 0,
+        "evidenceAcceptedUnits": [],
+        "userScopeAcceptedUnits": [],
+        "remainingFeatureUnits": 11,
+        "cumulativePassedCriteria": 1452,
+        "remainingPlannedRounds": 0,
+        "targetRound": 138,
+        "remainingByGroup": {
+          "功耗与复位": 1,
+          "错误处理与可靠性": 1,
+          "性能、QoS与时间": 2,
+          "安全与可信计算": 2,
+          "诊断、测试与管理": 1,
+          "PHY与SerDes": 4
+        },
+        "blockedFeatureIds": [
+          92,
+          106,
+          114,
+          119,
+          127,
+          129,
+          136,
+          164,
+          169,
+          170,
+          175
+        ],
+        "awaitingFeatureIds": [],
+        "resolvedSourceQuestionsThisWindow": [],
+        "closedTaskIds": [],
+        "maintenanceOutcomes": [
+          {
+            "round": 219,
+            "title": "PHY符号时间窗",
+            "result": "补62.5ps符号格图：32GT/s NRZ与64/128GT/s PAM4对应2/4/8编码bit；单位与Ready/Link观察域回归，未确认旧算法有错。",
+            "featureIds": [
+              174,
+              177
+            ],
+            "detailLinks": [
+              {
+                "featureId": 177,
+                "detailId": "r219-symbol-time-window",
+                "label": "NRZ/PAM4符号时间图"
+              }
+            ]
+          },
+          {
+            "round": 220,
+            "title": "MSI地址域与当前队列",
+            "result": "ECAM寄存器地址、寄存器保存的MSI目标与设备发送的Data连成完整例子；当前下一轮由最新队列生成，复盘路线标为历史快照。",
+            "featureIds": [
+              36,
+              48,
+              53,
+              54
+            ],
+            "detailLinks": [
+              {
+                "featureId": 53,
+                "detailId": "r220-msi-register-versus-message-address",
+                "label": "ECAM→MSI寄存器→消息目标"
+              }
+            ]
+          },
+          {
+            "round": 221,
+            "title": "重放与信用两套账",
+            "result": "用FFF→000累计NAK说明Retry Buffer释放、重放不重扣信用；用PH/PD数值区分UpdateFC累计限额、释放增量和当前可用量。",
+            "featureIds": [
+              97,
+              111
+            ],
+            "detailLinks": [
+              {
+                "featureId": 111,
+                "detailId": "r221-replay-credit-two-ledgers",
+                "label": "ACK/NAK与Credit联合账本"
+              }
+            ]
+          },
+          {
+            "round": 222,
+            "title": "跨块复核与直达入口",
+            "result": "复查三项图/算例、关键边界与来源范围，未发现新增数值矛盾；四轮总结增加稳定详情直达，并把失效链接检查纳入构建。",
+            "featureIds": [],
+            "detailLinks": []
+          }
+        ],
+        "acceptanceBreakdown": {
+          "evidence": 163,
+          "userScope": 9,
+          "total": 172
+        },
+        "newNormativeVerdicts": 0,
+        "nextPriorities": [
+          {
+            "id": "maintenance-power-reset",
+            "title": "1. 功耗／复位的时序起点与作用范围",
+            "status": "下轮按实际问题抽查",
+            "featureIds": [
+              87,
+              95
+            ],
+            "remaining": "检查L1子状态、FLR等条款的进入/退出条件、计时起点和软件/Function/Link边界；不将已正确内容重复扩写，不索取公司资料。"
+          },
+          {
+            "id": "maintenance-query-navigation",
+            "title": "2. 既有图表、查询和版本导航轮换",
+            "status": "维护阅读与查找体验",
+            "featureIds": [
+              13,
+              36,
+              111
+            ],
+            "remaining": "抽查包图坐标、配置身份和信用单位的正文/图/查询一致性；优先可复现错误和稳定深链接，不增加重复工具。"
+          },
+          {
+            "id": "maintenance-source-questions",
+            "title": "3. 已知规范疑点按新证据重审",
+            "status": "11项局部分支保留",
+            "featureIds": [
+              92,
+              106,
+              114,
+              119,
+              127,
+              129,
+              136,
+              164,
+              169,
+              170,
+              175
+            ],
+            "remaining": "既有Base/PIPE正文不缺；遇针对性正式修订、新原图证据或网站自身错误才重审。9项产品资料范围接受继续保持，不冒充技术验证。"
+          }
+        ],
+        "note": "R222完成R219～R222四轮复盘：符号时间图、MSI地址域算例、NFM重放/信用账本及当前队列显示已核；未发现新增数值矛盾，补总结到具体知识块的稳定直达和构建链接校验。本窗口新增技术验收/用户范围接受/验收维度均为0；累计172/183=163证据+9用户范围，11项/12维度局部规范疑点保持。 本轮复核既有选段与已验证记录，不宣称新读整章或新官方裁决；旧48轮预算及117条历史审计保留。正文图/算例的新补充不当作新增强制验收范围。"
       }
     ],
     "budgetEndAudit": {
@@ -43442,7 +43677,7 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        221
+        222
       ],
       "completedRounds": [
         139,
@@ -43527,10 +43762,11 @@
         218,
         219,
         220,
-        221
+        221,
+        222
       ],
-      "publication": "publish-r221-after-validation",
-      "note": "手动一轮，保持每日09:00任务启用；下一轮R222总结。",
+      "publication": "publish-r222-after-validation",
+      "note": "本轮手动维护与总结，保持每日09:00任务启用。",
       "historyPreservedR202": {
         "authorizedRounds": [
           185,
@@ -43796,6 +44032,16 @@
             221
           ],
           "instruction": "用户授权跑一轮"
+        },
+        {
+          "round": 222,
+          "previousAuthorizedRounds": [
+            221
+          ],
+          "currentAuthorizedRounds": [
+            222
+          ],
+          "instruction": "用户授权跑一轮，按约四轮总结"
         }
       ]
     },
@@ -43809,7 +44055,7 @@
     },
     "continuationMode": "acceptance-evidence-gated-no-repeat",
     "acceptanceGate": {
-      "asOfRound": 221,
+      "asOfRound": 222,
       "acceptedFeatures": 172,
       "blockedFeatures": 11,
       "unpassedCriteria": 12,
@@ -43817,7 +44063,7 @@
       "sourceQuestionsResolvedThisWindow": [
         "v1-conflict-38"
       ],
-      "summary": "R221补NFM重放与信用流控联合账本：三包跨FFF→000，NAK=000累计确认前两包、只重放001且不重扣信用；用PH/PD数值演示ACK不等于返还缓冲、UpdateFC为累计限额、重复同值不再次加额度。抽查未发现可确认的原查询算法错误，保留版本范围。",
+      "summary": "R222完成R219～R222四轮复盘：符号时间图、MSI地址域算例、NFM重放/信用账本及当前队列显示已核；未发现新增数值矛盾，补总结到具体知识块的稳定直达和构建链接校验。本窗口新增技术验收/用户范围接受/验收维度均为0；累计172/183=163证据+9用户范围，11项/12维度局部规范疑点保持。",
       "causes": [
         "原48轮是未校准的预算，并非可靠完成预测；到R202已比R138多64轮。",
         "最近主要反复处理规范/产品文档冲突，新增说明却无法关闭一致性门槛。",
@@ -44613,7 +44859,7 @@
       "maintenanceMode": "review-and-improve"
     },
     "documentRequests": {
-      "asOfRound": 221,
+      "asOfRound": 222,
       "summary": "以下是已有规范疑点的查证线索，不是本轮要求上传的文档。Base与PIPE本体已具备；日常完善不等待这些澄清，产品保密资料不再索取。",
       "items": [
         {
@@ -50117,6 +50363,53 @@
             168
           ],
           "remaining": "目标R138保留但余44轮足够性待校准；不以段落/引用数代替通过的验收项，R98报告偏差。"
+        }
+      ]
+    },
+    {
+      "archivedAtRound": 222,
+      "reason": "R219～R222复盘后更新轮换路线，旧路线按快照保留",
+      "plan": [
+        {
+          "id": "maintenance-phy-units",
+          "title": "1. PHY/SerDes的图文、单位与观察域",
+          "status": "按实际问题轮换；具体下一轮见当前维护队列",
+          "featureIds": [
+            174,
+            177
+          ],
+          "remaining": "优先Ready/Link Up、NRZ/PAM4的bit/symbol/UI及观测边界；不重复追问已由用户接受的公司产品资料，不因维护必须新增段落。"
+        },
+        {
+          "id": "maintenance-transaction-path",
+          "title": "2. 枚举/中断及事务入口的版本与角色",
+          "status": "后续轮换，实际问题优先",
+          "featureIds": [
+            36,
+            48,
+            53,
+            54
+          ],
+          "remaining": "抽查地址/消息位图、Requester/Completer与软件配置条件和深链接；保留已验收结论，仅凭新证据或可复现网站错误修改。"
+        },
+        {
+          "id": "maintenance-known-source-branches",
+          "title": "3. 局部规范疑点按新证据处理",
+          "status": "11项已知疑点限定分支；不作为机械扩写目标",
+          "featureIds": [
+            92,
+            106,
+            114,
+            119,
+            127,
+            129,
+            136,
+            164,
+            169,
+            170,
+            175
+          ],
+          "remaining": "已有Base6.5/7.1和PIPE资料不再笼统称缺失；没有新证据不反复重读同页，公开澄清若出现再裁决。产品9项范围接受保留，非技术证明。"
         }
       ]
     }
