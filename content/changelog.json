@@ -1,6 +1,17 @@
 [
   {
     "date": "2026-11-01",
+    "edition": "2026-11-01-r217",
+    "title": "R217补Switch USP Max使用模型，限定LTR聚合查询",
+    "summary": "R217补齐LTR Switch USP Max寄存器三种常见使用模型，区分数值聚合、Max参与和超限无要求，明确现有查询不预测实际上行包；补有效最大编码17FFh，纠正89资料待取得与12旧共享阻塞的过期表述。172/183验收保持。",
+    "features": [
+      89,
+      12
+    ],
+    "verification": "核正式6.5/7.1指定正文及Implementation Note原图；旧算法输出回归、字段有效编码及历史保留检查；模型举例不替代实现保证。"
+  },
+  {
+    "date": "2026-11-01",
     "edition": "2026-11-01-r216",
     "title": "R216区分TDISP报告位图版本，补7.1结构化报告",
     "summary": "R216修正TDISP INTERFACE_INFO位图的版本混用风险：并列7.0/6.5与7.1 bit6，新增7.1 DEVICE_CLASS_INFO字段、三层偏移及长度示例。原图确认的Reserved/尾部偏移疑点明确隔离，不猜修订；验收172/183不变。",

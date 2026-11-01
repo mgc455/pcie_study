@@ -1,8 +1,7 @@
 {
   "nextFeatureIds": [
     4,
-    12,
-    89
+    13
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -51,11 +50,12 @@
   ],
   "lastCompleted": {
     "date": "2026-11-01",
-    "edition": "2026-11-01-r216",
+    "edition": "2026-11-01-r217",
     "featureIds": [
-      129
+      89,
+      12
     ],
-    "nextTrack": "R217继续抽查；R218四轮总结"
+    "nextTrack": "R218四轮总结与按问题抽查"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -345,11 +345,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 158,
+    "completedTotal": 159,
     "lastReviewEdition": "2026-10-31-r214",
     "lastReviewId": "r211-r214",
     "nextExpectedReview": "有实质授权推进时R218再复盘；无新证据不机械运行。"
@@ -1286,9 +1286,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 126,
+    "completedRounds": 127,
     "remainingPlannedRounds": 0,
-    "nextRound": 217,
+    "nextRound": 218,
     "nextReviewRound": 218,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -37112,6 +37112,23 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "11项/12维度既有严格验收疑点仍保留；本轮局部7.1表格疑点只限定新结构，不扩大一期必验范围。",
         "publication": "本轮检查后发布R216；不把资源字节一致核验称作视觉复核。"
+      },
+      {
+        "round": 217,
+        "kind": "R217 LTR聚合查询适用边界与旧状态纠错",
+        "deliverables": [
+          "R217补齐LTR Switch USP Max寄存器三种常见使用模型，区分数值聚合、Max参与和超限无要求，明确现有查询不预测实际上行包；补有效最大编码17FFh，纠正89资料待取得与12旧共享阻塞的过期表述。172/183验收保持。"
+        ],
+        "closedDeliverableIds": [
+          "ltr-usp-max-models-explained",
+          "ltr-aggregate-query-scope-explicit",
+          "ltr-request-and-coding-blocker-current-notes-synchronized"
+        ],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "11项既有规范疑点/12维度仍限定对应分支；不扩大范围，不新增无依据完工轮数。R218四轮总结。",
+        "publication": "构建/查询边界与计算不变回归后发布R217。"
       }
     ],
     "backlog": [
@@ -41356,34 +41373,32 @@
       }
     ],
     "nextExecution": {
-      "round": 217,
+      "round": 218,
       "taskId": "v1-task-24",
       "featureIds": [
         4,
-        12,
-        89
+        13
       ],
-      "goal": "继续抽查已核文字/图表/查询的版本、单位与角色；优先实际网站错误和有用细节，不为轮次重复改写正确内容。R218总结。",
+      "goal": "R215～R218四轮复盘：总结实际修错/补充、严格技术与用户范围验收分开；抽查LTSSM和包图/导航，按真实问题选下一优先级，不机械增加验收目标。",
       "mode": "review-and-improve",
       "reviewRound": 218,
       "acceptedFeatureReviewReasons": {
-        "4": "维护抽查已验收内容，检查版本/单位/图文一致性，不重开原验收",
-        "12": "维护抽查已验收内容，检查版本/单位/图文一致性，不重开原验收",
-        "89": "维护抽查已验收内容，检查版本/单位/图文一致性，不重开原验收"
+        "4": "维护抽查已验收内容的图文/角色/单位，并复盘实际错误；不重开原验收",
+        "13": "维护抽查已验收内容的图文/角色/单位，并复盘实际错误；不重开原验收"
       }
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 216,
+      "assessedRound": 217,
       "reestimateRound": 218,
       "observedAcceptedUnitsPerRound": 1.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R216修正TDISP INTERFACE_INFO位图的版本混用风险：并列7.0/6.5与7.1 bit6，新增7.1 DEVICE_CLASS_INFO字段、三层偏移及长度示例。原图确认的Reserved/尾部偏移疑点明确隔离，不猜修订；验收172/183不变。",
+      "assessment": "R217补齐LTR Switch USP Max寄存器三种常见使用模型，区分数值聚合、Max参与和超限无要求，明确现有查询不预测实际上行包；补有效最大编码17FFh，纠正89资料待取得与12旧共享阻塞的过期表述。172/183验收保持。",
       "action": "按用户决定持续纠错与完善；11项只限定对应分支，不再以疑点数量驱动反复扩写或索取资料。",
       "latestProgress": {
-        "round": 216,
+        "round": 217,
         "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 172,
         "newPassedCriteria": 0,
@@ -43239,7 +43254,7 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        216
+        217
       ],
       "completedRounds": [
         139,
@@ -43319,10 +43334,11 @@
         213,
         214,
         215,
-        216
+        216,
+        217
       ],
-      "publication": "publish-r216-after-validation",
-      "note": "本轮手动推进；每日09:00任务已按用户要求恢复，不改变该排程。",
+      "publication": "publish-r217-after-validation",
+      "note": "手动一轮，保持每日09:00启用；下轮R218复盘。",
       "historyPreservedR202": {
         "authorizedRounds": [
           185,
@@ -43538,6 +43554,16 @@
             216
           ],
           "instruction": "用户授权跑一轮纠错与完善"
+        },
+        {
+          "round": 217,
+          "previousAuthorizedRounds": [
+            216
+          ],
+          "currentAuthorizedRounds": [
+            217
+          ],
+          "instruction": "用户授权跑一轮"
         }
       ]
     },
@@ -43551,7 +43577,7 @@
     },
     "continuationMode": "acceptance-evidence-gated-no-repeat",
     "acceptanceGate": {
-      "asOfRound": 216,
+      "asOfRound": 217,
       "acceptedFeatures": 172,
       "blockedFeatures": 11,
       "unpassedCriteria": 12,
@@ -43559,7 +43585,7 @@
       "sourceQuestionsResolvedThisWindow": [
         "v1-conflict-38"
       ],
-      "summary": "R216修正TDISP INTERFACE_INFO位图的版本混用风险：并列7.0/6.5与7.1 bit6，新增7.1 DEVICE_CLASS_INFO字段、三层偏移及长度示例。原图确认的Reserved/尾部偏移疑点明确隔离，不猜修订；验收172/183不变。",
+      "summary": "R217补齐LTR Switch USP Max寄存器三种常见使用模型，区分数值聚合、Max参与和超限无要求，明确现有查询不预测实际上行包；补有效最大编码17FFh，纠正89资料待取得与12旧共享阻塞的过期表述。172/183验收保持。",
       "causes": [
         "原48轮是未校准的预算，并非可靠完成预测；到R202已比R138多64轮。",
         "最近主要反复处理规范/产品文档冲突，新增说明却无法关闭一致性门槛。",
@@ -44355,7 +44381,7 @@
       "maintenanceMode": "review-and-improve"
     },
     "documentRequests": {
-      "asOfRound": 216,
+      "asOfRound": 217,
       "summary": "以下是已有规范疑点的查证线索，不是本轮要求上传的文档。Base与PIPE本体已具备；日常完善不等待这些澄清，产品保密资料不再索取。",
       "items": [
         {
