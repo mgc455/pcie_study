@@ -1,5 +1,9 @@
 {
   "nextFeatureIds": [
+    174,
+    177,
+    48,
+    53,
     97,
     111
   ],
@@ -50,14 +54,12 @@
   ],
   "lastCompleted": {
     "date": "2026-11-01",
-    "edition": "2026-11-01-r220",
+    "edition": "2026-11-01-r221",
     "featureIds": [
-      36,
-      48,
-      53,
-      54
+      97,
+      111
     ],
-    "nextTrack": "R221链路可靠性/流控抽查；R222总结"
+    "nextTrack": "R222四轮总结与实际一致性检查"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -252,11 +254,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 2,
-    "nextReviewAfterRounds": 2,
+    "completedSinceReview": 3,
+    "nextReviewAfterRounds": 1,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 162,
+    "completedTotal": 163,
     "lastReviewEdition": "2026-11-01-r218",
     "lastReviewId": "r215-r218",
     "nextExpectedReview": "R222：实际纠错、阅读缺口与已知疑点处理结果复盘；不是自动延期承诺。"
@@ -1275,9 +1277,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 130,
+    "completedRounds": 131,
     "remainingPlannedRounds": 0,
-    "nextRound": 221,
+    "nextRound": 222,
     "nextReviewRound": 222,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -37166,6 +37168,21 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "172/183=163证据+9用户范围；11项局部规范疑点/12维度保留。本轮为已有主题阅读缺口，不新增一期必验范围或完整新版工具认证。",
         "publication": "构建、ECAM/MSI独立算例与配置边界、动态下一轮显示回归后发布R220。"
+      },
+      {
+        "round": 221,
+        "kind": "R221可靠性/FC联合账本与边界抽查",
+        "deliverables": [
+          "R221补NFM重放与信用流控联合账本：三包跨FFF→000，NAK=000累计确认前两包、只重放001且不重扣信用；用PH/PD数值演示ACK不等于返还缓冲、UpdateFC为累计限额、重复同值不再次加额度。抽查未发现可确认的原查询算法错误，保留版本范围。"
+        ],
+        "closedDeliverableIds": [
+          "nfm-replay-credit-two-ledgers-worked-through"
+        ],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "11项局部规范疑点/12维度及172/183验收保持；本例不扩展FM或新版工具认证范围。R222复盘最近四轮实际改进。",
+        "publication": "构建、跨序号/重复确认和Credit累计账独立回归后发布R221。"
       }
     ],
     "backlog": [
@@ -41410,32 +41427,40 @@
       }
     ],
     "nextExecution": {
-      "round": 221,
+      "round": 222,
       "taskId": "v1-task-24",
       "featureIds": [
+        174,
+        177,
+        48,
+        53,
         97,
         111
       ],
-      "goal": "轮换NFM可靠性与信用流控：抽查序号/ACK及信用单位、版本/状态条件和现有查询；实际错误优先，不因轮次新增工具或验收目标。",
+      "goal": "R219～R222四轮复盘：核实际补充/修正和发布，保留验收边界；从最近图表/例子/来源中检查一致性，不重复读取正确内容凑轮数。",
       "mode": "review-and-improve",
       "reviewRound": 222,
       "acceptedFeatureReviewReasons": {
-        "97": "维护抽查已核查询与包/信用单位，不重开既有证据或机械扩写",
-        "111": "维护抽查已核查询与包/信用单位，不重开既有证据或机械扩写"
+        "174": "复盘已有图表、例子和算法边界，核实际结果而非重开验收",
+        "177": "复盘已有图表、例子和算法边界，核实际结果而非重开验收",
+        "48": "复盘已有图表、例子和算法边界，核实际结果而非重开验收",
+        "53": "复盘已有图表、例子和算法边界，核实际结果而非重开验收",
+        "97": "复盘已有图表、例子和算法边界，核实际结果而非重开验收",
+        "111": "复盘已有图表、例子和算法边界，核实际结果而非重开验收"
       }
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 220,
+      "assessedRound": 221,
       "reestimateRound": 222,
       "observedAcceptedUnitsPerRound": 1.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R220补MSI地址域完整例子：ECAM寄存器地址E0219094h、其内容FEE00000h与设备中断Memory Write目标分开，展示MME索引3形成00000043h。ECAM/MSI算法抽查未确认错误；修正维护看板把复盘路线当当前下一步的歧义，下一轮直接读取最新队列。",
-      "action": "R221轮换链路可靠性/流控的包、信用单位与状态条件；R222四轮总结，遇实际错误或阅读缺口再修改。",
+      "assessment": "R221补NFM重放与信用流控联合账本：三包跨FFF→000，NAK=000累计确认前两包、只重放001且不重扣信用；用PH/PD数值演示ACK不等于返还缓冲、UpdateFC为累计限额、重复同值不再次加额度。抽查未发现可确认的原查询算法错误，保留版本范围。",
+      "action": "R222按约复盘R219～R222，区分实际阅读补充、网站纠错、技术证据与用户范围接受；不为总结重复验收或机械扩写。",
       "latestProgress": {
-        "round": 220,
+        "round": 221,
         "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 172,
         "newPassedCriteria": 0,
@@ -43417,7 +43442,7 @@
     },
     "manualContinuation": {
       "authorizedRounds": [
-        220
+        221
       ],
       "completedRounds": [
         139,
@@ -43501,10 +43526,11 @@
         217,
         218,
         219,
-        220
+        220,
+        221
       ],
-      "publication": "publish-r220-after-validation",
-      "note": "手动一轮，保持每日09:00任务启用；R222总结。",
+      "publication": "publish-r221-after-validation",
+      "note": "手动一轮，保持每日09:00任务启用；下一轮R222总结。",
       "historyPreservedR202": {
         "authorizedRounds": [
           185,
@@ -43760,6 +43786,16 @@
             220
           ],
           "instruction": "用户授权跑一轮"
+        },
+        {
+          "round": 221,
+          "previousAuthorizedRounds": [
+            220
+          ],
+          "currentAuthorizedRounds": [
+            221
+          ],
+          "instruction": "用户授权跑一轮"
         }
       ]
     },
@@ -43773,7 +43809,7 @@
     },
     "continuationMode": "acceptance-evidence-gated-no-repeat",
     "acceptanceGate": {
-      "asOfRound": 220,
+      "asOfRound": 221,
       "acceptedFeatures": 172,
       "blockedFeatures": 11,
       "unpassedCriteria": 12,
@@ -43781,7 +43817,7 @@
       "sourceQuestionsResolvedThisWindow": [
         "v1-conflict-38"
       ],
-      "summary": "R220补MSI地址域完整例子：ECAM寄存器地址E0219094h、其内容FEE00000h与设备中断Memory Write目标分开，展示MME索引3形成00000043h。ECAM/MSI算法抽查未确认错误；修正维护看板把复盘路线当当前下一步的歧义，下一轮直接读取最新队列。",
+      "summary": "R221补NFM重放与信用流控联合账本：三包跨FFF→000，NAK=000累计确认前两包、只重放001且不重扣信用；用PH/PD数值演示ACK不等于返还缓冲、UpdateFC为累计限额、重复同值不再次加额度。抽查未发现可确认的原查询算法错误，保留版本范围。",
       "causes": [
         "原48轮是未校准的预算，并非可靠完成预测；到R202已比R138多64轮。",
         "最近主要反复处理规范/产品文档冲突，新增说明却无法关闭一致性门槛。",
@@ -44577,7 +44613,7 @@
       "maintenanceMode": "review-and-improve"
     },
     "documentRequests": {
-      "asOfRound": 220,
+      "asOfRound": 221,
       "summary": "以下是已有规范疑点的查证线索，不是本轮要求上传的文档。Base与PIPE本体已具备；日常完善不等待这些澄清，产品保密资料不再索取。",
       "items": [
         {
