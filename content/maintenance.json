@@ -1,7 +1,8 @@
 {
   "nextFeatureIds": [
-    87,
-    95
+    13,
+    36,
+    111
   ],
   "perRunTarget": "从固定验收任务批量复核成熟内容并关闭具体维度，只有真实缺口才新增正文/查询；不机械增加段落或计算器。每四轮按实际关闭量和剩余缺口校准工期。",
   "priorities": [
@@ -49,17 +50,13 @@
     "功能首次引入版本与ECN证据"
   ],
   "lastCompleted": {
-    "date": "2026-11-02",
-    "edition": "2026-11-02-r222",
+    "date": "2026-11-03",
+    "edition": "2026-11-03-r223",
     "featureIds": [
-      174,
-      177,
-      48,
-      53,
-      97,
-      111
+      87,
+      95
     ],
-    "nextTrack": "R223功耗/复位抽查；R226四轮总结"
+    "nextTrack": "R224包图/身份/信用抽查；R226四轮总结"
   },
   "referenceDepth": "每块逐步具备子状态、进入动作、正常/异常出口、连续序列计数、计时和容差、角色/编码/模式边界、字段表、逐版本正文依据与本地PDF页跳转；资料齐备但尚未核读不能写成缺文档。",
   "coverageTracking": "七代目录细化至已列出的子条款；已有正文精确映射并提供深链接/PDF入口。每轮从具体缺口推进正文，不把目录、引用数或局部规则当覆盖率；早期TOC较粗，需正文补录未列子标题。",
@@ -253,11 +250,11 @@
   "reviewCadence": {
     "intervalRounds": 4,
     "baselineEdition": "2026-10-24-r58",
-    "completedSinceReview": 0,
-    "nextReviewAfterRounds": 4,
+    "completedSinceReview": 1,
+    "nextReviewAfterRounds": 3,
     "firstExpectedReview": "R62（按实际完成4轮计算）",
     "countingRule": "手动及每日常规实质完成轮次计数；专项修订和上传重试不重复计。阶段总结列已完成、剩余缺口、优先级调整及原因；发布结果单列。",
-    "completedTotal": 164,
+    "completedTotal": 165,
     "lastReviewEdition": "2026-11-02-r222",
     "lastReviewId": "r219-r222",
     "nextExpectedReview": "R226按实质轮次总结实际修错、阅读补充和疑点处理；不是自动延期或新完工承诺。"
@@ -1348,7 +1345,7 @@
     "id": "v1-r91-r138",
     "title": "一期收尾：从持续扩写转为逐项验收",
     "baselineEdition": "2026-10-26-r90",
-    "updated": "2026-11-02",
+    "updated": "2026-11-03",
     "targetRounds": 48,
     "estimateRange": [
       40,
@@ -1357,9 +1354,9 @@
     "firstRound": 91,
     "targetRound": 138,
     "status": "budget-exhausted-incomplete",
-    "completedRounds": 132,
+    "completedRounds": 133,
     "remainingPlannedRounds": 0,
-    "nextRound": 223,
+    "nextRound": 224,
     "nextReviewRound": 226,
     "acceptedUserDate": "2026-10-26",
     "scopeFeatureIds": [
@@ -37279,6 +37276,22 @@
         "reopenedUnitIds": [],
         "remainingRequiredWork": "局部规范疑点继续按新证据处理；维护以实际错误/阅读缺口为准，不把正文或引用数量变成覆盖率，不承诺固定轮数自动清除外部歧义。",
         "publication": "构建、三轮算例联合回归、详情直达和负向死链测试后发布R222。"
+      },
+      {
+        "round": 223,
+        "kind": "R223功耗/复位跨页一致性修正",
+        "deliverables": [
+          "R223每日维护修正FLR页过期说明：LTR位号分歧已由R212/B148解决，不再写成未裁决。补“保留LTR结构、保持F0 Enable原值、恢复BME/MSI许可”三层对照，并复核L1.2计时/字段修改边界；原查询算法和172/183验收保持。"
+        ],
+        "closedDeliverableIds": [
+          "flr-current-ltr-b148-note-synchronized",
+          "flr-ltr-enable-versus-request-enable-separated"
+        ],
+        "acceptedCriterionIds": [],
+        "acceptedUnitIds": [],
+        "reopenedUnitIds": [],
+        "remainingRequiredWork": "11项/12维度局部规范疑点保持；本轮同步既有已核修订，不新增官方裁决、产品资料依赖或一期必验范围。",
+        "publication": "构建、L1.2计时/修改门槛及LTR保留边界回归后发布R223。"
       }
     ],
     "backlog": [
@@ -41523,32 +41536,34 @@
       }
     ],
     "nextExecution": {
-      "round": 223,
+      "round": 224,
       "taskId": "v1-task-24",
       "featureIds": [
-        87,
-        95
+        13,
+        36,
+        111
       ],
-      "goal": "轮换功耗/复位：核L1子状态与FLR的时间起点、进入/退出条件、软件/Function/Link作用范围，优先实际错误或阅读缺口。",
+      "goal": "轮换包图、配置身份与信用单位：按实际阅读/查询路径抽查版本和角色，不重复扩写已正确内容，发现可复现网站问题再修改。",
       "mode": "review-and-improve",
       "reviewRound": 226,
       "acceptedFeatureReviewReasons": {
-        "87": "维护抽查已验收正文与查询的计时、角色和范围，不重开原验收或索取公司产品资料",
-        "95": "维护抽查已验收正文与查询的计时、角色和范围，不重开原验收或索取公司产品资料"
+        "13": "维护抽查既有图/查询与跨页说明，保留原验收和来源边界",
+        "36": "维护抽查既有图/查询与跨页说明，保留原验收和来源边界",
+        "111": "维护抽查既有图/查询与跨页说明，保留原验收和来源边界"
       }
     },
     "initialConflictQuestionCount": 37,
     "forecast": {
       "status": "budget-exhausted-incomplete",
-      "assessedRound": 222,
+      "assessedRound": 223,
       "reestimateRound": 226,
       "observedAcceptedUnitsPerRound": 1.25,
       "requiredAcceptedUnitsPerRemainingRound": null,
       "linearExtrapolationRounds": null,
-      "assessment": "R222完成R219～R222四轮复盘：符号时间图、MSI地址域算例、NFM重放/信用账本及当前队列显示已核；未发现新增数值矛盾，补总结到具体知识块的稳定直达和构建链接校验。本窗口新增技术验收/用户范围接受/验收维度均为0；累计172/183=163证据+9用户范围，11项/12维度局部规范疑点保持。",
-      "action": "下一轮轮换L1子状态/FLR的计时与作用范围，之后继续图表/查询/导航交叉核对；R226复盘，不增加公司资料要求或机械完工轮数。",
+      "assessment": "R223每日维护修正FLR页过期说明：LTR位号分歧已由R212/B148解决，不再写成未裁决。补“保留LTR结构、保持F0 Enable原值、恢复BME/MSI许可”三层对照，并复核L1.2计时/字段修改边界；原查询算法和172/183验收保持。",
+      "action": "R224轮换包图/配置身份/信用单位的版本与角色一致性；实际问题优先，R226按约复盘。",
       "latestProgress": {
-        "round": 222,
+        "round": 223,
         "newAcceptedUnits": 0,
         "cumulativeAcceptedUnits": 172,
         "newPassedCriteria": 0,
@@ -44055,7 +44070,7 @@
     },
     "continuationMode": "acceptance-evidence-gated-no-repeat",
     "acceptanceGate": {
-      "asOfRound": 222,
+      "asOfRound": 223,
       "acceptedFeatures": 172,
       "blockedFeatures": 11,
       "unpassedCriteria": 12,
@@ -44063,7 +44078,7 @@
       "sourceQuestionsResolvedThisWindow": [
         "v1-conflict-38"
       ],
-      "summary": "R222完成R219～R222四轮复盘：符号时间图、MSI地址域算例、NFM重放/信用账本及当前队列显示已核；未发现新增数值矛盾，补总结到具体知识块的稳定直达和构建链接校验。本窗口新增技术验收/用户范围接受/验收维度均为0；累计172/183=163证据+9用户范围，11项/12维度局部规范疑点保持。",
+      "summary": "R223每日维护修正FLR页过期说明：LTR位号分歧已由R212/B148解决，不再写成未裁决。补“保留LTR结构、保持F0 Enable原值、恢复BME/MSI许可”三层对照，并复核L1.2计时/字段修改边界；原查询算法和172/183验收保持。",
       "causes": [
         "原48轮是未校准的预算，并非可靠完成预测；到R202已比R138多64轮。",
         "最近主要反复处理规范/产品文档冲突，新增说明却无法关闭一致性门槛。",
@@ -44859,7 +44874,7 @@
       "maintenanceMode": "review-and-improve"
     },
     "documentRequests": {
-      "asOfRound": 222,
+      "asOfRound": 223,
       "summary": "以下是已有规范疑点的查证线索，不是本轮要求上传的文档。Base与PIPE本体已具备；日常完善不等待这些澄清，产品保密资料不再索取。",
       "items": [
         {
@@ -50421,6 +50436,15 @@
       "issue": "card footer appeared clickable but was a span",
       "resolution": "real detail anchor for label and arrow;read status separate",
       "countsAsResearchRound": false
+    }
+  ],
+  "dailyRunHistory": [
+    {
+      "date": "2026-11-03",
+      "round": 223,
+      "mode": "review-and-improve",
+      "trigger": "scheduled",
+      "outcome": "corrected-stale-flr-ltr-status-and-separated-state-gates"
     }
   ]
 }
